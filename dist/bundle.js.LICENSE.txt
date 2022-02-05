@@ -1,0 +1,4 @@
+/*!
+This code is © Copyright Stephen C. Phillips, 2018.
+Email: steve@scphillips.com
+*/
