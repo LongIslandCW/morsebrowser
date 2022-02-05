@@ -1,0 +1,82 @@
+<html>
+<head>
+    <script src="bundle.js"></script>
+    <script type='text/javascript' src='knockout-min.js'></script>
+
+</head>
+<body>
+    Hello World!<br/>
+    wpm<input type="text" data-bind="textInput: wpm"/><br/>
+    fwpm<input type="text" data-bind="textInput: fwpm"/><br/>
+    raw<textarea data-bind="textInput: rawText, visible: showRaw"></textarea><btrue   showRaw<input type="chtruex" data-bind="checked: showRaw" /><br/>
+    showRaw<input type="checkbox" data-bind="checked: showRaw" /><br/>
+    hideList<input type="checkbox" data-bind="checked: hideList" />
+    <ul data-bind="foreach: words">
+        <li>
+            <span data-bind="visible: $index()==$parent.currentIndex()">-></span>
+            <span data-bind="text: $index"> </span>:
+            <span data-bind="text: $data, visible: !$parent.hideList()"> </span>
+            
+        </li>
+    </ul>
+    <button data-bind="click: doPlay">Play</button>
+    <button data-bind="click: doPause">Stop</button>
+    <button data-bind="click: decrementIndex">-</button>
+    <button data-bind="click: incrementIndex">+</button>
+</body>
+<script>
+    function vwModel()  {
+        var self = this;
+        self.rawText= ko.observable("hello world");
+        self.wpm=ko.observable(20);
+        self.fwpm=ko.observable(20);
+        self.hideList=ko.observable(true);
+        self.showRaw=ko.observable(true);
+        self.words= ko.computed(function() { 
+            return self.rawText()
+            .replace("-"," ")
+            .replace("'"," ")
+            .replace('"'," ")
+            .replace(":"," ")
+            .split(" ");
+        }, self);
+        self.currentIndex = ko.observable(0);
+        self.incrementIndex = function() {
+            if (self.currentIndex()<self.words().length-1) {
+                self.currentIndex(self.currentIndex()+1);
+                console.log(self.currentIndex());
+            }
+        }
+        self.decrementIndex = function() {
+            doPause(()=>{
+                if (self.currentIndex()>0 && self.words().length>1) {
+                    self.currentIndex(self.currentIndex()-1);
+                    console.log(self.currentIndex());
+                    self.doPlay();
+                 }
+            });
+            
+        }
+        self.doPlay = function() {
+            doPause(()=>{
+                doPlay(self.words()[self.currentIndex()],self.wpm(),self.fwpm(),self.playEnded)
+                console.log('played');
+            });
+        };
+            
+        
+        self.playEnded = function () {
+            console.log('ended');
+            if (self.currentIndex()<self.words().length-1) {
+                self.incrementIndex();
+                self.doPlay();
+            }
+        }
+        self.doPause = function() {
+            doPause(()=>{});
+        }
+    }
+
+    ko.applyBindings(new vwModel());
+</script>
+</html>

@@ -1,0 +1,5 @@
+{
+    "execMap": {
+        "ts": "tsc.cmd --project ./tsconfig.json --target es5"
+    }
+}
