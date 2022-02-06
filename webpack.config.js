@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  entry: './src/morse.ts',
+  entry: './src/morse.js',
   devtool: 'inline-source-map',
   module: {
     rules: [
