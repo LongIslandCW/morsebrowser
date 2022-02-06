@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@types/node": "^17.0.14",
+    "html-webpack-plugin": "^5.5.0",
     "nodemon": "^2.0.15",
     "ts-loader": "^9.2.6",
     "ts-node": "^10.4.0",
