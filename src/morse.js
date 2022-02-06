@@ -6,11 +6,11 @@ import * as RiffWave from './morse-pro/morse-pro-util-riffwave.js';
 
 //POC we save to physical file
 //fs.writeFileSync('test.wav',new Int8Array( wav));
-let message: string = 'Hello World2';
+let message = 'Hello World2';
 console.log(message);
 let myAudio = new Audio();
 
-function doPlay(word:string, wpm:number, fwpm:number,onEnded:any) {
+function doPlay(word, wpm, fwpm,onEnded) {
     let useProsigns=true;
     let frequency=550;
     let sampleRate=8000;
@@ -45,6 +45,6 @@ function doPause(pauseCallBack) {
     }
 }
 
-(window as any).doPlay = doPlay;
-(window as any).doPause = doPause;
+window.doPlay = doPlay;
+window.doPause = doPause;
 
