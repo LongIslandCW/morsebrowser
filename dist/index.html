@@ -34,10 +34,13 @@
         self.showRaw=ko.observable(true);
         self.words= ko.computed(function() { 
             return self.rawText()
-            .replace("-"," ")
-            .replace("'"," ")
-            .replace('"'," ")
-            .replace(":"," ")
+            .trim()
+            .replace(/-/g," ")
+            .replace(/'/g,"")
+            .replace(/"/g," ")
+            .replace(/:/g,",")
+            .replace(/’/g,"")
+            .replace(/  /g," ")
             .split(" ");
         }, self);
         self.currentIndex = ko.observable(0);
