@@ -5,10 +5,10 @@
 
 </head>
 <body>
-    Hello World!<br/>
+    Morse maker<br/>
     wpm<input type="text" data-bind="textInput: wpm"/><br/>
     fwpm<input type="text" data-bind="textInput: fwpm"/><br/>
-    raw<textarea data-bind="textInput: rawText, visible: showRaw"></textarea><btrue   showRaw<input type="chtruex" data-bind="checked: showRaw" /><br/>
+    raw<textarea data-bind="textInput: rawText, visible: showRaw"></textarea><br/>
     showRaw<input type="checkbox" data-bind="checked: showRaw" /><br/>
     hideList<input type="checkbox" data-bind="checked: hideList" />
     <ul data-bind="foreach: words">
@@ -23,31 +23,58 @@
     <button data-bind="click: doPause">Stop</button>
     <button data-bind="click: decrementIndex">-</button>
     <button data-bind="click: incrementIndex">+</button>
+    Sentance:<input type="number" data-bind="value:currentSentanceIndex, attr:{min:0, max:sentenceMax}, event: {change:changeSentance}">
 </body>
 <script>
     function vwModel()  {
         var self = this;
-        self.rawText= ko.observable("hello world");
+        self.rawText= ko.observable("hello world. how are you. i am fine");
         self.wpm=ko.observable(20);
         self.fwpm=ko.observable(20);
         self.hideList=ko.observable(true);
         self.showRaw=ko.observable(true);
+        self.currentSentanceIndex = ko.observable(0);
+        self.sentenceMax = ko.computed(function() {
+            return self.rawText().split(".").length - 1;
+        })
         self.words= ko.computed(function() { 
-            return self.rawText()
-            .trim()
-            .replace(/-/g," ")
-            .replace(/'/g,"")
-            .replace(/"/g," ")
-            .replace(/:/g,",")
-            .replace(/’/g,"")
-            .replace(/  /g," ")
-            .split(" ");
+            var sentences = self.rawText().split(".");
+            
+            sentences = sentences.map((sentence)=>{
+                //put the period back
+                return (sentence + ".")
+                .trim()
+                .replace(/-/g," ")
+                .replace(/'/g,"")
+                .replace(/"/g," ")
+                .replace(/:/g,",")
+                .replace(/’/g,"")
+                .replace(/  /g," ")
+                .split(" ");
+
+            });
+            
+            
+            return sentences[self.currentSentanceIndex()];
+
+            
         }, self);
         self.currentIndex = ko.observable(0);
+        self.changeSentance = function() {
+            self.currentIndex(0);
+        }
         self.incrementIndex = function() {
             if (self.currentIndex()<self.words().length-1) {
                 self.currentIndex(self.currentIndex()+1);
                 console.log(self.currentIndex());
+            }
+            else 
+            {
+                //move to next sentence
+                if (self.currentSentanceIndex() < self.sentenceMax() ) {
+                    self.currentSentanceIndex(Number(self.currentSentanceIndex())+1);
+                    self.currentIndex(0);
+                }
             }
         }
         self.decrementIndex = function() {
@@ -73,6 +100,13 @@
             if (self.currentIndex()<self.words().length-1) {
                 self.incrementIndex();
                 self.doPlay();
+            } else {
+                //move to next sentence
+                if (self.currentSentanceIndex() < self.sentenceMax() ) {
+                    self.currentSentanceIndex(Number(self.currentSentanceIndex())+1);
+                    self.currentIndex(0);
+                    self.doPlay();
+                }
             }
         }
         self.doPause = function() {
