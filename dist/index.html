@@ -1,29 +1,91 @@
+<!doctype html>
 <html>
 <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="./bootstrap-5.1.3-dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <title>Hello, world!</title>
     <script src="bundle.js"></script>
     <script type='text/javascript' src='knockout-min.js'></script>
 
 </head>
 <body>
-    Morse maker<br/>
-    wpm<input type="text" data-bind="textInput: wpm"/><br/>
-    fwpm<input type="text" data-bind="textInput: fwpm"/><br/>
-    raw<textarea data-bind="textInput: rawText, visible: showRaw"></textarea><br/>
-    showRaw<input type="checkbox" data-bind="checked: showRaw" /><br/>
-    hideList<input type="checkbox" data-bind="checked: hideList" />
-    <ul data-bind="foreach: words">
-        <li>
-            <span data-bind="visible: $index()==$parent.currentIndex()">-></span>
-            <span data-bind="text: $index"> </span>:
-            <span data-bind="text: $data, visible: !$parent.hideList()"> </span>
-            
-        </li>
-    </ul>
-    <button data-bind="click: doPlay">Play</button>
-    <button data-bind="click: doPause">Stop</button>
-    <button data-bind="click: decrementIndex">-</button>
-    <button data-bind="click: incrementIndex">+</button>
-    Sentance:<input type="number" data-bind="value:currentSentanceIndex, attr:{min:0, max:sentenceMax}, event: {change:changeSentance}">
+    
+    <div class="container-fluid">
+        <script src="./bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js" ></script>
+        <div class="row">
+            <div class="col">
+                <h3>KN4YRM Morse Practice Page</h3>
+            </div> 
+        </div> 
+        <div class="row">
+            <div class="col">
+                
+                <div class="input-group mb-3">
+                    <span class="input-group-text">WPM</span>
+                    <input type="number" class="form-control" aria-label="Username" min="0" data-bind="textInput: wpm">
+                    <span class="input-group-text">FWPM</span>
+                    <input type="number" class="form-control" aria-label="Server" min="0" data-bind="textInput: fwpm">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col"> 
+                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group me-2" role="group" aria-label="Basic mixed styles example"> 
+                        <button type="button" class="btn btn-success" data-bind="click: doPlay">Play</button>
+                        <button type="button" class="btn btn-warning" data-bind="click: decrementIndex">Back 1</button>
+
+                        <button type="button" class="btn btn-secondary" data-bind="click: incrementIndex">Fwd 1</button>
+                        <button type="button" class="btn btn-danger" data-bind="click: doPause">Stop</button>
+                        
+                    </div>
+                    <div class="btn-group me-2" role="group" aria-label="second group">
+                        <input type="checkbox" data-bind="checked: showRaw" class="btn-check" id="btnShowRaw" autocomplete="off"/>
+                        <label class="btn btn-outline-primary" for="btnShowRaw">Show Raw Text</label>
+                        <input type="checkbox" data-bind="checked: hideList" class="btn-check" id="btnHideList" autocomplete="off"/>
+                        <label class="btn btn-outline-primary" for="btnHideList">Hide List Words</label>
+                    </div>
+                    <div class="input-group" aria-label="thirdgroup">
+                        <label for="sentencerange" class="form-label" data-bind="text: 'Sentence:' + currentSentanceIndex()"></label>
+                        <input type="range" id="sentencerange" class="form-range" aria-label="Input group example"  data-bind="value:currentSentanceIndex, attr:{min:0, max:sentenceMax}, event: {change:changeSentance}">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">&nbsp;
+            </div>
+        </div>
+        <div class="row gy-5">
+            <div class="col">
+                <div class="input-group">
+                    <span class="input-group-text">Text</span>
+                    <textarea data-bind="textInput: rawText, visible: showRaw" class="form-control" aria-label="Text"></textarea>
+                </div>
+            </div>
+        </div>    
+        <div class="row">
+            <div class="col">&nbsp;
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col"> 
+                <ul data-bind="foreach: words" class="list-group">
+                    <li class="list-group-item" data-bind="css: {active: $index()==$parent.currentIndex()}">
+                        <span data-bind="text: $index"> </span>:
+                        <span data-bind="text: $data, visible: !$parent.hideList()"> </span>
+                        
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </body>
 <script>
     function vwModel()  {
