@@ -1,6 +1,7 @@
 
 import MorseCWWave from './morse-pro/morse-pro-cw-wave.js';
 import * as RiffWave from './morse-pro/morse-pro-util-riffwave.js';
+
 //import * as fs from 'fs';
 
 
@@ -10,9 +11,8 @@ let message = 'Hello World2';
 console.log(message);
 let myAudio = new Audio();
 
-function doPlay(word, wpm, fwpm,onEnded) {
+function doPlay(word, wpm, fwpm, frequency, onEnded) {
     let useProsigns=true;
-    let frequency=550;
     let sampleRate=8000;
     let unit = 1200 / fwpm;
     console.log(unit);

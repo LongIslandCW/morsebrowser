@@ -30,6 +30,8 @@
                         <input type="number" class="form-control" aria-label="Username" min="0" data-bind="textInput: wpm">
                         <span class="input-group-text">FWPM</span>
                         <input type="number" class="form-control" aria-label="Server" min="0" data-bind="textInput: fwpm">
+                        <span class="input-group-text">FREQ</span>
+                        <input type="number" class="form-control" aria-label="Server" min="100" max="1200" step="50" data-bind="textInput: frequency">
                     </div>
                 </div>
             </div>
@@ -94,19 +96,18 @@
 <script>
     function vwModel()  {
         var self = this;
-        self.rawText= ko.observable("Nine states this week announced plans to roll back requirements that people wear masks at indoor venues, including businesses and, in some cases, schools, as Covid-19 case numbers decline and pressure to return to normal life rises. Officials in New York, Illinois, Massachusetts and Rhode Island said Wednesday that rules requiring masks or proof of vaccinations intended to curb the spread of the Covid-19 pandemic would end by March. Earlier in the week, California, Oregon, New Jersey, Connecticut and Delaware officials announced similar rollbacks.");
+        self.rawText= ko.observable("hello world");
         self.wpm=ko.observable(20);
         self.fwpm=ko.observable(20);
+        self.frequency=ko.observable(550);
         self.hideList=ko.observable(true);
         self.showRaw=ko.observable(true);
         self.currentSentanceIndex = ko.observable(0);
-        self.sentenceMax = ko.computed(function() {
-            return self.rawText().split(".").length - 1;
-        })
-        self.words= ko.computed(function() { 
-            var sentences = self.rawText().split(".");
+        self.sentences= ko.computed(function() { 
+            var sents = self.rawText().split(".");
             
-            sentences = sentences.map((sentence)=>{
+            sents = sents
+            .map((sentence)=>{
                 //put the period back
                 return (sentence + ".")
                 .trim()
@@ -115,13 +116,32 @@
                 .replace(/"/g," ")
                 .replace(/:/g,",")
                 .replace(/’/g,"")
+                .replace(/‘/g,"")
                 .replace(/  /g," ")
-                .split(" ");
+                .replace(/“/g,"")
+                .replace(/”/g,"")
+                .replace(/%/g," pct ")
+                .replace(/\n/g,"")
+                .replace(/—/g,",")
+                .replace(/\$/g,"")
+                .split(" ")
+                .filter(x=>x.length>0);
 
-            });
+            })
+            .filter(x=>x.length>1 || x[0]!=".");
+            console.log(sents);
+            
+            return sents;
+
+            
+        }, self);
+        self.sentenceMax = ko.computed(function() {
+            return self.sentences().length - 1;
+        })
+        self.words= ko.computed(function() { 
             
             
-            return sentences[self.currentSentanceIndex()];
+            return self.sentences()[self.currentSentanceIndex()];
 
             
         }, self);
@@ -155,7 +175,7 @@
         }
         self.doPlay = function() {
             doPause(()=>{
-                doPlay(self.words()[self.currentIndex()],self.wpm(),self.fwpm(),self.playEnded)
+                doPlay(self.words()[self.currentIndex()],self.wpm(),self.fwpm(),self.frequency(), self.playEnded)
                 console.log('played');
             });
         };
