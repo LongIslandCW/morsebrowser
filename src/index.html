@@ -30,6 +30,7 @@
         self.rawText= ko.observable("hello world");
         self.wpm=ko.observable(20);
         self.fwpm=ko.observable(20);
+        self.frequency=ko.observable(550);
         self.hideList=ko.observable(true);
         self.showRaw=ko.observable(true);
         self.words= ko.computed(function() { 
@@ -59,7 +60,7 @@
         }
         self.doPlay = function() {
             doPause(()=>{
-                doPlay(self.words()[self.currentIndex()],self.wpm(),self.fwpm(),self.playEnded)
+                doPlay(self.words()[self.currentIndex()],self.wpm(),self.fwpm(),self.frequency(), self.playEnded)
                 console.log('played');
             });
         };
