@@ -120,10 +120,13 @@
                 .replace(/  /g," ")
                 .replace(/“/g,"")
                 .replace(/”/g,"")
+                .replace(/\[/g,"")
+                .replace(/\]/g,"")
                 .replace(/%/g," pct ")
                 .replace(/\n/g,"")
                 .replace(/—/g,",")
                 .replace(/\$/g,"")
+                
                 .split(" ")
                 .filter(x=>x.length>0);
 
