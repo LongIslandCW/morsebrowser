@@ -46,8 +46,8 @@
                             <label class="btn btn-outline-primary" for="btnHideList">Hide List Words</label>
                         </div>
                         <div class="input-group" aria-label="thirdgroup">
-                            <label for="sentencerange" class="form-label" data-bind="text: 'Sentence:' + currentSentanceIndex()"></label>
-                            <input type="range" id="sentencerange" class="form-range" aria-label="Input group example"  data-bind="value:currentSentanceIndex, attr:{min:0, max:sentenceMax}, event: {change:changeSentance}">
+                            <span class="input-group-text">SENTENCE</span>
+                            <input type="number" class="form-control" aria-label="Server" min="100" max="1200" step="1" data-bind="textInput: currentSentanceIndex,attr:{min:0, max:sentenceMax}">
                         </div>
                     </div>
                 </div>
