@@ -16,4 +16,4 @@ I just want this to be a simple utility!
 With respect to the morse-pro library, don't ask me why I converted some to typescript. I later just decided to let webpack
 create a bundle and call it a day. 2/5/22-Removed ts stuff.
 
-npx webpack --config webpack.config.js
+
