@@ -3,6 +3,11 @@ import MorseCWWave from './morse-pro/morse-pro-cw-wave.js';
 import * as RiffWave from './morse-pro/morse-pro-util-riffwave.js';
 import ko from 'knockout';
 
+//see https://getbootstrap.com/docs/5.0/getting-started/webpack/
+import 'bootstrap/dist/css/bootstrap.min.css';
+// You can specify which plugins you need
+import { Tooltip, Toast, Popover } from 'bootstrap';
+
 
 let myAudio = new Audio();
 
