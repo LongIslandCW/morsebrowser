@@ -123,16 +123,26 @@ function vwModel()  {
             if (self.currentIndex()>0 && self.words().length>1) {
                 self.currentIndex(self.currentIndex()-1);
                 console.log(self.currentIndex());
-                self.doPlay();
+                //experience shows it is good to put a little pause here
+                //so they dont' blur together
+                setTimeout(self.doPlay,1000);
              }
         });
         
     }
-    self.doPlay = function() {
+    self.doPlay = function(playJustEnded) {
+        //experience shows it is good to put a little pause here when user forces us here,
+        //e.g. hitting back or play b/c word was misunderstood,
+        //so they dont' blur together.
+        if (self.doPlayTimeOut) {
+            clearTimeout(self.doPlayTimeOut);
+        }
+        self.doPlayTimeOut = setTimeout(()=>
         doPause(()=>{
             doPlay(self.words()[self.currentIndex()],self.wpm(),self.fwpm(),self.frequency(), self.playEnded)
             console.log('played');
-        });
+        })
+        ,playJustEnded ? 0: 1000);
     };
         
     
@@ -140,13 +150,13 @@ function vwModel()  {
         console.log('ended');
         if (self.currentIndex()<self.words().length-1) {
             self.incrementIndex();
-            self.doPlay();
+            self.doPlay(true);
         } else {
             //move to next sentence
             if (self.currentSentanceIndex() < self.sentenceMax() ) {
                 self.currentSentanceIndex(Number(self.currentSentanceIndex())+1);
                 self.currentIndex(0);
-                self.doPlay();
+                self.doPlay(true);
             }
         }
     }
