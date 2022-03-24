@@ -1,6 +1,7 @@
 
 import MorseCWWave from './morse-pro/morse-pro-cw-wave.js';
 import * as RiffWave from './morse-pro/morse-pro-util-riffwave.js';
+import ko from 'knockout';
 
 //import * as fs from 'fs';
 
@@ -47,4 +48,5 @@ function doPause(pauseCallBack) {
 
 window.doPlay = doPlay;
 window.doPause = doPause;
+window.ko = ko;
 
