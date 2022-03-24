@@ -3,13 +3,7 @@ import MorseCWWave from './morse-pro/morse-pro-cw-wave.js';
 import * as RiffWave from './morse-pro/morse-pro-util-riffwave.js';
 import ko from 'knockout';
 
-//import * as fs from 'fs';
 
-
-//POC we save to physical file
-//fs.writeFileSync('test.wav',new Int8Array( wav));
-let message = 'Hello World2';
-console.log(message);
 let myAudio = new Audio();
 
 function doPlay(word, wpm, fwpm, frequency, onEnded) {
@@ -157,7 +151,5 @@ function vwModel()  {
 }
 
 ko.applyBindings(new vwModel());
-//window.doPlay = doPlay;
-//window.doPause = doPause;
-//window.ko = ko;
+
 
