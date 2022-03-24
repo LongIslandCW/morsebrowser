@@ -7,6 +7,8 @@ please note that the text-to-sound is handled by .js libraries available here: h
 
 If you just want to use it: https://randyloeb.github.io/morsebrowser/index.html
 
+Youtube demo: https://youtu.be/cSD0qVZiD10
+
 or, download the /dist directory and open index.html in your browser.
 
 I cobbled it together using knockout.js because I think knockout is fairly approachable by amateur programmer hams,
