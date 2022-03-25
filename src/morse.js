@@ -11,13 +11,13 @@ import { Tooltip, Toast, Popover } from 'bootstrap';
 
 let myAudio = new Audio();
 
-function doPlay(word, wpm, fwpm, frequency, onEnded) {
+function doPlay(word, wpm, fwpm, ditFrequency, dahFrequency, onEnded) {
     let useProsigns=true;
     let sampleRate=8000;
     let unit = 1200 / fwpm;
     console.log(unit);
     let wordSpace = unit * 7;
-    let morseCWWave = new MorseCWWave(useProsigns, wpm, fwpm, frequency, sampleRate);
+    let morseCWWave = new MorseCWWave(useProsigns, wpm, fwpm, {"dit":ditFrequency, "dah": dahFrequency}, sampleRate);
     morseCWWave.translate(word,false);
     var wav = RiffWave.getData(morseCWWave.getSample(wordSpace)); 
     myAudio = null;
@@ -51,7 +51,8 @@ function vwModel()  {
     self.rawText= ko.observable("hello world");
     self.wpm=ko.observable(20);
     self.fwpm=ko.observable(20);
-    self.frequency=ko.observable(550);
+    self.ditFrequency=ko.observable(550);
+    self.dahFrequency=ko.observable(550);
     self.hideList=ko.observable(true);
     self.showRaw=ko.observable(true);
     self.currentSentanceIndex = ko.observable(0);
@@ -139,7 +140,7 @@ function vwModel()  {
         }
         self.doPlayTimeOut = setTimeout(()=>
         doPause(()=>{
-            doPlay(self.words()[self.currentIndex()],self.wpm(),self.fwpm(),self.frequency(), self.playEnded)
+            doPlay(self.words()[self.currentIndex()],self.wpm(),self.fwpm(),self.ditFrequency(), self.dahFrequency(), self.playEnded)
             console.log('played');
         })
         ,playJustEnded ? 0: 1000);
