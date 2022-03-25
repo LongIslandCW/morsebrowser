@@ -5,7 +5,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>KN4YRM Morse Practice Page</title>
+<<<<<<< HEAD
 <script defer src="bundledee6056d15f04ac5ce3f.js"></script></head>
+=======
+<script defer src="bundle81203975af827b2f567b.js"></script></head>
+>>>>>>> master
 <body>
     
         <div class="container-fluid" style="height: 30vh;">
@@ -63,6 +67,7 @@
                     <div class="input-group">
                         <span class="input-group-text">Text</span>
                         <textarea data-bind="textInput: rawText, visible: showRaw" class="form-control" aria-label="Text"></textarea>
+                        <input type="file" accept=".txt" id="txtfiletoread" data-bind="event: {change: function() { inputFileChange($element.files[0]) } }"/>
                     </div>
                 </div>
             </div>    
