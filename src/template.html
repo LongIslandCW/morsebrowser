@@ -61,6 +61,7 @@
                     <div class="input-group">
                         <span class="input-group-text">Text</span>
                         <textarea data-bind="textInput: rawText, visible: showRaw" class="form-control" aria-label="Text"></textarea>
+                        <input type="file" accept=".txt" id="txtfiletoread" data-bind="event: {change: function() { inputFileChange($element.files[0]) } }"/>
                     </div>
                 </div>
             </div>    
