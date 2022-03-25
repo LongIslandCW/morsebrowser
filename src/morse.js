@@ -163,6 +163,18 @@ function vwModel()  {
     self.doPause = function() {
         doPause(()=>{});
     }
+
+    self.inputFileChange = function(file) {
+
+        //thanks to https://newbedev.com/how-to-access-file-input-with-knockout-binding
+        //console.log("input file changed");
+        //console.log(e);
+        var fr=new FileReader();
+        fr.onload=function(data){
+            self.rawText(data.target.result);
+        }
+        fr.readAsText(file);
+    }
 }
 
 ko.applyBindings(new vwModel());
