@@ -15,13 +15,9 @@ var source;
 var sourceEnded;
 var sourceEndedCallBack;
 
-<<<<<<< HEAD
 function doPlay(word, wpm, fwpm, ditFrequency, dahFrequency, onEnded) {
-=======
-function doPlay(word, wpm, fwpm, frequency, onEnded) {
     sourceEnded=false;
     sourceEndedCallBack=onEnded;
->>>>>>> master
     let useProsigns=true;
     let sampleRate=8000;
     let unit = 1200 / fwpm;
