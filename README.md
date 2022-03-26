@@ -12,5 +12,5 @@ Youtube demo: https://youtu.be/cSD0qVZiD10
 or, download the /dist directory and open index.html in your browser.
 
 I cobbled it together using knockout.js because I think knockout is fairly approachable by amateur programmer hams,
-compare to other javascript frameworks. If it ever got to the point that react or angular made sense, it's doing too much!
+compared to other javascript frameworks. If it ever got to the point that react or angular made sense, it's doing too much!
 I just want this to be a simple utility!
