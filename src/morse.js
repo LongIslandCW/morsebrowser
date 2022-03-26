@@ -9,9 +9,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Tooltip, Toast, Popover } from 'bootstrap';
 
 
-let myAudio = new Audio();
+//let myAudio = new Audio();
+var myAudioContext; 
+var source;
+var sourceEnded;
+var sourceEndedCallBack;
 
 function doPlay(word, wpm, fwpm, frequency, onEnded) {
+    sourceEnded=false;
+    sourceEndedCallBack=onEnded;
     let useProsigns=true;
     let sampleRate=8000;
     let unit = 1200 / fwpm;
@@ -20,12 +26,15 @@ function doPlay(word, wpm, fwpm, frequency, onEnded) {
     let morseCWWave = new MorseCWWave(useProsigns, wpm, fwpm, frequency, sampleRate);
     morseCWWave.translate(word,false);
     var wav = RiffWave.getData(morseCWWave.getSample(wordSpace)); 
-    myAudio = null;
-    myAudio = new Audio();
-    let myAudioContext = new AudioContext();
-    let source = myAudioContext.createBufferSource();
+    //myAudio = null;
+    //myAudio = new Audio();
+    
+    myAudioContext = new AudioContext();
+    
+    source = myAudioContext.createBufferSource();
     source.addEventListener('ended', ()=>{
-        onEnded();
+        sourceEnded=true;
+        sourceEndedCallBack();
     });
     let mybuf = new Int8Array(wav).buffer;
     var mybuf2;
@@ -42,24 +51,37 @@ function doPlay(word, wpm, fwpm, frequency, onEnded) {
     });
     
 
-    let url = window.URL.createObjectURL(new Blob([mybuf]));
+    //let url = window.URL.createObjectURL(new Blob([mybuf]));
     
-    myAudio.src=url;
-    myAudio.addEventListener('ended', ()=>{
-        onEnded();
-    });
+    //myAudio.src=url;
+    //myAudio.addEventListener('ended', ()=>{
+    //    onEnded();
+    //});
     //myAudio.play();
 }
 
 function doPause(pauseCallBack) {
-    myAudio.addEventListener('pause', ()=>{
-        pauseCallBack();
-    } )
-    console.log("ended:" + myAudio.ended);
-    if (myAudio.ended || myAudio.paused || !myAudio.src) {
+    //myAudio.addEventListener('pause', ()=>{
+    //    pauseCallBack();
+    //})
+    //console.log("ended:" + myAudio.ended);
+    if (typeof(myAudioContext)=="undefined") {
         pauseCallBack()
     } else {
-        myAudio.pause();
+        console.log(myAudioContext.state);
+        if (typeof(source)!="undefined") {
+            if (!sourceEnded) {
+                sourceEndedCallBack = pauseCallBack;
+                source.stop();
+            } else {
+                pauseCallBack();
+            }
+
+            
+            //myAudioContext.close().then(pauseCallBack());
+        } else {
+            pauseCallBack();
+        }
     }
 }
 
