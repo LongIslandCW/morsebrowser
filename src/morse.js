@@ -22,15 +22,33 @@ function doPlay(word, wpm, fwpm, frequency, onEnded) {
     var wav = RiffWave.getData(morseCWWave.getSample(wordSpace)); 
     myAudio = null;
     myAudio = new Audio();
+    let myAudioContext = new AudioContext();
+    let source = myAudioContext.createBufferSource();
+    source.addEventListener('ended', ()=>{
+        onEnded();
+    });
     let mybuf = new Int8Array(wav).buffer;
+    var mybuf2;
+    myAudioContext.decodeAudioData(mybuf, (x) =>{
+        // thanks https://middleearmedia.com/web-audio-api-audio-buffer/
+        mybuf2=x;
+        console.log(mybuf2);
+        source.buffer = mybuf2;
+        source.connect(myAudioContext.destination);
+        source.start(0);
+    } , (e)=>{
+        console.log("error");
+        console.log(e);
+    });
     
+
     let url = window.URL.createObjectURL(new Blob([mybuf]));
     
     myAudio.src=url;
     myAudio.addEventListener('ended', ()=>{
         onEnded();
     });
-    myAudio.play();
+    //myAudio.play();
 }
 
 function doPause(pauseCallBack) {
