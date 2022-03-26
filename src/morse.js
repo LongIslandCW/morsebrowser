@@ -28,8 +28,9 @@ function doPlay(word, wpm, fwpm, ditFrequency, dahFrequency, onEnded) {
     var wav = RiffWave.getData(morseCWWave.getSample(wordSpace)); 
     //myAudio = null;
     //myAudio = new Audio();
-    
-    myAudioContext = new AudioContext();
+    if (typeof(myAudioContext)=="undefined") {
+        myAudioContext = new AudioContext();
+    }
     
     source = myAudioContext.createBufferSource();
     source.addEventListener('ended', ()=>{
