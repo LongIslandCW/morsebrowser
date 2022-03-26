@@ -9,9 +9,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Tooltip, Toast, Popover } from 'bootstrap';
 
 
-let myAudio = new Audio();
+//let myAudio = new Audio();
+var myAudioContext; 
+var source;
+var sourceEnded;
+var sourceEndedCallBack;
 
 function doPlay(word, wpm, fwpm, frequency, onEnded) {
+    sourceEnded=false;
+    sourceEndedCallBack=onEnded;
     let useProsigns=true;
     let sampleRate=8000;
     let unit = 1200 / fwpm;
@@ -20,28 +26,62 @@ function doPlay(word, wpm, fwpm, frequency, onEnded) {
     let morseCWWave = new MorseCWWave(useProsigns, wpm, fwpm, frequency, sampleRate);
     morseCWWave.translate(word,false);
     var wav = RiffWave.getData(morseCWWave.getSample(wordSpace)); 
-    myAudio = null;
-    myAudio = new Audio();
-    let mybuf = new Int8Array(wav).buffer;
+    //myAudio = null;
+    //myAudio = new Audio();
     
-    let url = window.URL.createObjectURL(new Blob([mybuf]));
+    myAudioContext = new AudioContext();
     
-    myAudio.src=url;
-    myAudio.addEventListener('ended', ()=>{
-        onEnded();
+    source = myAudioContext.createBufferSource();
+    source.addEventListener('ended', ()=>{
+        sourceEnded=true;
+        sourceEndedCallBack();
     });
-    myAudio.play();
+    let mybuf = new Int8Array(wav).buffer;
+    var mybuf2;
+    myAudioContext.decodeAudioData(mybuf, (x) =>{
+        // thanks https://middleearmedia.com/web-audio-api-audio-buffer/
+        mybuf2=x;
+        console.log(mybuf2);
+        source.buffer = mybuf2;
+        source.connect(myAudioContext.destination);
+        source.start(0);
+    } , (e)=>{
+        console.log("error");
+        console.log(e);
+    });
+    
+
+    //let url = window.URL.createObjectURL(new Blob([mybuf]));
+    
+    //myAudio.src=url;
+    //myAudio.addEventListener('ended', ()=>{
+    //    onEnded();
+    //});
+    //myAudio.play();
 }
 
 function doPause(pauseCallBack) {
-    myAudio.addEventListener('pause', ()=>{
-        pauseCallBack();
-    } )
-    console.log("ended:" + myAudio.ended);
-    if (myAudio.ended || myAudio.paused || !myAudio.src) {
+    //myAudio.addEventListener('pause', ()=>{
+    //    pauseCallBack();
+    //})
+    //console.log("ended:" + myAudio.ended);
+    if (typeof(myAudioContext)=="undefined") {
         pauseCallBack()
     } else {
-        myAudio.pause();
+        console.log(myAudioContext.state);
+        if (typeof(source)!="undefined") {
+            if (!sourceEnded) {
+                sourceEndedCallBack = pauseCallBack;
+                source.stop();
+            } else {
+                pauseCallBack();
+            }
+
+            
+            //myAudioContext.close().then(pauseCallBack());
+        } else {
+            pauseCallBack();
+        }
     }
 }
 
