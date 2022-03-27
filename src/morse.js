@@ -9,7 +9,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Tooltip, Toast, Popover } from 'bootstrap';
 
 
-//let myAudio = new Audio();
+
 var myAudioContext; 
 var source;
 var sourceEnded;
@@ -26,8 +26,7 @@ function doPlay(word, wpm, fwpm, ditFrequency, dahFrequency, onEnded) {
     let morseCWWave = new MorseCWWave(useProsigns, wpm, fwpm, {"dit":ditFrequency, "dah": dahFrequency}, sampleRate);
     morseCWWave.translate(word,false);
     var wav = RiffWave.getData(morseCWWave.getSample(wordSpace)); 
-    //myAudio = null;
-    //myAudio = new Audio();
+    
     if (typeof(myAudioContext)=="undefined") {
         myAudioContext = new AudioContext();
     }
@@ -50,22 +49,11 @@ function doPlay(word, wpm, fwpm, ditFrequency, dahFrequency, onEnded) {
         console.log("error");
         console.log(e);
     });
-    
-
-    //let url = window.URL.createObjectURL(new Blob([mybuf]));
-    
-    //myAudio.src=url;
-    //myAudio.addEventListener('ended', ()=>{
-    //    onEnded();
-    //});
-    //myAudio.play();
+        
 }
 
 function doPause(pauseCallBack) {
-    //myAudio.addEventListener('pause', ()=>{
-    //    pauseCallBack();
-    //})
-    //console.log("ended:" + myAudio.ended);
+    
     if (typeof(myAudioContext)=="undefined") {
         pauseCallBack()
     } else {
@@ -98,36 +86,50 @@ function vwModel()  {
     self.showRaw=ko.observable(true);
     self.currentSentanceIndex = ko.observable(0);
     self.sentences= ko.computed(function() { 
-        var sents = self.rawText().split(".");
-        
-        sents = sents
-        .map((sentence)=>{
-            //put the period back
-            return (sentence + ".")
-            .trim()
-            .replace(/-/g," ")
+
+        var splitSents = self.rawText()
+            // replacing exclamation with period 
+            .replace(/!/g,".")
+            // a few ad-hoc attempts to remove rare or non-morse characters
             .replace(/'/g,"")
-            .replace(/"/g," ")
-            .replace(/:/g,",")
             .replace(/’/g,"")
             .replace(/‘/g,"")
-            .replace(/  /g," ")
-            .replace(/“/g,"")
-            .replace(/”/g,"")
-            .replace(/\[/g,"")
-            .replace(/\]/g,"")
-            .replace(/%/g," pct ")
-            .replace(/\n/g,"")
-            .replace(/—/g,",")
-            .replace(/\$/g,"")
-            
-            .split(" ")
-            .filter(x=>x.length>0);
+            // colon becomes a comma
+            .replace(/:/g,",")
+            // anything else except period, question mark or percent or stroke becomes a space
+            .replace(/(?![%,\/\.\?])\W/g," ")
+            // turn percent sign into pct abbreviation
+            .replace(/%/g,"pct")
+            // split on period or question mark
+            .split(/([\.\?])/);
 
+
+        /* example 
+        "hello there. how are you? I am fine".split(/([\.\?])/)
+        (5) ['hello there', '.', ' how are you', '?', ' I am fine'] 
+        */    
+        //now put the punctuation back on the end of sentences
+        var splitsGlued = splitSents.map((val,i,ary)=>{
+            if (i==0 || i%2==0) {
+                return val + (((i+1) < ary.length) ? ary[i+1] : "");
+            } else {
+                return "";
+            }
+        }).filter(y=>y!="");
+
+        var sents = splitsGlued
+        .map((sentence)=>{
+            return sentence
+            .trim()
+            // remove double spaces
+            .replace(/  /g," ")
+            // split up into words
+            .split(" ")
+            // get rid fo stray empties
+            .filter(x=>x.trim().length>0);
         })
         .filter(x=>x.length>1 || x[0]!=".");
-        console.log(sents);
-        
+                
         return sents;
 
         
