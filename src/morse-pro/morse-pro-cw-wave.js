@@ -41,7 +41,7 @@ export default class MorseCWWave extends MorseCW {
      * @return {number[]} an array of floats in range [-1, 1] representing the wave-form.
      */
     getSample(endPadding = 0, prePadding=0) {
-        return MorseCWWave.getSampleGeneral(this.getTimings(), this.frequency, this.sampleRate, endPadding, prePadding);
+        return MorseCWWave.getSampleGeneral(this.getTimings(true), this.frequency, this.sampleRate, endPadding, prePadding);
     }
 
     /**
