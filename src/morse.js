@@ -207,6 +207,15 @@ function vwModel()  {
             self.rssPlayTimerHandle = setTimeout(self.rssPlayCallback, 20 * 1000);
         }
     }
+
+    self.doRSSReset = function() {
+        
+        self.rssTitlesQueue(self.rssTitlesQueue().map(x=>{
+            x.played=true;
+            return x;
+        }))
+    }
+
     self.doRssPlay = function() {
         self.rssPlayOn(!self.rssPlayOn());
         if (self.rssPlayOn()) {
