@@ -64,6 +64,28 @@
                         <input type="file" accept=".txt" id="txtfiletoread" data-bind="event: {change: function() { inputFileChange($element.files[0]) } }"/>
                     </div>
                 </div>
+            </div> 
+            <div class="row gy-5">
+                <div class="col">
+                    <div class="input-group">
+                        <span class="input-group-text">RSS</span>
+                        <input type="text" data-bind="textInput: rssFeedUrl" class="form-control" aria-label="RSS">
+                        <span class="input-group-text">Proxy</span>
+                        <input type="text" data-bind="textInput: proxydUrl" class="form-control" aria-label="Proxy">
+                        <span class="input-group-text">Poll</span>
+                        <input type="number" data-bind="textInput: rssPollMins" class="form-control" aria-label="Poll">
+                        <span class="input-group-text">Play</span>
+                        <input type="number" data-bind="textInput: rssPlayMins" class="form-control" aria-label="Play">
+                        
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="input-group">
+
+                    <button type="button" class="btn btn-success" data-bind="text: pollRssButtonText, click: doRSS"></button>
+                    <button type="button" class="btn btn-success" data-bind="text: playRssButtonText, click: doRssPlay"></button>
+                    </div>
+                </div>
             </div>    
             <div class="row">
                 <div class="col">&nbsp;

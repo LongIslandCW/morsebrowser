@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>KN4YRM Morse Practice Page</title>
-<script defer src="bundleb5996c1b5a6aa93e8992.js"></script></head>
+<script defer src="bundle1ac3b0d6d78fc4685d3e.js"></script></head>
 <body>
     
         <div class="container-fluid" style="height: 30vh;">
@@ -62,6 +62,28 @@
                         <span class="input-group-text">Text</span>
                         <textarea data-bind="textInput: rawText, visible: showRaw" class="form-control" aria-label="Text"></textarea>
                         <input type="file" accept=".txt" id="txtfiletoread" data-bind="event: {change: function() { inputFileChange($element.files[0]) } }"/>
+                    </div>
+                </div>
+            </div> 
+            <div class="row gy-5">
+                <div class="col">
+                    <div class="input-group">
+                        <span class="input-group-text">RSS</span>
+                        <input type="text" data-bind="textInput: rssFeedUrl" class="form-control" aria-label="RSS">
+                        <span class="input-group-text">Proxy</span>
+                        <input type="text" data-bind="textInput: proxydUrl" class="form-control" aria-label="Proxy">
+                        <span class="input-group-text">Poll</span>
+                        <input type="number" data-bind="textInput: rssPollMins" class="form-control" aria-label="Poll">
+                        <span class="input-group-text">Play</span>
+                        <input type="number" data-bind="textInput: rssPlayMins" class="form-control" aria-label="Play">
+                        
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="input-group">
+
+                    <button type="button" class="btn btn-success" data-bind="text: pollRssButtonText, click: doRSS"></button>
+                    <button type="button" class="btn btn-success" data-bind="text: playRssButtonText, click: doRssPlay"></button>
                     </div>
                 </div>
             </div>    
