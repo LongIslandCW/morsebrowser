@@ -40,8 +40,8 @@ export default class MorseCWWave extends MorseCW {
      * @param {number} [endPadding=0] - how much silence in ms to add to the end of the waveform.
      * @return {number[]} an array of floats in range [-1, 1] representing the wave-form.
      */
-    getSample(endPadding = 0) {
-        return MorseCWWave.getSampleGeneral(this.getTimings(true), this.frequency, this.sampleRate, endPadding);
+    getSample(endPadding = 0, prePadding=0) {
+        return MorseCWWave.getSampleGeneral(this.getTimings(), this.frequency, this.sampleRate, endPadding, prePadding);
     }
 
     /**
@@ -52,12 +52,14 @@ export default class MorseCWWave extends MorseCW {
      * @param {number} [endPadding=0] - how much silence in ms to add to the end of the waveform.
      * @return {number[]} an array of floats in range [-1, 1] representing the wave-form.
      */
-    static getSampleGeneral(timings, frequency, sampleRate, endPadding = 0) {
+    static getSampleGeneral(timings, frequency, sampleRate, endPadding = 0,prePadding=0) {
         var sample = [];
         if (timings.length === 0) {
             return [];
         }
-
+        if (prePadding>0) {
+            timings.unshift({"time":(-1 * prePadding), "type":""});
+        }
         var noDetails = typeof(timings[0].time)=="undefined";
 
         // add minimum of 5ms silence to the end to ensure the filtered signal can finish cleanly
