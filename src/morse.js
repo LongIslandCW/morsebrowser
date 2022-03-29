@@ -23,6 +23,7 @@ function vwModel()  {
     self.currentIndex = ko.observable(0);
     self.preSpace = ko.observable(0);
     self.preSpaceUsed = ko.observable(false);
+    self.xtraWordSpaceDits = ko.observable(0);
 
     self.sentences= ko.computed(function() { 
         return MorseStringUtils.getSentences(self.rawText());
@@ -87,6 +88,7 @@ function vwModel()  {
             config.ditFrequency= self.ditFrequency();
             config.dahFrequency = self.dahFrequency();
             config.prePaddingMs = self.preSpaceUsed() ? 0 : self.preSpace() * 1000;
+            config.xtraWordSpaceDits = self.xtraWordSpaceDits();
             self.morseWordPlayer.play(config, self.playEnded);
             self.preSpaceUsed(true);
         })
