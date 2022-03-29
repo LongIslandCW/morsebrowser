@@ -20,6 +20,8 @@ function vwModel()  {
     self.showRaw=ko.observable(true);
     self.currentSentanceIndex = ko.observable(0);
     self.currentIndex = ko.observable(0);
+    self.preSpace = ko.observable(0);
+    self.preSpaceUsed = ko.observable(false);
 
     self.sentences= ko.computed(function() { 
         return MorseStringUtils.getSentences(self.rawText());
@@ -66,6 +68,9 @@ function vwModel()  {
     }
     
     self.doPlay = function(playJustEnded) {
+        if (!playJustEnded) {
+            self.preSpaceUsed(false);
+        }
         //experience shows it is good to put a little pause here when user forces us here,
         //e.g. hitting back or play b/c word was misunderstood,
         //so they dont' blur together.
@@ -80,7 +85,9 @@ function vwModel()  {
             config.fwpm= self.fwpm();
             config.ditFrequency= self.frequency();
             config.dahFrequency = self.frequency();
+            config.prePaddingMs = self.preSpaceUsed() ? 0 : self.preSpace() * 1000;
             self.morseWordPlayer.play(config, self.playEnded);
+            self.preSpaceUsed(true);
         })
         ,playJustEnded ? 0: 1000);
     };
@@ -102,7 +109,9 @@ function vwModel()  {
     }
     
     self.doPause = function() {
-        self.morseWordPlayer.pause(()=>{});
+        self.morseWordPlayer.pause(()=>{
+            self.preSpaceUsed(false);
+        });
     }
 
     self.inputFileChange = function(file) {
