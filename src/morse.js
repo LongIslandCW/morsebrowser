@@ -201,13 +201,13 @@ function vwModel()  {
         return (self.rssPollingOn() ? "Polling" :"Poll") +  " RSS"  + waitingText;
     })
 
-    self.rssPlayCallback = function() {
+    self.rssPlayCallback = function(ignoreWait) {
         if (self.rssPlayOn()) {
             var msSince = Date.now() -self.lastFullPlayTime();
             var minSince = msSince / 1000 / 60;
             var enoughWait = (minSince > self.rssPlayMins());
             if (!self.playerPlaying()) {
-                if (enoughWait) {
+                if (enoughWait || ignoreWait) {
                     self.rssMinsToWait(-1);
                     if (self.unreadRssCount() > 0) {
                         var target = self.rssTitlesQueue().find(x=>!x.played);
@@ -237,7 +237,7 @@ function vwModel()  {
     self.doRssPlay = function() {
         self.rssPlayOn(!self.rssPlayOn());
         if (self.rssPlayOn()) {
-            self.rssPlayCallback();
+            self.rssPlayCallback(true);
         } else {
             if (self.rssPlayTimerHandle) {
                 clearTimeout(self.rssPlayTimerHandle)
