@@ -14,7 +14,7 @@ import RSSParser from 'rss-parser';
 function vwModel()  {
     var self = this;
     self.morseWordPlayer = new MorseWordPlayer();
-    self.rawText= ko.observable("hello world");
+    self.rawText= ko.observable("hello world ".repeat(20));
     self.wpm=ko.observable(20);
     self.fwpm=ko.observable(20);
     self.frequency=ko.observable(550);
