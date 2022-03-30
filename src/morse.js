@@ -14,7 +14,7 @@ import RSSParser from 'rss-parser';
 function vwModel()  {
     var self = this;
     self.morseWordPlayer = new MorseWordPlayer();
-    self.rawText= ko.observable("hello world ".repeat(20));
+    self.rawText= ko.observable("hello world");
     self.wpm=ko.observable(20);
     self.fwpm=ko.observable(20);
     self.frequency=ko.observable(550);
@@ -88,6 +88,13 @@ function vwModel()  {
     self.fullRewind = function() {
         //if (self.sentenceMax()>0) {
             self.currentSentanceIndex(0);
+            self.currentIndex(0);
+        //}  
+    }
+
+    self.sentanceRewind = function() {
+        //if (self.sentenceMax()>0) {
+            //self.currentSentanceIndex(0);
             self.currentIndex(0);
         //}  
     }

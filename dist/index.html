@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>KN4YRM Morse Practice Page</title>
-<script defer src="bundle6a1635b780e082cc4153.js"></script></head>
+<script defer src="bundled164aa328fa19bd4bbc1.js"></script></head>
 <body>
     <div class="container-fluid" style="height:100vh; overflow-y:clip; ">
         <div class="row">
@@ -54,6 +54,11 @@
                                 <div class="input-group" aria-label="thirdgroup">
                                     <span class="input-group-text">SENTENCE</span>
                                     <input type="number" class="form-control" aria-label="Server" min="100" max="1200" step="1" data-bind="textInput: currentSentanceIndex,attr:{min:0, max:sentenceMax}">
+                                </div>
+                                <div class="btn-group me-2" role="group" aria-label="Basic mixed styles example"> 
+                                    <button type="button" class="btn btn-success" data-bind="click: fullRewind">Full RW</button>
+                                    <button type="button" class="btn btn-warning" data-bind="click: sentanceRewind">Sent RW</button>
+                                    
                                 </div>
                             </div>
                         </div>
