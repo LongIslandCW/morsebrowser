@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
   mode: 'development',
@@ -19,7 +20,11 @@ module.exports = {
         filename: "index.html",
         template:  path.resolve(__dirname, 'src/template.html')
       }
-    )
+    ),
+    new webpack.ProvidePlugin({ 
+    	process: 'process/browser', 
+      Buffer: ['buffer', 'Buffer'] 
+    }) 
   ],
   module: {
     rules: [
@@ -31,5 +36,19 @@ module.exports = {
         ]
       }
     ]
+  },
+  resolve: {
+    fallback: {
+      "stream": require.resolve("stream-browserify"),
+      "http": require.resolve("stream-http"),
+      "https": require.resolve("https-browserify"),
+      "string_decoder": require.resolve("string_decoder/"),
+      "timers": require.resolve("timers-browserify"),
+      "url": require.resolve("url/"),
+      "buffer": require.resolve("buffer/"),
+      "os": require.resolve("os-browserify"), 
+
+
+    }
   }
 };
