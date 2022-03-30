@@ -17,7 +17,8 @@ function vwModel()  {
     self.rawText= ko.observable("hello world");
     self.wpm=ko.observable(20);
     self.fwpm=ko.observable(20);
-    self.frequency=ko.observable(550);
+    self.ditFrequency=ko.observable(550);
+    self.dahFrequency=ko.observable(550);
     self.hideList=ko.observable(true);
     self.showRaw=ko.observable(true);
     self.currentSentanceIndex = ko.observable(0);
@@ -116,8 +117,8 @@ function vwModel()  {
             config.word = self.words()[self.currentIndex()];
             config.wpm = self.wpm();
             config.fwpm= self.fwpm();
-            config.ditFrequency= self.frequency();
-            config.dahFrequency = self.frequency();
+            config.ditFrequency= self.ditFrequency();
+            config.dahFrequency = self.dahFrequency();
             config.prePaddingMs = self.preSpaceUsed() ? 0 : self.preSpace() * 1000;
             config.xtraWordSpaceDits = self.xtraWordSpaceDits();
             self.morseWordPlayer.play(config, self.playEnded);

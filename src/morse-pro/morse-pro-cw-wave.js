@@ -29,6 +29,7 @@ export default class MorseCWWave extends MorseCW {
     constructor(useProsigns, wpm, fwpm, frequency = 550, sampleRate = 8000) {
         super(useProsigns, wpm, fwpm);
         /** @type {number} */
+        this.singleFrequency = typeof(frequency.dit)=="undefined";
         this.frequency = frequency;  // frequency of wave in Hz
         /** @type {number} */
         this.sampleRate = sampleRate;  // sample rate for the waveform in Hz
@@ -40,7 +41,7 @@ export default class MorseCWWave extends MorseCW {
      * @return {number[]} an array of floats in range [-1, 1] representing the wave-form.
      */
     getSample(endPadding = 0, prePadding=0) {
-        return MorseCWWave.getSampleGeneral(this.getTimings(), this.frequency, this.sampleRate, endPadding, prePadding);
+        return MorseCWWave.getSampleGeneral(this.getTimings(true), this.frequency, this.sampleRate, endPadding, prePadding);
     }
 
     /**
@@ -57,44 +58,63 @@ export default class MorseCWWave extends MorseCW {
             return [];
         }
         if (prePadding>0) {
-            timings.unshift(-1 * prePadding)
+            timings.unshift({"time":(-1 * prePadding), "type":""});
         }
+        var noDetails = typeof(timings[0].time)=="undefined";
+
         // add minimum of 5ms silence to the end to ensure the filtered signal can finish cleanly
-        timings.push(-Math.max(5, endPadding));
+        var silenceLength = -Math.max(5, endPadding);
+        timings.push(noDetails ? silenceLength : {"time": silenceLength, "type":""});
 
-        /*
-            Compute lowpass biquad filter coefficients using method from Chromium
-        */
-
-        // set lowpass frequency cutoff to 1.5 x wave frequency
-        var lowpassFreq = (frequency * 1.5) / sampleRate;
-        var q = Math.SQRT1_2;
-      
-        var sin = Math.sin(2 * Math.PI * lowpassFreq);
-        var cos = Math.cos(2 * Math.PI * lowpassFreq);
-        var alpha = sin / (2 * Math.pow(10, q / 20));
-      
-        var a0 =  1 + alpha;
-
-        var b0 = ((1 - cos) * 0.5) / a0;
-        var b1 = (1 - cos) / a0;
-        var b2 = ((1 - cos) * 0.5) / a0;
-        var a1 = (-2 * cos) / a0;
-        var a2 = (1 - alpha) / a0;
-
+        
         /*
             Compute filtered signal
         */
 
-        var step = Math.PI * 2 * frequency / sampleRate;
-        var on = timings[0] > 0 ? 1 : 0;
+        
+        var firstLength = noDetails ? timings[0] : timings[0].time;
+        var on = firstLength > 0 ? 1 : 0;
         var x0, x1 = 0, x2 = 0;
         var y0, y1 = 0, y2 = 0;
         var gain = 0.813;  // empirically, the lowpass filter outputs waveform of magnitude 1.23, so need to scale it down to avoid clipping
         for (var t = 0; t < timings.length; t += 1) {
-            var duration = sampleRate * Math.abs(timings[t]) / 1000;
+            var duration = sampleRate * Math.abs(noDetails ? timings[t] : timings[t].time) / 1000;
             for (var i = 0; i < duration; i += 1) {
-                x0 = on * Math.sin(i * step);  // the input signal
+                var ditFrequency = typeof(frequency.dit) == "undefined" ? frequency : frequency.dit;
+                var dahFrequency = typeof(frequency.dah) == "undefined" ? frequency : frequency.dah;
+                var ditStep = Math.PI * 2 * ditFrequency / sampleRate;
+                var dahStep = Math.PI * 2 * dahFrequency / sampleRate;
+                var stepToUse = ditStep;
+                var freqToUse = ditFrequency;
+                if (!noDetails && timings[t].type=="dah") {
+                    stepToUse = dahStep;
+                    freqToUse = dahFrequency;
+                }
+                x0 = on * Math.sin(i * stepToUse);  // the input signal
+
+                /*
+                Compute lowpass biquad filter coefficients using method from Chromium
+                */
+
+                // set lowpass frequency cutoff to 1.5 x wave frequency
+                var lowpassFreq = (freqToUse * 1.5) / sampleRate;
+                var q = Math.SQRT1_2;
+            
+                var sin = Math.sin(2 * Math.PI * lowpassFreq);
+                var cos = Math.cos(2 * Math.PI * lowpassFreq);
+                var alpha = sin / (2 * Math.pow(10, q / 20));
+            
+                var a0 =  1 + alpha;
+
+                var b0 = ((1 - cos) * 0.5) / a0;
+                var b1 = (1 - cos) / a0;
+                var b2 = ((1 - cos) * 0.5) / a0;
+                var a1 = (-2 * cos) / a0;
+                var a2 = (1 - alpha) / a0;
+
+
+
+
                 y0 = b0 * x0 + b1 * x1 + b2 * x2 - a1 * y1 - a2 * y2;
                 sample.push(y0 * gain);
                 x2 = x1;

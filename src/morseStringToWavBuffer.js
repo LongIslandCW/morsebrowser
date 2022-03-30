@@ -20,7 +20,7 @@ export class MorseStringToWavBuffer {
         let sampleRate=8000;
         let unit = 1200 / config.fwpm;
         let wordSpace = (unit * 7) + (unit * config.xtraWordSpaceDits);
-        let morseCWWave = new MorseCWWave(useProsigns, config.wpm, config.fwpm, config.frequency, sampleRate);
+        let morseCWWave = new MorseCWWave(useProsigns, config.wpm, config.fwpm, {"dit": config.ditFrequency, "dah":config.dahFrequency} , sampleRate);
         morseCWWave.translate(config.word,false);
         var wav = RiffWave.getData(morseCWWave.getSample(wordSpace,config.prePaddingMs));
         return wav; 

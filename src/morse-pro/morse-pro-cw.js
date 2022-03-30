@@ -79,14 +79,15 @@ export default class MorseCW extends MorseMessage {
      * speed and the spaces between characters at a slower speed.
      * @return {number[]}
      */
-    getTimings() {
+    getTimings(withDetails) {
         return MorseCW.getTimingsGeneral(
             WPM.ditLength(this._wpm),
             WPM.dahLength(this._wpm),
             WPM.ditSpace(this._wpm),
             WPM.charSpace(this._wpm, this._fwpm),
             WPM.wordSpace(this._wpm, this._fwpm),
-            this.morse
+            this.morse,
+            withDetails
         );
     }
 
@@ -101,7 +102,7 @@ export default class MorseCW extends MorseMessage {
      * @param {string} morse - the (canonical) morse code string (matching [.-/ ]*)
      * @return {number[]}
      */
-    static getTimingsGeneral(dit, dah, ditSpace, charSpace, wordSpace, morse) {
+    static getTimingsGeneral(dit, dah, ditSpace, charSpace, wordSpace, morse,withDetails) {
         //console.log("Morse: " + morse);
         morse = morse.replace(/ \/ /g, '/');  // this means that a space is only used for inter-character
         morse = morse.replace(/([\.\-])(?=[\.\-])/g, "$1+");  // put a + in between all dits and dahs
@@ -126,7 +127,18 @@ export default class MorseCW extends MorseMessage {
             }
         }
         //console.log("Timings: " + times);
-        return times;
+        return !withDetails ? times: times.map(x=>{
+            var type=""
+            switch (x) {
+                case dit:
+                    type="dit";
+                    break;
+                case dah:
+                    type="dah";
+                    break;
+            };
+            return {"time":x, "type":type};
+        });
     }
 
     /**
