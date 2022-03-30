@@ -5,91 +5,156 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>KN4YRM Morse Practice Page</title>
-<script defer src="bundle64e329c131392369429f.js"></script></head>
+<script defer src="bundled80f217b2e1a11513eb6.js"></script></head>
 <body>
-    
-        <div class="container-fluid" style="height: 30vh;">
-            
-            <div class="row">
-                <div class="col">
-                    <h3>KN4YRM Morse Practice Page</h3>
-                </div> 
-            </div> 
-            <div class="row">
-                <div class="col">
+    <div class="container-fluid" style="height:100vh; overflow-y:clip; ">
+        <div class="row">
+            <div class="col">
+                <div class="container-fluid" >
                     
-                    <div class="input-group mb-3">
-                        <span class="input-group-text">WPM</span>
-                        <input type="number" class="form-control" aria-label="Username" min="0" data-bind="textInput: wpm">
-                        <span class="input-group-text">FWPM</span>
-                        <input type="number" class="form-control" aria-label="Server" min="0" data-bind="textInput: fwpm">
-                        <span class="input-group-text">DITFREQ</span>
-                        <input type="number" class="form-control" aria-label="Server" min="100" max="1200" step="50" data-bind="textInput: ditFrequency">
-                        <span class="input-group-text">DAHFREQ</span>
-                        <input type="number" class="form-control" aria-label="Server" min="100" max="1200" step="50" data-bind="textInput: dahFrequency">
-                        <span class="input-group-text">PRESPACE</span>
-                        <input type="number" class="form-control" aria-label="Server" min="0" max="1200" step=".5" data-bind="textInput: preSpace">
-                        <span class="input-group-text">XTRAWRDSPDITS</span>
-                        <input type="number" class="form-control" aria-label="Server" min="0" max="1200" step="1" data-bind="textInput: xtraWordSpaceDits">
+                    <div class="row">
+                        <div class="col">
+                            <h3>KN4YRM Morse Practice Page</h3>
+                        </div> 
+                    </div> 
+                    <div class="row">
+                        <div class="col">
+                            
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">WPM</span>
+                                <input type="number" class="form-control" aria-label="Username" min="0" data-bind="textInput: wpm">
+                                <span class="input-group-text">FWPM</span>
+                                <input type="number" class="form-control" aria-label="Server" min="0" data-bind="textInput: fwpm">
+                                <span class="input-group-text">DITFREQ</span>
+                                <input type="number" class="form-control" aria-label="Server" min="100" max="1200" step="50" data-bind="textInput: ditFrequency">
+                                <span class="input-group-text">DAHFREQ</span>
+                                <input type="number" class="form-control" aria-label="Server" min="100" max="1200" step="50" data-bind="textInput: dahFrequency">
+                                <span class="input-group-text">PRESPACE</span>
+                                <input type="number" class="form-control" aria-label="Server" min="0" max="1200" step=".5" data-bind="textInput: preSpace">
+                                <span class="input-group-text">XTRAWRDSPDITS</span>
+                                <input type="number" class="form-control" aria-label="Server" min="0" max="1200" step="1" data-bind="textInput: xtraWordSpaceDits">
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col"> 
-                    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                        <div class="btn-group me-2" role="group" aria-label="Basic mixed styles example"> 
-                            <button type="button" class="btn btn-success" data-bind="click: doPlay">Play</button>
-                            <button type="button" class="btn btn-warning" data-bind="click: decrementIndex">Back 1</button>
+                    <div class="row">
+                        <div class="col"> 
+                            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                                <div class="btn-group me-2" role="group" aria-label="Basic mixed styles example"> 
+                                    <button type="button" class="btn btn-success" data-bind="click: doPlay">Play</button>
+                                    <button type="button" class="btn btn-warning" data-bind="click: decrementIndex">Back 1</button>
 
-                            <button type="button" class="btn btn-secondary" data-bind="click: incrementIndex">Fwd 1</button>
-                            <button type="button" class="btn btn-danger" data-bind="click: doPause">Stop</button>
+                                    <button type="button" class="btn btn-secondary" data-bind="click: incrementIndex">Fwd 1</button>
+                                    <button type="button" class="btn btn-danger" data-bind="click: doPause">Stop</button>
+                                    
+                                </div>
+                                <div class="btn-group me-2" role="group" aria-label="second group">
+                                    <input type="checkbox" data-bind="checked: showRaw" class="btn-check" id="btnShowRaw" autocomplete="off"/>
+                                    <label class="btn btn-outline-primary" for="btnShowRaw">Show Raw Text</label>
+                                    <input type="checkbox" data-bind="checked: hideList" class="btn-check" id="btnHideList" autocomplete="off"/>
+                                    <label class="btn btn-outline-primary" for="btnHideList">Hide List Words</label>
+                                </div>
+                                <div class="input-group" aria-label="thirdgroup">
+                                    <span class="input-group-text">SENTENCE</span>
+                                    <input type="number" class="form-control" aria-label="Server" min="100" max="1200" step="1" data-bind="textInput: currentSentanceIndex,attr:{min:0, max:sentenceMax}">
+                                </div>
+                                <div class="btn-group me-2" role="group" aria-label="Basic mixed styles example"> 
+                                    <button type="button" class="btn btn-success" data-bind="click: fullRewind">Full RW</button>
+                                    <button type="button" class="btn btn-warning" data-bind="click: sentanceRewind">Sent RW</button>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">&nbsp;
+                        </div>
+                    </div>
+                    <div class="row gy-5">
+                        <div class="col">
+                            <div class="input-group">
+                                <span class="input-group-text">Text</span>
+                                <textarea data-bind="textInput: rawText, visible: showRaw" class="form-control" aria-label="Text"></textarea>
+                                <input type="file" accept=".txt" id="txtfiletoread" data-bind="event: {change: function() { inputFileChange($element.files[0]) } }"/>
+                            </div>
+                        </div>
+                    </div> 
+                    
+                    <div class="row">
+                        <div class="accordion" id="accordionExample">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    RSS (Experimental, and you will need a proxy)
+                                </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <div class="row gy-5">
+                                        <div class="col">
+                                            <div class="input-group">
+                                                <span class="input-group-text">RSS</span>
+                                                <input type="text" data-bind="textInput: rssFeedUrl" class="form-control" aria-label="RSS">
+                                                <span class="input-group-text">Proxy</span>
+                                                <input type="text" data-bind="textInput: proxydUrl" class="form-control" aria-label="Proxy">
+                                                <span class="input-group-text">Poll</span>
+                                                <input type="number" data-bind="textInput: rssPollMins" class="form-control" aria-label="Poll">
+                                                <span class="input-group-text">Play</span>
+                                                <input type="number" data-bind="textInput: rssPlayMins" class="form-control" aria-label="Play">
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="input-group">
+                
+                                            <button type="button" class="btn btn-success" data-bind="text: pollRssButtonText, click: doRSS"></button>
+                                            <button type="button" class="btn btn-secondary" data-bind="text: playRssButtonText, click: doRssPlay"></button>
+                                            <button type="button" class="btn btn-danger" data-bind="click: doRSSReset">Mark RSS Old</button>
+                                            </div>
+                                        </div>
+                                    </div>   
+                                </div>
+                                </div>
+                            </div>
                             
                         </div>
-                        <div class="btn-group me-2" role="group" aria-label="second group">
-                            <input type="checkbox" data-bind="checked: showRaw" class="btn-check" id="btnShowRaw" autocomplete="off"/>
-                            <label class="btn btn-outline-primary" for="btnShowRaw">Show Raw Text</label>
-                            <input type="checkbox" data-bind="checked: hideList" class="btn-check" id="btnHideList" autocomplete="off"/>
-                            <label class="btn btn-outline-primary" for="btnHideList">Hide List Words</label>
-                        </div>
-                        <div class="input-group" aria-label="thirdgroup">
-                            <span class="input-group-text">SENTENCE</span>
-                            <input type="number" class="form-control" aria-label="Server" min="100" max="1200" step="1" data-bind="textInput: currentSentanceIndex,attr:{min:0, max:sentenceMax}">
+                    </div> 
+                    <div class="row">
+                        <div class="col">&nbsp;
                         </div>
                     </div>
+                    
+                    
                 </div>
             </div>
-            <div class="row">
-                <div class="col">&nbsp;
-                </div>
-            </div>
-            <div class="row gy-5">
-                <div class="col">
-                    <div class="input-group">
-                        <span class="input-group-text">Text</span>
-                        <textarea data-bind="textInput: rawText, visible: showRaw" class="form-control" aria-label="Text"></textarea>
-                        <input type="file" accept=".txt" id="txtfiletoread" data-bind="event: {change: function() { inputFileChange($element.files[0]) } }"/>
-                    </div>
-                </div>
-            </div>    
-            <div class="row">
-                <div class="col">&nbsp;
-                </div>
-            </div>
-            
-            
         </div>
-    
-    <div class="container-fluid" style="height: 70vh; overflow-y:auto; overflow-x: hidden;">
-        <div class="row flex-fill">
+        <div class="row"  >
             <div class="col">
-                <ul data-bind="foreach: words" class="list-group">
-                    <li class="list-group-item" data-bind="css: {active: $index()==$parent.currentIndex()}">
-                        <span data-bind="text: $index"> </span>:
-                        <span data-bind="text: $data, visible: !$parent.hideList()"> </span>
-                        
-                    </li>
-                </ul>
+
+                <div class="row overflow-auto" style="height: 100vh;">
+
+                    <div class="col" >
+                        <div class="container-fluid">
+                        <div class="row flex-fill" >
+                            <div class="col" >
+                                <ul data-bind="foreach: words" class="list-group">
+                                    <li class="list-group-item" data-bind="css: {active: $index()==$parent.currentIndex()}">
+                                        <span data-bind="text: $index"> </span>:
+                                        <span data-bind="text: $data, visible: !$parent.hideList()"> </span>
+                                        
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                
+
             </div>
+
+
         </div>
     </div>
 </body>
