@@ -315,6 +315,7 @@ function vwModel()  {
     }
 
     self.setFlagged = function() {
+        
         self.rawText(self.flaggedWords())
     }
 
