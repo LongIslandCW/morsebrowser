@@ -14,13 +14,38 @@ import RSSParser from 'rss-parser';
 function vwModel()  {
     var self = this;
     self.morseWordPlayer = new MorseWordPlayer();
-    self.rawText= ko.observable("hello world");
+    ko.extenders.showingChange = function(target, option) {
+        target.subscribe(function(newValue) {
+           console.log(option + ": " + newValue);
+           if (self.showRaw()) {
+                self.rawText(newValue);
+           }
+        });
+        return target;
+    };
+    ko.extenders.showRawChange = function(target, option) {
+        target.subscribe(function(newValue) {
+           console.log(option + ": " + newValue);
+           if (newValue) {
+               self.showingText(self.rawText())
+           } else {
+               self.showingText("");
+           }
+
+           
+        });
+        return target;
+    };
+    self.showingText = ko.observable("hello world").extend({"showingChange":"showingChange"});
+    self.rawText = ko.observable(self.showingText());
+    self.textBuffer = ko.observable("");
+    
     self.wpm=ko.observable(20);
     self.fwpm=ko.observable(20);
     self.ditFrequency=ko.observable(550);
     self.dahFrequency=ko.observable(550);
     self.hideList=ko.observable(true);
-    self.showRaw=ko.observable(true);
+    self.showRaw=ko.observable(true).extend({"showRawChange":"showRawChange"});
     self.currentSentanceIndex = ko.observable(0);
     self.currentIndex = ko.observable(0);
     self.rssFeedUrl = ko.observable("https://moxie.foxnews.com/feedburner/latest.xml");
@@ -45,6 +70,14 @@ function vwModel()  {
     self.flaggedWords = ko.observable("");
     self.isShuffled = ko.observable(false);
     self.preShuffled = "";
+
+    self.setText = function(s) {
+        if (this.showRaw()) {
+            self.showingText(s);
+        } else {
+            self.rawText(s);
+        }
+    }
 
     self.sentences= ko.computed(function() { 
         return MorseStringUtils.getSentences(self.rawText());
@@ -164,7 +197,7 @@ function vwModel()  {
         //thanks to https://newbedev.com/how-to-access-file-input-with-knockout-binding
         var fr=new FileReader();
         fr.onload=function(data){
-            self.rawText(data.target.result);
+            self.setText(data.target.result);
         }
         fr.readAsText(file);
     }
@@ -217,7 +250,7 @@ function vwModel()  {
                         var replacement = {"title": target.title, "played": true};
                         self.rssTitlesQueue.replace(target,replacement);
 
-                        self.rawText(target.title);
+                        self.setText(target.title);
                         self.fullRewind();
                         self.doPlay();
                     }
@@ -316,15 +349,15 @@ function vwModel()  {
 
     self.setFlagged = function() {
         
-        self.rawText(self.flaggedWords())
+        self.setText(self.flaggedWords())
     }
 
     self.shuffleWords = function() {
         if (!self.isShuffled()) {
             self.preShuffled=self.rawText();
-            self.rawText(self.rawText().split(' ').sort(function(){return 0.5-Math.random()}).join(' '));
+            self.setText(self.rawText().split(' ').sort(function(){return 0.5-Math.random()}).join(' '));
         } else {
-            self.rawText(self.preShuffled);
+            self.setText(self.preShuffled);
         }
         self.isShuffled(!self.isShuffled());
     }
