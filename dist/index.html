@@ -125,7 +125,7 @@
                                 <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                                   <div class="accordion-body">
                                     <div class="input-group">
-                                        <span class="input-group-text" data-bind="click:setFlagged">Click to Set</span>
+                                        <span class="input-group-text" data-bind="click:setFlagged">Click To Set As Text</span>
                                         <textarea data-bind="textInput: flaggedWords" class="form-control" aria-label="Text"></textarea>
                                         
                                     </div>
@@ -144,35 +144,18 @@
                 </div>
             </div>
         </div>
-        <div class="row"  >
+        <div class="row">
             <div class="col">
-
+            <div class="container-fluid">
                 <div class="row overflow-auto" style="height: 100vh;">
-
-                    <div class="col" >
-                        <div class="container-fluid">
-                        <div class="row flex-fill" >
-                            <div class="col" >
-                                <ul data-bind="foreach: words" class="list-group">
-                                    <li class="list-group-item" data-bind="css: {active: $index()==$parent.currentIndex()},click:()=>$parent.addFlaggedWord($data)">
-                                        <span data-bind="text: $index"> </span>:
-                                        <span data-bind="text: $data, visible: !$parent.hideList()"> </span>
-                                        
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        </div>
+                    <div class="col" data-bind="foreach: words">
+                        <button class="btn" data-bind="class: $index()==$parent.currentIndex() ? 'btn-primary':'btn-outline-primary',text: !$parent.hideList() ? $data : 'X'.repeat($data.length),click:()=>$parent.addFlaggedWord($data)"></button>
                     </div>
-
                 </div>
-
-                
-
             </div>
-
-
+            </div>
         </div>
+       
     </div>
 </body>
 
