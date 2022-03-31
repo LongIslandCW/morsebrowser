@@ -48,10 +48,12 @@
                                     
                                 </div>
                                 <div class="btn-group me-2" role="group" aria-label="second group">
+                                    <!-- 
                                     <input type="checkbox" data-bind="checked: showRaw" class="btn-check" id="btnShowRaw" autocomplete="off"/>
                                     <label class="btn btn-outline-primary" for="btnShowRaw">Show Raw Text</label>
+                                    -->
                                     <input type="checkbox" data-bind="checked: hideList" class="btn-check" id="btnHideList" autocomplete="off"/>
-                                    <label class="btn btn-outline-primary" for="btnHideList">Hide List Words</label>
+                                    <label class="btn btn-outline-primary" for="btnHideList" data-bind="text: hideList()?'Unhide List Words':'Hide List Words'"></label>
                                 </div>
                                 <div class="input-group" aria-label="thirdgroup">
                                     <span class="input-group-text">SENTENCE</span>
@@ -74,9 +76,9 @@
                             
                             
                             <div class="input-group" >
-                                <span class="input-group-text">Text</span>
+                                <span class="input-group-text" data-bind="text: showRaw() ? 'Hide': 'Show', click: ()=>showRaw(!showRaw())"></span>
                                 
-                                <textarea data-bind="textInput: rawText, visible: showRaw" class="form-control" aria-label="Text"></textarea>
+                                <textarea data-bind="textInput: showingText, enable: showRaw" class="form-control" aria-label="Text"></textarea>
                                
                                 <input type="file" accept=".txt" id="txtfiletoread" data-bind="event: {change: function() { inputFileChange($element.files[0]) } }"/>
                             
