@@ -42,6 +42,9 @@ function vwModel()  {
     self.preSpace = ko.observable(0);
     self.preSpaceUsed = ko.observable(false);
     self.xtraWordSpaceDits = ko.observable(0);
+    self.flaggedWords = ko.observable("");
+    self.isShuffled = ko.observable(false);
+    self.preShuffled = "";
 
     self.sentences= ko.computed(function() { 
         return MorseStringUtils.getSentences(self.rawText());
@@ -305,6 +308,24 @@ function vwModel()  {
                 clearTimeout(self.rssPollTimerHandle)
             }
         }
+    }
+
+    self.addFlaggedWord = function(word) {
+        self.flaggedWords(self.flaggedWords() + " " + word.replace(/[\.\,\?]/g,""));
+    }
+
+    self.setFlagged = function() {
+        self.rawText(self.flaggedWords())
+    }
+
+    self.shuffleWords = function() {
+        if (!self.isShuffled()) {
+            self.preShuffled=self.rawText();
+            self.rawText(self.rawText().split(' ').sort(function(){return 0.5-Math.random()}).join(' '));
+        } else {
+            self.rawText(self.preShuffled);
+        }
+        self.isShuffled(!self.isShuffled());
     }
 }
 

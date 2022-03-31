@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>KN4YRM Morse Practice Page</title>
-<script defer src="bundle0cc3869736e83b56f20c.js"></script></head>
+<script defer src="bundled0b227e2ad029bf49147.js"></script></head>
 <body>
     <div class="container-fluid" style="height:100vh; overflow-y:clip; ">
         <div class="row">
@@ -60,7 +60,7 @@
                                 <div class="btn-group me-2" role="group" aria-label="Basic mixed styles example"> 
                                     <button type="button" class="btn btn-success" data-bind="click: fullRewind">Full RW</button>
                                     <button type="button" class="btn btn-warning" data-bind="click: sentanceRewind">Sent RW</button>
-                                    
+                                    <button type="button" class="btn btn-secondary" data-bind="click: shuffleWords, text: isShuffled()?'UnShuffle':'Shuffle'"></button>
                                 </div>
                             </div>
                         </div>
@@ -83,38 +83,55 @@
                         <div class="accordion" id="accordionExample">
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingOne">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                                     RSS (Experimental, and you will need a proxy)
                                 </button>
                                 </h2>
                                 <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                <div class="accordion-body">
-                                    <div class="row gy-5">
-                                        <div class="col">
-                                            <div class="input-group">
-                                                <span class="input-group-text">RSS</span>
-                                                <input type="text" data-bind="textInput: rssFeedUrl" class="form-control" aria-label="RSS">
-                                                <span class="input-group-text">Proxy</span>
-                                                <input type="text" data-bind="textInput: proxydUrl" class="form-control" aria-label="Proxy">
-                                                <span class="input-group-text">Poll</span>
-                                                <input type="number" data-bind="textInput: rssPollMins" class="form-control" aria-label="Poll">
-                                                <span class="input-group-text">Play</span>
-                                                <input type="number" data-bind="textInput: rssPlayMins" class="form-control" aria-label="Play">
-                                                
+                                    <div class="accordion-body">
+                                        <div class="row gy-5">
+                                            <div class="col">
+                                                <div class="input-group">
+                                                    <span class="input-group-text">RSS</span>
+                                                    <input type="text" data-bind="textInput: rssFeedUrl" class="form-control" aria-label="RSS">
+                                                    <span class="input-group-text">Proxy</span>
+                                                    <input type="text" data-bind="textInput: proxydUrl" class="form-control" aria-label="Proxy">
+                                                    <span class="input-group-text">Poll</span>
+                                                    <input type="number" data-bind="textInput: rssPollMins" class="form-control" aria-label="Poll">
+                                                    <span class="input-group-text">Play</span>
+                                                    <input type="number" data-bind="textInput: rssPlayMins" class="form-control" aria-label="Play">
+                                                    
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="input-group">
-                
-                                            <button type="button" class="btn btn-success" data-bind="text: pollRssButtonText, click: doRSS"></button>
-                                            <button type="button" class="btn btn-secondary" data-bind="text: playRssButtonText, click: doRssPlay"></button>
-                                            <button type="button" class="btn btn-danger" data-bind="click: doRSSReset">Mark RSS Old</button>
+                                            <div class="col">
+                                                <div class="input-group">
+                    
+                                                <button type="button" class="btn btn-success" data-bind="text: pollRssButtonText, click: doRSS"></button>
+                                                <button type="button" class="btn btn-secondary" data-bind="text: playRssButtonText, click: doRssPlay"></button>
+                                                <button type="button" class="btn btn-danger" data-bind="click: doRSSReset">Mark RSS Old</button>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>   
-                                </div>
+                                        </div>   
+                                    </div>
                                 </div>
                             </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingTwo">
+                                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    Flagged words (click words you missed in the word list to add here)
+                                  </button>
+                                </h2>
+                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                  <div class="accordion-body">
+                                    <div class="input-group">
+                                        <span class="input-group-text" data-bind="setFlagged">Click to Set</span>
+                                        <textarea data-bind="textInput: flaggedWords" class="form-control" aria-label="Text"></textarea>
+                                        
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
                             
                         </div>
                     </div> 
@@ -137,7 +154,7 @@
                         <div class="row flex-fill" >
                             <div class="col" >
                                 <ul data-bind="foreach: words" class="list-group">
-                                    <li class="list-group-item" data-bind="css: {active: $index()==$parent.currentIndex()}">
+                                    <li class="list-group-item" data-bind="css: {active: $index()==$parent.currentIndex()},click:()=>$parent.addFlaggedWord($data)">
                                         <span data-bind="text: $index"> </span>:
                                         <span data-bind="text: $data, visible: !$parent.hideList()"> </span>
                                         
