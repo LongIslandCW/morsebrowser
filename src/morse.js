@@ -9,14 +9,26 @@ import MorseStringUtils from './morseStringUtils.js';
 import {MorseStringToWavBufferConfig} from './morseStringToWavBuffer.js';
 import { MorseWordPlayer } from './morseWordPlayer.js';
 import RSSParser from 'rss-parser';
+import Cookies from 'js-cookie'
 
 
 function vwModel()  {
     var self = this;
-    self.morseWordPlayer = new MorseWordPlayer();
+    
+
+    ko.extenders.saveCookie = function(target, option) {
+        target.subscribe(function(newValue) {
+           //console.log(option + ": " + newValue);
+           var x = Cookies.set(option,newValue,{ expires: 365 });
+           //console.log(Cookies.get());
+        });
+        return target;
+    };
+
+    
     ko.extenders.showingChange = function(target, option) {
         target.subscribe(function(newValue) {
-           console.log(option + ": " + newValue);
+           //console.log(option + ": " + newValue);
            if (self.showRaw()) {
                 self.rawText(newValue);
            }
@@ -25,7 +37,7 @@ function vwModel()  {
     };
     ko.extenders.showRawChange = function(target, option) {
         target.subscribe(function(newValue) {
-           console.log(option + ": " + newValue);
+           //console.log(option + ": " + newValue);
            if (newValue) {
                self.showingText(self.rawText())
            } else {
@@ -40,18 +52,18 @@ function vwModel()  {
     self.rawText = ko.observable(self.showingText());
     self.textBuffer = ko.observable("");
     
-    self.wpm=ko.observable(20);
-    self.fwpm=ko.observable(20);
-    self.ditFrequency=ko.observable(550);
-    self.dahFrequency=ko.observable(550);
-    self.hideList=ko.observable(true);
+    self.wpm=ko.observable(20).extend({saveCookie:"wpm"});
+    self.fwpm=ko.observable(20).extend({saveCookie:"fwpm"});;
+    self.ditFrequency=ko.observable(550).extend({saveCookie:"ditFrequency"});;
+    self.dahFrequency=ko.observable(550).extend({saveCookie:"dahFrequency"});;
+    self.hideList=ko.observable(true).extend({saveCookie:"hideList"});;
     self.showRaw=ko.observable(true).extend({"showRawChange":"showRawChange"});
     self.currentSentanceIndex = ko.observable(0);
     self.currentIndex = ko.observable(0);
-    self.rssFeedUrl = ko.observable("https://moxie.foxnews.com/feedburner/latest.xml");
-    self.proxydUrl = ko.observable("http://127.0.0.1:8085/");
-    self.rssPlayMins = ko.observable(5);
-    self.rssPollMins = ko.observable(5);
+    self.rssFeedUrl = ko.observable("https://moxie.foxnews.com/feedburner/latest.xml").extend({saveCookie:"rssFeedUrl"});
+    self.proxydUrl = ko.observable("http://127.0.0.1:8085/").extend({saveCookie:"proxydUrl"});;
+    self.rssPlayMins = ko.observable(5).extend({saveCookie:"rssPlayMins"});;
+    self.rssPollMins = ko.observable(5).extend({saveCookie:"rssPollMins"});;
     self.rssTitlesQueue = ko.observableArray();
     self.rssPlayOn = ko.observable(false);
     self.playerPlaying = ko.observable(false);
@@ -64,12 +76,22 @@ function vwModel()  {
     self.rssPollingOn = ko.observable(false);
     self.rssPolling = ko.observable(false);
     
-    self.preSpace = ko.observable(0);
+    self.preSpace = ko.observable(0).extend({saveCookie:"preSpace"});;
     self.preSpaceUsed = ko.observable(false);
-    self.xtraWordSpaceDits = ko.observable(0);
+    self.xtraWordSpaceDits = ko.observable(0).extend({saveCookie:"xtraWordSpaceDits"});;
     self.flaggedWords = ko.observable("");
     self.isShuffled = ko.observable(false);
     self.preShuffled = "";
+
+    var cks = Cookies.get();
+    if (cks) {
+        for (const key in cks) {
+           // console.log(key);
+            self[key](cks[key]);
+        }
+    }
+
+    self.morseWordPlayer = new MorseWordPlayer();
 
     self.setText = function(s) {
         if (this.showRaw()) {
