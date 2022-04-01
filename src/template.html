@@ -11,16 +11,16 @@
         <div class="row">
             <div class="col">
                 <div class="container-fluid" >
-                    
+                    <!-- title header area-->
                     <div class="row">
                         <div class="col">
                             <h3>KN4YRM Morse Practice Page</h3>
                         </div> 
                     </div> 
+                    <!-- settings area-->
                     <div class="row">
                         <div class="col">
-                            
-                            <div class="input-group mb-3">
+                            <div class="input-group">
                                 <span class="input-group-text">WPM</span>
                                 <input type="number" class="form-control" aria-label="Username" min="0" data-bind="textInput: wpm">
                                 <span class="input-group-text">FWPM</span>
@@ -36,56 +36,17 @@
                             </div>
                         </div>
                     </div>
+                    <!-- working text area-->
                     <div class="row">
-                        <div class="col"> 
-                            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                                <div class="btn-group me-2" role="group" aria-label="Basic mixed styles example"> 
-                                    <button type="button" class="btn btn-success" data-bind="click: doPlay">Play</button>
-                                    <button type="button" class="btn btn-warning" data-bind="click: decrementIndex">Back 1</button>
-
-                                    <button type="button" class="btn btn-secondary" data-bind="click: incrementIndex">Fwd 1</button>
-                                    <button type="button" class="btn btn-danger" data-bind="click: doPause">Stop</button>
-                                    
-                                </div>
-                                <div class="btn-group me-2" role="group" aria-label="second group">
-                                    <!-- 
-                                    <input type="checkbox" data-bind="checked: showRaw" class="btn-check" id="btnShowRaw" autocomplete="off"/>
-                                    <label class="btn btn-outline-primary" for="btnShowRaw">Show Raw Text</label>
-                                    -->
-                                    <input type="checkbox" data-bind="checked: hideList" class="btn-check" id="btnHideList" autocomplete="off"/>
-                                    <label class="btn btn-outline-primary" for="btnHideList" data-bind="text: hideList()?'Unhide List Words':'Hide List Words'"></label>
-                                </div>
-                                <div class="input-group" aria-label="thirdgroup">
-                                    <span class="input-group-text">SENTENCE</span>
-                                    <input type="number" class="form-control" aria-label="Server" min="100" max="1200" step="1" data-bind="textInput: currentSentanceIndex,attr:{min:0, max:sentenceMax}">
-                                </div>
-                                <div class="btn-group me-2" role="group" aria-label="Basic mixed styles example"> 
-                                    <button type="button" class="btn btn-success" data-bind="click: fullRewind">Full RW</button>
-                                    <button type="button" class="btn btn-warning" data-bind="click: sentanceRewind">Sent RW</button>
-                                    <button type="button" class="btn btn-secondary" data-bind="click: shuffleWords, text: isShuffled()?'UnShuffle':'Shuffle'"></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">&nbsp;
-                        </div>
-                    </div>
-                    <div class="row gy-5">
                         <div class="col">
-                            
-                            
                             <div class="input-group" >
                                 <span class="input-group-text" data-bind="text: showRaw() ? 'Hide': 'Show', click: ()=>showRaw(!showRaw())"></span>
-                                
                                 <textarea data-bind="textInput: showingText, enable: showRaw" class="form-control" aria-label="Text"></textarea>
-                               
                                 <input type="file" accept=".txt" id="txtfiletoread" data-bind="event: {change: function() { inputFileChange($element.files[0]) } }"/>
-                            
                             </div>
                         </div>
                     </div> 
-                    
+                    <!--  accordian area -->
                     <div class="row">
                         <div class="accordion" id="accordionExample">
                             <div class="accordion-item">
@@ -142,27 +103,59 @@
                             
                         </div>
                     </div> 
+                    <!-- controls area -->
+                    <div class="row">
+                        <div class="col"> 
+                            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                                <div class="btn-group me-2" role="group" aria-label="Basic mixed styles example"> 
+                                    <button type="button" class="btn btn-success" data-bind="click: doPlay">Play</button>
+                                    <button type="button" class="btn btn-warning" data-bind="click: decrementIndex">Back 1</button>
+
+                                    <button type="button" class="btn btn-secondary" data-bind="click: incrementIndex">Fwd 1</button>
+                                    <button type="button" class="btn btn-danger" data-bind="click: doPause">Stop</button>
+                                    
+                                </div>
+                                <div class="btn-group me-2" role="group" aria-label="second group">
+                                    <!-- 
+                                    <input type="checkbox" data-bind="checked: showRaw" class="btn-check" id="btnShowRaw" autocomplete="off"/>
+                                    <label class="btn btn-outline-primary" for="btnShowRaw">Show Raw Text</label>
+                                    -->
+                                    <input type="checkbox" data-bind="checked: hideList" class="btn-check" id="btnHideList" autocomplete="off"/>
+                                    <label class="btn btn-outline-primary" for="btnHideList" data-bind="text: hideList()?'Unhide List Words':'Hide List Words'"></label>
+                                </div>
+                                <div class="input-group" aria-label="thirdgroup">
+                                    <span class="input-group-text">SENTENCE</span>
+                                    <input type="number" class="form-control" aria-label="Server" min="100" max="1200" step="1" data-bind="textInput: currentSentanceIndex,attr:{min:0, max:sentenceMax}">
+                                </div>
+                                <div class="btn-group me-2" role="group" aria-label="Basic mixed styles example"> 
+                                    <button type="button" class="btn btn-success" data-bind="click: fullRewind">Full RW</button>
+                                    <button type="button" class="btn btn-warning" data-bind="click: sentanceRewind">Sent RW</button>
+                                    <button type="button" class="btn btn-secondary" data-bind="click: shuffleWords, text: isShuffled()?'UnShuffle':'Shuffle'"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- blank ?-->
                     <div class="row">
                         <div class="col">&nbsp;
                         </div>
                     </div>
-                    
-                    
                 </div>
             </div>
         </div>
+
+        <!-- the word list/card area-->
         <div class="row">
             <div class="col">
-            <div class="container-fluid">
-                <div class="row overflow-auto" style="height: 100vh;">
-                    <div class="col" data-bind="foreach: words">
-                        <button class="btn" data-bind="class: $index()==$parent.currentIndex() ? 'btn-primary':'btn-outline-primary',text: !$parent.hideList() ? $data : 'X'.repeat($data.length),click:()=>$parent.addFlaggedWord($data)"></button>
+                <div class="container-fluid">
+                    <div class="row overflow-auto" style="height: 100vh;">
+                        <div class="col" data-bind="foreach: words">
+                            <button class="btn" data-bind="class: $index()==$parent.currentIndex() ? 'btn-primary':'btn-outline-primary',text: !$parent.hideList() ? $data : 'X'.repeat($data.length),click:()=>$parent.addFlaggedWord($data)"></button>
+                        </div>
                     </div>
                 </div>
             </div>
-            </div>
         </div>
-       
     </div>
 </body>
 
