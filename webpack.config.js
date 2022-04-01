@@ -12,6 +12,22 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     clean: true
   },
+  devServer: {
+    static: {
+      directory: path.resolve(__dirname,'dist')
+    },
+    watchFiles: {
+      paths: ['dist/index.html','src/template.html'],
+      options: {
+        usePolling: false,
+      }
+    },
+    port: 3000,
+    open: false,
+    hot: true,
+    compress: true,
+    historyApiFallback: true,
+  },
   devtool: 'inline-source-map',
   plugins: [
     new HtmlWebpackPlugin(
