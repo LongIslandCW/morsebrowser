@@ -81,6 +81,7 @@ function vwModel()  {
     self.xtraWordSpaceDits = ko.observable(0).extend({saveCookie:"xtraWordSpaceDits"});;
     self.flaggedWords = ko.observable("");
     self.isShuffled = ko.observable(false);
+    self.trailReveal = ko.observable(false);
     self.preShuffled = "";
 
     var cks = Cookies.get();

@@ -122,6 +122,8 @@
                                     -->
                                     <input type="checkbox" data-bind="checked: hideList" class="btn-check" id="btnHideList" autocomplete="off"/>
                                     <label class="btn btn-outline-primary" for="btnHideList" data-bind="text: hideList()?'Unhide List Words':'Hide List Words'"></label>
+                                    <input type="checkbox" data-bind="checked: trailReveal" class="btn-check" id="btntrailReveal" autocomplete="off"/>
+                                    <label class="btn btn-outline-secondary" for="btntrailReveal" >Trail Reveal</label>
                                 </div>
                                 <div class="input-group" aria-label="thirdgroup">
                                     <span class="input-group-text">SENTENCE</span>
@@ -150,7 +152,7 @@
                 <div class="container-fluid">
                     <div class="row overflow-auto" style="height: 100vh;">
                         <div class="col" data-bind="foreach: words">
-                            <button class="btn" data-bind="class: $index()==$parent.currentIndex() ? 'btn-primary':'btn-outline-primary',text: !$parent.hideList() ? $data : 'X'.repeat($data.length),click:()=>$parent.addFlaggedWord($data)"></button>
+                            <button class="btn" data-bind="class: $index()==$parent.currentIndex() ? 'btn-primary':'btn-outline-primary',text: (!$parent.hideList() || ($parent.trailReveal() && $index() < $parent.currentIndex() )) ? $data : 'X'.repeat($data.length),click:()=>$parent.addFlaggedWord($data)"></button>
                         </div>
                     </div>
                 </div>
