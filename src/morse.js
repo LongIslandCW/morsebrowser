@@ -372,7 +372,8 @@ function vwModel()  {
 
     self.setFlagged = function() {
         
-        self.setText(self.flaggedWords())
+        self.setText(self.flaggedWords());
+        self.fullRewind();
     }
 
     self.shuffleWords = function() {
