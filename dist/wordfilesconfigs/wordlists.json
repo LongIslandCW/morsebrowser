@@ -1,0 +1,14 @@
+{
+    "fileOptions": [
+        {"sort":1, "display":"File 1", "fileName": "fileabc123.txt" },
+        {"sort":2, "display":"File 2", "fileName": "myfile2.txt" },
+        {"sort":3, "display":"File 3", "fileName": "fileabc123.txt" },
+        {"sort":4, "display":"File 4", "fileName": "myfile2.txt" },
+        {"sort":5, "display":"File 5", "fileName": "fileabc123.txt" },
+        {"sort":6, "display":"File 6", "fileName": "myfile2.txt" },
+        {"sort":7, "display":"File 7", "fileName": "fileabc123.txt" },
+        {"sort":8, "display":"File 8", "fileName": "myfile2.txt" },
+        {"sort":9, "display":"File 9", "fileName": "fileabc123.txt" },
+        {"sort":20, "display":"File 10", "fileName": "myfile2.txt" }
+    ]
+}

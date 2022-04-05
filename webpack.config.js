@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
+const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   mode: 'development',
@@ -40,7 +41,14 @@ module.exports = {
     new webpack.ProvidePlugin({ 
     	process: 'process/browser', 
       Buffer: ['buffer', 'Buffer'] 
-    }) 
+    }),
+    new CopyPlugin({
+      patterns: [
+        { from: path.resolve(__dirname, 'src/wordfiles/'), to: "wordfiles" },
+        { from: path.resolve(__dirname, 'src/wordfilesconfigs/'), to: "wordfilesconfigs" },
+       // { from: "other", to: "public" },
+      ],
+    }), 
   ],
   module: {
     rules: [
