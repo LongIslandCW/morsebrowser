@@ -2,7 +2,7 @@
     "fileOptions": [
         {"sort":1, "display":"File 1", "fileName": "fileabc123.txt" },
         {"sort":2, "display":"File 2", "fileName": "myfile2.txt" },
-        {"sort":3, "display":"File 3", "fileName": "fileabc123.txt" },
+        {"sort":3, "display":"File 3", "fileName": "myrandomless1.json" },
         {"sort":4, "display":"File 4", "fileName": "myfile2.txt" },
         {"sort":5, "display":"File 5", "fileName": "fileabc123.txt" },
         {"sort":6, "display":"File 6", "fileName": "myfile2.txt" },

@@ -412,14 +412,51 @@ function vwModel()  {
             });
     }
 
+    self.randomWordList=function(data) {
+        var str = "";
+        var chars = data.letters.split("");
+
+        // Function to generate random number min/max inclusive
+        // https://www.geeksforgeeks.org/how-to-generate-random-number-in-given-range-using-javascript/
+        function randomNumber(min, max) { 
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        } 
+
+        for (let i=1; i<=data.words; i++) {  //for each word
+            var word = "";
+            //determine word length
+            var wordLength = data.minWordSize==data.maxWordSize ? data.minWordSize : randomNumber(data.minWordSize,data.maxWordSize);
+            
+            for (let j=1; j<=wordLength;j++) { //for each letter
+            //determine the letter
+                word += chars[randomNumber(1,chars.length)-1];
+            }
+
+            str += i > 1 ? (" " + word) : word;
+        }
+
+        self.setText(str);
+    }
+
     self.getWordList = function(filename) {
+        let isText = filename.endsWith("txt"); 
         fetch('wordfiles/' + filename)
             .then(function (response) {
-                //console.log(response);
-                return response.text();
+                if (isText) {
+                    return response.text();
+                } else {
+                    //assume json
+                    return response.json();
+                }
             })
             .then(function (data) {
-                self.setText(data);
+                if (isText) {
+                    self.setText(data);
+                } else {
+                    self.randomWordList(data);
+                }               
             })
             .catch(function (err) {
                 console.log('error: ' + err);
