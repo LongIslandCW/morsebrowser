@@ -8,7 +8,11 @@ import { Tooltip, Toast, Popover } from 'bootstrap';
 import MorseStringUtils from './morseStringUtils.js';
 import {MorseStringToWavBufferConfig} from './morseStringToWavBuffer.js';
 import { MorseWordPlayer } from './morseWordPlayer.js';
-import RSSParser from 'rss-parser';
+
+//NOTE: moved this to dynamic import() so that non-RSS users don't need to bother
+//even loading this code into the browser:
+//import RSSParser from 'rss-parser';
+
 import Cookies from 'js-cookie'
 
 
@@ -83,6 +87,7 @@ function vwModel()  {
     self.isShuffled = ko.observable(false);
     self.trailReveal = ko.observable(false);
     self.preShuffled = "";
+    self.wordLists = ko.observableArray();
 
     var cks = Cookies.get();
     if (cks) {
@@ -315,31 +320,38 @@ function vwModel()  {
                 // https://github.com/rbren/rss-parser
                 // this helped resolve polyfill problems:
                 // https://blog.alchemy.com/blog/how-to-polyfill-node-core-modules-in-webpack-5
-                let parser = new RSSParser();
-                // Note: some RSS feeds can't be loaded in the browser due to CORS security.
-                // To get around this, you can use a proxy.
-
                 
-                parser.parseURL(self.proxydUrl() + self.rssFeedUrl().toString(), function(err, feed) {
-                    if (err) {
-                        self.lastRSSPoll(Date.now());
-                        alert("rss error");
-                        self.rssPolling(false);
-                        throw err;
-                    }
-                    //console.log(feed.title);
+                // note that the rss-parser module is loaded dynamically, so only if the 
+                // user actually goes ahead and uses RSS.
+                import('rss-parser').then(({default: RSSParser})=>{
+                    
+                    let parser = new RSSParser();
+                    // Note: some RSS feeds can't be loaded in the browser due to CORS security.
+                    // To get around this, you can use a proxy.
 
-                    //note the reversal to get a fifo
-                    feed.items.reverse().forEach(function(entry) {
-                        //console.log(entry.title + ':' + entry.link);
-                        if (!self.rssTitlesQueue().find(x=>x.title==entry.title)) {
-                            self.rssTitlesQueue.push({"title": entry.title, "played":false});
+                    
+                    parser.parseURL(self.proxydUrl() + self.rssFeedUrl().toString(), function(err, feed) {
+                        if (err) {
+                            self.lastRSSPoll(Date.now());
+                            alert("rss error");
+                            self.rssPolling(false);
+                            throw err;
                         }
-                    })
-                    self.lastRSSPoll(Date.now());
-                    self.rssPollMinsToWait(self.rssPollMins());
-                    self.rssPolling(false);
+                        //console.log(feed.title);
+
+                        //note the reversal to get a fifo
+                        feed.items.reverse().forEach(function(entry) {
+                            //console.log(entry.title + ':' + entry.link);
+                            if (!self.rssTitlesQueue().find(x=>x.title==entry.title)) {
+                                self.rssTitlesQueue.push({"title": entry.title, "played":false});
+                            }
+                        })
+                        self.lastRSSPoll(Date.now());
+                        self.rssPollMinsToWait(self.rssPollMins());
+                        self.rssPolling(false);
+                    });
                 });
+                
             } else {
 
                 self.rssPollMinsToWait(self.rssPollMins()-minSince);
@@ -385,6 +397,36 @@ function vwModel()  {
         }
         self.isShuffled(!self.isShuffled());
     }
+
+    self.initializeWordList = function() {
+        fetch('wordfilesconfigs/wordlists.json')
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                self.wordLists(data.fileOptions);
+                console.log(self.wordLists());
+            })
+            .catch(function (err) {
+                console.log('error: ' + err);
+            });
+    }
+
+    self.getWordList = function(filename) {
+        fetch('wordfiles/' + filename)
+            .then(function (response) {
+                //console.log(response);
+                return response.text();
+            })
+            .then(function (data) {
+                self.setText(data);
+            })
+            .catch(function (err) {
+                console.log('error: ' + err);
+            });
+    }
+
+    self.initializeWordList();
 }
 
 ko.applyBindings(new vwModel());
