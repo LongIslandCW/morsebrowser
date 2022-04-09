@@ -20,6 +20,7 @@ import Cookies from 'js-cookie'
 
 class MorseViewModel {
   constructor () {
+    // create the helper extenders
     ko.extenders.saveCookie = (target, option) => {
       target.subscribe((newValue) => {
         Cookies.set(option, newValue, { expires: 365 })
@@ -47,6 +48,7 @@ class MorseViewModel {
       return target
     }
 
+    // apply extenders
     this.wpm.extend({ saveCookie: 'wpm' })
     this.fwpm.extend({ saveCookie: 'fwpm' })
     this.ditFrequency.extend({ saveCookie: 'ditFrequency' })
@@ -61,6 +63,7 @@ class MorseViewModel {
     this.preSpace.extend({ saveCookie: 'preSpace' })
     this.xtraWordSpaceDits.extend({ saveCookie: 'xtraWordSpaceDits' })
 
+    // initialize the main rawText
     this.rawText(this.showingText())
 
     // load any existing cookie values
@@ -72,7 +75,11 @@ class MorseViewModel {
       }
     }
 
+    // initialize the wordlist
     this.initializeWordList()
+
+    // check for RSS feature turned on
+    this.rssEnabled(this.getParameterByName('rssEnabled'))
   }
 
    wpm = ko.observable(20)
@@ -110,6 +117,19 @@ class MorseViewModel {
    rawText = ko.observable()
    showingText = ko.observable('hello world')
    showRaw = ko.observable(true)
+   rssEnabled = ko.observable(false)
+
+   // helper
+   // https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
+   getParameterByName = (name, url = window.location.href) => {
+     // eslint-disable-next-line no-useless-escape
+     name = name.replace(/[\[\]]/g, '\\$&')
+     const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)')
+     const results = regex.exec(url)
+     if (!results) return null
+     if (!results[2]) return ''
+     return decodeURIComponent(results[2].replace(/\+/g, ' '))
+   }
 
    changeSentance = () => {
      this.currentIndex(0)

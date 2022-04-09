@@ -49,6 +49,8 @@
                     <!--  accordian area -->
                     <div class="row">
                         <div class="accordion" id="accordionExample">
+
+                            <!-- files list-->
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingThree">
                                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
@@ -67,7 +69,8 @@
                                 </div>
                             </div>
 
-                            <div class="accordion-item">
+                            <!-- RSS -->
+                            <div class="accordion-item" data-bind="if: rssEnabled">
                                 <h2 class="accordion-header" id="headingOne">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                                     RSS (Experimental, and you will need a proxy)
@@ -102,6 +105,7 @@
                                 </div>
                             </div>
 
+                            <!-- flagged words -->
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingTwo">
                                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
