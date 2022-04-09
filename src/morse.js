@@ -20,6 +20,7 @@ import Cookies from 'js-cookie'
 
 class MorseViewModel {
   constructor () {
+    // create the helper extenders
     ko.extenders.saveCookie = (target, option) => {
       target.subscribe((newValue) => {
         Cookies.set(option, newValue, { expires: 365 })
@@ -47,31 +48,36 @@ class MorseViewModel {
       return target
     }
 
+    // apply extenders
     this.wpm.extend({ saveCookie: 'wpm' })
     this.fwpm.extend({ saveCookie: 'fwpm' })
     this.ditFrequency.extend({ saveCookie: 'ditFrequency' })
     this.dahFrequency.extend({ saveCookie: 'dahFrequency' })
     this.hideList.extend({ saveCookie: 'hideList' })
-    this.rssFeedUrl.extend({ saveCookie: 'rssFeedUrl' })
-    this.proxydUrl.extend({ saveCookie: 'proxydUrl' })
-    this.rssPlayMins.extend({ saveCookie: 'rssPlayMins' })
-    this.rssPollMins.extend({ saveCookie: 'rssPollMins' })
     this.showingText.extend({ showingChange: 'showingChange' })
     this.showRaw.extend({ showRawChange: 'showRawChange' })
     this.preSpace.extend({ saveCookie: 'preSpace' })
     this.xtraWordSpaceDits.extend({ saveCookie: 'xtraWordSpaceDits' })
 
+    // initialize the main rawText
     this.rawText(this.showingText())
 
-    // load any existing cookie values
-    const cks = Cookies.get()
-    if (cks) {
-      for (const key in cks) {
-        // console.log(key);
-        this[key](cks[key])
-      }
+    // check for RSS feature turned on
+    if (this.getParameterByName('rssEnabled')) {
+      import('./morseRssPlugin.js').then(({ default: MorseRssPlugin }) => {
+        MorseRssPlugin.addRssFeatures(ko, this)
+        // don't set this until the plugin has initialized above
+        this.rssEnabled(true)
+        // possibly rss-related cookies missed
+        // TODO probably in general 'plugins' should be some sort of promise based
+        // and load cookies after all plugins but for now just do this....
+        this.loadCookies()
+      })
     }
 
+    this.loadCookies()
+
+    // initialize the wordlist
     this.initializeWordList()
   }
 
@@ -83,24 +89,11 @@ class MorseViewModel {
    hideList = ko.observable(true)
    currentSentanceIndex = ko.observable(0)
    currentIndex = ko.observable(0)
-   rssFeedUrl = ko.observable('https://moxie.foxnews.com/feedburner/latest.xml')
-   proxydUrl = ko.observable('http://127.0.0.1:8085/')
-   rssPlayMins = ko.observable(5)
-   rssPollMins = ko.observable(5)
-   rssTitlesQueue = ko.observableArray()
-   rssPlayOn = ko.observable(false)
    playerPlaying = ko.observable(false)
    lastFullPlayTime = ko.observable(new Date(1900, 0, 0))
-   lastRSSPoll = ko.observable(new Date(1900, 0, 0))
-   rssPlayTimerHandle = null
-   rssPollTimerHandle = null
-   rssMinsToWait = ko.observable(-1)
-   rssPollMinsToWait = ko.observable(-1)
-   rssPollingOn = ko.observable(false)
-   rssPolling = ko.observable(false)
-   preSpace = ko.observable(0).extend({ saveCookie: 'preSpace' })
+   preSpace = ko.observable(0)
    preSpaceUsed = ko.observable(false)
-   xtraWordSpaceDits = ko.observable(0).extend({ saveCookie: 'xtraWordSpaceDits' })
+   xtraWordSpaceDits = ko.observable(0)
    flaggedWords = ko.observable('')
    isShuffled = ko.observable(false)
    trailReveal = ko.observable(false)
@@ -110,6 +103,32 @@ class MorseViewModel {
    rawText = ko.observable()
    showingText = ko.observable('hello world')
    showRaw = ko.observable(true)
+   rssEnabled = ko.observable(false)
+
+   // helper
+   loadCookies = () => {
+     // load any existing cookie values
+     const cks = Cookies.get()
+     if (cks) {
+       for (const key in cks) {
+         if (typeof this[key] !== 'undefined') {
+           this[key](cks[key])
+         }
+       }
+     }
+   }
+
+   // helper
+   // https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
+   getParameterByName = (name, url = window.location.href) => {
+     // eslint-disable-next-line no-useless-escape
+     name = name.replace(/[\[\]]/g, '\\$&')
+     const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)')
+     const results = regex.exec(url)
+     if (!results) return null
+     if (!results[2]) return ''
+     return decodeURIComponent(results[2].replace(/\+/g, ' '))
+   }
 
    changeSentance = () => {
      this.currentIndex(0)
@@ -303,7 +322,10 @@ class MorseViewModel {
       // we're here if a complete rawtext finished
       this.playerPlaying(false)
       this.lastFullPlayTime(Date.now())
-      this.rssPlayCallback()
+      // TODO make this more generic for any future "plugins"
+      if (this.rssPlayCallback) {
+        this.rssPlayCallback()
+      }
 
       this.preSpaceUsed(false)
     })
@@ -316,146 +338,6 @@ class MorseViewModel {
       this.setText(data.target.result)
     }
     fr.readAsText(file)
-  }
-
-  unreadRssCount = ko.computed(() => {
-    const unread = this.rssTitlesQueue().filter(x => !x.played)
-    // console.log("unread:");
-    // console.log(unread);
-    return !unread ? 0 : unread.length
-  }, this)
-
-  playRssButtonText = ko.computed(() => {
-    const minsToWait = this.rssMinsToWait()
-    let waitingText = ''
-    if (minsToWait > 0 && this.rssPlayOn()) {
-      waitingText = ' Waiting '
-      if (minsToWait > 1) {
-        waitingText += Math.round(minsToWait).toString() + ' min'
-      } else {
-        waitingText += Math.round(60 * minsToWait).toString() + ' sec'
-      }
-    }
-    return (this.rssPlayOn() ? 'Stop' : 'Play') + ' RSS (' + this.unreadRssCount() + ')' + waitingText
-  }, this)
-
-  pollRssButtonText = ko.computed(() => {
-    const minsToWait = this.rssPollMinsToWait()
-    let waitingText = ''
-    if (minsToWait > 0 && this.rssPollingOn()) {
-      waitingText = ' Waiting '
-      if (minsToWait > 1) {
-        waitingText += Math.round(minsToWait).toString() + ' min'
-      } else {
-        waitingText += Math.round(60 * minsToWait).toString() + ' sec'
-      }
-    }
-    return (this.rssPollingOn() ? 'Polling' : 'Poll') + ' RSS' + waitingText
-  }, this)
-
-  rssPlayCallback = (ignoreWait) => {
-    if (this.rssPlayOn()) {
-      const msSince = Date.now() - this.lastFullPlayTime()
-      const minSince = msSince / 1000 / 60
-      const enoughWait = (minSince > this.rssPlayMins())
-      if (!this.playerPlaying()) {
-        if (enoughWait || ignoreWait) {
-          this.rssMinsToWait(-1)
-          if (this.unreadRssCount() > 0) {
-            const target = this.rssTitlesQueue().find(x => !x.played)
-            const replacement = { title: target.title, played: true }
-            this.rssTitlesQueue.replace(target, replacement)
-
-            this.setText(target.title)
-            this.fullRewind()
-            this.doPlay()
-          }
-        } else {
-          this.rssMinsToWait(this.rssPlayMins() - minSince)
-        }
-      }
-      this.rssPlayTimerHandle = setTimeout(this.rssPlayCallback, 20 * 1000)
-    }
-  }
-
-  doRSSReset = () => {
-    this.rssTitlesQueue(this.rssTitlesQueue().map(x => {
-      x.played = true
-      return x
-    }))
-  }
-
-  doRssPlay = () => {
-    this.rssPlayOn(!this.rssPlayOn())
-    if (this.rssPlayOn()) {
-      this.rssPlayCallback(true)
-    } else {
-      if (this.rssPlayTimerHandle) {
-        clearTimeout(this.rssPlayTimerHandle)
-      }
-    }
-  }
-
-  doRSSCallback = () => {
-    if (this.rssPollingOn() && !this.rssPolling()) {
-      const msSince = Date.now() - this.lastRSSPoll()
-      const minSince = msSince / 1000 / 60
-      const enoughWait = (minSince > this.rssPollMins())
-      if (enoughWait) {
-        this.rssPolling(true)
-        this.rssPollMinsToWait(-1)
-        // https://github.com/rbren/rss-parser
-        // this helped resolve polyfill problems:
-        // https://blog.alchemy.com/blog/how-to-polyfill-node-core-modules-in-webpack-5
-        // note that the rss-parser module is loaded dynamically, so only if the
-        // user actually goes ahead and uses RSS.
-        import('rss-parser').then(({ default: RSSParser }) => {
-          const parser = new RSSParser()
-          // Note: some RSS feeds can't be loaded in the browser due to CORS security.
-          // To get around this, you can use a proxy.
-          parser.parseURL(this.proxydUrl() + this.rssFeedUrl().toString(), (err, feed) => {
-            if (err) {
-              this.lastRSSPoll(Date.now())
-              alert('rss error')
-              this.rssPolling(false)
-              throw err
-            }
-            // console.log(feed.title);
-            // note the reversal to get a fifo
-            feed.items.reverse().forEach((entry) => {
-              // console.log(entry.title + ':' + entry.link);
-              if (!this.rssTitlesQueue().find(x => x.title === entry.title)) {
-                this.rssTitlesQueue.push({ title: entry.title, played: false })
-              }
-            })
-            this.lastRSSPoll(Date.now())
-            this.rssPollMinsToWait(this.rssPollMins())
-            this.rssPolling(false)
-          })
-        })
-      } else {
-        this.rssPollMinsToWait(this.rssPollMins() - minSince)
-      }
-    }
-
-    if (this.rssPollingOn()) {
-      this.rssPollTimerHandle = setTimeout(this.doRSSCallback, 15 * 1000)
-    } else {
-      if (this.rssPollTimerHandle) {
-        clearTimeout(this.rssPollTimerHandle)
-      }
-    }
-  }
-
-  doRSS = () => {
-    this.rssPollingOn(!this.rssPollingOn())
-    if (this.rssPollingOn()) {
-      this.doRSSCallback()
-    } else {
-      if (this.rssPollTimerHandle) {
-        clearTimeout(this.rssPollTimerHandle)
-      }
-    }
   }
 }
 
