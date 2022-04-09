@@ -1,8 +1,9 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const webpack = require('webpack');
-const CopyPlugin = require("copy-webpack-plugin");
-const ESLintPlugin = require('eslint-webpack-plugin');
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const webpack = require('webpack')
+const CopyPlugin = require('copy-webpack-plugin')
+const ESLintPlugin = require('eslint-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
   mode: 'development',
@@ -34,31 +35,34 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin(
       {
-        title: "Morse Tool",
-        filename: "index.html",
-        template:  path.resolve(__dirname, 'src/template.html')
+        title: 'Morse Tool',
+        filename: 'index.html',
+        template: path.resolve(__dirname, 'src/template.html')
       }
     ),
-    new webpack.ProvidePlugin({ 
-    	process: 'process/browser', 
-      Buffer: ['buffer', 'Buffer'] 
-    }),
+    new webpack.ProvidePlugin(
+      {
+        process: 'process/browser',
+        Buffer: ['buffer', 'Buffer']
+      }
+    ),
     new CopyPlugin({
       patterns: [
-        { from: path.resolve(__dirname, 'src/wordfiles/'), to: "wordfiles" },
-        { from: path.resolve(__dirname, 'src/wordfilesconfigs/'), to: "wordfilesconfigs" },
-       // { from: "other", to: "public" },
+        { from: path.resolve(__dirname, 'src/wordfiles/'), to: 'wordfiles' },
+        { from: path.resolve(__dirname, 'src/wordfilesconfigs/'), to: 'wordfilesconfigs' },
+        // { from: "other", to: "public" },
       ],
-      
+
     }),
-    new ESLintPlugin() 
+    new MiniCssExtractPlugin({ filename: '[name].[contenthash].css' }),
+    new ESLintPlugin()
   ],
   module: {
     rules: [
       {
         test: /\.css$/,
         use: [
-          'style-loader',
+          MiniCssExtractPlugin.loader,
           'css-loader'
         ]
       },
@@ -71,16 +75,15 @@ module.exports = {
   },
   resolve: {
     fallback: {
-      "stream": require.resolve("stream-browserify"),
-      "http": require.resolve("stream-http"),
-      "https": require.resolve("https-browserify"),
-      "string_decoder": require.resolve("string_decoder/"),
-      "timers": require.resolve("timers-browserify"),
-      "url": require.resolve("url/"),
-      "buffer": require.resolve("buffer/"),
-      "os": require.resolve("os-browserify"), 
-
+      stream: require.resolve('stream-browserify'),
+      http: require.resolve('stream-http'),
+      https: require.resolve('https-browserify'),
+      string_decoder: require.resolve('string_decoder/'),
+      timers: require.resolve('timers-browserify'),
+      url: require.resolve('url/'),
+      buffer: require.resolve('buffer/'),
+      os: require.resolve('os-browserify'),
 
     }
   }
-};
+}
