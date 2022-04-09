@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const CopyPlugin = require("copy-webpack-plugin");
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -48,7 +49,9 @@ module.exports = {
         { from: path.resolve(__dirname, 'src/wordfilesconfigs/'), to: "wordfilesconfigs" },
        // { from: "other", to: "public" },
       ],
-    }), 
+      
+    }),
+    new ESLintPlugin() 
   ],
   module: {
     rules: [
@@ -58,6 +61,11 @@ module.exports = {
           'style-loader',
           'css-loader'
         ]
+      },
+      {
+        test: /\.(js)$/,
+        exclude: [/node_modules/],
+        use: ['babel-loader']
       }
     ]
   },
