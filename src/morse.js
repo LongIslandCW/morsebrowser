@@ -218,7 +218,7 @@ class MorseViewModel {
       })
       .then((data) => {
         this.wordLists(data.fileOptions)
-        console.log(this.wordLists())
+        // console.log(this.wordLists())
       })
       .catch((err) => {
         console.log('error: ' + err)
@@ -303,7 +303,7 @@ class MorseViewModel {
   }
 
   playEnded = () => {
-    console.log('ended')
+    // console.log('ended')
     if (this.currentIndex() < this.words().length - 1) {
       this.incrementIndex()
       this.doPlay(true)
