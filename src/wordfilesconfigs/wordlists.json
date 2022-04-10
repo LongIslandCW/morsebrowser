@@ -1,6 +1,6 @@
 {
     "fileOptions": [
-        {"sort":1, "display":"File 1", "fileName": "fileabc123.txt" },
+        {"sort":1, "display":"Lesson 1", "fileName": "fileabc123.txt" },
         {"sort":2, "display":"File 2", "fileName": "myfile2.txt" },
         {"sort":3, "display":"File 3", "fileName": "myrandomless1.json" },
         {"sort":4, "display":"File 4", "fileName": "myfile2.txt" },
@@ -9,6 +9,7 @@
         {"sort":7, "display":"File 7", "fileName": "fileabc123.txt" },
         {"sort":8, "display":"File 8", "fileName": "myfile2.txt" },
         {"sort":9, "display":"File 9", "fileName": "fileabc123.txt" },
-        {"sort":20, "display":"File 10", "fileName": "myfile2.txt" }
+        {"sort":20, "display":"File 10", "fileName": "myfile2.txt" },
+        {"sort":21, "display":"File 11", "fileName": "myfile2.txt" }
     ]
 }
