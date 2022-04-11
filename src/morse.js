@@ -12,6 +12,7 @@ import MorseStringUtils from './morseStringUtils.js'
 import { MorseStringToWavBufferConfig } from './morseStringToWavBuffer.js'
 import { MorseWordPlayer } from './morseWordPlayer.js'
 import licwlogo from './assets/CW-Club-logo-clear400-300x300.png'
+// import favico from './assets/LongIslandCWClub-favicon-2.jpg'
 
 // NOTE: moved this to dynamic import() so that non-RSS users don't need to bother
 // even loading this code into the browser:
@@ -21,6 +22,9 @@ import Cookies from 'js-cookie'
 
 const licwlogoImg = document.getElementById('logo')
 licwlogoImg.src = licwlogo
+// const favaciImg = document.getElementById('favico')
+// favaciImg.src = favico
+
 class MorseViewModel {
   constructor () {
     // create the helper extenders

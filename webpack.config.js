@@ -38,7 +38,8 @@ module.exports = {
       {
         title: 'Morse Tool',
         filename: 'index.html',
-        template: path.resolve(__dirname, 'src/template.html')
+        template: path.resolve(__dirname, 'src/template.html'),
+        favicon: path.resolve(__dirname, 'src/assets/LongIslandCWClub-favicon-2.jpg')
       }
     ),
     new webpack.ProvidePlugin(
