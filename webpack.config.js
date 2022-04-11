@@ -13,7 +13,8 @@ module.exports = {
   output: {
     filename: '[name][contenthash].js',
     path: path.resolve(__dirname, 'dist'),
-    clean: true
+    clean: true,
+    assetModuleFilename: '[name][ext]'
   },
   devServer: {
     static: {
@@ -70,6 +71,10 @@ module.exports = {
         test: /\.(js)$/,
         exclude: [/node_modules/],
         use: ['babel-loader']
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource'
       }
     ]
   },
