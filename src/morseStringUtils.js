@@ -1,7 +1,7 @@
 export default class MorseStringUtils {
     static doReplacements = (s) => {
       return s
-        // a few ad-hoc attempts to remove rare or non-morse characters
+        // a few ad-hoc attempts to fix unicode or other problems
         .replace(/’/g, '')
         .replace(/‘/g, '')
         // turn percent sign into pct abbreviation

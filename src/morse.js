@@ -55,6 +55,13 @@ class MorseViewModel {
       return target
     }
 
+    ko.extenders.setVolume = (target, option) => {
+      target.subscribe((newValue) => {
+        this.morseWordPlayer.setVolume(newValue)
+      })
+      return target
+    }
+
     // apply extenders
     this.wpm.extend({ saveCookie: 'wpm' })
     this.fwpm.extend({ saveCookie: 'fwpm' })
@@ -65,6 +72,7 @@ class MorseViewModel {
     this.showRaw.extend({ showRawChange: 'showRawChange' })
     this.preSpace.extend({ saveCookie: 'preSpace' })
     this.xtraWordSpaceDits.extend({ saveCookie: 'xtraWordSpaceDits' })
+    this.volume.extend({ saveCookie: 'volume' }).extend({ setVolume: 'volume' })
 
     // initialize the main rawText
     this.rawText(this.showingText())
@@ -111,6 +119,7 @@ class MorseViewModel {
    showingText = ko.observable('hello world')
    showRaw = ko.observable(true)
    rssEnabled = ko.observable(false)
+   volume = ko.observable(10)
 
    // helper
    loadCookies = () => {
@@ -303,6 +312,7 @@ class MorseViewModel {
       config.dahFrequency = this.dahFrequency()
       config.prePaddingMs = this.preSpaceUsed() ? 0 : this.preSpace() * 1000
       config.xtraWordSpaceDits = this.xtraWordSpaceDits()
+      config.volume = this.volume()
       this.morseWordPlayer.play(config, this.playEnded)
       this.preSpaceUsed(true)
     }),

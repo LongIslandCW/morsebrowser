@@ -6,14 +6,22 @@ export default class MorseWavBufferPlayer {
     source;
     sourceEnded;
     sourceEndedCallBack;
+    gainNode;
 
-    play = (wav, onEnded) => {
+    setVolume = (scaledVolume) => {
+      if (this.myAudioContext) {
+        this.gainNode.gain.setValueAtTime(scaledVolume, this.myAudioContext.currentTime)
+      }
+    }
+
+    play = (wav, scaledVolume, onEnded) => {
       this.sourceEnded = false
       this.sourceEndedCallBack = onEnded
       if (typeof (this.myAudioContext) === 'undefined') {
         this.myAudioContext = new AudioContext()
       }
 
+      this.gainNode = this.myAudioContext.createGain()
       this.source = this.myAudioContext.createBufferSource()
       this.source.addEventListener('ended', () => {
         this.sourceEnded = true
@@ -25,7 +33,9 @@ export default class MorseWavBufferPlayer {
         // thanks https://middleearmedia.com/web-audio-api-audio-buffer/
         mybuf2 = x
         this.source.buffer = mybuf2
-        this.source.connect(this.myAudioContext.destination)
+        this.setVolume(scaledVolume)
+        this.source.connect(this.gainNode)
+        this.gainNode.connect(this.myAudioContext.destination)
         this.source.start(0)
       }, (e) => {
         console.log('error')
