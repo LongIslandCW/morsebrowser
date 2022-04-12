@@ -6,9 +6,13 @@ export class MorseWordPlayer {
       this.myBufferPlayer = new MorseWavBufferPlayer()
     }
 
+    setVolume (volume) {
+      this.myBufferPlayer.setVolume(volume / 10)
+    }
+
     play (config, onEnded) {
       const wav = MorseStringToWavBuffer.createWav(config)
-      this.myBufferPlayer.play(wav, onEnded)
+      this.myBufferPlayer.play(wav, config.volume / 10, onEnded)
     }
 
     pause (pauseCallBack) {
