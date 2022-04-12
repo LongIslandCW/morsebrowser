@@ -1,6 +1,6 @@
 {
     "letters": "abc",
-    "minWordSize": "2",
-    "maxWordSize": "5",
+    "minWordSize": "3",
+    "maxWordSize": "3",
     "words" : 20 
 }

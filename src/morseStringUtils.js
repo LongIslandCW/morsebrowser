@@ -1,26 +1,21 @@
 export default class MorseStringUtils {
     static doReplacements = (s) => {
       return s
-        // replacing exclamation with period
-        .replace(/!/g, '.')
         // a few ad-hoc attempts to remove rare or non-morse characters
-        .replace(/'/g, '')
         .replace(/’/g, '')
         .replace(/‘/g, '')
-        // colon becomes a comma
-        .replace(/:/g, ',')
         // turn percent sign into pct abbreviation
         .replace(/%/g, 'pct')
-        // anything else except period, question mark or percent or stroke becomes a space
+        // in the square brackets we add all symbols supported by morse-pro (see more-pro.js), otherwise replace with space
         // eslint-disable-next-line no-useless-escape
-        .replace(/(?![,\/\.\?])\W/g, ' ')
+        .replace(/(?![\.\,\:\?\\\-\/\(\)\"\@\=\&\+\!\<\>])\W/g, ' ')
     }
 
     static splitIntoSentences = (s) => {
       const replaced = this.doReplacements(s)
-      // split on period or question mark
+      // split on period or question mark or exclamation mark
       // eslint-disable-next-line no-useless-escape
-      const splitSents = replaced.split(/([\.\?])/)
+      const splitSents = replaced.split(/([\.\?\!])/)
       // example
       //  "hello there. how are you? I am fine".split(/([\.\?])/)
       // eslint-disable-next-line no-irregular-whitespace
