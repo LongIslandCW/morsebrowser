@@ -292,6 +292,19 @@ class MorseViewModel {
       })
   }
 
+  getMorseStringToWavBufferConfig = (text) => {
+    const config = new MorseStringToWavBufferConfig()
+    config.word = text
+    config.wpm = this.wpm()
+    config.fwpm = this.fwpm()
+    config.ditFrequency = this.ditFrequency()
+    config.dahFrequency = this.dahFrequency()
+    config.prePaddingMs = this.preSpaceUsed() ? 0 : this.preSpace() * 1000
+    config.xtraWordSpaceDits = this.xtraWordSpaceDits()
+    config.volume = this.volume()
+    return config
+  }
+
   doPlay = (playJustEnded) => {
     this.playerPlaying(true)
     if (!playJustEnded) {
@@ -304,15 +317,7 @@ class MorseViewModel {
       clearTimeout(this.doPlayTimeOut)
     }
     this.doPlayTimeOut = setTimeout(() => this.morseWordPlayer.pause(() => {
-      const config = new MorseStringToWavBufferConfig()
-      config.word = this.words()[this.currentIndex()]
-      config.wpm = this.wpm()
-      config.fwpm = this.fwpm()
-      config.ditFrequency = this.ditFrequency()
-      config.dahFrequency = this.dahFrequency()
-      config.prePaddingMs = this.preSpaceUsed() ? 0 : this.preSpace() * 1000
-      config.xtraWordSpaceDits = this.xtraWordSpaceDits()
-      config.volume = this.volume()
+      const config = this.getMorseStringToWavBufferConfig(this.words()[this.currentIndex()])
       this.morseWordPlayer.play(config, this.playEnded)
       this.preSpaceUsed(true)
     }),
@@ -355,6 +360,24 @@ class MorseViewModel {
       this.setText(data.target.result)
     }
     fr.readAsText(file)
+  }
+
+  doDownload = () => {
+    let allWords = ''
+    const sentences = this.sentences()
+    sentences.forEach((sentence) => {
+      sentence.forEach((word) => {
+        allWords += allWords.length > 0 ? ' ' + word : word
+      })
+    })
+    const config = this.getMorseStringToWavBufferConfig(allWords)
+    const wav = this.morseWordPlayer.getWavAndSample(config)
+    const ary = new Uint8Array(wav.wav)
+    const link = document.getElementById('downloadLink')
+    const blob = new Blob([ary], { type: 'audio/wav' })
+    link.href = URL.createObjectURL(blob)
+    link.download = 'morse.wav'
+    link.dispatchEvent(new MouseEvent('click'))
   }
 }
 
