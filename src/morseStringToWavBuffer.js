@@ -21,7 +21,10 @@ export class MorseStringToWavBuffer {
       const wordSpace = (unit * 7) + (unit * config.xtraWordSpaceDits)
       const morseCWWave = new MorseCWWave(useProsigns, config.wpm, config.fwpm, { dit: config.ditFrequency, dah: config.dahFrequency }, sampleRate)
       morseCWWave.translate(config.word, false)
-      const wav = RiffWave.getData(morseCWWave.getSample(wordSpace, config.prePaddingMs))
-      return wav
+      const ret = {}
+      ret.sample = morseCWWave.getSample(wordSpace, config.prePaddingMs)
+      const wav = RiffWave.getData(ret.sample)
+      ret.wav = wav
+      return ret
     }
 }
