@@ -9,6 +9,7 @@ export class MorseStringToWavBufferConfig {
     dahFrequency;
     prePaddingMs;
     xtraWordSpaceDits;
+    volume;
     get frequency () { return this.ditFrequency }
 }
 
