@@ -2,8 +2,10 @@ export default class MorseStringUtils {
     static doReplacements = (s) => {
       return s
         // a few ad-hoc attempts to fix unicode or other problems
+        // seems like apostraphe is not morse-able
         .replace(/’/g, '')
         .replace(/‘/g, '')
+        .replace(/'/g, '')
         // turn percent sign into pct abbreviation
         .replace(/%/g, 'pct')
         // in the square brackets we add all symbols supported by morse-pro (see more-pro.js), otherwise replace with space
