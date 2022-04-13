@@ -1,6 +1,6 @@
 {
-    "letters": "r",
-    "minWordSize": "1",
-    "maxWordSize": "1",
+    "letters": "re",
+    "minWordSize": "2",
+    "maxWordSize": "2",
     "words" : 20 
 }
