@@ -62,6 +62,22 @@ class MorseViewModel {
       return target
     }
 
+    ko.extenders.setNoiseVolume = (target, option) => {
+      target.subscribe((newValue) => {
+        this.morseWordPlayer.setNoiseVolume(newValue)
+      })
+      return target
+    }
+
+    ko.extenders.setNoiseType = (target, option) => {
+      target.subscribe((newValue) => {
+        const config = this.getMorseStringToWavBufferConfig('')
+        config.noise.type = this.noiseEnabled() ? newValue : 'off'
+        this.morseWordPlayer.setNoiseType(config)
+      })
+      return target
+    }
+
     // apply extenders
     this.wpm.extend({ saveCookie: 'wpm' })
     this.fwpm.extend({ saveCookie: 'fwpm' })
@@ -73,6 +89,8 @@ class MorseViewModel {
     this.preSpace.extend({ saveCookie: 'preSpace' })
     this.xtraWordSpaceDits.extend({ saveCookie: 'xtraWordSpaceDits' })
     this.volume.extend({ saveCookie: 'volume' }).extend({ setVolume: 'volume' })
+    this.noiseVolume.extend({ saveCookie: 'noiseVolume' }).extend({ setNoiseVolume: 'noiseVolume' })
+    this.noiseType.extend({ saveCookie: 'noiseType' }).extend({ setNoiseType: 'noiseType' })
 
     // initialize the main rawText
     this.rawText(this.showingText())
@@ -88,6 +106,11 @@ class MorseViewModel {
         // and load cookies after all plugins but for now just do this....
         this.loadCookies()
       })
+    }
+
+    // check for noise feature turned on
+    if (this.getParameterByName('noiseEnabled')) {
+      this.noiseEnabled(true)
     }
 
     this.loadCookies()
@@ -120,6 +143,9 @@ class MorseViewModel {
    showRaw = ko.observable(true)
    rssEnabled = ko.observable(false)
    volume = ko.observable(10)
+   noiseEnabled = ko.observable(false)
+   noiseVolume = ko.observable(2)
+   noiseType = ko.observable('off')
 
    // helper
    loadCookies = () => {
@@ -302,6 +328,11 @@ class MorseViewModel {
     config.prePaddingMs = this.preSpaceUsed() ? 0 : this.preSpace() * 1000
     config.xtraWordSpaceDits = this.xtraWordSpaceDits()
     config.volume = this.volume()
+    config.noise = {
+      type: this.noiseEnabled() ? this.noiseType() : 'off',
+      volume: this.noiseVolume()
+    }
+    config.playerPlaying = this.playerPlaying()
     return config
   }
 
@@ -325,7 +356,6 @@ class MorseViewModel {
   }
 
   playEnded = () => {
-    // console.log('ended')
     if (this.currentIndex() < this.words().length - 1) {
       this.incrementIndex()
       this.doPlay(true)
@@ -335,14 +365,15 @@ class MorseViewModel {
       this.currentIndex(0)
       this.doPlay(true)
     } else {
+      // nothing more to play
       this.doPause()
     }
   }
 
   doPause = () => {
+    this.playerPlaying(false)
     this.morseWordPlayer.pause(() => {
       // we're here if a complete rawtext finished
-      this.playerPlaying(false)
       this.lastFullPlayTime(Date.now())
       // TODO make this more generic for any future "plugins"
       if (this.rssPlayCallback) {
@@ -350,7 +381,7 @@ class MorseViewModel {
       }
 
       this.preSpaceUsed(false)
-    })
+    }, true)
   }
 
   inputFileChange = (file) => {

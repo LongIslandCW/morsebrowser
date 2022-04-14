@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>LICW Morse Practice Page</title>
     
-<link rel="icon" href="LongIslandCWClub-favicon-2.jpg"><script defer src="bundle4636f8153bb8c66a8e16.js"></script><link href="bundle.618c1c2672d3071ffd11.css" rel="stylesheet"></head>
+<link rel="icon" href="LongIslandCWClub-favicon-2.jpg"><script defer src="bundle6b5375b03e6ed5d319e1.js"></script><link href="bundle.618c1c2672d3071ffd11.css" rel="stylesheet"></head>
 <body>
     <div class="container-fluid" style="height:100vh; overflow-y:clip; ">
         <div class="row">
@@ -116,6 +116,39 @@
                                 </div>
                             </div>
 
+                            <!-- noise -->
+                            <div class="accordion-item" data-bind="if: noiseEnabled">
+                                <h2 class="accordion-header" id="headingNoise">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNoise" aria-expanded="false" aria-controls="collapseNoise">
+                                    Noise (Experimental)
+                                </button>
+                                </h2>
+                                <div id="collapseNoise" class="accordion-collapse collapse" aria-labelledby="headingNoise" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <div class="row gy-5">
+                                            <div class="col">
+                                                Placeholder
+                                                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                                    <input type="radio" class="btn-check" value='off' name="btnradio" id="btnradio1" autocomplete="off" data-bind="checked: noiseType">
+                                                    <label class="btn btn-outline-primary" for="btnradio1">Off</label>
+                                                  
+                                                    <input type="radio" class="btn-check" value='white' name="btnradio" id="btnradio2" autocomplete="off" data-bind="checked: noiseType">
+                                                    <label class="btn btn-outline-primary" for="btnradio2">White</label>
+                                                  
+                                                    <input type="radio" class="btn-check" value='brown' name="btnradio" id="btnradio3" autocomplete="off" data-bind="checked: noiseType">
+                                                    <label class="btn btn-outline-primary" for="btnradio3">Brown</label>
+
+                                                    <input type="radio" class="btn-check" value='pink' name="btnradio" id="btnradio4" autocomplete="off" data-bind="checked: noiseType">
+                                                    <label class="btn btn-outline-primary" for="btnradio4">Pink</label>
+                                                  </div>
+                                                <span class="input-group-text">VOL</span>
+                                                <input type="number" class="form-control" aria-label="Server" min="1" max="10" step="1" data-bind="textInput: noiseVolume">
+                                            </div>    
+                                        </div>   
+                                    </div>
+                                </div>
+                            </div>
+
                             <!-- flagged words -->
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingTwo">
@@ -166,6 +199,8 @@
                                     <button type="button" class="btn btn-success" data-bind="click: fullRewind">Full RW</button>
                                     <button type="button" class="btn btn-warning" data-bind="click: sentanceRewind">Sent RW</button>
                                     <button type="button" class="btn btn-secondary" data-bind="click: shuffleWords, text: isShuffled()?'UnShuffle':'Shuffle'"></button>
+                                    <button type="button" class="btn btn-success" data-bind="click: doDownload">Download</button>
+                                    <a id="downloadLink"></a>
                                 </div>
                             </div>
                         </div>
