@@ -116,6 +116,39 @@
                                 </div>
                             </div>
 
+                            <!-- noise -->
+                            <div class="accordion-item" data-bind="if: noiseEnabled">
+                                <h2 class="accordion-header" id="headingNoise">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNoise" aria-expanded="false" aria-controls="collapseNoise">
+                                    Noise (Experimental)
+                                </button>
+                                </h2>
+                                <div id="collapseNoise" class="accordion-collapse collapse" aria-labelledby="headingNoise" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <div class="row gy-5">
+                                            <div class="col">
+                                                Placeholder
+                                                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                                    <input type="radio" class="btn-check" value='off' name="btnradio" id="btnradio1" autocomplete="off" data-bind="checked: noiseType">
+                                                    <label class="btn btn-outline-primary" for="btnradio1">Off</label>
+                                                  
+                                                    <input type="radio" class="btn-check" value='white' name="btnradio" id="btnradio2" autocomplete="off" data-bind="checked: noiseType">
+                                                    <label class="btn btn-outline-primary" for="btnradio2">White</label>
+                                                  
+                                                    <input type="radio" class="btn-check" value='brown' name="btnradio" id="btnradio3" autocomplete="off" data-bind="checked: noiseType">
+                                                    <label class="btn btn-outline-primary" for="btnradio3">Brown</label>
+
+                                                    <input type="radio" class="btn-check" value='pink' name="btnradio" id="btnradio4" autocomplete="off" data-bind="checked: noiseType">
+                                                    <label class="btn btn-outline-primary" for="btnradio4">Pink</label>
+                                                  </div>
+                                                <span class="input-group-text">VOL</span>
+                                                <input type="number" class="form-control" aria-label="Server" min="1" max="10" step="1" data-bind="textInput: noiseVolume">
+                                            </div>    
+                                        </div>   
+                                    </div>
+                                </div>
+                            </div>
+
                             <!-- flagged words -->
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingTwo">
