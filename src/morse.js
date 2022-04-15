@@ -146,8 +146,14 @@ class MorseViewModel {
    noiseEnabled = ko.observable(false)
    noiseVolume = ko.observable(2)
    noiseType = ko.observable('off')
-
-   dummyLessonGroup = ko.observableArray(['REA', 'TIN', 'PGS', 'LCD', 'HOF', 'UWB'])
+   userTarget = ko.observable('')
+   selectedClass = ko.observable('')
+   userTargetInitialized = false
+   selectedClassInitialized = false
+   letterGroupInitialized = false
+   displaysInitialized = false
+   letterGroup = ko.observable('')
+   selectedDisplay = ko.observable({})
 
    // helper
    loadCookies = () => {
@@ -262,12 +268,72 @@ class MorseViewModel {
       })
       .then((data) => {
         this.wordLists(data.fileOptions)
-        // console.log(this.wordLists())
       })
       .catch((err) => {
         console.log('error: ' + err)
       })
   }
+
+  userTargets = ko.computed(() => {
+    const targs = []
+    this.wordLists().forEach((x) => {
+      if (!targs.find((y) => y === x.userTarget)) {
+        targs.push(x.userTarget)
+      }
+    })
+    return targs
+  }, this)
+
+  classes = ko.computed(() => {
+    const cls = []
+    this.wordLists().forEach((x) => {
+      if (!cls.find((y) => y === x.class)) {
+        cls.push(x.class)
+      }
+    })
+    return cls
+  }, this)
+
+  letterGroups = ko.computed(() => {
+    this.letterGroupInitialized = false
+    this.letterGroup('')
+    const lgs = []
+    if (this.selectedClass() === '' || this.userTarget() === '') {
+      const missing = []
+      if (this.selectedClass() === '') {
+        missing.push('class')
+      }
+      if (this.userTarget() === '') {
+        missing.push('user')
+      }
+      return [`Select ${missing.join(', ')}`]
+    }
+    this.wordLists().filter((list) => list.class === this.selectedClass() && list.userTarget === this.userTarget())
+      .forEach((x) => {
+        if (!lgs.find((y) => y === x.letterGroup)) {
+          lgs.push(x.letterGroup)
+        }
+      })
+    return lgs
+  }, this)
+
+  displays = ko.computed(() => {
+    this.displaysInitialized = false
+    this.selectedDisplay({})
+    const dps = []
+    if (this.selectedClass() === '' || this.userTarget() === '' || this.letterGroup() === '') {
+      return [{ display: 'Select wordlist', fileName: 'dummy.txt' }]
+    }
+    this.wordLists().filter((list) => list.class === this.selectedClass() &&
+       list.userTarget === this.userTarget() &&
+       list.letterGroup === this.letterGroup())
+      .forEach((x) => {
+        if (!dps.find((y) => y === x.display)) {
+          dps.push({ display: x.display, fileName: x.fileName })
+        }
+      })
+    return dps
+  }, this)
 
   randomWordList = (data) => {
     let str = ''
@@ -411,6 +477,54 @@ class MorseViewModel {
     link.href = URL.createObjectURL(blob)
     link.download = 'morse.wav'
     link.dispatchEvent(new MouseEvent('click'))
+  }
+
+  dummy = () => {
+    console.log('dummy')
+  }
+
+  setUserTargetInitialized = () => {
+    this.userTargetInitialized = true
+  }
+
+  setSelectedClassInitialized = () => {
+    this.selectedClassInitialized = true
+  }
+
+  setLetterGroupInitialized = () => {
+    console.log('setlettergroupinitialized')
+    this.letterGroupInitialized = true
+  }
+
+  setDisplaysInitialized = () => {
+    this.displaysInitialized = true
+  }
+
+  changeUserTarget = (userTarget) => {
+    if (this.userTargetInitialized) {
+      this.userTarget(userTarget)
+      // console.log('usertarget')
+    }
+  }
+
+  changeSelectedClass = (selectedClass) => {
+    if (this.selectedClassInitialized) {
+      this.selectedClass(selectedClass)
+    }
+  }
+
+  setLetterGroup = (letterGroup) => {
+    if (this.letterGroupInitialized) {
+      console.log('setlettergroup')
+      this.letterGroup(letterGroup)
+    }
+  }
+
+  setDisplaySelected = (display) => {
+    if (this.displaysInitialized) {
+      this.selectedDisplay(display)
+      this.setText(`when we have lesson files, load ${this.selectedDisplay().fileName}`)
+    }
   }
 }
 
