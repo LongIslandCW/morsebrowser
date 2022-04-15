@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>LICW Morse Practice Page</title>
     
-<link rel="icon" href="LongIslandCWClub-favicon-2.jpg"><script defer src="bundle6b5375b03e6ed5d319e1.js"></script><link href="bundle.618c1c2672d3071ffd11.css" rel="stylesheet"></head>
+<link rel="icon" href="LongIslandCWClub-favicon-2.jpg"><script defer src="bundlecac452363f5782adb84c.js"></script><link href="bundle.618c1c2672d3071ffd11.css" rel="stylesheet"></head>
 <body>
     <div class="container-fluid" style="height:100vh; overflow-y:clip; ">
         <div class="row">
@@ -153,16 +153,47 @@
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingMockup">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMockup" aria-expanded="false" aria-controls="collapseMockup">
-                                    Mockup (Experimental)
+                                    LICW Lessons (Experimental)
                                 </button>
                                 </h2>
                                 <div id="collapseMockup" class="accordion-collapse collapse" aria-labelledby="headingMockup" data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
                                         <div class="row gy-5">
                                             <div class="col">
-                                                Placeholder
-                                                
-                                            </div>    
+                                                <div class="btn-group-vertical" role="group" aria-label="Basic radio toggle button group">
+                                                    <input type="radio" class="btn-check" name="btnradio2" id="btnradiomock1" autocomplete="off" checked>
+                                                    <label class="btn btn-outline-primary" for="btnradiomock1">Student</label>
+                                                  
+                                                    <input type="radio" class="btn-check" name="btnradio2" id="btnradiomock2" autocomplete="off">
+                                                    <label class="btn btn-outline-primary" for="btnradiomock2">Instructor</label>
+                                                  
+                                                    <input type="radio" class="btn-check" name="btnradio2" id="btnradiomock3" autocomplete="off">
+                                                    <label class="btn btn-outline-primary" for="btnradiomock3">Other?</label>
+                                                </div>                                                
+                                            </div>
+                                            <div class="col">
+                                                <div class="btn-group-vertical" role="group" aria-label="Basic radio toggle button group">
+                                                    <input type="radio" class="btn-check" name="btnradio3" id="btnradiomock4" autocomplete="off" checked>
+                                                    <label class="btn btn-outline-primary" for="btnradiomock4">Beginners 1</label>
+                                                  
+                                                    <input type="radio" class="btn-check" name="btnradio3" id="btnradiomock5" autocomplete="off">
+                                                    <label class="btn btn-outline-primary" for="btnradiomock5">Beginners 2</label>
+                                                  
+                                                    
+                                                </div>                                                
+                                            </div>  
+                                            
+                                            <div class="col">
+                                                <div class="list-group" data-bind="foreach: dummyLessonGroup" style="overflow-y:auto; height:250px;">
+                                                    <button type="button" class="list-group-item list-group-item-action" data-bind="text: $data"></button>
+                                                </div>
+                                            </div>
+
+                                            <div class="col">
+                                                <div class="list-group" data-bind="foreach: wordLists" style="overflow-y:auto; height:250px;">
+                                                    <button type="button" class="list-group-item list-group-item-action" data-bind="text: $data.display, click: ()=>$parent.getWordList($data.fileName)"></button>
+                                                </div>
+                                            </div>
                                         </div>   
                                     </div>
                                 </div>
