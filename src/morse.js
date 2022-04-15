@@ -19,6 +19,7 @@ import licwlogo from './assets/CW-Club-logo-clear400-300x300.png'
 // import RSSParser from 'rss-parser';
 
 import Cookies from 'js-cookie'
+import MorseLessonPlugin from './morseLessonPlugin.js'
 
 const licwlogoImg = document.getElementById('logo')
 licwlogoImg.src = licwlogo
@@ -94,6 +95,8 @@ class MorseViewModel {
 
     // initialize the main rawText
     this.rawText(this.showingText())
+
+    MorseLessonPlugin.addLessonFeatures(ko, this)
 
     // check for RSS feature turned on
     if (this.getParameterByName('rssEnabled')) {
@@ -261,80 +264,6 @@ class MorseViewModel {
     this.fullRewind()
   }
 
-  initializeWordList = () => {
-    fetch('wordfilesconfigs/wordlists.json')
-      .then((response) => {
-        return response.json()
-      })
-      .then((data) => {
-        this.wordLists(data.fileOptions)
-      })
-      .catch((err) => {
-        console.log('error: ' + err)
-      })
-  }
-
-  userTargets = ko.computed(() => {
-    const targs = []
-    this.wordLists().forEach((x) => {
-      if (!targs.find((y) => y === x.userTarget)) {
-        targs.push(x.userTarget)
-      }
-    })
-    return targs
-  }, this)
-
-  classes = ko.computed(() => {
-    const cls = []
-    this.wordLists().forEach((x) => {
-      if (!cls.find((y) => y === x.class)) {
-        cls.push(x.class)
-      }
-    })
-    return cls
-  }, this)
-
-  letterGroups = ko.computed(() => {
-    this.letterGroupInitialized = false
-    this.letterGroup('')
-    const lgs = []
-    if (this.selectedClass() === '' || this.userTarget() === '') {
-      const missing = []
-      if (this.selectedClass() === '') {
-        missing.push('class')
-      }
-      if (this.userTarget() === '') {
-        missing.push('user')
-      }
-      return [`Select ${missing.join(', ')}`]
-    }
-    this.wordLists().filter((list) => list.class === this.selectedClass() && list.userTarget === this.userTarget())
-      .forEach((x) => {
-        if (!lgs.find((y) => y === x.letterGroup)) {
-          lgs.push(x.letterGroup)
-        }
-      })
-    return lgs
-  }, this)
-
-  displays = ko.computed(() => {
-    this.displaysInitialized = false
-    this.selectedDisplay({})
-    const dps = []
-    if (this.selectedClass() === '' || this.userTarget() === '' || this.letterGroup() === '') {
-      return [{ display: 'Select wordlist', fileName: 'dummy.txt' }]
-    }
-    this.wordLists().filter((list) => list.class === this.selectedClass() &&
-       list.userTarget === this.userTarget() &&
-       list.letterGroup === this.letterGroup())
-      .forEach((x) => {
-        if (!dps.find((y) => y === x.display)) {
-          dps.push({ display: x.display, fileName: x.fileName })
-        }
-      })
-    return dps
-  }, this)
-
   randomWordList = (data) => {
     let str = ''
     const chars = data.letters.split('')
@@ -361,29 +290,6 @@ class MorseViewModel {
     }
 
     this.setText(str)
-  }
-
-  getWordList = (filename) => {
-    const isText = filename.endsWith('txt')
-    fetch('wordfiles/' + filename)
-      .then((response) => {
-        if (isText) {
-          return response.text()
-        } else {
-          // assume json
-          return response.json()
-        }
-      })
-      .then((data) => {
-        if (isText) {
-          this.setText(data)
-        } else {
-          this.randomWordList(data)
-        }
-      })
-      .catch((err) => {
-        console.log('error: ' + err)
-      })
   }
 
   getMorseStringToWavBufferConfig = (text) => {
@@ -481,50 +387,6 @@ class MorseViewModel {
 
   dummy = () => {
     console.log('dummy')
-  }
-
-  setUserTargetInitialized = () => {
-    this.userTargetInitialized = true
-  }
-
-  setSelectedClassInitialized = () => {
-    this.selectedClassInitialized = true
-  }
-
-  setLetterGroupInitialized = () => {
-    console.log('setlettergroupinitialized')
-    this.letterGroupInitialized = true
-  }
-
-  setDisplaysInitialized = () => {
-    this.displaysInitialized = true
-  }
-
-  changeUserTarget = (userTarget) => {
-    if (this.userTargetInitialized) {
-      this.userTarget(userTarget)
-      // console.log('usertarget')
-    }
-  }
-
-  changeSelectedClass = (selectedClass) => {
-    if (this.selectedClassInitialized) {
-      this.selectedClass(selectedClass)
-    }
-  }
-
-  setLetterGroup = (letterGroup) => {
-    if (this.letterGroupInitialized) {
-      console.log('setlettergroup')
-      this.letterGroup(letterGroup)
-    }
-  }
-
-  setDisplaySelected = (display) => {
-    if (this.displaysInitialized) {
-      this.selectedDisplay(display)
-      this.setText(`when we have lesson files, load ${this.selectedDisplay().fileName}`)
-    }
   }
 }
 
