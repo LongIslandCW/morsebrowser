@@ -35,7 +35,7 @@ jobs:
 
       - run: npm run build --if-present
 
-      - run: npm run postbuild --if-present
+      # - run: npm run postbuild --if-present
 
       - name: Deploy to GitHub Pages
         # You may pin to the exact commit or the version.
