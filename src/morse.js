@@ -147,6 +147,8 @@ class MorseViewModel {
    noiseVolume = ko.observable(2)
    noiseType = ko.observable('off')
 
+   dummyLessonGroup = ko.observableArray(['REA', 'TIN', 'PGS', 'LCD', 'HOF', 'UWB'])
+
    // helper
    loadCookies = () => {
      // load any existing cookie values
