@@ -159,6 +159,8 @@ class MorseViewModel {
    selectedDisplay = ko.observable({})
    lastPlayFullStart = null;
    randomizeLessons = ko.observable(true)
+   ifOverrideTime = ko.observable(false)
+   overrideMins = ko.observable(2)
 
    // helper
    loadCookies = () => {
@@ -270,6 +272,7 @@ class MorseViewModel {
     let str = ''
     const chars = data.letters.split('')
     let seconds = 0
+    const controlTime = this.ifOverrideTime() ? (this.overrideMins() * 60) : data.practiceSeconds
     // Fn to generate random number min/max inclusive
     // https://www.geeksforgeeks.org/how-to-generate-random-number-in-given-range-using-javascript/
     const randomNumber = (min, max) => {
@@ -298,7 +301,7 @@ class MorseViewModel {
       const config = this.getMorseStringToWavBufferConfig(str)
       const est = this.morseWordPlayer.getTimeEstimate(config)
       seconds = est.timeCalcs.totalTime / 1000
-    } while (seconds < data.practiceSeconds)
+    } while (seconds < controlTime)
 
     this.setText(str)
   }
