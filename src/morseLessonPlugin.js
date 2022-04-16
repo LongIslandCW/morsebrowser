@@ -41,6 +41,7 @@ export default class MorseLessonPlugin {
         if (ctxt.displaysInitialized) {
           ctxt.selectedDisplay(display)
           ctxt.setText(`when we have lesson files, load ${ctxt.selectedDisplay().fileName}`)
+          ctxt.getWordList(ctxt.selectedDisplay().fileName)
         }
       }
 

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>LICW Morse Practice Page</title>
     
-<link rel="icon" href="LongIslandCWClub-favicon-2.jpg"><script defer src="bundle582cc8d6d64d5fccedd6.js"></script><link href="bundle.618c1c2672d3071ffd11.css" rel="stylesheet"></head>
+<link rel="icon" href="LongIslandCWClub-favicon-2.jpg"><script defer src="bundle291a90a48c69b8893778.js"></script><link href="bundle.618c1c2672d3071ffd11.css" rel="stylesheet"></head>
 <body>
     <div class="container-fluid" style="height:100vh; overflow-y:clip; " >
         <div class="row">
@@ -54,6 +54,7 @@
                                 <span class="input-group-text" data-bind="text: showRaw() ? 'Hide': 'Show', click: ()=>showRaw(!showRaw())"></span>
                                 <textarea data-bind="textInput: showingText, enable: showRaw" class="form-control" aria-label="Text"></textarea>
                                 <input type="file" accept=".txt" id="txtfiletoread" data-bind="event: {change: function() { inputFileChange($element.files[0]) } }"/>
+                                <span>Estimated Play Time:&nbsp;</span><span data-bind="text: timeEstimate().minutes"></span>:<span data-bind="text: timeEstimate().normedSeconds"></span>
                             </div>
                         </div>
                     </div> 

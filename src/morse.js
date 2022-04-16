@@ -268,7 +268,7 @@ class MorseViewModel {
   randomWordList = (data) => {
     let str = ''
     const chars = data.letters.split('')
-
+    let seconds = 0
     // Fn to generate random number min/max inclusive
     // https://www.geeksforgeeks.org/how-to-generate-random-number-in-given-range-using-javascript/
     const randomNumber = (min, max) => {
@@ -277,7 +277,7 @@ class MorseViewModel {
       return Math.floor(Math.random() * (max - min + 1)) + min
     }
 
-    for (let i = 1; i <= data.words; i++) { // for each word
+    do {
       let word = ''
       // determine word length
       const wordLength = data.minWordSize === data.maxWordSize ? data.minWordSize : randomNumber(data.minWordSize, data.maxWordSize)
@@ -287,8 +287,12 @@ class MorseViewModel {
         word += chars[randomNumber(1, chars.length) - 1]
       }
 
-      str += i > 1 ? (' ' + word) : word
-    }
+      str += seconds > 0 ? (' ' + word) : word
+
+      const config = this.getMorseStringToWavBufferConfig(str)
+      const est = this.morseWordPlayer.getTimeEstimate(config)
+      seconds = est.timeCalcs.totalTime / 1000
+    } while (seconds < data.practiceSeconds)
 
     this.setText(str)
   }
