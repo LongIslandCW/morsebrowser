@@ -273,8 +273,10 @@ class MorseViewModel {
   }
 
   doCustomGroup = () => {
-    const data = { letters: this.customGroup().trim().replace(/ /g, '') }
-    this.randomWordList(data, true)
+    if (this.customGroup()) {
+      const data = { letters: this.customGroup().trim().replace(/ /g, '') }
+      this.randomWordList(data, true)
+    }
   }
 
   randomWordList = (data, ifCustom) => {
