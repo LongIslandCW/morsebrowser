@@ -161,6 +161,10 @@ class MorseViewModel {
    randomizeLessons = ko.observable(true)
    ifOverrideTime = ko.observable(false)
    overrideMins = ko.observable(2)
+   customGroup = ko.observable('')
+   ifOverrideMinMax = ko.observable(false)
+   overrideMin = ko.observable(3)
+   overrideMax = ko.observable(3)
 
    // helper
    loadCookies = () => {
@@ -268,11 +272,18 @@ class MorseViewModel {
     this.fullRewind()
   }
 
-  randomWordList = (data) => {
+  doCustomGroup = () => {
+    const data = { letters: this.customGroup().trim().replace(/ /g, '') }
+    this.randomWordList(data, true)
+  }
+
+  randomWordList = (data, ifCustom) => {
     let str = ''
     const chars = data.letters.split('')
     let seconds = 0
-    const controlTime = this.ifOverrideTime() ? (this.overrideMins() * 60) : data.practiceSeconds
+    const controlTime = (this.ifOverrideTime() || ifCustom) ? (this.overrideMins() * 60) : data.practiceSeconds
+    const minWordSize = (this.ifOverrideMinMax() || ifCustom) ? this.overrideMin() : data.minWordSize
+    const maxWordSize = (this.ifOverrideMinMax() || ifCustom) ? this.overrideMax() : data.maxWordSize
     // Fn to generate random number min/max inclusive
     // https://www.geeksforgeeks.org/how-to-generate-random-number-in-given-range-using-javascript/
     const randomNumber = (min, max) => {
@@ -286,7 +297,7 @@ class MorseViewModel {
 
       if (this.randomizeLessons()) {
         // determine word length
-        const wordLength = data.minWordSize === data.maxWordSize ? data.minWordSize : randomNumber(data.minWordSize, data.maxWordSize)
+        const wordLength = minWordSize === maxWordSize ? minWordSize : randomNumber(minWordSize, maxWordSize)
 
         for (let j = 1; j <= wordLength; j++) { // for each letter
           // determine the letter

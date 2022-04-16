@@ -203,6 +203,39 @@
                                                     <span class="input-group-text">Mins</span>
                                                     <input type="number" class="form-control" style="max-width:70px;" aria-label="Username" min="0" data-bind="textInput: overrideMins, enable: ifOverrideTime">
                                                 </div>
+                                                <div class="btn-group-vertical" role="group" aria-label="Basic checkbox toggle button group">
+                                                    
+                                                    <input type="checkbox" class="btn-check" id="btncheck2overridesize" autocomplete="off" data-bind="checked: ifOverrideMinMax">
+                                                    <label class="btn btn-outline-primary" for="btncheck2overridesize">Override Size</label>
+
+                                                    
+                                                  <!--
+                                                    <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off">
+                                                    <label class="btn btn-outline-primary" for="btncheck3">Checkbox 3</label>
+                                                  -->
+                                                </div>
+                                                <div class="input-group">
+                                                    <span class="input-group-text">Min</span>
+                                                    <input type="number" class="form-control" style="max-width:75px;" aria-label="Username" min="1" data-bind="textInput: overrideMin, enable: ifOverrideMinMax">
+                                                    <span class="input-group-text">Max</span>
+                                                    <input type="number" class="form-control" style="max-width:75px;" aria-label="Username" min="1" data-bind="textInput: overrideMax, enable: ifOverrideMinMax">
+                                                </div>
+                                                <div class="btn-group-vertical" role="group" aria-label="Basic checkbox toggle button group">
+                                                    <button type="button" class="btn btn-success" data-bind="click: doCustomGroup">Custom Group</button>
+                                                  
+                                                    
+                                                    
+                                                  <!--
+                                                    <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off">
+                                                    <label class="btn btn-outline-primary" for="btncheck3">Checkbox 3</label>
+                                                  -->
+                                                </div>
+                                                <div class="input-group">
+                                                    <!-- <span class="input-group-text">Mins</span> -->
+                                                    <input type="text" class="form-control" style="max-width:125px;" aria-label="Username" min="0" data-bind="textInput: customGroup">
+                                                </div>
+                                                
+                                                
                                             </div>
                                         </div>   
                                     </div>
