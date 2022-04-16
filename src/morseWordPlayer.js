@@ -33,4 +33,8 @@ export class MorseWordPlayer {
       const wav = MorseStringToWavBuffer.createWav(config)
       return wav
     }
+
+    getTimeEstimate (config) {
+      return MorseStringToWavBuffer.estimatePlayTime(config)
+    }
 }

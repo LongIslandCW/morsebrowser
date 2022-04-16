@@ -157,6 +157,7 @@ class MorseViewModel {
    displaysInitialized = false
    letterGroup = ko.observable('')
    selectedDisplay = ko.observable({})
+   lastPlayFullStart = null;
 
    // helper
    loadCookies = () => {
@@ -311,6 +312,10 @@ class MorseViewModel {
   }
 
   doPlay = (playJustEnded) => {
+    if (!this.lastPlayFullStart || (this.lastFullPlayTime() > this.lastPlayFullStart)) {
+      this.lastPlayFullStart = Date.now()
+      console.log('setplaystart')
+    }
     this.playerPlaying(true)
     if (!playJustEnded) {
       this.preSpaceUsed(false)
@@ -348,7 +353,9 @@ class MorseViewModel {
     this.playerPlaying(false)
     this.morseWordPlayer.pause(() => {
       // we're here if a complete rawtext finished
+      console.log('settinglastfullplaytime')
       this.lastFullPlayTime(Date.now())
+      console.log(`playtime:${this.lastFullPlayTime() - this.lastPlayFullStart}`)
       // TODO make this more generic for any future "plugins"
       if (this.rssPlayCallback) {
         this.rssPlayCallback()
@@ -388,6 +395,23 @@ class MorseViewModel {
   dummy = () => {
     console.log('dummy')
   }
+
+  timeEstimate = ko.computed(() => {
+    // this computed doesn't seem bound to anything but .rawText, but for some reason it is
+    // still recomputing on wpm/fwpm/xtra changes, so...ok
+    if (!this.rawText()) {
+      return 0
+    }
+    const config = this.getMorseStringToWavBufferConfig(this.rawText())
+    const est = this.morseWordPlayer.getTimeEstimate(config)
+    const minutes = Math.floor(est.timeCalcs.totalTime / 60000)
+    const seconds = ((est.timeCalcs.totalTime % 60000) / 1000).toFixed(0)
+    const normedSeconds = (seconds < 10 ? '0' : '') + seconds
+    const timeFigures = { minutes, seconds, normedSeconds }
+    console.log(timeFigures)
+    console.log(est)
+    return timeFigures
+  }, this)
 }
 
 // eslint-disable-next-line new-cap

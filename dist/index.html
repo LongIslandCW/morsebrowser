@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>LICW Morse Practice Page</title>
     
-<link rel="icon" href="LongIslandCWClub-favicon-2.jpg"><script defer src="bundlecac452363f5782adb84c.js"></script><link href="bundle.618c1c2672d3071ffd11.css" rel="stylesheet"></head>
+<link rel="icon" href="LongIslandCWClub-favicon-2.jpg"><script defer src="bundle582cc8d6d64d5fccedd6.js"></script><link href="bundle.618c1c2672d3071ffd11.css" rel="stylesheet"></head>
 <body>
-    <div class="container-fluid" style="height:100vh; overflow-y:clip; ">
+    <div class="container-fluid" style="height:100vh; overflow-y:clip; " >
         <div class="row">
             <div class="col">
                 <div class="container-fluid" >
@@ -35,9 +35,9 @@
                                 <span class="input-group-text">FWPM</span>
                                 <input type="number" class="form-control" aria-label="Server" min="0" data-bind="textInput: fwpm">
                                 <span class="input-group-text">DITFREQ</span>
-                                <input type="number" class="form-control" aria-label="Server" min="100" max="1200" step="50" data-bind="textInput: ditFrequency">
+                                <input type="number" class="form-control" aria-label="Server" min="100" max="1200" step="10" data-bind="textInput: ditFrequency">
                                 <span class="input-group-text">DAHFREQ</span>
-                                <input type="number" class="form-control" aria-label="Server" min="100" max="1200" step="50" data-bind="textInput: dahFrequency">
+                                <input type="number" class="form-control" aria-label="Server" min="100" max="1200" step="10" data-bind="textInput: dahFrequency">
                                 <span class="input-group-text">PRESPACE</span>
                                 <input type="number" class="form-control" aria-label="Server" min="0" max="1200" step=".5" data-bind="textInput: preSpace">
                                 <span class="input-group-text">XTRAWRDSPDITS</span>
@@ -61,24 +61,7 @@
                     <div class="row">
                         <div class="accordion" id="accordionExample">
 
-                            <!-- files list-->
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="headingThree">
-                                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                    Word Lists (Experimental)
-                                  </button>
-                                </h2>
-                                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                                  <div class="accordion-body">
-                                    
-                                    
-                                    <div class="list-group" data-bind="foreach: wordLists" style="overflow-y:auto; height:250px;">
-                                        <button type="button" class="list-group-item list-group-item-action" data-bind="text: $data.display, click: ()=>$parent.getWordList($data.fileName)"></button>
-                                    </div>
-
-                                  </div>
-                                </div>
-                            </div>
+                            
 
                             <!-- RSS -->
                             <div class="accordion-item" data-bind="if: rssEnabled">
@@ -153,45 +136,50 @@
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingMockup">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMockup" aria-expanded="false" aria-controls="collapseMockup">
-                                    LICW Lessons (Experimental)
+                                    LICW Lessons
+                                    <span data-bind="if: selectedDisplay().display">
+                                    <span>Type: </span><span data-bind="text: userTarget"></span>
+                                    <span>&nbsp; Class: </span><span data-bind="text: selectedClass"></span>
+                                    <span>&nbsp; Letter Group: </span><span data-bind="text: letterGroup"></span>
+                                    <span>&nbsp; Lesson: </span><span data-bind="text: selectedDisplay().display"></span>
+                                    </span>
+                                    <span data-bind="if: !selectedDisplay().display">&nbsp;(None Currently Selected)</span>
                                 </button>
                                 </h2>
                                 <div id="collapseMockup" class="accordion-collapse collapse" aria-labelledby="headingMockup" data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
                                         <div class="row gy-5">
                                             <div class="col">
-                                                <div class="btn-group-vertical" role="group" aria-label="Basic radio toggle button group">
-                                                    <input type="radio" class="btn-check" name="btnradio2" id="btnradiomock1" autocomplete="off" checked>
-                                                    <label class="btn btn-outline-primary" for="btnradiomock1">Student</label>
-                                                  
-                                                    <input type="radio" class="btn-check" name="btnradio2" id="btnradiomock2" autocomplete="off">
-                                                    <label class="btn btn-outline-primary" for="btnradiomock2">Instructor</label>
-                                                  
-                                                    <input type="radio" class="btn-check" name="btnradio2" id="btnradiomock3" autocomplete="off">
-                                                    <label class="btn btn-outline-primary" for="btnradiomock3">Other?</label>
-                                                </div>                                                
+                                                
+                                                <div class="btn-group-vertical" role="group" aria-label="Basic radio toggle button group" data-bind="foreach: userTargets, childrenComplete: setUserTargetInitialized">
+                                                    
+                                                    <input type="radio" class="btn-check" name="btnradioUserTargets"  data-bind="checkedValue: $data, checked: $root.userTarget">
+                                                    <label class="btn btn-outline-primary"  data-bind="text: $data, click: $root.changeUserTarget($data)"></label>
+                                                    
+                                                </div>
+                                                                                              
                                             </div>
                                             <div class="col">
-                                                <div class="btn-group-vertical" role="group" aria-label="Basic radio toggle button group">
-                                                    <input type="radio" class="btn-check" name="btnradio3" id="btnradiomock4" autocomplete="off" checked>
-                                                    <label class="btn btn-outline-primary" for="btnradiomock4">Beginners 1</label>
-                                                  
-                                                    <input type="radio" class="btn-check" name="btnradio3" id="btnradiomock5" autocomplete="off">
-                                                    <label class="btn btn-outline-primary" for="btnradiomock5">Beginners 2</label>
+                                                <div class="btn-group-vertical" role="group" aria-label="Basic radio toggle button group" data-bind="foreach: classes, childrenComplete: setSelectedClassInitialized">
+                                                    
+                                                    <input type="radio" class="btn-check" name="btnradioClasses"  data-bind="checkedValue: $data, checked: $root.selectedClass">
+                                                    <label class="btn btn-outline-primary" data-bind="text: $data, click: $root.changeSelectedClass($data)"></label>
+                                                    
+                                                    
                                                   
                                                     
                                                 </div>                                                
                                             </div>  
                                             
                                             <div class="col">
-                                                <div class="list-group" data-bind="foreach: dummyLessonGroup" style="overflow-y:auto; height:250px;">
-                                                    <button type="button" class="list-group-item list-group-item-action" data-bind="text: $data"></button>
+                                                <div class="list-group" data-bind="foreach: letterGroups, childrenComplete: setLetterGroupInitialized" style="overflow-y:auto; height:250px;">
+                                                    <button type="button" class="list-group-item list-group-item-action" data-bind="text: $data, click: $root.setLetterGroup($data), css: { active: $data==$parent.letterGroup()}"></button>
                                                 </div>
                                             </div>
 
                                             <div class="col">
-                                                <div class="list-group" data-bind="foreach: wordLists" style="overflow-y:auto; height:250px;">
-                                                    <button type="button" class="list-group-item list-group-item-action" data-bind="text: $data.display, click: ()=>$parent.getWordList($data.fileName)"></button>
+                                                <div class="list-group" data-bind="foreach: displays, childrenComplete: setDisplaysInitialized" style="overflow-y:auto; height:250px;">
+                                                    <button type="button" class="list-group-item list-group-item-action" data-bind="text: $data.display, click: ()=>$root.setDisplaySelected($data), css: { active: $data.display==$parent.selectedDisplay().display}"></button>
                                                 </div>
                                             </div>
                                         </div>   
