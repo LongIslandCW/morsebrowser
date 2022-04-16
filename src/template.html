@@ -54,6 +54,7 @@
                                 <span class="input-group-text" data-bind="text: showRaw() ? 'Hide': 'Show', click: ()=>showRaw(!showRaw())"></span>
                                 <textarea data-bind="textInput: showingText, enable: showRaw" class="form-control" aria-label="Text"></textarea>
                                 <input type="file" accept=".txt" id="txtfiletoread" data-bind="event: {change: function() { inputFileChange($element.files[0]) } }"/>
+                                <span>Estimated Play Time:&nbsp;</span><span data-bind="text: timeEstimate().minutes"></span>:<span data-bind="text: timeEstimate().normedSeconds"></span>
                             </div>
                         </div>
                     </div> 
