@@ -184,6 +184,20 @@
                                                     <button type="button" class="list-group-item list-group-item-action" data-bind="text: $data.display, click: ()=>$root.setDisplaySelected($data), css: { active: $data.display==$parent.selectedDisplay().display}"></button>
                                                 </div>
                                             </div>
+
+                                            <div class="col">
+                                                <div class="btn-group-vertical" role="group" aria-label="Basic checkbox toggle button group">
+                                                    <input type="checkbox" class="btn-check"  autocomplete="off" id="btncheck1" data-bind="checked: randomizeLessons">
+                                                    <label class="btn btn-outline-primary" for="btncheck1">Randomize</label>
+                                                  <!--
+                                                    <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
+                                                    <label class="btn btn-outline-primary" for="btncheck2">Checkbox 2</label>
+                                                  
+                                                    <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off">
+                                                    <label class="btn btn-outline-primary" for="btncheck3">Checkbox 3</label>
+                                                  -->
+                                                  </div>
+                                            </div>
                                         </div>   
                                     </div>
                                 </div>

@@ -158,6 +158,7 @@ class MorseViewModel {
    letterGroup = ko.observable('')
    selectedDisplay = ko.observable({})
    lastPlayFullStart = null;
+   randomizeLessons = ko.observable(true)
 
    // helper
    loadCookies = () => {
@@ -279,12 +280,17 @@ class MorseViewModel {
 
     do {
       let word = ''
-      // determine word length
-      const wordLength = data.minWordSize === data.maxWordSize ? data.minWordSize : randomNumber(data.minWordSize, data.maxWordSize)
 
-      for (let j = 1; j <= wordLength; j++) { // for each letter
-        // determine the letter
-        word += chars[randomNumber(1, chars.length) - 1]
+      if (this.randomizeLessons()) {
+        // determine word length
+        const wordLength = data.minWordSize === data.maxWordSize ? data.minWordSize : randomNumber(data.minWordSize, data.maxWordSize)
+
+        for (let j = 1; j <= wordLength; j++) { // for each letter
+          // determine the letter
+          word += chars[randomNumber(1, chars.length) - 1]
+        }
+      } else {
+        word = data.letters
       }
 
       str += seconds > 0 ? (' ' + word) : word
