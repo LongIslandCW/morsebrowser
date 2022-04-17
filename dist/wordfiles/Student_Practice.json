@@ -1,6 +1,6 @@
 {
-    "letters": "re",
-    "minWordSize": "2",
-    "maxWordSize": "2",
+    "letters": "YRS",
+    "minWordSize": "3",
+    "maxWordSize": "3",
     "words" : 20 
 }

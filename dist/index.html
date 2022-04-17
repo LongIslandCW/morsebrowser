@@ -1,28 +1,32 @@
 <!doctype html>
 <html>
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>LICW Morse Practice Page</title>
-    
-<link rel="icon" href="LongIslandCWClub-favicon-2.jpg"><script defer src="bundle291a90a48c69b8893778.js"></script><link href="bundle.618c1c2672d3071ffd11.css" rel="stylesheet"></head>
+
+<link rel="icon" href="LongIslandCWClub-favicon-2.jpg"><script defer src="bundle22422eb4f62c2fa015d8.js"></script><link href="bundle.618c1c2672d3071ffd11.css" rel="stylesheet"></head>
+
 <body>
-    <div class="container-fluid" style="height:100vh; overflow-y:clip; " >
+    <div class="container-fluid" style="height:100vh; overflow-y:auto; ">
         <div class="row">
             <div class="col">
-                <div class="container-fluid" >
+                <div class="container-fluid">
                     <!-- title header area-->
                     <div class="row">
                         <div class="col">
-                            <img class="float-end" id="logo" height="200px" width="200px"/>
-                            
-                        </div> 
+                            <img class="float-end" id="logo" height="200px" width="200px" />
+
+                        </div>
                         <div class="col">
                             <h1>Morse Practice Page</h1>
                             <h3>by N1CC, WO6W, KN4YRM</h3>
+                            <h6>Inspired by and adapted from the <a href="https://morsecode.world/">SC Phillips</a> <a
+                                    href="https://github.com/scp93ch/morse-pro">morse-pro</a> library</h6>
                         </div>
-                    </div> 
+                    </div>
                     <div class="row">
                         <div class="col">&nbsp;</div>
                     </div>
@@ -31,71 +35,89 @@
                         <div class="col">
                             <div class="input-group">
                                 <span class="input-group-text">WPM</span>
-                                <input type="number" class="form-control" aria-label="Username" min="0" data-bind="textInput: wpm">
+                                <input type="number" class="form-control" aria-label="Username" min="0"
+                                    data-bind="textInput: wpm">
                                 <span class="input-group-text">FWPM</span>
-                                <input type="number" class="form-control" aria-label="Server" min="0" data-bind="textInput: fwpm">
+                                <input type="number" class="form-control" aria-label="Server" min="0"
+                                    data-bind="textInput: fwpm">
                                 <span class="input-group-text">DITFREQ</span>
-                                <input type="number" class="form-control" aria-label="Server" min="100" max="1200" step="10" data-bind="textInput: ditFrequency">
+                                <input type="number" class="form-control" aria-label="Server" min="100" max="1200"
+                                    step="10" data-bind="textInput: ditFrequency">
                                 <span class="input-group-text">DAHFREQ</span>
-                                <input type="number" class="form-control" aria-label="Server" min="100" max="1200" step="10" data-bind="textInput: dahFrequency">
+                                <input type="number" class="form-control" aria-label="Server" min="100" max="1200"
+                                    step="10" data-bind="textInput: dahFrequency">
                                 <span class="input-group-text">PRESPACE</span>
-                                <input type="number" class="form-control" aria-label="Server" min="0" max="1200" step=".5" data-bind="textInput: preSpace">
+                                <input type="number" class="form-control" aria-label="Server" min="0" max="1200"
+                                    step=".5" data-bind="textInput: preSpace">
                                 <span class="input-group-text">XTRAWRDSPDITS</span>
-                                <input type="number" class="form-control" aria-label="Server" min="0" max="1200" step="1" data-bind="textInput: xtraWordSpaceDits">
+                                <input type="number" class="form-control" aria-label="Server" min="0" max="1200"
+                                    step="1" data-bind="textInput: xtraWordSpaceDits">
                                 <span class="input-group-text">VOL</span>
-                                <input type="number" class="form-control" aria-label="Server" min="1" max="10" step="1" data-bind="textInput: volume">
+                                <input type="number" class="form-control" aria-label="Server" min="1" max="10" step="1"
+                                    data-bind="textInput: volume">
                             </div>
                         </div>
                     </div>
                     <!-- working text area-->
                     <div class="row">
                         <div class="col">
-                            <div class="input-group" >
-                                <span class="input-group-text" data-bind="text: showRaw() ? 'Hide': 'Show', click: ()=>showRaw(!showRaw())"></span>
-                                <textarea data-bind="textInput: showingText, enable: showRaw" class="form-control" aria-label="Text"></textarea>
-                                <input type="file" accept=".txt" id="txtfiletoread" data-bind="event: {change: function() { inputFileChange($element.files[0]) } }"/>
-                                <span>Estimated Play Time:&nbsp;</span><span data-bind="text: timeEstimate().minutes"></span>:<span data-bind="text: timeEstimate().normedSeconds"></span>
+                            <div class="input-group">
+                                <span class="input-group-text"
+                                    data-bind="text: showRaw() ? 'Hide': 'Show', click: ()=>showRaw(!showRaw())"></span>
+                                <textarea data-bind="textInput: showingText, enable: showRaw" class="form-control"
+                                    aria-label="Text"></textarea>
+                                <input type="file" accept=".txt" id="txtfiletoread"
+                                    data-bind="event: {change: function() { inputFileChange($element.files[0]) } }" />
+                                <span>Estimated Play Time:&nbsp;</span><span
+                                    data-bind="text: timeEstimate().minutes"></span>:<span
+                                    data-bind="text: timeEstimate().normedSeconds"></span>
                             </div>
                         </div>
-                    </div> 
+                    </div>
                     <!--  accordian area -->
                     <div class="row">
                         <div class="accordion" id="accordionExample">
-
-                            
-
                             <!-- RSS -->
                             <div class="accordion-item" data-bind="if: rssEnabled">
                                 <h2 class="accordion-header" id="headingOne">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                                    RSS (Experimental, and you will need a proxy)
-                                </button>
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                        RSS (Experimental, and you will need a proxy)
+                                    </button>
                                 </h2>
-                                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                                    data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
                                         <div class="row gy-5">
                                             <div class="col">
                                                 <div class="input-group">
                                                     <span class="input-group-text">RSS</span>
-                                                    <input type="text" data-bind="textInput: rssFeedUrl" class="form-control" aria-label="RSS">
+                                                    <input type="text" data-bind="textInput: rssFeedUrl"
+                                                        class="form-control" aria-label="RSS">
                                                     <span class="input-group-text">Proxy</span>
-                                                    <input type="text" data-bind="textInput: proxydUrl" class="form-control" aria-label="Proxy">
+                                                    <input type="text" data-bind="textInput: proxydUrl"
+                                                        class="form-control" aria-label="Proxy">
                                                     <span class="input-group-text">Poll</span>
-                                                    <input type="number" data-bind="textInput: rssPollMins" class="form-control" aria-label="Poll">
+                                                    <input type="number" data-bind="textInput: rssPollMins"
+                                                        class="form-control" aria-label="Poll">
                                                     <span class="input-group-text">Play</span>
-                                                    <input type="number" data-bind="textInput: rssPlayMins" class="form-control" aria-label="Play">
-                                                    
+                                                    <input type="number" data-bind="textInput: rssPlayMins"
+                                                        class="form-control" aria-label="Play">
+
                                                 </div>
                                             </div>
                                             <div class="col">
                                                 <div class="input-group">
-                    
-                                                <button type="button" class="btn btn-success" data-bind="text: pollRssButtonText, click: doRSS"></button>
-                                                <button type="button" class="btn btn-secondary" data-bind="text: playRssButtonText, click: doRssPlay"></button>
-                                                <button type="button" class="btn btn-danger" data-bind="click: doRSSReset">Mark RSS Old</button>
+
+                                                    <button type="button" class="btn btn-success"
+                                                        data-bind="text: pollRssButtonText, click: doRSS"></button>
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bind="text: playRssButtonText, click: doRssPlay"></button>
+                                                    <button type="button" class="btn btn-danger"
+                                                        data-bind="click: doRSSReset">Mark RSS Old</button>
                                                 </div>
                                             </div>
-                                        </div>   
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -103,142 +125,264 @@
                             <!-- noise -->
                             <div class="accordion-item" data-bind="if: noiseEnabled">
                                 <h2 class="accordion-header" id="headingNoise">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNoise" aria-expanded="false" aria-controls="collapseNoise">
-                                    Noise (Experimental)
-                                </button>
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseNoise" aria-expanded="false"
+                                        aria-controls="collapseNoise">
+                                        Noise (Experimental)
+                                    </button>
                                 </h2>
-                                <div id="collapseNoise" class="accordion-collapse collapse" aria-labelledby="headingNoise" data-bs-parent="#accordionExample">
+                                <div id="collapseNoise" class="accordion-collapse collapse"
+                                    aria-labelledby="headingNoise" data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
                                         <div class="row gy-5">
                                             <div class="col">
                                                 Placeholder
-                                                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                                                    <input type="radio" class="btn-check" value='off' name="btnradio" id="btnradio1" autocomplete="off" data-bind="checked: noiseType">
+                                                <div class="btn-group" role="group"
+                                                    aria-label="Basic radio toggle button group">
+                                                    <input type="radio" class="btn-check" value='off' name="btnradio"
+                                                        id="btnradio1" autocomplete="off"
+                                                        data-bind="checked: noiseType">
                                                     <label class="btn btn-outline-primary" for="btnradio1">Off</label>
-                                                  
-                                                    <input type="radio" class="btn-check" value='white' name="btnradio" id="btnradio2" autocomplete="off" data-bind="checked: noiseType">
+
+                                                    <input type="radio" class="btn-check" value='white' name="btnradio"
+                                                        id="btnradio2" autocomplete="off"
+                                                        data-bind="checked: noiseType">
                                                     <label class="btn btn-outline-primary" for="btnradio2">White</label>
-                                                  
-                                                    <input type="radio" class="btn-check" value='brown' name="btnradio" id="btnradio3" autocomplete="off" data-bind="checked: noiseType">
+
+                                                    <input type="radio" class="btn-check" value='brown' name="btnradio"
+                                                        id="btnradio3" autocomplete="off"
+                                                        data-bind="checked: noiseType">
                                                     <label class="btn btn-outline-primary" for="btnradio3">Brown</label>
 
-                                                    <input type="radio" class="btn-check" value='pink' name="btnradio" id="btnradio4" autocomplete="off" data-bind="checked: noiseType">
+                                                    <input type="radio" class="btn-check" value='pink' name="btnradio"
+                                                        id="btnradio4" autocomplete="off"
+                                                        data-bind="checked: noiseType">
                                                     <label class="btn btn-outline-primary" for="btnradio4">Pink</label>
-                                                  </div>
+                                                </div>
                                                 <span class="input-group-text">VOL</span>
-                                                <input type="number" class="form-control" aria-label="Server" min="1" max="10" step="1" data-bind="textInput: noiseVolume">
-                                            </div>    
-                                        </div>   
+                                                <input type="number" class="form-control" aria-label="Server" min="1"
+                                                    max="10" step="1" data-bind="textInput: noiseVolume">
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- mockup -->
+                            <!-- lessons -->
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingMockup">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMockup" aria-expanded="false" aria-controls="collapseMockup">
-                                    LICW Lessons
-                                    <span data-bind="if: selectedDisplay().display">
-                                    <span>Type: </span><span data-bind="text: userTarget"></span>
-                                    <span>&nbsp; Class: </span><span data-bind="text: selectedClass"></span>
-                                    <span>&nbsp; Letter Group: </span><span data-bind="text: letterGroup"></span>
-                                    <span>&nbsp; Lesson: </span><span data-bind="text: selectedDisplay().display"></span>
-                                    </span>
-                                    <span data-bind="if: !selectedDisplay().display">&nbsp;(None Currently Selected)</span>
-                                </button>
+                                    <!-- accordian button text-->
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseMockup" aria-expanded="false"
+                                        aria-controls="collapseMockup">
+                                        LICW Lessons
+                                        <span data-bind="if: selectedDisplay().display">
+                                            <span>Type: </span><span data-bind="text: userTarget"></span>
+                                            <span>&nbsp; Class: </span><span data-bind="text: selectedClass"></span>
+                                            <span>&nbsp; Letter Group: </span><span
+                                                data-bind="text: letterGroup"></span>
+                                            <span>&nbsp; Lesson: </span><span
+                                                data-bind="text: selectedDisplay().display"></span>
+                                        </span>
+                                        <span data-bind="if: !selectedDisplay().display">&nbsp;(None Currently
+                                            Selected)</span>
+                                    </button>
                                 </h2>
-                                <div id="collapseMockup" class="accordion-collapse collapse" aria-labelledby="headingMockup" data-bs-parent="#accordionExample">
+                                <!-- lesson controls-->
+                                <div id="collapseMockup" class="accordion-collapse collapse"
+                                    aria-labelledby="headingMockup" data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
                                         <div class="row gy-5">
+                                            <!--user type-->
                                             <div class="col">
-                                                
-                                                <div class="btn-group-vertical" role="group" aria-label="Basic radio toggle button group" data-bind="foreach: userTargets, childrenComplete: setUserTargetInitialized">
-                                                    
-                                                    <input type="radio" class="btn-check" name="btnradioUserTargets"  data-bind="checkedValue: $data, checked: $root.userTarget">
-                                                    <label class="btn btn-outline-primary"  data-bind="text: $data, click: $root.changeUserTarget($data)"></label>
-                                                    
+                                                <div class="btn-group-vertical" role="group"
+                                                    aria-label="Basic radio toggle button group"
+                                                    data-bind="foreach: userTargets, childrenComplete: setUserTargetInitialized">
+                                                    <input type="radio" class="btn-check" name="btnradioUserTargets"
+                                                        data-bind="checkedValue: $data, checked: $root.userTarget">
+                                                    <label class="btn btn-outline-primary"
+                                                        data-bind="text: $data, click: $root.changeUserTarget($data)"></label>
                                                 </div>
-                                                                                              
                                             </div>
+                                            <!--classes-->
                                             <div class="col">
-                                                <div class="btn-group-vertical" role="group" aria-label="Basic radio toggle button group" data-bind="foreach: classes, childrenComplete: setSelectedClassInitialized">
-                                                    
-                                                    <input type="radio" class="btn-check" name="btnradioClasses"  data-bind="checkedValue: $data, checked: $root.selectedClass">
-                                                    <label class="btn btn-outline-primary" data-bind="text: $data, click: $root.changeSelectedClass($data)"></label>
-                                                    
-                                                    
-                                                  
-                                                    
-                                                </div>                                                
-                                            </div>  
-                                            
+                                                <div class="btn-group-vertical" role="group"
+                                                    aria-label="Basic radio toggle button group"
+                                                    data-bind="foreach: classes, childrenComplete: setSelectedClassInitialized">
+                                                    <input type="radio" class="btn-check" name="btnradioClasses"
+                                                        data-bind="checkedValue: $data, checked: $root.selectedClass">
+                                                    <label class="btn btn-outline-primary"
+                                                        data-bind="text: $data, click: $root.changeSelectedClass($data)"></label>
+                                                </div>
+                                            </div>
+                                            <!--letter groups-->
                                             <div class="col">
-                                                <div class="list-group" data-bind="foreach: letterGroups, childrenComplete: setLetterGroupInitialized" style="overflow-y:auto; height:250px;">
-                                                    <button type="button" class="list-group-item list-group-item-action" data-bind="text: $data, click: $root.setLetterGroup($data), css: { active: $data==$parent.letterGroup()}"></button>
+                                                <div class="list-group"
+                                                    data-bind="foreach: letterGroups, childrenComplete: setLetterGroupInitialized"
+                                                    style="overflow-y:auto; height:250px;">
+                                                    <button type="button" class="list-group-item list-group-item-action"
+                                                        data-bind="text: $data, click: $root.setLetterGroup($data), css: { active: $data==$parent.letterGroup()}"></button>
+                                                </div>
+                                            </div>
+                                            <!--lessons-->
+                                            <div class="col">
+                                                <div class="list-group"
+                                                    data-bind="foreach: displays, childrenComplete: setDisplaysInitialized"
+                                                    style="overflow-y:auto; height:250px;">
+                                                    <button type="button" class="list-group-item list-group-item-action"
+                                                        data-bind="text: $data.display, click: ()=>$root.setDisplaySelected($data), css: { active: $data.display==$parent.selectedDisplay().display}"></button>
                                                 </div>
                                             </div>
 
+                                            <!--buttons for overrides and such-->
                                             <div class="col">
-                                                <div class="list-group" data-bind="foreach: displays, childrenComplete: setDisplaysInitialized" style="overflow-y:auto; height:250px;">
-                                                    <button type="button" class="list-group-item list-group-item-action" data-bind="text: $data.display, click: ()=>$root.setDisplaySelected($data), css: { active: $data.display==$parent.selectedDisplay().display}"></button>
+                                                <div class="btn-group-vertical" role="group"
+                                                    aria-label="Basic checkbox toggle button group">
+                                                    <!--randomize toggle-->
+                                                    <input type="checkbox" class="btn-check" autocomplete="off"
+                                                        id="btncheck1" data-bind="checked: randomizeLessons">
+                                                    <label class="btn btn-outline-primary"
+                                                        for="btncheck1">Randomize</label>
+
+                                                    <!--override time toggle-->
+                                                    <input type="checkbox" class="btn-check" id="btncheck2"
+                                                        autocomplete="off" data-bind="checked: ifOverrideTime">
+                                                    <label class="btn btn-outline-primary" for="btncheck2">Override
+                                                        Time</label>
+                                                </div>
+                                                <div class="input-group">
+                                                    <!--override minutes-->
+                                                    <span class="input-group-text">Mins</span>
+                                                    <input type="number" class="form-control" style="max-width:70px;"
+                                                        aria-label="Username" min="0"
+                                                        data-bind="textInput: overrideMins, enable: ifOverrideTime">
+                                                </div>
+                                                <div class="btn-group-vertical" role="group"
+                                                    aria-label="Basic checkbox toggle button group">
+                                                    <!--override size toggle-->
+                                                    <input type="checkbox" class="btn-check" id="btncheck2overridesize"
+                                                        autocomplete="off" data-bind="checked: ifOverrideMinMax">
+                                                    <label class="btn btn-outline-primary"
+                                                        for="btncheck2overridesize">Override Size</label>
+
+                                                </div>
+                                                <div class="input-group">
+                                                    <!--min override-->
+                                                    <span class="input-group-text">Min</span>
+                                                    <input type="number" class="form-control" style="max-width:75px;"
+                                                        aria-label="Username" min="1"
+                                                        data-bind="textInput: overrideMin, enable: ifOverrideMinMax">
+                                                    <!--max override-->
+                                                    <span class="input-group-text">Max</span>
+                                                    <input type="number" class="form-control" style="max-width:75px;"
+                                                        aria-label="Username" min="1"
+                                                        data-bind="textInput: overrideMax, enable: ifOverrideMinMax">
+                                                </div>
+                                                <div class="btn-group-vertical" role="group"
+                                                    aria-label="Basic checkbox toggle button group">
+                                                    <!--sticky sets toggle-->
+                                                    <input type="checkbox" class="btn-check"
+                                                        id="btncheck2stickysetstoggle" autocomplete="off"
+                                                        data-bind="checked: ifStickySets">
+                                                    <label class="btn btn-outline-primary"
+                                                        for="btncheck2stickysetstoggle">Sticky Sets</label>
+                                                </div>
+                                                <div class="input-group">
+                                                    <!--sticky set text -->
+                                                    <input type="text" class="form-control" style="max-width:125px;"
+                                                        aria-label="Username" min="0"
+                                                        data-bind="textInput: stickySets, enable: ifStickySets">
+                                                </div>
+                                                <div class="btn-group-vertical" role="group"
+                                                    aria-label="Basic checkbox toggle button group">
+                                                    <!--custom group run button-->
+                                                    <button type="button" class="btn btn-success"
+                                                        data-bind="click: doCustomGroup">Custom Group</button>
+                                                </div>
+                                                <div class="input-group">
+                                                    <!--custom group text -->
+                                                    <input type="text" class="form-control" style="max-width:125px;"
+                                                        aria-label="Username" min="0"
+                                                        data-bind="textInput: customGroup">
                                                 </div>
                                             </div>
-                                        </div>   
+                                        </div>
                                     </div>
                                 </div>
-                            </div>    
+                            </div>
 
                             <!-- flagged words -->
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingTwo">
-                                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                    Flagged words (click words you missed in the word list to add here)
-                                  </button>
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        Flagged words (click words you missed in the word list to add here)
+                                    </button>
                                 </h2>
-                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                                  <div class="accordion-body">
-                                    <div class="input-group">
-                                        <span class="input-group-text" data-bind="click:setFlagged">Click To Set As Text</span>
-                                        <textarea data-bind="textInput: flaggedWords" class="form-control" aria-label="Text"></textarea>
-                                        
+                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                                    data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <div class="input-group">
+                                            <span class="input-group-text" data-bind="click:setFlagged">Click To Set As
+                                                Text</span>
+                                            <textarea data-bind="textInput: flaggedWords" class="form-control"
+                                                aria-label="Text"></textarea>
+
+                                        </div>
                                     </div>
-                                  </div>
                                 </div>
                             </div>
-                            
+
                         </div>
-                    </div> 
+                    </div>
                     <!-- controls area -->
                     <div class="row">
-                        <div class="col"> 
+                        <div class="col">
                             <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                                <div class="btn-group me-2" role="group" aria-label="Basic mixed styles example"> 
-                                    <button type="button" class="btn btn-success" data-bind="click: doPlay">Play</button>
-                                    <button type="button" class="btn btn-warning" data-bind="click: decrementIndex">Back 1</button>
+                                <div class="btn-group me-2" role="group" aria-label="Basic mixed styles example">
+                                    <button type="button" class="btn btn-success"
+                                        data-bind="click: doPlay">Play</button>
+                                    <button type="button" class="btn btn-warning" data-bind="click: decrementIndex">Back
+                                        1</button>
 
-                                    <button type="button" class="btn btn-secondary" data-bind="click: incrementIndex">Fwd 1</button>
-                                    <button type="button" class="btn btn-danger" data-bind="click: doPause">Stop</button>
-                                    
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bind="click: incrementIndex">Fwd 1</button>
+                                    <button type="button" class="btn btn-danger"
+                                        data-bind="click: doPause">Stop</button>
+
                                 </div>
                                 <div class="btn-group me-2" role="group" aria-label="second group">
                                     <!-- 
                                     <input type="checkbox" data-bind="checked: showRaw" class="btn-check" id="btnShowRaw" autocomplete="off"/>
                                     <label class="btn btn-outline-primary" for="btnShowRaw">Show Raw Text</label>
                                     -->
-                                    <input type="checkbox" data-bind="checked: hideList" class="btn-check" id="btnHideList" autocomplete="off"/>
-                                    <label class="btn btn-outline-primary" for="btnHideList" data-bind="text: hideList()?'Unhide List Words':'Hide List Words'"></label>
-                                    <input type="checkbox" data-bind="checked: trailReveal" class="btn-check" id="btntrailReveal" autocomplete="off"/>
-                                    <label class="btn btn-outline-secondary" for="btntrailReveal" data-bind="text: trailReveal()?'Hide Trail':'Reveal Trail'"></label>
+                                    <input type="checkbox" data-bind="checked: hideList" class="btn-check"
+                                        id="btnHideList" autocomplete="off" />
+                                    <label class="btn btn-outline-primary" for="btnHideList"
+                                        data-bind="text: hideList()?'Unhide List Words':'Hide List Words'"></label>
+                                    <input type="checkbox" data-bind="checked: trailReveal" class="btn-check"
+                                        id="btntrailReveal" autocomplete="off" />
+                                    <label class="btn btn-outline-secondary" for="btntrailReveal"
+                                        data-bind="text: trailReveal()?'Hide Trail':'Reveal Trail'"></label>
                                 </div>
                                 <div class="input-group" aria-label="thirdgroup">
-                                    <span class="input-group-text">SENTENCE</span>
-                                    <input type="number" class="form-control" aria-label="Server" min="100" max="1200" step="1" data-bind="textInput: currentSentanceIndex,attr:{min:0, max:sentenceMax}">
+                                    <input type="checkbox" data-bind="checked: ifParseSentences" class="btn-check"
+                                        id="btnParseSentences" autocomplete="off" />
+                                    <label class="btn btn-outline-primary" for="btnParseSentences">Sentences</label>
+                                    <!--<span class="input-group-text">SENTENCE</span> -->
+                                    <input type="number" class="form-control" aria-label="Server" min="100" max="1200"
+                                        step="1"
+                                        data-bind="enable: ifParseSentences, textInput: currentSentanceIndex,attr:{min:0, max:sentenceMax}">
                                 </div>
-                                <div class="btn-group me-2" role="group" aria-label="Basic mixed styles example"> 
-                                    <button type="button" class="btn btn-success" data-bind="click: fullRewind">Full RW</button>
-                                    <button type="button" class="btn btn-warning" data-bind="click: sentanceRewind">Sent RW</button>
-                                    <button type="button" class="btn btn-secondary" data-bind="click: shuffleWords, text: isShuffled()?'UnShuffle':'Shuffle'"></button>
-                                    <button type="button" class="btn btn-success" data-bind="click: doDownload">Download</button>
+                                <div class="btn-group me-2" role="group" aria-label="Basic mixed styles example">
+                                    <button type="button" class="btn btn-success" data-bind="click: fullRewind">Full
+                                        RW</button>
+                                    <button type="button" class="btn btn-warning" data-bind="click: sentanceRewind">Sent
+                                        RW</button>
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bind="click: shuffleWords, text: isShuffled()?'UnShuffle':'Shuffle'"></button>
+                                    <button type="button" class="btn btn-success"
+                                        data-bind="click: doDownload">Download</button>
                                     <a id="downloadLink"></a>
                                 </div>
                             </div>
@@ -259,7 +403,8 @@
                 <div class="container-fluid">
                     <div class="row overflow-auto" style="height: 100vh;">
                         <div class="col" data-bind="foreach: words">
-                            <button class="btn" data-bind="class: $index()==$parent.currentIndex() ? 'btn-primary':'btn-outline-primary',text: (!$parent.hideList() || ($parent.trailReveal() && $index() < $parent.currentIndex() )) ? $data : 'X'.repeat($data.length),click:()=>$parent.addFlaggedWord($data)"></button>
+                            <button class="btn"
+                                data-bind="class: $index()==$parent.currentIndex() ? 'btn-primary':'btn-outline-primary',text: (!$parent.hideList() || ($parent.trailReveal() && $index() < $parent.currentIndex() )) ? $data : 'X'.repeat($data.length),click:()=>$parent.addFlaggedWord($data)"></button>
                         </div>
                     </div>
                 </div>
