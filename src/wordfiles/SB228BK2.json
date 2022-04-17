@@ -1,6 +1,6 @@
 {
     "letters": "28BK",
-    "str": “BK”, 
+    "str": BK, 
     "minWordSize": 3,
     "maxWordSize": 3,
     "practiceSeconds" : 120
