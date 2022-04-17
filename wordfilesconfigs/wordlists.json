@@ -310,7 +310,7 @@
             "class": "B2",
             "letterGroup": "KMY",
             "display": "QSO ABBREVIATIONS",
-            "fileName": "SB2KMY3.json"
+            "fileName": "SB2KMY3.txt"
         },
         {
             "sort": 40,
@@ -318,7 +318,7 @@
             "class": "B2",
             "letterGroup": "KMY",
             "display": "QSO PROTOCOL",
-            "fileName": "SB2KMY4.json"
+            "fileName": "SB2KMY4.txt"
         },
         {
             "sort": 41,
@@ -326,7 +326,7 @@
             "class": "B2",
             "letterGroup": "KMY",
             "display": "STATES",
-            "fileName": "SB2KMY5.json"
+            "fileName": "SB2KMY5.txt"
         },
         {
             "sort": 42,
@@ -350,7 +350,7 @@
             "class": "B2",
             "letterGroup": "59,",
             "display": "QSO ABBREVIATIONS",
-            "fileName": "SB2593.json"
+            "fileName": "SB2593.txt"
         },
         {
             "sort": 45,
@@ -358,7 +358,7 @@
             "class": "B2",
             "letterGroup": "59,",
             "display": "QSO PROTOCOL",
-            "fileName": "SB2594.json"
+            "fileName": "SB2594.txt"
         },
         {
             "sort": 46,
@@ -366,7 +366,7 @@
             "class": "B2",
             "letterGroup": "59,",
             "display": "CALLSIGNS",
-            "fileName": "SB2595.json"
+            "fileName": "SB2595.txt"
         },
         {
             "sort": 47,
@@ -374,7 +374,7 @@
             "class": "B2",
             "letterGroup": "59,",
             "display": "STATES",
-            "fileName": "SB2596.json"
+            "fileName": "SB2596.txt"
         },
         {
             "sort": 48,
@@ -398,7 +398,7 @@
             "class": "B2",
             "letterGroup": "QXV",
             "display": "QSO ABBREVIATIONS",
-            "fileName": "SB2QXV3.json"
+            "fileName": "SB2QXV3.txt"
         },
         {
             "sort": 51,
@@ -406,7 +406,7 @@
             "class": "B2",
             "letterGroup": "QXV",
             "display": "QSO PROTOCOL",
-            "fileName": "SB2QXV4.json"
+            "fileName": "SB2QXV4.txt"
         },
         {
             "sort": 52,
@@ -414,7 +414,7 @@
             "class": "B2",
             "letterGroup": "QXV",
             "display": "STATES",
-            "fileName": "SB2QXV5.json"
+            "fileName": "SB2QXV5.txt"
         },
         {
             "sort": 53,
@@ -438,7 +438,7 @@
             "class": "B2",
             "letterGroup": "73?",
             "display": "QSO ABBREVIATIONS",
-            "fileName": "SB2733.json"
+            "fileName": "SB2733.txt"
         },
         {
             "sort": 56,
@@ -446,7 +446,7 @@
             "class": "B2",
             "letterGroup": "73?",
             "display": "QSO PROTOCOL",
-            "fileName": "SB2734.json"
+            "fileName": "SB2734.txt"
         },
         {
             "sort": 57,
@@ -454,7 +454,7 @@
             "class": "B2",
             "letterGroup": "73?",
             "display": "CALLSIGNS",
-            "fileName": "SB2735.json"
+            "fileName": "SB2735.txt"
         },
         {
             "sort": 58,
@@ -462,7 +462,7 @@
             "class": "B2",
             "letterGroup": "73?",
             "display": "STATES",
-            "fileName": "SB2736.json"
+            "fileName": "SB2736.txt"
         },
         {
             "sort": 59,
@@ -486,7 +486,7 @@
             "class": "B2",
             "letterGroup": "<AR> <SK> <BT>",
             "display": "QSO ABBREVIATIONS",
-            "fileName": "SB2ARSKBT3.json"
+            "fileName": "SB2ARSKBT3.txt"
         },
         {
             "sort": 62,
@@ -494,7 +494,7 @@
             "class": "B2",
             "letterGroup": "<AR> <SK> <BT>",
             "display": "QSO PROTOCOL",
-            "fileName": "SB2ARSKBT4.json"
+            "fileName": "SB2ARSKBT4.txt"
         },
         {
             "sort": 63,
@@ -502,7 +502,7 @@
             "class": "B2",
             "letterGroup": "<AR> <SK> <BT>",
             "display": "STATES",
-            "fileName": "SB2ARSKBT5.json"
+            "fileName": "SB2ARSKBT5.txt"
         },
         {
             "sort": 64,
@@ -526,7 +526,7 @@
             "class": "B2",
             "letterGroup": "16.",
             "display": "QSO ABBREVIATIONS",
-            "fileName": "SB2163.json"
+            "fileName": "SB2163.txt"
         },
         {
             "sort": 67,
@@ -534,7 +534,7 @@
             "class": "B2",
             "letterGroup": "16.",
             "display": "QSO PROTOCOL",
-            "fileName": "SB2164.json"
+            "fileName": "SB2164.txt"
         },
         {
             "sort": 68,
@@ -542,7 +542,7 @@
             "class": "B2",
             "letterGroup": "16.",
             "display": "CALLSIGNS",
-            "fileName": "SB2165.json"
+            "fileName": "SB2165.txt"
         },
         {
             "sort": 69,
@@ -550,7 +550,7 @@
             "class": "B2",
             "letterGroup": "16.",
             "display": "STATES",
-            "fileName": "SB2166.json"
+            "fileName": "SB2166.txt"
         },
         {
             "sort": 70,
@@ -574,7 +574,7 @@
             "class": "B2",
             "letterGroup": "28BK",
             "display": "QSO ABBREVIATIONS",
-            "fileName": "SB228BK3.json"
+            "fileName": "SB228BK3.txt"
         },
         {
             "sort": 73,
@@ -582,7 +582,7 @@
             "class": "B2",
             "letterGroup": "28BK",
             "display": "QSO PROTOCOL",
-            "fileName": "SB228BK4.json"
+            "fileName": "SB228BK4.txt"
         },
         {
             "sort": 74,
@@ -590,7 +590,7 @@
             "class": "B2",
             "letterGroup": "28BK",
             "display": "CALLSIGNS",
-            "fileName": "SB228BK5.json"
+            "fileName": "SB228BK5.txt"
         },
         {
             "sort": 75,
@@ -598,7 +598,7 @@
             "class": "B2",
             "letterGroup": "28BK",
             "display": "STATES",
-            "fileName": "SB228BK6.json"
+            "fileName": "SB228BK6.txt"
         },
         {
             "sort": 76,
@@ -622,7 +622,7 @@
             "class": "B2",
             "letterGroup": "40",
             "display": "QSO ABBREVIATIONS",
-            "fileName": "SB2403.json"
+            "fileName": "SB2403.txt"
         },
         {
             "sort": 79,
@@ -630,7 +630,7 @@
             "class": "B2",
             "letterGroup": "40",
             "display": "QSO PROTOCOL",
-            "fileName": "SB2404.json"
+            "fileName": "SB2404.txt"
         },
         {
             "sort": 80,
@@ -638,7 +638,7 @@
             "class": "B2",
             "letterGroup": "40",
             "display": "CALLSIGNS",
-            "fileName": "SB2405.json"
+            "fileName": "SB2405.txt"
         },
         {
             "sort": 81,
@@ -646,7 +646,7 @@
             "class": "B2",
             "letterGroup": "40",
             "display": "STATES",
-            "fileName": "SB2406.json"
+            "fileName": "SB2406.txt"
         },
         {
             "sort": 82,
@@ -662,7 +662,7 @@
             "class": "B2",
             "letterGroup": "CAPSTONE",
             "display": "QSO ABBREVIATIONS",
-            "fileName": "SB2C2.json"
+            "fileName": "SB2C2.txt"
         },
         {
             "sort": 84,
@@ -670,7 +670,7 @@
             "class": "B2",
             "letterGroup": "CAPSTONE",
             "display": "QSO PROTOCOL 1",
-            "fileName": "SB2C3.json"
+            "fileName": "SB2C3.txt"
         },
         {
             "sort": 85,
@@ -678,7 +678,7 @@
             "class": "B2",
             "letterGroup": "CAPSTONE",
             "display": "QSO PROTOCOL 2",
-            "fileName": "SB2C4.json"
+            "fileName": "SB2C4.txt"
         },
         {
             "sort": 86,
@@ -686,7 +686,7 @@
             "class": "B2",
             "letterGroup": "CAPSTONE",
             "display": "QSO PROTOCOL 3",
-            "fileName": "SB2C5.json"
+            "fileName": "SB2C5.txt"
         },
         {
             "sort": 87,
@@ -694,7 +694,7 @@
             "class": "B2",
             "letterGroup": "CAPSTONE",
             "display": "QSO PROTOCOL 4",
-            "fileName": "SB2C6.json"
+            "fileName": "SB2C6.txt"
         },
         {
             "sort": 88,
@@ -702,7 +702,7 @@
             "class": "B2",
             "letterGroup": "CAPSTONE",
             "display": "CALLSIGNS",
-            "fileName": "SB2C7.json"
+            "fileName": "SB2C7.txt"
         },
         {
             "sort": 89,
@@ -710,7 +710,7 @@
             "class": "B2",
             "letterGroup": "CAPSTONE",
             "display": "STATES",
-            "fileName": "SB2C8.json"
+            "fileName": "SB2C8.txt"
         },
         {
             "sort": 90,
@@ -1094,7 +1094,7 @@
             "class": "B2",
             "letterGroup": "KMY",
             "display": "QSO ABBREVIATIONS",
-            "fileName": "IB2KMY6.json"
+            "fileName": "IB2KMY6.txt"
         },
         {
             "sort": 138,
@@ -1102,7 +1102,7 @@
             "class": "B2",
             "letterGroup": "KMY",
             "display": "QSO PROTOCOL",
-            "fileName": "IB2KMY7.json"
+            "fileName": "IB2KMY7.txt"
         },
         {
             "sort": 139,
@@ -1110,7 +1110,7 @@
             "class": "B2",
             "letterGroup": "KMY",
             "display": "STATES",
-            "fileName": "IB2KMY8.json"
+            "fileName": "IB2KMY8.txt"
         },
         {
             "sort": 140,
@@ -1158,7 +1158,7 @@
             "class": "B2",
             "letterGroup": "59,",
             "display": "QSO ABBREVIATIONS",
-            "fileName": "IB2596.json"
+            "fileName": "IB2596.txt"
         },
         {
             "sort": 146,
@@ -1166,7 +1166,7 @@
             "class": "B2",
             "letterGroup": "59,",
             "display": "QSO PROTOCOL",
-            "fileName": "IB2597.json"
+            "fileName": "IB2597.txt"
         },
         {
             "sort": 147,
@@ -1174,7 +1174,7 @@
             "class": "B2",
             "letterGroup": "59,",
             "display": "CALLSIGNS",
-            "fileName": "IB2598.json"
+            "fileName": "IB2598.txt"
         },
         {
             "sort": 148,
@@ -1182,7 +1182,7 @@
             "class": "B2",
             "letterGroup": "59,",
             "display": "STATES",
-            "fileName": "IB2599.json"
+            "fileName": "IB2599.txt"
         },
         {
             "sort": 149,
@@ -1230,7 +1230,7 @@
             "class": "B2",
             "letterGroup": "QXV",
             "display": "QSO ABBREVIATIONS",
-            "fileName": "IB2QXV6.json"
+            "fileName": "IB2QXV6.txt"
         },
         {
             "sort": 155,
@@ -1238,7 +1238,7 @@
             "class": "B2",
             "letterGroup": "QXV",
             "display": "QSO PROTOCOL",
-            "fileName": "IB2QXV7.json"
+            "fileName": "IB2QXV7.txt"
         },
         {
             "sort": 156,
@@ -1246,7 +1246,7 @@
             "class": "B2",
             "letterGroup": "QXV",
             "display": "STATES",
-            "fileName": "IB2QXV8.json"
+            "fileName": "IB2QXV8.txt"
         },
         {
             "sort": 157,
@@ -1294,7 +1294,7 @@
             "class": "B2",
             "letterGroup": "73?",
             "display": "QSO ABREVIATIONS",
-            "fileName": "IB2736.json"
+            "fileName": "IB2736.txt"
         },
         {
             "sort": 163,
@@ -1302,7 +1302,7 @@
             "class": "B2",
             "letterGroup": "73?",
             "display": "QSO PROTOCOL",
-            "fileName": "IB2737.json"
+            "fileName": "IB2737.txt"
         },
         {
             "sort": 164,
@@ -1310,7 +1310,7 @@
             "class": "B2",
             "letterGroup": "73?",
             "display": "CALLSIGNS",
-            "fileName": "IB2738.json"
+            "fileName": "IB2738.txt"
         },
         {
             "sort": 165,
@@ -1318,7 +1318,7 @@
             "class": "B2",
             "letterGroup": "73?",
             "display": "STATES",
-            "fileName": "IB2739.json"
+            "fileName": "IB2739.txt"
         },
         {
             "sort": 166,
@@ -1342,7 +1342,7 @@
             "class": "B2",
             "letterGroup": "<AR> <SK> <BT>",
             "display": "<AR> <SK>",
-            "fileName": "IB2ARSKBT3.json"
+            "fileName": "IB2ARSKBT3.txt"
         },
         {
             "sort": 169,
@@ -1350,7 +1350,7 @@
             "class": "B2",
             "letterGroup": "<AR> <SK> <BT>",
             "display": "<BT>",
-            "fileName": "IB2ARSKBT4.json"
+            "fileName": "IB2ARSKBT4.txt"
         },
         {
             "sort": 170,
@@ -1358,7 +1358,7 @@
             "class": "B2",
             "letterGroup": "<AR> <SK> <BT>",
             "display": "<AR> <SK> <BT>",
-            "fileName": "IB2ARSKBT5.json"
+            "fileName": "IB2ARSKBT5.txt"
         },
         {
             "sort": 171,
@@ -1366,7 +1366,7 @@
             "class": "B2",
             "letterGroup": "<AR> <SK> <BT>",
             "display": "QSO ABREVIATIONS",
-            "fileName": "IB2ARSKBT6.json"
+            "fileName": "IB2ARSKBT6.txt"
         },
         {
             "sort": 172,
@@ -1374,7 +1374,7 @@
             "class": "B2",
             "letterGroup": "<AR> <SK> <BT>",
             "display": "QSO PROTOCOL",
-            "fileName": "IB2ARSKBT6.json"
+            "fileName": "IB2ARSKBT6.txt"
         },
         {
             "sort": 173,
@@ -1382,7 +1382,7 @@
             "class": "B2",
             "letterGroup": "<AR> <SK> <BT>",
             "display": "STATES",
-            "fileName": "IB2ARSKBT7.json"
+            "fileName": "IB2ARSKBT7.txt"
         },
         {
             "sort": 174,
@@ -1430,7 +1430,7 @@
             "class": "B2",
             "letterGroup": "16.",
             "display": "QSO ABBREVIATIONS",
-            "fileName": "IB2166.json"
+            "fileName": "IB2166.txt"
         },
         {
             "sort": 180,
@@ -1438,7 +1438,7 @@
             "class": "B2",
             "letterGroup": "16.",
             "display": "QSO PROTOCOL",
-            "fileName": "IB2167.json"
+            "fileName": "IB2167.txt"
         },
         {
             "sort": 181,
@@ -1446,7 +1446,7 @@
             "class": "B2",
             "letterGroup": "16.",
             "display": "CALLSIGNS",
-            "fileName": "IB2168.json"
+            "fileName": "IB2168.txt"
         },
         {
             "sort": 182,
@@ -1454,7 +1454,7 @@
             "class": "B2",
             "letterGroup": "16.",
             "display": "STATES",
-            "fileName": "IB2169.json"
+            "fileName": "IB2169.txt"
         },
         {
             "sort": 183,
@@ -1502,7 +1502,7 @@
             "class": "B2",
             "letterGroup": "28BK",
             "display": "QSO ABBREVIATIONS",
-            "fileName": "IB228BK6.json"
+            "fileName": "IB228BK6.txt"
         },
         {
             "sort": 189,
@@ -1510,7 +1510,7 @@
             "class": "B2",
             "letterGroup": "28BK",
             "display": "QSO PROTOCOL",
-            "fileName": "IB228BK7.json"
+            "fileName": "IB228BK7.txt"
         },
         {
             "sort": 190,
@@ -1518,7 +1518,7 @@
             "class": "B2",
             "letterGroup": "28BK",
             "display": "CALLSIGNS",
-            "fileName": "IB228BK8.json"
+            "fileName": "IB228BK8.txt"
         },
         {
             "sort": 191,
@@ -1526,7 +1526,7 @@
             "class": "B2",
             "letterGroup": "28BK",
             "display": "STATES",
-            "fileName": "IB228BK9.json"
+            "fileName": "IB228BK9.txt"
         },
         {
             "sort": 192,
@@ -1558,7 +1558,7 @@
             "class": "B2",
             "letterGroup": "40",
             "display": "QSO ABBREVIATIONS ",
-            "fileName": "IB2404.json"
+            "fileName": "IB2404.txt"
         },
         {
             "sort": 196,
@@ -1566,7 +1566,7 @@
             "class": "B2",
             "letterGroup": "40",
             "display": "QSO PROTOCOL",
-            "fileName": "IB2405.json"
+            "fileName": "IB2405.txt"
         },
         {
             "sort": 197,
@@ -1574,7 +1574,7 @@
             "class": "B2",
             "letterGroup": "40",
             "display": "CALLSIGNS",
-            "fileName": "IB2406.json"
+            "fileName": "IB2406.txt"
         },
         {
             "sort": 198,
@@ -1582,7 +1582,7 @@
             "class": "B2",
             "letterGroup": "40",
             "display": "STATES",
-            "fileName": "IB2407.json"
+            "fileName": "IB2407.txt"
         },
         {
             "sort": 199,
@@ -1598,7 +1598,7 @@
             "class": "B2",
             "letterGroup": "CAPSTONE",
             "display": "QSO ABBREVIATIONS ",
-            "fileName": "IB2C2.json"
+            "fileName": "IB2C2.txt"
         },
         {
             "sort": 201,
@@ -1606,7 +1606,7 @@
             "class": "B2",
             "letterGroup": "CAPSTONE",
             "display": "QSO PROTOCOL 1",
-            "fileName": "IB2C3.json"
+            "fileName": "IB2C3.txt"
         },
         {
             "sort": 202,
@@ -1614,7 +1614,7 @@
             "class": "B2",
             "letterGroup": "CAPSTONE",
             "display": "QSO PROTOCOL 2",
-            "fileName": "IB2C4.json"
+            "fileName": "IB2C4.txt"
         },
         {
             "sort": 203,
@@ -1622,7 +1622,7 @@
             "class": "B2",
             "letterGroup": "CAPSTONE",
             "display": "QSO PROTOCOL 3",
-            "fileName": "IB2C5.json"
+            "fileName": "IB2C5.txt"
         },
         {
             "sort": 204,
@@ -1630,7 +1630,7 @@
             "class": "B2",
             "letterGroup": "CAPSTONE",
             "display": "QSO PROTOCOL 4",
-            "fileName": "IB2C6.json"
+            "fileName": "IB2C6.txt"
         },
         {
             "sort": 205,
@@ -1646,7 +1646,7 @@
             "class": "B2",
             "letterGroup": "CAPSTONE",
             "display": "STATES",
-            "fileName": "IB2C8.json"
+            "fileName": "IB2C8.txt"
         },
         {
             "sort": 207,
@@ -1670,7 +1670,7 @@
             "class": "B2",
             "letterGroup": "ZJ",
             "display": "QSO ABBREVIATIONS",
-            "fileName": "SB2ZJ3.json"
+            "fileName": "SB2ZJ3.txt"
         },
         {
             "sort": 210,
@@ -1678,7 +1678,7 @@
             "class": "B2",
             "letterGroup": "ZJ",
             "display": "QSO PROTOCOL",
-            "fileName": "SB2ZJ4.json"
+            "fileName": "SB2ZJ4.txt"
         },
         {
             "sort": 211,
@@ -1686,7 +1686,7 @@
             "class": "B2",
             "letterGroup": "ZJ",
             "display": "STATES",
-            "fileName": "SB2ZJ5.json"
+            "fileName": "SB2ZJ5.txt"
         },
         {
             "sort": 212,
@@ -1734,7 +1734,7 @@
             "class": "B2",
             "letterGroup": "ZJ",
             "display": "QSO ABBREVIATIONS",
-            "fileName": "IB2ZJ6.json"
+            "fileName": "IB2ZJ6.txt"
         },
         {
             "sort": 218,
@@ -1742,7 +1742,7 @@
             "class": "B2",
             "letterGroup": "ZJ",
             "display": "QSO PROTOCOL",
-            "fileName": "IB2ZJ7.json"
+            "fileName": "IB2ZJ7.txt"
         },
         {
             "sort": 219,
@@ -1750,7 +1750,7 @@
             "class": "B2",
             "letterGroup": "ZJ",
             "display": "STATES",
-            "fileName": "IB2ZJ8.json"
+            "fileName": "IB2ZJ8.txt"
         }
     ]
 }
