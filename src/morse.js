@@ -281,7 +281,10 @@ class MorseViewModel {
 
   randomWordList = (data, ifCustom) => {
     let str = ''
-    const chars = data.letters.split('')
+    const splitWithProsigns = (s) => {
+      return s.match(/<.*?>|[^<.*?>]/g)
+    }
+    const chars = splitWithProsigns(data.letters)
     let seconds = 0
     const controlTime = (this.ifOverrideTime() || ifCustom) ? (this.overrideMins() * 60) : data.practiceSeconds
     const minWordSize = (this.ifOverrideMinMax() || ifCustom) ? this.overrideMin() : data.minWordSize
