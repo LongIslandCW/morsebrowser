@@ -166,6 +166,8 @@ class MorseViewModel {
    overrideMin = ko.observable(3)
    overrideMax = ko.observable(3)
    ifParseSentences = ko.observable(false)
+   ifStickySets = ko.observable(true)
+   stickySets = ko.observable('BK')
 
    // helper
    loadCookies = () => {
@@ -286,10 +288,20 @@ class MorseViewModel {
 
   randomWordList = (data, ifCustom) => {
     let str = ''
-    const splitWithProsigns = (s) => {
-      return s.match(/<.*?>|[^<.*?>]/g)
+    const splitWithProsignsAndStcikys = (s) => {
+      let stickys = ''
+      if (this.ifStickySets() && this.stickySets().trim()) {
+        stickys = '|' + this.stickySets().toUpperCase().trim().replace(/ {2}/g, ' ').replace(/ /g, '|')
+      }
+
+      const regStr = `<.*?>${stickys}|[^<.*?>]`
+      // console.log(regStr)
+      const re = new RegExp(regStr, 'g')
+      const match = s.toUpperCase().match(re)
+      // console.log(match)
+      return match
     }
-    const chars = splitWithProsigns(data.letters)
+    const chars = splitWithProsignsAndStcikys(data.letters)
     let seconds = 0
     const controlTime = (this.ifOverrideTime() || ifCustom) ? (this.overrideMins() * 60) : data.practiceSeconds
     const minWordSize = (this.ifOverrideMinMax() || ifCustom) ? this.overrideMin() : data.minWordSize

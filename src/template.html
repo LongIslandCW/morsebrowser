@@ -280,6 +280,21 @@
                                                 </div>
                                                 <div class="btn-group-vertical" role="group"
                                                     aria-label="Basic checkbox toggle button group">
+                                                    <!--sticky sets toggle-->
+                                                    <input type="checkbox" class="btn-check"
+                                                        id="btncheck2stickysetstoggle" autocomplete="off"
+                                                        data-bind="checked: ifStickySets">
+                                                    <label class="btn btn-outline-primary"
+                                                        for="btncheck2stickysetstoggle">Sticky Sets</label>
+                                                </div>
+                                                <div class="input-group">
+                                                    <!--sticky set text -->
+                                                    <input type="text" class="form-control" style="max-width:125px;"
+                                                        aria-label="Username" min="0"
+                                                        data-bind="textInput: stickySets, enable: ifStickySets">
+                                                </div>
+                                                <div class="btn-group-vertical" role="group"
+                                                    aria-label="Basic checkbox toggle button group">
                                                     <!--custom group run button-->
                                                     <button type="button" class="btn btn-success"
                                                         data-bind="click: doCustomGroup">Custom Group</button>
