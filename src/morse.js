@@ -165,6 +165,7 @@ class MorseViewModel {
    ifOverrideMinMax = ko.observable(false)
    overrideMin = ko.observable(3)
    overrideMax = ko.observable(3)
+   ifParseSentences = ko.observable(false)
 
    // helper
    loadCookies = () => {
@@ -204,7 +205,11 @@ class MorseViewModel {
    }
 
    sentences = ko.computed(() => {
-     return this.rawText() ? MorseStringUtils.getSentences(this.rawText()) : []
+     if (!this.rawText()) {
+       return []
+     }
+
+     return MorseStringUtils.getSentences(this.rawText(), !this.ifParseSentences())
    }, this)
 
    sentenceMax = ko.computed(() => {
