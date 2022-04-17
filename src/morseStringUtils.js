@@ -13,8 +13,7 @@ export default class MorseStringUtils {
         .replace(/(?![\.\,\:\?\\\-\/\(\)\"\@\=\&\+\!\<\>])\W/g, ' ')
     }
 
-    static splitIntoSentences = (s) => {
-      const replaced = this.doReplacements(s)
+    static splitIntoSentences = (replaced) => {
       // split on period or question mark or exclamation mark
       // eslint-disable-next-line no-useless-escape
       const splitSents = replaced.split(/([\.\?\!])/)
@@ -34,8 +33,9 @@ export default class MorseStringUtils {
       return splitsGlued
     }
 
-    static getSentences = (s) => {
-      const splitsGlued = this.splitIntoSentences(s)
+    static getSentences = (s, dontSplit) => {
+      const replaced = this.doReplacements(s)
+      const splitsGlued = dontSplit ? [replaced] : this.splitIntoSentences(replaced)
       const sents = splitsGlued
         .map((sentence) => {
           return sentence

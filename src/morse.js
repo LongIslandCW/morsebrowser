@@ -19,6 +19,7 @@ import licwlogo from './assets/CW-Club-logo-clear400-300x300.png'
 // import RSSParser from 'rss-parser';
 
 import Cookies from 'js-cookie'
+import MorseLessonPlugin from './morseLessonPlugin.js'
 
 const licwlogoImg = document.getElementById('logo')
 licwlogoImg.src = licwlogo
@@ -62,6 +63,22 @@ class MorseViewModel {
       return target
     }
 
+    ko.extenders.setNoiseVolume = (target, option) => {
+      target.subscribe((newValue) => {
+        this.morseWordPlayer.setNoiseVolume(newValue)
+      })
+      return target
+    }
+
+    ko.extenders.setNoiseType = (target, option) => {
+      target.subscribe((newValue) => {
+        const config = this.getMorseStringToWavBufferConfig('')
+        config.noise.type = this.noiseEnabled() ? newValue : 'off'
+        this.morseWordPlayer.setNoiseType(config)
+      })
+      return target
+    }
+
     // apply extenders
     this.wpm.extend({ saveCookie: 'wpm' })
     this.fwpm.extend({ saveCookie: 'fwpm' })
@@ -73,9 +90,13 @@ class MorseViewModel {
     this.preSpace.extend({ saveCookie: 'preSpace' })
     this.xtraWordSpaceDits.extend({ saveCookie: 'xtraWordSpaceDits' })
     this.volume.extend({ saveCookie: 'volume' }).extend({ setVolume: 'volume' })
+    this.noiseVolume.extend({ saveCookie: 'noiseVolume' }).extend({ setNoiseVolume: 'noiseVolume' })
+    this.noiseType.extend({ saveCookie: 'noiseType' }).extend({ setNoiseType: 'noiseType' })
 
     // initialize the main rawText
     this.rawText(this.showingText())
+
+    MorseLessonPlugin.addLessonFeatures(ko, this)
 
     // check for RSS feature turned on
     if (this.getParameterByName('rssEnabled')) {
@@ -88,6 +109,11 @@ class MorseViewModel {
         // and load cookies after all plugins but for now just do this....
         this.loadCookies()
       })
+    }
+
+    // check for noise feature turned on
+    if (this.getParameterByName('noiseEnabled')) {
+      this.noiseEnabled(true)
     }
 
     this.loadCookies()
@@ -120,6 +146,28 @@ class MorseViewModel {
    showRaw = ko.observable(true)
    rssEnabled = ko.observable(false)
    volume = ko.observable(10)
+   noiseEnabled = ko.observable(false)
+   noiseVolume = ko.observable(2)
+   noiseType = ko.observable('off')
+   userTarget = ko.observable('')
+   selectedClass = ko.observable('')
+   userTargetInitialized = false
+   selectedClassInitialized = false
+   letterGroupInitialized = false
+   displaysInitialized = false
+   letterGroup = ko.observable('')
+   selectedDisplay = ko.observable({})
+   lastPlayFullStart = null;
+   randomizeLessons = ko.observable(true)
+   ifOverrideTime = ko.observable(false)
+   overrideMins = ko.observable(2)
+   customGroup = ko.observable('')
+   ifOverrideMinMax = ko.observable(false)
+   overrideMin = ko.observable(3)
+   overrideMax = ko.observable(3)
+   ifParseSentences = ko.observable(false)
+   ifStickySets = ko.observable(true)
+   stickySets = ko.observable('BK')
 
    // helper
    loadCookies = () => {
@@ -159,7 +207,11 @@ class MorseViewModel {
    }
 
    sentences = ko.computed(() => {
-     return this.rawText() ? MorseStringUtils.getSentences(this.rawText()) : []
+     if (!this.rawText()) {
+       return []
+     }
+
+     return MorseStringUtils.getSentences(this.rawText(), !this.ifParseSentences())
    }, this)
 
    sentenceMax = ko.computed(() => {
@@ -227,24 +279,33 @@ class MorseViewModel {
     this.fullRewind()
   }
 
-  initializeWordList = () => {
-    fetch('wordfilesconfigs/wordlists.json')
-      .then((response) => {
-        return response.json()
-      })
-      .then((data) => {
-        this.wordLists(data.fileOptions)
-        // console.log(this.wordLists())
-      })
-      .catch((err) => {
-        console.log('error: ' + err)
-      })
+  doCustomGroup = () => {
+    if (this.customGroup()) {
+      const data = { letters: this.customGroup().trim().replace(/ /g, '') }
+      this.randomWordList(data, true)
+    }
   }
 
-  randomWordList = (data) => {
+  randomWordList = (data, ifCustom) => {
     let str = ''
-    const chars = data.letters.split('')
+    const splitWithProsignsAndStcikys = (s) => {
+      let stickys = ''
+      if (this.ifStickySets() && this.stickySets().trim()) {
+        stickys = '|' + this.stickySets().toUpperCase().trim().replace(/ {2}/g, ' ').replace(/ /g, '|')
+      }
 
+      const regStr = `<.*?>${stickys}|[^<.*?>]`
+      // console.log(regStr)
+      const re = new RegExp(regStr, 'g')
+      const match = s.toUpperCase().match(re)
+      // console.log(match)
+      return match
+    }
+    const chars = splitWithProsignsAndStcikys(data.letters)
+    let seconds = 0
+    const controlTime = (this.ifOverrideTime() || ifCustom) ? (this.overrideMins() * 60) : data.practiceSeconds
+    const minWordSize = (this.ifOverrideMinMax() || ifCustom) ? this.overrideMin() : data.minWordSize
+    const maxWordSize = (this.ifOverrideMinMax() || ifCustom) ? this.overrideMax() : data.maxWordSize
     // Fn to generate random number min/max inclusive
     // https://www.geeksforgeeks.org/how-to-generate-random-number-in-given-range-using-javascript/
     const randomNumber = (min, max) => {
@@ -253,43 +314,29 @@ class MorseViewModel {
       return Math.floor(Math.random() * (max - min + 1)) + min
     }
 
-    for (let i = 1; i <= data.words; i++) { // for each word
+    do {
       let word = ''
-      // determine word length
-      const wordLength = data.minWordSize === data.maxWordSize ? data.minWordSize : randomNumber(data.minWordSize, data.maxWordSize)
 
-      for (let j = 1; j <= wordLength; j++) { // for each letter
-        // determine the letter
-        word += chars[randomNumber(1, chars.length) - 1]
+      if (this.randomizeLessons()) {
+        // determine word length
+        const wordLength = minWordSize === maxWordSize ? minWordSize : randomNumber(minWordSize, maxWordSize)
+
+        for (let j = 1; j <= wordLength; j++) { // for each letter
+          // determine the letter
+          word += chars[randomNumber(1, chars.length) - 1]
+        }
+      } else {
+        word = data.letters
       }
 
-      str += i > 1 ? (' ' + word) : word
-    }
+      str += seconds > 0 ? (' ' + word) : word
+
+      const config = this.getMorseStringToWavBufferConfig(str)
+      const est = this.morseWordPlayer.getTimeEstimate(config)
+      seconds = est.timeCalcs.totalTime / 1000
+    } while (seconds < controlTime)
 
     this.setText(str)
-  }
-
-  getWordList = (filename) => {
-    const isText = filename.endsWith('txt')
-    fetch('wordfiles/' + filename)
-      .then((response) => {
-        if (isText) {
-          return response.text()
-        } else {
-          // assume json
-          return response.json()
-        }
-      })
-      .then((data) => {
-        if (isText) {
-          this.setText(data)
-        } else {
-          this.randomWordList(data)
-        }
-      })
-      .catch((err) => {
-        console.log('error: ' + err)
-      })
   }
 
   getMorseStringToWavBufferConfig = (text) => {
@@ -302,10 +349,19 @@ class MorseViewModel {
     config.prePaddingMs = this.preSpaceUsed() ? 0 : this.preSpace() * 1000
     config.xtraWordSpaceDits = this.xtraWordSpaceDits()
     config.volume = this.volume()
+    config.noise = {
+      type: this.noiseEnabled() ? this.noiseType() : 'off',
+      volume: this.noiseVolume()
+    }
+    config.playerPlaying = this.playerPlaying()
     return config
   }
 
   doPlay = (playJustEnded) => {
+    if (!this.lastPlayFullStart || (this.lastFullPlayTime() > this.lastPlayFullStart)) {
+      this.lastPlayFullStart = Date.now()
+      console.log('setplaystart')
+    }
     this.playerPlaying(true)
     if (!playJustEnded) {
       this.preSpaceUsed(false)
@@ -325,7 +381,6 @@ class MorseViewModel {
   }
 
   playEnded = () => {
-    // console.log('ended')
     if (this.currentIndex() < this.words().length - 1) {
       this.incrementIndex()
       this.doPlay(true)
@@ -335,22 +390,25 @@ class MorseViewModel {
       this.currentIndex(0)
       this.doPlay(true)
     } else {
+      // nothing more to play
       this.doPause()
     }
   }
 
   doPause = () => {
+    this.playerPlaying(false)
     this.morseWordPlayer.pause(() => {
       // we're here if a complete rawtext finished
-      this.playerPlaying(false)
+      console.log('settinglastfullplaytime')
       this.lastFullPlayTime(Date.now())
+      console.log(`playtime:${this.lastFullPlayTime() - this.lastPlayFullStart}`)
       // TODO make this more generic for any future "plugins"
       if (this.rssPlayCallback) {
         this.rssPlayCallback()
       }
 
       this.preSpaceUsed(false)
-    })
+    }, true)
   }
 
   inputFileChange = (file) => {
@@ -379,6 +437,27 @@ class MorseViewModel {
     link.download = 'morse.wav'
     link.dispatchEvent(new MouseEvent('click'))
   }
+
+  dummy = () => {
+    console.log('dummy')
+  }
+
+  timeEstimate = ko.computed(() => {
+    // this computed doesn't seem bound to anything but .rawText, but for some reason it is
+    // still recomputing on wpm/fwpm/xtra changes, so...ok
+    if (!this.rawText()) {
+      return 0
+    }
+    const config = this.getMorseStringToWavBufferConfig(this.rawText())
+    const est = this.morseWordPlayer.getTimeEstimate(config)
+    const minutes = Math.floor(est.timeCalcs.totalTime / 60000)
+    const seconds = ((est.timeCalcs.totalTime % 60000) / 1000).toFixed(0)
+    const normedSeconds = (seconds < 10 ? '0' : '') + seconds
+    const timeFigures = { minutes, seconds, normedSeconds }
+    console.log(timeFigures)
+    console.log(est)
+    return timeFigures
+  }, this)
 }
 
 // eslint-disable-next-line new-cap
