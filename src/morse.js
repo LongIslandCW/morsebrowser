@@ -391,11 +391,11 @@ class MorseViewModel {
       this.doPlay(true)
     } else {
       // nothing more to play
-      this.doPause()
+      this.doPause(true)
     }
   }
 
-  doPause = () => {
+  doPause = (fullRewind) => {
     this.playerPlaying(false)
     this.morseWordPlayer.pause(() => {
       // we're here if a complete rawtext finished
@@ -409,6 +409,9 @@ class MorseViewModel {
 
       this.preSpaceUsed(false)
     }, true)
+    if (fullRewind) {
+      this.fullRewind()
+    }
   }
 
   inputFileChange = (file) => {

@@ -347,8 +347,10 @@
 
                                     <button type="button" class="btn btn-secondary"
                                         data-bind="click: incrementIndex">Fwd 1</button>
+                                    <button type="button" class="btn btn-info"
+                                        data-bind="click: doPause(false)">Pause</button>
                                     <button type="button" class="btn btn-danger"
-                                        data-bind="click: doPause">Stop</button>
+                                        data-bind="click: doPause(true)">Stop</button>
 
                                 </div>
                                 <div class="btn-group me-2" role="group" aria-label="second group">
