@@ -342,16 +342,16 @@ class MorseViewModel {
   getMorseStringToWavBufferConfig = (text) => {
     const config = new MorseStringToWavBufferConfig()
     config.word = text
-    config.wpm = this.wpm()
-    config.fwpm = this.fwpm()
-    config.ditFrequency = this.ditFrequency()
-    config.dahFrequency = this.dahFrequency()
+    config.wpm = parseInt(this.wpm())
+    config.fwpm = parseInt(this.fwpm())
+    config.ditFrequency = parseInt(this.ditFrequency())
+    config.dahFrequency = parseInt(this.dahFrequency())
     config.prePaddingMs = this.preSpaceUsed() ? 0 : this.preSpace() * 1000
-    config.xtraWordSpaceDits = this.xtraWordSpaceDits()
-    config.volume = this.volume()
+    config.xtraWordSpaceDits = parseInt(this.xtraWordSpaceDits())
+    config.volume = parseInt(this.volume())
     config.noise = {
       type: this.noiseEnabled() ? this.noiseType() : 'off',
-      volume: this.noiseVolume()
+      volume: parseInt(this.noiseVolume())
     }
     config.playerPlaying = this.playerPlaying()
     return config
