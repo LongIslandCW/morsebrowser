@@ -1334,7 +1334,7 @@
             "class": "B2",
             "letterGroup": "<AR> <SK> <BT>",
             "display": "<SK>",
-            "fileName": "IB2ARSKBT.2json"
+            "fileName": "IB2ARSKBT2.json"
         },
         {
             "sort": 168,
@@ -1342,7 +1342,7 @@
             "class": "B2",
             "letterGroup": "<AR> <SK> <BT>",
             "display": "<AR> <SK>",
-            "fileName": "IB2ARSKBT3.txt"
+            "fileName": "IB2ARSKBT3.json"
         },
         {
             "sort": 169,
@@ -1350,7 +1350,7 @@
             "class": "B2",
             "letterGroup": "<AR> <SK> <BT>",
             "display": "<BT>",
-            "fileName": "IB2ARSKBT4.txt"
+            "fileName": "IB2ARSKBT4.json"
         },
         {
             "sort": 170,
@@ -1358,7 +1358,7 @@
             "class": "B2",
             "letterGroup": "<AR> <SK> <BT>",
             "display": "<AR> <SK> <BT>",
-            "fileName": "IB2ARSKBT5.txt"
+            "fileName": "IB2ARSKBT5.json"
         },
         {
             "sort": 171,
@@ -1374,7 +1374,7 @@
             "class": "B2",
             "letterGroup": "<AR> <SK> <BT>",
             "display": "QSO PROTOCOL",
-            "fileName": "IB2ARSKBT6.txt"
+            "fileName": "IB2ARSKBT7.txt"
         },
         {
             "sort": 173,
@@ -1382,7 +1382,7 @@
             "class": "B2",
             "letterGroup": "<AR> <SK> <BT>",
             "display": "STATES",
-            "fileName": "IB2ARSKBT7.txt"
+            "fileName": "IB2ARSKBT8.txt"
         },
         {
             "sort": 174,
