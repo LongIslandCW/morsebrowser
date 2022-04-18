@@ -2,7 +2,7 @@ What should go in each folder?
 
 assets/ Images etc.
 
-morse-pro/ SG Phillips library. From time-to-time this should probably be merged if he makes updates.
+morse-pro/ SG Phillips library. From time-to-time this should probably be merged if he makes updates. Note that some modifications have been made from his code, e.g. dit/dah pitch differences and prepadding, some of which he might include in future versions...
 
 wordfiles/ the .json and .txt files that comprise "lessons"
 
