@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>LICW Morse Practice Page</title>
 
-<link rel="icon" href="LongIslandCWClub-favicon-2.jpg"><script defer src="bundle5d89792cdbc59bea3245.js"></script><link href="bundle.618c1c2672d3071ffd11.css" rel="stylesheet"></head>
+<link rel="icon" href="LongIslandCWClub-favicon-2.jpg"><script defer src="bundle99a20435658266657d4a.js"></script><link href="bundle.618c1c2672d3071ffd11.css" rel="stylesheet"></head>
 
 <body>
     <div class="container-fluid" style="height:100vh; overflow-y:auto; ">
@@ -347,8 +347,10 @@
 
                                     <button type="button" class="btn btn-secondary"
                                         data-bind="click: incrementIndex">Fwd 1</button>
+                                    <button type="button" class="btn btn-info"
+                                        data-bind="click: doPause(false)">Pause</button>
                                     <button type="button" class="btn btn-danger"
-                                        data-bind="click: doPause">Stop</button>
+                                        data-bind="click: doPause(true)">Stop</button>
 
                                 </div>
                                 <div class="btn-group me-2" role="group" aria-label="second group">
