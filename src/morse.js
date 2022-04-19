@@ -11,8 +11,6 @@ import { Tooltip, Toast, Popover } from 'bootstrap'
 import MorseStringUtils from './morseStringUtils.js'
 import { MorseStringToWavBufferConfig } from './morseStringToWavBuffer.js'
 import { MorseWordPlayer } from './morseWordPlayer.js'
-import licwlogo from './assets/CW-Club-logo-clear400-300x300.png'
-// import favico from './assets/LongIslandCWClub-favicon-2.jpg'
 
 // NOTE: moved this to dynamic import() so that non-RSS users don't need to bother
 // even loading this code into the browser:
@@ -20,14 +18,12 @@ import licwlogo from './assets/CW-Club-logo-clear400-300x300.png'
 
 import Cookies from 'js-cookie'
 import MorseLessonPlugin from './morseLessonPlugin.js'
-
-const licwlogoImg = document.getElementById('logo')
-licwlogoImg.src = licwlogo
-// const favaciImg = document.getElementById('favico')
-// favaciImg.src = favico
+import { MorseLoadImages } from './morseLoadImages.js'
 
 class MorseViewModel {
   constructor () {
+    this.morseLoadImages(new MorseLoadImages())
+
     // create the helper extenders
     ko.extenders.saveCookie = (target, option) => {
       target.subscribe((newValue) => {
@@ -269,6 +265,7 @@ class MorseViewModel {
    lastPartialPlayStart = ko.observable()
    isPaused=ko.observable(false)
    syncSize=ko.observable(true)
+   morseLoadImages =ko.observable()
 
    // helper
    loadCookies = () => {
