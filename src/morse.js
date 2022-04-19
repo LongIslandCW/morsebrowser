@@ -356,6 +356,13 @@ class MorseViewModel {
      return this.sentences()[this.currentSentanceIndex()]
    }, this)
 
+   flaggedWordsCount = ko.computed(() => {
+     if (!this.flaggedWords().trim()) {
+       return 0
+     }
+     return this.flaggedWords().trim().split(' ').length
+   }, this)
+
    shuffleWords = () => {
      if (!this.isShuffled()) {
        this.preShuffled = this.rawText()
@@ -414,21 +421,23 @@ class MorseViewModel {
   }
 
   addFlaggedWord = (word) => {
-    if (!this.flaggedWords()) {
-      this.flaggedWords(this.flaggedWords() + ' ' + word)
+    if (!this.flaggedWords().trim()) {
+      this.flaggedWords(this.flaggedWords().trim() + word)
     } else {
       // deal with double click which is also used to pick a word
-      const words = this.flaggedWords().split(' ')
+      const words = this.flaggedWords().trim().split(' ')
       const lastWord = words[words.length - 1]
       if (lastWord === word) {
         // we have either a double click scenario, or otherwise user
         // selected word twice so either way assume removal
         words.pop()
-        if (words.length === 0) {
-          this.flaggedWords('')
-        } else {
-          this.flaggedWords(words.join(' '))
-        }
+      } else {
+        words.push(word)
+      }
+      if (words.length === 0) {
+        this.flaggedWords('')
+      } else {
+        this.flaggedWords(words.join(' '))
       }
     }
   }
