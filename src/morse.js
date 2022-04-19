@@ -92,6 +92,8 @@ class MorseViewModel {
     this.volume.extend({ saveCookie: 'volume' }).extend({ setVolume: 'volume' })
     this.noiseVolume.extend({ saveCookie: 'noiseVolume' }).extend({ setNoiseVolume: 'noiseVolume' })
     this.noiseType.extend({ saveCookie: 'noiseType' }).extend({ setNoiseType: 'noiseType' })
+    this.syncWpm.extend({ saveCookie: 'syncWpm' })
+    this.syncFreq.extend({ saveCookie: 'syncFreq' })
 
     // initialize the main rawText
     this.rawText(this.showingText())
@@ -122,11 +124,76 @@ class MorseViewModel {
     this.initializeWordList()
   }
 
-   wpm = ko.observable(20)
    textBuffer = ko.observable('')
-   fwpm = ko.observable(20)
-   ditFrequency = ko.observable(550)
-   dahFrequency = ko.observable(550)
+   trueWpm = ko.observable(20)
+   trueFwpm = ko.observable(20)
+   syncWpm = ko.observable(true)
+
+   wpm = ko.pureComputed({
+     read: () => {
+       return this.trueWpm()
+     },
+     write: (value) => {
+       this.trueWpm(value)
+       if (this.syncWpm() || parseInt(value) < parseInt(this.trueFwpm())) {
+         this.trueFwpm(value)
+       }
+     },
+     owner: this
+   })
+
+   fwpm = ko.pureComputed({
+     read: () => {
+       if (!this.syncWpm()) {
+         if (parseInt(this.trueFwpm()) <= parseInt(this.trueWpm())) {
+           return this.trueFwpm()
+         } else {
+           return this.trueWpm()
+         }
+       } else {
+         this.trueFwpm(this.trueWpm())
+         return this.trueFwpm()
+       }
+     },
+     write: (value) => {
+       if (parseInt(value) <= parseInt(this.trueWpm())) {
+         this.trueFwpm(value)
+       }
+     },
+     owner: this
+   })
+
+   trudDitFrequency = ko.observable(550)
+   truDahFrequency = ko.observable(550)
+   syncFreq = ko.observable(true)
+   ditFrequency = ko.pureComputed({
+     read: () => {
+       return this.trudDitFrequency()
+     },
+     write: (value) => {
+       this.trudDitFrequency(value)
+       if (this.syncFreq()) {
+         this.truDahFrequency(value)
+       }
+     },
+     owner: this
+   })
+
+   dahFrequency = ko.pureComputed({
+     read: () => {
+       if (!this.syncFreq()) {
+         return this.truDahFrequency()
+       } else {
+         this.truDahFrequency(this.trudDitFrequency())
+         return this.trudDitFrequency()
+       }
+     },
+     write: (value) => {
+       this.truDahFrequency(value)
+     },
+     owner: this
+   })
+
    hideList = ko.observable(true)
    currentSentanceIndex = ko.observable(0)
    currentIndex = ko.observable(0)
@@ -206,13 +273,46 @@ class MorseViewModel {
    // helper
    loadCookies = () => {
      // load any existing cookie values
+
+     // helper
+     const booleanize = (x) => {
+       if (x === 'true ' || x === 'false') {
+         return x === true
+       } else {
+         return x
+       }
+     }
+
      const cks = Cookies.get()
      if (cks) {
+       const specialHandling = []
        for (const key in cks) {
-         if (typeof this[key] !== 'undefined') {
-           this[key](cks[key])
+         switch (key) {
+           case 'syncWpm':
+           case 'wpm':
+           case 'fwpm':
+           case 'syncFreq':
+           case 'ditFrequency':
+           case 'dahFrequency':
+             specialHandling.push({ key, val: booleanize(cks[key]) })
+             break
+           default:
+             if (typeof this[key] !== 'undefined') {
+               this[key](cks[key])
+             }
          }
        }
+       let target = specialHandling.find(x => x.key === 'syncWpm')
+       if (target) {
+         this[target.key](target.val)
+       }
+       target = specialHandling.find(x => x.key === 'syncFreq')
+       if (target) {
+         this[target.key](target.val)
+       }
+       specialHandling.forEach((x) => {
+         this[x.key](x.val)
+       })
      }
    }
 
