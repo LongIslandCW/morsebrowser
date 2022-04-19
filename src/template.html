@@ -10,8 +10,8 @@
 </head>
 
 <body>
-    <div class="container-fluid" style="height:100vh; overflow-y:auto; ">
-        <div class="row gy-5">
+    <div class="container" style="overflow-y:auto;">
+        <div class="row gy-2">
             <div class="col">
 
                 <!-- title header area-->
@@ -418,16 +418,16 @@
         </div>
 
         <!-- the word list/card area-->
-        <div class="row gy-5">
+        <div class="row gy-2">
             <div class="col">
-                <div class="container-fluid">
-                    <div class="row overflow-auto" style="height: 100vh;">
-                        <div class="col" data-bind="foreach: words">
-                            <button class="btn"
-                                data-bind="class: $index()==$parent.currentIndex() ? 'btn-primary':'btn-outline-primary',text: (!$parent.hideList() || ($parent.trailReveal() && $index() < $parent.currentIndex() )) ? $data : 'X'.repeat($data.length),click:()=>$parent.addFlaggedWord($data), event:{dblclick: ()=>{$parent.setWordIndex($index())}}"></button>
-                        </div>
+
+                <div class="row overflow-auto" style="height: 100vh;">
+                    <div class="col" data-bind="foreach: words">
+                        <button class="btn"
+                            data-bind="class: $index()==$parent.currentIndex() ? 'btn-primary':'btn-outline-primary',text: (!$parent.hideList() || ($parent.trailReveal() && $index() < $parent.currentIndex() )) ? $data : 'X'.repeat($data.length),click:()=>$parent.addFlaggedWord($data), event:{dblclick: ()=>{$parent.setWordIndex($index())}}"></button>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
