@@ -6,7 +6,7 @@ import bookPng from 'bootstrap-icons/icons/book.svg'
 import flagPng from 'bootstrap-icons/icons/flag.svg'
 import lockPng from 'bootstrap-icons/icons/lock.svg'
 import unlockPng from 'bootstrap-icons/icons/unlock.svg'
-import checkPng from 'bootstrap-icons/icons/check.svg'
+import checkPng from 'bootstrap-icons/icons/check-lg.svg'
 import circlePng from 'bootstrap-icons/icons/circle.svg'
 
 export class MorseLoadImages {
