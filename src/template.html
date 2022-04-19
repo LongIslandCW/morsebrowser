@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <div class="container" style="overflow-y:auto;">
+    <div class="container-xxl" style="overflow-y:auto;">
         <div class="row gy-2 row-cols-1">
             <!-- title header area-->
             <div class="col">
@@ -31,38 +31,41 @@
 
             <!-- settings area-->
             <div class="col">
-                <div class="row row-cols-3 gx-2">
+                <div class="row row-cols-3 gx-2 gy-2">
                     <div class="col-md-auto">
                         <div class="input-group">
                             <span class="input-group-text">WPM</span>
-                            <input type="number" style="max-width:75px" class="form-control" aria-label="Username"
-                                min="1" data-bind="textInput: wpm">
+                            <input type="number" style="max-width:75px; min-width: 75px;" class="form-control"
+                                aria-label="Username" min="1" data-bind="textInput: wpm">
                             <span class="input-group-text" data-bind="click: ()=>syncWpm(!syncWpm())">FWPM</span>
-                            <input type="number" style="max-width:75px" class="form-control" aria-label="Server" min="1"
+                            <input type="number" style="max-width:75px; min-width: 75px;" class="form-control"
+                                aria-label="Server" min="1"
                                 data-bind="textInput: fwpm, enable: !syncWpm(), attr:{ max: trueWpm }">
                         </div>
                     </div>
                     <div class="col-md-auto">
                         <div class="input-group">
                             <span class="input-group-text">DITFREQ</span>
-                            <input type="number" style="max-width:75px" class="form-control" aria-label="Server"
-                                min="100" max="1200" step="10" data-bind="textInput: ditFrequency">
+                            <input type="number" style="max-width:75px; min-width: 75px;" class="form-control"
+                                aria-label="Server" min="100" max="1200" step="10" data-bind="textInput: ditFrequency">
                             <span class="input-group-text" data-bind="click: ()=>syncFreq(!syncFreq())">DAHFREQ</span>
-                            <input type="number" style="max-width:75px" class="form-control" aria-label="Server"
-                                min="100" max="1200" step="10" data-bind="textInput: dahFrequency, enable: !syncFreq()">
+                            <input type="number" style="max-width:75px; min-width: 75px;" class="form-control"
+                                aria-label="Server" min="100" max="1200" step="10"
+                                data-bind="textInput: dahFrequency, enable: !syncFreq()">
                         </div>
                     </div>
                     <div class="col-md-auto">
                         <div class="input-group">
                             <span class="input-group-text">PRESPACE</span>
-                            <input type="number" style="max-width:75px" class="form-control" aria-label="Server" min="0"
-                                max="1200" step=".5" data-bind="textInput: preSpace">
+                            <input type="number" style="max-width:75px; min-width: 75px;" class="form-control"
+                                aria-label="Server" min="0" max="1200" step=".5" data-bind="textInput: preSpace">
                             <span class="input-group-text">XTRAWRDSPDITS</span>
-                            <input type="number" style="max-width:75px" class="form-control" aria-label="Server" min="0"
-                                max="1200" step="1" data-bind="textInput: xtraWordSpaceDits">
+                            <input type="number" style="max-width:75px; min-width: 75px;" class="form-control"
+                                aria-label="Server" min="0" max="1200" step="1"
+                                data-bind="textInput: xtraWordSpaceDits">
                             <span class="input-group-text">VOL</span>
-                            <input type="number" style="max-width:75px" class="form-control" aria-label="Server" min="1"
-                                max="10" step="1" data-bind="textInput: volume">
+                            <input type="number" style="max-width:75px; min-width: 75px;" class="form-control"
+                                aria-label="Server" min="1" max="10" step="1" data-bind="textInput: volume">
                         </div>
                     </div>
                 </div>
