@@ -163,14 +163,45 @@ class MorseViewModel {
    overrideMins = ko.observable(2)
    customGroup = ko.observable('')
    ifOverrideMinMax = ko.observable(false)
-   overrideMin = ko.observable(3)
-   overrideMax = ko.observable(3)
+   trueOverrideMin = ko.observable(3)
+   overrideMin = ko.pureComputed({
+     read: () => {
+       return this.trueOverrideMin()
+     },
+     write: (value) => {
+       this.trueOverrideMin(value)
+       if (this.syncSize()) {
+         this.trueOverrideMax(value)
+       }
+     },
+     owner: this
+   })
+
+   trueOverrideMax = ko.observable(3)
+   overrideMax = ko.pureComputed({
+     read: () => {
+       if (!this.syncSize()) {
+         return this.trueOverrideMax()
+       } else {
+         this.trueOverrideMax(this.trueOverrideMin())
+         return this.trueOverrideMin()
+       }
+     },
+     write: (value) => {
+       if (value >= this.trueOverrideMin()) {
+         this.trueOverrideMax(value)
+       }
+     },
+     owner: this
+   })
+
    ifParseSentences = ko.observable(false)
    ifStickySets = ko.observable(true)
    stickySets = ko.observable('BK')
    runningPlayMs = ko.observable(0)
    lastPartialPlayStart = ko.observable()
    isPaused=ko.observable(false)
+   syncSize=ko.observable(true)
 
    // helper
    loadCookies = () => {
