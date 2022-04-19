@@ -494,7 +494,7 @@ class MorseViewModel {
         word = data.letters
       }
 
-      str += seconds > 0 ? (' ' + word) : word
+      str += seconds > 0 ? (' ' + word.toUpperCase()) : word.toUpperCase()
 
       const config = this.getMorseStringToWavBufferConfig(str)
       const est = this.morseWordPlayer.getTimeEstimate(config)
