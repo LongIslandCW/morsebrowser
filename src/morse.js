@@ -303,9 +303,34 @@ class MorseViewModel {
     // }
   }
 
+  setWordIndex = (index) => {
+    if (!this.playerPlaying()) {
+      this.currentIndex(index)
+    } else {
+      this.doPause(false, false)
+      this.currentIndex(index)
+      this.doPlay(false, false)
+    }
+  }
+
   addFlaggedWord = (word) => {
-    // eslint-disable-next-line no-useless-escape
-    this.flaggedWords(this.flaggedWords() + ' ' + word.replace(/[\.\,\?]/g, ''))
+    if (!this.flaggedWords()) {
+      this.flaggedWords(this.flaggedWords() + ' ' + word)
+    } else {
+      // deal with double click which is also used to pick a word
+      const words = this.flaggedWords().split(' ')
+      const lastWord = words[words.length - 1]
+      if (lastWord === word) {
+        // we have either a double click scenario, or otherwise user
+        // selected word twice so either way assume removal
+        words.pop()
+        if (words.length === 0) {
+          this.flaggedWords('')
+        } else {
+          this.flaggedWords(words.join(' '))
+        }
+      }
+    }
   }
 
   setFlagged = () => {
