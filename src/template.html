@@ -60,17 +60,35 @@
                     </div>
                     <!-- working text area-->
                     <div class="row">
-                        <div class="col">
+                        <div class="col-6">
                             <div class="input-group">
                                 <span class="input-group-text"
                                     data-bind="text: showRaw() ? 'Hide': 'Show', click: ()=>showRaw(!showRaw())"></span>
                                 <textarea data-bind="textInput: showingText, enable: showRaw" class="form-control"
                                     aria-label="Text"></textarea>
-                                <input type="file" accept=".txt" id="txtfiletoread"
-                                    data-bind="event: {change: function() { inputFileChange($element.files[0]) } }" />
-                                <span>Estimated Play Time:&nbsp;</span><span
-                                    data-bind="text: timeEstimate().minutes"></span>:<span
-                                    data-bind="text: timeEstimate().normedSeconds"></span>
+                            </div>
+
+                        </div>
+                        <div class="col-md-auto">
+
+                            <input type="file" accept=".txt" id="txtfiletoread"
+                                data-bind="event: {change: function() { inputFileChange($element.files[0]) } }" />
+
+                        </div>
+                        <div class="col">
+                            <div class="row">
+                                <div class="col">
+                                    <span>Estimated Play Time:&nbsp;</span><span
+                                        data-bind="text: timeEstimate().minutes"></span>:<span
+                                        data-bind="text: timeEstimate().normedSeconds"></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <span>Play Time:&nbsp;</span><span
+                                        data-bind="text: playingTime().minutes"></span>:<span
+                                        data-bind="text: playingTime().normedSeconds"></span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -341,16 +359,16 @@
                             <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                                 <div class="btn-group me-2" role="group" aria-label="Basic mixed styles example">
                                     <button type="button" class="btn btn-success"
-                                        data-bind="click: doPlay">Play</button>
+                                        data-bind="click: () => doPlay(false,true)">Play</button>
                                     <button type="button" class="btn btn-warning" data-bind="click: decrementIndex">Back
                                         1</button>
 
                                     <button type="button" class="btn btn-secondary"
                                         data-bind="click: incrementIndex">Fwd 1</button>
                                     <button type="button" class="btn btn-info"
-                                        data-bind="click: doPause(false)">Pause</button>
+                                        data-bind="click: () => {isPaused() ? doPlay(true,false) : doPause(false, true)}, text: isPaused() ? 'Resume' : 'Pause'"></button>
                                     <button type="button" class="btn btn-danger"
-                                        data-bind="click: doPause(true)">Stop</button>
+                                        data-bind="click: () => doPause(true, false)">Stop</button>
 
                                 </div>
                                 <div class="btn-group me-2" role="group" aria-label="second group">
