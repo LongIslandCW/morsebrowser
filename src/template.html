@@ -212,7 +212,7 @@
                                     <div class="accordion-body">
                                         <div class="row gy-5">
                                             <!--user type-->
-                                            <div class="col">
+                                            <div class="col-md-auto">
                                                 <div class="btn-group-vertical" role="group"
                                                     aria-label="Basic radio toggle button group"
                                                     data-bind="foreach: userTargets, childrenComplete: setUserTargetInitialized">
@@ -223,7 +223,7 @@
                                                 </div>
                                             </div>
                                             <!--classes-->
-                                            <div class="col">
+                                            <div class="col-md-auto">
                                                 <div class="btn-group-vertical" role="group"
                                                     aria-label="Basic radio toggle button group"
                                                     data-bind="foreach: classes, childrenComplete: setSelectedClassInitialized">
@@ -234,19 +234,19 @@
                                                 </div>
                                             </div>
                                             <!--letter groups-->
-                                            <div class="col">
+                                            <div class="col-md-auto">
                                                 <div class="list-group"
                                                     data-bind="foreach: letterGroups, childrenComplete: setLetterGroupInitialized"
-                                                    style="overflow-y:auto; height:250px;">
+                                                    style="overflow-y:auto; height:250px; width: 200px;">
                                                     <button type="button" class="list-group-item list-group-item-action"
                                                         data-bind="text: $data, click: $root.setLetterGroup($data), css: { active: $data==$parent.letterGroup()}"></button>
                                                 </div>
                                             </div>
                                             <!--lessons-->
-                                            <div class="col">
+                                            <div class="col-md-auto">
                                                 <div class="list-group"
                                                     data-bind="foreach: displays, childrenComplete: setDisplaysInitialized"
-                                                    style="overflow-y:auto; height:250px;">
+                                                    style="overflow-y:auto; height:250px; width: 200px;">
                                                     <button type="button" class="list-group-item list-group-item-action"
                                                         data-bind="text: $data.display, click: ()=>$root.setDisplaySelected($data), css: { active: $data.display==$parent.selectedDisplay().display}"></button>
                                                 </div>
@@ -275,14 +275,17 @@
                                                         aria-label="Username" min="0"
                                                         data-bind="textInput: overrideMins, enable: ifOverrideTime">
                                                 </div>
-                                                <div class="btn-group-vertical" role="group"
+                                                <div class="btn-group" role="group"
                                                     aria-label="Basic checkbox toggle button group">
                                                     <!--override size toggle-->
                                                     <input type="checkbox" class="btn-check" id="btncheck2overridesize"
                                                         autocomplete="off" data-bind="checked: ifOverrideMinMax">
                                                     <label class="btn btn-outline-primary"
                                                         for="btncheck2overridesize">Override Size</label>
-
+                                                    <input type="checkbox" class="btn-check" id="btncheck2syncsize"
+                                                        autocomplete="off" data-bind="checked: syncSize">
+                                                    <label class="btn btn-outline-primary" for="btncheck2syncsize">Sync
+                                                        Size</label>
                                                 </div>
                                                 <div class="input-group">
                                                     <!--min override-->
@@ -294,7 +297,7 @@
                                                     <span class="input-group-text">Max</span>
                                                     <input type="number" class="form-control" style="max-width:75px;"
                                                         aria-label="Username" min="1"
-                                                        data-bind="textInput: overrideMax, enable: ifOverrideMinMax">
+                                                        data-bind="textInput: overrideMax, enable: ifOverrideMinMax() && !syncSize(), attr: { min: trueOverrideMin}">
                                                 </div>
                                                 <div class="btn-group-vertical" role="group"
                                                     aria-label="Basic checkbox toggle button group">
@@ -303,7 +306,8 @@
                                                         id="btncheck2stickysetstoggle" autocomplete="off"
                                                         data-bind="checked: ifStickySets">
                                                     <label class="btn btn-outline-primary"
-                                                        for="btncheck2stickysetstoggle">Sticky Sets</label>
+                                                        for="btncheck2stickysetstoggle" style="width: 125px;">Sticky
+                                                        Sets</label>
                                                 </div>
                                                 <div class="input-group">
                                                     <!--sticky set text -->
