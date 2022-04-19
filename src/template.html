@@ -83,8 +83,11 @@
                 <div class="row">
                     <div class="col-6">
                         <div class="input-group">
-                            <span class="input-group-text"
-                                data-bind="text: showRaw() ? 'Hide': 'Show', click: ()=>showRaw(!showRaw())"></span>
+                            <span class="input-group-text" data-bind="click: ()=>showRaw(!showRaw())"><img height=32
+                                    width=32
+                                    data-bind="attr:{ src: showRaw() ? morseLoadImages().getSrc('eyeImage') : morseLoadImages().getSrc('eyeslashImage')}" /></span>
+
+
                             <textarea data-bind="textInput: showingText, enable: showRaw" class="form-control"
                                 aria-label="Text"></textarea>
                         </div>
@@ -388,15 +391,23 @@
 
                 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                     <div class="btn-group me-2" role="group" aria-label="Basic mixed styles example">
-                        <button type="button" class="btn btn-success"
-                            data-bind="click: () => doPlay(false,true)">Play</button>
+                        <button type="button" class="btn btn-success" data-bind="click: () => doPlay(false,true)">Play
+                            &nbsp;
+                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
+                                data-bind="visible: playerPlaying"></span>
+
+                            <img id='playImage' data-bind="visible: !playerPlaying()"></button>
                         <button type="button" class="btn btn-warning" data-bind="click: decrementIndex">Back
                             1</button>
 
                         <button type="button" class="btn btn-secondary" data-bind="click: incrementIndex">Fwd
                             1</button>
                         <button type="button" class="btn btn-info"
-                            data-bind="click: () => {isPaused() ? doPlay(true,false) : doPause(false, true)}, text: isPaused() ? 'Resume' : 'Pause'"></button>
+                            data-bind="click: () => {isPaused() ? doPlay(true,false) : doPause(false, true)}">Pause&nbsp;<span
+                                class="spinner-grow spinner-grow-sm text-dark" role="status" aria-hidden="true"
+                                data-bind="visible: isPaused"></span>
+
+                            <img id='pauseImage' data-bind="visible: !isPaused()"></button>
                         <button type="button" class="btn btn-danger"
                             data-bind="click: () => doPause(true, false)">Stop</button>
 
