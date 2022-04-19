@@ -278,13 +278,16 @@
                                                 <!--randomize toggle-->
                                                 <input type="checkbox" class="btn-check" autocomplete="off"
                                                     id="btncheck1" data-bind="checked: randomizeLessons">
-                                                <label class="btn btn-outline-primary" for="btncheck1">Randomize</label>
+                                                <label class="btn btn-outline-primary"
+                                                    for="btncheck1">Randomize&nbsp;<img
+                                                        data-bind="attr:{ src: randomizeLessons() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
 
                                                 <!--override time toggle-->
                                                 <input type="checkbox" class="btn-check" id="btncheck2"
                                                     autocomplete="off" data-bind="checked: ifOverrideTime">
                                                 <label class="btn btn-outline-primary" for="btncheck2">Override
-                                                    Time</label>
+                                                    Time&nbsp;<img
+                                                        data-bind="attr:{ src: ifOverrideTime() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
                                             </div>
                                             <div class="input-group">
                                                 <!--override minutes-->
@@ -300,11 +303,9 @@
                                                     autocomplete="off" data-bind="checked: ifOverrideMinMax">
                                                 <label class="btn btn-outline-primary"
                                                     for="btncheck2overridesize">Override
-                                                    Size</label>
-                                                <input type="checkbox" class="btn-check" id="btncheck2syncsize"
-                                                    autocomplete="off" data-bind="checked: syncSize">
-                                                <label class="btn btn-outline-primary" for="btncheck2syncsize">Sync
-                                                    Size</label>
+                                                    Size&nbsp;<img
+                                                        data-bind="attr:{ src: ifOverrideMinMax() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
+
                                             </div>
                                             <div class="input-group">
                                                 <!--min override-->
@@ -313,7 +314,9 @@
                                                     aria-label="Username" min="1"
                                                     data-bind="textInput: overrideMin, enable: ifOverrideMinMax">
                                                 <!--max override-->
-                                                <span class="input-group-text">Max</span>
+                                                <span class="input-group-text"
+                                                    data-bind="click: ()=>syncSize(!syncSize())">Max&nbsp;<img
+                                                        data-bind="attr:{ src: syncSize() ? morseLoadImages().getSrc('lockImage') : morseLoadImages().getSrc('unlockImage')}" /></span>
                                                 <input type="number" class="form-control" style="max-width:75px;"
                                                     aria-label="Username" min="1"
                                                     data-bind="textInput: overrideMax, enable: ifOverrideMinMax() && !syncSize(), attr: { min: trueOverrideMin}">
@@ -325,7 +328,8 @@
                                                     autocomplete="off" data-bind="checked: ifStickySets">
                                                 <label class="btn btn-outline-primary" for="btncheck2stickysetstoggle"
                                                     style="width: 125px;">Sticky
-                                                    Sets</label>
+                                                    Sets&nbsp;<img
+                                                        data-bind="attr:{ src: ifStickySets() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
                                             </div>
                                             <div class="input-group">
                                                 <!--sticky set text -->

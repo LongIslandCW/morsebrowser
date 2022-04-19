@@ -6,6 +6,8 @@ import bookPng from 'bootstrap-icons/icons/book.svg'
 import flagPng from 'bootstrap-icons/icons/flag.svg'
 import lockPng from 'bootstrap-icons/icons/lock.svg'
 import unlockPng from 'bootstrap-icons/icons/unlock.svg'
+import checkPng from 'bootstrap-icons/icons/check.svg'
+import circlePng from 'bootstrap-icons/icons/circle.svg'
 
 export class MorseLoadImages {
   info = []
@@ -30,6 +32,8 @@ export class MorseLoadImages {
 
     this.info.push({ key: 'lockImage', src: lockPng })
     this.info.push({ key: 'unlockImage', src: unlockPng })
+    this.info.push({ key: 'checkImage', src: checkPng })
+    this.info.push({ key: 'circleImage', src: circlePng })
   }
 
   getSrc = (key) => {
