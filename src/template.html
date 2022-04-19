@@ -30,8 +30,11 @@
                 <div class="row">
                     <div class="col">&nbsp;</div>
                 </div>
-                <!-- settings area-->
-                <div class="row">
+
+                <div class="row row-cols-1 gy-2">
+
+                    <!-- settings area-->
+
                     <div class="col">
                         <div class="input-group">
                             <span class="input-group-text">WPM</span>
@@ -57,40 +60,46 @@
                                 data-bind="textInput: volume">
                         </div>
                     </div>
-                </div>
-                <!-- working text area-->
-                <div class="row">
-                    <div class="col-6">
-                        <div class="input-group">
-                            <span class="input-group-text"
-                                data-bind="text: showRaw() ? 'Hide': 'Show', click: ()=>showRaw(!showRaw())"></span>
-                            <textarea data-bind="textInput: showingText, enable: showRaw" class="form-control"
-                                aria-label="Text"></textarea>
-                        </div>
 
-                    </div>
-                    <div class="col-md-auto">
-
-                        <input type="file" accept=".txt" id="txtfiletoread"
-                            data-bind="event: {change: function() { inputFileChange($element.files[0]) } }" />
-
-                    </div>
+                    <!-- working text area-->
                     <div class="col">
                         <div class="row">
-                            <div class="col">
-                                <span>Estimated Play Time:&nbsp;</span><span
-                                    data-bind="text: timeEstimate().minutes"></span>:<span
-                                    data-bind="text: timeEstimate().normedSeconds"></span>
+                            <div class="col-6">
+                                <div class="input-group">
+                                    <span class="input-group-text"
+                                        data-bind="text: showRaw() ? 'Hide': 'Show', click: ()=>showRaw(!showRaw())"></span>
+                                    <textarea data-bind="textInput: showingText, enable: showRaw" class="form-control"
+                                        aria-label="Text"></textarea>
+                                </div>
+
                             </div>
-                        </div>
-                        <div class="row">
+                            <div class="col-md-auto">
+
+                                <input type="file" accept=".txt" id="txtfiletoread"
+                                    data-bind="event: {change: function() { inputFileChange($element.files[0]) } }" />
+
+                            </div>
                             <div class="col">
-                                <span>Play Time:&nbsp;</span><span data-bind="text: playingTime().minutes"></span>:<span
-                                    data-bind="text: playingTime().normedSeconds"></span>
+                                <div class="row">
+                                    <div class="col">
+                                        <span>Estimated Play Time:&nbsp;</span><span
+                                            data-bind="text: timeEstimate().minutes"></span>:<span
+                                            data-bind="text: timeEstimate().normedSeconds"></span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <span>Play Time:&nbsp;</span><span
+                                            data-bind="text: playingTime().minutes"></span>:<span
+                                            data-bind="text: playingTime().normedSeconds"></span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
+
                 <!--  accordian area -->
                 <div class="row gy-20">
                     <div class="accordion" id="accordionExample">
