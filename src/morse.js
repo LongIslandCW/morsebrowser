@@ -580,6 +580,8 @@ class MorseViewModel {
     if (fromPauseButton) {
       this.runningPlayMs(this.runningPlayMs() + (Date.now() - this.lastPartialPlayStart()))
       this.isPaused(!this.isPaused())
+    } else {
+      this.isPaused(false)
     }
     this.playerPlaying(false)
     this.morseWordPlayer.pause(() => {
