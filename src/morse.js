@@ -163,11 +163,45 @@ class MorseViewModel {
    overrideMins = ko.observable(2)
    customGroup = ko.observable('')
    ifOverrideMinMax = ko.observable(false)
-   overrideMin = ko.observable(3)
-   overrideMax = ko.observable(3)
+   trueOverrideMin = ko.observable(3)
+   overrideMin = ko.pureComputed({
+     read: () => {
+       return this.trueOverrideMin()
+     },
+     write: (value) => {
+       this.trueOverrideMin(value)
+       if (this.syncSize()) {
+         this.trueOverrideMax(value)
+       }
+     },
+     owner: this
+   })
+
+   trueOverrideMax = ko.observable(3)
+   overrideMax = ko.pureComputed({
+     read: () => {
+       if (!this.syncSize()) {
+         return this.trueOverrideMax()
+       } else {
+         this.trueOverrideMax(this.trueOverrideMin())
+         return this.trueOverrideMin()
+       }
+     },
+     write: (value) => {
+       if (value >= this.trueOverrideMin()) {
+         this.trueOverrideMax(value)
+       }
+     },
+     owner: this
+   })
+
    ifParseSentences = ko.observable(false)
    ifStickySets = ko.observable(true)
    stickySets = ko.observable('BK')
+   runningPlayMs = ko.observable(0)
+   lastPartialPlayStart = ko.observable()
+   isPaused=ko.observable(false)
+   syncSize=ko.observable(true)
 
    // helper
    loadCookies = () => {
@@ -269,9 +303,34 @@ class MorseViewModel {
     // }
   }
 
+  setWordIndex = (index) => {
+    if (!this.playerPlaying()) {
+      this.currentIndex(index)
+    } else {
+      this.doPause(false, false)
+      this.currentIndex(index)
+      this.doPlay(false, false)
+    }
+  }
+
   addFlaggedWord = (word) => {
-    // eslint-disable-next-line no-useless-escape
-    this.flaggedWords(this.flaggedWords() + ' ' + word.replace(/[\.\,\?]/g, ''))
+    if (!this.flaggedWords()) {
+      this.flaggedWords(this.flaggedWords() + ' ' + word)
+    } else {
+      // deal with double click which is also used to pick a word
+      const words = this.flaggedWords().split(' ')
+      const lastWord = words[words.length - 1]
+      if (lastWord === word) {
+        // we have either a double click scenario, or otherwise user
+        // selected word twice so either way assume removal
+        words.pop()
+        if (words.length === 0) {
+          this.flaggedWords('')
+        } else {
+          this.flaggedWords(words.join(' '))
+        }
+      }
+    }
   }
 
   setFlagged = () => {
@@ -342,29 +401,43 @@ class MorseViewModel {
   getMorseStringToWavBufferConfig = (text) => {
     const config = new MorseStringToWavBufferConfig()
     config.word = text
-    config.wpm = this.wpm()
-    config.fwpm = this.fwpm()
-    config.ditFrequency = this.ditFrequency()
-    config.dahFrequency = this.dahFrequency()
+    config.wpm = parseInt(this.wpm())
+    config.fwpm = parseInt(this.fwpm())
+    config.ditFrequency = parseInt(this.ditFrequency())
+    config.dahFrequency = parseInt(this.dahFrequency())
     config.prePaddingMs = this.preSpaceUsed() ? 0 : this.preSpace() * 1000
-    config.xtraWordSpaceDits = this.xtraWordSpaceDits()
-    config.volume = this.volume()
+    config.xtraWordSpaceDits = parseInt(this.xtraWordSpaceDits())
+    config.volume = parseInt(this.volume())
     config.noise = {
       type: this.noiseEnabled() ? this.noiseType() : 'off',
-      volume: this.noiseVolume()
+      volume: parseInt(this.noiseVolume())
     }
     config.playerPlaying = this.playerPlaying()
     return config
   }
 
-  doPlay = (playJustEnded) => {
+  doPlay = (playJustEnded, fromPlayButton) => {
+    // we get here several ways:
+    // 1. user presses play for the first time
+    // 1a. set prespaceused to false, so it will get used.
+    // 1b. set the elapsed ms to 0
+    // 2. user presses play after a pause
+    // 2a. set prespaceused to false, so it will get used again.
+    // 3. we just finished playing a word
+    // 4. user might press play to re-play a word
+    const wasPlayerPlaying = this.playerPlaying()
+    const freshStart = fromPlayButton && !wasPlayerPlaying
     if (!this.lastPlayFullStart || (this.lastFullPlayTime() > this.lastPlayFullStart)) {
       this.lastPlayFullStart = Date.now()
-      console.log('setplaystart')
     }
+    this.isPaused(false)
     this.playerPlaying(true)
     if (!playJustEnded) {
       this.preSpaceUsed(false)
+    }
+
+    if (freshStart) {
+      this.runningPlayMs(0)
     }
     // experience shows it is good to put a little pause here when user forces us here,
     // e.g. hitting back or play b/c word was misunderstood,
@@ -375,12 +448,14 @@ class MorseViewModel {
     this.doPlayTimeOut = setTimeout(() => this.morseWordPlayer.pause(() => {
       const config = this.getMorseStringToWavBufferConfig(this.words()[this.currentIndex()])
       this.morseWordPlayer.play(config, this.playEnded)
+      this.lastPartialPlayStart(Date.now())
       this.preSpaceUsed(true)
     }),
-    playJustEnded ? 0 : 1000)
+    playJustEnded || fromPlayButton ? 0 : 1000)
   }
 
   playEnded = () => {
+    this.runningPlayMs(this.runningPlayMs() + (Date.now() - this.lastPartialPlayStart()))
     if (this.currentIndex() < this.words().length - 1) {
       this.incrementIndex()
       this.doPlay(true)
@@ -391,11 +466,15 @@ class MorseViewModel {
       this.doPlay(true)
     } else {
       // nothing more to play
-      this.doPause()
+      this.doPause(true)
     }
   }
 
-  doPause = () => {
+  doPause = (fullRewind, fromPauseButton) => {
+    if (fromPauseButton) {
+      this.runningPlayMs(this.runningPlayMs() + (Date.now() - this.lastPartialPlayStart()))
+      this.isPaused(!this.isPaused())
+    }
     this.playerPlaying(false)
     this.morseWordPlayer.pause(() => {
       // we're here if a complete rawtext finished
@@ -409,6 +488,9 @@ class MorseViewModel {
 
       this.preSpaceUsed(false)
     }, true)
+    if (fullRewind) {
+      this.fullRewind()
+    }
   }
 
   inputFileChange = (file) => {
@@ -456,6 +538,16 @@ class MorseViewModel {
     const timeFigures = { minutes, seconds, normedSeconds }
     console.log(timeFigures)
     console.log(est)
+    return timeFigures
+  }, this)
+
+  playingTime = ko.computed(() => {
+    const minutes = Math.floor(this.runningPlayMs() / 60000)
+    const seconds = ((this.runningPlayMs() % 60000) / 1000).toFixed(0)
+    const normedSeconds = (seconds < 10 ? '0' : '') + seconds
+    const timeFigures = { minutes, seconds, normedSeconds }
+    // console.log(timeFigures)
+    // console.log(est)
     return timeFigures
   }, this)
 }
