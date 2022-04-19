@@ -14,45 +14,60 @@
         <div class="row gy-2 row-cols-1">
             <!-- title header area-->
             <div class="col">
-                <div class="row">
-                    <div class="col">
-                        <img class="float-end" id="logo" height="200px" width="200px" />
+                <div class="row row-cols-2 justify-content-md-center">
+                    <div class="col col-md-auto">
+                        <img id="logo" height="200px" width="200px" />
 
                     </div>
-                    <div class="col">
+                    <div class="col col-md-auto">
                         <h1>Morse Practice Page</h1>
                         <h3>by N1CC, WO6W, KN4YRM</h3>
                         <h6>Inspired by and adapted from the <a href="https://morsecode.world/">SC Phillips</a> <a
                                 href="https://github.com/scp93ch/morse-pro">morse-pro</a> library</h6>
                     </div>
                 </div>
+
             </div>
 
             <!-- settings area-->
             <div class="col">
-                <div class="input-group">
-                    <span class="input-group-text">WPM</span>
-                    <input type="number" class="form-control" aria-label="Username" min="1" data-bind="textInput: wpm">
-                    <span class="input-group-text" data-bind="click: ()=>syncWpm(!syncWpm())">FWPM</span>
-                    <input type="number" class="form-control" aria-label="Server" min="1"
-                        data-bind="textInput: fwpm, enable: !syncWpm(), attr:{ max: trueWpm }">
-                    <span class="input-group-text">DITFREQ</span>
-                    <input type="number" class="form-control" aria-label="Server" min="100" max="1200" step="10"
-                        data-bind="textInput: ditFrequency">
-                    <span class="input-group-text" data-bind="click: ()=>syncFreq(!syncFreq())">DAHFREQ</span>
-                    <input type="number" class="form-control" aria-label="Server" min="100" max="1200" step="10"
-                        data-bind="textInput: dahFrequency, enable: !syncFreq()">
-                    <span class="input-group-text">PRESPACE</span>
-                    <input type="number" class="form-control" aria-label="Server" min="0" max="1200" step=".5"
-                        data-bind="textInput: preSpace">
-                    <span class="input-group-text">XTRAWRDSPDITS</span>
-                    <input type="number" class="form-control" aria-label="Server" min="0" max="1200" step="1"
-                        data-bind="textInput: xtraWordSpaceDits">
-                    <span class="input-group-text">VOL</span>
-                    <input type="number" class="form-control" aria-label="Server" min="1" max="10" step="1"
-                        data-bind="textInput: volume">
+                <div class="row row-cols-3 gx-2">
+                    <div class="col-md-auto">
+                        <div class="input-group">
+                            <span class="input-group-text">WPM</span>
+                            <input type="number" style="max-width:75px" class="form-control" aria-label="Username"
+                                min="1" data-bind="textInput: wpm">
+                            <span class="input-group-text" data-bind="click: ()=>syncWpm(!syncWpm())">FWPM</span>
+                            <input type="number" style="max-width:75px" class="form-control" aria-label="Server" min="1"
+                                data-bind="textInput: fwpm, enable: !syncWpm(), attr:{ max: trueWpm }">
+                        </div>
+                    </div>
+                    <div class="col-md-auto">
+                        <div class="input-group">
+                            <span class="input-group-text">DITFREQ</span>
+                            <input type="number" style="max-width:75px" class="form-control" aria-label="Server"
+                                min="100" max="1200" step="10" data-bind="textInput: ditFrequency">
+                            <span class="input-group-text" data-bind="click: ()=>syncFreq(!syncFreq())">DAHFREQ</span>
+                            <input type="number" style="max-width:75px" class="form-control" aria-label="Server"
+                                min="100" max="1200" step="10" data-bind="textInput: dahFrequency, enable: !syncFreq()">
+                        </div>
+                    </div>
+                    <div class="col-md-auto">
+                        <div class="input-group">
+                            <span class="input-group-text">PRESPACE</span>
+                            <input type="number" style="max-width:75px" class="form-control" aria-label="Server" min="0"
+                                max="1200" step=".5" data-bind="textInput: preSpace">
+                            <span class="input-group-text">XTRAWRDSPDITS</span>
+                            <input type="number" style="max-width:75px" class="form-control" aria-label="Server" min="0"
+                                max="1200" step="1" data-bind="textInput: xtraWordSpaceDits">
+                            <span class="input-group-text">VOL</span>
+                            <input type="number" style="max-width:75px" class="form-control" aria-label="Server" min="1"
+                                max="10" step="1" data-bind="textInput: volume">
+                        </div>
+                    </div>
                 </div>
             </div>
+
 
             <!-- working text area-->
             <div class="col">
@@ -130,7 +145,8 @@
                                             <button type="button" class="btn btn-secondary"
                                                 data-bind="text: playRssButtonText, click: doRssPlay"></button>
                                             <button type="button" class="btn btn-danger"
-                                                data-bind="click: doRSSReset">Mark RSS Old</button>
+                                                data-bind="click: doRSSReset">Mark
+                                                RSS Old</button>
                                         </div>
                                     </div>
                                 </div>
@@ -272,7 +288,8 @@
                                                 <input type="checkbox" class="btn-check" id="btncheck2overridesize"
                                                     autocomplete="off" data-bind="checked: ifOverrideMinMax">
                                                 <label class="btn btn-outline-primary"
-                                                    for="btncheck2overridesize">Override Size</label>
+                                                    for="btncheck2overridesize">Override
+                                                    Size</label>
                                                 <input type="checkbox" class="btn-check" id="btncheck2syncsize"
                                                     autocomplete="off" data-bind="checked: syncSize">
                                                 <label class="btn btn-outline-primary" for="btncheck2syncsize">Sync
@@ -408,7 +425,7 @@
 
             <div class="col">
 
-                <div class="row overflow-auto" style="height: 100vh;">
+                <div class="row overflow-auto gy-2" style="height: 100vh;">
                     <div class="col" data-bind="foreach: words">
                         <button class="btn"
                             data-bind="class: $index()==$parent.currentIndex() ? 'btn-primary':'btn-outline-primary',text: (!$parent.hideList() || ($parent.trailReveal() && $index() < $parent.currentIndex() )) ? $data : 'X'.repeat($data.length),click:()=>$parent.addFlaggedWord($data), event:{dblclick: ()=>{$parent.setWordIndex($index())}}"></button>
