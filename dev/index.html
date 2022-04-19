@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>LICW Morse Practice Page</title>
 
-<link rel="icon" href="LongIslandCWClub-favicon-2.jpg"><script defer src="bundle219024b88537e3137c7b.js"></script><link href="bundle.618c1c2672d3071ffd11.css" rel="stylesheet"></head>
+<link rel="icon" href="LongIslandCWClub-favicon-2.jpg"><script defer src="bundlefe7153c221e417a62306.js"></script><link href="bundle.618c1c2672d3071ffd11.css" rel="stylesheet"></head>
 
 <body>
     <div class="container-fluid" style="height:100vh; overflow-y:auto; ">
@@ -35,17 +35,18 @@
                         <div class="col">
                             <div class="input-group">
                                 <span class="input-group-text">WPM</span>
-                                <input type="number" class="form-control" aria-label="Username" min="0"
+                                <input type="number" class="form-control" aria-label="Username" min="1"
                                     data-bind="textInput: wpm">
-                                <span class="input-group-text">FWPM</span>
-                                <input type="number" class="form-control" aria-label="Server" min="0"
-                                    data-bind="textInput: fwpm">
+                                <span class="input-group-text" data-bind="click: ()=>syncWpm(!syncWpm())">FWPM</span>
+                                <input type="number" class="form-control" aria-label="Server" min="1"
+                                    data-bind="textInput: fwpm, enable: !syncWpm(), attr:{ max: trueWpm }">
                                 <span class="input-group-text">DITFREQ</span>
                                 <input type="number" class="form-control" aria-label="Server" min="100" max="1200"
                                     step="10" data-bind="textInput: ditFrequency">
-                                <span class="input-group-text">DAHFREQ</span>
+                                <span class="input-group-text"
+                                    data-bind="click: ()=>syncFreq(!syncFreq())">DAHFREQ</span>
                                 <input type="number" class="form-control" aria-label="Server" min="100" max="1200"
-                                    step="10" data-bind="textInput: dahFrequency">
+                                    step="10" data-bind="textInput: dahFrequency, enable: !syncFreq()">
                                 <span class="input-group-text">PRESPACE</span>
                                 <input type="number" class="form-control" aria-label="Server" min="0" max="1200"
                                     step=".5" data-bind="textInput: preSpace">
