@@ -603,6 +603,7 @@ class MorseViewModel {
 
   inputFileChange = (file) => {
     // thanks to https://newbedev.com/how-to-access-file-input-with-knockout-binding
+    console.log(file)
     const fr = new FileReader()
     fr.onload = (data) => {
       this.setText(data.target.result)
