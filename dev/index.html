@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>LICW Morse Practice Page</title>
 
-<link rel="icon" href="LongIslandCWClub-favicon-2.jpg"><script defer src="bundle20c49a903a58ba90d50b.js"></script><link href="bundle.618c1c2672d3071ffd11.css" rel="stylesheet"></head>
+<link rel="icon" href="LongIslandCWClub-favicon-2.jpg"><script defer src="bundlec661ca914a1299c2a343.js"></script><link href="bundle.618c1c2672d3071ffd11.css" rel="stylesheet"></head>
 
 <body>
     <div class="container-xxl" style="overflow-y:auto;">
@@ -37,7 +37,8 @@
                 <div class="row row-cols-3 gx-2 gy-2">
                     <div class="col-md-auto">
                         <div class="input-group">
-                            <span class="input-group-text">WPM</span>
+                            <span class="input-group-text">WPM&nbsp;<img id='speedometerImage' height="20"
+                                    width="20" /></span>
                             <input type="number" style="max-width:75px; min-width: 75px;" class="form-control"
                                 aria-label="Username" min="1" data-bind="textInput: wpm">
                             <span class="input-group-text" data-bind="click: ()=>syncWpm(!syncWpm())">FWPM&nbsp;<img
@@ -49,11 +50,11 @@
                     </div>
                     <div class="col-md-auto">
                         <div class="input-group">
-                            <span class="input-group-text">DITFREQ</span>
+                            <span class="input-group-text">DIT&nbsp;<img id="musicnoteImage" height=20
+                                    witdh=20 /></span>
                             <input type="number" style="max-width:75px; min-width: 75px;" class="form-control"
                                 aria-label="Server" min="100" max="1200" step="10" data-bind="textInput: ditFrequency">
-                            <span class="input-group-text"
-                                data-bind="click: ()=>syncFreq(!syncFreq())">DAHFREQ&nbsp;<img
+                            <span class="input-group-text" data-bind="click: ()=>syncFreq(!syncFreq())">DAH&nbsp;<img
                                     data-bind="attr:{ src: syncFreq() ? morseLoadImages().getSrc('lockImage') : morseLoadImages().getSrc('unlockImage')}" /></span>
                             <input type="number" style="max-width:75px; min-width: 75px;" class="form-control"
                                 aria-label="Server" min="100" max="1200" step="10"
@@ -62,10 +63,12 @@
                     </div>
                     <div class="col-md-auto">
                         <div class="input-group">
-                            <span class="input-group-text">PRESPACE</span>
+                            <span class="input-group-text">PRE&nbsp;<img id="volumemuteImage" height="20"
+                                    width="20"></span>
                             <input type="number" style="max-width:75px; min-width: 75px;" class="form-control"
                                 aria-label="Server" min="0" max="1200" step=".5" data-bind="textInput: preSpace">
-                            <span class="input-group-text">XTRAWRDSPDITS</span>
+                            <span class="input-group-text">WORD SPACE&nbsp;<img id="graphuparrowImage" height=20
+                                    width=20 /></span>
                             <input type="number" style="max-width:75px; min-width: 75px;" class="form-control"
                                 aria-label="Server" min="0" max="1200" step="1"
                                 data-bind="textInput: xtraWordSpaceDits">
@@ -81,7 +84,7 @@
             <!-- working text area-->
             <div class="col">
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-7">
                         <div class="input-group">
                             <span class="input-group-text" data-bind="click: ()=>showRaw(!showRaw())"><img height=32
                                     width=32
@@ -94,15 +97,17 @@
 
                     </div>
                     <div class="col-md-auto">
-
-                        <input type="file" accept=".txt" id="txtfiletoread"
-                            data-bind="event: {change: function() { inputFileChange($element.files[0]) } }" />
+                        <label for="txtfiletoread"><button class="btn btn-light"
+                                onclick="getElementById('txtfiletoread').click()">Upload&nbsp;<img id="uploadImage"
+                                    height="20" width="20" /></button></label>
+                        <input type="file" accept=".txt" id="txtfiletoread" class="form-control"
+                            data-bind="event: {change: function() { inputFileChange($element.files[0]) } }" hidden>
 
                     </div>
-                    <div class="col">
+                    <div class="col-md-auto">
                         <div class="row">
                             <div class="col">
-                                <span>Estimated Play Time:&nbsp;</span><span
+                                <span>Est Play Time:&nbsp;</span><span
                                     data-bind="text: timeEstimate().minutes"></span>:<span
                                     data-bind="text: timeEstimate().normedSeconds"></span>
                             </div>
@@ -419,12 +424,14 @@
                                 -->
                         <input type="checkbox" data-bind="checked: hideList" class="btn-check" id="btnHideList"
                             autocomplete="off" />
-                        <label class="btn btn-outline-primary" for="btnHideList"
-                            data-bind="text: hideList()?'Unhide List Words':'Hide List Words'"></label>
+                        <label class="btn btn-outline-primary" for="btnHideList"><span>Reveal&nbsp;</span><img height=20
+                                width=20
+                                data-bind="attr:{ src: !hideList() ? morseLoadImages().getSrc('eyeImage') : morseLoadImages().getSrc('eyeslashImage')}" /></label>
                         <input type="checkbox" data-bind="checked: trailReveal" class="btn-check" id="btntrailReveal"
                             autocomplete="off" />
-                        <label class="btn btn-outline-secondary" for="btntrailReveal"
-                            data-bind="text: trailReveal()?'Hide Trail':'Reveal Trail'"></label>
+                        <label class="btn btn-outline-secondary" for="btntrailReveal"><span>Trail&nbsp;</span><img
+                                height=20 width=20
+                                data-bind="attr:{ src: trailReveal() ? morseLoadImages().getSrc('eyeImage') : morseLoadImages().getSrc('eyeslashImage')}" /></label>
                     </div>
                     <div class="input-group" aria-label="thirdgroup">
                         <input type="checkbox" data-bind="checked: ifParseSentences" class="btn-check"
