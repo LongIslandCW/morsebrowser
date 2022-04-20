@@ -205,7 +205,7 @@ class MorseViewModel {
    wordLists = ko.observableArray()
    morseWordPlayer = new MorseWordPlayer()
    rawText = ko.observable()
-   showingText = ko.observable('hello world')
+   showingText = ko.observable('CQ LICW')
    showRaw = ko.observable(true)
    rssEnabled = ko.observable(false)
    volume = ko.observable(10)

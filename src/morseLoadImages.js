@@ -17,6 +17,7 @@ import musicnotePng from 'bootstrap-icons/icons/music-note.svg'
 import graphuparrowPng from 'bootstrap-icons/icons/graph-up-arrow.svg'
 import volumemutePng from 'bootstrap-icons/icons/volume-mute.svg'
 import uploadPng from 'bootstrap-icons/icons/upload.svg'
+import gearPng from 'bootstrap-icons/icons/gear.svg'
 
 export class MorseLoadImages {
   info = []
@@ -59,6 +60,9 @@ export class MorseLoadImages {
 
     const uploadImg = document.getElementById('uploadImage')
     uploadImg.src = uploadPng
+
+    const gearImg = document.getElementById('gearImage')
+    gearImg.src = gearPng
 
     this.info.push({ key: 'lockImage', src: lockPng })
     this.info.push({ key: 'unlockImage', src: unlockPng })
