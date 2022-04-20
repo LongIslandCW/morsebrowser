@@ -524,7 +524,14 @@
                 <div class="row gx-2 gy-2" data-bind="foreach: words">
                     <div class="col-auto">
                         <button class="btn"
-                            data-bind="class: $index()==$parent.currentIndex() ? 'btn-primary':'btn-outline-primary',text: (!$parent.hideList() || ($parent.trailReveal() && $index() < $parent.currentIndex() )) ? $data : 'X'.repeat($data.length),click:()=>$parent.addFlaggedWord($data), event:{dblclick: ()=>{$parent.setWordIndex($index())}}"></button>
+                            data-bind="class: $index()==$parent.currentIndex() ? 'btn-primary':'btn-outline-primary',click:()=>$parent.addFlaggedWord($data), event:{dblclick: ()=>{$parent.setWordIndex($index())}}">
+                            <span
+                                data-bind="class: $parent.hideList() && !($parent.trailReveal() && $index() < $parent.currentIndex() )  ? 'placeholder' : '' ">
+                                <span style="width: 100%;"
+                                    data-bind="text: $data, style: {visibility : (!$parent.hideList() || ($parent.trailReveal() && $index() < $parent.currentIndex() )) ? 'visible' : 'hidden'}"></span>
+                            </span>
+
+                        </button>
                     </div>
                 </div>
 
