@@ -18,6 +18,12 @@ import graphuparrowPng from 'bootstrap-icons/icons/graph-up-arrow.svg'
 import volumemutePng from 'bootstrap-icons/icons/volume-mute.svg'
 import uploadPng from 'bootstrap-icons/icons/upload.svg'
 import gearPng from 'bootstrap-icons/icons/gear.svg'
+import skipstartPng from 'bootstrap-icons/icons/skip-start-circle.svg'
+import skipbackPng from 'bootstrap-icons/icons/skip-backward-circle.svg'
+import skipforwardPng from 'bootstrap-icons/icons/skip-forward-circle.svg'
+import stopPng from 'bootstrap-icons/icons/stop-circle.svg'
+import numlistPng from 'bootstrap-icons/icons/list-ol.svg'
+import shufflePng from 'bootstrap-icons/icons/shuffle.svg'
 
 export class MorseLoadImages {
   info = []
@@ -64,12 +70,28 @@ export class MorseLoadImages {
     const gearImg = document.getElementById('gearImage')
     gearImg.src = gearPng
 
+    const skipstartImg = document.getElementById('skipstartImage')
+    skipstartImg.src = skipstartPng
+
+    const skipforwardImg = document.getElementById('skipforwardImage')
+    skipforwardImg.src = skipforwardPng
+
+    const stopImg = document.getElementById('stopImage')
+    stopImg.src = stopPng
+
+    const numlistImg = document.getElementById('numlistImage')
+    numlistImg.src = numlistPng
+
+    const shuffleImg = document.getElementById('shuffleImage')
+    shuffleImg.src = shufflePng
+
     this.info.push({ key: 'lockImage', src: lockPng })
     this.info.push({ key: 'unlockImage', src: unlockPng })
     this.info.push({ key: 'checkImage', src: checkPng })
     this.info.push({ key: 'circleImage', src: circlePng })
     this.info.push({ key: 'eyeImage', src: eyePng })
     this.info.push({ key: 'eyeslashImage', src: eyeslashPng })
+    this.info.push({ key: 'skipbackImage', src: skipbackPng })
   }
 
   getSrc = (key) => {
