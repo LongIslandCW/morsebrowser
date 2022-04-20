@@ -34,7 +34,8 @@
 
             <!-- settings area-->
             <div class="col">
-                <div class="row row-cols-3 gx-2 gy-2">
+                <div class="row row-cols-4 gx-2 gy-2">
+                    <!--wpm/fwpm-->
                     <div class="col-md-auto">
                         <div class="input-group">
                             <span class="input-group-text">WPM&nbsp;<img id='speedometerImage' height="20"
@@ -48,6 +49,15 @@
                                 data-bind="textInput: fwpm, enable: !syncWpm(), attr:{ max: trueWpm }">
                         </div>
                     </div>
+                    <!--volume-->
+                    <div class="col-md-auto">
+                        <div class="input-group">
+                            <span class="input-group-text"><img id="volumeImage" width=20 height=20></span>
+                            <input type="number" style="max-width:75px; min-width: 75px;" class="form-control"
+                                aria-label="Server" min="1" max="10" step="1" data-bind="textInput: volume">
+                        </div>
+                    </div>
+                    <!--tone-->
                     <div class="col-md-auto">
                         <div class="input-group">
                             <span class="input-group-text">DIT&nbsp;<img id="musicnoteImage" height=20
@@ -61,6 +71,7 @@
                                 data-bind="textInput: dahFrequency, enable: !syncFreq()">
                         </div>
                     </div>
+                    <!--silence & spacing-->
                     <div class="col-md-auto">
                         <div class="input-group">
                             <span class="input-group-text">PRE&nbsp;<img id="volumemuteImage" height="20"
@@ -72,9 +83,7 @@
                             <input type="number" style="max-width:75px; min-width: 75px;" class="form-control"
                                 aria-label="Server" min="0" max="1200" step="1"
                                 data-bind="textInput: xtraWordSpaceDits">
-                            <span class="input-group-text"><img id="volumeImage" width=20 height=20></span>
-                            <input type="number" style="max-width:75px; min-width: 75px;" class="form-control"
-                                aria-label="Server" min="1" max="10" step="1" data-bind="textInput: volume">
+
                         </div>
                     </div>
                 </div>
