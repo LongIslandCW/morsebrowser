@@ -24,6 +24,7 @@ import skipforwardPng from 'bootstrap-icons/icons/skip-forward-circle.svg'
 import stopPng from 'bootstrap-icons/icons/stop-circle.svg'
 import numlistPng from 'bootstrap-icons/icons/list-ol.svg'
 import shufflePng from 'bootstrap-icons/icons/shuffle.svg'
+import soundwavePng from 'bootstrap-icons/icons/soundwave.svg'
 
 export class MorseLoadImages {
   info = []
@@ -92,6 +93,9 @@ export class MorseLoadImages {
     this.info.push({ key: 'eyeImage', src: eyePng })
     this.info.push({ key: 'eyeslashImage', src: eyeslashPng })
     this.info.push({ key: 'skipbackImage', src: skipbackPng })
+    this.info.push({ key: 'numlistImage', src: numlistPng })
+    this.info.push({ key: 'soundwaveImage', src: soundwavePng })
+    this.info.push({ key: 'volumeImage', src: volumePng })
   }
 
   getSrc = (key) => {
