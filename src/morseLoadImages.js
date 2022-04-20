@@ -12,6 +12,11 @@ import playPng from 'bootstrap-icons/icons/play-circle.svg'
 import pausePng from 'bootstrap-icons/icons/pause-circle.svg'
 import eyePng from 'bootstrap-icons/icons/eye.svg'
 import eyeslashPng from 'bootstrap-icons/icons/eye-slash.svg'
+import speedometerPng from 'bootstrap-icons/icons/speedometer2.svg'
+import musicnotePng from 'bootstrap-icons/icons/music-note.svg'
+import graphuparrowPng from 'bootstrap-icons/icons/graph-up-arrow.svg'
+import volumemutePng from 'bootstrap-icons/icons/volume-mute.svg'
+import uploadPng from 'bootstrap-icons/icons/upload.svg'
 
 export class MorseLoadImages {
   info = []
@@ -39,6 +44,21 @@ export class MorseLoadImages {
 
     const pauseImg = document.getElementById('pauseImage')
     pauseImg.src = pausePng
+
+    const speedometerImg = document.getElementById('speedometerImage')
+    speedometerImg.src = speedometerPng
+
+    const musicnoteImg = document.getElementById('musicnoteImage')
+    musicnoteImg.src = musicnotePng
+
+    const graphuparrowImg = document.getElementById('graphuparrowImage')
+    graphuparrowImg.src = graphuparrowPng
+
+    const volumemuteImg = document.getElementById('volumemuteImage')
+    volumemuteImg.src = volumemutePng
+
+    const uploadImg = document.getElementById('uploadImage')
+    uploadImg.src = uploadPng
 
     this.info.push({ key: 'lockImage', src: lockPng })
     this.info.push({ key: 'unlockImage', src: unlockPng })
