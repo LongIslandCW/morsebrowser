@@ -13,6 +13,7 @@ export default class MorseRssPlugin {
       ctxt.rssPollMinsToWait = ko.observable(-1)
       ctxt.rssPollingOn = ko.observable(false)
       ctxt.rssPolling = ko.observable(false)
+      ctxt.rssPlayWaitingBadgeText = ko.observable(true)
 
       ctxt.unreadRssCount = ko.computed(() => {
         const unread = ctxt.rssTitlesQueue().filter(x => !x.played)
@@ -32,6 +33,9 @@ export default class MorseRssPlugin {
             waitingText += Math.round(60 * minsToWait).toString() + ' sec'
           }
         }
+        // help the badge
+        console.log(waitingText)
+        ctxt.rssPlayWaitingBadgeText(waitingText)
         return (ctxt.rssPlayOn() ? 'Stop' : 'Play') + ' RSS (' + ctxt.unreadRssCount() + ')' + waitingText
       }, ctxt)
 

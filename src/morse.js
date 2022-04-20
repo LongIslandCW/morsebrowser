@@ -75,6 +75,15 @@ class MorseViewModel {
       return target
     }
 
+    ko.extenders.initRss = (target, option) => {
+      target.subscribe((newValue) => {
+        if (newValue) {
+          this.initializeRss()
+        }
+      })
+      return target
+    }
+
     // apply extenders
     this.wpm.extend({ saveCookie: 'wpm' })
     this.fwpm.extend({ saveCookie: 'fwpm' })
@@ -90,6 +99,7 @@ class MorseViewModel {
     this.noiseType.extend({ saveCookie: 'noiseType' }).extend({ setNoiseType: 'noiseType' })
     this.syncWpm.extend({ saveCookie: 'syncWpm' })
     this.syncFreq.extend({ saveCookie: 'syncFreq' })
+    this.rssEnabled.extend({ initRss: 'rssEnabled' })
 
     // initialize the main rawText
     this.rawText(this.showingText())
@@ -98,9 +108,7 @@ class MorseViewModel {
 
     // check for RSS feature turned on
     if (this.getParameterByName('rssEnabled')) {
-      import('./morseRssPlugin.js').then(({ default: MorseRssPlugin }) => {
-        MorseRssPlugin.addRssFeatures(ko, this)
-        // don't set this until the plugin has initialized above
+      this.initializeRss(() => {
         this.rssEnabled(true)
         // possibly rss-related cookies missed
         // TODO probably in general 'plugins' should be some sort of promise based
@@ -208,6 +216,7 @@ class MorseViewModel {
    showingText = ko.observable('CQ LICW')
    showRaw = ko.observable(true)
    rssEnabled = ko.observable(false)
+   rssInitializedOnce = ko.observable(false)
    volume = ko.observable(10)
    noiseEnabled = ko.observable(false)
    noiseVolume = ko.observable(2)
@@ -506,7 +515,7 @@ class MorseViewModel {
 
   getMorseStringToWavBufferConfig = (text) => {
     const config = new MorseStringToWavBufferConfig()
-    config.word = text
+    config.word = MorseStringUtils.doReplacements(text)
     config.wpm = parseInt(this.wpm())
     config.fwpm = parseInt(this.fwpm())
     config.ditFrequency = parseInt(this.ditFrequency())
@@ -586,9 +595,9 @@ class MorseViewModel {
     this.playerPlaying(false)
     this.morseWordPlayer.pause(() => {
       // we're here if a complete rawtext finished
-      console.log('settinglastfullplaytime')
+      // console.log('settinglastfullplaytime')
       this.lastFullPlayTime(Date.now())
-      console.log(`playtime:${this.lastFullPlayTime() - this.lastPlayFullStart}`)
+      // console.log(`playtime:${this.lastFullPlayTime() - this.lastPlayFullStart}`)
       // TODO make this more generic for any future "plugins"
       if (this.rssPlayCallback) {
         this.rssPlayCallback()
@@ -603,7 +612,7 @@ class MorseViewModel {
 
   inputFileChange = (file) => {
     // thanks to https://newbedev.com/how-to-access-file-input-with-knockout-binding
-    console.log(file)
+    // console.log(file)
     const fr = new FileReader()
     fr.onload = (data) => {
       this.setText(data.target.result)
@@ -645,8 +654,8 @@ class MorseViewModel {
     const seconds = ((est.timeCalcs.totalTime % 60000) / 1000).toFixed(0)
     const normedSeconds = (seconds < 10 ? '0' : '') + seconds
     const timeFigures = { minutes, seconds, normedSeconds }
-    console.log(timeFigures)
-    console.log(est)
+    // console.log(timeFigures)
+    // console.log(est)
     return timeFigures
   }, this)
 
@@ -659,6 +668,19 @@ class MorseViewModel {
     // console.log(est)
     return timeFigures
   }, this)
+
+  initializeRss = (afterCallBack) => {
+    if (!this.rssInitializedOnce()) {
+      import('./morseRssPlugin.js').then(({ default: MorseRssPlugin }) => {
+        MorseRssPlugin.addRssFeatures(ko, this)
+        // don't set this until the plugin has initialized above
+        this.rssInitializedOnce(true)
+        if (afterCallBack) {
+          afterCallBack()
+        }
+      })
+    }
+  }
 }
 
 // eslint-disable-next-line new-cap

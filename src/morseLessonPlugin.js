@@ -9,7 +9,7 @@ export default class MorseLessonPlugin {
       }
 
       ctxt.setLetterGroupInitialized = () => {
-        console.log('setlettergroupinitialized')
+        // console.log('setlettergroupinitialized')
         ctxt.letterGroupInitialized = true
       }
 
