@@ -108,13 +108,8 @@ class MorseViewModel {
 
     // check for RSS feature turned on
     if (this.getParameterByName('rssEnabled')) {
-      this.initializeRss(() => {
-        this.rssEnabled(true)
-        // possibly rss-related cookies missed
-        // TODO probably in general 'plugins' should be some sort of promise based
-        // and load cookies after all plugins but for now just do this....
-        this.loadCookies()
-      })
+      this.rssEnabled(true)
+      this.initializeRss()
     }
 
     // check for noise feature turned on
@@ -277,7 +272,7 @@ class MorseViewModel {
    morseLoadImages =ko.observable()
 
    // helper
-   loadCookies = () => {
+   loadCookies = (whiteList) => {
      // load any existing cookie values
 
      // helper
@@ -293,19 +288,21 @@ class MorseViewModel {
      if (cks) {
        const specialHandling = []
        for (const key in cks) {
-         switch (key) {
-           case 'syncWpm':
-           case 'wpm':
-           case 'fwpm':
-           case 'syncFreq':
-           case 'ditFrequency':
-           case 'dahFrequency':
-             specialHandling.push({ key, val: booleanize(cks[key]) })
-             break
-           default:
-             if (typeof this[key] !== 'undefined') {
-               this[key](cks[key])
-             }
+         if (!whiteList || whiteList.indexOf(key) > -1) {
+           switch (key) {
+             case 'syncWpm':
+             case 'wpm':
+             case 'fwpm':
+             case 'syncFreq':
+             case 'ditFrequency':
+             case 'dahFrequency':
+               specialHandling.push({ key, val: booleanize(cks[key]) })
+               break
+             default:
+               if (typeof this[key] !== 'undefined') {
+                 this[key](cks[key])
+               }
+           }
          }
        }
        let target = specialHandling.find(x => x.key === 'syncWpm')
@@ -679,6 +676,10 @@ class MorseViewModel {
         MorseRssPlugin.addRssFeatures(ko, this)
         // don't set this until the plugin has initialized above
         this.rssInitializedOnce(true)
+        // possibly rss-related cookies missed
+        // TODO probably in general 'plugins' should be some sort of promise based
+        // and load cookies after all plugins but for now just do this....
+        this.loadCookies(this.rssCookieWhiteList)
         if (afterCallBack) {
           afterCallBack()
         }
