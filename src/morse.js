@@ -19,9 +19,12 @@ import { MorseWordPlayer } from './morseWordPlayer.js'
 import Cookies from 'js-cookie'
 import MorseLessonPlugin from './morseLessonPlugin.js'
 import { MorseLoadImages } from './morseLoadImages.js'
+import licwDefaults from './configs/licwdefaults.json'
 
 class MorseViewModel {
   constructor () {
+    console.log('licwDefaults:')
+    console.log(licwDefaults)
     this.morseLoadImages(new MorseLoadImages())
 
     // create the helper extenders
@@ -124,15 +127,20 @@ class MorseViewModel {
       this.noiseEnabled(true)
     }
 
-    this.loadCookies()
+    // load defaults
+    this.loadCookiesOrDefaults(null, true)
+
+    // load cookies
+    this.loadCookiesOrDefaults(null, false)
 
     // initialize the wordlist
     this.initializeWordList()
   }
+  // END CONSTRUCTOR
 
    textBuffer = ko.observable('')
-   trueWpm = ko.observable(20)
-   trueFwpm = ko.observable(20)
+   trueWpm = ko.observable()
+   trueFwpm = ko.observable()
    syncWpm = ko.observable(true)
 
    wpm = ko.pureComputed({
@@ -169,8 +177,8 @@ class MorseViewModel {
      owner: this
    })
 
-   trudDitFrequency = ko.observable(550)
-   truDahFrequency = ko.observable(550)
+   trudDitFrequency = ko.observable()
+   truDahFrequency = ko.observable()
    syncFreq = ko.observable(true)
    ditFrequency = ko.pureComputed({
      read: () => {
@@ -215,11 +223,11 @@ class MorseViewModel {
    wordLists = ko.observableArray()
    morseWordPlayer = new MorseWordPlayer()
    rawText = ko.observable()
-   showingText = ko.observable('CQ LICW')
+   showingText = ko.observable('')
    showRaw = ko.observable(true)
    rssEnabled = ko.observable(false)
    rssInitializedOnce = ko.observable(false)
-   volume = ko.observable(10)
+   volume = ko.observable()
    noiseEnabled = ko.observable(false)
    noiseVolume = ko.observable(2)
    noiseType = ko.observable('off')
@@ -271,7 +279,7 @@ class MorseViewModel {
 
    ifParseSentences = ko.observable(false)
    ifStickySets = ko.observable(true)
-   stickySets = ko.observable('BK')
+   stickySets = ko.observable('')
    runningPlayMs = ko.observable(0)
    lastPartialPlayStart = ko.observable()
    isPaused=ko.observable(false)
@@ -280,22 +288,34 @@ class MorseViewModel {
    showExpertSettings = ko.observable(false)
 
    // helper
-   loadCookies = (whiteList) => {
+   booleanize = (x) => {
+     if (x === 'true ' || x === 'false') {
+       return x === 'true'
+     } else {
+       return x
+     }
+   }
+
+   // helper
+   loadCookiesOrDefaults = (whiteList, ifLoadSettings) => {
      // load any existing cookie values
 
-     // helper
-     const booleanize = (x) => {
-       if (x === 'true ' || x === 'false') {
-         return x === 'true'
-       } else {
-         return x
-       }
+     const cks = Cookies.get()
+     const cksKeys = []
+     for (const key in cks) {
+       cksKeys.push(key)
      }
 
-     const cks = Cookies.get()
-     if (cks) {
+     // ignore setting for which there's a cookie
+     const workAry = ifLoadSettings ? licwDefaults.startupSettings.filter((x) => cksKeys.indexOf(x.key) < 0) : cksKeys
+     const keyResolver = ifLoadSettings ? (x) => x.key : (x) => x
+     const valResolver = ifLoadSettings ? (x) => x.value : (x) => cks[x]
+     if (workAry) {
        const specialHandling = []
-       for (const key in cks) {
+       workAry.forEach((setting) => {
+         const key = keyResolver(setting)
+         const val = valResolver(setting)
+
          if (!whiteList || whiteList.indexOf(key) > -1) {
            switch (key) {
              case 'syncWpm':
@@ -304,15 +324,16 @@ class MorseViewModel {
              case 'syncFreq':
              case 'ditFrequency':
              case 'dahFrequency':
-               specialHandling.push({ key, val: booleanize(cks[key]) })
+               specialHandling.push({ key, val: this.booleanize(val) })
                break
              default:
                if (typeof this[key] !== 'undefined') {
-                 this[key](booleanize(cks[key]))
+                 this[key](this.booleanize(val))
                }
            }
          }
-       }
+       })
+       //
        let target = specialHandling.find(x => x.key === 'syncWpm')
        if (target) {
          this[target.key](target.val)
@@ -691,7 +712,7 @@ class MorseViewModel {
         // possibly rss-related cookies missed
         // TODO probably in general 'plugins' should be some sort of promise based
         // and load cookies after all plugins but for now just do this....
-        this.loadCookies(this.rssCookieWhiteList)
+        this.loadCookiesOrDefaults(this.rssCookieWhiteList, false)
         if (afterCallBack) {
           afterCallBack()
         }
