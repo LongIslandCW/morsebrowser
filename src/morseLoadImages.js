@@ -106,6 +106,7 @@ export class MorseLoadImages {
     this.info.push({ key: 'hourglassImage', src: hourglassPng })
     this.info.push({ key: 'downloadImage', src: downLoadPng })
     this.info.push({ key: 'stopwatchImage', src: stopwatchPng })
+    this.info.push({ key: 'uploadImage', src: uploadPng })
   }
 
   getSrc = (key) => {
