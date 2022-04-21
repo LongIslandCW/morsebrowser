@@ -1,6 +1,6 @@
 export default class MorseLessonPlugin {
     static addLessonFeatures = (ko, ctxt) => {
-      ctxt.autoCloseLessonAccordian = ko.observable(true)
+      ctxt.autoCloseLessonAccordian = ko.observable(false).extend({ saveCookie: 'autoCloseLessonAccordian' })
 
       ctxt.setUserTargetInitialized = () => {
         ctxt.userTargetInitialized = true
