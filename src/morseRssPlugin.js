@@ -95,6 +95,7 @@ export default class MorseRssPlugin {
             clearTimeout(ctxt.rssPlayTimerHandle)
           }
         }
+        document.getElementById('btnRssAccordionButton').click()
       }
 
       ctxt.doRSSCallback = () => {

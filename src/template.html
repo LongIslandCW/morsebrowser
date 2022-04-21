@@ -390,7 +390,8 @@
                     <div class="accordion-item" data-bind="if: rssEnabled() && rssInitializedOnce()">
                         <h2 class="accordion-header" id="headingOne">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne"
+                                id="btnRssAccordionButton">
                                 <span>
                                     <img data-bind="attr:{ src: morseLoadImages().getSrc('rssImage')}" height="20"
                                         width="20">&nbsp;RSS (Experimental, and you will need a proxy)
@@ -502,7 +503,8 @@
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="headingTwo">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"
+                                id="btnFlaggedWordsAccordianButton">
                                 <img id='flagImage' height=20 width=20 /><span>&nbsp;</span>
                                 Flagged words (click words you missed in the word list to toggle adding them
                                 here)<span>&nbsp;</span><span class="badge bg-success"
@@ -513,7 +515,10 @@
                             data-bs-parent="#accordionExample">
                             <div class="accordion-body">
                                 <div class="input-group">
-                                    <span class="input-group-text" data-bind="click:setFlagged">Click To Set As
+                                    <span class="input-group-text" data-bind="click:setFlagged"><img height="20"
+                                            width="20"
+                                            data-bind="attr:{src: morseLoadImages().getSrc('uploadImage')}">&nbsp;Load
+                                        As
                                         Text</span>
                                     <textarea data-bind="textInput: flaggedWords" class="form-control"
                                         aria-label="Text"></textarea>

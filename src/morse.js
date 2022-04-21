@@ -446,8 +446,12 @@ class MorseViewModel {
   }
 
   setFlagged = () => {
-    this.setText(this.flaggedWords())
-    this.fullRewind()
+    if (this.flaggedWords().trim()) {
+      this.doPause(true, false)
+      this.setText(this.flaggedWords())
+      this.fullRewind()
+      document.getElementById('btnFlaggedWordsAccordianButton').click()
+    }
   }
 
   doCustomGroup = () => {
