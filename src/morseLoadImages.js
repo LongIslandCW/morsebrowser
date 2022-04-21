@@ -27,6 +27,7 @@ import shufflePng from 'bootstrap-icons/icons/shuffle.svg'
 import soundwavePng from 'bootstrap-icons/icons/soundwave.svg'
 import rssPng from 'bootstrap-icons/icons/rss.svg'
 import hourglassPng from 'bootstrap-icons/icons/hourglass-split.svg'
+import stopwatchPng from 'bootstrap-icons/icons/stopwatch.svg'
 
 export class MorseLoadImages {
   info = []
@@ -101,6 +102,7 @@ export class MorseLoadImages {
     this.info.push({ key: 'rssImage', src: rssPng })
     this.info.push({ key: 'hourglassImage', src: hourglassPng })
     this.info.push({ key: 'downloadImage', src: downLoadPng })
+    this.info.push({ key: 'stopwatchImage', src: stopwatchPng })
   }
 
   getSrc = (key) => {
