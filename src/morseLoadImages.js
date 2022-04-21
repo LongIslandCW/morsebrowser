@@ -30,6 +30,7 @@ import hourglassPng from 'bootstrap-icons/icons/hourglass-split.svg'
 import stopwatchPng from 'bootstrap-icons/icons/stopwatch.svg'
 import trashPng from 'bootstrap-icons/icons/trash.svg'
 import arrowleftPng from 'bootstrap-icons/icons/arrow-left.svg'
+import exclamationoctagonPng from 'bootstrap-icons/icons/exclamation-octagon.svg'
 export class MorseLoadImages {
   info = []
   constructor () {
@@ -108,6 +109,7 @@ export class MorseLoadImages {
     this.info.push({ key: 'stopwatchImage', src: stopwatchPng })
     this.info.push({ key: 'uploadImage', src: uploadPng })
     this.info.push({ key: 'arrowleftImage', src: arrowleftPng })
+    this.info.push({ key: 'exclamationoctagonImage', src: exclamationoctagonPng })
 
     this.info.forEach((i) => {
       const target = document.getElementById(i.key)
