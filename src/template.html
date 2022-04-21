@@ -82,9 +82,10 @@
 
                                     <div class="row row-cols-1 gx-0">
 
-                                        <div class="col-auto" style="width: 100px;">
+                                        <div class="col-auto text-end" style="width: 60px;">
 
-                                            <span>Est Time:&nbsp;</span>
+                                            <span>Est <img height="15" width="15"
+                                                    data-bind="attr:{src: morseLoadImages().getSrc('stopwatchImage')}">:&nbsp;</span>
                                         </div>
                                         <div class="col-auto">
                                             <span data-bind="text: timeEstimate().minutes"></span>:<span
@@ -93,8 +94,9 @@
                                         </div>
                                     </div>
                                     <div class="row row-cols-1 gx-0">
-                                        <div class="col-auto" style="width: 100px;">
-                                            <span>Play Time:&nbsp;</span>
+                                        <div class="col-auto text-end" style="width: 60px;">
+                                            <span>Play <img height="15" width="15"
+                                                    data-bind="attr:{src: morseLoadImages().getSrc('stopwatchImage')}">:&nbsp;</span>
                                         </div>
                                         <div class="col-auto">
                                             <span data-bind="text: playingTime().minutes"></span>:<span
