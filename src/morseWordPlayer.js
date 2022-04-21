@@ -1,5 +1,6 @@
 import MorseWavBufferPlayer from './morseWavBufferPlayer.js'
 import { MorseStringToWavBuffer } from './morseStringToWavBuffer.js'
+
 export class MorseWordPlayer {
     myBufferPlayer;
     constructor () {
