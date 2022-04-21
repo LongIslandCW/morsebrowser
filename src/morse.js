@@ -457,6 +457,7 @@ class MorseViewModel {
     if (this.customGroup()) {
       const data = { letters: this.customGroup().trim().replace(/ /g, '') }
       this.randomWordList(data, true)
+      this.closeLessonAccordianIfAutoClosing()
     }
   }
 
@@ -532,6 +533,9 @@ class MorseViewModel {
   }
 
   doPlay = (playJustEnded, fromPlayButton) => {
+    if (!this.rawText().trim()) {
+      return
+    }
     // we get here several ways:
     // 1. user presses play for the first time
     // 1a. set prespaceused to false, so it will get used.
@@ -646,7 +650,7 @@ class MorseViewModel {
     // this computed doesn't seem bound to anything but .rawText, but for some reason it is
     // still recomputing on wpm/fwpm/xtra changes, so...ok
     if (!this.rawText()) {
-      return 0
+      return { minutes: 0, seconds: 0, normedSeconds: '00' }
     }
     const config = this.getMorseStringToWavBufferConfig(this.rawText())
     const est = this.morseWordPlayer.getTimeEstimate(config)
@@ -680,6 +684,12 @@ class MorseViewModel {
         }
       })
     }
+  }
+
+  doClear = () => {
+    // stop playing
+    this.doPause(true, false)
+    this.setText('')
   }
 }
 
