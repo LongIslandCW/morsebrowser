@@ -4,6 +4,7 @@ export default class MorseRssPlugin {
       ctxt.proxydUrl = ko.observable('http://127.0.0.1:8085/').extend({ saveCookie: 'proxydUrl' })
       ctxt.rssPlayMins = ko.observable(5).extend({ saveCookie: 'rssPlayMins' })
       ctxt.rssPollMins = ko.observable(5).extend({ saveCookie: 'rssPollMins' })
+      ctxt.rssCookieWhiteList = ['rssFeedUrl', 'proxydUrl', 'rssPlayMins', 'rssPollMins']
       ctxt.rssTitlesQueue = ko.observableArray()
       ctxt.rssPlayOn = ko.observable(false)
       ctxt.lastRSSPoll = ko.observable(new Date(1900, 0, 0))
