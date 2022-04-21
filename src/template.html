@@ -119,11 +119,11 @@
                     </div>
                     <div class="col-md-auto">
                         <div class="btn-group-vertical">
-                            <button class="btn btn-light" style="padding-left: 0px;" data-bind="click: doClear"><img
-                                    id="trashImage" height="20" width="20" />&nbsp;Clear</button>
+                            <button class="btn btn-light" data-bind="click: doClear"><img id="trashImage" height="20"
+                                    width="20" />&nbsp;Clear</button>
                             <label for="txtfiletoread"><button class="btn btn-light"
-                                    onclick="getElementById('txtfiletoread').click()"><img id="uploadImage" height="20"
-                                        width="20" />&nbsp;Upload</button></label>
+                                    onclick="getElementById('txtfiletoread').click()"><img id="arrowleftImage"
+                                        height="20" width="20" />&nbsp;Insert File</button></label>
 
                             <input type="file" accept=".txt" id="txtfiletoread" class="form-control"
                                 data-bind="event: {change: function() { inputFileChange($element.files[0]) } }" hidden>

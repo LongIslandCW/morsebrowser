@@ -29,9 +29,12 @@ import rssPng from 'bootstrap-icons/icons/rss.svg'
 import hourglassPng from 'bootstrap-icons/icons/hourglass-split.svg'
 import stopwatchPng from 'bootstrap-icons/icons/stopwatch.svg'
 import trashPng from 'bootstrap-icons/icons/trash.svg'
+import arrowleftPng from 'bootstrap-icons/icons/arrow-left.svg'
 export class MorseLoadImages {
   info = []
   constructor () {
+    // TODO: move all these individuals into the array to use the loop lower down,
+    // just haven't had time to do it
     const licwlogoImg = document.getElementById('logo')
     licwlogoImg.src = licwlogo
 
@@ -67,9 +70,6 @@ export class MorseLoadImages {
 
     const volumemuteImg = document.getElementById('volumemuteImage')
     volumemuteImg.src = volumemutePng
-
-    const uploadImg = document.getElementById('uploadImage')
-    uploadImg.src = uploadPng
 
     const gearImg = document.getElementById('gearImage')
     gearImg.src = gearPng
@@ -107,6 +107,14 @@ export class MorseLoadImages {
     this.info.push({ key: 'downloadImage', src: downLoadPng })
     this.info.push({ key: 'stopwatchImage', src: stopwatchPng })
     this.info.push({ key: 'uploadImage', src: uploadPng })
+    this.info.push({ key: 'arrowleftImage', src: arrowleftPng })
+
+    this.info.forEach((i) => {
+      const target = document.getElementById(i.key)
+      if (target) {
+        target.src = i.src
+      }
+    })
   }
 
   getSrc = (key) => {
