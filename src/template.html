@@ -69,29 +69,45 @@
                     <div class="col">
                         <div class="input-group">
                             <span class="input-group-text" data-bind="click: ()=>showRaw(!showRaw())">
-                                <div class="container">
+                                <div class="container gx-0 px-0">
                                     <div class="row row-cols-1 justify-content-center">
                                         <div class="col-md-auto">
                                             <img height=32 width=32
                                                 data-bind="attr:{ src: showRaw() ? morseLoadImages().getSrc('eyeImage') : morseLoadImages().getSrc('eyeslashImage')}" />
                                         </div>
-                                    </div>
-                                    <div class="row row-cols-1">
-                                        <div class="col-md-auto">
 
-                                            <span>Est Time:&nbsp;</span><span
-                                                data-bind="text: timeEstimate().minutes"></span>:<span
+                                    </div>
+
+                                    <!------->
+
+                                    <div class="row row-cols-1 gx-0">
+
+                                        <div class="col-auto" style="width: 100px;">
+
+                                            <span>Est Time:&nbsp;</span>
+                                        </div>
+                                        <div class="col-auto">
+                                            <span data-bind="text: timeEstimate().minutes"></span>:<span
                                                 data-bind="text: timeEstimate().normedSeconds"></span>
 
                                         </div>
                                     </div>
-                                    <div class="row row-cols-1">
-                                        <div class="col-md-auto">
-                                            <span>Play Time:&nbsp;</span><span
-                                                data-bind="text: playingTime().minutes"></span>:<span
+                                    <div class="row row-cols-1 gx-0">
+                                        <div class="col-auto" style="width: 100px;">
+                                            <span>Play Time:&nbsp;</span>
+                                        </div>
+                                        <div class="col-auto">
+                                            <span data-bind="text: playingTime().minutes"></span>:<span
                                                 data-bind="text: playingTime().normedSeconds"></span>
                                         </div>
                                     </div>
+
+                                    <!------->
+
+
+
+
+
                                 </div>
                             </span>
 
