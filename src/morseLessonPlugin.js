@@ -1,5 +1,7 @@
 export default class MorseLessonPlugin {
     static addLessonFeatures = (ko, ctxt) => {
+      ctxt.autoCloseLessonAccordian = ko.observable(true)
+
       ctxt.setUserTargetInitialized = () => {
         ctxt.userTargetInitialized = true
       }
@@ -9,7 +11,7 @@ export default class MorseLessonPlugin {
       }
 
       ctxt.setLetterGroupInitialized = () => {
-        console.log('setlettergroupinitialized')
+        // console.log('setlettergroupinitialized')
         ctxt.letterGroupInitialized = true
       }
 
@@ -37,11 +39,20 @@ export default class MorseLessonPlugin {
         }
       }
 
+      ctxt.closeLessonAccordianIfAutoClosing = () => {
+        if (ctxt.autoCloseLessonAccordian()) {
+          const elem = document.getElementById('lessonAccordianButton')
+          elem.click()
+        }
+      }
       ctxt.setDisplaySelected = (display) => {
-        if (ctxt.displaysInitialized) {
-          ctxt.selectedDisplay(display)
-          ctxt.setText(`when we have lesson files, load ${ctxt.selectedDisplay().fileName}`)
-          ctxt.getWordList(ctxt.selectedDisplay().fileName)
+        if (!display.isDummy) {
+          if (ctxt.displaysInitialized) {
+            ctxt.selectedDisplay(display)
+            ctxt.setText(`when we have lesson files, load ${ctxt.selectedDisplay().fileName}`)
+            ctxt.getWordList(ctxt.selectedDisplay().fileName)
+            ctxt.closeLessonAccordianIfAutoClosing()
+          }
         }
       }
 
@@ -106,7 +117,7 @@ export default class MorseLessonPlugin {
         ctxt.selectedDisplay({})
         const dps = []
         if (ctxt.selectedClass() === '' || ctxt.userTarget() === '' || ctxt.letterGroup() === '') {
-          return [{ display: 'Select wordlist', fileName: 'dummy.txt' }]
+          return [{ display: 'Select wordlist', fileName: 'dummy.txt', isDummy: true }]
         }
         ctxt.wordLists().filter((list) => list.class === ctxt.selectedClass() &&
            list.userTarget === ctxt.userTarget() &&

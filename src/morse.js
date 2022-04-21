@@ -11,8 +11,6 @@ import { Tooltip, Toast, Popover } from 'bootstrap'
 import MorseStringUtils from './morseStringUtils.js'
 import { MorseStringToWavBufferConfig } from './morseStringToWavBuffer.js'
 import { MorseWordPlayer } from './morseWordPlayer.js'
-import licwlogo from './assets/CW-Club-logo-clear400-300x300.png'
-// import favico from './assets/LongIslandCWClub-favicon-2.jpg'
 
 // NOTE: moved this to dynamic import() so that non-RSS users don't need to bother
 // even loading this code into the browser:
@@ -20,14 +18,12 @@ import licwlogo from './assets/CW-Club-logo-clear400-300x300.png'
 
 import Cookies from 'js-cookie'
 import MorseLessonPlugin from './morseLessonPlugin.js'
-
-const licwlogoImg = document.getElementById('logo')
-licwlogoImg.src = licwlogo
-// const favaciImg = document.getElementById('favico')
-// favaciImg.src = favico
+import { MorseLoadImages } from './morseLoadImages.js'
 
 class MorseViewModel {
   constructor () {
+    this.morseLoadImages(new MorseLoadImages())
+
     // create the helper extenders
     ko.extenders.saveCookie = (target, option) => {
       target.subscribe((newValue) => {
@@ -79,6 +75,15 @@ class MorseViewModel {
       return target
     }
 
+    ko.extenders.initRss = (target, option) => {
+      target.subscribe((newValue) => {
+        if (newValue) {
+          this.initializeRss()
+        }
+      })
+      return target
+    }
+
     // apply extenders
     this.wpm.extend({ saveCookie: 'wpm' })
     this.fwpm.extend({ saveCookie: 'fwpm' })
@@ -92,6 +97,9 @@ class MorseViewModel {
     this.volume.extend({ saveCookie: 'volume' }).extend({ setVolume: 'volume' })
     this.noiseVolume.extend({ saveCookie: 'noiseVolume' }).extend({ setNoiseVolume: 'noiseVolume' })
     this.noiseType.extend({ saveCookie: 'noiseType' }).extend({ setNoiseType: 'noiseType' })
+    this.syncWpm.extend({ saveCookie: 'syncWpm' })
+    this.syncFreq.extend({ saveCookie: 'syncFreq' })
+    this.rssEnabled.extend({ initRss: 'rssEnabled' })
 
     // initialize the main rawText
     this.rawText(this.showingText())
@@ -100,9 +108,7 @@ class MorseViewModel {
 
     // check for RSS feature turned on
     if (this.getParameterByName('rssEnabled')) {
-      import('./morseRssPlugin.js').then(({ default: MorseRssPlugin }) => {
-        MorseRssPlugin.addRssFeatures(ko, this)
-        // don't set this until the plugin has initialized above
+      this.initializeRss(() => {
         this.rssEnabled(true)
         // possibly rss-related cookies missed
         // TODO probably in general 'plugins' should be some sort of promise based
@@ -122,11 +128,76 @@ class MorseViewModel {
     this.initializeWordList()
   }
 
-   wpm = ko.observable(20)
    textBuffer = ko.observable('')
-   fwpm = ko.observable(20)
-   ditFrequency = ko.observable(550)
-   dahFrequency = ko.observable(550)
+   trueWpm = ko.observable(20)
+   trueFwpm = ko.observable(20)
+   syncWpm = ko.observable(true)
+
+   wpm = ko.pureComputed({
+     read: () => {
+       return this.trueWpm()
+     },
+     write: (value) => {
+       this.trueWpm(value)
+       if (this.syncWpm() || parseInt(value) < parseInt(this.trueFwpm())) {
+         this.trueFwpm(value)
+       }
+     },
+     owner: this
+   })
+
+   fwpm = ko.pureComputed({
+     read: () => {
+       if (!this.syncWpm()) {
+         if (parseInt(this.trueFwpm()) <= parseInt(this.trueWpm())) {
+           return this.trueFwpm()
+         } else {
+           return this.trueWpm()
+         }
+       } else {
+         this.trueFwpm(this.trueWpm())
+         return this.trueFwpm()
+       }
+     },
+     write: (value) => {
+       if (parseInt(value) <= parseInt(this.trueWpm())) {
+         this.trueFwpm(value)
+       }
+     },
+     owner: this
+   })
+
+   trudDitFrequency = ko.observable(550)
+   truDahFrequency = ko.observable(550)
+   syncFreq = ko.observable(true)
+   ditFrequency = ko.pureComputed({
+     read: () => {
+       return this.trudDitFrequency()
+     },
+     write: (value) => {
+       this.trudDitFrequency(value)
+       if (this.syncFreq()) {
+         this.truDahFrequency(value)
+       }
+     },
+     owner: this
+   })
+
+   dahFrequency = ko.pureComputed({
+     read: () => {
+       if (!this.syncFreq()) {
+         return this.truDahFrequency()
+       } else {
+         this.truDahFrequency(this.trudDitFrequency())
+         return this.trudDitFrequency()
+       }
+     },
+     write: (value) => {
+       this.truDahFrequency(value)
+     },
+     owner: this
+   })
+
    hideList = ko.observable(true)
    currentSentanceIndex = ko.observable(0)
    currentIndex = ko.observable(0)
@@ -142,9 +213,10 @@ class MorseViewModel {
    wordLists = ko.observableArray()
    morseWordPlayer = new MorseWordPlayer()
    rawText = ko.observable()
-   showingText = ko.observable('hello world')
+   showingText = ko.observable('CQ LICW')
    showRaw = ko.observable(true)
    rssEnabled = ko.observable(false)
+   rssInitializedOnce = ko.observable(false)
    volume = ko.observable(10)
    noiseEnabled = ko.observable(false)
    noiseVolume = ko.observable(2)
@@ -202,17 +274,51 @@ class MorseViewModel {
    lastPartialPlayStart = ko.observable()
    isPaused=ko.observable(false)
    syncSize=ko.observable(true)
+   morseLoadImages =ko.observable()
 
    // helper
    loadCookies = () => {
      // load any existing cookie values
+
+     // helper
+     const booleanize = (x) => {
+       if (x === 'true ' || x === 'false') {
+         return x === true
+       } else {
+         return x
+       }
+     }
+
      const cks = Cookies.get()
      if (cks) {
+       const specialHandling = []
        for (const key in cks) {
-         if (typeof this[key] !== 'undefined') {
-           this[key](cks[key])
+         switch (key) {
+           case 'syncWpm':
+           case 'wpm':
+           case 'fwpm':
+           case 'syncFreq':
+           case 'ditFrequency':
+           case 'dahFrequency':
+             specialHandling.push({ key, val: booleanize(cks[key]) })
+             break
+           default:
+             if (typeof this[key] !== 'undefined') {
+               this[key](cks[key])
+             }
          }
        }
+       let target = specialHandling.find(x => x.key === 'syncWpm')
+       if (target) {
+         this[target.key](target.val)
+       }
+       target = specialHandling.find(x => x.key === 'syncFreq')
+       if (target) {
+         this[target.key](target.val)
+       }
+       specialHandling.forEach((x) => {
+         this[x.key](x.val)
+       })
      }
    }
 
@@ -254,6 +360,13 @@ class MorseViewModel {
 
    words = ko.computed(() => {
      return this.sentences()[this.currentSentanceIndex()]
+   }, this)
+
+   flaggedWordsCount = ko.computed(() => {
+     if (!this.flaggedWords().trim()) {
+       return 0
+     }
+     return this.flaggedWords().trim().split(' ').length
    }, this)
 
    shuffleWords = () => {
@@ -314,21 +427,23 @@ class MorseViewModel {
   }
 
   addFlaggedWord = (word) => {
-    if (!this.flaggedWords()) {
-      this.flaggedWords(this.flaggedWords() + ' ' + word)
+    if (!this.flaggedWords().trim()) {
+      this.flaggedWords(this.flaggedWords().trim() + word)
     } else {
       // deal with double click which is also used to pick a word
-      const words = this.flaggedWords().split(' ')
+      const words = this.flaggedWords().trim().split(' ')
       const lastWord = words[words.length - 1]
       if (lastWord === word) {
         // we have either a double click scenario, or otherwise user
         // selected word twice so either way assume removal
         words.pop()
-        if (words.length === 0) {
-          this.flaggedWords('')
-        } else {
-          this.flaggedWords(words.join(' '))
-        }
+      } else {
+        words.push(word)
+      }
+      if (words.length === 0) {
+        this.flaggedWords('')
+      } else {
+        this.flaggedWords(words.join(' '))
       }
     }
   }
@@ -342,6 +457,7 @@ class MorseViewModel {
     if (this.customGroup()) {
       const data = { letters: this.customGroup().trim().replace(/ /g, '') }
       this.randomWordList(data, true)
+      this.closeLessonAccordianIfAutoClosing()
     }
   }
 
@@ -388,7 +504,7 @@ class MorseViewModel {
         word = data.letters
       }
 
-      str += seconds > 0 ? (' ' + word) : word
+      str += seconds > 0 ? (' ' + word.toUpperCase()) : word.toUpperCase()
 
       const config = this.getMorseStringToWavBufferConfig(str)
       const est = this.morseWordPlayer.getTimeEstimate(config)
@@ -400,7 +516,7 @@ class MorseViewModel {
 
   getMorseStringToWavBufferConfig = (text) => {
     const config = new MorseStringToWavBufferConfig()
-    config.word = text
+    config.word = MorseStringUtils.doReplacements(text)
     config.wpm = parseInt(this.wpm())
     config.fwpm = parseInt(this.fwpm())
     config.ditFrequency = parseInt(this.ditFrequency())
@@ -417,6 +533,9 @@ class MorseViewModel {
   }
 
   doPlay = (playJustEnded, fromPlayButton) => {
+    if (!this.rawText().trim()) {
+      return
+    }
     // we get here several ways:
     // 1. user presses play for the first time
     // 1a. set prespaceused to false, so it will get used.
@@ -474,13 +593,15 @@ class MorseViewModel {
     if (fromPauseButton) {
       this.runningPlayMs(this.runningPlayMs() + (Date.now() - this.lastPartialPlayStart()))
       this.isPaused(!this.isPaused())
+    } else {
+      this.isPaused(false)
     }
     this.playerPlaying(false)
     this.morseWordPlayer.pause(() => {
       // we're here if a complete rawtext finished
-      console.log('settinglastfullplaytime')
+      // console.log('settinglastfullplaytime')
       this.lastFullPlayTime(Date.now())
-      console.log(`playtime:${this.lastFullPlayTime() - this.lastPlayFullStart}`)
+      // console.log(`playtime:${this.lastFullPlayTime() - this.lastPlayFullStart}`)
       // TODO make this more generic for any future "plugins"
       if (this.rssPlayCallback) {
         this.rssPlayCallback()
@@ -495,6 +616,7 @@ class MorseViewModel {
 
   inputFileChange = (file) => {
     // thanks to https://newbedev.com/how-to-access-file-input-with-knockout-binding
+    // console.log(file)
     const fr = new FileReader()
     fr.onload = (data) => {
       this.setText(data.target.result)
@@ -528,7 +650,7 @@ class MorseViewModel {
     // this computed doesn't seem bound to anything but .rawText, but for some reason it is
     // still recomputing on wpm/fwpm/xtra changes, so...ok
     if (!this.rawText()) {
-      return 0
+      return { minutes: 0, seconds: 0, normedSeconds: '00' }
     }
     const config = this.getMorseStringToWavBufferConfig(this.rawText())
     const est = this.morseWordPlayer.getTimeEstimate(config)
@@ -536,8 +658,8 @@ class MorseViewModel {
     const seconds = ((est.timeCalcs.totalTime % 60000) / 1000).toFixed(0)
     const normedSeconds = (seconds < 10 ? '0' : '') + seconds
     const timeFigures = { minutes, seconds, normedSeconds }
-    console.log(timeFigures)
-    console.log(est)
+    // console.log(timeFigures)
+    // console.log(est)
     return timeFigures
   }, this)
 
@@ -550,6 +672,25 @@ class MorseViewModel {
     // console.log(est)
     return timeFigures
   }, this)
+
+  initializeRss = (afterCallBack) => {
+    if (!this.rssInitializedOnce()) {
+      import('./morseRssPlugin.js').then(({ default: MorseRssPlugin }) => {
+        MorseRssPlugin.addRssFeatures(ko, this)
+        // don't set this until the plugin has initialized above
+        this.rssInitializedOnce(true)
+        if (afterCallBack) {
+          afterCallBack()
+        }
+      })
+    }
+  }
+
+  doClear = () => {
+    // stop playing
+    this.doPause(true, false)
+    this.setText('')
+  }
 }
 
 // eslint-disable-next-line new-cap
