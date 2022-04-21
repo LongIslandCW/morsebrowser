@@ -28,7 +28,7 @@ import soundwavePng from 'bootstrap-icons/icons/soundwave.svg'
 import rssPng from 'bootstrap-icons/icons/rss.svg'
 import hourglassPng from 'bootstrap-icons/icons/hourglass-split.svg'
 import stopwatchPng from 'bootstrap-icons/icons/stopwatch.svg'
-
+import trashPng from 'bootstrap-icons/icons/trash.svg'
 export class MorseLoadImages {
   info = []
   constructor () {
@@ -88,6 +88,9 @@ export class MorseLoadImages {
 
     const shuffleImg = document.getElementById('shuffleImage')
     shuffleImg.src = shufflePng
+
+    const trashImg = document.getElementById('trashImage')
+    trashImg.src = trashPng
 
     this.info.push({ key: 'lockImage', src: lockPng })
     this.info.push({ key: 'unlockImage', src: unlockPng })
