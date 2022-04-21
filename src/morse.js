@@ -84,6 +84,13 @@ class MorseViewModel {
       return target
     }
 
+    ko.extenders.dummyLogger = (target, option) => {
+      target.subscribe((newValue) => {
+        console.log(`dummyloggerextension option:${option} newValue:${newValue}`)
+      })
+      return target
+    }
+
     // apply extenders
     this.wpm.extend({ saveCookie: 'wpm' })
     this.fwpm.extend({ saveCookie: 'fwpm' })
@@ -100,7 +107,7 @@ class MorseViewModel {
     this.syncWpm.extend({ saveCookie: 'syncWpm' })
     this.syncFreq.extend({ saveCookie: 'syncFreq' })
     this.rssEnabled.extend({ initRss: 'rssEnabled' })
-
+    this.showExpertSettings.extend({ saveCookie: 'showExpertSettings' })
     // initialize the main rawText
     this.rawText(this.showingText())
 
@@ -270,6 +277,7 @@ class MorseViewModel {
    isPaused=ko.observable(false)
    syncSize=ko.observable(true)
    morseLoadImages =ko.observable()
+   showExpertSettings = ko.observable(false)
 
    // helper
    loadCookies = (whiteList) => {
@@ -278,7 +286,7 @@ class MorseViewModel {
      // helper
      const booleanize = (x) => {
        if (x === 'true ' || x === 'false') {
-         return x === true
+         return x === 'true'
        } else {
          return x
        }
@@ -300,7 +308,7 @@ class MorseViewModel {
                break
              default:
                if (typeof this[key] !== 'undefined') {
-                 this[key](cks[key])
+                 this[key](booleanize(cks[key]))
                }
            }
          }
