@@ -19,7 +19,7 @@ class TestMe {
 
     // zip has circular problem so we do it in stages
     // delete old directorty
-    await fs.rm(endDownLoadFolder, { recursive: true, force: true }, () => {})
+    fs.rmdirSync(endDownLoadFolder, { recursive: true, force: true })
     await zip.zip(zipFromFolder, initialZipFile)
     ensureDirSync(endDownLoadFolder)
     fs.renameSync(initialZipFile, endDownLoadFile)
