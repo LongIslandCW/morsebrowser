@@ -48,14 +48,16 @@ module.exports = {
         Buffer: ['buffer', 'Buffer']
       }
     ),
+    /* leaving this for reference but switched to import rather than fetching these
     new CopyPlugin({
       patterns: [
         { from: path.resolve(__dirname, 'src/wordfiles/'), to: 'wordfiles' },
         { from: path.resolve(__dirname, 'src/wordfilesconfigs/'), to: 'wordfilesconfigs' }
-        // { from: "other", to: "public" },
+
       ]
 
     }),
+    */
     new MiniCssExtractPlugin({ filename: '[name].[contenthash].css' }),
     new ESLintPlugin()
   ],
