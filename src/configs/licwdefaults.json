@@ -8,17 +8,17 @@
         },
         {
             "key": "showingText",
-            "value": "Mike waz here",
+            "value": "CQ LICW",
             "comment": "text that shows up every time browser refreshed. advise you keep something here so newb can just hit play..."
         },
         {
             "key": "wpm",
-            "value": 20,
+            "value": 12,
             "comment": ""
         },
         {
             "key": "fwpm",
-            "value": 20,
+            "value": 6,
             "comment": "remember if this deviates from wpm, set syncWpm below to false"
         },
         {
@@ -53,7 +53,7 @@
         },
         {
             "key": "syncWpm",
-            "value": true,
+            "value": false,
             "comment": "make this false if wpm and fwpm are different above"
         },
         {
