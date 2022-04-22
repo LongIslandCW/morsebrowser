@@ -1,4 +1,4 @@
-import WordListsJson from './wordfilesconfigs/wordlists.json'
+import WordListsJson from '../wordfilesconfigs/wordlists.json'
 export default class MorseLessonPlugin {
     static addLessonFeatures = (ko, ctxt) => {
       ctxt.autoCloseLessonAccordian = ko.observable(false).extend({ saveCookie: 'autoCloseLessonAccordian' })

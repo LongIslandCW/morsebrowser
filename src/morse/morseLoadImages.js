@@ -1,4 +1,4 @@
-import licwlogo from './assets/CW-Club-logo-clear400-300x300.png'
+import licwlogo from '../assets/CW-Club-logo-clear400-300x300.png'
 import downLoadPng from 'bootstrap-icons/icons/download.svg'
 import volumePng from 'bootstrap-icons/icons/volume-up.svg'
 import githubPng from 'bootstrap-icons/icons/github.svg'

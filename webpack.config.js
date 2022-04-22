@@ -8,7 +8,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 module.exports = {
   mode: 'development',
   entry: {
-    bundle: path.resolve(__dirname, 'src/morse.js')
+    bundle: path.resolve(__dirname, 'src/index.js')
   },
   output: {
     filename: '[name][contenthash].js',
@@ -18,19 +18,19 @@ module.exports = {
   },
   devServer: {
     static: {
-      directory: path.resolve(__dirname,'dist')
+      directory: path.resolve(__dirname, 'dist')
     },
     watchFiles: {
-      paths: ['dist/index.html','src/template.html'],
+      paths: ['dist/index.html', 'src/template.html'],
       options: {
-        usePolling: false,
+        usePolling: false
       }
     },
     port: 3000,
     open: false,
     hot: true,
     compress: true,
-    historyApiFallback: true,
+    historyApiFallback: true
   },
   devtool: 'inline-source-map',
   plugins: [
@@ -51,9 +51,9 @@ module.exports = {
     new CopyPlugin({
       patterns: [
         { from: path.resolve(__dirname, 'src/wordfiles/'), to: 'wordfiles' },
-        { from: path.resolve(__dirname, 'src/wordfilesconfigs/'), to: 'wordfilesconfigs' },
+        { from: path.resolve(__dirname, 'src/wordfilesconfigs/'), to: 'wordfilesconfigs' }
         // { from: "other", to: "public" },
-      ],
+      ]
 
     }),
     new MiniCssExtractPlugin({ filename: '[name].[contenthash].css' }),
@@ -88,7 +88,7 @@ module.exports = {
       timers: require.resolve('timers-browserify'),
       url: require.resolve('url/'),
       buffer: require.resolve('buffer/'),
-      os: require.resolve('os-browserify'),
+      os: require.resolve('os-browserify')
 
     }
   }

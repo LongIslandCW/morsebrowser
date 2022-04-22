@@ -1,13 +1,4 @@
 import ko from 'knockout'
-
-// see https://getbootstrap.com/docs/5.0/getting-started/webpack/
-import 'bootstrap/dist/css/bootstrap.min.css'
-// You can specify which plugins you need
-// Note that even though these don't seem to be used directly,
-// they are used by the accordian.
-// eslint-disable-next-line no-unused-vars
-import { Tooltip, Toast, Popover } from 'bootstrap'
-
 import MorseStringUtils from './morseStringUtils.js'
 import { MorseStringToWavBufferConfig } from './morseStringToWavBuffer.js'
 import { MorseWordPlayer } from './morseWordPlayer.js'
@@ -19,9 +10,9 @@ import { MorseWordPlayer } from './morseWordPlayer.js'
 import Cookies from 'js-cookie'
 import MorseLessonPlugin from './morseLessonPlugin.js'
 import { MorseLoadImages } from './morseLoadImages.js'
-import licwDefaults from './configs/licwdefaults.json'
+import licwDefaults from '../configs/licwdefaults.json'
 
-class MorseViewModel {
+export class MorseViewModel {
   constructor () {
     console.log('licwDefaults:')
     console.log(licwDefaults)
@@ -726,6 +717,3 @@ class MorseViewModel {
     this.setText('')
   }
 }
-
-// eslint-disable-next-line new-cap
-ko.applyBindings(new MorseViewModel())
