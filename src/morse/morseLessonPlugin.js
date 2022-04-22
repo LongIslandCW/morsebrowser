@@ -1,4 +1,5 @@
 import WordListsJson from '../wordfilesconfigs/wordlists.json'
+import { MorseLessonFileFinder } from './morseLessonFinder'
 export default class MorseLessonPlugin {
     static addLessonFeatures = (ko, ctxt) => {
       ctxt.autoCloseLessonAccordian = ko.observable(false).extend({ saveCookie: 'autoCloseLessonAccordian' })
@@ -50,7 +51,7 @@ export default class MorseLessonPlugin {
         if (!display.isDummy) {
           if (ctxt.displaysInitialized) {
             ctxt.selectedDisplay(display)
-            ctxt.setText(`when we have lesson files, load ${ctxt.selectedDisplay().fileName}`)
+            // ctxt.setText(`when we have lesson files, load ${ctxt.selectedDisplay().fileName}`)
             ctxt.getWordList(ctxt.selectedDisplay().fileName)
             ctxt.closeLessonAccordianIfAutoClosing()
           }
@@ -124,25 +125,20 @@ export default class MorseLessonPlugin {
 
       ctxt.getWordList = (filename) => {
         const isText = filename.endsWith('txt')
-        fetch('wordfiles/' + filename)
-          .then((response) => {
+
+        const afterFound = (result) => {
+          if (result.found) {
             if (isText) {
-              return response.text()
+              ctxt.setText(result.data)
             } else {
-              // assume json
-              return response.json()
+              ctxt.randomWordList(result.data)
             }
-          })
-          .then((data) => {
-            if (isText) {
-              ctxt.setText(data)
-            } else {
-              ctxt.randomWordList(data)
-            }
-          })
-          .catch((err) => {
-            console.log('error: ' + err)
-          })
+          } else {
+            ctxt.setText(`ERROR: Couldn't find ${filename} or it lacks .txt or .json extension.`)
+          }
+        }
+
+        MorseLessonFileFinder.getMorseLessonFile(filename, afterFound)
       }
     }
 }

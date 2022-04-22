@@ -14,8 +14,6 @@ import licwDefaults from '../configs/licwdefaults.json'
 
 export class MorseViewModel {
   constructor () {
-    console.log('licwDefaults:')
-    console.log(licwDefaults)
     this.morseLoadImages(new MorseLoadImages())
 
     // create the helper extenders
