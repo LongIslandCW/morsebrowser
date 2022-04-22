@@ -1,3 +1,4 @@
+import WordListsJson from './wordfilesconfigs/wordlists.json'
 export default class MorseLessonPlugin {
     static addLessonFeatures = (ko, ctxt) => {
       ctxt.autoCloseLessonAccordian = ko.observable(false).extend({ saveCookie: 'autoCloseLessonAccordian' })
@@ -57,16 +58,7 @@ export default class MorseLessonPlugin {
       }
 
       ctxt.initializeWordList = () => {
-        fetch('wordfilesconfigs/wordlists.json')
-          .then((response) => {
-            return response.json()
-          })
-          .then((data) => {
-            ctxt.wordLists(data.fileOptions)
-          })
-          .catch((err) => {
-            console.log('error: ' + err)
-          })
+        ctxt.wordLists(WordListsJson.fileOptions)
       }
 
       ctxt.userTargets = ko.computed(() => {
