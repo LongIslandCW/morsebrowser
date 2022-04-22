@@ -36,8 +36,8 @@ jobs:
       - run: npm run build --if-present
 
       # - run: npm run postbuild --if-present
-
-      - name: Deploy to GitHub Pages
+      if_merged: 
+        - name: Deploy to GitHub Pages
         # You may pin to the exact commit or the version.
         # uses: JamesIves/github-pages-deploy-action@360c8e75d0ee81732d0a5675c71e51b569df2ee8
         uses: JamesIves/github-pages-deploy-action@v4.3.0
