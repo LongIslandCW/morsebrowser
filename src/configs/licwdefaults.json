@@ -13,12 +13,12 @@
         },
         {
             "key": "wpm",
-            "value": 12,
+            "value": 20,
             "comment": ""
         },
         {
             "key": "fwpm",
-            "value": 6,
+            "value": 20,
             "comment": "remember if this deviates from wpm, set syncWpm below to false"
         },
         {
@@ -53,7 +53,7 @@
         },
         {
             "key": "syncWpm",
-            "value": false,
+            "value": true,
             "comment": "make this false if wpm and fwpm are different above"
         },
         {
