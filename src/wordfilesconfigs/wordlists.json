@@ -97,7 +97,7 @@
     {"sort":96, "userTarget": "STUDENT", "class": "B2", "letterGroup": "73?", "display":"B1 73? QXV 59, KMY 40 28BK", "fileName": "SB27312.json" },
     {"sort":97, "userTarget": "STUDENT", "class": "B2", "letterGroup": "73?", "display":"B1 73? QXV 59, KMY 40 28BK ZJ/", "fileName": "SB27313.json" },
     {"sort":98, "userTarget": "STUDENT", "class": "B2", "letterGroup": "73?", "display":"B1 73? QXV 59, KMY 40 28BK ZJ/ 16.", "fileName": "SB27314.json" },
-    {"sort":99, "userTarget": "STUDENT", "class": "B2", "letterGroup": "<AR><SK><BT>", "display":"<AR><SK><BT>", "fileName": "SB2ARSKBT.2json" },
+    {"sort":99, "userTarget": "STUDENT", "class": "B2", "letterGroup": "<AR><SK><BT>", "display":"<AR><SK><BT>", "fileName": "SB2ARSKBT2.json" },
     {"sort":100, "userTarget": "STUDENT", "class": "B2", "letterGroup": "<AR><SK><BT>", "display":"QSO ABBREVIATIONS", "fileName": "SB2ARSKBT3.txt" },
     {"sort":101, "userTarget": "STUDENT", "class": "B2", "letterGroup": "<AR><SK><BT>", "display":"QSO PROTOCOL", "fileName": "SB2ARSKBT4.txt" },
     {"sort":102, "userTarget": "STUDENT", "class": "B2", "letterGroup": "<AR><SK><BT>", "display":"STATES", "fileName": "SB2ARSKBT5.txt" },

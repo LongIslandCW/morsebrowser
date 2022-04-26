@@ -100,6 +100,7 @@ export class MorseViewModel {
     this.syncFreq.extend({ saveCookie: 'syncFreq' })
     this.rssEnabled.extend({ initRss: 'rssEnabled' })
     this.showExpertSettings.extend({ saveCookie: 'showExpertSettings' })
+    this.cardFontPx.extend({ saveCookie: 'cardFontPx' })
     // initialize the main rawText
     this.rawText(this.showingText())
 
@@ -275,6 +276,7 @@ export class MorseViewModel {
    syncSize=ko.observable(true)
    morseLoadImages =ko.observable()
    showExpertSettings = ko.observable(false)
+   cardFontPx = ko.observable()
 
    // helper
    booleanize = (x) => {

@@ -23,12 +23,12 @@
         },
         {
             "key": "ditFrequency",
-            "value": 450,
+            "value": 600,
             "comment": ""
         },
         {
             "key": "dahFrequency",
-            "value": 450,
+            "value": 600,
             "comment": "remember if dit dah are different, set syncFreq below to false"
         },
         {
@@ -75,6 +75,11 @@
             "key": "autoCloseLessonAccordian",
             "value": false,
             "comment": ""
+        },
+        {
+            "key": "cardFontPx",
+            "value": 15,
+            "comment": "controls the font size of the cards may help with visibility"
         }
     ]
 }

@@ -22,7 +22,7 @@ class TestMe {
     if (fs.existsSync(endDownLoadFolder)) {
       fs.rmdirSync(endDownLoadFolder, { recursive: true, force: true })
     }
-    console.log('removed')
+    // console.log('removed')
     await zip.zip(zipFromFolder, initialZipFile)
     ensureDirSync(endDownLoadFolder)
     fs.renameSync(initialZipFile, endDownLoadFile)
