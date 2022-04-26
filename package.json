@@ -30,7 +30,7 @@
   "scripts": {
     "prebuild": "node ./prebuildLessons.js",
     "build": "webpack",
-    "postbuild": "node ./zipdist.js",
+    "postbuild": "node ./zipdist.js && node ./checklessons.js",
     "dev": "webpack serve"
   },
   "devDependencies": {
