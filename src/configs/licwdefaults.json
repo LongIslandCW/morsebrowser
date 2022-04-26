@@ -23,12 +23,12 @@
         },
         {
             "key": "ditFrequency",
-            "value": 450,
+            "value": 600,
             "comment": ""
         },
         {
             "key": "dahFrequency",
-            "value": 450,
+            "value": 600,
             "comment": "remember if dit dah are different, set syncFreq below to false"
         },
         {
