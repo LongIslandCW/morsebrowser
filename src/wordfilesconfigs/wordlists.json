@@ -268,7 +268,7 @@
     {"sort":267, "userTarget": "INSTRUCTOR", "class": "B2", "letterGroup": "73?", "display":"SPEED DRILL", "fileName": "IB27310.json" },
     {"sort":268, "userTarget": "INSTRUCTOR", "class": "B2", "letterGroup": "73?", "display":"B1 73?", "fileName": "SB2737.json" },
     {"sort":269, "userTarget": "INSTRUCTOR", "class": "B2", "letterGroup": "<AR><SK><BT>", "display":"<AR>", "fileName": "IB2ARSKBT1.json" },
-    {"sort":270, "userTarget": "INSTRUCTOR", "class": "B2", "letterGroup": "<AR><SK><BT>", "display":"<SK>", "fileName": "IB2ARSKBT.2json" },
+    {"sort":270, "userTarget": "INSTRUCTOR", "class": "B2", "letterGroup": "<AR><SK><BT>", "display":"<SK>", "fileName": "IB2ARSKBT2.json" },
     {"sort":271, "userTarget": "INSTRUCTOR", "class": "B2", "letterGroup": "<AR><SK><BT>", "display":"<AR><SK>", "fileName": "IB2ARSKBT3.json" },
     {"sort":272, "userTarget": "INSTRUCTOR", "class": "B2", "letterGroup": "<AR><SK><BT>", "display":"<BT>", "fileName": "IB2ARSKBT4.json" },
     {"sort":273, "userTarget": "INSTRUCTOR", "class": "B2", "letterGroup": "<AR><SK><BT>", "display":"<AR><SK><BT>", "fileName": "IB2ARSKBT5.json" },
