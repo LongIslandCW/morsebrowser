@@ -325,7 +325,7 @@
     {"sort":324, "userTarget": "INSTRUCTOR", "class": "B2", "letterGroup": "CAPSTONE", "display":"QSO PROTOCOL 3", "fileName": "IB2C5.txt" },
     {"sort":325, "userTarget": "INSTRUCTOR", "class": "B2", "letterGroup": "CAPSTONE", "display":"QSO PROTOCOL 4", "fileName": "IB2C6.txt" },
     {"sort":326, "userTarget": "INSTRUCTOR", "class": "B2", "letterGroup": "CAPSTONE", "display":"CALLSIGNS", "fileName": "IB2C7.txt" },
-    {"sort":327, "userTarget": "INSTRUCTOR", "class": "B2", "letterGroup": "CAPSTONE", "display":"STATES", "fileName": "IB2C8.txt" }
+    {"sort":327, "userTarget": "INSTRUCTOR", "class": "B2", "letterGroup": "CAPSTONE", "display":"STATES", "fileName": "IB2C8.txt" },
     {"sort":328, "userTarget": "ICR", "class": "LETTERS", "letterGroup": "", "display":"", "fileName": "ICR1.TXT" },
     {"sort":329, "userTarget": "ICR", "class": "WORDS", "letterGroup": "STATE ABBREVIATIONS", "display":"", "fileName": "ICR2.TXT" },
     {"sort":330, "userTarget": "ICR", "class": "WORDS", "letterGroup": "2 LETTER", "display":"", "fileName": "ICR3.TXT" },
