@@ -2,6 +2,7 @@ import ko from 'knockout'
 import MorseStringUtils from './morseStringUtils.js'
 import { MorseStringToWavBufferConfig } from './morseStringToWavBuffer.js'
 import { MorseWordPlayer } from './morseWordPlayer.js'
+import { MorseVoice } from './morseVoice.js'
 
 // NOTE: moved this to dynamic import() so that non-RSS users don't need to bother
 // even loading this code into the browser:
@@ -277,6 +278,7 @@ export class MorseViewModel {
    morseLoadImages =ko.observable()
    showExpertSettings = ko.observable(false)
    cardFontPx = ko.observable()
+   voiceEnabled = ko.observable(false)
 
    // helper
    booleanize = (x) => {
@@ -594,19 +596,23 @@ export class MorseViewModel {
     playJustEnded || fromPlayButton ? 0 : 1000)
   }
 
-  playEnded = () => {
-    this.runningPlayMs(this.runningPlayMs() + (Date.now() - this.lastPartialPlayStart()))
-    if (this.currentIndex() < this.words().length - 1) {
-      this.incrementIndex()
-      this.doPlay(true)
-    } else if (this.currentSentanceIndex() < this.sentenceMax()) {
-      // move to next sentence
-      this.currentSentanceIndex(Number(this.currentSentanceIndex()) + 1)
-      this.currentIndex(0)
-      this.doPlay(true)
+  playEnded = (fromVoice) => {
+    if (this.voiceEnabled() && !fromVoice) {
+      MorseVoice.speak(this.words()[this.currentIndex()], () => { this.playEnded(true) })
     } else {
+      this.runningPlayMs(this.runningPlayMs() + (Date.now() - this.lastPartialPlayStart()))
+      if (this.currentIndex() < this.words().length - 1) {
+        this.incrementIndex()
+        this.doPlay(true)
+      } else if (this.currentSentanceIndex() < this.sentenceMax()) {
+      // move to next sentence
+        this.currentSentanceIndex(Number(this.currentSentanceIndex()) + 1)
+        this.currentIndex(0)
+        this.doPlay(true)
+      } else {
       // nothing more to play
-      this.doPause(true)
+        this.doPause(true)
+      }
     }
   }
 

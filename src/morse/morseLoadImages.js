@@ -32,6 +32,7 @@ import trashSvg from 'bootstrap-icons/icons/trash.svg'
 import arrowleftSvg from 'bootstrap-icons/icons/arrow-left.svg'
 import exclamationoctagonSvg from 'bootstrap-icons/icons/exclamation-octagon.svg'
 import barchartSvg from 'bootstrap-icons/icons/bar-chart.svg'
+import chatquoteSvg from 'bootstrap-icons/icons/chat-quote.svg'
 export class MorseLoadImages {
   info = []
   constructor () {
@@ -69,6 +70,7 @@ export class MorseLoadImages {
     this.info.push({ key: 'flagImage', src: flagSvg })
     this.info.push({ key: 'bookImage', src: bookSvg })
     this.info.push({ key: 'barchartImage', src: barchartSvg })
+    this.info.push({ key: 'chatquoteImage', src: chatquoteSvg })
     const dupes = []
     /* Accomodate where id="xyzImage" This is discouraged because good practice not to duplicate ids */
     /* see below getSrc */
