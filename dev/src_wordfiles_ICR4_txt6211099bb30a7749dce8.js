@@ -7,7 +7,7 @@
   \********************************/
 /***/ ((module) => {
 
-module.exports = "\n";
+module.exports = "A I AT IT NO TO AS SO OR AN ON IN IS ANT TOE ONE RAT SAT EAT SIT CAR ACE CAT OAR SET ARE SEE ACT TAN RAN EEL NOR TIN ATE CAN OIL ILL LOT COT NOT TEN LIE ALL ITS\n";
 
 /***/ })
 
