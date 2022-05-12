@@ -326,4 +326,16 @@
     {"sort":325, "userTarget": "INSTRUCTOR", "class": "B2", "letterGroup": "CAPSTONE", "display":"QSO PROTOCOL 4", "fileName": "IB2C6.txt" },
     {"sort":326, "userTarget": "INSTRUCTOR", "class": "B2", "letterGroup": "CAPSTONE", "display":"CALLSIGNS", "fileName": "IB2C7.txt" },
     {"sort":327, "userTarget": "INSTRUCTOR", "class": "B2", "letterGroup": "CAPSTONE", "display":"STATES", "fileName": "IB2C8.txt" }
+    {"sort":328, "userTarget": "ICR", "class": "LETTERS", "letterGroup": "", "display":"", "fileName": "ICR1.TXT" },
+    {"sort":329, "userTarget": "ICR", "class": "WORDS", "letterGroup": "STATE ABBREVIATIONS", "display":"", "fileName": "ICR2.TXT" },
+    {"sort":330, "userTarget": "ICR", "class": "WORDS", "letterGroup": "2 LETTER", "display":"", "fileName": "ICR3.TXT" },
+    {"sort":331, "userTarget": "ICR", "class": "WORDS", "letterGroup": "1-3 LETTER", "display":"", "fileName": "ICR4.TXT" },
+    {"sort":332, "userTarget": "ICR", "class": "WORDS", "letterGroup": "1-4 LETTER", "display":"", "fileName": "ICR5.TXT" },
+    {"sort":333, "userTarget": "ICR", "class": "WORDS", "letterGroup": "1-5 LETTER", "display":"", "fileName": "ICR6.TXT" },
+    {"sort":334, "userTarget": "ICR", "class": "WORDS", "letterGroup": "1-6 LETTER", "display":"", "fileName": "ICR7.TXT" },
+    {"sort":335, "userTarget": "ICR", "class": "WORDS", "letterGroup": "ALL", "display":"", "fileName": "ICR8.TXT" },
+    {"sort":336, "userTarget": "ICR", "class": "PHRASES", "letterGroup": "1-4 LETTER", "display":"", "fileName": "ICR9.TXT" },
+    {"sort":337, "userTarget": "ICR", "class": "PHRASES", "letterGroup": "1-5 LETTER", "display":"", "fileName": "ICR10.TXT" },
+    {"sort":338, "userTarget": "ICR", "class": "PHRASES", "letterGroup": "1-6 LETTER", "display":"", "fileName": "ICR11.TXT" },
+    {"sort":339, "userTarget": "ICR", "class": "PHRASES", "letterGroup": "ALL", "display":"", "fileName": "ICR12.TXT" } 
     ]}
