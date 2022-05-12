@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>LICW Morse Practice Page</title>
 
-<link rel="icon" href="LongIslandCWClub-favicon-2.jpg"><script defer src="bundlecc6d1adb784d2ab350ad.js"></script><link href="bundle.618c1c2672d3071ffd11.css" rel="stylesheet"></head>
+<link rel="icon" href="LongIslandCWClub-favicon-2.jpg"><script defer src="bundle1b4b2e2703e0818b433f.js"></script><link href="bundle.618c1c2672d3071ffd11.css" rel="stylesheet"></head>
 
 <body>
     <div class="container-xxl" style="overflow-y:auto;">
@@ -417,6 +417,16 @@
                                         <label class=" btn btn-outline-primary" for="btncheckrss"><img
                                                 data-bind="attr:{ src: morseLoadImages().getSrc('rssImage')}">&nbsp;RSS&nbsp;<img
                                                 data-bind="attr:{ src: rssEnabled() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
+                                    </div>
+
+                                    <!--voice toggle-->
+                                    <div class="col-auto" data-bind="visible: showExpertSettings">
+
+                                        <input type="checkbox" class="btn-check" autocomplete="off" id="btncheckvoice"
+                                            data-bind="checked: voiceEnabled">
+                                        <label class=" btn btn-outline-primary" for="btncheckvoice"><img
+                                                data-bind="attr:{ src: morseLoadImages().getSrc('chatquoteImage')}">&nbsp;Voice&nbsp;<img
+                                                data-bind="attr:{ src: voiceEnabled() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
                                     </div>
                                 </div>
 
