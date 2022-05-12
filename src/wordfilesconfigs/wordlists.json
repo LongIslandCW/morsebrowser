@@ -337,5 +337,5 @@
     {"sort":336, "userTarget": "ICR", "class": "PHRASES", "letterGroup": "1-4 LETTER", "display":"", "fileName": "ICR9.TXT" },
     {"sort":337, "userTarget": "ICR", "class": "PHRASES", "letterGroup": "1-5 LETTER", "display":"", "fileName": "ICR10.TXT" },
     {"sort":338, "userTarget": "ICR", "class": "PHRASES", "letterGroup": "1-6 LETTER", "display":"", "fileName": "ICR11.TXT" },
-    {"sort":339, "userTarget": "ICR", "class": "PHRASES", "letterGroup": "ALL", "display":"", "fileName": "ICR12.TXT" } 
+    {"sort":339, "userTarget": "ICR", "class": "PHRASES", "letterGroup": "ALL", "display":"", "fileName": "ICR12.TXT" }, 
     ]}
