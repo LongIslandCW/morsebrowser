@@ -2,7 +2,7 @@ import ko from 'knockout'
 import MorseStringUtils from './morseStringUtils.js'
 import { MorseStringToWavBufferConfig } from './morseStringToWavBuffer.js'
 import { MorseWordPlayer } from './morseWordPlayer.js'
-import { MorseVoice } from './morseVoice.js'
+import { MorseVoice, MorseVoiceInfo } from './morseVoice.js'
 
 // NOTE: moved this to dynamic import() so that non-RSS users don't need to bother
 // even loading this code into the browser:
@@ -126,6 +126,9 @@ export class MorseViewModel {
 
     // initialize the wordlist
     this.initializeWordList()
+
+    // voice
+    this.morseVoice = new MorseVoice((data) => { this.voiceVoices(data) })
   }
   // END CONSTRUCTOR
 
@@ -279,6 +282,14 @@ export class MorseViewModel {
    showExpertSettings = ko.observable(false)
    cardFontPx = ko.observable()
    voiceEnabled = ko.observable(false)
+   voiceThinkingTime = ko.observable(0)
+   voiceVoice = ko.observable()
+   voiceVolume = ko.observable(10)
+   voiceRate = ko.observable(1)
+   voicePitch = ko.observable(1)
+   voiceLang = ko.observable('en-us')
+   voiceVoices = ko.observableArray([])
+   morseVoice = {}
 
    // helper
    booleanize = (x) => {
@@ -598,7 +609,16 @@ export class MorseViewModel {
 
   playEnded = (fromVoice) => {
     if (this.voiceEnabled() && !fromVoice) {
-      MorseVoice.speak(this.words()[this.currentIndex()], () => { this.playEnded(true) })
+      setTimeout(() => {
+        const morseVoiceInfo = new MorseVoiceInfo()
+        morseVoiceInfo.textToSpeak = this.words()[this.currentIndex()]
+        morseVoiceInfo.voice = this.voiceVoice()
+        morseVoiceInfo.volume = this.voiceVolume() / 10
+        morseVoiceInfo.rate = this.voiceRate()
+        morseVoiceInfo.pitch = this.voicePitch()
+        morseVoiceInfo.onEnd = () => { this.playEnded(true) }
+        this.morseVoice.speak(morseVoiceInfo)
+      }, this.voiceThinkingTime() * 1000)
     } else {
       this.runningPlayMs(this.runningPlayMs() + (Date.now() - this.lastPartialPlayStart()))
       if (this.currentIndex() < this.words().length - 1) {
