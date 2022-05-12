@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>LICW Morse Practice Page</title>
 
-<link rel="icon" href="LongIslandCWClub-favicon-2.jpg"><script defer src="bundle8bfe8d9d6c783f1f17ac.js"></script><link href="bundle.618c1c2672d3071ffd11.css" rel="stylesheet"></head>
+<link rel="icon" href="LongIslandCWClub-favicon-2.jpg"><script defer src="bundle99cb6ef5205143028de1.js"></script><link href="bundle.618c1c2672d3071ffd11.css" rel="stylesheet"></head>
 
 <body>
     <div class="container-xxl" style="overflow-y:auto;">
@@ -420,14 +420,65 @@
                                     </div>
 
                                     <!--voice toggle-->
-                                    <div class="col-auto" data-bind="visible: showExpertSettings">
+                                    <div class="input-group">
+                                        <div class="col-auto" data-bind="visible: showExpertSettings">
 
-                                        <input type="checkbox" class="btn-check" autocomplete="off" id="btncheckvoice"
-                                            data-bind="checked: voiceEnabled">
-                                        <label class=" btn btn-outline-primary" for="btncheckvoice"><img
-                                                data-bind="attr:{ src: morseLoadImages().getSrc('chatquoteImage')}">&nbsp;Voice&nbsp;<img
-                                                data-bind="attr:{ src: voiceEnabled() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
+                                            <input type="checkbox" class="btn-check" autocomplete="off"
+                                                id="btncheckvoice" data-bind="checked: voiceEnabled">
+                                            <label class=" btn btn-outline-primary" for="btncheckvoice"><img
+                                                    data-bind="attr:{ src: morseLoadImages().getSrc('chatquoteImage')}">&nbsp;Voice&nbsp;<img
+                                                    data-bind="attr:{ src: voiceEnabled() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
+                                        </div>
+                                        <!-- voice thinktime-->
+                                        <div class="col-md-auto" data-bind="if: showExpertSettings() && voiceEnabled()">
+                                            <div class="input-group">
+                                                <span class="input-group-text">Delay<img width=20 height=20
+                                                        data-bind="attr:{ src: morseLoadImages().getSrc('stopwatchImage')}"></span>
+                                                <input type="number" style="max-width:75px; min-width: 75px;"
+                                                    class="form-control" min="0" max="10" step=".25"
+                                                    data-bind="textInput: voiceThinkingTime">
+                                            </div>
+                                        </div>
+                                        <!-- voice speaker-->
+                                        <div class="col-auto"
+                                            data-bind="if: showExpertSettings() && voiceEnabled() && voiceVoices().length">
+                                            <select class="form-select" data-bind="options: voiceVoices,
+                                        optionsText: 'name',
+                                        value: voiceVoice,
+                                        optionsCaption: 'Choose speaker...'"></select>
+                                        </div>
+                                        <!-- voice volume-->
+                                        <div class="col-md-auto" data-bind="if: showExpertSettings() && voiceEnabled()">
+                                            <div class="input-group">
+                                                <span class="input-group-text"><img width=20 height=20
+                                                        data-bind="attr:{ src: morseLoadImages().getSrc('volumeImage')}"></span>
+                                                <input type="number" style="max-width:75px; min-width: 75px;"
+                                                    class="form-control" min="0" max="10" step="1"
+                                                    data-bind="textInput: voiceVolume">
+                                            </div>
+                                        </div>
+                                        <!-- voice pitch-->
+                                        <div class="col-md-auto" data-bind="if: showExpertSettings() && voiceEnabled()">
+                                            <div class="input-group">
+                                                <span class="input-group-text">Pitch<img width=20 height=20
+                                                        data-bind="attr:{ src: morseLoadImages().getSrc('musicnoteImage')}"></span>
+                                                <input type="number" style="max-width:75px; min-width: 75px;"
+                                                    class="form-control" min="0" max="2" step=".25"
+                                                    data-bind="textInput: voicePitch">
+                                            </div>
+                                        </div>
+                                        <!-- voice rate-->
+                                        <div class="col-md-auto" data-bind="if: showExpertSettings() && voiceEnabled()">
+                                            <div class="input-group">
+                                                <span class="input-group-text">Rate<img width=20 height=20
+                                                        data-bind="attr:{ src: morseLoadImages().getSrc('speedometerImage')}"></span>
+                                                <input type="number" style="max-width:75px; min-width: 75px;"
+                                                    class="form-control" min=".1" max="10" step=".1"
+                                                    data-bind="textInput: voiceRate">
+                                            </div>
+                                        </div>
                                     </div>
+
                                 </div>
 
                             </div>
