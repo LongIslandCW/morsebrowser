@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>LICW Morse Practice Page</title>
 
-<link rel="icon" href="LongIslandCWClub-favicon-2.jpg"><script defer src="bundleb6556b3b9d49ad9e5e1c.js"></script><link href="bundle.618c1c2672d3071ffd11.css" rel="stylesheet"></head>
+<link rel="icon" href="LongIslandCWClub-favicon-2.jpg"><script defer src="bundle5a3daa4371132a8e3af0.js"></script><link href="bundle.618c1c2672d3071ffd11.css" rel="stylesheet"></head>
 
 <body>
     <div class="container-xxl" style="overflow-y:auto;">
@@ -691,6 +691,17 @@
                                 data-bind="text: isShuffled()?'UnShuffle':'Shuffle'"></span>&nbsp;<img id="shuffleImage"
                                 height="20" width="20"></button>
 
+                    </div>
+
+                    <!-- loop -->
+                    <div class="input-group me-2" aria-label="thirdgroupabcd" role="group">
+
+
+                        <input type="checkbox" class="btn-check" autocomplete="off" id="btncheckloop"
+                            data-bind="checked: loop">
+                        <label class=" btn btn-outline-primary" for="btncheckloop"><img
+                                data-bind="attr:{ src: morseLoadImages().getSrc('arrowrepeatImage')}">&nbsp;Loop&nbsp;<img
+                                data-bind="attr:{ src: loop() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
                     </div>
                 </div>
 
