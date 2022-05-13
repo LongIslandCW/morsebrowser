@@ -637,12 +637,28 @@
 
                 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                     <div class="btn-group me-2" role="group" aria-label="Basic mixed styles example">
-                        <button type="button" class="btn btn-success" data-bind="click: () => doPlay(false,true)">Play
+                        <!-- play button -->
+                        <button type="button" class="btn btn-success" data-bind="click: () => doPlay(false,true)">
+                            <span data-bind="visible: !playerPlaying()">Play</span>
+                            <!--played-->
+                            <span data-bind="visible: playerPlaying()">
+                                <span data-bind="text: playingTime().minutes"></span>:<span
+                                    data-bind="text: playingTime().normedSeconds"></span>
+                            </span>
+                            <!--estimate-->
+                            <span>
+                                <span data-bind="text: timeEstimate().minutes"></span>:<span
+                                    data-bind="text: timeEstimate().normedSeconds"></span>
+
+                            </span>
+
+
                             &nbsp;
                             <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
                                 data-bind="visible: playerPlaying"></span>
 
-                            <img id='playImage' data-bind="visible: !playerPlaying()"></button>
+                            <img id='playImage' data-bind="visible: !playerPlaying()">
+                        </button>
                         <button type="button" class="btn btn-warning" data-bind="click: decrementIndex">Back
                             1&nbsp;<img height="20" width="20"
                                 data-bind="attr:{src: morseLoadImages().getSrc('skipbackImage') }"></button>
