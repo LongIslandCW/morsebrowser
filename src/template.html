@@ -692,6 +692,17 @@
                                 height="20" width="20"></button>
 
                     </div>
+
+                    <!-- loop -->
+                    <div class="input-group me-2" aria-label="thirdgroupabcd" role="group">
+
+
+                        <input type="checkbox" class="btn-check" autocomplete="off" id="btncheckloop"
+                            data-bind="checked: loop">
+                        <label class=" btn btn-outline-primary" for="btncheckloop"><img
+                                data-bind="attr:{ src: morseLoadImages().getSrc('arrowrepeatImage')}">&nbsp;Loop&nbsp;<img
+                                data-bind="attr:{ src: loop() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
+                    </div>
                 </div>
 
             </div>

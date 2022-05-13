@@ -290,6 +290,7 @@ export class MorseViewModel {
    voicePitch = ko.observable(1)
    voiceLang = ko.observable('en-us')
    voiceVoices = ko.observableArray([])
+   loop=ko.observable(false)
    morseVoice = {}
 
    // helper
@@ -656,6 +657,10 @@ export class MorseViewModel {
       }
 
       this.preSpaceUsed(false)
+      if (this.loop()) {
+        // as if user pressed play again
+        this.doPlay(false, true)
+      }
     }, true)
     if (fullRewind) {
       this.fullRewind()
