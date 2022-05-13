@@ -424,7 +424,8 @@
                                         <div class="col-auto" data-bind="visible: showExpertSettings">
 
                                             <input type="checkbox" class="btn-check" autocomplete="off"
-                                                id="btncheckvoice" data-bind="checked: voiceEnabled">
+                                                id="btncheckvoice"
+                                                data-bind="checked: voiceEnabled, enable: voiceCapable()">
                                             <label class=" btn btn-outline-primary" for="btncheckvoice"><img
                                                     data-bind="attr:{ src: morseLoadImages().getSrc('chatquoteImage')}">&nbsp;Voice&nbsp;<img
                                                     data-bind="attr:{ src: voiceEnabled() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>

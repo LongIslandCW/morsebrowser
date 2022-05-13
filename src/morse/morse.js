@@ -282,6 +282,7 @@ export class MorseViewModel {
    showExpertSettings = ko.observable(false)
    cardFontPx = ko.observable()
    voiceEnabled = ko.observable(false)
+   voiceCapable = ko.observable((typeof speechSynthesis !== 'undefined'))
    voiceThinkingTime = ko.observable(0)
    voiceVoice = ko.observable()
    voiceVolume = ko.observable(10)
