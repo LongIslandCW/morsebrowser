@@ -290,6 +290,7 @@ export class MorseViewModel {
    voicePitch = ko.observable(1)
    voiceLang = ko.observable('en-us')
    voiceVoices = ko.observableArray([])
+   voiceBuffer = []
    loop=ko.observable(false)
    morseVoice = {}
 
@@ -610,23 +611,39 @@ export class MorseViewModel {
   }
 
   playEnded = (fromVoice) => {
+    // where are we in the words to process?
+    const isNotLastWord = this.currentIndex() < this.words().length - 1
+    const isNotLastSentence = this.currentSentanceIndex() < this.sentenceMax()
+
     if (this.voiceEnabled() && !fromVoice) {
-      setTimeout(() => {
-        const morseVoiceInfo = new MorseVoiceInfo()
-        morseVoiceInfo.textToSpeak = this.words()[this.currentIndex()]
-        morseVoiceInfo.voice = this.voiceVoice()
-        morseVoiceInfo.volume = this.voiceVolume() / 10
-        morseVoiceInfo.rate = this.voiceRate()
-        morseVoiceInfo.pitch = this.voicePitch()
-        morseVoiceInfo.onEnd = () => { this.playEnded(true) }
-        this.morseVoice.speak(morseVoiceInfo)
-      }, this.voiceThinkingTime() * 1000)
+      // speak the voice buffer if there's a newline or nothing more to play
+      const currentWord = this.words()[this.currentIndex()]
+      const hasNewline = currentWord.indexOf('\n') !== -1
+      this.voiceBuffer.push(currentWord)
+      if (hasNewline || !isNotLastWord) {
+        const phraseToSpeak = this.voiceBuffer.join(' ')
+        // clear the buffer
+        this.voiceBuffer = []
+        setTimeout(() => {
+          const morseVoiceInfo = new MorseVoiceInfo()
+          morseVoiceInfo.textToSpeak = phraseToSpeak
+          morseVoiceInfo.voice = this.voiceVoice()
+          morseVoiceInfo.volume = this.voiceVolume() / 10
+          morseVoiceInfo.rate = this.voiceRate()
+          morseVoiceInfo.pitch = this.voicePitch()
+          morseVoiceInfo.onEnd = () => { this.playEnded(true) }
+          this.morseVoice.speak(morseVoiceInfo)
+        }, this.voiceThinkingTime() * 1000)
+      } else {
+        this.playEnded(true)
+      }
     } else {
+      // no speaking, so play more morse
       this.runningPlayMs(this.runningPlayMs() + (Date.now() - this.lastPartialPlayStart()))
-      if (this.currentIndex() < this.words().length - 1) {
+      if (isNotLastWord) {
         this.incrementIndex()
         this.doPlay(true)
-      } else if (this.currentSentanceIndex() < this.sentenceMax()) {
+      } else if (isNotLastSentence) {
       // move to next sentence
         this.currentSentanceIndex(Number(this.currentSentanceIndex()) + 1)
         this.currentIndex(0)

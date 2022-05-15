@@ -1,6 +1,7 @@
 export default class MorseStringUtils {
     static doReplacements = (s) => {
-      return s
+      console.log(s)
+      const afterReplaced = s
         // a few ad-hoc attempts to fix unicode or other problems
         // seems like apostraphe is not morse-able
         .replace(/’/g, '')
@@ -9,8 +10,11 @@ export default class MorseStringUtils {
         // turn percent sign into pct abbreviation
         .replace(/%/g, 'pct')
         // in the square brackets we add all symbols supported by morse-pro (see more-pro.js), otherwise replace with space
+        // note we will preserve \r and \n for voice which uses these are phrase delimiters
         // eslint-disable-next-line no-useless-escape
-        .replace(/(?![\.\,\:\?\\\-\/\(\)\"\@\=\&\+\!\<\>])\W/g, ' ')
+        .replace(/(?![\.\,\:\?\\\-\/\(\)\"\@\=\&\+\!\<\>\r\n])\W/g, ' ')
+      console.log(afterReplaced)
+      return afterReplaced
     }
 
     static splitIntoSentences = (replaced) => {
@@ -43,6 +47,8 @@ export default class MorseStringUtils {
             // remove double spaces
             // eslint-disable-next-line no-regex-spaces
             .replace(/  /g, ' ')
+            // add spaces after newlines
+            .replace(/\n/g, '\n ')
             // split up into words
             .split(' ')
             // get rid fo stray empties
