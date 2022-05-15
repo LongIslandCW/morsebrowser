@@ -7,7 +7,7 @@
   \********************************/
 /***/ ((module) => {
 
-module.exports = "A I AT IT NO TO AS SO OR AN ON IN IS ANT TOE ONE RAT SAT EAT SIT CAR ACE CAT OAR SET ARE SEE ACT TAN RAN EEL NOR TIN ATE CAN OIL ILL LOT COT NOT TEN LIE ALL ITS\n";
+module.exports = "A\nI\nAT\nIT\nNO\nTO\nAS\nSO\nOR\nAN\nON\nIN\nIS\nANT\nTOE\nONE\nRAT\nSAT\nEAT\nSIT\nCAR\nACE\nCAT\nOAR\nSET\nARE\nSEE\nACT\nTAN\nRAN\nEEL\nNOR\nTIN\nATE\nCAN\nOIL\nILL\nLOT\nCOT\nNOT\nTEN\nLIE\nALL\nITS\n\n";
 
 /***/ })
 
