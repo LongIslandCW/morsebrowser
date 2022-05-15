@@ -7,7 +7,7 @@
   \********************************/
 /***/ ((module) => {
 
-module.exports = "E A R I O T N S C L\n";
+module.exports = "E\nA\nR\nI\nO\nT\nN\nS\nC\nL\n";
 
 /***/ })
 
