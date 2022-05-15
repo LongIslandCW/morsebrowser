@@ -719,6 +719,17 @@
                                 data-bind="attr:{ src: morseLoadImages().getSrc('arrowrepeatImage')}">&nbsp;Loop&nbsp;<img
                                 data-bind="attr:{ src: loop() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
                     </div>
+
+                    <!-- cards visibile -->
+                    <div class="input-group me-2" aria-label="thirdgroupabcd" role="group">
+
+
+                        <input type="checkbox" class="btn-check" autocomplete="off" id="btncheckcardsvisible"
+                            data-bind="checked: cardsVisible">
+                        <label class=" btn btn-outline-primary" for="btncheckcardsvisible"><img
+                                data-bind="attr:{ src: morseLoadImages().getSrc('grid3x3gapImage')}">&nbsp;Cards&nbsp;<img
+                                data-bind="attr:{ src: cardsVisible() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
+                    </div>
                 </div>
 
             </div>
@@ -726,7 +737,7 @@
 
             <!-- the word list/card area-->
 
-            <div class="col">
+            <div class="col" data-bind="if: cardsVisible">
 
                 <div class="row gx-2 gy-2" data-bind="foreach: words">
                     <div class="col-auto">

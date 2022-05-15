@@ -293,6 +293,9 @@ export class MorseViewModel {
    voiceBuffer = []
    loop=ko.observable(false)
    morseVoice = {}
+   // note this is whether you see any cards at all,
+   // not whether the words on them are obscured
+   cardsVisible = ko.observable(true)
 
    // helper
    booleanize = (x) => {
