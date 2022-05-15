@@ -42,6 +42,7 @@ export default class MorseStringUtils {
       const splitsGlued = dontSplit ? [replaced] : this.splitIntoSentences(replaced)
       const sents = splitsGlued
         .map((sentence) => {
+          const hasNewLine = sentence.indexOf('\n') !== -1
           return sentence
             .trim()
             // remove double spaces
@@ -50,7 +51,9 @@ export default class MorseStringUtils {
             // add spaces after newlines
             .replace(/\n/g, '\n ')
             // split up into words
-            .split(' ')
+            .split(hasNewLine ? '\n ' : ' ')
+            // add back newline to the end of each for voice
+            .map((word) => hasNewLine ? `${word}\n` : word)
             // get rid fo stray empties
             .filter(x => x.trim().length > 0)
         })
