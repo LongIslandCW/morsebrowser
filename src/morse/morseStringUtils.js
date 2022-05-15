@@ -1,6 +1,5 @@
 export default class MorseStringUtils {
     static doReplacements = (s) => {
-      console.log(s)
       const afterReplaced = s
         // a few ad-hoc attempts to fix unicode or other problems
         // seems like apostraphe is not morse-able
@@ -13,7 +12,6 @@ export default class MorseStringUtils {
         // note we will preserve \r and \n for voice which uses these are phrase delimiters
         // eslint-disable-next-line no-useless-escape
         .replace(/(?![\.\,\:\?\\\-\/\(\)\"\@\=\&\+\!\<\>\r\n])\W/g, ' ')
-      console.log(afterReplaced)
       return afterReplaced
     }
 

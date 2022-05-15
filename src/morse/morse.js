@@ -620,13 +620,14 @@ export class MorseViewModel {
     // where are we in the words to process?
     const isNotLastWord = this.currentIndex() < this.words().length - 1
     const isNotLastSentence = this.currentSentanceIndex() < this.sentenceMax()
+    const anyNewLines = this.rawText().indexOf('\n') !== -1
 
     if (this.voiceEnabled() && !fromVoice) {
       // speak the voice buffer if there's a newline or nothing more to play
       const currentWord = this.words()[this.currentIndex()]
       const hasNewline = currentWord.indexOf('\n') !== -1
       this.voiceBuffer.push(currentWord)
-      if (hasNewline || !isNotLastWord) {
+      if (hasNewline || !isNotLastWord || !anyNewLines) {
         const phraseToSpeak = MorseStringUtils.wordifyPunctuation(this.voiceBuffer.join(' '))
         // clear the buffer
         this.voiceBuffer = []
