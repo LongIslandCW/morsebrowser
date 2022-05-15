@@ -7,7 +7,7 @@
   \********************************/
 /***/ ((module) => {
 
-module.exports = "A I AT IT NO TO AS SO OR AN ON IN IS\n";
+module.exports = "A\nI\nAT\nIT\nNO\nTO\nAS\nSO\nOR\nAN\nON\nIN\nIS\n";
 
 /***/ })
 
