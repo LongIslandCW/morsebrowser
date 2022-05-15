@@ -594,6 +594,8 @@ export class MorseViewModel {
 
     if (freshStart) {
       this.runningPlayMs(0)
+      // clear the voice cache
+      this.voiceBuffer = []
     }
     // experience shows it is good to put a little pause here when user forces us here,
     // e.g. hitting back or play b/c word was misunderstood,
