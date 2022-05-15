@@ -7,7 +7,7 @@
   \********************************/
 /***/ ((module) => {
 
-module.exports = "OR CA NE IA AR LA IL AL IN TN NC SC RI CT\n";
+module.exports = "OR\nCA\nNE\nIA\nAR\nLA\nIL\nAL\nIN\nTN\nNC\nSC\nRI\nCT\n";
 
 /***/ })
 
