@@ -404,8 +404,9 @@ export class MorseViewModel {
 
    shuffleWords = () => {
      if (!this.isShuffled()) {
+       const hasPhrases = this.rawText().indexOf('\n') !== -1
        this.preShuffled = this.rawText()
-       this.setText(this.rawText().split(' ').sort(() => { return 0.5 - Math.random() }).join(' '))
+       this.setText(this.rawText().split(hasPhrases ? '\n' : ' ').sort(() => { return 0.5 - Math.random() }).join(hasPhrases ? '\n' : ' '))
      } else {
        this.setText(this.preShuffled)
      }
