@@ -370,6 +370,16 @@
                                             for="btntrailReveal"><span>Trail&nbsp;</span><img height=20 width=20
                                                 data-bind="attr:{ src: trailReveal() ? morseLoadImages().getSrc('eyeImage') : morseLoadImages().getSrc('eyeslashImage')}" /></label>
                                     </div>
+                                    <!-- cards visibile -->
+                                    <div class="col-auto">
+
+
+                                        <input type="checkbox" class="btn-check" autocomplete="off"
+                                            id="btncheckcardsvisible" data-bind="checked: cardsVisible">
+                                        <label class=" btn btn-outline-primary" for="btncheckcardsvisible"><img
+                                                data-bind="attr:{ src: morseLoadImages().getSrc('grid3x3gapImage')}">&nbsp;Cards&nbsp;<img
+                                                data-bind="attr:{ src: cardsVisible() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
+                                    </div>
                                     <!--download audio-->
                                     <div class="col-auto">
                                         <button type="button" class="btn btn-success" data-bind="click: doDownload"><img
@@ -720,16 +730,7 @@
                                 data-bind="attr:{ src: loop() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
                     </div>
 
-                    <!-- cards visibile -->
-                    <div class="input-group me-2" aria-label="thirdgroupabcd" role="group">
 
-
-                        <input type="checkbox" class="btn-check" autocomplete="off" id="btncheckcardsvisible"
-                            data-bind="checked: cardsVisible">
-                        <label class=" btn btn-outline-primary" for="btncheckcardsvisible"><img
-                                data-bind="attr:{ src: morseLoadImages().getSrc('grid3x3gapImage')}">&nbsp;Cards&nbsp;<img
-                                data-bind="attr:{ src: cardsVisible() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
-                    </div>
                 </div>
 
             </div>
