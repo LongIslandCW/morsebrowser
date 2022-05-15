@@ -61,4 +61,14 @@ export default class MorseStringUtils {
 
       return sents
     }
+
+    static wordifyPunctuation = (s) => {
+      return s.replace(/,/g, ' comma ')
+        .replace(/\./g, ' period ')
+        .replace(/\?/g, ' question mark ')
+        .replace(/\//g, ' stroke ')
+        .replace(/:/g, ' colon ')
+        .replace(/!/g, ' exclamation ')
+        .replace(/-/g, ' dash ')
+    }
 }

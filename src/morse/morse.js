@@ -624,7 +624,7 @@ export class MorseViewModel {
       const hasNewline = currentWord.indexOf('\n') !== -1
       this.voiceBuffer.push(currentWord)
       if (hasNewline || !isNotLastWord) {
-        const phraseToSpeak = this.voiceBuffer.join(' ')
+        const phraseToSpeak = MorseStringUtils.wordifyPunctuation(this.voiceBuffer.join(' '))
         // clear the buffer
         this.voiceBuffer = []
         setTimeout(() => {
