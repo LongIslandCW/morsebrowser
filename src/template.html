@@ -297,6 +297,11 @@
                                                 aria-label="Username" min="1"
                                                 data-bind="textInput: overrideMax, enable: ifOverrideMinMax() && !syncSize(), attr: { min: trueOverrideMin}">
                                         </div>
+                                        <!--custom group run button-->
+                                        <button type="button" class="btn btn-success"
+                                            data-bind="click: ()=> setDisplaySelected(selectedDisplay()), enable: selectedDisplay().display && !selectedDisplay().isDummy"
+                                            style="width: 146px; padding-left: 2px; padding-right: 2px;">Regenerate
+                                            Drill</button>
                                     </div>
                                 </div>
 
