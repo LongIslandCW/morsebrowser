@@ -75,8 +75,9 @@
                     <div class="col-md-auto">
                         <div class="input-group">
                             <span class="input-group-text"><img id="volumeImage" width=20 height=20></span>
-                            <input type="number" style="max-width:75px; min-width: 75px;" class="form-control"
-                                aria-label="Server" min="1" max="10" step="1" data-bind="textInput: volume">
+                            <input id="txtVolume" type="number" style="max-width:75px; min-width: 75px;"
+                                class="form-control" aria-label="Server" min="1" max="10" step="1"
+                                data-bind="textInput: volume">
                         </div>
                     </div>
 
@@ -141,11 +142,11 @@
                     </div>
                     <div class="col-md-auto">
                         <div class="btn-group-vertical">
-                            <button class="btn btn-light" data-bind="click: doClear"><img id="trashImage" height="20"
-                                    width="20" />&nbsp;Clear</button>
-                            <label for="txtfiletoread"><button class="btn btn-light"
-                                    onclick="getElementById('txtfiletoread').click()"><img id="arrowleftImage"
-                                        height="20" width="20" />&nbsp;Insert File</button></label>
+                            <button id="btnClearText" class="btn btn-light" data-bind="click: doClear"><img
+                                    id="trashImage" height="20" width="20" />&nbsp;Clear</button>
+                            <label id="lblLoadTextFile" for="txtfiletoread"><button id="btnLoadTextFile"
+                                    class="btn btn-light" onclick="getElementById('txtfiletoread').click()"><img
+                                        id="arrowleftImage" height="20" width="20" />&nbsp;Insert File</button></label>
 
                             <input type="file" accept=".txt" id="txtfiletoread" class="form-control"
                                 data-bind="event: {change: function() { inputFileChange($element.files[0]) } }" hidden>
@@ -193,7 +194,7 @@
                                             data-bind="foreach: userTargets, childrenComplete: setUserTargetInitialized">
                                             <input type="radio" class="btn-check" name="btnradioUserTargets"
                                                 data-bind="checkedValue: $data, checked: $root.userTarget">
-                                            <label class="btn btn-outline-primary"
+                                            <label id="btnUserTypeSelection" class="btn btn-outline-primary"
                                                 data-bind="text: $data, click: $root.changeUserTarget($data)"></label>
                                         </div>
                                     </div>
@@ -204,7 +205,7 @@
                                             data-bind="foreach: classes, childrenComplete: setSelectedClassInitialized">
                                             <input type="radio" class="btn-check" name="btnradioClasses"
                                                 data-bind="checkedValue: $data, checked: $root.selectedClass">
-                                            <label class="btn btn-outline-primary"
+                                            <label id="btnClassSelection" class="btn btn-outline-primary"
                                                 data-bind="text: $data, click: $root.changeSelectedClass($data)"></label>
                                         </div>
                                     </div>
@@ -213,7 +214,8 @@
                                         <div class="list-group"
                                             data-bind="foreach: letterGroups, childrenComplete: setLetterGroupInitialized"
                                             style="overflow-y:auto; height:250px; width: 200px;">
-                                            <button type="button" class="list-group-item list-group-item-action"
+                                            <button id="btnLetterGroupSelection" type="button"
+                                                class="list-group-item list-group-item-action"
                                                 data-bind="text: $data, click: $root.setLetterGroup($data), css: { active: $data==$parent.letterGroup()}"></button>
                                         </div>
                                     </div>
@@ -222,7 +224,8 @@
                                         <div class="list-group"
                                             data-bind="foreach: displays, childrenComplete: setDisplaysInitialized"
                                             style="overflow-y:auto; height:250px; width: 200px;">
-                                            <button type="button" class="list-group-item list-group-item-action"
+                                            <button id="btnLessonSelection" type="button"
+                                                class="list-group-item list-group-item-action"
                                                 data-bind="text: $data.display, click: ()=>$root.setDisplaySelected($data), css: { active: $data.display==$parent.selectedDisplay().display}"></button>
                                         </div>
                                     </div>
@@ -333,8 +336,8 @@
                     <!-- more settings-->
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="headingmoresettings">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapsemoresettings" aria-expanded="false"
+                            <button id="moreSettingsAccordionButton" class="accordion-button collapsed" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#collapsemoresettings" aria-expanded="false"
                                 aria-controls="collapsemoresettings">
                                 <img id='gearImage' height=20 width=20 /><span>&nbsp;</span>
                                 More Settings<span>&nbsp;</span>
@@ -653,8 +656,8 @@
                             data-bs-parent="#accordionExample">
                             <div class="accordion-body">
                                 <div class="input-group">
-                                    <span class="input-group-text" data-bind="click:setFlagged"><img height="20"
-                                            width="20"
+                                    <span id="btnSetFlagged" class="input-group-text" data-bind="click:setFlagged"><img
+                                            height="20" width="20"
                                             data-bind="attr:{src: morseLoadImages().getSrc('uploadImage')}">&nbsp;Load
                                         As
                                         Text</span>
@@ -675,7 +678,8 @@
                 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                     <div class="btn-group me-2" role="group" aria-label="Basic mixed styles example">
                         <!-- play button -->
-                        <button type="button" class="btn btn-success" data-bind="click: () => doPlay(false,true)">
+                        <button id="btnPlayButton" type="button" class="btn btn-success"
+                            data-bind="click: () => doPlay(false,true)">
                             <span data-bind="visible: !playerPlaying()">Play</span>
                             <!--played-->
                             <span data-bind="visible: playerPlaying()">
@@ -696,24 +700,27 @@
 
                             <img id='playImage' data-bind="visible: !playerPlaying()">
                         </button>
-                        <button type="button" class="btn btn-warning" data-bind="click: decrementIndex">Back
+                        <button id="btnBackButton" type="button" class="btn btn-warning"
+                            data-bind="click: decrementIndex">Back
                             1&nbsp;<img height="20" width="20"
                                 data-bind="attr:{src: morseLoadImages().getSrc('skipbackImage') }"></button>
-                        <button type="button" class="btn btn-success" data-bind="click: fullRewind">Full
+                        <button id="btnFullRewind" type="button" class="btn btn-success"
+                            data-bind="click: fullRewind">Full
                             RW&nbsp;<img id="skipstartImage" height="20" width="20" /></button>
-                        <button type="button" class="btn btn-warning"
+                        <button id="btnSentenceRewind" type="button" class="btn btn-warning"
                             data-bind="click: sentanceRewind, visible: ifParseSentences() && showExpertSettings()">Sent
                             RW&nbsp;<img height="20" width="20"
                                 data-bind="attr:{src: morseLoadImages().getSrc('skipbackImage') }"></button>
-                        <button type="button" class="btn btn-secondary" data-bind="click: incrementIndex">Fwd
+                        <button id="btnFwd1" type="button" class="btn btn-secondary"
+                            data-bind="click: incrementIndex">Fwd
                             1&nbsp;<img id="skipforwardImage" height="20" width="20"></button>
-                        <button type="button" class="btn btn-info"
+                        <button id="btnPause" type="button" class="btn btn-info"
                             data-bind="click: () => {isPaused() ? doPlay(true,false) : doPause(false, true)}">Pause&nbsp;<span
                                 class="spinner-grow spinner-grow-sm text-dark" role="status" aria-hidden="true"
                                 data-bind="visible: isPaused"></span>
 
                             <img id='pauseImage' data-bind="visible: !isPaused()" height="20" width="20"></button>
-                        <button type="button" class="btn btn-danger"
+                        <button id="btnStop" type="button" class="btn btn-danger"
                             data-bind="click: () => doPause(true, false)">Stop&nbsp;<img id="stopImage" height="20"
                                 width="20"></button>
 
@@ -740,7 +747,8 @@
                     </div>
                     <div class="button-group me-2" role="group" aria-label="Basic mixed styles example">
 
-                        <button type="button" class="btn btn-secondary" data-bind="click: shuffleWords"><span
+                        <button id="btnShuffle" type="button" class="btn btn-secondary"
+                            data-bind="click: shuffleWords"><span
                                 data-bind="text: isShuffled()?'UnShuffle':'Shuffle'"></span>&nbsp;<img id="shuffleImage"
                                 height="20" width="20"></button>
 
