@@ -12,6 +12,9 @@ import Cookies from 'js-cookie'
 import MorseLessonPlugin from './morseLessonPlugin.js'
 import { MorseLoadImages } from './morseLoadImages.js'
 import licwDefaults from '../configs/licwdefaults.json'
+// eslint-disable-next-line import/no-absolute-path
+// eslint-disable-next-line no-unused-vars
+import tagManager from './tagmanager.js'
 
 export class MorseViewModel {
   constructor () {
