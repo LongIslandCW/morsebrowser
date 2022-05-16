@@ -296,6 +296,7 @@ export class MorseViewModel {
    // not whether the words on them are obscured
    cardsVisible = ko.observable(true)
    lastFlaggedWordMs = Date.now()
+   newlineChunking = ko.observable(false)
 
    // helper
    booleanize = (x) => {
@@ -387,7 +388,7 @@ export class MorseViewModel {
        return []
      }
 
-     return MorseStringUtils.getSentences(this.rawText(), !this.ifParseSentences())
+     return MorseStringUtils.getSentences(this.rawText(), !this.ifParseSentences(), this.newlineChunking())
    }, this)
 
    sentenceMax = ko.computed(() => {

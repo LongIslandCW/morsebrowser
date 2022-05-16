@@ -271,7 +271,13 @@
                                                     aria-label="Username" min="0" data-bind="textInput: customGroup">
                                             </div>
                                         </div>
-
+                                        <!--newline chunking toggle-->
+                                        <input type="checkbox" class="btn-check" autocomplete="off"
+                                            id="btnchecknewlinechunking" data-bind="checked: newlineChunking">
+                                        <label class="btn btn-outline-primary" for="btnchecknewlinechunking"
+                                            style="width: 125px; max-width:125px;"><span>Keep
+                                                Lines&nbsp;<img
+                                                    data-bind="attr:{ src: newlineChunking() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></span></label>
 
                                     </div>
 

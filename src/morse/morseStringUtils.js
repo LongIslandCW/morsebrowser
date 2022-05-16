@@ -35,12 +35,12 @@ export default class MorseStringUtils {
       return splitsGlued
     }
 
-    static getSentences = (s, dontSplit) => {
+    static getSentences = (s, dontSplit, newlineChunking) => {
       const replaced = this.doReplacements(s)
       const splitsGlued = dontSplit ? [replaced] : this.splitIntoSentences(replaced)
       const sents = splitsGlued
         .map((sentence) => {
-          const hasNewLine = sentence.indexOf('\n') !== -1
+          const hasNewLine = newlineChunking // sentence.indexOf('\n') !== -1
           return sentence
             .trim()
             // remove double spaces
