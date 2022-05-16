@@ -296,6 +296,7 @@ export class MorseViewModel {
    // note this is whether you see any cards at all,
    // not whether the words on them are obscured
    cardsVisible = ko.observable(true)
+   lastFlaggedWordMs = Date.now()
 
    // helper
    booleanize = (x) => {
@@ -468,11 +469,14 @@ export class MorseViewModel {
       this.flaggedWords(this.flaggedWords().trim() + word)
     } else {
       // deal with double click which is also used to pick a word
+      const msNow = Date.now()
+      const msPassedSince = msNow - this.lastFlaggedWordMs
+      this.lastFlaggedWordMs = msNow
+      const threshold = 500
       const words = this.flaggedWords().trim().split(' ')
       const lastWord = words[words.length - 1]
-      if (lastWord === word) {
-        // we have either a double click scenario, or otherwise user
-        // selected word twice so either way assume removal
+      if (lastWord === word && (msPassedSince < threshold)) {
+        // we have a double click scenario so remove it
         words.pop()
       } else {
         words.push(word)
