@@ -111,7 +111,7 @@ export default class MorseRssPlugin {
             // https://blog.alchemy.com/blog/how-to-polyfill-node-core-modules-in-webpack-5
             // note that the rss-parser module is loaded dynamically, so only if the
             // user actually goes ahead and uses RSS.
-            import('rss-parser').then(({ default: RSSParser }) => {
+            import(/* webpackChunkName: "rss-parser" */ 'rss-parser').then(({ default: RSSParser }) => {
               const parser = new RSSParser()
               // Note: some RSS feeds can't be loaded in the browser due to CORS security.
               // To get around ctxt, you can use a proxy.
