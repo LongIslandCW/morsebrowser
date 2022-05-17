@@ -695,12 +695,17 @@ export class MorseViewModel {
     }
   }
 
-  inputFileChange = (file) => {
+  inputFileChange = (element) => {
     // thanks to https://newbedev.com/how-to-access-file-input-with-knockout-binding
     // console.log(file)
+    const file = element.files[0]
+    console.log(element.value)
     const fr = new FileReader()
     fr.onload = (data) => {
       this.setText(data.target.result)
+      // need to clear or else won't fire if use clears the text area
+      // and then tries to reload the same again
+      element.value = null
     }
     fr.readAsText(file)
   }
