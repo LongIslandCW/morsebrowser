@@ -297,6 +297,10 @@ export class MorseViewModel {
    cardsVisible = ko.observable(true)
    lastFlaggedWordMs = Date.now()
    newlineChunking = ko.observable(false)
+   trailPreDelay = ko.observable(0)
+   trailPostDelay = ko.observable(0)
+   trailFinal = ko.observable(1)
+   maxRevealedTrail = ko.observable(-1)
 
    // helper
    booleanize = (x) => {
@@ -612,6 +616,8 @@ export class MorseViewModel {
       clearTimeout(this.doPlayTimeOut)
     }
     this.doPlayTimeOut = setTimeout(() => this.morseWordPlayer.pause(() => {
+      // help trailing reveal, max should always be one behind before we're about to play
+      this.maxRevealedTrail(this.currentIndex() - 1)
       const config = this.getMorseStringToWavBufferConfig(this.words()[this.currentIndex()])
       this.morseWordPlayer.play(config, this.playEnded)
       this.lastPartialPlayStart(Date.now())
@@ -620,13 +626,59 @@ export class MorseViewModel {
     playJustEnded || fromPlayButton ? 0 : 1000)
   }
 
-  playEnded = (fromVoice) => {
+  playEnded = (fromVoiceOrTrail) => {
     // where are we in the words to process?
     const isNotLastWord = this.currentIndex() < this.words().length - 1
     const isNotLastSentence = this.currentSentanceIndex() < this.sentenceMax()
     const anyNewLines = this.rawText().indexOf('\n') !== -1
+    const needToSpeak = this.voiceEnabled() && !fromVoiceOrTrail
+    const needToTrail = this.trailReveal() && !fromVoiceOrTrail
+    const noDelays = !needToSpeak && !needToTrail
+    const advanceTrail = () => {
+      if (this.trailReveal()) {
+        setTimeout(() => {
+          this.maxRevealedTrail(this.maxRevealedTrail() + 1)
+          setTimeout(() => {
+            this.playEnded(true)
+          }, this.trailPostDelay() * 1000)
+        }
+        , this.trailPreDelay() * 1000)
+      }
+    }
+    const finalizeTrail = (finalCallback) => {
+      if (this.trailReveal()) {
+        setTimeout(() => {
+          this.maxRevealedTrail(-1)
+          finalCallback()
+        }
+        , this.trailFinal() * 1000)
+      }
+    }
 
-    if (this.voiceEnabled() && !fromVoice) {
+    if (noDelays) {
+      // no speaking, so play more morse
+      this.runningPlayMs(this.runningPlayMs() + (Date.now() - this.lastPartialPlayStart()))
+      if (isNotLastWord) {
+        this.incrementIndex()
+        this.doPlay(true)
+      } else if (isNotLastSentence) {
+      // move to next sentence
+        this.currentSentanceIndex(Number(this.currentSentanceIndex()) + 1)
+        this.currentIndex(0)
+        this.doPlay(true)
+      } else {
+      // nothing more to play
+        const finalToDo = () => this.doPause(true)
+        // trailing may want a linger
+        if (this.trailReveal()) {
+          finalizeTrail(finalToDo)
+        } else {
+          finalToDo()
+        }
+      }
+    }
+
+    if (needToSpeak) {
       // speak the voice buffer if there's a newline or nothing more to play
       const currentWord = this.words()[this.currentIndex()]
       const hasNewline = currentWord.indexOf('\n') !== -1
@@ -648,21 +700,10 @@ export class MorseViewModel {
       } else {
         this.playEnded(true)
       }
-    } else {
-      // no speaking, so play more morse
-      this.runningPlayMs(this.runningPlayMs() + (Date.now() - this.lastPartialPlayStart()))
-      if (isNotLastWord) {
-        this.incrementIndex()
-        this.doPlay(true)
-      } else if (isNotLastSentence) {
-      // move to next sentence
-        this.currentSentanceIndex(Number(this.currentSentanceIndex()) + 1)
-        this.currentIndex(0)
-        this.doPlay(true)
-      } else {
-      // nothing more to play
-        this.doPause(true)
-      }
+    }
+
+    if (needToTrail) {
+      advanceTrail()
     }
   }
 
