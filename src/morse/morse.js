@@ -627,6 +627,13 @@ export class MorseViewModel {
   }
 
   playEnded = (fromVoiceOrTrail) => {
+    // voice or trail have timers that might call this after user has hit stop
+    // specifically they have built in pauses for "thinking time" during which the user
+    // might have hit stop
+    if (fromVoiceOrTrail && !this.playerPlaying()) {
+      return
+    }
+
     // where are we in the words to process?
     const isNotLastWord = this.currentIndex() < this.words().length - 1
     const isNotLastSentence = this.currentSentanceIndex() < this.sentenceMax()
