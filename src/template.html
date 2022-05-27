@@ -60,10 +60,12 @@
                     <!--wpm/fwpm-->
                     <div class="col-md-auto">
                         <div class="input-group">
+                            <!-- wpm -->
                             <span class="input-group-text">WPM&nbsp;<img id='speedometerImage' height="20"
                                     width="20" /></span>
                             <input type="number" style="max-width:75px; min-width: 75px;" class="form-control"
                                 aria-label="Username" min="1" data-bind="textInput: wpm">
+                            <!-- fwpm -->
                             <span class="input-group-text" data-bind="click: ()=>syncWpm(!syncWpm())">FWPM&nbsp;<img
                                     data-bind="attr:{ src: syncWpm() ? morseLoadImages().getSrc('lockImage') : morseLoadImages().getSrc('unlockImage')}" /></span>
                             <input type="number" style="max-width:75px; min-width: 75px;" class="form-control"

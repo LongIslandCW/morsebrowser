@@ -12,6 +12,7 @@ import Cookies from 'js-cookie'
 import MorseLessonPlugin from './morseLessonPlugin.js'
 import { MorseLoadImages } from './morseLoadImages.js'
 import licwDefaults from '../configs/licwdefaults.json'
+import { MorseShortcutKeys } from './morseShortcutKeys.js'
 export class MorseViewModel {
   constructor () {
     this.morseLoadImages(new MorseLoadImages())
@@ -128,6 +129,21 @@ export class MorseViewModel {
 
     // voice
     this.morseVoice = new MorseVoice((data) => { this.voiceVoices(data) })
+
+    MorseShortcutKeys.init(this)
+
+    document.addEventListener('keypress', (e) => {
+      const tagName = e.target.tagName
+      if (tagName !== 'INPUT' && tagName !== 'TEXTAREA') {
+        // var input = document.querySelector(".my-input");
+        // input.focus();
+        // input.value = e.key;
+        // console.log(e.target.tagName)
+        // console.log(e.key)
+        this.routeShortcutKey(e.key)
+        e.preventDefault()
+      }
+    })
   }
   // END CONSTRUCTOR
 
