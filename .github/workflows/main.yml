@@ -61,7 +61,7 @@ jobs:
           # If your project generates hashed files on build you can use this option to automatically delete them from the target folder on the deployment branch with each deploy. This option is on by default and can be toggled off by setting it to false.
           # clean: # optional, default is true
           # If you need to use clean but you would like to preserve certain files or folders you can use this option. This should contain each pattern as a single line in a multiline string.
-          clean-exclude: >
+          clean-exclude: |
             dev 
             1_0_0
           # Do not actually push back, but use `--dry-run` on `git push` invocations insead.
