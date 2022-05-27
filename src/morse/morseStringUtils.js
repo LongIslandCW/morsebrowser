@@ -1,6 +1,6 @@
 export default class MorseStringUtils {
     static doReplacements = (s) => {
-      return s
+      const afterReplaced = s
         // a few ad-hoc attempts to fix unicode or other problems
         // seems like apostraphe is not morse-able
         .replace(/’/g, '')
@@ -9,8 +9,10 @@ export default class MorseStringUtils {
         // turn percent sign into pct abbreviation
         .replace(/%/g, 'pct')
         // in the square brackets we add all symbols supported by morse-pro (see more-pro.js), otherwise replace with space
+        // note we will preserve \r and \n for voice which uses these are phrase delimiters
         // eslint-disable-next-line no-useless-escape
-        .replace(/(?![\.\,\:\?\\\-\/\(\)\"\@\=\&\+\!\<\>])\W/g, ' ')
+        .replace(/(?![\.\,\:\?\\\-\/\(\)\"\@\=\&\+\!\<\>\r\n])\W/g, ' ')
+      return afterReplaced
     }
 
     static splitIntoSentences = (replaced) => {
@@ -33,23 +35,38 @@ export default class MorseStringUtils {
       return splitsGlued
     }
 
-    static getSentences = (s, dontSplit) => {
+    static getSentences = (s, dontSplit, newlineChunking) => {
       const replaced = this.doReplacements(s)
       const splitsGlued = dontSplit ? [replaced] : this.splitIntoSentences(replaced)
       const sents = splitsGlued
         .map((sentence) => {
+          const hasNewLine = newlineChunking // sentence.indexOf('\n') !== -1
           return sentence
             .trim()
             // remove double spaces
             // eslint-disable-next-line no-regex-spaces
             .replace(/  /g, ' ')
+            // add spaces after newlines
+            .replace(/\n/g, '\n ')
             // split up into words
-            .split(' ')
+            .split(hasNewLine ? '\n ' : ' ')
+            // add back newline to the end of each for voice
+            .map((word) => hasNewLine ? `${word}\n` : word)
             // get rid fo stray empties
             .filter(x => x.trim().length > 0)
         })
         .filter(x => x.length > 1 || x[0] !== '.')
 
       return sents
+    }
+
+    static wordifyPunctuation = (s) => {
+      return s.replace(/,/g, ' comma ')
+        .replace(/\./g, ' period ')
+        .replace(/\?/g, ' question mark ')
+        .replace(/\//g, ' stroke ')
+        .replace(/:/g, ' colon ')
+        .replace(/!/g, ' exclamation ')
+        .replace(/-/g, ' dash ')
     }
 }

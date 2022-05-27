@@ -2,6 +2,7 @@ import ko from 'knockout'
 import MorseStringUtils from './morseStringUtils.js'
 import { MorseStringToWavBufferConfig } from './morseStringToWavBuffer.js'
 import { MorseWordPlayer } from './morseWordPlayer.js'
+import { MorseVoice, MorseVoiceInfo } from './morseVoice.js'
 
 // NOTE: moved this to dynamic import() so that non-RSS users don't need to bother
 // even loading this code into the browser:
@@ -11,7 +12,7 @@ import Cookies from 'js-cookie'
 import MorseLessonPlugin from './morseLessonPlugin.js'
 import { MorseLoadImages } from './morseLoadImages.js'
 import licwDefaults from '../configs/licwdefaults.json'
-
+import { MorseShortcutKeys } from './morseShortcutKeys.js'
 export class MorseViewModel {
   constructor () {
     this.morseLoadImages(new MorseLoadImages())
@@ -125,6 +126,24 @@ export class MorseViewModel {
 
     // initialize the wordlist
     this.initializeWordList()
+
+    // voice
+    this.morseVoice = new MorseVoice((data) => { this.voiceVoices(data) })
+
+    MorseShortcutKeys.init(this)
+
+    document.addEventListener('keypress', (e) => {
+      const tagName = e.target.tagName
+      if (tagName !== 'INPUT' && tagName !== 'TEXTAREA') {
+        // var input = document.querySelector(".my-input");
+        // input.focus();
+        // input.value = e.key;
+        // console.log(e.target.tagName)
+        // console.log(e.key)
+        this.routeShortcutKey(e.key)
+        e.preventDefault()
+      }
+    })
   }
   // END CONSTRUCTOR
 
@@ -277,6 +296,27 @@ export class MorseViewModel {
    morseLoadImages =ko.observable()
    showExpertSettings = ko.observable(false)
    cardFontPx = ko.observable()
+   voiceEnabled = ko.observable(false)
+   voiceCapable = ko.observable((typeof speechSynthesis !== 'undefined'))
+   voiceThinkingTime = ko.observable(0)
+   voiceVoice = ko.observable()
+   voiceVolume = ko.observable(10)
+   voiceRate = ko.observable(1)
+   voicePitch = ko.observable(1)
+   voiceLang = ko.observable('en-us')
+   voiceVoices = ko.observableArray([])
+   voiceBuffer = []
+   loop=ko.observable(false)
+   morseVoice = {}
+   // note this is whether you see any cards at all,
+   // not whether the words on them are obscured
+   cardsVisible = ko.observable(true)
+   lastFlaggedWordMs = Date.now()
+   newlineChunking = ko.observable(false)
+   trailPreDelay = ko.observable(0)
+   trailPostDelay = ko.observable(0)
+   trailFinal = ko.observable(1)
+   maxRevealedTrail = ko.observable(-1)
 
    // helper
    booleanize = (x) => {
@@ -368,7 +408,7 @@ export class MorseViewModel {
        return []
      }
 
-     return MorseStringUtils.getSentences(this.rawText(), !this.ifParseSentences())
+     return MorseStringUtils.getSentences(this.rawText(), !this.ifParseSentences(), this.newlineChunking())
    }, this)
 
    sentenceMax = ko.computed(() => {
@@ -388,8 +428,9 @@ export class MorseViewModel {
 
    shuffleWords = () => {
      if (!this.isShuffled()) {
+       const hasPhrases = this.rawText().indexOf('\n') !== -1
        this.preShuffled = this.rawText()
-       this.setText(this.rawText().split(' ').sort(() => { return 0.5 - Math.random() }).join(' '))
+       this.setText(this.rawText().split(hasPhrases ? '\n' : ' ').sort(() => { return 0.5 - Math.random() }).join(hasPhrases ? '\n' : ' '))
      } else {
        this.setText(this.preShuffled)
      }
@@ -448,11 +489,14 @@ export class MorseViewModel {
       this.flaggedWords(this.flaggedWords().trim() + word)
     } else {
       // deal with double click which is also used to pick a word
+      const msNow = Date.now()
+      const msPassedSince = msNow - this.lastFlaggedWordMs
+      this.lastFlaggedWordMs = msNow
+      const threshold = 500
       const words = this.flaggedWords().trim().split(' ')
       const lastWord = words[words.length - 1]
-      if (lastWord === word) {
-        // we have either a double click scenario, or otherwise user
-        // selected word twice so either way assume removal
+      if (lastWord === word && (msPassedSince < threshold)) {
+        // we have a double click scenario so remove it
         words.pop()
       } else {
         words.push(word)
@@ -578,6 +622,8 @@ export class MorseViewModel {
 
     if (freshStart) {
       this.runningPlayMs(0)
+      // clear the voice cache
+      this.voiceBuffer = []
     }
     // experience shows it is good to put a little pause here when user forces us here,
     // e.g. hitting back or play b/c word was misunderstood,
@@ -586,6 +632,8 @@ export class MorseViewModel {
       clearTimeout(this.doPlayTimeOut)
     }
     this.doPlayTimeOut = setTimeout(() => this.morseWordPlayer.pause(() => {
+      // help trailing reveal, max should always be one behind before we're about to play
+      this.maxRevealedTrail(this.currentIndex() - 1)
       const config = this.getMorseStringToWavBufferConfig(this.words()[this.currentIndex()])
       this.morseWordPlayer.play(config, this.playEnded)
       this.lastPartialPlayStart(Date.now())
@@ -594,19 +642,91 @@ export class MorseViewModel {
     playJustEnded || fromPlayButton ? 0 : 1000)
   }
 
-  playEnded = () => {
-    this.runningPlayMs(this.runningPlayMs() + (Date.now() - this.lastPartialPlayStart()))
-    if (this.currentIndex() < this.words().length - 1) {
-      this.incrementIndex()
-      this.doPlay(true)
-    } else if (this.currentSentanceIndex() < this.sentenceMax()) {
+  playEnded = (fromVoiceOrTrail) => {
+    // voice or trail have timers that might call this after user has hit stop
+    // specifically they have built in pauses for "thinking time" during which the user
+    // might have hit stop
+    if (fromVoiceOrTrail && !this.playerPlaying()) {
+      return
+    }
+
+    // where are we in the words to process?
+    const isNotLastWord = this.currentIndex() < this.words().length - 1
+    const isNotLastSentence = this.currentSentanceIndex() < this.sentenceMax()
+    const anyNewLines = this.rawText().indexOf('\n') !== -1
+    const needToSpeak = this.voiceEnabled() && !fromVoiceOrTrail
+    const needToTrail = this.trailReveal() && !fromVoiceOrTrail
+    const noDelays = !needToSpeak && !needToTrail
+    const advanceTrail = () => {
+      if (this.trailReveal()) {
+        setTimeout(() => {
+          this.maxRevealedTrail(this.maxRevealedTrail() + 1)
+          setTimeout(() => {
+            this.playEnded(true)
+          }, this.trailPostDelay() * 1000)
+        }
+        , this.trailPreDelay() * 1000)
+      }
+    }
+    const finalizeTrail = (finalCallback) => {
+      if (this.trailReveal()) {
+        setTimeout(() => {
+          this.maxRevealedTrail(-1)
+          finalCallback()
+        }
+        , this.trailFinal() * 1000)
+      }
+    }
+
+    if (noDelays) {
+      // no speaking, so play more morse
+      this.runningPlayMs(this.runningPlayMs() + (Date.now() - this.lastPartialPlayStart()))
+      if (isNotLastWord) {
+        this.incrementIndex()
+        this.doPlay(true)
+      } else if (isNotLastSentence) {
       // move to next sentence
-      this.currentSentanceIndex(Number(this.currentSentanceIndex()) + 1)
-      this.currentIndex(0)
-      this.doPlay(true)
-    } else {
+        this.currentSentanceIndex(Number(this.currentSentanceIndex()) + 1)
+        this.currentIndex(0)
+        this.doPlay(true)
+      } else {
       // nothing more to play
-      this.doPause(true)
+        const finalToDo = () => this.doPause(true)
+        // trailing may want a linger
+        if (this.trailReveal()) {
+          finalizeTrail(finalToDo)
+        } else {
+          finalToDo()
+        }
+      }
+    }
+
+    if (needToSpeak) {
+      // speak the voice buffer if there's a newline or nothing more to play
+      const currentWord = this.words()[this.currentIndex()]
+      const hasNewline = currentWord.indexOf('\n') !== -1
+      this.voiceBuffer.push(currentWord)
+      if (hasNewline || !isNotLastWord || !anyNewLines) {
+        const phraseToSpeak = MorseStringUtils.wordifyPunctuation(this.voiceBuffer.join(' '))
+        // clear the buffer
+        this.voiceBuffer = []
+        setTimeout(() => {
+          const morseVoiceInfo = new MorseVoiceInfo()
+          morseVoiceInfo.textToSpeak = phraseToSpeak
+          morseVoiceInfo.voice = this.voiceVoice()
+          morseVoiceInfo.volume = this.voiceVolume() / 10
+          morseVoiceInfo.rate = this.voiceRate()
+          morseVoiceInfo.pitch = this.voicePitch()
+          morseVoiceInfo.onEnd = () => { this.playEnded(true) }
+          this.morseVoice.speak(morseVoiceInfo)
+        }, this.voiceThinkingTime() * 1000)
+      } else {
+        this.playEnded(true)
+      }
+    }
+
+    if (needToTrail) {
+      advanceTrail()
     }
   }
 
@@ -629,18 +749,27 @@ export class MorseViewModel {
       }
 
       this.preSpaceUsed(false)
+      if (this.loop()) {
+        // as if user pressed play again
+        this.doPlay(false, true)
+      }
     }, true)
     if (fullRewind) {
       this.fullRewind()
     }
   }
 
-  inputFileChange = (file) => {
+  inputFileChange = (element) => {
     // thanks to https://newbedev.com/how-to-access-file-input-with-knockout-binding
     // console.log(file)
+    const file = element.files[0]
+    console.log(element.value)
     const fr = new FileReader()
     fr.onload = (data) => {
       this.setText(data.target.result)
+      // need to clear or else won't fire if use clears the text area
+      // and then tries to reload the same again
+      element.value = null
     }
     fr.readAsText(file)
   }

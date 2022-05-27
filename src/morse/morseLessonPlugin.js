@@ -51,6 +51,7 @@ export default class MorseLessonPlugin {
         if (!display.isDummy) {
           if (ctxt.displaysInitialized) {
             ctxt.selectedDisplay(display)
+            ctxt.newlineChunking(display.newlineChunking)
             // ctxt.setText(`when we have lesson files, load ${ctxt.selectedDisplay().fileName}`)
             ctxt.getWordList(ctxt.selectedDisplay().fileName)
             ctxt.closeLessonAccordianIfAutoClosing()
@@ -117,7 +118,7 @@ export default class MorseLessonPlugin {
            list.letterGroup === ctxt.letterGroup())
           .forEach((x) => {
             if (!dps.find((y) => y === x.display)) {
-              dps.push({ display: x.display, fileName: x.fileName })
+              dps.push(x)
             }
           })
         return dps
