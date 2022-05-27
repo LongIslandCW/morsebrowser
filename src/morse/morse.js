@@ -8,12 +8,11 @@ import { MorseVoice, MorseVoiceInfo } from './morseVoice.js'
 // even loading this code into the browser:
 // import RSSParser from 'rss-parser';
 
-import Cookies from 'js-cookie'
 import MorseLessonPlugin from './morseLessonPlugin.js'
 import { MorseLoadImages } from './morseLoadImages.js'
-import licwDefaults from '../configs/licwdefaults.json'
 import { MorseShortcutKeys } from './morseShortcutKeys.js'
 import { MorseExtenders } from './morseExtenders.js'
+import { MorseCookies } from './morseCookies.js'
 
 export class MorseViewModel {
   constructor () {
@@ -43,10 +42,10 @@ export class MorseViewModel {
     }
 
     // load defaults
-    this.loadCookiesOrDefaults(null, true)
+    MorseCookies.loadCookiesOrDefaults(this, null, true)
 
     // load cookies
-    this.loadCookiesOrDefaults(null, false)
+    MorseCookies.loadCookiesOrDefaults(this, null, false)
 
     // initialize the wordlist
     this.initializeWordList()
@@ -243,64 +242,14 @@ export class MorseViewModel {
   trailFinal = ko.observable(1)
   maxRevealedTrail = ko.observable(-1)
 
+  // END KO observables declarations
+
   // helper
   booleanize = (x) => {
     if (x === 'true ' || x === 'false') {
       return x === 'true'
     } else {
       return x
-    }
-  }
-
-  // helper
-  loadCookiesOrDefaults = (whiteList, ifLoadSettings) => {
-    // load any existing cookie values
-
-    const cks = Cookies.get()
-    const cksKeys = []
-    for (const key in cks) {
-      cksKeys.push(key)
-    }
-
-    // ignore setting for which there's a cookie
-    const workAry = ifLoadSettings ? licwDefaults.startupSettings.filter((x) => cksKeys.indexOf(x.key) < 0) : cksKeys
-    const keyResolver = ifLoadSettings ? (x) => x.key : (x) => x
-    const valResolver = ifLoadSettings ? (x) => x.value : (x) => cks[x]
-    if (workAry) {
-      const specialHandling = []
-      workAry.forEach((setting) => {
-        const key = keyResolver(setting)
-        const val = valResolver(setting)
-
-        if (!whiteList || whiteList.indexOf(key) > -1) {
-          switch (key) {
-            case 'syncWpm':
-            case 'wpm':
-            case 'fwpm':
-            case 'syncFreq':
-            case 'ditFrequency':
-            case 'dahFrequency':
-              specialHandling.push({ key, val: this.booleanize(val) })
-              break
-            default:
-              if (typeof this[key] !== 'undefined') {
-                this[key](this.booleanize(val))
-              }
-          }
-        }
-      })
-      //
-      let target = specialHandling.find(x => x.key === 'syncWpm')
-      if (target) {
-        this[target.key](target.val)
-      }
-      target = specialHandling.find(x => x.key === 'syncFreq')
-      if (target) {
-        this[target.key](target.val)
-      }
-      specialHandling.forEach((x) => {
-        this[x.key](x.val)
-      })
     }
   }
 
@@ -757,7 +706,7 @@ export class MorseViewModel {
         // possibly rss-related cookies missed
         // TODO probably in general 'plugins' should be some sort of promise based
         // and load cookies after all plugins but for now just do this....
-        this.loadCookiesOrDefaults(this.rssCookieWhiteList, false)
+        MorseCookies.loadCookiesOrDefaults(this, this.rssCookieWhiteList, false)
         if (afterCallBack) {
           afterCallBack()
         }
