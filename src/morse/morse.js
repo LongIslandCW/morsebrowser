@@ -335,17 +335,12 @@ export class MorseViewModel {
   }
 
   fullRewind = () => {
-    // if (this.sentenceMax()>0) {
     this.currentSentanceIndex(0)
     this.currentIndex(0)
-    // }
   }
 
   sentanceRewind = () => {
-    // if (this.sentenceMax()>0) {
-    // self.currentSentanceIndex(0);
     this.currentIndex(0)
-    // }
   }
 
   setWordIndex = (index) => {
