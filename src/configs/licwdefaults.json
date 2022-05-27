@@ -1,0 +1,85 @@
+{
+    "startupSettings": [
+        {
+            "key": "dummykey",
+            "value": "dummyvalue",
+            "comment": "PROBABLY YOU ONLY WANT TO EDIT 'value'S, DO NOT TOUCH 'key'S UNLESS YOU ARE SURE!",
+            "comment2": "remember numbers and true/false don't need quotes, just quote text"
+        },
+        {
+            "key": "showingText",
+            "value": "CQ LICW",
+            "comment": "text that shows up every time browser refreshed. advise you keep something here so newb can just hit play..."
+        },
+        {
+            "key": "wpm",
+            "value": 20,
+            "comment": ""
+        },
+        {
+            "key": "fwpm",
+            "value": 20,
+            "comment": "remember if this deviates from wpm, set syncWpm below to false"
+        },
+        {
+            "key": "ditFrequency",
+            "value": 600,
+            "comment": ""
+        },
+        {
+            "key": "dahFrequency",
+            "value": 600,
+            "comment": "remember if dit dah are different, set syncFreq below to false"
+        },
+        {
+            "key": "preSpace",
+            "value": 1,
+            "comment": "seconds of silence before playing first word, for blue tooth etc"
+        },
+        {
+            "key": "xtraWordSpaceDits",
+            "value": 0,
+            "comment": "7 is a full word space"
+        },
+        {
+            "key": "volume",
+            "value": 10,
+            "comment": ""
+        },
+        {
+            "key": "stickySets",
+            "value": "BK",
+            "comment": "put a space between sets"
+        },
+        {
+            "key": "syncWpm",
+            "value": true,
+            "comment": "make this false if wpm and fwpm are different above"
+        },
+        {
+            "key": "syncFreq",
+            "value": true,
+            "comment": "make this false if dit and dah are different"
+        },
+        {
+            "key": "hideList",
+            "value": true,
+            "comment": "by default hide the word list boxes/cards that get generated i.e. don't reveal"
+        },
+        {
+            "key": "showRaw",
+            "value": true,
+            "comment": "by default dont hide the main top text area"
+        },
+        {
+            "key": "autoCloseLessonAccordian",
+            "value": false,
+            "comment": ""
+        },
+        {
+            "key": "cardFontPx",
+            "value": 15,
+            "comment": "controls the font size of the cards may help with visibility"
+        }
+    ]
+}

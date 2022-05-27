@@ -13,13 +13,16 @@ class TestMe {
     }
     const zipFileName = 'morse.zip'
     const zipFromFolder = path.resolve(__dirname, 'dist')
-    const endDownLoadFolder = zipFromFolder + '/download'
-    const endDownLoadFile = endDownLoadFolder + '/' + zipFileName
+    const endDownLoadFolder = path.join(zipFromFolder, 'download')
+    const endDownLoadFile = path.join(endDownLoadFolder, zipFileName)
     const initialZipFile = path.resolve(__dirname, zipFileName)
 
     // zip has circular problem so we do it in stages
     // delete old directorty
-    fs.rmdirSync(endDownLoadFolder, { recursive: true, force: true })
+    if (fs.existsSync(endDownLoadFolder)) {
+      fs.rmdirSync(endDownLoadFolder, { recursive: true, force: true })
+    }
+    // console.log('removed')
     await zip.zip(zipFromFolder, initialZipFile)
     ensureDirSync(endDownLoadFolder)
     fs.renameSync(initialZipFile, endDownLoadFile)

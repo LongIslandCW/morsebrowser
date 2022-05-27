@@ -28,8 +28,9 @@
     "zip-a-folder": "^1.1.3"
   },
   "scripts": {
+    "prebuild": "node ./prebuildLessons.js",
     "build": "webpack",
-    "postbuild": "node ./zipdist.js",
+    "postbuild": "node ./zipdist.js && node ./checklessons.js",
     "dev": "webpack serve"
   },
   "devDependencies": {

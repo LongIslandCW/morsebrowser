@@ -24,3 +24,5 @@ It's suggested that if you want to help:
 - other genric tools of which you'll need some basic understing: node, npm, webpack, eslint, git (and github if you want to constribute)
 - KN4YRM used VSCode as his IDE for this project
 - Please create a feature branch off of develop, and submit a pull request to merge into develop if you have code to contribute.
+
+1.0.0
