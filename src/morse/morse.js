@@ -13,95 +13,19 @@ import MorseLessonPlugin from './morseLessonPlugin.js'
 import { MorseLoadImages } from './morseLoadImages.js'
 import licwDefaults from '../configs/licwdefaults.json'
 import { MorseShortcutKeys } from './morseShortcutKeys.js'
+import { MorseExtenders } from './morseExtenders.js'
+
 export class MorseViewModel {
   constructor () {
+    // initialize the images/icons
     this.morseLoadImages(new MorseLoadImages())
 
     // create the helper extenders
-    ko.extenders.saveCookie = (target, option) => {
-      target.subscribe((newValue) => {
-        Cookies.set(option, newValue, { expires: 365 })
-      })
-      return target
-    }
-
-    ko.extenders.showingChange = (target, option) => {
-      target.subscribe((newValue) => {
-        if (this.showRaw()) {
-          this.rawText(newValue)
-        }
-      })
-      return target
-    }
-    ko.extenders.showRawChange = (target, option) => {
-      target.subscribe((newValue) => {
-        // console.log(option + ": " + newValue);
-        if (newValue) {
-          this.showingText(this.rawText())
-        } else {
-          this.showingText('')
-        }
-      })
-      return target
-    }
-
-    ko.extenders.setVolume = (target, option) => {
-      target.subscribe((newValue) => {
-        this.morseWordPlayer.setVolume(newValue)
-      })
-      return target
-    }
-
-    ko.extenders.setNoiseVolume = (target, option) => {
-      target.subscribe((newValue) => {
-        this.morseWordPlayer.setNoiseVolume(newValue)
-      })
-      return target
-    }
-
-    ko.extenders.setNoiseType = (target, option) => {
-      target.subscribe((newValue) => {
-        const config = this.getMorseStringToWavBufferConfig('')
-        config.noise.type = this.noiseEnabled() ? newValue : 'off'
-        this.morseWordPlayer.setNoiseType(config)
-      })
-      return target
-    }
-
-    ko.extenders.initRss = (target, option) => {
-      target.subscribe((newValue) => {
-        if (newValue) {
-          this.initializeRss()
-        }
-      })
-      return target
-    }
-
-    ko.extenders.dummyLogger = (target, option) => {
-      target.subscribe((newValue) => {
-        console.log(`dummyloggerextension option:${option} newValue:${newValue}`)
-      })
-      return target
-    }
+    MorseExtenders.init(ko, this)
 
     // apply extenders
-    this.wpm.extend({ saveCookie: 'wpm' })
-    this.fwpm.extend({ saveCookie: 'fwpm' })
-    this.ditFrequency.extend({ saveCookie: 'ditFrequency' })
-    this.dahFrequency.extend({ saveCookie: 'dahFrequency' })
-    this.hideList.extend({ saveCookie: 'hideList' })
-    this.showingText.extend({ showingChange: 'showingChange' })
-    this.showRaw.extend({ showRawChange: 'showRawChange' })
-    this.preSpace.extend({ saveCookie: 'preSpace' })
-    this.xtraWordSpaceDits.extend({ saveCookie: 'xtraWordSpaceDits' })
-    this.volume.extend({ saveCookie: 'volume' }).extend({ setVolume: 'volume' })
-    this.noiseVolume.extend({ saveCookie: 'noiseVolume' }).extend({ setNoiseVolume: 'noiseVolume' })
-    this.noiseType.extend({ saveCookie: 'noiseType' }).extend({ setNoiseType: 'noiseType' })
-    this.syncWpm.extend({ saveCookie: 'syncWpm' })
-    this.syncFreq.extend({ saveCookie: 'syncFreq' })
-    this.rssEnabled.extend({ initRss: 'rssEnabled' })
-    this.showExpertSettings.extend({ saveCookie: 'showExpertSettings' })
-    this.cardFontPx.extend({ saveCookie: 'cardFontPx' })
+    MorseExtenders.apply(this)
+
     // initialize the main rawText
     this.rawText(this.showingText())
 
@@ -132,6 +56,7 @@ export class MorseViewModel {
 
     MorseShortcutKeys.init(this)
 
+    // add the shortcut key listener
     document.addEventListener('keypress', (e) => {
       const tagName = e.target.tagName
       if (tagName !== 'INPUT' && tagName !== 'TEXTAREA') {
@@ -147,307 +72,307 @@ export class MorseViewModel {
   }
   // END CONSTRUCTOR
 
-   textBuffer = ko.observable('')
-   trueWpm = ko.observable()
-   trueFwpm = ko.observable()
-   syncWpm = ko.observable(true)
+  textBuffer = ko.observable('')
+  trueWpm = ko.observable()
+  trueFwpm = ko.observable()
+  syncWpm = ko.observable(true)
 
-   wpm = ko.pureComputed({
-     read: () => {
-       return this.trueWpm()
-     },
-     write: (value) => {
-       this.trueWpm(value)
-       if (this.syncWpm() || parseInt(value) < parseInt(this.trueFwpm())) {
-         this.trueFwpm(value)
-       }
-     },
-     owner: this
-   })
+  wpm = ko.pureComputed({
+    read: () => {
+      return this.trueWpm()
+    },
+    write: (value) => {
+      this.trueWpm(value)
+      if (this.syncWpm() || parseInt(value) < parseInt(this.trueFwpm())) {
+        this.trueFwpm(value)
+      }
+    },
+    owner: this
+  })
 
-   fwpm = ko.pureComputed({
-     read: () => {
-       if (!this.syncWpm()) {
-         if (parseInt(this.trueFwpm()) <= parseInt(this.trueWpm())) {
-           return this.trueFwpm()
-         } else {
-           return this.trueWpm()
-         }
-       } else {
-         this.trueFwpm(this.trueWpm())
-         return this.trueFwpm()
-       }
-     },
-     write: (value) => {
-       if (parseInt(value) <= parseInt(this.trueWpm())) {
-         this.trueFwpm(value)
-       }
-     },
-     owner: this
-   })
+  fwpm = ko.pureComputed({
+    read: () => {
+      if (!this.syncWpm()) {
+        if (parseInt(this.trueFwpm()) <= parseInt(this.trueWpm())) {
+          return this.trueFwpm()
+        } else {
+          return this.trueWpm()
+        }
+      } else {
+        this.trueFwpm(this.trueWpm())
+        return this.trueFwpm()
+      }
+    },
+    write: (value) => {
+      if (parseInt(value) <= parseInt(this.trueWpm())) {
+        this.trueFwpm(value)
+      }
+    },
+    owner: this
+  })
 
-   trudDitFrequency = ko.observable()
-   truDahFrequency = ko.observable()
-   syncFreq = ko.observable(true)
-   ditFrequency = ko.pureComputed({
-     read: () => {
-       return this.trudDitFrequency()
-     },
-     write: (value) => {
-       this.trudDitFrequency(value)
-       if (this.syncFreq()) {
-         this.truDahFrequency(value)
-       }
-     },
-     owner: this
-   })
+  trudDitFrequency = ko.observable()
+  truDahFrequency = ko.observable()
+  syncFreq = ko.observable(true)
+  ditFrequency = ko.pureComputed({
+    read: () => {
+      return this.trudDitFrequency()
+    },
+    write: (value) => {
+      this.trudDitFrequency(value)
+      if (this.syncFreq()) {
+        this.truDahFrequency(value)
+      }
+    },
+    owner: this
+  })
 
-   dahFrequency = ko.pureComputed({
-     read: () => {
-       if (!this.syncFreq()) {
-         return this.truDahFrequency()
-       } else {
-         this.truDahFrequency(this.trudDitFrequency())
-         return this.trudDitFrequency()
-       }
-     },
-     write: (value) => {
-       this.truDahFrequency(value)
-     },
-     owner: this
-   })
+  dahFrequency = ko.pureComputed({
+    read: () => {
+      if (!this.syncFreq()) {
+        return this.truDahFrequency()
+      } else {
+        this.truDahFrequency(this.trudDitFrequency())
+        return this.trudDitFrequency()
+      }
+    },
+    write: (value) => {
+      this.truDahFrequency(value)
+    },
+    owner: this
+  })
 
-   hideList = ko.observable(true)
-   currentSentanceIndex = ko.observable(0)
-   currentIndex = ko.observable(0)
-   playerPlaying = ko.observable(false)
-   lastFullPlayTime = ko.observable(new Date(1900, 0, 0))
-   preSpace = ko.observable(0)
-   preSpaceUsed = ko.observable(false)
-   xtraWordSpaceDits = ko.observable(0)
-   flaggedWords = ko.observable('')
-   isShuffled = ko.observable(false)
-   trailReveal = ko.observable(false)
-   preShuffled = ''
-   wordLists = ko.observableArray()
-   morseWordPlayer = new MorseWordPlayer()
-   rawText = ko.observable()
-   showingText = ko.observable('')
-   showRaw = ko.observable(true)
-   rssEnabled = ko.observable(false)
-   rssInitializedOnce = ko.observable(false)
-   volume = ko.observable()
-   noiseEnabled = ko.observable(false)
-   noiseVolume = ko.observable(2)
-   noiseType = ko.observable('off')
-   userTarget = ko.observable('')
-   selectedClass = ko.observable('')
-   userTargetInitialized = false
-   selectedClassInitialized = false
-   letterGroupInitialized = false
-   displaysInitialized = false
-   letterGroup = ko.observable('')
-   selectedDisplay = ko.observable({})
-   lastPlayFullStart = null;
-   randomizeLessons = ko.observable(true)
-   ifOverrideTime = ko.observable(false)
-   overrideMins = ko.observable(2)
-   customGroup = ko.observable('')
-   ifOverrideMinMax = ko.observable(false)
-   trueOverrideMin = ko.observable(3)
-   overrideMin = ko.pureComputed({
-     read: () => {
-       return this.trueOverrideMin()
-     },
-     write: (value) => {
-       this.trueOverrideMin(value)
-       if (this.syncSize()) {
-         this.trueOverrideMax(value)
-       }
-     },
-     owner: this
-   })
+  hideList = ko.observable(true)
+  currentSentanceIndex = ko.observable(0)
+  currentIndex = ko.observable(0)
+  playerPlaying = ko.observable(false)
+  lastFullPlayTime = ko.observable(new Date(1900, 0, 0))
+  preSpace = ko.observable(0)
+  preSpaceUsed = ko.observable(false)
+  xtraWordSpaceDits = ko.observable(0)
+  flaggedWords = ko.observable('')
+  isShuffled = ko.observable(false)
+  trailReveal = ko.observable(false)
+  preShuffled = ''
+  wordLists = ko.observableArray()
+  morseWordPlayer = new MorseWordPlayer()
+  rawText = ko.observable()
+  showingText = ko.observable('')
+  showRaw = ko.observable(true)
+  rssEnabled = ko.observable(false)
+  rssInitializedOnce = ko.observable(false)
+  volume = ko.observable()
+  noiseEnabled = ko.observable(false)
+  noiseVolume = ko.observable(2)
+  noiseType = ko.observable('off')
+  userTarget = ko.observable('')
+  selectedClass = ko.observable('')
+  userTargetInitialized = false
+  selectedClassInitialized = false
+  letterGroupInitialized = false
+  displaysInitialized = false
+  letterGroup = ko.observable('')
+  selectedDisplay = ko.observable({})
+  lastPlayFullStart = null
+  randomizeLessons = ko.observable(true)
+  ifOverrideTime = ko.observable(false)
+  overrideMins = ko.observable(2)
+  customGroup = ko.observable('')
+  ifOverrideMinMax = ko.observable(false)
+  trueOverrideMin = ko.observable(3)
+  overrideMin = ko.pureComputed({
+    read: () => {
+      return this.trueOverrideMin()
+    },
+    write: (value) => {
+      this.trueOverrideMin(value)
+      if (this.syncSize()) {
+        this.trueOverrideMax(value)
+      }
+    },
+    owner: this
+  })
 
-   trueOverrideMax = ko.observable(3)
-   overrideMax = ko.pureComputed({
-     read: () => {
-       if (!this.syncSize()) {
-         return this.trueOverrideMax()
-       } else {
-         this.trueOverrideMax(this.trueOverrideMin())
-         return this.trueOverrideMin()
-       }
-     },
-     write: (value) => {
-       if (value >= this.trueOverrideMin()) {
-         this.trueOverrideMax(value)
-       }
-     },
-     owner: this
-   })
+  trueOverrideMax = ko.observable(3)
+  overrideMax = ko.pureComputed({
+    read: () => {
+      if (!this.syncSize()) {
+        return this.trueOverrideMax()
+      } else {
+        this.trueOverrideMax(this.trueOverrideMin())
+        return this.trueOverrideMin()
+      }
+    },
+    write: (value) => {
+      if (value >= this.trueOverrideMin()) {
+        this.trueOverrideMax(value)
+      }
+    },
+    owner: this
+  })
 
-   ifParseSentences = ko.observable(false)
-   ifStickySets = ko.observable(true)
-   stickySets = ko.observable('')
-   runningPlayMs = ko.observable(0)
-   lastPartialPlayStart = ko.observable()
-   isPaused=ko.observable(false)
-   syncSize=ko.observable(true)
-   morseLoadImages =ko.observable()
-   showExpertSettings = ko.observable(false)
-   cardFontPx = ko.observable()
-   voiceEnabled = ko.observable(false)
-   voiceCapable = ko.observable((typeof speechSynthesis !== 'undefined'))
-   voiceThinkingTime = ko.observable(0)
-   voiceVoice = ko.observable()
-   voiceVolume = ko.observable(10)
-   voiceRate = ko.observable(1)
-   voicePitch = ko.observable(1)
-   voiceLang = ko.observable('en-us')
-   voiceVoices = ko.observableArray([])
-   voiceBuffer = []
-   loop=ko.observable(false)
-   morseVoice = {}
-   // note this is whether you see any cards at all,
-   // not whether the words on them are obscured
-   cardsVisible = ko.observable(true)
-   lastFlaggedWordMs = Date.now()
-   newlineChunking = ko.observable(false)
-   trailPreDelay = ko.observable(0)
-   trailPostDelay = ko.observable(0)
-   trailFinal = ko.observable(1)
-   maxRevealedTrail = ko.observable(-1)
+  ifParseSentences = ko.observable(false)
+  ifStickySets = ko.observable(true)
+  stickySets = ko.observable('')
+  runningPlayMs = ko.observable(0)
+  lastPartialPlayStart = ko.observable()
+  isPaused = ko.observable(false)
+  syncSize = ko.observable(true)
+  morseLoadImages = ko.observable()
+  showExpertSettings = ko.observable(false)
+  cardFontPx = ko.observable()
+  voiceEnabled = ko.observable(false)
+  voiceCapable = ko.observable((typeof speechSynthesis !== 'undefined'))
+  voiceThinkingTime = ko.observable(0)
+  voiceVoice = ko.observable()
+  voiceVolume = ko.observable(10)
+  voiceRate = ko.observable(1)
+  voicePitch = ko.observable(1)
+  voiceLang = ko.observable('en-us')
+  voiceVoices = ko.observableArray([])
+  voiceBuffer = []
+  loop = ko.observable(false)
+  morseVoice = {}
+  // note this is whether you see any cards at all,
+  // not whether the words on them are obscured
+  cardsVisible = ko.observable(true)
+  lastFlaggedWordMs = Date.now()
+  newlineChunking = ko.observable(false)
+  trailPreDelay = ko.observable(0)
+  trailPostDelay = ko.observable(0)
+  trailFinal = ko.observable(1)
+  maxRevealedTrail = ko.observable(-1)
 
-   // helper
-   booleanize = (x) => {
-     if (x === 'true ' || x === 'false') {
-       return x === 'true'
-     } else {
-       return x
-     }
-   }
+  // helper
+  booleanize = (x) => {
+    if (x === 'true ' || x === 'false') {
+      return x === 'true'
+    } else {
+      return x
+    }
+  }
 
-   // helper
-   loadCookiesOrDefaults = (whiteList, ifLoadSettings) => {
-     // load any existing cookie values
+  // helper
+  loadCookiesOrDefaults = (whiteList, ifLoadSettings) => {
+    // load any existing cookie values
 
-     const cks = Cookies.get()
-     const cksKeys = []
-     for (const key in cks) {
-       cksKeys.push(key)
-     }
+    const cks = Cookies.get()
+    const cksKeys = []
+    for (const key in cks) {
+      cksKeys.push(key)
+    }
 
-     // ignore setting for which there's a cookie
-     const workAry = ifLoadSettings ? licwDefaults.startupSettings.filter((x) => cksKeys.indexOf(x.key) < 0) : cksKeys
-     const keyResolver = ifLoadSettings ? (x) => x.key : (x) => x
-     const valResolver = ifLoadSettings ? (x) => x.value : (x) => cks[x]
-     if (workAry) {
-       const specialHandling = []
-       workAry.forEach((setting) => {
-         const key = keyResolver(setting)
-         const val = valResolver(setting)
+    // ignore setting for which there's a cookie
+    const workAry = ifLoadSettings ? licwDefaults.startupSettings.filter((x) => cksKeys.indexOf(x.key) < 0) : cksKeys
+    const keyResolver = ifLoadSettings ? (x) => x.key : (x) => x
+    const valResolver = ifLoadSettings ? (x) => x.value : (x) => cks[x]
+    if (workAry) {
+      const specialHandling = []
+      workAry.forEach((setting) => {
+        const key = keyResolver(setting)
+        const val = valResolver(setting)
 
-         if (!whiteList || whiteList.indexOf(key) > -1) {
-           switch (key) {
-             case 'syncWpm':
-             case 'wpm':
-             case 'fwpm':
-             case 'syncFreq':
-             case 'ditFrequency':
-             case 'dahFrequency':
-               specialHandling.push({ key, val: this.booleanize(val) })
-               break
-             default:
-               if (typeof this[key] !== 'undefined') {
-                 this[key](this.booleanize(val))
-               }
-           }
-         }
-       })
-       //
-       let target = specialHandling.find(x => x.key === 'syncWpm')
-       if (target) {
-         this[target.key](target.val)
-       }
-       target = specialHandling.find(x => x.key === 'syncFreq')
-       if (target) {
-         this[target.key](target.val)
-       }
-       specialHandling.forEach((x) => {
-         this[x.key](x.val)
-       })
-     }
-   }
+        if (!whiteList || whiteList.indexOf(key) > -1) {
+          switch (key) {
+            case 'syncWpm':
+            case 'wpm':
+            case 'fwpm':
+            case 'syncFreq':
+            case 'ditFrequency':
+            case 'dahFrequency':
+              specialHandling.push({ key, val: this.booleanize(val) })
+              break
+            default:
+              if (typeof this[key] !== 'undefined') {
+                this[key](this.booleanize(val))
+              }
+          }
+        }
+      })
+      //
+      let target = specialHandling.find(x => x.key === 'syncWpm')
+      if (target) {
+        this[target.key](target.val)
+      }
+      target = specialHandling.find(x => x.key === 'syncFreq')
+      if (target) {
+        this[target.key](target.val)
+      }
+      specialHandling.forEach((x) => {
+        this[x.key](x.val)
+      })
+    }
+  }
 
-   // helper
-   // https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
-   getParameterByName = (name, url = window.location.href) => {
-     // eslint-disable-next-line no-useless-escape
-     name = name.replace(/[\[\]]/g, '\\$&')
-     const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)')
-     const results = regex.exec(url)
-     if (!results) return null
-     if (!results[2]) return ''
-     return decodeURIComponent(results[2].replace(/\+/g, ' '))
-   }
+  // helper
+  // https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
+  getParameterByName = (name, url = window.location.href) => {
+    // eslint-disable-next-line no-useless-escape
+    name = name.replace(/[\[\]]/g, '\\$&')
+    const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)')
+    const results = regex.exec(url)
+    if (!results) return null
+    if (!results[2]) return ''
+    return decodeURIComponent(results[2].replace(/\+/g, ' '))
+  }
 
-   changeSentance = () => {
-     this.currentIndex(0)
-   }
+  changeSentance = () => {
+    this.currentIndex(0)
+  }
 
-   setText = (s) => {
-     if (this.showRaw()) {
-       this.showingText(s)
-     } else {
-       this.rawText(s)
-     }
-   }
+  setText = (s) => {
+    if (this.showRaw()) {
+      this.showingText(s)
+    } else {
+      this.rawText(s)
+    }
+  }
 
-   sentences = ko.computed(() => {
-     if (!this.rawText()) {
-       return []
-     }
+  sentences = ko.computed(() => {
+    if (!this.rawText()) {
+      return []
+    }
 
-     return MorseStringUtils.getSentences(this.rawText(), !this.ifParseSentences(), this.newlineChunking())
-   }, this)
+    return MorseStringUtils.getSentences(this.rawText(), !this.ifParseSentences(), this.newlineChunking())
+  }, this)
 
-   sentenceMax = ko.computed(() => {
-     return this.sentences().length - 1
-   }, this)
+  sentenceMax = ko.computed(() => {
+    return this.sentences().length - 1
+  }, this)
 
-   words = ko.computed(() => {
-     return this.sentences()[this.currentSentanceIndex()]
-   }, this)
+  words = ko.computed(() => {
+    return this.sentences()[this.currentSentanceIndex()]
+  }, this)
 
-   flaggedWordsCount = ko.computed(() => {
-     if (!this.flaggedWords().trim()) {
-       return 0
-     }
-     return this.flaggedWords().trim().split(' ').length
-   }, this)
+  flaggedWordsCount = ko.computed(() => {
+    if (!this.flaggedWords().trim()) {
+      return 0
+    }
+    return this.flaggedWords().trim().split(' ').length
+  }, this)
 
-   shuffleWords = () => {
-     if (!this.isShuffled()) {
-       const hasPhrases = this.rawText().indexOf('\n') !== -1
-       this.preShuffled = this.rawText()
-       this.setText(this.rawText().split(hasPhrases ? '\n' : ' ').sort(() => { return 0.5 - Math.random() }).join(hasPhrases ? '\n' : ' '))
-     } else {
-       this.setText(this.preShuffled)
-     }
-     this.isShuffled(!this.isShuffled())
-   }
+  shuffleWords = () => {
+    if (!this.isShuffled()) {
+      const hasPhrases = this.rawText().indexOf('\n') !== -1
+      this.preShuffled = this.rawText()
+      this.setText(this.rawText().split(hasPhrases ? '\n' : ' ').sort(() => { return 0.5 - Math.random() }).join(hasPhrases ? '\n' : ' '))
+    } else {
+      this.setText(this.preShuffled)
+    }
+    this.isShuffled(!this.isShuffled())
+  }
 
-   incrementIndex = () => {
-     if (this.currentIndex() < this.words().length - 1) {
-       this.currentIndex(this.currentIndex() + 1)
-     } else {
-       // move to next sentence
-       if (this.currentSentanceIndex() < this.sentenceMax()) {
-         this.currentSentanceIndex(Number(this.currentSentanceIndex()) + 1)
-         this.currentIndex(0)
-       }
-     }
-   }
+  incrementIndex = () => {
+    if (this.currentIndex() < this.words().length - 1) {
+      this.currentIndex(this.currentIndex() + 1)
+    } else {
+      // move to next sentence
+      if (this.currentSentanceIndex() < this.sentenceMax()) {
+        this.currentSentanceIndex(Number(this.currentSentanceIndex()) + 1)
+        this.currentIndex(0)
+      }
+    }
+  }
 
   decrementIndex = () => {
     this.morseWordPlayer.pause(() => {

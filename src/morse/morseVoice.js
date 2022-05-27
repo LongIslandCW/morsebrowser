@@ -1,13 +1,13 @@
 export class MorseVoiceInfo {
-    textToSpeak
-    voice
-    volume
-    rate
-    pitch
-    onEnd
+  textToSpeak
+  voice
+  volume
+  rate
+  pitch
+  onEnd
 }
 export class MorseVoice {
-  voices =[]
+  voices = []
   voicesInited = false
   _voicesReadyCallback = null
 
