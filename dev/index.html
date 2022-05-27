@@ -457,6 +457,7 @@
                                     </div>
 
                                     <!--sentences toggle-->
+                                    <!-- TODO remove 
                                     <div class="col-auto" data-bind="visible: showExpertSettings">
 
                                         <input type="checkbox" class="btn-check" autocomplete="off"
@@ -465,7 +466,7 @@
                                                 data-bind="attr:{ src: morseLoadImages().getSrc('numlistImage')}">&nbsp;Sentences&nbsp;<img
                                                 data-bind="attr:{ src: ifParseSentences() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
                                     </div>
-
+                                    -->
                                     <!--noise toggle-->
                                     <div class="col-auto" data-bind="visible: showExpertSettings">
 
@@ -764,6 +765,8 @@
                                 data-bind="attr:{ src: !hideList() ? morseLoadImages().getSrc('eyeImage') : morseLoadImages().getSrc('eyeslashImage')}" /></label>
 
                     </div>
+                    <!-- sentence number -->
+                    <!--  TODO remove
                     <div class="input-group me-2" aria-label="thirdgroupabcd" role="group"
                         data-bind="visible: ifParseSentences() && showExpertSettings()">
                         <span class="input-group-text">Sentence&nbsp;<img id='numlistImage' height="20"
@@ -772,6 +775,7 @@
                             aria-label="Username"
                             data-bind="textInput: currentSentanceIndex,attr:{min:0, max:sentenceMax}">
                     </div>
+                    -->
                     <div class="button-group me-2" role="group" aria-label="Basic mixed styles example">
 
                         <button id="btnShuffle" type="button" class="btn btn-secondary"
