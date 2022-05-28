@@ -68,6 +68,9 @@ export class MorseViewModel {
         e.preventDefault()
       }
     })
+
+    // are we on the dev site?
+    this.isDev(window.location.href.toLowerCase().indexOf('/dev/') > -1)
   }
   // END CONSTRUCTOR
 
@@ -241,6 +244,7 @@ export class MorseViewModel {
   trailPostDelay = ko.observable(0)
   trailFinal = ko.observable(1)
   maxRevealedTrail = ko.observable(-1)
+  isDev = ko.observable(false)
 
   // END KO observables declarations
 
