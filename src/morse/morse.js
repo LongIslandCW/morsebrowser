@@ -9,7 +9,7 @@ import { MorseWordPlayer } from './morseWordPlayer.js'
 
 import MorseLessonPlugin from './lessons/morseLessonPlugin.ts'
 import { MorseLoadImages } from './morseLoadImages.js'
-import { MorseShortcutKeys } from './morseShortcutKeys.js'
+import { MorseShortcutKeys } from './shortcutKeys/morseShortcutKeys.ts'
 import { MorseExtenders } from './morseExtenders.js'
 import { MorseCookies } from './cookies/morseCookies.ts'
 import { MorseSettings } from './settings/settings.ts'
@@ -57,21 +57,7 @@ export class MorseViewModel {
     // voice
     this.morseVoice = new MorseVoice()
 
-    MorseShortcutKeys.init(this)
-
-    // add the shortcut key listener
-    document.addEventListener('keypress', (e) => {
-      const tagName = e.target.tagName
-      if (tagName !== 'INPUT' && tagName !== 'TEXTAREA') {
-        // var input = document.querySelector(".my-input");
-        // input.focus();
-        // input.value = e.key;
-        // console.log(e.target.tagName)
-        // console.log(e.key)
-        this.routeShortcutKey(e.key)
-        e.preventDefault()
-      }
-    })
+    this.shortCutKeys = new MorseShortcutKeys(this.settings)
 
     // are we on the dev site?
     this.isDev(window.location.href.toLowerCase().indexOf('/dev/') > -1)
@@ -142,6 +128,7 @@ export class MorseViewModel {
   cardFontPx = ko.observable()
   loop = ko.observable(false)
   morseVoice = {}
+  shortCutKeys = {}
   // note this is whether you see any cards at all,
   // not whether the words on them are obscured
   cardsVisible = ko.observable(true)
