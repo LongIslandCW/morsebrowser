@@ -1,7 +1,15 @@
 import Cookies from 'js-cookie'
-import licwDefaults from '../configs/licwdefaults.json'
+import licwDefaults from '../../configs/licwdefaults.json'
+import { CookieInfo } from './CookieInfo'
+import { ICookieHandler } from './ICookieHandler'
+
 export class MorseCookies {
-  static loadCookiesOrDefaults = (ctxt, whiteList, ifLoadSettings) => {
+  static registeredHandlers:ICookieHandler[] = []
+  static registerHandler (handler:ICookieHandler) {
+    MorseCookies.registeredHandlers.push(handler)
+  }
+
+  static loadCookiesOrDefaults (ctxt, whiteList, ifLoadSettings) {
     // load any existing cookie values
 
     const cks = Cookies.get()
@@ -14,8 +22,10 @@ export class MorseCookies {
     const workAry = ifLoadSettings ? licwDefaults.startupSettings.filter((x) => cksKeys.indexOf(x.key) < 0) : cksKeys
     const keyResolver = ifLoadSettings ? (x) => x.key : (x) => x
     const valResolver = ifLoadSettings ? (x) => x.value : (x) => cks[x]
+    const specialHandling: CookieInfo[] = []
+    const xtraspecialHandling: CookieInfo[] = []
+    const otherHandling: CookieInfo[] = []
     if (workAry) {
-      const specialHandling = []
       workAry.forEach((setting) => {
         const key = keyResolver(setting)
         const val = valResolver(setting)
@@ -25,27 +35,26 @@ export class MorseCookies {
             case 'syncWpm':
             case 'wpm':
             case 'fwpm':
+              xtraspecialHandling.push(<CookieInfo>{ key, val })
+              break
             case 'syncFreq':
             case 'ditFrequency':
             case 'dahFrequency':
-              specialHandling.push({ key, val: ctxt.booleanize(val) })
+              specialHandling.push(<CookieInfo>{ key, val: ctxt.booleanize(val) })
               break
             default:
               if (typeof ctxt[key] !== 'undefined') {
                 ctxt[key](ctxt.booleanize(val))
+              } else {
+                otherHandling.push(<CookieInfo>{ key, val })
               }
           }
         }
       })
-      //
-      let target = specialHandling.find(x => x.key === 'syncWpm')
-      if (target) {
-        ctxt[target.key](target.val)
-      }
-      target = specialHandling.find(x => x.key === 'syncFreq')
-      if (target) {
-        ctxt[target.key](target.val)
-      }
+      MorseCookies.registeredHandlers.forEach((handler) => {
+        handler.handleCookies(xtraspecialHandling)
+        handler.handleCookies(otherHandling)
+      })
       specialHandling.forEach((x) => {
         ctxt[x.key](x.val)
       })
