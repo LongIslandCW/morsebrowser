@@ -21,9 +21,9 @@ export class MorseWordPlayer {
   }
 
   play (config, onEnded) {
-    const wav = MorseStringToWavBuffer.createWav(config)
+    const wavInfo = MorseStringToWavBuffer.createWav(config)
     config.noise.scaledNoiseVolume = config.noise.volume / 10
-    this.myBufferPlayer.play(wav.wav, config.volume / 10, config, onEnded)
+    this.myBufferPlayer.play(wavInfo, config.volume / 10, config, onEnded)
   }
 
   pause (pauseCallBack, killNoise) {

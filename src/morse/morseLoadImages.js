@@ -15,6 +15,7 @@ import eyeslashSvg from 'bootstrap-icons/icons/eye-slash.svg'
 import speedometerSvg from 'bootstrap-icons/icons/speedometer2.svg'
 import musicnoteSvg from 'bootstrap-icons/icons/music-note.svg'
 import graphuparrowSvg from 'bootstrap-icons/icons/graph-up-arrow.svg'
+import graphdownarrowSvg from 'bootstrap-icons/icons/graph-down-arrow.svg'
 import volumemuteSvg from 'bootstrap-icons/icons/volume-mute.svg'
 import uploadSvg from 'bootstrap-icons/icons/upload.svg'
 import gearSvg from 'bootstrap-icons/icons/gear.svg'
@@ -66,6 +67,7 @@ export class MorseLoadImages {
     this.info.push({ key: 'gearImage', src: gearSvg })
     this.info.push({ key: 'volumeImage', src: volumeSvg })
     this.info.push({ key: 'graphuparrowImage', src: graphuparrowSvg })
+    this.info.push({ key: 'graphdownarrowImage', src: graphdownarrowSvg })
     this.info.push({ key: 'musicnoteImage', src: musicnoteSvg })
     this.info.push({ key: 'speedometerImage', src: speedometerSvg })
     this.info.push({ key: 'pauseImage', src: pauseSvg })

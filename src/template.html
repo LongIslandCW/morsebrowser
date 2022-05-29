@@ -550,6 +550,39 @@
                                         </div>
                                     </div>
 
+                                    <!--sound slope -->
+                                    <div class="input-group">
+                                        <!-- risetimeconstant-->
+                                        <div class="col-md-auto" data-bind="if: showExpertSettings()">
+                                            <div class="input-group">
+                                                <span class="input-group-text">RiseK&nbsp;<img width=20 height=20
+                                                        data-bind="attr:{ src: morseLoadImages().getSrc('graphuparrowImage')}"></span>
+                                                <input type="number" style="max-width:100px; min-width: 75px;"
+                                                    class="form-control" min="0" max="10" step=".001"
+                                                    data-bind="textInput: riseTimeConstant">
+                                            </div>
+                                        </div>
+                                        <!-- decaytimeconstant-->
+                                        <div class="col-md-auto" data-bind="if: showExpertSettings()">
+                                            <div class="input-group">
+                                                <span class="input-group-text">DecayK&nbsp;<img width=20 height=20
+                                                        data-bind="attr:{ src: morseLoadImages().getSrc('graphdownarrowImage')}"></span>
+                                                <input type="number" style="max-width:100px; min-width: 75px;"
+                                                    class="form-control" min="0" max="10" step=".001"
+                                                    data-bind="textInput: decayTimeConstant">
+                                            </div>
+                                        </div>
+                                        <!-- decaystart-->
+                                        <div class="col-md-auto" data-bind="if: showExpertSettings()">
+                                            <div class="input-group">
+                                                <span class="input-group-text">Decay Start<img width=20 height=20
+                                                        data-bind="attr:{ src: morseLoadImages().getSrc('stopwatchImage')}"></span>
+                                                <input type="number" style="max-width:75px; min-width: 75px;"
+                                                    class="form-control" min=".1" max="5" step=".1"
+                                                    data-bind="textInput: decayMsOffset">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
 
                             </div>

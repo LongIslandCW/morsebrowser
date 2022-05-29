@@ -245,6 +245,10 @@ export class MorseViewModel {
   trailFinal = ko.observable(1)
   maxRevealedTrail = ko.observable(-1)
   isDev = ko.observable(false)
+  riseTimeConstant = ko.observable(0.001)
+  decayTimeConstant = ko.observable(0.001)
+  riseMsOffset = ko.observable(1.5)
+  decayMsOffset = ko.observable(1.5)
 
   // END KO observables declarations
 
@@ -467,6 +471,10 @@ export class MorseViewModel {
       volume: parseInt(this.noiseVolume())
     }
     config.playerPlaying = this.playerPlaying()
+    config.riseTimeConstant = this.riseTimeConstant()
+    config.decayTimeConstant = this.decayTimeConstant()
+    config.riseMsOffset = this.riseMsOffset()
+    config.decayMsOffset = this.decayMsOffset()
     return config
   }
 

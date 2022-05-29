@@ -32,10 +32,13 @@ export class MorseStringToWavBuffer {
     const ret = {}
     // get wordspace
     const calcs = MorseTimingCalculator.getTimes(init.timingUnits, init.countUnits)
+    const timeLine = MorseTimingCalculator.getTimeLine(init.morseCWWave, init.timingUnits, config)
 
     ret.sample = init.morseCWWave.getSample(calcs.singleWordSpaceTime, config.prePaddingMs)
     const wav = RiffWave.getData(ret.sample)
     ret.wav = wav
+    ret.timeLine = timeLine
+    ret.timingUnits = init.timingUnits
     return ret
   }
 
@@ -44,7 +47,8 @@ export class MorseStringToWavBuffer {
     const timingUnits = init.timingUnits
     const unitCounts = MorseTimingCalculator.countUnits(init.morseCWWave, init.countUnits)
     const timeCalcs = MorseTimingCalculator.getTimes(timingUnits, unitCounts)
+    const timeLine = MorseTimingCalculator.getTimeLine(init.morseCWWave, timingUnits, config)
 
-    return { morse: init.morseCWWave.morse, word: config.word, timingUnits, unitCounts, timeCalcs }
+    return { morse: init.morseCWWave.morse, word: config.word, timingUnits, unitCounts, timeCalcs, timeLine }
   }
 }
