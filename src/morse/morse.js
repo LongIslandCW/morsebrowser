@@ -471,10 +471,10 @@ export class MorseViewModel {
       volume: parseInt(this.noiseVolume())
     }
     config.playerPlaying = this.playerPlaying()
-    config.riseTimeConstant = this.riseTimeConstant()
-    config.decayTimeConstant = this.decayTimeConstant()
-    config.riseMsOffset = this.riseMsOffset()
-    config.decayMsOffset = this.decayMsOffset()
+    config.riseTimeConstant = parseFloat(this.riseTimeConstant())
+    config.decayTimeConstant = parseFloat(this.decayTimeConstant())
+    config.riseMsOffset = parseFloat(this.riseMsOffset())
+    config.decayMsOffset = parseFloat(this.decayMsOffset())
     return config
   }
 
