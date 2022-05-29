@@ -2,18 +2,18 @@ import ko from 'knockout'
 import MorseStringUtils from './morseStringUtils.js'
 import { MorseStringToWavBufferConfig } from './morseStringToWavBuffer.js'
 import { MorseWordPlayer } from './morseWordPlayer.js'
-import { MorseVoice, MorseVoiceInfo } from './morseVoice.js'
 
 // NOTE: moved this to dynamic import() so that non-RSS users don't need to bother
 // even loading this code into the browser:
 // import RSSParser from 'rss-parser';
 
-import MorseLessonPlugin from './morseLessonPlugin.js'
+import MorseLessonPlugin from './lessons/morseLessonPlugin.ts'
 import { MorseLoadImages } from './morseLoadImages.js'
 import { MorseShortcutKeys } from './morseShortcutKeys.js'
 import { MorseExtenders } from './morseExtenders.js'
-import { MorseCookies } from './morseCookies.js'
-
+import { MorseCookies } from './cookies/morseCookies.ts'
+import { MorseSettings } from './settings/settings.ts'
+import { MorseVoice } from './voice/MorseVoice.ts'
 export class MorseViewModel {
   constructor () {
     // initialize the images/icons
@@ -28,7 +28,11 @@ export class MorseViewModel {
     // initialize the main rawText
     this.rawText(this.showingText())
 
-    MorseLessonPlugin.addLessonFeatures(ko, this)
+    this.lessons = new MorseLessonPlugin(this.settings, (s) => { this.setText(s) }, (str) => {
+      const config = this.getMorseStringToWavBufferConfig(str)
+      const est = this.morseWordPlayer.getTimeEstimate(config)
+      return est
+    })
 
     // check for RSS feature turned on
     if (this.getParameterByName('rssEnabled')) {
@@ -48,10 +52,10 @@ export class MorseViewModel {
     MorseCookies.loadCookiesOrDefaults(this, null, false)
 
     // initialize the wordlist
-    this.initializeWordList()
+    this.lessons.initializeWordList()
 
     // voice
-    this.morseVoice = new MorseVoice((data) => { this.voiceVoices(data) })
+    this.morseVoice = new MorseVoice()
 
     MorseShortcutKeys.init(this)
 
@@ -75,44 +79,6 @@ export class MorseViewModel {
   // END CONSTRUCTOR
 
   textBuffer = ko.observable('')
-  trueWpm = ko.observable()
-  trueFwpm = ko.observable()
-  syncWpm = ko.observable(true)
-
-  wpm = ko.pureComputed({
-    read: () => {
-      return this.trueWpm()
-    },
-    write: (value) => {
-      this.trueWpm(value)
-      if (this.syncWpm() || parseInt(value) < parseInt(this.trueFwpm())) {
-        this.trueFwpm(value)
-      }
-    },
-    owner: this
-  })
-
-  fwpm = ko.pureComputed({
-    read: () => {
-      if (!this.syncWpm()) {
-        if (parseInt(this.trueFwpm()) <= parseInt(this.trueWpm())) {
-          return this.trueFwpm()
-        } else {
-          return this.trueWpm()
-        }
-      } else {
-        this.trueFwpm(this.trueWpm())
-        return this.trueFwpm()
-      }
-    },
-    write: (value) => {
-      if (parseInt(value) <= parseInt(this.trueWpm())) {
-        this.trueFwpm(value)
-      }
-    },
-    owner: this
-  })
-
   trudDitFrequency = ko.observable()
   truDahFrequency = ko.observable()
   syncFreq = ko.observable(true)
@@ -156,7 +122,6 @@ export class MorseViewModel {
   isShuffled = ko.observable(false)
   trailReveal = ko.observable(false)
   preShuffled = ''
-  wordLists = ko.observableArray()
   morseWordPlayer = new MorseWordPlayer()
   rawText = ko.observable()
   showingText = ko.observable('')
@@ -167,85 +132,27 @@ export class MorseViewModel {
   noiseEnabled = ko.observable(false)
   noiseVolume = ko.observable(2)
   noiseType = ko.observable('off')
-  userTarget = ko.observable('')
-  selectedClass = ko.observable('')
-  userTargetInitialized = false
-  selectedClassInitialized = false
-  letterGroupInitialized = false
-  displaysInitialized = false
-  letterGroup = ko.observable('')
-  selectedDisplay = ko.observable({})
   lastPlayFullStart = null
-  randomizeLessons = ko.observable(true)
-  ifOverrideTime = ko.observable(false)
-  overrideMins = ko.observable(2)
-  customGroup = ko.observable('')
-  ifOverrideMinMax = ko.observable(false)
-  trueOverrideMin = ko.observable(3)
-  overrideMin = ko.pureComputed({
-    read: () => {
-      return this.trueOverrideMin()
-    },
-    write: (value) => {
-      this.trueOverrideMin(value)
-      if (this.syncSize()) {
-        this.trueOverrideMax(value)
-      }
-    },
-    owner: this
-  })
-
-  trueOverrideMax = ko.observable(3)
-  overrideMax = ko.pureComputed({
-    read: () => {
-      if (!this.syncSize()) {
-        return this.trueOverrideMax()
-      } else {
-        this.trueOverrideMax(this.trueOverrideMin())
-        return this.trueOverrideMin()
-      }
-    },
-    write: (value) => {
-      if (value >= this.trueOverrideMin()) {
-        this.trueOverrideMax(value)
-      }
-    },
-    owner: this
-  })
-
   ifParseSentences = ko.observable(false)
-  ifStickySets = ko.observable(true)
-  stickySets = ko.observable('')
   runningPlayMs = ko.observable(0)
   lastPartialPlayStart = ko.observable()
   isPaused = ko.observable(false)
-  syncSize = ko.observable(true)
   morseLoadImages = ko.observable()
   showExpertSettings = ko.observable(false)
   cardFontPx = ko.observable()
-  voiceEnabled = ko.observable(false)
-  voiceCapable = ko.observable((typeof speechSynthesis !== 'undefined'))
-  voiceThinkingTime = ko.observable(0)
-  voiceVoice = ko.observable()
-  voiceVolume = ko.observable(10)
-  voiceRate = ko.observable(1)
-  voicePitch = ko.observable(1)
-  voiceLang = ko.observable('en-us')
-  voiceVoices = ko.observableArray([])
-  voiceBuffer = []
   loop = ko.observable(false)
   morseVoice = {}
   // note this is whether you see any cards at all,
   // not whether the words on them are obscured
   cardsVisible = ko.observable(true)
   lastFlaggedWordMs = Date.now()
-  newlineChunking = ko.observable(false)
   trailPreDelay = ko.observable(0)
   trailPostDelay = ko.observable(0)
   trailFinal = ko.observable(1)
   maxRevealedTrail = ko.observable(-1)
   isDev = ko.observable(false)
-
+  settings = new MorseSettings()
+  lessons = {}
   // END KO observables declarations
 
   // helper
@@ -286,7 +193,7 @@ export class MorseViewModel {
       return []
     }
 
-    return MorseStringUtils.getSentences(this.rawText(), !this.ifParseSentences(), this.newlineChunking())
+    return MorseStringUtils.getSentences(this.rawText(), !this.ifParseSentences(), this.settings.misc.newlineChunking())
   }, this)
 
   sentenceMax = ko.computed(() => {
@@ -391,72 +298,11 @@ export class MorseViewModel {
     }
   }
 
-  doCustomGroup = () => {
-    if (this.customGroup()) {
-      const data = { letters: this.customGroup().trim().replace(/ /g, '') }
-      this.randomWordList(data, true)
-      this.closeLessonAccordianIfAutoClosing()
-    }
-  }
-
-  randomWordList = (data, ifCustom) => {
-    let str = ''
-    const splitWithProsignsAndStcikys = (s) => {
-      let stickys = ''
-      if (this.ifStickySets() && this.stickySets().trim()) {
-        stickys = '|' + this.stickySets().toUpperCase().trim().replace(/ {2}/g, ' ').replace(/ /g, '|')
-      }
-
-      const regStr = `<.*?>${stickys}|[^<.*?>]|\\W`
-      // console.log(regStr)
-      const re = new RegExp(regStr, 'g')
-      const match = s.toUpperCase().match(re)
-      // console.log(match)
-      return match
-    }
-    const chars = splitWithProsignsAndStcikys(data.letters)
-    let seconds = 0
-    const controlTime = (this.ifOverrideTime() || ifCustom) ? (this.overrideMins() * 60) : data.practiceSeconds
-    const minWordSize = (this.ifOverrideMinMax() || ifCustom) ? this.overrideMin() : data.minWordSize
-    const maxWordSize = (this.ifOverrideMinMax() || ifCustom) ? this.overrideMax() : data.maxWordSize
-    // Fn to generate random number min/max inclusive
-    // https://www.geeksforgeeks.org/how-to-generate-random-number-in-given-range-using-javascript/
-    const randomNumber = (min, max) => {
-      min = Math.ceil(min)
-      max = Math.floor(max)
-      return Math.floor(Math.random() * (max - min + 1)) + min
-    }
-
-    do {
-      let word = ''
-
-      if (this.randomizeLessons()) {
-        // determine word length
-        const wordLength = minWordSize === maxWordSize ? minWordSize : randomNumber(minWordSize, maxWordSize)
-
-        for (let j = 1; j <= wordLength; j++) { // for each letter
-          // determine the letter
-          word += chars[randomNumber(1, chars.length) - 1]
-        }
-      } else {
-        word = data.letters
-      }
-
-      str += seconds > 0 ? (' ' + word.toUpperCase()) : word.toUpperCase()
-
-      const config = this.getMorseStringToWavBufferConfig(str)
-      const est = this.morseWordPlayer.getTimeEstimate(config)
-      seconds = est.timeCalcs.totalTime / 1000
-    } while (seconds < controlTime)
-
-    this.setText(str)
-  }
-
   getMorseStringToWavBufferConfig = (text) => {
     const config = new MorseStringToWavBufferConfig()
     config.word = MorseStringUtils.doReplacements(text)
-    config.wpm = parseInt(this.wpm())
-    config.fwpm = parseInt(this.fwpm())
+    config.wpm = parseInt(this.settings.speed.wpm())
+    config.fwpm = parseInt(this.settings.speed.fwpm())
     config.ditFrequency = parseInt(this.ditFrequency())
     config.dahFrequency = parseInt(this.dahFrequency())
     config.prePaddingMs = this.preSpaceUsed() ? 0 : this.preSpace() * 1000
@@ -527,7 +373,7 @@ export class MorseViewModel {
     const isNotLastWord = this.currentIndex() < this.words().length - 1
     const isNotLastSentence = this.currentSentanceIndex() < this.sentenceMax()
     const anyNewLines = this.rawText().indexOf('\n') !== -1
-    const needToSpeak = this.voiceEnabled() && !fromVoiceOrTrail
+    const needToSpeak = this.morseVoice.voiceEnabled() && !fromVoiceOrTrail
     const needToTrail = this.trailReveal() && !fromVoiceOrTrail
     const noDelays = !needToSpeak && !needToTrail
     const advanceTrail = () => {
@@ -578,21 +424,14 @@ export class MorseViewModel {
       // speak the voice buffer if there's a newline or nothing more to play
       const currentWord = this.words()[this.currentIndex()]
       const hasNewline = currentWord.indexOf('\n') !== -1
-      this.voiceBuffer.push(currentWord)
+      this.morseVoice.voiceBuffer.push(currentWord)
       if (hasNewline || !isNotLastWord || !anyNewLines) {
-        const phraseToSpeak = MorseStringUtils.wordifyPunctuation(this.voiceBuffer.join(' '))
+        const phraseToSpeak = MorseStringUtils.wordifyPunctuation(this.morseVoice.voiceBuffer.join(' '))
         // clear the buffer
-        this.voiceBuffer = []
+        this.morseVoice.voiceBuffer = []
         setTimeout(() => {
-          const morseVoiceInfo = new MorseVoiceInfo()
-          morseVoiceInfo.textToSpeak = phraseToSpeak
-          morseVoiceInfo.voice = this.voiceVoice()
-          morseVoiceInfo.volume = this.voiceVolume() / 10
-          morseVoiceInfo.rate = this.voiceRate()
-          morseVoiceInfo.pitch = this.voicePitch()
-          morseVoiceInfo.onEnd = () => { this.playEnded(true) }
-          this.morseVoice.speak(morseVoiceInfo)
-        }, this.voiceThinkingTime() * 1000)
+          this.morseVoice.speakPhrase(phraseToSpeak, () => { this.playEnded(true) })
+        }, this.morseVoice.voiceThinkingTime() * 1000)
       } else {
         this.playEnded(true)
       }

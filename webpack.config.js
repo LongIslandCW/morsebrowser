@@ -82,6 +82,11 @@ module.exports = {
       {
         test: /\.txt/,
         type: 'asset/source'
+      },
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/
       }
     ]
   },
@@ -96,6 +101,7 @@ module.exports = {
       buffer: require.resolve('buffer/'),
       os: require.resolve('os-browserify')
 
-    }
+    },
+    extensions: ['.tsx', '.ts', '.js']
   }
 }

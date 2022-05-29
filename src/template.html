@@ -66,13 +66,13 @@
                             <span class="input-group-text">WPM&nbsp;<img id='speedometerImage' height="20"
                                     width="20" /></span>
                             <input type="number" style="max-width:75px; min-width: 75px;" class="form-control"
-                                aria-label="Username" min="1" data-bind="textInput: wpm">
+                                aria-label="Username" min="1" data-bind="textInput: settings.speed.wpm">
                             <!-- fwpm -->
                             <span class="input-group-text" data-bind="click: ()=>syncWpm(!syncWpm())">FWPM&nbsp;<img
-                                    data-bind="attr:{ src: syncWpm() ? morseLoadImages().getSrc('lockImage') : morseLoadImages().getSrc('unlockImage')}" /></span>
+                                    data-bind="attr:{ src: settings.speed.syncWpm() ? morseLoadImages().getSrc('lockImage') : morseLoadImages().getSrc('unlockImage')}" /></span>
                             <input type="number" style="max-width:75px; min-width: 75px;" class="form-control"
                                 aria-label="Server" min="1"
-                                data-bind="textInput: fwpm, enable: !syncWpm(), attr:{ max: trueWpm }">
+                                data-bind="textInput: settings.speed.fwpm, enable: !settings.speed.syncWpm(), attr:{ max: settings.speed.trueWpm }">
                         </div>
                     </div>
                     <!--volume-->
@@ -173,14 +173,15 @@
                                 id="lessonAccordianButton">
                                 <img id='bookImage' height=20 width=20 /><span>&nbsp;</span><span>LICW Lessons</span>
                                 <span>&nbsp;</span>
-                                <span class="badge bg-success" data-bind="if: selectedDisplay().display">
-                                    <span>Type: </span><span data-bind="text: userTarget"></span>
-                                    <span>&nbsp; Class: </span><span data-bind="text: selectedClass"></span>
-                                    <span>&nbsp; Letter Group: </span><span data-bind="text: letterGroup"></span>
+                                <span class="badge bg-success" data-bind="if: lessons.selectedDisplay().display">
+                                    <span>Type: </span><span data-bind="text: lessons.userTarget"></span>
+                                    <span>&nbsp; Class: </span><span data-bind="text: lessons.selectedClass"></span>
+                                    <span>&nbsp; Letter Group: </span><span
+                                        data-bind="text: lessons.letterGroup"></span>
                                     <span>&nbsp; Lesson: </span><span
-                                        data-bind="text: selectedDisplay().display"></span>
+                                        data-bind="text: lessons.selectedDisplay().display"></span>
                                 </span>
-                                <span class="badge bg-success" data-bind="if: !selectedDisplay().display">(None
+                                <span class="badge bg-success" data-bind="if: !lessons.selectedDisplay().display">(None
                                     Currently
                                     Selected)</span>
                             </button>
@@ -195,42 +196,42 @@
                                     <div class="col-auto">
                                         <div class="btn-group-vertical" role="group"
                                             aria-label="Basic radio toggle button group"
-                                            data-bind="foreach: userTargets, childrenComplete: setUserTargetInitialized">
+                                            data-bind="foreach: lessons.userTargets, childrenComplete: () => lessons.setUserTargetInitialized()">
                                             <input type="radio" class="btn-check" name="btnradioUserTargets"
-                                                data-bind="checkedValue: $data, checked: $root.userTarget">
+                                                data-bind="checkedValue: $data, checked: $root.lessons.userTarget">
                                             <label id="btnUserTypeSelection" class="btn btn-outline-primary"
-                                                data-bind="text: $data, click: $root.changeUserTarget($data)"></label>
+                                                data-bind="text: $data, click: $root.lessons.changeUserTarget($data)"></label>
                                         </div>
                                     </div>
                                     <!--classes-->
                                     <div class="col-auto">
                                         <div class="btn-group-vertical" role="group"
                                             aria-label="Basic radio toggle button group"
-                                            data-bind="foreach: classes, childrenComplete: setSelectedClassInitialized">
+                                            data-bind="foreach: lessons.classes, childrenComplete: () => lessons.setSelectedClassInitialized()">
                                             <input type="radio" class="btn-check" name="btnradioClasses"
-                                                data-bind="checkedValue: $data, checked: $root.selectedClass">
+                                                data-bind="checkedValue: $data, checked: $root.lessons.selectedClass">
                                             <label id="btnClassSelection" class="btn btn-outline-primary"
-                                                data-bind="text: $data, click: $root.changeSelectedClass($data)"></label>
+                                                data-bind="text: $data, click: $root.lessons.changeSelectedClass($data)"></label>
                                         </div>
                                     </div>
                                     <!--letter groups-->
                                     <div class="col-auto">
                                         <div class="list-group"
-                                            data-bind="foreach: letterGroups, childrenComplete: setLetterGroupInitialized"
+                                            data-bind="foreach: lessons.letterGroups, childrenComplete: () => lessons.setLetterGroupInitialized()"
                                             style="overflow-y:auto; height:250px; width: 200px;">
                                             <button id="btnLetterGroupSelection" type="button"
                                                 class="list-group-item list-group-item-action"
-                                                data-bind="text: $data, click: $root.setLetterGroup($data), css: { active: $data==$parent.letterGroup()}"></button>
+                                                data-bind="text: $data, click: $root.lessons.setLetterGroup($data), css: { active: $data==$parent.lessons.letterGroup()}"></button>
                                         </div>
                                     </div>
                                     <!--lessons-->
                                     <div class="col-auto">
                                         <div class="list-group"
-                                            data-bind="foreach: displays, childrenComplete: setDisplaysInitialized"
+                                            data-bind="foreach: lessons.displays, childrenComplete: () => lessons.setDisplaysInitialized()"
                                             style="overflow-y:auto; height:250px; width: 200px;">
                                             <button id="btnLessonSelection" type="button"
                                                 class="list-group-item list-group-item-action"
-                                                data-bind="text: $data.display, click: ()=>$root.setDisplaySelected($data), css: { active: $data.display==$parent.selectedDisplay().display}"></button>
+                                                data-bind="text: $data.display, click: ()=>$root.lessons.setDisplaySelected($data), css: { active: $data.display==$parent.lessons.selectedDisplay().display}"></button>
                                         </div>
                                     </div>
 
@@ -240,26 +241,27 @@
                                             aria-label="Basic checkbox toggle button group">
                                             <!--randomize toggle-->
                                             <input type="checkbox" class="btn-check" autocomplete="off" id="btncheck1"
-                                                data-bind="checked: randomizeLessons">
+                                                data-bind="checked: lessons.randomizeLessons">
                                             <label class="btn btn-outline-primary" for="btncheck1">Randomize&nbsp;<img
-                                                    data-bind="attr:{ src: randomizeLessons() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
+                                                    data-bind="attr:{ src: lessons.randomizeLessons() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
                                             <!--autoclose toggle-->
                                             <input type="checkbox" class="btn-check" autocomplete="off"
-                                                id="btncheckautoclose" data-bind="checked: autoCloseLessonAccordian">
+                                                id="btncheckautoclose"
+                                                data-bind="checked: lessons.autoCloseLessonAccordion">
                                             <label class="btn btn-outline-primary" for="btncheckautoclose">Auto
                                                 Close&nbsp;<img
-                                                    data-bind="attr:{ src: autoCloseLessonAccordian() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
+                                                    data-bind="attr:{ src: lessons.autoCloseLessonAccordion() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
                                             <!--sticky sets toggle-->
                                             <input type="checkbox" class="btn-check" id="btncheck2stickysetstoggle"
-                                                autocomplete="off" data-bind="checked: ifStickySets">
+                                                autocomplete="off" data-bind="checked: lessons.ifStickySets">
                                             <label class="btn btn-outline-primary" for="btncheck2stickysetstoggle"
                                                 style="width: 125px;">Sticky
                                                 Sets&nbsp;<img
-                                                    data-bind="attr:{ src: ifStickySets() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
+                                                    data-bind="attr:{ src: lessons.ifStickySets() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
                                             <!--sticky set text -->
                                             <input type="text" class="form-control" style="max-width:125px;"
                                                 aria-label="Username" min="0"
-                                                data-bind="textInput: stickySets, enable: ifStickySets">
+                                                data-bind="textInput: lessons.stickySets, enable: lessons.ifStickySets">
                                         </div>
 
                                         <div class="input-group">
@@ -267,21 +269,23 @@
                                                 aria-label="Basic checkbox toggle button group">
                                                 <!--custom group run button-->
                                                 <button type="button" class="btn btn-success"
-                                                    data-bind="click: doCustomGroup"
+                                                    data-bind="click: lessons.doCustomGroup"
                                                     style="max-width:125px; padding-left: 2px; padding-right: 2px;">Custom
                                                     Group</button>
                                                 <!--custom group text -->
                                                 <input type="text" class="form-control" style="max-width:125px;"
-                                                    aria-label="Username" min="0" data-bind="textInput: customGroup">
+                                                    aria-label="Username" min="0"
+                                                    data-bind="textInput: lessons.customGroup">
                                             </div>
                                         </div>
                                         <!--newline chunking toggle-->
                                         <input type="checkbox" class="btn-check" autocomplete="off"
-                                            id="btnchecknewlinechunking" data-bind="checked: newlineChunking">
+                                            id="btnchecknewlinechunking"
+                                            data-bind="checked: settings.misc.newlineChunking">
                                         <label class="btn btn-outline-primary" for="btnchecknewlinechunking"
                                             style="width: 125px; max-width:125px;"><span>Keep
                                                 Lines&nbsp;<img
-                                                    data-bind="attr:{ src: newlineChunking() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></span></label>
+                                                    data-bind="attr:{ src: settings.misc.newlineChunking() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></span></label>
 
                                     </div>
 
@@ -289,28 +293,28 @@
                                     <div class="col-auto">
                                         <!--override time toggle-->
                                         <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off"
-                                            data-bind="checked: ifOverrideTime">
+                                            data-bind="checked: lessons.ifOverrideTime">
                                         <label class="btn btn-outline-primary" for="btncheck2">Override
                                             Time&nbsp;<img
-                                                data-bind="attr:{ src: ifOverrideTime() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
+                                                data-bind="attr:{ src: lessons.ifOverrideTime() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
 
                                         <div class="input-group">
                                             <!--override minutes-->
                                             <span style="width: 76px;" class="input-group-text">Mins</span>
                                             <input type="number" class="form-control" style="max-width:70px;"
                                                 aria-label="Username" min="0"
-                                                data-bind="textInput: overrideMins, enable: ifOverrideTime">
+                                                data-bind="textInput: lessons.overrideMins, enable: lessons.ifOverrideTime">
                                         </div>
 
                                         <div class="btn-group" role="group"
                                             aria-label="Basic checkbox toggle button group">
                                             <!--override size toggle-->
                                             <input type="checkbox" class="btn-check" id="btncheck2overridesize"
-                                                autocomplete="off" data-bind="checked: ifOverrideMinMax">
+                                                autocomplete="off" data-bind="checked: lessons.ifOverrideMinMax">
                                             <label style="width: 146px;" class="btn btn-outline-primary"
                                                 for="btncheck2overridesize">Override
                                                 Size&nbsp;<img
-                                                    data-bind="attr:{ src: ifOverrideMinMax() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
+                                                    data-bind="attr:{ src: lessons.ifOverrideMinMax() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
 
                                         </div>
 
@@ -319,22 +323,22 @@
                                             <span style="width: 76px;" class="input-group-text">Min</span>
                                             <input style="width: 70px;" type="number" class="form-control"
                                                 style="max-width:75px;" aria-label="Username" min="1"
-                                                data-bind="textInput: overrideMin, enable: ifOverrideMinMax">
+                                                data-bind="textInput: lessons.overrideMin, enable: lessons.ifOverrideMinMax">
 
                                         </div>
 
                                         <div class="input-group">
                                             <!--max override-->
                                             <span class="input-group-text"
-                                                data-bind="click: ()=>syncSize(!syncSize())">Max&nbsp;<img
-                                                    data-bind="attr:{ src: syncSize() ? morseLoadImages().getSrc('lockImage') : morseLoadImages().getSrc('unlockImage')}" /></span>
+                                                data-bind="click: ()=>lessons.syncSize(!lessons.syncSize())">Max&nbsp;<img
+                                                    data-bind="attr:{ src: lessons.syncSize() ? morseLoadImages().getSrc('lockImage') : morseLoadImages().getSrc('unlockImage')}" /></span>
                                             <input type="number" class="form-control" style="max-width:70px;"
                                                 aria-label="Username" min="1"
-                                                data-bind="textInput: overrideMax, enable: ifOverrideMinMax() && !syncSize(), attr: { min: trueOverrideMin}">
+                                                data-bind="textInput: lessons.overrideMax, enable: lessons.ifOverrideMinMax() && !lessons.syncSize(), attr: { min: lessons.trueOverrideMin}">
                                         </div>
                                         <!--custom group run button-->
                                         <button type="button" class="btn btn-success"
-                                            data-bind="click: ()=> setDisplaySelected(selectedDisplay()), enable: selectedDisplay().display && !selectedDisplay().isDummy"
+                                            data-bind="click: ()=> lessons.setDisplaySelected(lessons.selectedDisplay()), enable: lessons.selectedDisplay().display && !lessons.selectedDisplay().isDummy"
                                             style="width: 146px; padding-left: 2px; padding-right: 2px;">Regenerate
                                             Drill</button>
                                     </div>
@@ -495,57 +499,61 @@
 
                                             <input type="checkbox" class="btn-check" autocomplete="off"
                                                 id="btncheckvoice"
-                                                data-bind="checked: voiceEnabled, enable: voiceCapable()">
+                                                data-bind="checked: morseVoice.voiceEnabled, enable: morseVoice.voiceCapable()">
                                             <label class=" btn btn-outline-primary" for="btncheckvoice"><img
                                                     data-bind="attr:{ src: morseLoadImages().getSrc('chatquoteImage')}">&nbsp;Voice&nbsp;<img
-                                                    data-bind="attr:{ src: voiceEnabled() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
+                                                    data-bind="attr:{ src: morseVoice.voiceEnabled() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
                                         </div>
                                         <!-- voice thinktime-->
-                                        <div class="col-md-auto" data-bind="if: showExpertSettings() && voiceEnabled()">
+                                        <div class="col-md-auto"
+                                            data-bind="if: showExpertSettings() && morseVoice.voiceEnabled()">
                                             <div class="input-group">
                                                 <span class="input-group-text">Delay<img width=20 height=20
                                                         data-bind="attr:{ src: morseLoadImages().getSrc('stopwatchImage')}"></span>
                                                 <input type="number" style="max-width:75px; min-width: 75px;"
                                                     class="form-control" min="0" max="10" step=".25"
-                                                    data-bind="textInput: voiceThinkingTime">
+                                                    data-bind="textInput: morseVoice.voiceThinkingTime">
                                             </div>
                                         </div>
                                         <!-- voice speaker-->
                                         <div class="col-auto"
-                                            data-bind="if: showExpertSettings() && voiceEnabled() && voiceVoices().length">
-                                            <select class="form-select" data-bind="options: voiceVoices,
+                                            data-bind="if: showExpertSettings() && morseVoice.voiceEnabled() && morseVoice.voiceVoices().length">
+                                            <select class="form-select" data-bind="options: morseVoice.voiceVoices,
                                         optionsText: 'name',
-                                        value: voiceVoice,
+                                        value: morseVoice.voiceVoice,
                                         optionsCaption: 'Choose speaker...'"></select>
                                         </div>
                                         <!-- voice volume-->
-                                        <div class="col-md-auto" data-bind="if: showExpertSettings() && voiceEnabled()">
+                                        <div class="col-md-auto"
+                                            data-bind="if: showExpertSettings() && morseVoice.voiceEnabled()">
                                             <div class="input-group">
                                                 <span class="input-group-text"><img width=20 height=20
                                                         data-bind="attr:{ src: morseLoadImages().getSrc('volumeImage')}"></span>
                                                 <input type="number" style="max-width:75px; min-width: 75px;"
                                                     class="form-control" min="0" max="10" step="1"
-                                                    data-bind="textInput: voiceVolume">
+                                                    data-bind="textInput: morseVoice.voiceVolume">
                                             </div>
                                         </div>
                                         <!-- voice pitch-->
-                                        <div class="col-md-auto" data-bind="if: showExpertSettings() && voiceEnabled()">
+                                        <div class="col-md-auto"
+                                            data-bind="if: showExpertSettings() && morseVoice.voiceEnabled()">
                                             <div class="input-group">
                                                 <span class="input-group-text">Pitch<img width=20 height=20
                                                         data-bind="attr:{ src: morseLoadImages().getSrc('musicnoteImage')}"></span>
                                                 <input type="number" style="max-width:75px; min-width: 75px;"
                                                     class="form-control" min="0" max="2" step=".25"
-                                                    data-bind="textInput: voicePitch">
+                                                    data-bind="textInput: morseVoice.voicePitch">
                                             </div>
                                         </div>
                                         <!-- voice rate-->
-                                        <div class="col-md-auto" data-bind="if: showExpertSettings() && voiceEnabled()">
+                                        <div class="col-md-auto"
+                                            data-bind="if: showExpertSettings() && morseVoice.voiceEnabled()">
                                             <div class="input-group">
                                                 <span class="input-group-text">Rate<img width=20 height=20
                                                         data-bind="attr:{ src: morseLoadImages().getSrc('speedometerImage')}"></span>
                                                 <input type="number" style="max-width:75px; min-width: 75px;"
                                                     class="form-control" min=".1" max="10" step=".1"
-                                                    data-bind="textInput: voiceRate">
+                                                    data-bind="textInput: morseVoice.voiceRate">
                                             </div>
                                         </div>
                                     </div>
