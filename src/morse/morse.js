@@ -14,6 +14,7 @@ import { MorseExtenders } from './morseExtenders.js'
 import { MorseCookies } from './cookies/morseCookies.ts'
 import { MorseSettings } from './settings/settings.ts'
 import { MorseVoice } from './voice/MorseVoice.ts'
+import { FlaggedWords } from './flaggedWords/flaggedWords.ts'
 export class MorseViewModel {
   constructor () {
     // initialize the images/icons
@@ -61,6 +62,8 @@ export class MorseViewModel {
 
     this.shortCutKeys = new MorseShortcutKeys(this.settings)
 
+    this.flaggedWords = new FlaggedWords()
+
     // are we on the dev site?
     this.isDev(window.location.href.toLowerCase().indexOf('/dev/') > -1)
   }
@@ -75,7 +78,6 @@ export class MorseViewModel {
   preSpace = ko.observable(0)
   preSpaceUsed = ko.observable(false)
   xtraWordSpaceDits = ko.observable(0)
-  flaggedWords = ko.observable('')
   isShuffled = ko.observable(false)
   trailReveal = ko.observable(false)
   preShuffled = ''
@@ -103,7 +105,6 @@ export class MorseViewModel {
   // note this is whether you see any cards at all,
   // not whether the words on them are obscured
   cardsVisible = ko.observable(true)
-  lastFlaggedWordMs = Date.now()
   trailPreDelay = ko.observable(0)
   trailPostDelay = ko.observable(0)
   trailFinal = ko.observable(1)
@@ -111,16 +112,8 @@ export class MorseViewModel {
   isDev = ko.observable(false)
   settings = {}
   lessons = {}
+  flaggedWords = {}
   // END KO observables declarations
-
-  // helper
-  booleanize = (x) => {
-    if (x === 'true ' || x === 'false') {
-      return x === 'true'
-    } else {
-      return x
-    }
-  }
 
   // helper
   // https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
@@ -160,13 +153,6 @@ export class MorseViewModel {
 
   words = ko.computed(() => {
     return this.sentences()[this.currentSentanceIndex()]
-  }, this)
-
-  flaggedWordsCount = ko.computed(() => {
-    if (!this.flaggedWords().trim()) {
-      return 0
-    }
-    return this.flaggedWords().trim().split(' ').length
   }, this)
 
   shuffleWords = () => {
@@ -222,35 +208,10 @@ export class MorseViewModel {
     }
   }
 
-  addFlaggedWord = (word) => {
-    if (!this.flaggedWords().trim()) {
-      this.flaggedWords(this.flaggedWords().trim() + word)
-    } else {
-      // deal with double click which is also used to pick a word
-      const msNow = Date.now()
-      const msPassedSince = msNow - this.lastFlaggedWordMs
-      this.lastFlaggedWordMs = msNow
-      const threshold = 500
-      const words = this.flaggedWords().trim().split(' ')
-      const lastWord = words[words.length - 1]
-      if (lastWord === word && (msPassedSince < threshold)) {
-        // we have a double click scenario so remove it
-        words.pop()
-      } else {
-        words.push(word)
-      }
-      if (words.length === 0) {
-        this.flaggedWords('')
-      } else {
-        this.flaggedWords(words.join(' '))
-      }
-    }
-  }
-
   setFlagged = () => {
-    if (this.flaggedWords().trim()) {
+    if (this.flaggedWords.flaggedWords().trim()) {
       this.doPause(true, false)
-      this.setText(this.flaggedWords())
+      this.setText(this.flaggedWords.flaggedWords())
       this.fullRewind()
       document.getElementById('btnFlaggedWordsAccordianButton').click()
     }

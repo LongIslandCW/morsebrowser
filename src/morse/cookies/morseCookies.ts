@@ -1,5 +1,6 @@
 import Cookies from 'js-cookie'
 import licwDefaults from '../../configs/licwdefaults.json'
+import { GeneralUtils } from '../utils/general'
 import { CookieInfo } from './CookieInfo'
 import { ICookieHandler } from './ICookieHandler'
 
@@ -42,7 +43,7 @@ export class MorseCookies {
               break
             default:
               if (typeof ctxt[key] !== 'undefined') {
-                ctxt[key](ctxt.booleanize(val))
+                ctxt[key](GeneralUtils.booleanize(val))
               } else {
                 otherHandling.push(<CookieInfo>{ key, val })
               }

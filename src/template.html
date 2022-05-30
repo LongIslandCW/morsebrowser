@@ -687,7 +687,7 @@
                                 <img id='flagImage' height=20 width=20 /><span>&nbsp;</span>
                                 Flagged words (click words you missed in the word list to toggle adding them
                                 here)<span>&nbsp;</span><span class="badge bg-success"
-                                    data-bind="text: flaggedWordsCount"></span>
+                                    data-bind="text: flaggedWords.flaggedWordsCount"></span>
                             </button>
                         </h2>
                         <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
@@ -699,7 +699,7 @@
                                             data-bind="attr:{src: morseLoadImages().getSrc('uploadImage')}">&nbsp;Load
                                         As
                                         Text</span>
-                                    <textarea data-bind="textInput: flaggedWords" class="form-control"
+                                    <textarea data-bind="textInput: flaggedWords.flaggedWords" class="form-control"
                                         aria-label="Text"></textarea>
 
                                 </div>
@@ -819,7 +819,7 @@
                 <div class="row gx-2 gy-2" data-bind="foreach: words">
                     <div class="col-auto">
                         <button class="btn"
-                            data-bind="class: $index()==$parent.currentIndex() ? 'btn-primary':'btn-outline-primary',click:()=>$parent.addFlaggedWord($data), event:{dblclick: ()=>{$parent.setWordIndex($index())}}">
+                            data-bind="class: $index()==$parent.currentIndex() ? 'btn-primary':'btn-outline-primary',click:()=>$parent.flaggedWords.addFlaggedWord($data), event:{dblclick: ()=>{$parent.setWordIndex($index())}}">
                             <!--<h1>-->
                             <span
                                 data-bind="style: {fontSize: $parent.cardFontPx } ,text: (!$parent.hideList() || ($parent.trailReveal() && $index() <= $parent.maxRevealedTrail() )) ? $data : 'X'.repeat($data.length)">
