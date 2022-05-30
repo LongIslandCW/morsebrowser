@@ -4,6 +4,8 @@ export class SmoothedSoundsContext {
   bandpassNode:BiquadFilterNode
   gainNode:GainNode
   contextClosed:boolean
+  noiseNode:AudioScheduledSourceNode
+  noiseGainNode:GainNode
 
   constructor () {
     this.rebuildAll()

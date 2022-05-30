@@ -8,12 +8,9 @@ import { SoundMakerConfig } from '../SoundMakerConfig'
 import { SmoothedSoundsContext } from './SmoothedSoundsContext'
 
 export default class SmoothedSoundsPlayer implements ISoundMaker {
-  myAudioContext
   sourceEnded = true
   sourceEndedCallBack
-  noiseNode
   noisePlaying = false
-  noiseGainNode
   lastNoiseType = 'off'
   static gainNodes = []
   scaledVolume
@@ -27,29 +24,29 @@ export default class SmoothedSoundsPlayer implements ISoundMaker {
     const afterImport = (def) => {
       def.install()
       noiseNodeMaker()
-      this.noiseGainNode = this.myAudioContext.createGain()
+      this.ssContext.noiseGainNode = this.ssContext.audioContext.createGain()
       this.setNoiseVolume(config.noise.scaledNoiseVolume)
-      this.noiseNode.connect(this.noiseGainNode)
-      this.noiseGainNode.connect(this.myAudioContext.destination)
-      this.noiseNode.start()
+      this.ssContext.noiseNode.connect(this.ssContext.noiseGainNode)
+      this.ssContext.noiseGainNode.connect(this.ssContext.audioContext.destination)
+      this.ssContext.noiseNode.start()
       console.log('started a noise node')
       this.noisePlaying = true
     }
     switch (config.noise.type) {
       case 'white':
-        noiseNodeMaker = () => { this.noiseNode = this.myAudioContext.createWhiteNoise() }
+        noiseNodeMaker = () => { this.ssContext.noiseNode = (this.ssContext.audioContext as any).createWhiteNoise() }
         import('white-noise-node').then(({ default: def }) => {
           afterImport(def)
         })
         break
       case 'brown':
-        noiseNodeMaker = () => { this.noiseNode = this.myAudioContext.createBrownNoise() }
+        noiseNodeMaker = () => { this.ssContext.noiseNode = (this.ssContext.audioContext as any).createBrownNoise() }
         import('brown-noise-node').then(({ default: def }) => {
           afterImport(def)
         })
         break
       case 'pink':
-        noiseNodeMaker = () => { this.noiseNode = this.myAudioContext.createPinkNoise() }
+        noiseNodeMaker = () => { this.ssContext.noiseNode = (this.ssContext.audioContext as any).createPinkNoise() }
         import('pink-noise-node').then(({ default: def }) => {
           afterImport(def)
         })
@@ -64,20 +61,20 @@ export default class SmoothedSoundsPlayer implements ISoundMaker {
   }
 
   setNoiseVolume (scaledVolume) {
-    if (this.myAudioContext) {
-      this.noiseGainNode.gain.setValueAtTime(scaledVolume, this.myAudioContext.currentTime)
+    if (this.ssContext.audioContext) {
+      this.ssContext.noiseGainNode.gain.setValueAtTime(scaledVolume, this.ssContext.audioContext.currentTime)
     }
   }
 
   stopNoise () {
-    if (this.noiseNode && this.noisePlaying) {
-      this.noiseNode.stop()
+    if (this.ssContext.noiseNode && this.noisePlaying) {
+      this.ssContext.noiseNode.stop()
       this.noisePlaying = false
     }
   }
 
   handleNoiseSettings (config:SoundMakerConfig) {
-    if (this.myAudioContext) {
+    if (this.ssContext) {
       const noiseWasPlaying = this.noisePlaying
       const typeChanged = config.noise.type !== this.lastNoiseType
       const typeIsOff = config.noise.type === 'off'
@@ -96,7 +93,7 @@ export default class SmoothedSoundsPlayer implements ISoundMaker {
   setGainTimings = (wavInfo, scaledVolume, config) => {
     const currentTimeSecs = this.ssContext.audioContext.currentTime
     const currentTimeMs = currentTimeSecs * 1000
-    console.log(`currentTimeMs:${currentTimeMs}`)
+    // console.log(`currentTimeMs:${currentTimeMs}`)
     wavInfo.timeLine.forEach((soundEvent) => {
       const eventType = soundEvent.event
       const time = soundEvent.time + currentTimeMs
