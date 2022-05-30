@@ -2,7 +2,11 @@
 can change the code here and other code won't be affected.
 */
 
-export default class MorseWavBufferPlayer {
+import { MorseStringToWavBuffer } from '../wav/morseStringToWavBuffer'
+import { ISoundMaker } from './ISoundMaker'
+import { SoundMakerConfig } from './SoundMakerConfig'
+
+export default class SmoothedSoundsPlayer implements ISoundMaker {
   myAudioContext
   source
   sourceEnded = true
@@ -18,7 +22,7 @@ export default class MorseWavBufferPlayer {
   wavInfo
   config
 
-  startNoise = (config) => {
+  startNoise (config:SoundMakerConfig) {
     let noiseNodeMaker = null
     const afterImport = (def) => {
       def.install()
@@ -59,20 +63,20 @@ export default class MorseWavBufferPlayer {
     // }
   }
 
-  setNoiseVolume = (scaledVolume) => {
+  setNoiseVolume (scaledVolume) {
     if (this.myAudioContext) {
       this.noiseGainNode.gain.setValueAtTime(scaledVolume, this.myAudioContext.currentTime)
     }
   }
 
-  stopNoise = () => {
+  stopNoise () {
     if (this.noiseNode && this.noisePlaying) {
       this.noiseNode.stop()
       this.noisePlaying = false
     }
   }
 
-  handleNoiseSettings = (config) => {
+  handleNoiseSettings (config:SoundMakerConfig) {
     if (this.myAudioContext) {
       const noiseWasPlaying = this.noisePlaying
       const typeChanged = config.noise.type !== this.lastNoiseType
@@ -124,7 +128,13 @@ export default class MorseWavBufferPlayer {
     })
   }
 
-  play = (wavInfo, scaledVolume, config, onEnded) => {
+  play (config:SoundMakerConfig, onEnded:any) {
+    const wavInfo = MorseStringToWavBuffer.createWav(config)
+    config.noise.scaledNoiseVolume = config.noise.volume / 10
+    this.doPlay(wavInfo, config.volume / 10, config, onEnded)
+  }
+
+  doPlay (wavInfo, scaledVolume, config:SoundMakerConfig, onEnded) {
     this.scaledVolume = scaledVolume
     this.wavInfo = wavInfo
     this.config = config
@@ -139,12 +149,12 @@ export default class MorseWavBufferPlayer {
       this.myAudioContext = new AudioContext()
     }
 
-    if (MorseWavBufferPlayer.gainNodes.length > 0) {
-      MorseWavBufferPlayer.gainNodes.forEach(x => x.disconnect())
+    if (SmoothedSoundsPlayer.gainNodes.length > 0) {
+      SmoothedSoundsPlayer.gainNodes.forEach(x => x.disconnect())
       // this.gainNode.disconnect()
     }
     this.gainNode = this.myAudioContext.createGain()
-    MorseWavBufferPlayer.gainNodes.push(this.gainNode)
+    SmoothedSoundsPlayer.gainNodes.push(this.gainNode)
     this.setVolume(0)
     // this.source = this.myAudioContext.createBufferSource()
     this.source = this.myAudioContext.createOscillator()
@@ -194,7 +204,7 @@ export default class MorseWavBufferPlayer {
     }, wavInfo.timeLine[l - 1].time + wordSpaceTime + xtraWordSpaceDits)
   }
 
-  forceStop = (pauseCallBack, killNoise) => {
+  forceStop (pauseCallBack, killNoise) {
     if (typeof (this.myAudioContext) === 'undefined') {
       pauseCallBack()
     } else {

@@ -1,7 +1,7 @@
 import ko from 'knockout'
 import MorseStringUtils from './morseStringUtils.js'
-import { MorseStringToWavBufferConfig } from './morseStringToWavBuffer.js'
-import { MorseWordPlayer } from './morseWordPlayer.js'
+import { SoundMakerConfig } from './player/soundmakers/SoundMakerConfig.ts'
+import { MorseWordPlayer } from './player/morseWordPlayer.ts'
 
 // NOTE: moved this to dynamic import() so that non-RSS users don't need to bother
 // even loading this code into the browser:
@@ -15,6 +15,9 @@ import { MorseCookies } from './cookies/morseCookies.ts'
 import { MorseSettings } from './settings/settings.ts'
 import { MorseVoice } from './voice/MorseVoice.ts'
 import { FlaggedWords } from './flaggedWords/flaggedWords.ts'
+import { NoiseConfig } from './player/soundmakers/NoiseConfig.ts'
+// import MorseWavBufferPlayer from './player/soundmakers/morseWavBufferPlayer.ts'
+import SmoothedSoundsPlayer from './player/soundmakers/SmoothedSoundsPlayer.ts'
 export class MorseViewModel {
   constructor () {
     // initialize the images/icons
@@ -47,6 +50,10 @@ export class MorseViewModel {
     if (this.getParameterByName('noiseEnabled')) {
       this.noiseEnabled(true)
     }
+
+    // seems to need to happen early
+    // this.morseWordPlayer = new MorseWordPlayer(new MorseWavBufferPlayer())
+    this.morseWordPlayer = new MorseWordPlayer(new SmoothedSoundsPlayer())
 
     // load defaults
     MorseCookies.loadCookiesOrDefaults(this, null, true)
@@ -81,7 +88,7 @@ export class MorseViewModel {
   isShuffled = ko.observable(false)
   trailReveal = ko.observable(false)
   preShuffled = ''
-  morseWordPlayer = new MorseWordPlayer()
+  morseWordPlayer = {}
   rawText = ko.observable()
   showingText = ko.observable('')
   showRaw = ko.observable(true)
@@ -220,7 +227,7 @@ export class MorseViewModel {
   }
 
   getMorseStringToWavBufferConfig = (text) => {
-    const config = new MorseStringToWavBufferConfig()
+    const config = new SoundMakerConfig()
     config.word = MorseStringUtils.doReplacements(text)
     config.wpm = parseInt(this.settings.speed.wpm())
     config.fwpm = parseInt(this.settings.speed.fwpm())
@@ -229,10 +236,9 @@ export class MorseViewModel {
     config.prePaddingMs = this.preSpaceUsed() ? 0 : this.preSpace() * 1000
     config.xtraWordSpaceDits = parseInt(this.xtraWordSpaceDits())
     config.volume = parseInt(this.volume())
-    config.noise = {
-      type: this.noiseEnabled() ? this.noiseType() : 'off',
-      volume: parseInt(this.noiseVolume())
-    }
+    config.noise = new NoiseConfig()
+    config.noise.type = this.noiseEnabled() ? this.noiseType() : 'off'
+    config.noise.volume = parseInt(this.noiseVolume())
     config.playerPlaying = this.playerPlaying()
     config.riseTimeConstant = parseFloat(this.riseTimeConstant())
     config.decayTimeConstant = parseFloat(this.decayTimeConstant())
@@ -367,7 +373,7 @@ export class MorseViewModel {
     }
   }
 
-  doPause = (fullRewind, fromPauseButton) => {
+  doPause = (fullRewind, fromPauseButton, fromStopButton) => {
     if (fromPauseButton) {
       this.runningPlayMs(this.runningPlayMs() + (Date.now() - this.lastPartialPlayStart()))
       this.isPaused(!this.isPaused())
@@ -386,7 +392,7 @@ export class MorseViewModel {
       }
 
       this.preSpaceUsed(false)
-      if (this.loop()) {
+      if (this.loop() && !fromStopButton && !fromPauseButton) {
         // as if user pressed play again
         this.doPlay(false, true)
       }

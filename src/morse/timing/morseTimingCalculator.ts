@@ -1,5 +1,8 @@
+import MorseCWWave from '../../morse-pro/morse-pro-cw-wave'
+import { SoundMakerConfig } from '../player/soundmakers/SoundMakerConfig'
 import { ComputedTimes } from './ComputedTimes'
 import { MorseCountUnits } from './MorseCountUnits'
+import { TimeLineInfo } from './TimeLineInfo'
 import { UnitTimingsAndMultipliers } from './UnitTimingsAndMultipliers'
 
 export class MorseTimingCalculator {
@@ -8,7 +11,7 @@ export class MorseTimingCalculator {
     return new UnitTimingsAndMultipliers(wpm, fwpm)
   }
 
-  static countUnits = (morsecwwav, prePopulated:MorseCountUnits):MorseCountUnits => {
+  static countUnits = (morsecwwav:MorseCWWave, prePopulated:MorseCountUnits):MorseCountUnits => {
     let cnts: MorseCountUnits
     if (prePopulated) {
       cnts = prePopulated
@@ -34,7 +37,7 @@ export class MorseTimingCalculator {
     return new ComputedTimes(timingUnits, countUnits)
   }
 
-  static getTimeLine = (morsecwwav, timingUnits, config) => {
+  static getTimeLine = (morsecwwav:MorseCWWave, timingUnits:UnitTimingsAndMultipliers, config:SoundMakerConfig):TimeLineInfo[] => {
     if (isNaN(timingUnits.calculatedUnitsMs) || isNaN(timingUnits.calculatedFWUnitsMs)) {
       return []
     }
@@ -42,7 +45,7 @@ export class MorseTimingCalculator {
     // console.log(`morsewords:${''}`)
     // console.log(morseWords)
     let time = 0
-    const events = []
+    const events:TimeLineInfo[] = []
     // const dummyTime = 0.002
     events.push({ event: 'prepad_start', time })
     time += config.prePaddingMs
