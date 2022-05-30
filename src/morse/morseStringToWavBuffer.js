@@ -1,6 +1,7 @@
 import MorseCWWave from '../morse-pro/morse-pro-cw-wave.js'
 import * as RiffWave from '../morse-pro/morse-pro-util-riffwave.js'
-import { MorseCountUnits, MorseTimingCalculator } from './morseTimingCalculator.js'
+import { MorseTimingCalculator } from './timing/morseTimingCalculator.ts'
+import { MorseCountUnits } from './timing/MorseCountUnits.ts'
 export class MorseStringToWavBufferConfig {
   word
   wpm

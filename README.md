@@ -17,10 +17,11 @@ Feel free to make feature requests or bug reports using the "Issues" tab.https:/
 # Do you want to help code or just tinker with the code?
 
 KN4YRM originally built it to be "ham tinkerer-friendly." This means it isn't built with the latest-and-greatest software development tools and techniques, but rather some compromises were made so the code might be approachable to a non-professional audience of hams who might want to tinker with it. For example, frameworks with steep learning curves might be easy for KN4YRM to work with, but hard for a non-professional software programmer to pickup. So for example, instead of react.js or angular.js, a beginner-friendly knockout.js https://knockoutjs.com/ was selected. Currently, it can best be described as knockout.js with bootstrap https://getbootstrap.com/ styling, with webpack used for builds (sourcemaps enabled so tinkerers can see how it works). This decision was also made so that ongoing future maintenance and feature requests aren't dependent on one person. KN4YRM suggests over time not losing sight of this philospohy for this project. Hams are encouraged to tinker with it and make pull requests.
+Update 5/29/22: As the complexity of the feature set increased, it seemed prudent to begin a switch to typescript in order to take advantage of compile-time features that will hopefully prevent bugs and increase long term maintainability.
 
 It's suggested that if you want to help:
 - tinkering with look and feel: https://getbootstrap.com/  and look at src/index.html 
-- functionality: you'll need to know some javascript and especially https://knockoutjs.com/ and look at src/morse.js
+- functionality: you'll need to know some javascript (update 5/29/22: and typescript) and especially https://knockoutjs.com/ and look at src/morse.js
 - other genric tools of which you'll need some basic understing: node, npm, webpack, eslint, git (and github if you want to constribute)
 - KN4YRM used VSCode as his IDE for this project
 - Please create a feature branch off of develop, and submit a pull request to merge into develop if you have code to contribute.
