@@ -1,7 +1,7 @@
 import ko from 'knockout'
 import MorseStringUtils from './morseStringUtils.js'
-import { MorseStringToWavBufferConfig } from './morseStringToWavBuffer.js'
-import { MorseWordPlayer } from './morseWordPlayer.js'
+import { MorseStringToWavBufferConfig } from './player/wav/MorseStringToWavBufferConfig'
+import { MorseWordPlayer } from './player/morseWordPlayer.ts'
 
 // NOTE: moved this to dynamic import() so that non-RSS users don't need to bother
 // even loading this code into the browser:
@@ -48,6 +48,9 @@ export class MorseViewModel {
       this.noiseEnabled(true)
     }
 
+    // seems to need to happen early
+    this.morseWordPlayer = new MorseWordPlayer()
+
     // load defaults
     MorseCookies.loadCookiesOrDefaults(this, null, true)
 
@@ -81,7 +84,7 @@ export class MorseViewModel {
   isShuffled = ko.observable(false)
   trailReveal = ko.observable(false)
   preShuffled = ''
-  morseWordPlayer = new MorseWordPlayer()
+  morseWordPlayer = {}
   rawText = ko.observable()
   showingText = ko.observable('')
   showRaw = ko.observable(true)
