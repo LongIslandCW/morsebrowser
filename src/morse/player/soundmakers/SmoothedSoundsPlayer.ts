@@ -139,7 +139,7 @@ export default class SmoothedSoundsPlayer implements ISoundMaker {
     this.wavInfo = wavInfo
     this.config = config
     // console.log(wavInfo)
-    console.log(config)
+    // console.log(config)
     this.sourceEnded = false
     this.sourceEndedCallBack = onEnded
     if (typeof (this.myAudioContext) === 'undefined') {
@@ -200,7 +200,7 @@ export default class SmoothedSoundsPlayer implements ISoundMaker {
       // this.noiseNode.stop()
       this.sourceEnded = true
       this.sourceEndedCallBack()
-      console.log(wavInfo.timingUnits)
+      // console.log(wavInfo.timingUnits)
     }, wavInfo.timeLine[l - 1].time + wordSpaceTime + xtraWordSpaceDits)
   }
 
