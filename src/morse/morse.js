@@ -361,7 +361,7 @@ export class MorseViewModel {
     }
   }
 
-  doPause = (fullRewind, fromPauseButton) => {
+  doPause = (fullRewind, fromPauseButton, fromStopButton) => {
     if (fromPauseButton) {
       this.runningPlayMs(this.runningPlayMs() + (Date.now() - this.lastPartialPlayStart()))
       this.isPaused(!this.isPaused())
@@ -380,7 +380,7 @@ export class MorseViewModel {
       }
 
       this.preSpaceUsed(false)
-      if (this.loop()) {
+      if (this.loop() && !fromStopButton && !fromPauseButton) {
         // as if user pressed play again
         this.doPlay(false, true)
       }
