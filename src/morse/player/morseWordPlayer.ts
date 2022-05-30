@@ -1,41 +1,40 @@
-import MorseWavBufferPlayer from '../morseWavBufferPlayer.js'
+import { ISoundMaker } from './soundmakers/ISoundMaker'
+import { SoundMakerConfig } from './soundmakers/SoundMakerConfig'
 import { MorseStringToWavBuffer } from './wav/morseStringToWavBuffer'
 
 export class MorseWordPlayer {
-  myBufferPlayer
-  constructor () {
-    this.myBufferPlayer = new MorseWavBufferPlayer()
+  soundMaker:ISoundMaker
+  constructor (soundMaker:ISoundMaker) {
+    this.soundMaker = soundMaker
   }
 
   setVolume (volume) {
-    this.myBufferPlayer.setVolume(volume / 10)
+    this.soundMaker.setVolume(volume / 10)
   }
 
   setNoiseVolume (volume) {
-    this.myBufferPlayer.setNoiseVolume(volume / 10)
+    this.soundMaker.setNoiseVolume(volume / 10)
   }
 
-  setNoiseType (config) {
+  setNoiseType (config:SoundMakerConfig) {
     config.noise.scaledNoiseVolume = config.noise.volume / 10
-    this.myBufferPlayer.handleNoiseSettings(config)
+    this.soundMaker.handleNoiseSettings(config)
   }
 
-  play (config, onEnded) {
-    const wav = MorseStringToWavBuffer.createWav(config)
-    config.noise.scaledNoiseVolume = config.noise.volume / 10
-    this.myBufferPlayer.play(wav.wav, config.volume / 10, config, onEnded)
+  play (config:SoundMakerConfig, onEnded) {
+    this.soundMaker.play(config, onEnded)
   }
 
   pause (pauseCallBack, killNoise) {
-    this.myBufferPlayer.forceStop(pauseCallBack, killNoise)
+    this.soundMaker.forceStop(pauseCallBack, killNoise)
   }
 
-  getWavAndSample (config) {
+  getWavAndSample (config:SoundMakerConfig) {
     const wav = MorseStringToWavBuffer.createWav(config)
     return wav
   }
 
-  getTimeEstimate (config) {
+  getTimeEstimate (config:SoundMakerConfig) {
     return MorseStringToWavBuffer.estimatePlayTime(config)
   }
 }

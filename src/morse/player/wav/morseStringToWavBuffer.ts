@@ -3,10 +3,10 @@ import * as RiffWave from '../../../morse-pro/morse-pro-util-riffwave.js'
 import { MorseCountUnits } from '../../timing/MorseCountUnits'
 import { MorseTimingCalculator } from '../../timing/morseTimingCalculator'
 import { CreatedWav } from './CreatedWav'
-import { MorseStringToWavBufferConfig } from './MorseStringToWavBufferConfig'
+import { SoundMakerConfig } from '../soundmakers/SoundMakerConfig'
 
 export class MorseStringToWavBuffer {
-  static getInit = (config:MorseStringToWavBufferConfig) => {
+  static getInit = (config:SoundMakerConfig) => {
     const useProsigns = true
     const sampleRate = 8000
     const timingUnits = MorseTimingCalculator.getTimingUnits(config.wpm, config.fwpm)
@@ -19,7 +19,7 @@ export class MorseStringToWavBuffer {
     return { morseCWWave, timingUnits, countUnits }
   }
 
-  static createWav = (config:MorseStringToWavBufferConfig):CreatedWav => {
+  static createWav = (config:SoundMakerConfig):CreatedWav => {
     const init = this.getInit(config)
     const ret = new CreatedWav()
     // get wordspace
@@ -31,7 +31,7 @@ export class MorseStringToWavBuffer {
     return ret
   }
 
-  static estimatePlayTime = (config:MorseStringToWavBufferConfig) => {
+  static estimatePlayTime = (config:SoundMakerConfig) => {
     const init = this.getInit(config)
     const timingUnits = init.timingUnits
     const unitCounts = MorseTimingCalculator.countUnits(init.morseCWWave, init.countUnits)

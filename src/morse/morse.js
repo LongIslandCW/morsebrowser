@@ -1,6 +1,6 @@
 import ko from 'knockout'
 import MorseStringUtils from './morseStringUtils.js'
-import { MorseStringToWavBufferConfig } from './player/wav/MorseStringToWavBufferConfig'
+import { SoundMakerConfig } from './player/soundmakers/SoundMakerConfig.ts'
 import { MorseWordPlayer } from './player/morseWordPlayer.ts'
 
 // NOTE: moved this to dynamic import() so that non-RSS users don't need to bother
@@ -15,6 +15,8 @@ import { MorseCookies } from './cookies/morseCookies.ts'
 import { MorseSettings } from './settings/settings.ts'
 import { MorseVoice } from './voice/MorseVoice.ts'
 import { FlaggedWords } from './flaggedWords/flaggedWords.ts'
+import { NoiseConfig } from './player/soundmakers/NoiseConfig.ts'
+import MorseWavBufferPlayer from './player/soundmakers/morseWavBufferPlayer.ts'
 export class MorseViewModel {
   constructor () {
     // initialize the images/icons
@@ -49,7 +51,7 @@ export class MorseViewModel {
     }
 
     // seems to need to happen early
-    this.morseWordPlayer = new MorseWordPlayer()
+    this.morseWordPlayer = new MorseWordPlayer(new MorseWavBufferPlayer())
 
     // load defaults
     MorseCookies.loadCookiesOrDefaults(this, null, true)
@@ -221,7 +223,7 @@ export class MorseViewModel {
   }
 
   getMorseStringToWavBufferConfig = (text) => {
-    const config = new MorseStringToWavBufferConfig()
+    const config = new SoundMakerConfig()
     config.word = MorseStringUtils.doReplacements(text)
     config.wpm = parseInt(this.settings.speed.wpm())
     config.fwpm = parseInt(this.settings.speed.fwpm())
@@ -230,10 +232,9 @@ export class MorseViewModel {
     config.prePaddingMs = this.preSpaceUsed() ? 0 : this.preSpace() * 1000
     config.xtraWordSpaceDits = parseInt(this.xtraWordSpaceDits())
     config.volume = parseInt(this.volume())
-    config.noise = {
-      type: this.noiseEnabled() ? this.noiseType() : 'off',
-      volume: parseInt(this.noiseVolume())
-    }
+    config.noise = new NoiseConfig()
+    config.noise.type = this.noiseEnabled() ? this.noiseType() : 'off'
+    config.noise.volume = parseInt(this.noiseVolume())
     config.playerPlaying = this.playerPlaying()
     return config
   }
