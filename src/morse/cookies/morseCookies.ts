@@ -35,12 +35,10 @@ export class MorseCookies {
             case 'syncWpm':
             case 'wpm':
             case 'fwpm':
-              xtraspecialHandling.push(<CookieInfo>{ key, val })
-              break
             case 'syncFreq':
             case 'ditFrequency':
             case 'dahFrequency':
-              specialHandling.push(<CookieInfo>{ key, val: ctxt.booleanize(val) })
+              xtraspecialHandling.push(<CookieInfo>{ key, val })
               break
             default:
               if (typeof ctxt[key] !== 'undefined') {

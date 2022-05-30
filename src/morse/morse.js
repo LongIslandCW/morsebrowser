@@ -22,6 +22,8 @@ export class MorseViewModel {
     // create the helper extenders
     MorseExtenders.init(ko, this)
 
+    // create settings (note do this after extenders)
+    this.settings = new MorseSettings()
     // apply extenders
     MorseExtenders.apply(this)
 
@@ -65,37 +67,6 @@ export class MorseViewModel {
   // END CONSTRUCTOR
 
   textBuffer = ko.observable('')
-  trudDitFrequency = ko.observable()
-  truDahFrequency = ko.observable()
-  syncFreq = ko.observable(true)
-  ditFrequency = ko.pureComputed({
-    read: () => {
-      return this.trudDitFrequency()
-    },
-    write: (value) => {
-      this.trudDitFrequency(value)
-      if (this.syncFreq()) {
-        this.truDahFrequency(value)
-      }
-    },
-    owner: this
-  })
-
-  dahFrequency = ko.pureComputed({
-    read: () => {
-      if (!this.syncFreq()) {
-        return this.truDahFrequency()
-      } else {
-        this.truDahFrequency(this.trudDitFrequency())
-        return this.trudDitFrequency()
-      }
-    },
-    write: (value) => {
-      this.truDahFrequency(value)
-    },
-    owner: this
-  })
-
   hideList = ko.observable(true)
   currentSentanceIndex = ko.observable(0)
   currentIndex = ko.observable(0)
@@ -138,7 +109,7 @@ export class MorseViewModel {
   trailFinal = ko.observable(1)
   maxRevealedTrail = ko.observable(-1)
   isDev = ko.observable(false)
-  settings = new MorseSettings()
+  settings = {}
   lessons = {}
   // END KO observables declarations
 
@@ -290,8 +261,8 @@ export class MorseViewModel {
     config.word = MorseStringUtils.doReplacements(text)
     config.wpm = parseInt(this.settings.speed.wpm())
     config.fwpm = parseInt(this.settings.speed.fwpm())
-    config.ditFrequency = parseInt(this.ditFrequency())
-    config.dahFrequency = parseInt(this.dahFrequency())
+    config.ditFrequency = parseInt(this.settings.frequency.ditFrequency())
+    config.dahFrequency = parseInt(this.settings.frequency.dahFrequency())
     config.prePaddingMs = this.preSpaceUsed() ? 0 : this.preSpace() * 1000
     config.xtraWordSpaceDits = parseInt(this.xtraWordSpaceDits())
     config.volume = parseInt(this.volume())

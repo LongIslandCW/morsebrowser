@@ -370,13 +370,13 @@
                                                     witdh=20 /></span>
                                             <input type="number" style="max-width:75px; min-width: 75px;"
                                                 class="form-control" aria-label="Server" min="100" max="1200" step="10"
-                                                data-bind="textInput: ditFrequency">
+                                                data-bind="textInput: settings.frequency.ditFrequency">
                                             <span class="input-group-text"
-                                                data-bind="click: ()=>syncFreq(!syncFreq())">DAH&nbsp;<img
-                                                    data-bind="attr:{ src: syncFreq() ? morseLoadImages().getSrc('lockImage') : morseLoadImages().getSrc('unlockImage')}" /></span>
+                                                data-bind="click: ()=>settings.frequency.syncFreq(!settings.frequency.syncFreq())">DAH&nbsp;<img
+                                                    data-bind="attr:{ src: settings.frequency.syncFreq() ? morseLoadImages().getSrc('lockImage') : morseLoadImages().getSrc('unlockImage')}" /></span>
                                             <input type="number" style="max-width:75px; min-width: 75px;"
                                                 class="form-control" aria-label="Server" min="100" max="1200" step="10"
-                                                data-bind="textInput: dahFrequency, enable: !syncFreq()">
+                                                data-bind="textInput: settings.frequency.dahFrequency, enable: !settings.frequency.syncFreq()">
                                         </div>
                                     </div>
                                     <!--silence & spacing-->

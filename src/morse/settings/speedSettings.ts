@@ -50,6 +50,10 @@ export class SpeedSettings implements ICookieHandler {
       },
       owner: this
     })
+
+    this.wpm.extend({ saveCookie: 'wpm' } as ko.ObservableExtenderOptions<number>)
+    this.fwpm.extend({ saveCookie: 'fwpm' } as ko.ObservableExtenderOptions<number>)
+    this.syncWpm.extend({ saveCookie: 'syncWpm' } as ko.ObservableExtenderOptions<boolean>)
   }
 
   handleCookies (cookies: Array<CookieInfo>) {

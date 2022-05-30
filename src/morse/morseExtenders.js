@@ -70,10 +70,6 @@ export class MorseExtenders {
   }
 
   static apply (ctxt) {
-    ctxt.settings.speed.wpm.extend({ saveCookie: 'wpm' })
-    ctxt.settings.speed.fwpm.extend({ saveCookie: 'fwpm' })
-    ctxt.ditFrequency.extend({ saveCookie: 'ditFrequency' })
-    ctxt.dahFrequency.extend({ saveCookie: 'dahFrequency' })
     ctxt.hideList.extend({ saveCookie: 'hideList' })
     ctxt.showingText.extend({ showingChange: 'showingChange' })
     ctxt.showRaw.extend({ showRawChange: 'showRawChange' })
@@ -82,8 +78,7 @@ export class MorseExtenders {
     ctxt.volume.extend({ saveCookie: 'volume' }).extend({ setVolume: 'volume' })
     ctxt.noiseVolume.extend({ saveCookie: 'noiseVolume' }).extend({ setNoiseVolume: 'noiseVolume' })
     ctxt.noiseType.extend({ saveCookie: 'noiseType' }).extend({ setNoiseType: 'noiseType' })
-    ctxt.settings.speed.syncWpm.extend({ saveCookie: 'syncWpm' })
-    ctxt.syncFreq.extend({ saveCookie: 'syncFreq' })
+
     ctxt.rssEnabled.extend({ initRss: 'rssEnabled' })
     ctxt.showExpertSettings.extend({ saveCookie: 'showExpertSettings' })
     ctxt.cardFontPx.extend({ saveCookie: 'cardFontPx' })
