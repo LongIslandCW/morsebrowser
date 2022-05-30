@@ -2,25 +2,25 @@
 can change the code here and other code won't be affected.
 */
 
-import { MorseStringToWavBuffer } from '../wav/morseStringToWavBuffer'
-import { ISoundMaker } from './ISoundMaker'
-import { SoundMakerConfig } from './SoundMakerConfig'
+import { MorseStringToWavBuffer } from '../../wav/morseStringToWavBuffer'
+import { ISoundMaker } from '../ISoundMaker'
+import { SoundMakerConfig } from '../SoundMakerConfig'
+import { SmoothedSoundsContext } from './SmoothedSoundsContext'
 
 export default class SmoothedSoundsPlayer implements ISoundMaker {
   myAudioContext
-  source
   sourceEnded = true
   sourceEndedCallBack
-  gainNode
   noiseNode
   noisePlaying = false
   noiseGainNode
   lastNoiseType = 'off'
   static gainNodes = []
-  bandpassNode
   scaledVolume
   wavInfo
   config
+  nodesConnected:boolean = false
+  ssContext:SmoothedSoundsContext
 
   startNoise (config:SoundMakerConfig) {
     let noiseNodeMaker = null
@@ -93,32 +93,29 @@ export default class SmoothedSoundsPlayer implements ISoundMaker {
     }
   }
 
-  setGainTimings = (gainNode, oscillatorNode, bandpassNode, wavInfo, scaledVolume, config) => {
-    // console.log(wavInfo.timeLine)
-    // console.log(wavInfo)
-    // const riseTimeConstant = 0.001
-    // const decayTimeConstant = 0.001
-    // const decayBegin = 0.40
-    // let lastTime = 0
+  setGainTimings = (wavInfo, scaledVolume, config) => {
+    const currentTimeSecs = this.ssContext.audioContext.currentTime
+    const currentTimeMs = currentTimeSecs * 1000
+    console.log(`currentTimeMs:${currentTimeMs}`)
     wavInfo.timeLine.forEach((soundEvent) => {
       const eventType = soundEvent.event
-      const time = soundEvent.time
+      const time = soundEvent.time + currentTimeMs
       // const eventDuration = time - lastTime
       const riseTimeTarget = (time / 1000) // - (config.riseMsOffset / 1000)
       switch (eventType) {
         case 'prepad_start':
-          gainNode.gain.setValueAtTime(0, time)
+          this.ssContext.gainNode.gain.setValueAtTime(0, time)
           break
         case 'dah_start':
         case 'dit_start':
           // https://developer.mozilla.org/en-US/docs/Web/API/AudioParam/setTargetAtTime
-          oscillatorNode.frequency.setValueAtTime(eventType === 'dit_start' ? config.ditFrequency : config.dahFrequency, riseTimeTarget)
-          bandpassNode.frequency.setValueAtTime(eventType === 'dit_start' ? config.ditFrequency : config.dahFrequency, riseTimeTarget)
-          gainNode.gain.setTargetAtTime(scaledVolume, riseTimeTarget, config.riseTimeConstant)
+          this.ssContext.oscillatorNode.frequency.setValueAtTime(eventType === 'dit_start' ? config.ditFrequency : config.dahFrequency, riseTimeTarget)
+          this.ssContext.bandpassNode.frequency.setValueAtTime(eventType === 'dit_start' ? config.ditFrequency : config.dahFrequency, riseTimeTarget)
+          this.ssContext.gainNode.gain.setTargetAtTime(scaledVolume, riseTimeTarget, config.riseTimeConstant)
           break
         case 'dah_end':
         case 'dit_end':
-          gainNode.gain.setTargetAtTime(0, (time / 1000) - (config.decayMsOffset / 1000), config.decayTimeConstant)
+          this.ssContext.gainNode.gain.setTargetAtTime(0, (time / 1000) - (config.decayMsOffset / 1000), config.decayTimeConstant)
           break
         default:
           // gainNode.gain.setTargetAtTime(0, time / 1000, decayTimeConstant)
@@ -138,83 +135,44 @@ export default class SmoothedSoundsPlayer implements ISoundMaker {
     this.scaledVolume = scaledVolume
     this.wavInfo = wavInfo
     this.config = config
-    // console.log(wavInfo)
-    // console.log(config)
     this.sourceEnded = false
     this.sourceEndedCallBack = onEnded
-    if (typeof (this.myAudioContext) === 'undefined') {
-      this.myAudioContext = new AudioContext()
-    } else {
-      this.myAudioContext.close()
-      this.myAudioContext = new AudioContext()
-    }
-
-    if (SmoothedSoundsPlayer.gainNodes.length > 0) {
-      SmoothedSoundsPlayer.gainNodes.forEach(x => x.disconnect())
-      // this.gainNode.disconnect()
-    }
-    this.gainNode = this.myAudioContext.createGain()
-    SmoothedSoundsPlayer.gainNodes.push(this.gainNode)
-    this.setVolume(0)
-    // this.source = this.myAudioContext.createBufferSource()
-    this.source = this.myAudioContext.createOscillator()
-    this.source.type = 'sine'
-    this.bandpassNode = this.myAudioContext.createBiquadFilter()
-    this.bandpassNode.type = 'bandpass'
-    this.bandpassNode.Q.setValueAtTime(1, 0)
-    // this.source.frequency = 440
-    // this.source.frequency.setValueAtTime(440, 0)
-    this.setGainTimings(this.gainNode, this.source, this.bandpassNode, wavInfo, scaledVolume, config)
-    /* this.source.addEventListener('ended', () => {
-      // this.noiseNode.stop()
+    this.getContext()
+    this.setGainTimings(wavInfo, scaledVolume, config)
+    this.handleNoiseSettings(config)
+    setTimeout(() => {
       this.sourceEnded = true
       this.sourceEndedCallBack()
-    }) */
+    }, this.getEndTime(wavInfo))
+  }
 
-    /*
-    const mybuf = new Int8Array(wavInfo.wav).buffer
-    let mybuf2
-    this.myAudioContext.decodeAudioData(mybuf, (x) => {
-      // thanks https://middleearmedia.com/web-audio-api-audio-buffer/
-      mybuf2 = x
-      this.source.buffer = mybuf2
-      // this.setVolume(scaledVolume)
-      this.source.connect(this.gainNode)
-      this.gainNode.connect(this.myAudioContext.destination)
-      this.handleNoiseSettings(config)
-      this.source.start(0)
-    }, (e) => {
-      console.log('error')
-      console.log(e)
-    })
-    */
-    this.source.connect(this.gainNode)
-    this.gainNode.connect(this.bandpassNode)
-    this.bandpassNode.connect(this.myAudioContext.destination)
-    this.handleNoiseSettings(config)
-    this.source.start(0)
+  getContext () {
+    if (!this.ssContext) {
+      this.ssContext = new SmoothedSoundsContext()
+    }
+    if (this.ssContext.contextClosed) {
+      this.ssContext.rebuildAll()
+    }
+  }
+
+  getEndTime (wavInfo) {
     const l = wavInfo.timeLine.length
     const wordSpaceTime = wavInfo.timingUnits.wordSpaceMultiplier * wavInfo.timingUnits.calculatedFWUnitsMs
     const xtraWordSpaceDits = this.config.xtraWordSpaceDits * wavInfo.timingUnits.calculatedFWUnitsMs * wavInfo.timingUnits.ditUnitMultiPlier
-    setTimeout(() => {
-      // this.noiseNode.stop()
-      this.sourceEnded = true
-      this.sourceEndedCallBack()
-      // console.log(wavInfo.timingUnits)
-    }, wavInfo.timeLine[l - 1].time + wordSpaceTime + xtraWordSpaceDits)
+    return wavInfo.timeLine[l - 1].time + wordSpaceTime + xtraWordSpaceDits
   }
 
   forceStop (pauseCallBack, killNoise) {
-    if (typeof (this.myAudioContext) === 'undefined') {
+    if (!this.ssContext) {
       pauseCallBack()
     } else {
       if (killNoise) {
         this.stopNoise()
       }
-      if (typeof (this.source) !== 'undefined') {
+      if (this.ssContext) {
         if (!this.sourceEnded) {
           this.sourceEndedCallBack = pauseCallBack
-          this.source.stop()
+          this.ssContext.stopAndCloseContext()
         } else {
           pauseCallBack()
         }

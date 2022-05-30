@@ -120,7 +120,7 @@ export class MorseViewModel {
   decayTimeConstant = ko.observable(0.001)
   riseMsOffset = ko.observable(1.5)
   decayMsOffset = ko.observable(1.5)
-  smoothing = ko.observable(false)
+  smoothing = ko.observable(true)
 
   // END KO observables declarations
 

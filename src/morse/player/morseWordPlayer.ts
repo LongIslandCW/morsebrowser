@@ -1,6 +1,6 @@
 import { ISoundMaker } from './soundmakers/ISoundMaker'
-import MorseWavBufferPlayer from './soundmakers/morseWavBufferPlayer'
-import SmoothedSoundsPlayer from './soundmakers/SmoothedSoundsPlayer'
+import MorseWavBufferPlayer from './soundmakers/WavBufferPlayer/morseWavBufferPlayer'
+import SmoothedSoundsPlayer from './soundmakers/SmoothedSounds/SmoothedSoundsPlayer'
 import { SoundMakerConfig } from './soundmakers/SoundMakerConfig'
 import { MorseStringToWavBuffer } from './wav/morseStringToWavBuffer'
 

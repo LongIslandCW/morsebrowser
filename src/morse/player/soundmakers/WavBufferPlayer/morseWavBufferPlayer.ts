@@ -2,9 +2,9 @@
 can change the code here and other code won't be affected.
 */
 
-import { MorseStringToWavBuffer } from '../wav/morseStringToWavBuffer'
-import { ISoundMaker } from './ISoundMaker'
-import { SoundMakerConfig } from './SoundMakerConfig'
+import { MorseStringToWavBuffer } from '../../wav/morseStringToWavBuffer'
+import { ISoundMaker } from '../ISoundMaker'
+import { SoundMakerConfig } from '../SoundMakerConfig'
 
 export default class MorseWavBufferPlayer implements ISoundMaker {
   myAudioContext
