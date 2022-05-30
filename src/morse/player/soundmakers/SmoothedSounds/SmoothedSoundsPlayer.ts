@@ -2,20 +2,20 @@
 can change the code here and other code won't be affected.
 */
 
+import { CreatedWav } from '../../wav/CreatedWav'
 import { MorseStringToWavBuffer } from '../../wav/morseStringToWavBuffer'
 import { ISoundMaker } from '../ISoundMaker'
 import { SoundMakerConfig } from '../SoundMakerConfig'
 import { SmoothedSoundsContext } from './SmoothedSoundsContext'
 
 export default class SmoothedSoundsPlayer implements ISoundMaker {
-  sourceEnded = true
+  sourceEnded:boolean = true
   sourceEndedCallBack
-  noisePlaying = false
+  noisePlaying:boolean = false
   lastNoiseType = 'off'
-  static gainNodes = []
   scaledVolume
-  wavInfo
-  config
+  wavInfo:CreatedWav
+  config:SoundMakerConfig
   nodesConnected:boolean = false
   ssContext:SmoothedSoundsContext
 
@@ -90,7 +90,7 @@ export default class SmoothedSoundsPlayer implements ISoundMaker {
     }
   }
 
-  setGainTimings = (wavInfo, scaledVolume, config) => {
+  setGainTimings = (wavInfo:CreatedWav, scaledVolume, config:SoundMakerConfig) => {
     const currentTimeSecs = this.ssContext.audioContext.currentTime
     const currentTimeMs = currentTimeSecs * 1000
     // console.log(`currentTimeMs:${currentTimeMs}`)
@@ -128,7 +128,7 @@ export default class SmoothedSoundsPlayer implements ISoundMaker {
     this.doPlay(wavInfo, config.volume / 10, config, onEnded)
   }
 
-  doPlay (wavInfo, scaledVolume, config:SoundMakerConfig, onEnded) {
+  doPlay (wavInfo:CreatedWav, scaledVolume, config:SoundMakerConfig, onEnded) {
     this.scaledVolume = scaledVolume
     this.wavInfo = wavInfo
     this.config = config
@@ -152,7 +152,7 @@ export default class SmoothedSoundsPlayer implements ISoundMaker {
     }
   }
 
-  getEndTime (wavInfo) {
+  getEndTime (wavInfo:CreatedWav) {
     const l = wavInfo.timeLine.length
     const wordSpaceTime = wavInfo.timingUnits.wordSpaceMultiplier * wavInfo.timingUnits.calculatedFWUnitsMs
     const xtraWordSpaceDits = this.config.xtraWordSpaceDits * wavInfo.timingUnits.calculatedFWUnitsMs * wavInfo.timingUnits.ditUnitMultiPlier
