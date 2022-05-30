@@ -564,13 +564,13 @@
 
                                             <input type="checkbox" class="btn-check" autocomplete="off"
                                                 id="btncheckmoothing"
-                                                data-bind="checked: morseVoice.voiceEnabled, enable: morseVoice.voiceCapable()">
+                                                data-bind="checked: smoothing, enable: !playerPlaying(), event: {change: changeSoundMaker}">
                                             <label class=" btn btn-outline-primary" for="btncheckmoothing"><img
-                                                    data-bind="attr:{ src: morseLoadImages().getSrc('chatquoteImage')}">&nbsp;Smoothing&nbsp;<img
-                                                    data-bind="attr:{ src: morseVoice.voiceEnabled() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
+                                                    data-bind="attr:{ src: morseLoadImages().getSrc('soundwaveImage')}">&nbsp;Smoothing&nbsp;<img
+                                                    data-bind="attr:{ src: smoothing() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
                                         </div>
                                         <!-- risetimeconstant-->
-                                        <div class="col-md-auto" data-bind="if: showExpertSettings()">
+                                        <div class="col-md-auto" data-bind="if: showExpertSettings() && smoothing()">
                                             <div class="input-group">
                                                 <span class="input-group-text">RiseK&nbsp;<img width=20 height=20
                                                         data-bind="attr:{ src: morseLoadImages().getSrc('graphuparrowImage')}"></span>
@@ -580,7 +580,7 @@
                                             </div>
                                         </div>
                                         <!-- decaytimeconstant-->
-                                        <div class="col-md-auto" data-bind="if: showExpertSettings()">
+                                        <div class="col-md-auto" data-bind="if: showExpertSettings() && smoothing()">
                                             <div class="input-group">
                                                 <span class="input-group-text">DecayK&nbsp;<img width=20 height=20
                                                         data-bind="attr:{ src: morseLoadImages().getSrc('graphdownarrowImage')}"></span>
@@ -590,7 +590,7 @@
                                             </div>
                                         </div>
                                         <!-- decaystart-->
-                                        <div class="col-md-auto" data-bind="if: showExpertSettings()">
+                                        <div class="col-md-auto" data-bind="if: showExpertSettings() && smoothing()">
                                             <div class="input-group">
                                                 <span class="input-group-text">Decay Start<img width=20 height=20
                                                         data-bind="attr:{ src: morseLoadImages().getSrc('stopwatchImage')}"></span>

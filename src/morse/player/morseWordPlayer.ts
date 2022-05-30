@@ -1,11 +1,17 @@
 import { ISoundMaker } from './soundmakers/ISoundMaker'
+import MorseWavBufferPlayer from './soundmakers/morseWavBufferPlayer'
+import SmoothedSoundsPlayer from './soundmakers/SmoothedSoundsPlayer'
 import { SoundMakerConfig } from './soundmakers/SoundMakerConfig'
 import { MorseStringToWavBuffer } from './wav/morseStringToWavBuffer'
 
 export class MorseWordPlayer {
   soundMaker:ISoundMaker
-  constructor (soundMaker:ISoundMaker) {
-    this.soundMaker = soundMaker
+  setSoundMaker (smoothing:boolean) {
+    if (smoothing) {
+      this.soundMaker = new SmoothedSoundsPlayer()
+    } else {
+      this.soundMaker = new MorseWavBufferPlayer()
+    }
   }
 
   setVolume (volume) {

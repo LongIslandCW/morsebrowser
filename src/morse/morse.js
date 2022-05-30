@@ -16,8 +16,6 @@ import { MorseSettings } from './settings/settings.ts'
 import { MorseVoice } from './voice/MorseVoice.ts'
 import { FlaggedWords } from './flaggedWords/flaggedWords.ts'
 import { NoiseConfig } from './player/soundmakers/NoiseConfig.ts'
-// import MorseWavBufferPlayer from './player/soundmakers/morseWavBufferPlayer.ts'
-import SmoothedSoundsPlayer from './player/soundmakers/SmoothedSoundsPlayer.ts'
 export class MorseViewModel {
   constructor () {
     // initialize the images/icons
@@ -53,7 +51,8 @@ export class MorseViewModel {
 
     // seems to need to happen early
     // this.morseWordPlayer = new MorseWordPlayer(new MorseWavBufferPlayer())
-    this.morseWordPlayer = new MorseWordPlayer(new SmoothedSoundsPlayer())
+    this.morseWordPlayer = new MorseWordPlayer()
+    this.morseWordPlayer.setSoundMaker(this.smoothing())
 
     // load defaults
     MorseCookies.loadCookiesOrDefaults(this, null, true)
@@ -121,6 +120,7 @@ export class MorseViewModel {
   decayTimeConstant = ko.observable(0.001)
   riseMsOffset = ko.observable(1.5)
   decayMsOffset = ko.observable(1.5)
+  smoothing = ko.observable(false)
 
   // END KO observables declarations
 
@@ -437,6 +437,12 @@ export class MorseViewModel {
 
   dummy = () => {
     console.log('dummy')
+  }
+
+  changeSoundMaker = (data, event) => {
+    // console.log(data.smoothing())
+    // console.log(event)
+    this.morseWordPlayer.setSoundMaker(data.smoothing())
   }
 
   timeEstimate = ko.computed(() => {
