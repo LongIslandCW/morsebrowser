@@ -98,7 +98,7 @@ export class MorseLoadImages {
   /* This lets any element use data-bind="attr:{src: morseLoadImages().getSrc('xyzImage') }" */
   /* this means many elements can use the same image a little easier and works better for lazy added elements */
 
-  getSrc (key) {
+  getSrc = (key) => {
     const target = this.info.find(x => x.key === key)
     return target.src
   }

@@ -11,7 +11,7 @@ export class SmoothedSoundsContext {
     this.rebuildAll()
   }
 
-  rebuildAll () {
+  rebuildAll = () => {
     this.getAudioContext()
     this.getGainNode()
     this.getOscillatorNode()
@@ -20,39 +20,39 @@ export class SmoothedSoundsContext {
     this.startOscillatorSilenced()
   }
 
-  getGainNode () {
+  getGainNode = () => {
     this.gainNode = this.audioContext.createGain()
   }
 
-  getOscillatorNode () {
+  getOscillatorNode = () => {
     // console.log('got oscillator node')
     this.oscillatorNode = this.audioContext.createOscillator()
     this.oscillatorNode.type = 'sine'
   }
 
-  getBandPassNode () {
+  getBandPassNode = () => {
     this.bandpassNode = this.audioContext.createBiquadFilter()
     this.bandpassNode.type = 'bandpass'
     this.bandpassNode.Q.setValueAtTime(1, 0)
   }
 
-  connectNodes () {
+  connectNodes = () => {
     this.oscillatorNode.connect(this.gainNode)
     this.gainNode.connect(this.bandpassNode)
     this.bandpassNode.connect(this.audioContext.destination)
   }
 
-  startOscillatorSilenced () {
+  startOscillatorSilenced = () => {
     this.gainNode.gain.setValueAtTime(0, this.audioContext.currentTime)
     this.oscillatorNode.start(this.audioContext.currentTime)
   }
 
-  getAudioContext () {
+  getAudioContext = () => {
     this.audioContext = new AudioContext()
     this.contextClosed = false
   }
 
-  stopAndCloseContext () {
+  stopAndCloseContext = () => {
     this.oscillatorNode.stop()
     this.audioContext.close()
     this.contextClosed = true

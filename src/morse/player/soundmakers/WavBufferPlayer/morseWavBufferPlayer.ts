@@ -17,7 +17,7 @@ export default class MorseWavBufferPlayer implements ISoundMaker {
   noiseGainNode
   lastNoiseType = 'off'
 
-  startNoise (config:SoundMakerConfig) {
+  startNoise = (config:SoundMakerConfig) => {
     let noiseNodeMaker = null
     const afterImport = (def) => {
       def.install()
@@ -51,26 +51,26 @@ export default class MorseWavBufferPlayer implements ISoundMaker {
     }
   }
 
-  setVolume (scaledVolume) {
+  setVolume = (scaledVolume) => {
     if (this.myAudioContext) {
       this.gainNode.gain.setValueAtTime(scaledVolume, this.myAudioContext.currentTime)
     }
   }
 
-  setNoiseVolume (scaledVolume) {
+  setNoiseVolume = (scaledVolume) => {
     if (this.myAudioContext) {
       this.noiseGainNode.gain.setValueAtTime(scaledVolume, this.myAudioContext.currentTime)
     }
   }
 
-  stopNoise () {
+  stopNoise = () => {
     if (this.noiseNode && this.noisePlaying) {
       this.noiseNode.stop()
       this.noisePlaying = false
     }
   }
 
-  handleNoiseSettings (config:SoundMakerConfig) {
+  handleNoiseSettings = (config:SoundMakerConfig) => {
     if (this.myAudioContext) {
       const noiseWasPlaying = this.noisePlaying
       const typeChanged = config.noise.type !== this.lastNoiseType
@@ -87,13 +87,13 @@ export default class MorseWavBufferPlayer implements ISoundMaker {
     }
   }
 
-  play (config:SoundMakerConfig, onEnded:any) {
+  play = (config:SoundMakerConfig, onEnded:any) => {
     const wav = MorseStringToWavBuffer.createWav(config)
     config.noise.scaledNoiseVolume = config.noise.volume / 10
     this.doPlay(wav.wav, config.volume / 10, config, onEnded)
   }
 
-  doPlay (wav, scaledVolume, config:SoundMakerConfig, onEnded) {
+  doPlay = (wav, scaledVolume, config:SoundMakerConfig, onEnded) => {
     this.sourceEnded = false
     this.sourceEndedCallBack = onEnded
     if (typeof (this.myAudioContext) === 'undefined') {
@@ -124,7 +124,7 @@ export default class MorseWavBufferPlayer implements ISoundMaker {
     })
   }
 
-  forceStop (pauseCallBack, killNoise) {
+  forceStop = (pauseCallBack, killNoise) => {
     if (typeof (this.myAudioContext) === 'undefined') {
       pauseCallBack()
     } else {

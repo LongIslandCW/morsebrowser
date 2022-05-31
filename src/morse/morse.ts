@@ -1,5 +1,5 @@
 import ko from 'knockout'
-import MorseStringUtils from './morseStringUtils.js'
+import MorseStringUtils from './utils/morseStringUtils'
 import { SoundMakerConfig } from './player/soundmakers/SoundMakerConfig'
 import { MorseWordPlayer } from './player/morseWordPlayer'
 
@@ -16,6 +16,8 @@ import { MorseSettings } from './settings/settings'
 import { MorseVoice } from './voice/MorseVoice'
 import { FlaggedWords } from './flaggedWords/flaggedWords'
 import { NoiseConfig } from './player/soundmakers/NoiseConfig'
+import MorseRssPlugin from './rss/morseRssPlugin'
+import { RssConfig } from './rss/RssConfig'
 export class MorseViewModel {
   textBuffer:ko.Observable<string> = ko.observable('')
   hideList:ko.Observable<boolean> = ko.observable(true)
@@ -33,8 +35,7 @@ export class MorseViewModel {
   rawText:ko.Observable<string> = ko.observable()
   showingText:ko.Observable<string> = ko.observable('')
   showRaw:ko.Observable<boolean> = ko.observable(true)
-  rssEnabled:ko.Observable<boolean> = ko.observable(false)
-  rssInitializedOnce:ko.Observable<boolean> = ko.observable(false)
+  // rssInitializedOnce:ko.Observable<boolean> = ko.observable(false)
   volume:ko.Observable<number> = ko.observable()
   noiseEnabled:ko.Observable<boolean> = ko.observable(false)
   noiseVolume:ko.Observable<number> = ko.observable(2)
@@ -68,8 +69,9 @@ export class MorseViewModel {
   flaggedWords:FlaggedWords
   voiceBuffer:string[]
   doPlayTimeout:any
-  rssPlayCallback: any
-  rssCookieWhiteList: any
+  // rssPlayCallback: any
+  // rssCookieWhiteList: any
+  rss:MorseRssPlugin
 
   // END KO observables declarations
   constructor () {
@@ -93,10 +95,12 @@ export class MorseViewModel {
       return est
     })
 
+    this.rss = new MorseRssPlugin(new RssConfig(this.setText, this.fullRewind, this.doPlay, this.lastFullPlayTime, this.playerPlaying))
+
     // check for RSS feature turned on
     if (this.getParameterByName('rssEnabled')) {
-      this.rssEnabled(true)
-      this.initializeRss(null)
+      this.rss.rssEnabled(true)
+      // this.initializeRss(null)
     }
 
     // check for noise feature turned on
@@ -132,7 +136,7 @@ export class MorseViewModel {
 
   // helper
   // https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
-  getParameterByName (name, url = window.location.href) {
+  getParameterByName = (name, url = window.location.href) => {
     // eslint-disable-next-line no-useless-escape
     name = name.replace(/[\[\]]/g, '\\$&')
     const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)')
@@ -142,11 +146,11 @@ export class MorseViewModel {
     return decodeURIComponent(results[2].replace(/\+/g, ' '))
   }
 
-  changeSentance () {
+  changeSentance = () => {
     this.currentIndex(0)
   }
 
-  setText (s:string) {
+  setText = (s:string) => {
     if (this.showRaw()) {
       this.showingText(s)
     } else {
@@ -154,7 +158,7 @@ export class MorseViewModel {
     }
   }
 
-  sentences = ko.computed(() => {
+  sentences:ko.Computed<string[][]> = ko.computed(() => {
     if (!this.rawText()) {
       return []
     }
@@ -166,11 +170,11 @@ export class MorseViewModel {
     return this.sentences().length - 1
   }, this)
 
-  words = ko.computed(() => {
+  words:ko.Computed<string[]> = ko.computed(() => {
     return this.sentences()[this.currentSentanceIndex()]
   }, this)
 
-  shuffleWords () {
+  shuffleWords = () => {
     if (!this.isShuffled()) {
       const hasPhrases = this.rawText().indexOf('\n') !== -1
       this.preShuffled = this.rawText()
@@ -181,7 +185,7 @@ export class MorseViewModel {
     this.isShuffled(!this.isShuffled())
   }
 
-  incrementIndex () {
+  incrementIndex = () => {
     if (this.currentIndex() < this.words().length - 1) {
       this.currentIndex(this.currentIndex() + 1)
     } else {
@@ -193,7 +197,7 @@ export class MorseViewModel {
     }
   }
 
-  decrementIndex () {
+  decrementIndex = () => {
     this.morseWordPlayer.pause(() => {
       if (this.currentIndex() > 0 && this.words().length > 1) {
         this.currentIndex(this.currentIndex() - 1)
@@ -204,16 +208,16 @@ export class MorseViewModel {
     }, false)
   }
 
-  fullRewind () {
+  fullRewind = () => {
     this.currentSentanceIndex(0)
     this.currentIndex(0)
   }
 
-  sentanceRewind () {
+  sentanceRewind = () => {
     this.currentIndex(0)
   }
 
-  setWordIndex (index) {
+  setWordIndex = (index) => {
     if (!this.playerPlaying()) {
       this.currentIndex(index)
     } else {
@@ -223,7 +227,7 @@ export class MorseViewModel {
     }
   }
 
-  setFlagged () {
+  setFlagged = () => {
     if (this.flaggedWords.flaggedWords().trim()) {
       this.doPause(true, false, false)
       this.setText(this.flaggedWords.flaggedWords())
@@ -232,7 +236,7 @@ export class MorseViewModel {
     }
   }
 
-  getMorseStringToWavBufferConfig (text) {
+  getMorseStringToWavBufferConfig = (text) => {
     const config = new SoundMakerConfig()
     config.word = MorseStringUtils.doReplacements(text)
     config.wpm = parseInt(this.settings.speed.wpm() as any)
@@ -253,7 +257,7 @@ export class MorseViewModel {
     return config
   }
 
-  doPlay (playJustEnded, fromPlayButton) {
+  doPlay = (playJustEnded:boolean, fromPlayButton:boolean) => {
     if (!this.rawText().trim()) {
       return
     }
@@ -298,7 +302,7 @@ export class MorseViewModel {
     playJustEnded || fromPlayButton ? 0 : 1000)
   }
 
-  playEnded (fromVoiceOrTrail) {
+  playEnded = (fromVoiceOrTrail) => {
     // voice or trail have timers that might call this after user has hit stop
     // specifically they have built in pauses for "thinking time" during which the user
     // might have hit stop
@@ -379,7 +383,7 @@ export class MorseViewModel {
     }
   }
 
-  doPause (fullRewind, fromPauseButton, fromStopButton) {
+  doPause = (fullRewind, fromPauseButton, fromStopButton) => {
     if (fromPauseButton) {
       this.runningPlayMs(this.runningPlayMs() + (Date.now() - this.lastPartialPlayStart()))
       this.isPaused(!this.isPaused())
@@ -393,8 +397,8 @@ export class MorseViewModel {
       this.lastFullPlayTime(Date.now())
       // console.log(`playtime:${this.lastFullPlayTime() - this.lastPlayFullStart}`)
       // TODO make this more generic for any future "plugins"
-      if (this.rssPlayCallback) {
-        this.rssPlayCallback()
+      if (this.rss.rssPlayCallback) {
+        this.rss.rssPlayCallback(false)
       }
 
       this.preSpaceUsed(false)
@@ -408,7 +412,7 @@ export class MorseViewModel {
     }
   }
 
-  inputFileChange (element) {
+  inputFileChange = (element) => {
     // thanks to https://newbedev.com/how-to-access-file-input-with-knockout-binding
     // console.log(file)
     const file = element.files[0]
@@ -423,7 +427,7 @@ export class MorseViewModel {
     fr.readAsText(file)
   }
 
-  doDownload () {
+  doDownload = () => {
     let allWords = ''
     const sentences = this.sentences()
     sentences.forEach((sentence) => {
@@ -441,11 +445,11 @@ export class MorseViewModel {
     link.dispatchEvent(new MouseEvent('click'))
   }
 
-  dummy () {
+  dummy = () => {
     console.log('dummy')
   }
 
-  changeSoundMaker (data, event) {
+  changeSoundMaker = (data, event) => {
     // console.log(data.smoothing())
     // console.log(event)
     this.morseWordPlayer.setSoundMaker(data.smoothing())
@@ -478,24 +482,7 @@ export class MorseViewModel {
     return timeFigures
   }, this)
 
-  initializeRss (afterCallBack) {
-    if (!this.rssInitializedOnce()) {
-      import('./morseRssPlugin.js').then(({ default: MorseRssPlugin }) => {
-        MorseRssPlugin.addRssFeatures(ko, this)
-        // don't set this until the plugin has initialized above
-        this.rssInitializedOnce(true)
-        // possibly rss-related cookies missed
-        // TODO probably in general 'plugins' should be some sort of promise based
-        // and load cookies after all plugins but for now just do this....
-        MorseCookies.loadCookiesOrDefaults(this, this.rssCookieWhiteList, false)
-        if (afterCallBack) {
-          afterCallBack()
-        }
-      })
-    }
-  }
-
-  doClear () {
+  doClear = () => {
     // stop playing
     this.doPause(true, false, false)
     this.setText('')

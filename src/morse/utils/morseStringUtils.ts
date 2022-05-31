@@ -1,5 +1,5 @@
 export default class MorseStringUtils {
-  static doReplacements = (s) => {
+  static doReplacements = (s:string):string => {
     const afterReplaced = s
     // a few ad-hoc attempts to fix unicode or other problems
     // seems like apostraphe is not morse-able
@@ -15,7 +15,7 @@ export default class MorseStringUtils {
     return afterReplaced
   }
 
-  static splitIntoSentences = (replaced) => {
+  static splitIntoSentences = (replaced:string):string[] => {
     // split on period or question mark or exclamation mark
     // eslint-disable-next-line no-useless-escape
     const splitSents = replaced.split(/([\.\?\!])/)
@@ -35,10 +35,10 @@ export default class MorseStringUtils {
     return splitsGlued
   }
 
-  static getSentences = (s, dontSplit, newlineChunking) => {
-    const replaced = this.doReplacements(s)
-    const splitsGlued = dontSplit ? [replaced] : this.splitIntoSentences(replaced)
-    const sents = splitsGlued
+  static getSentences = (s:string, dontSplit:boolean, newlineChunking:boolean):string[][] => {
+    const replaced:string = this.doReplacements(s)
+    const splitsGlued:string[] = dontSplit ? [replaced] : this.splitIntoSentences(replaced)
+    const sents:string[][] = splitsGlued
       .map((sentence) => {
         const hasNewLine = newlineChunking // sentence.indexOf('\n') !== -1
         return sentence
@@ -60,7 +60,7 @@ export default class MorseStringUtils {
     return sents
   }
 
-  static wordifyPunctuation = (s) => {
+  static wordifyPunctuation = (s:string):string => {
     return s.replace(/,/g, ' comma ')
       .replace(/\./g, ' period ')
       .replace(/\?/g, ' question mark ')

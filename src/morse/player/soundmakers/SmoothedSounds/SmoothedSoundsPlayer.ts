@@ -19,7 +19,7 @@ export default class SmoothedSoundsPlayer implements ISoundMaker {
   nodesConnected:boolean = false
   ssContext:SmoothedSoundsContext
 
-  startNoise (config:SoundMakerConfig) {
+  startNoise = (config:SoundMakerConfig) => {
     let noiseNodeMaker = null
     const afterImport = (def) => {
       def.install()
@@ -60,20 +60,20 @@ export default class SmoothedSoundsPlayer implements ISoundMaker {
     // }
   }
 
-  setNoiseVolume (scaledVolume) {
+  setNoiseVolume = (scaledVolume) => {
     if (this.ssContext.audioContext) {
       this.ssContext.noiseGainNode.gain.setValueAtTime(scaledVolume, this.ssContext.audioContext.currentTime)
     }
   }
 
-  stopNoise () {
+  stopNoise = () => {
     if (this.ssContext.noiseNode && this.noisePlaying) {
       this.ssContext.noiseNode.stop()
       this.noisePlaying = false
     }
   }
 
-  handleNoiseSettings (config:SoundMakerConfig) {
+  handleNoiseSettings = (config:SoundMakerConfig) => {
     if (this.ssContext) {
       const noiseWasPlaying = this.noisePlaying
       const typeChanged = config.noise.type !== this.lastNoiseType
@@ -122,13 +122,13 @@ export default class SmoothedSoundsPlayer implements ISoundMaker {
     })
   }
 
-  play (config:SoundMakerConfig, onEnded:any) {
+  play = (config:SoundMakerConfig, onEnded:any) => {
     const wavInfo = MorseStringToWavBuffer.createWav(config)
     config.noise.scaledNoiseVolume = config.noise.volume / 10
     this.doPlay(wavInfo, config.volume / 10, config, onEnded)
   }
 
-  doPlay (wavInfo:CreatedWav, scaledVolume, config:SoundMakerConfig, onEnded) {
+  doPlay = (wavInfo:CreatedWav, scaledVolume, config:SoundMakerConfig, onEnded) => {
     this.scaledVolume = scaledVolume
     this.wavInfo = wavInfo
     this.config = config
@@ -143,7 +143,7 @@ export default class SmoothedSoundsPlayer implements ISoundMaker {
     }, this.getEndTime(wavInfo))
   }
 
-  getContext () {
+  getContext = () => {
     if (!this.ssContext) {
       this.ssContext = new SmoothedSoundsContext()
     }
@@ -152,14 +152,14 @@ export default class SmoothedSoundsPlayer implements ISoundMaker {
     }
   }
 
-  getEndTime (wavInfo:CreatedWav) {
+  getEndTime = (wavInfo:CreatedWav) => {
     const l = wavInfo.timeLine.length
     const wordSpaceTime = wavInfo.timingUnits.wordSpaceMultiplier * wavInfo.timingUnits.calculatedFWUnitsMs
     const xtraWordSpaceDits = this.config.xtraWordSpaceDits * wavInfo.timingUnits.calculatedFWUnitsMs * wavInfo.timingUnits.ditUnitMultiPlier
     return wavInfo.timeLine[l - 1].time + wordSpaceTime + xtraWordSpaceDits
   }
 
-  forceStop (pauseCallBack, killNoise) {
+  forceStop = (pauseCallBack, killNoise) => {
     if (!this.ssContext) {
       pauseCallBack()
     } else {

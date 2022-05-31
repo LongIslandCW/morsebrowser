@@ -31,7 +31,7 @@ export class MorseVoice {
     this.populateVoiceList()
   }
 
-  populateVoiceList () {
+  populateVoiceList = () => {
     if (typeof speechSynthesis === 'undefined') {
       return
     }
@@ -45,14 +45,14 @@ export class MorseVoice {
     }
   }
 
-  getVoices () {
+  getVoices = () => {
     // we assume this is all ready through the constructor by the time we use it
     const voices = speechSynthesis.getVoices()
     console.log(voices)
     return voices
   }
 
-  initUtterance (morseVoiceInfo) {
+  initUtterance = (morseVoiceInfo) => {
     const utterance = new SpeechSynthesisUtterance()
     utterance.voice = morseVoiceInfo.voice || null // Note: some voices don't support altering params
     // utterance.voiceURI = morseVoiceInfo.voice && morseVoiceInfo.voice.voiceURI ? morseVoiceInfo.voice.voiceURI : 'native'
@@ -64,13 +64,13 @@ export class MorseVoice {
     return utterance
   }
 
-  speakInfo (morseVoiceInfo) {
+  speakInfo = (morseVoiceInfo) => {
     const utterance = this.initUtterance(morseVoiceInfo)
     utterance.addEventListener('end', morseVoiceInfo.onEnd)
     window.speechSynthesis.speak(utterance)
   }
 
-  speakPhrase (phraseToSpeak:string, onEndCallBack) {
+  speakPhrase = (phraseToSpeak:string, onEndCallBack) => {
     const morseVoiceInfo = new MorseVoiceInfo()
     morseVoiceInfo.textToSpeak = phraseToSpeak
     morseVoiceInfo.voice = this.voiceVoice()

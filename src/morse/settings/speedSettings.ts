@@ -56,7 +56,7 @@ export class SpeedSettings implements ICookieHandler {
     this.syncWpm.extend({ saveCookie: 'syncWpm' } as ko.ObservableExtenderOptions<boolean>)
   }
 
-  handleCookies (cookies: Array<CookieInfo>) {
+  handleCookies = (cookies: Array<CookieInfo>) => {
     if (!cookies) {
       return
     }
@@ -76,5 +76,5 @@ export class SpeedSettings implements ICookieHandler {
     }
   }
 
-  handleCookie (cookie: string) {}
+  handleCookie = (cookie: string) => {}
 }

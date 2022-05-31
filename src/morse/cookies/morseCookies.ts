@@ -6,11 +6,11 @@ import { ICookieHandler } from './ICookieHandler'
 
 export class MorseCookies {
   static registeredHandlers:ICookieHandler[] = []
-  static registerHandler (handler:ICookieHandler) {
+  static registerHandler = (handler:ICookieHandler) => {
     MorseCookies.registeredHandlers.push(handler)
   }
 
-  static loadCookiesOrDefaults (ctxt, whiteList, ifLoadSettings) {
+  static loadCookiesOrDefaults = (ctxt, whiteList, ifLoadSettings) => {
     // load any existing cookie values
 
     const cks = Cookies.get()

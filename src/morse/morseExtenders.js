@@ -52,14 +52,14 @@ export class MorseExtenders {
       return target
     }
 
-    ko.extenders.initRss = (target, option) => {
+    /* ko.extenders.initRss = (target, option) => {
       target.subscribe((newValue) => {
         if (newValue) {
           ctxt.initializeRss()
         }
       })
       return target
-    }
+    } */
 
     ko.extenders.dummyLogger = (target, option) => {
       target.subscribe((newValue) => {
@@ -79,7 +79,7 @@ export class MorseExtenders {
     ctxt.noiseVolume.extend({ saveCookie: 'noiseVolume' }).extend({ setNoiseVolume: 'noiseVolume' })
     ctxt.noiseType.extend({ saveCookie: 'noiseType' }).extend({ setNoiseType: 'noiseType' })
 
-    ctxt.rssEnabled.extend({ initRss: 'rssEnabled' })
+    // ctxt.rssEnabled.extend({ initRss: 'rssEnabled' })
     ctxt.showExpertSettings.extend({ saveCookie: 'showExpertSettings' })
     ctxt.cardFontPx.extend({ saveCookie: 'cardFontPx' })
   }

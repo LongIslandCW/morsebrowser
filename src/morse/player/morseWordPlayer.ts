@@ -6,7 +6,7 @@ import { MorseStringToWavBuffer } from './wav/morseStringToWavBuffer'
 
 export class MorseWordPlayer {
   soundMaker:ISoundMaker
-  setSoundMaker (smoothing:boolean) {
+  setSoundMaker = (smoothing:boolean) => {
     if (smoothing) {
       this.soundMaker = new SmoothedSoundsPlayer()
     } else {
@@ -14,33 +14,33 @@ export class MorseWordPlayer {
     }
   }
 
-  setVolume (volume) {
+  setVolume = (volume) => {
     this.soundMaker.setVolume(volume / 10)
   }
 
-  setNoiseVolume (volume) {
+  setNoiseVolume = (volume) => {
     this.soundMaker.setNoiseVolume(volume / 10)
   }
 
-  setNoiseType (config:SoundMakerConfig) {
+  setNoiseType = (config:SoundMakerConfig) => {
     config.noise.scaledNoiseVolume = config.noise.volume / 10
     this.soundMaker.handleNoiseSettings(config)
   }
 
-  play (config:SoundMakerConfig, onEnded) {
+  play = (config:SoundMakerConfig, onEnded) => {
     this.soundMaker.play(config, onEnded)
   }
 
-  pause (pauseCallBack, killNoise) {
+  pause = (pauseCallBack, killNoise) => {
     this.soundMaker.forceStop(pauseCallBack, killNoise)
   }
 
-  getWavAndSample (config:SoundMakerConfig) {
+  getWavAndSample = (config:SoundMakerConfig) => {
     const wav = MorseStringToWavBuffer.createWav(config)
     return wav
   }
 
-  getTimeEstimate (config:SoundMakerConfig) {
+  getTimeEstimate = (config:SoundMakerConfig) => {
     return MorseStringToWavBuffer.estimatePlayTime(config)
   }
 }

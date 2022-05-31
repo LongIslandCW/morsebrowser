@@ -48,7 +48,7 @@ export class FrequencySettings implements ICookieHandler {
   }
 
   // cookie handlers
-  handleCookies (cookies: Array<CookieInfo>) {
+  handleCookies = (cookies: Array<CookieInfo>) => {
     if (!cookies) {
       return
     }
@@ -68,5 +68,5 @@ export class FrequencySettings implements ICookieHandler {
     }
   }
 
-  handleCookie (cookie: string) {}
+  handleCookie = (cookie: string) => {}
 }

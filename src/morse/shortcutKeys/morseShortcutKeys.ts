@@ -19,7 +19,7 @@ export class MorseShortcutKeys {
     })
   }
 
-  routeShortcutKey (key) {
+  routeShortcutKey = (key) => {
     // console.log('routing shortcut key')
     switch (key) {
       case 'z':
@@ -31,7 +31,7 @@ export class MorseShortcutKeys {
     }
   }
 
-  changeFarnsworth (x) {
+  changeFarnsworth = (x) => {
     // console.log('changing farnsworth')
     const newWpm = parseInt(this.morseSettings.speed.wpm() as any) + x
     const newFwpm = parseInt(this.morseSettings.speed.fwpm() as any) + x

@@ -159,7 +159,7 @@ export default class MorseLessonPlugin implements ICookieHandler {
   }
 
   // end constructor
-  doCustomGroup () {
+  doCustomGroup = () => {
     if (this.customGroup()) {
       const data = { letters: this.customGroup().trim().replace(/ /g, '') }
       this.randomWordList(data, true)
@@ -167,7 +167,7 @@ export default class MorseLessonPlugin implements ICookieHandler {
     }
   }
 
-  randomWordList (data, ifCustom) {
+  randomWordList = (data, ifCustom) => {
     let str = ''
     const splitWithProsignsAndStcikys = (s) => {
       let stickys = ''
@@ -219,7 +219,7 @@ export default class MorseLessonPlugin implements ICookieHandler {
     this.setText(str)
   }
 
-  getWordList (filename) {
+  getWordList = (filename) => {
     const isText = filename.endsWith('txt')
 
     const afterFound = (result) => {
@@ -237,51 +237,51 @@ export default class MorseLessonPlugin implements ICookieHandler {
     MorseLessonFileFinder.getMorseLessonFile(filename, afterFound)
   }
 
-  setUserTargetInitialized () {
+  setUserTargetInitialized = () => {
     this.userTargetInitialized = true
   }
 
-  setSelectedClassInitialized () {
+  setSelectedClassInitialized = () => {
     this.selectedClassInitialized = true
   }
 
-  setLetterGroupInitialized () {
+  setLetterGroupInitialized = () => {
     // console.log('setlettergroupinitialized')
     this.letterGroupInitialized = true
   }
 
-  setDisplaysInitialized () {
+  setDisplaysInitialized = () => {
     this.displaysInitialized = true
   }
 
-  changeUserTarget (userTarget) {
+  changeUserTarget = (userTarget) => {
     if (this.userTargetInitialized) {
       this.userTarget(userTarget)
       // console.log('usertarget')
     }
   }
 
-  changeSelectedClass (selectedClass) {
+  changeSelectedClass = (selectedClass) => {
     if (this.selectedClassInitialized) {
       this.selectedClass(selectedClass)
     }
   }
 
-  setLetterGroup (letterGroup) {
+  setLetterGroup = (letterGroup) => {
     if (this.letterGroupInitialized) {
       console.log('setlettergroup')
       this.letterGroup(letterGroup)
     }
   }
 
-  closeLessonAccordianIfAutoClosing () {
+  closeLessonAccordianIfAutoClosing = () => {
     if (this.autoCloseLessonAccordion()) {
       const elem = document.getElementById('lessonAccordianButton')
       elem.click()
     }
   }
 
-  setDisplaySelected (display) {
+  setDisplaySelected = (display) => {
     if (!display.isDummy) {
       if (this.displaysInitialized) {
         this.selectedDisplay(display)
@@ -293,12 +293,12 @@ export default class MorseLessonPlugin implements ICookieHandler {
     }
   }
 
-  initializeWordList () {
+  initializeWordList = () => {
     this.wordLists(WordListsJson.fileOptions)
   }
 
   // cookie handling
-  handleCookies (cookies: Array<CookieInfo>) {
+  handleCookies = (cookies: Array<CookieInfo>) => {
     if (!cookies) {
       return
     }
@@ -308,5 +308,5 @@ export default class MorseLessonPlugin implements ICookieHandler {
     }
   }
 
-  handleCookie (cookie: string) {}
+  handleCookie = (cookie: string) => {}
 }
