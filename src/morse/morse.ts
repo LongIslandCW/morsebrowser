@@ -1,22 +1,77 @@
 import ko from 'knockout'
 import MorseStringUtils from './morseStringUtils.js'
-import { SoundMakerConfig } from './player/soundmakers/SoundMakerConfig.ts'
-import { MorseWordPlayer } from './player/morseWordPlayer.ts'
+import { SoundMakerConfig } from './player/soundmakers/SoundMakerConfig'
+import { MorseWordPlayer } from './player/morseWordPlayer'
 
 // NOTE: moved this to dynamic import() so that non-RSS users don't need to bother
 // even loading this code into the browser:
 // import RSSParser from 'rss-parser';
 
-import MorseLessonPlugin from './lessons/morseLessonPlugin.ts'
-import { MorseLoadImages } from './images/morseLoadImages.ts'
-import { MorseShortcutKeys } from './shortcutKeys/morseShortcutKeys.ts'
+import MorseLessonPlugin from './lessons/morseLessonPlugin'
+import { MorseLoadImages } from './images/morseLoadImages'
+import { MorseShortcutKeys } from './shortcutKeys/morseShortcutKeys'
 import { MorseExtenders } from './morseExtenders.js'
-import { MorseCookies } from './cookies/morseCookies.ts'
-import { MorseSettings } from './settings/settings.ts'
-import { MorseVoice } from './voice/MorseVoice.ts'
-import { FlaggedWords } from './flaggedWords/flaggedWords.ts'
-import { NoiseConfig } from './player/soundmakers/NoiseConfig.ts'
+import { MorseCookies } from './cookies/morseCookies'
+import { MorseSettings } from './settings/settings'
+import { MorseVoice } from './voice/MorseVoice'
+import { FlaggedWords } from './flaggedWords/flaggedWords'
+import { NoiseConfig } from './player/soundmakers/NoiseConfig'
 export class MorseViewModel {
+  textBuffer:ko.Observable<string> = ko.observable('')
+  hideList:ko.Observable<boolean> = ko.observable(true)
+  currentSentanceIndex:ko.Observable<number> = ko.observable(0)
+  currentIndex:ko.Observable<number> = ko.observable(0)
+  playerPlaying:ko.Observable<boolean> = ko.observable(false)
+  lastFullPlayTime = ko.observable(new Date(1900, 0, 0).getMilliseconds())
+  preSpace:ko.Observable<number> = ko.observable(0)
+  preSpaceUsed:ko.Observable<boolean> = ko.observable(false)
+  xtraWordSpaceDits:ko.Observable<number> = ko.observable(0)
+  isShuffled:ko.Observable<boolean> = ko.observable(false)
+  trailReveal:ko.Observable<boolean> = ko.observable(false)
+  preShuffled:string = ''
+  morseWordPlayer:MorseWordPlayer
+  rawText:ko.Observable<string> = ko.observable()
+  showingText:ko.Observable<string> = ko.observable('')
+  showRaw:ko.Observable<boolean> = ko.observable(true)
+  rssEnabled:ko.Observable<boolean> = ko.observable(false)
+  rssInitializedOnce:ko.Observable<boolean> = ko.observable(false)
+  volume:ko.Observable<number> = ko.observable()
+  noiseEnabled:ko.Observable<boolean> = ko.observable(false)
+  noiseVolume:ko.Observable<number> = ko.observable(2)
+  noiseType:ko.Observable<string> = ko.observable('off')
+  lastPlayFullStart = null
+  ifParseSentences:ko.Observable<boolean> = ko.observable(false)
+  runningPlayMs:ko.Observable<number> = ko.observable(0)
+  lastPartialPlayStart = ko.observable()
+  isPaused:ko.Observable<boolean> = ko.observable(false)
+  morseLoadImages = ko.observable()
+  showExpertSettings:ko.Observable<boolean> = ko.observable(false)
+  cardFontPx = ko.observable()
+  loop:ko.Observable<boolean> = ko.observable(false)
+  morseVoice:MorseVoice
+  shortCutKeys:MorseShortcutKeys
+  // note this is whether you see any cards at all,
+  // not whether the words on them are obscured
+  cardsVisible:ko.Observable<boolean> = ko.observable(true)
+  trailPreDelay:ko.Observable<number> = ko.observable(0)
+  trailPostDelay:ko.Observable<number> = ko.observable(0)
+  trailFinal:ko.Observable<number> = ko.observable(1)
+  maxRevealedTrail:ko.Observable<number> = ko.observable(-1)
+  isDev:ko.Observable<boolean> = ko.observable(false)
+  riseTimeConstant:ko.Observable<number> = ko.observable(0.001)
+  decayTimeConstant:ko.Observable<number> = ko.observable(0.001)
+  riseMsOffset:ko.Observable<number> = ko.observable(1.5)
+  decayMsOffset:ko.Observable<number> = ko.observable(1.5)
+  smoothing:ko.Observable<boolean> = ko.observable(true)
+  settings:MorseSettings
+  lessons:MorseLessonPlugin
+  flaggedWords:FlaggedWords
+  voiceBuffer:string[]
+  doPlayTimeout:any
+  rssPlayCallback: any
+  rssCookieWhiteList: any
+
+  // END KO observables declarations
   constructor () {
     // initialize the images/icons
     this.morseLoadImages(new MorseLoadImages())
@@ -41,7 +96,7 @@ export class MorseViewModel {
     // check for RSS feature turned on
     if (this.getParameterByName('rssEnabled')) {
       this.rssEnabled(true)
-      this.initializeRss()
+      this.initializeRss(null)
     }
 
     // check for noise feature turned on
@@ -74,55 +129,6 @@ export class MorseViewModel {
     this.isDev(window.location.href.toLowerCase().indexOf('/dev/') > -1)
   }
   // END CONSTRUCTOR
-
-  textBuffer = ko.observable('')
-  hideList = ko.observable(true)
-  currentSentanceIndex = ko.observable(0)
-  currentIndex = ko.observable(0)
-  playerPlaying = ko.observable(false)
-  lastFullPlayTime = ko.observable(new Date(1900, 0, 0))
-  preSpace = ko.observable(0)
-  preSpaceUsed = ko.observable(false)
-  xtraWordSpaceDits = ko.observable(0)
-  isShuffled = ko.observable(false)
-  trailReveal = ko.observable(false)
-  preShuffled = ''
-  morseWordPlayer = {}
-  rawText = ko.observable()
-  showingText = ko.observable('')
-  showRaw = ko.observable(true)
-  rssEnabled = ko.observable(false)
-  rssInitializedOnce = ko.observable(false)
-  volume = ko.observable()
-  noiseEnabled = ko.observable(false)
-  noiseVolume = ko.observable(2)
-  noiseType = ko.observable('off')
-  lastPlayFullStart = null
-  ifParseSentences = ko.observable(false)
-  runningPlayMs = ko.observable(0)
-  lastPartialPlayStart = ko.observable()
-  isPaused = ko.observable(false)
-  morseLoadImages = ko.observable()
-  showExpertSettings = ko.observable(false)
-  cardFontPx = ko.observable()
-  loop = ko.observable(false)
-  morseVoice = {}
-  shortCutKeys = {}
-  // note this is whether you see any cards at all,
-  // not whether the words on them are obscured
-  cardsVisible = ko.observable(true)
-  trailPreDelay = ko.observable(0)
-  trailPostDelay = ko.observable(0)
-  trailFinal = ko.observable(1)
-  maxRevealedTrail = ko.observable(-1)
-  isDev = ko.observable(false)
-  riseTimeConstant = ko.observable(0.001)
-  decayTimeConstant = ko.observable(0.001)
-  riseMsOffset = ko.observable(1.5)
-  decayMsOffset = ko.observable(1.5)
-  smoothing = ko.observable(true)
-
-  // END KO observables declarations
 
   // helper
   // https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
@@ -195,7 +201,7 @@ export class MorseViewModel {
         // so they dont' blur together
         setTimeout(this.doPlay, 1000)
       }
-    })
+    }, false)
   }
 
   fullRewind = () => {
@@ -211,7 +217,7 @@ export class MorseViewModel {
     if (!this.playerPlaying()) {
       this.currentIndex(index)
     } else {
-      this.doPause(false, false)
+      this.doPause(false, false, false)
       this.currentIndex(index)
       this.doPlay(false, false)
     }
@@ -219,7 +225,7 @@ export class MorseViewModel {
 
   setFlagged = () => {
     if (this.flaggedWords.flaggedWords().trim()) {
-      this.doPause(true, false)
+      this.doPause(true, false, false)
       this.setText(this.flaggedWords.flaggedWords())
       this.fullRewind()
       document.getElementById('btnFlaggedWordsAccordianButton').click()
@@ -229,21 +235,21 @@ export class MorseViewModel {
   getMorseStringToWavBufferConfig = (text) => {
     const config = new SoundMakerConfig()
     config.word = MorseStringUtils.doReplacements(text)
-    config.wpm = parseInt(this.settings.speed.wpm())
-    config.fwpm = parseInt(this.settings.speed.fwpm())
-    config.ditFrequency = parseInt(this.settings.frequency.ditFrequency())
-    config.dahFrequency = parseInt(this.settings.frequency.dahFrequency())
+    config.wpm = parseInt(this.settings.speed.wpm() as any)
+    config.fwpm = parseInt(this.settings.speed.fwpm() as any)
+    config.ditFrequency = parseInt(this.settings.frequency.ditFrequency() as any)
+    config.dahFrequency = parseInt(this.settings.frequency.dahFrequency() as any)
     config.prePaddingMs = this.preSpaceUsed() ? 0 : this.preSpace() * 1000
-    config.xtraWordSpaceDits = parseInt(this.xtraWordSpaceDits())
-    config.volume = parseInt(this.volume())
+    config.xtraWordSpaceDits = parseInt(this.xtraWordSpaceDits() as any)
+    config.volume = parseInt(this.volume() as any)
     config.noise = new NoiseConfig()
     config.noise.type = this.noiseEnabled() ? this.noiseType() : 'off'
-    config.noise.volume = parseInt(this.noiseVolume())
+    config.noise.volume = parseInt(this.noiseVolume() as any)
     config.playerPlaying = this.playerPlaying()
-    config.riseTimeConstant = parseFloat(this.riseTimeConstant())
-    config.decayTimeConstant = parseFloat(this.decayTimeConstant())
-    config.riseMsOffset = parseFloat(this.riseMsOffset())
-    config.decayMsOffset = parseFloat(this.decayMsOffset())
+    config.riseTimeConstant = parseFloat(this.riseTimeConstant() as any)
+    config.decayTimeConstant = parseFloat(this.decayTimeConstant() as any)
+    config.riseMsOffset = parseFloat(this.riseMsOffset() as any)
+    config.decayMsOffset = parseFloat(this.decayMsOffset() as any)
     return config
   }
 
@@ -278,17 +284,17 @@ export class MorseViewModel {
     // experience shows it is good to put a little pause here when user forces us here,
     // e.g. hitting back or play b/c word was misunderstood,
     // so they dont' blur together.
-    if (this.doPlayTimeOut) {
-      clearTimeout(this.doPlayTimeOut)
+    if (this.doPlayTimeout) {
+      clearTimeout(this.doPlayTimeout)
     }
-    this.doPlayTimeOut = setTimeout(() => this.morseWordPlayer.pause(() => {
+    this.doPlayTimeout = setTimeout(() => this.morseWordPlayer.pause(() => {
       // help trailing reveal, max should always be one behind before we're about to play
       this.maxRevealedTrail(this.currentIndex() - 1)
       const config = this.getMorseStringToWavBufferConfig(this.words()[this.currentIndex()])
       this.morseWordPlayer.play(config, this.playEnded)
       this.lastPartialPlayStart(Date.now())
       this.preSpaceUsed(true)
-    }),
+    }, false),
     playJustEnded || fromPlayButton ? 0 : 1000)
   }
 
@@ -333,15 +339,15 @@ export class MorseViewModel {
       this.runningPlayMs(this.runningPlayMs() + (Date.now() - this.lastPartialPlayStart()))
       if (isNotLastWord) {
         this.incrementIndex()
-        this.doPlay(true)
+        this.doPlay(true, false)
       } else if (isNotLastSentence) {
       // move to next sentence
         this.currentSentanceIndex(Number(this.currentSentanceIndex()) + 1)
         this.currentIndex(0)
-        this.doPlay(true)
+        this.doPlay(true, false)
       } else {
       // nothing more to play
-        const finalToDo = () => this.doPause(true)
+        const finalToDo = () => this.doPause(true, false, false)
         // trailing may want a linger
         if (this.trailReveal()) {
           finalizeTrail(finalToDo)
@@ -428,7 +434,7 @@ export class MorseViewModel {
     const config = this.getMorseStringToWavBufferConfig(allWords)
     const wav = this.morseWordPlayer.getWavAndSample(config)
     const ary = new Uint8Array(wav.wav)
-    const link = document.getElementById('downloadLink')
+    const link:any = document.getElementById('downloadLink')
     const blob = new Blob([ary], { type: 'audio/wav' })
     link.href = URL.createObjectURL(blob)
     link.download = 'morse.wav'
@@ -455,7 +461,7 @@ export class MorseViewModel {
     const est = this.morseWordPlayer.getTimeEstimate(config)
     const minutes = Math.floor(est.timeCalcs.totalTime / 60000)
     const seconds = ((est.timeCalcs.totalTime % 60000) / 1000).toFixed(0)
-    const normedSeconds = (seconds < 10 ? '0' : '') + seconds
+    const normedSeconds = (parseInt(seconds) < 10 ? '0' : '') + seconds
     const timeFigures = { minutes, seconds, normedSeconds }
     // console.log(timeFigures)
     // console.log(est)
@@ -465,7 +471,7 @@ export class MorseViewModel {
   playingTime = ko.computed(() => {
     const minutes = Math.floor(this.runningPlayMs() / 60000)
     const seconds = ((this.runningPlayMs() % 60000) / 1000).toFixed(0)
-    const normedSeconds = (seconds < 10 ? '0' : '') + seconds
+    const normedSeconds = (parseInt(seconds) < 10 ? '0' : '') + seconds
     const timeFigures = { minutes, seconds, normedSeconds }
     // console.log(timeFigures)
     // console.log(est)
@@ -491,7 +497,7 @@ export class MorseViewModel {
 
   doClear = () => {
     // stop playing
-    this.doPause(true, false)
+    this.doPause(true, false, false)
     this.setText('')
   }
 }
