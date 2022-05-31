@@ -132,7 +132,7 @@ export class MorseViewModel {
 
   // helper
   // https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
-  getParameterByName = (name, url = window.location.href) => {
+  getParameterByName (name, url = window.location.href) {
     // eslint-disable-next-line no-useless-escape
     name = name.replace(/[\[\]]/g, '\\$&')
     const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)')
@@ -142,11 +142,11 @@ export class MorseViewModel {
     return decodeURIComponent(results[2].replace(/\+/g, ' '))
   }
 
-  changeSentance = () => {
+  changeSentance () {
     this.currentIndex(0)
   }
 
-  setText = (s) => {
+  setText (s:string) {
     if (this.showRaw()) {
       this.showingText(s)
     } else {
@@ -162,7 +162,7 @@ export class MorseViewModel {
     return MorseStringUtils.getSentences(this.rawText(), !this.ifParseSentences(), this.settings.misc.newlineChunking())
   }, this)
 
-  sentenceMax = ko.computed(() => {
+  sentenceMax:ko.Computed<number> = ko.computed(() => {
     return this.sentences().length - 1
   }, this)
 
@@ -170,7 +170,7 @@ export class MorseViewModel {
     return this.sentences()[this.currentSentanceIndex()]
   }, this)
 
-  shuffleWords = () => {
+  shuffleWords () {
     if (!this.isShuffled()) {
       const hasPhrases = this.rawText().indexOf('\n') !== -1
       this.preShuffled = this.rawText()
@@ -181,7 +181,7 @@ export class MorseViewModel {
     this.isShuffled(!this.isShuffled())
   }
 
-  incrementIndex = () => {
+  incrementIndex () {
     if (this.currentIndex() < this.words().length - 1) {
       this.currentIndex(this.currentIndex() + 1)
     } else {
@@ -193,7 +193,7 @@ export class MorseViewModel {
     }
   }
 
-  decrementIndex = () => {
+  decrementIndex () {
     this.morseWordPlayer.pause(() => {
       if (this.currentIndex() > 0 && this.words().length > 1) {
         this.currentIndex(this.currentIndex() - 1)
@@ -204,16 +204,16 @@ export class MorseViewModel {
     }, false)
   }
 
-  fullRewind = () => {
+  fullRewind () {
     this.currentSentanceIndex(0)
     this.currentIndex(0)
   }
 
-  sentanceRewind = () => {
+  sentanceRewind () {
     this.currentIndex(0)
   }
 
-  setWordIndex = (index) => {
+  setWordIndex (index) {
     if (!this.playerPlaying()) {
       this.currentIndex(index)
     } else {
@@ -223,7 +223,7 @@ export class MorseViewModel {
     }
   }
 
-  setFlagged = () => {
+  setFlagged () {
     if (this.flaggedWords.flaggedWords().trim()) {
       this.doPause(true, false, false)
       this.setText(this.flaggedWords.flaggedWords())
@@ -232,7 +232,7 @@ export class MorseViewModel {
     }
   }
 
-  getMorseStringToWavBufferConfig = (text) => {
+  getMorseStringToWavBufferConfig (text) {
     const config = new SoundMakerConfig()
     config.word = MorseStringUtils.doReplacements(text)
     config.wpm = parseInt(this.settings.speed.wpm() as any)
@@ -253,7 +253,7 @@ export class MorseViewModel {
     return config
   }
 
-  doPlay = (playJustEnded, fromPlayButton) => {
+  doPlay (playJustEnded, fromPlayButton) {
     if (!this.rawText().trim()) {
       return
     }
@@ -298,7 +298,7 @@ export class MorseViewModel {
     playJustEnded || fromPlayButton ? 0 : 1000)
   }
 
-  playEnded = (fromVoiceOrTrail) => {
+  playEnded (fromVoiceOrTrail) {
     // voice or trail have timers that might call this after user has hit stop
     // specifically they have built in pauses for "thinking time" during which the user
     // might have hit stop
@@ -379,7 +379,7 @@ export class MorseViewModel {
     }
   }
 
-  doPause = (fullRewind, fromPauseButton, fromStopButton) => {
+  doPause (fullRewind, fromPauseButton, fromStopButton) {
     if (fromPauseButton) {
       this.runningPlayMs(this.runningPlayMs() + (Date.now() - this.lastPartialPlayStart()))
       this.isPaused(!this.isPaused())
@@ -408,14 +408,14 @@ export class MorseViewModel {
     }
   }
 
-  inputFileChange = (element) => {
+  inputFileChange (element) {
     // thanks to https://newbedev.com/how-to-access-file-input-with-knockout-binding
     // console.log(file)
     const file = element.files[0]
     console.log(element.value)
     const fr = new FileReader()
     fr.onload = (data) => {
-      this.setText(data.target.result)
+      this.setText(data.target.result as string)
       // need to clear or else won't fire if use clears the text area
       // and then tries to reload the same again
       element.value = null
@@ -423,7 +423,7 @@ export class MorseViewModel {
     fr.readAsText(file)
   }
 
-  doDownload = () => {
+  doDownload () {
     let allWords = ''
     const sentences = this.sentences()
     sentences.forEach((sentence) => {
@@ -441,11 +441,11 @@ export class MorseViewModel {
     link.dispatchEvent(new MouseEvent('click'))
   }
 
-  dummy = () => {
+  dummy () {
     console.log('dummy')
   }
 
-  changeSoundMaker = (data, event) => {
+  changeSoundMaker (data, event) {
     // console.log(data.smoothing())
     // console.log(event)
     this.morseWordPlayer.setSoundMaker(data.smoothing())
@@ -478,7 +478,7 @@ export class MorseViewModel {
     return timeFigures
   }, this)
 
-  initializeRss = (afterCallBack) => {
+  initializeRss (afterCallBack) {
     if (!this.rssInitializedOnce()) {
       import('./morseRssPlugin.js').then(({ default: MorseRssPlugin }) => {
         MorseRssPlugin.addRssFeatures(ko, this)
@@ -495,7 +495,7 @@ export class MorseViewModel {
     }
   }
 
-  doClear = () => {
+  doClear () {
     // stop playing
     this.doPause(true, false, false)
     this.setText('')
