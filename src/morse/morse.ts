@@ -286,14 +286,21 @@ export class MorseViewModel {
     if (this.doPlayTimeout) {
       clearTimeout(this.doPlayTimeout)
     }
-    this.doPlayTimeout = setTimeout(() => this.morseWordPlayer.pause(() => {
+
+    // set a time which will cause pause (in case something else was playing),
+    // passing in a callback to then play
+    this.doPlayTimeout = setTimeout(() => {
+      this.morseWordPlayer.pause(() => {
       // help trailing reveal, max should always be one behind before we're about to play
-      this.maxRevealedTrail(this.currentIndex() - 1)
-      const config = this.getMorseStringToWavBufferConfig(this.words()[this.currentIndex()])
-      this.morseWordPlayer.play(config, this.playEnded)
-      this.lastPartialPlayStart(Date.now())
-      this.preSpaceUsed(true)
-    }, false),
+        this.maxRevealedTrail(this.currentIndex() - 1)
+        const config = this.getMorseStringToWavBufferConfig(this.words()[this.currentIndex()])
+        this.morseWordPlayer.play(config, this.playEnded)
+        this.lastPartialPlayStart(Date.now())
+        this.preSpaceUsed(true)
+        // pause wants killNoiseparater
+      }, false)
+    },
+    // timeout parameters
     playJustEnded || fromPlayButton ? 0 : 1000)
   }
 
