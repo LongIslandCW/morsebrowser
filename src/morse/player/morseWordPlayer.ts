@@ -36,12 +36,8 @@ export class MorseWordPlayer {
     this.soundMaker.forceStop(pauseCallBack, killNoise)
   }
 
-  getWavAndSample = (config:SoundMakerConfig):number[] => {
+  getWavAndSample = (config:SoundMakerConfig):Promise<number[]> => {
     return this.soundMaker.getWav(config)
-  }
-
-  getWavAndSample2 = (config:SoundMakerConfig):Promise<number[]> => {
-    return this.soundMaker.getWav2(config)
   }
 
   getTimeEstimate = (config:SoundMakerConfig) => {

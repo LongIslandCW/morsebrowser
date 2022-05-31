@@ -431,12 +431,12 @@ export class MorseViewModel {
       })
     })
     const config = this.getMorseStringToWavBufferConfig(allWords)
-    const wav = await this.morseWordPlayer.getWavAndSample2(config)
+    const wav = await this.morseWordPlayer.getWavAndSample(config)
     const ary = new Uint8Array(wav)
-    const link:any = document.getElementById('downloadLink')
-    const blob = new Blob([ary], { type: 'audio/wav' })
-    link.href = URL.createObjectURL(blob)
-    link.download = 'morse.wav'
+    const link = document.getElementById('downloadLink')
+    const blob = new Blob([ary], { type: 'audio/wav' });
+    (link as any).href = URL.createObjectURL(blob);
+    (link as any).download = 'morse.wav'
     link.dispatchEvent(new MouseEvent('click'))
   }
 

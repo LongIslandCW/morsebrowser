@@ -216,14 +216,7 @@ export default class SmoothedSoundsPlayer implements ISoundMaker {
     }
   }
 
-  getWav = (config: SoundMakerConfig):number[] => {
-    config.offline = true
-    this.play(config, () => { console.log('ended') })
-    const wav = MorseStringToWavBuffer.createWav(config, true)
-    return wav.wav
-  }
-
-  getWav2 = (config: SoundMakerConfig):Promise<number[]> => {
+  getWav = (config: SoundMakerConfig):Promise<number[]> => {
     const myPromise:Promise<number[]> = new Promise((resolve, reject) => {
       config.offline = true
       this.play(config, (renderedBuffer:AudioBuffer) => {
