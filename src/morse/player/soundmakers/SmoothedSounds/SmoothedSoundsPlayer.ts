@@ -123,7 +123,7 @@ export default class SmoothedSoundsPlayer implements ISoundMaker {
   }
 
   play = (config:SoundMakerConfig, onEnded:any) => {
-    const wavInfo = MorseStringToWavBuffer.createWav(config)
+    const wavInfo = MorseStringToWavBuffer.createWav(config, false)
     config.noise.scaledNoiseVolume = config.noise.volume / 10
     this.doPlay(wavInfo, config.volume / 10, config, onEnded)
   }

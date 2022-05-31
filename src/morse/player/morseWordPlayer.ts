@@ -3,6 +3,7 @@ import MorseWavBufferPlayer from './soundmakers/WavBufferPlayer/morseWavBufferPl
 import SmoothedSoundsPlayer from './soundmakers/SmoothedSounds/SmoothedSoundsPlayer'
 import { SoundMakerConfig } from './soundmakers/SoundMakerConfig'
 import { MorseStringToWavBuffer } from './wav/morseStringToWavBuffer'
+import { CreatedWav } from './wav/CreatedWav'
 
 export class MorseWordPlayer {
   soundMaker:ISoundMaker
@@ -35,8 +36,8 @@ export class MorseWordPlayer {
     this.soundMaker.forceStop(pauseCallBack, killNoise)
   }
 
-  getWavAndSample = (config:SoundMakerConfig) => {
-    const wav = MorseStringToWavBuffer.createWav(config)
+  getWavAndSample = (config:SoundMakerConfig):CreatedWav => {
+    const wav = MorseStringToWavBuffer.createWav(config, true)
     return wav
   }
 

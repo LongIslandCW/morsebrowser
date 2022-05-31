@@ -19,16 +19,19 @@ export class MorseStringToWavBuffer {
     return { morseCWWave, timingUnits, countUnits }
   }
 
-  static createWav = (config:SoundMakerConfig):CreatedWav => {
+  static createWav = (config:SoundMakerConfig, generateSampleAndWav:boolean):CreatedWav => {
     const init = this.getInit(config)
     const ret = new CreatedWav()
     // get wordspace
     const calcs = MorseTimingCalculator.getTimes(init.timingUnits, init.countUnits)
     const timeLine = MorseTimingCalculator.getTimeLine(init.morseCWWave, init.timingUnits, config)
 
-    ret.sample = init.morseCWWave.getSample(calcs.singleWordSpaceTime, config.prePaddingMs)
-    const wav = RiffWave.getData(ret.sample)
-    ret.wav = wav
+    if (generateSampleAndWav) {
+      ret.sample = init.morseCWWave.getSample(calcs.singleWordSpaceTime, config.prePaddingMs)
+      const wav = RiffWave.getData(ret.sample)
+      ret.wav = wav
+    }
+
     ret.timeLine = timeLine
     ret.timingUnits = init.timingUnits
     return ret

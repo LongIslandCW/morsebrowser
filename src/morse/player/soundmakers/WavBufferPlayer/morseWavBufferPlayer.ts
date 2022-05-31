@@ -88,7 +88,7 @@ export default class MorseWavBufferPlayer implements ISoundMaker {
   }
 
   play = (config:SoundMakerConfig, onEnded:any) => {
-    const wav = MorseStringToWavBuffer.createWav(config)
+    const wav = MorseStringToWavBuffer.createWav(config, true)
     config.noise.scaledNoiseVolume = config.noise.volume / 10
     this.doPlay(wav.wav, config.volume / 10, config, onEnded)
   }
