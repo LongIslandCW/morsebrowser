@@ -7,6 +7,7 @@ import { MorseStringToWavBuffer } from '../../wav/morseStringToWavBuffer'
 import { ISoundMaker } from '../ISoundMaker'
 import { SoundMakerConfig } from '../SoundMakerConfig'
 import { SmoothedSoundsContext } from './SmoothedSoundsContext'
+import * as toWav from 'audiobuffer-to-wav'
 
 export default class SmoothedSoundsPlayer implements ISoundMaker {
   sourceEnded:boolean = true
@@ -128,25 +129,61 @@ export default class SmoothedSoundsPlayer implements ISoundMaker {
     this.doPlay(wavInfo, config.volume / 10, config, onEnded)
   }
 
-  doPlay = (wavInfo:CreatedWav, scaledVolume, config:SoundMakerConfig, onEnded) => {
+  doPlay = async (wavInfo:CreatedWav, scaledVolume, config:SoundMakerConfig, onEnded) => {
     this.scaledVolume = scaledVolume
     this.wavInfo = wavInfo
     this.config = config
     this.sourceEnded = false
     this.sourceEndedCallBack = onEnded
-    this.getContext()
+    const endTime = this.getEndTime(wavInfo)
+    this.getContext(endTime)
     this.setGainTimings(wavInfo, scaledVolume, config)
-    this.handleNoiseSettings(config)
-    setTimeout(() => {
-      this.sourceEnded = true
-      this.sourceEndedCallBack()
-    }, this.getEndTime(wavInfo))
+
+    // only do noise if not an offline recording
+    if (!this.config.offline) {
+      this.handleNoiseSettings(config)
+    }
+
+    // if its not an offline, we know by the endtime when it will end
+    if (!this.config.offline) {
+      setTimeout(() => {
+        this.sourceEnded = true
+        this.sourceEndedCallBack()
+      }, endTime)
+    } else {
+      // offline so schedule the oscillator stop
+      this.ssContext.oscillatorNode.stop(endTime / 1000)
+      const renderedBuffer = await (this.ssContext.audioContext as OfflineAudioContext).startRendering()
+      this.sourceEndedCallBack(renderedBuffer)
+    }
   }
 
-  getContext = () => {
-    if (!this.ssContext) {
-      this.ssContext = new SmoothedSoundsContext()
+  getContext = (endTime:number) => {
+    const makeNewContext = () => {
+      this.ssContext = new SmoothedSoundsContext(this.config.offline, endTime)
     }
+
+    // no context, just create a new one
+    if (!this.ssContext) {
+      makeNewContext()
+      return
+    }
+
+    // there's a context
+
+    // last context was used for downloading, just use a fresh one
+    if (this.ssContext.offline) {
+      makeNewContext()
+      return
+    }
+
+    // we're downloading, so use a fresh one
+    if (this.config.offline) {
+      makeNewContext()
+      return
+    }
+
+    // if we got this far we're just going to re-use the context, but rebuild if closed
     if (this.ssContext.contextClosed) {
       this.ssContext.rebuildAll()
     }
@@ -177,5 +214,31 @@ export default class SmoothedSoundsPlayer implements ISoundMaker {
         pauseCallBack()
       }
     }
+  }
+
+  getWav = (config: SoundMakerConfig):number[] => {
+    config.offline = true
+    this.play(config, () => { console.log('ended') })
+    const wav = MorseStringToWavBuffer.createWav(config, true)
+    return wav.wav
+  }
+
+  getWav2 = (config: SoundMakerConfig):Promise<number[]> => {
+    const myPromise:Promise<number[]> = new Promise((resolve, reject) => {
+      config.offline = true
+      this.play(config, (renderedBuffer:AudioBuffer) => {
+        this.sourceEnded = true
+        // console.log('renderedbuffer')
+        // console.log(renderedBuffer)
+        // console.log('ended')
+        const myWav = toWav(renderedBuffer)
+        // console.log('towav')
+        // console.log(myWav)
+        resolve(myWav)
+      })
+      // const wav = MorseStringToWavBuffer.createWav(config, true)
+      // resolve(wav.wav)
+    })
+    return myPromise
   }
 }

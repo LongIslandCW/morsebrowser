@@ -422,7 +422,7 @@ export class MorseViewModel {
     fr.readAsText(file)
   }
 
-  doDownload = () => {
+  doDownload = async () => {
     let allWords = ''
     const sentences = this.sentences()
     sentences.forEach((sentence) => {
@@ -431,8 +431,8 @@ export class MorseViewModel {
       })
     })
     const config = this.getMorseStringToWavBufferConfig(allWords)
-    const wav = this.morseWordPlayer.getWavAndSample(config)
-    const ary = new Uint8Array(wav.wav)
+    const wav = await this.morseWordPlayer.getWavAndSample2(config)
+    const ary = new Uint8Array(wav)
     const link:any = document.getElementById('downloadLink')
     const blob = new Blob([ary], { type: 'audio/wav' })
     link.href = URL.createObjectURL(blob)

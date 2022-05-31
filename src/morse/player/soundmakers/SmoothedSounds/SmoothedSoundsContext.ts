@@ -1,13 +1,17 @@
 export class SmoothedSoundsContext {
-  audioContext:AudioContext
+  audioContext:BaseAudioContext
+  offlineAudioContext:OfflineAudioContext
   oscillatorNode:OscillatorNode
   bandpassNode:BiquadFilterNode
   gainNode:GainNode
   contextClosed:boolean
   noiseNode:AudioScheduledSourceNode
   noiseGainNode:GainNode
-
-  constructor () {
+  offline:boolean
+  offlineDurationMs:number
+  constructor (offline, offlineDurationMs) {
+    this.offline = offline
+    this.offlineDurationMs = offlineDurationMs
     this.rebuildAll()
   }
 
@@ -48,13 +52,15 @@ export class SmoothedSoundsContext {
   }
 
   getAudioContext = () => {
-    this.audioContext = new AudioContext()
+    this.audioContext = this.offline ? new OfflineAudioContext(2, 44100 * (this.offlineDurationMs / 1000), 44100) : new AudioContext()
     this.contextClosed = false
   }
 
   stopAndCloseContext = () => {
     this.oscillatorNode.stop()
-    this.audioContext.close()
+    if ((this.audioContext as AudioContext).close) {
+      (this.audioContext as AudioContext).close()
+    }
     this.contextClosed = true
   }
 }

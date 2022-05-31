@@ -143,4 +143,17 @@ export default class MorseWavBufferPlayer implements ISoundMaker {
       }
     }
   }
+
+  getWav = (config: SoundMakerConfig):number[] => {
+    const wav = MorseStringToWavBuffer.createWav(config, true)
+    return wav.wav
+  }
+
+  getWav2 = (config: SoundMakerConfig):Promise<number[]> => {
+    const myPromise:Promise<number[]> = new Promise((resolve, reject) => {
+      const wav = MorseStringToWavBuffer.createWav(config, true)
+      resolve(wav.wav)
+    })
+    return myPromise
+  }
 }

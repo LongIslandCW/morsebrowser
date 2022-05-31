@@ -15,5 +15,6 @@ export class SoundMakerConfig {
   decayTimeConstant:number
   riseMsOffset:number
   decayMsOffset:number
+  offline:boolean = false
   get frequency ():number { return this.ditFrequency }
 }

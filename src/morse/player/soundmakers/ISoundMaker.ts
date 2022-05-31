@@ -6,5 +6,7 @@ export interface ISoundMaker {
   forceStop:(pauseCallback:any, killNoise:boolean) => void
   handleNoiseSettings:(config:SoundMakerConfig) => void
   play:(config:SoundMakerConfig, onEnded:any) => void
+  getWav:(config:SoundMakerConfig) => number[]
+  getWav2:(config:SoundMakerConfig) => Promise<number[]>
 
 }
