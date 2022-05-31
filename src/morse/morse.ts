@@ -2,11 +2,6 @@ import ko from 'knockout'
 import MorseStringUtils from './utils/morseStringUtils'
 import { SoundMakerConfig } from './player/soundmakers/SoundMakerConfig'
 import { MorseWordPlayer } from './player/morseWordPlayer'
-
-// NOTE: moved this to dynamic import() so that non-RSS users don't need to bother
-// even loading this code into the browser:
-// import RSSParser from 'rss-parser';
-
 import MorseLessonPlugin from './lessons/morseLessonPlugin'
 import { MorseLoadImages } from './images/morseLoadImages'
 import { MorseShortcutKeys } from './shortcutKeys/morseShortcutKeys'
