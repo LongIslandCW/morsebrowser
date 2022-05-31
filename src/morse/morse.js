@@ -8,7 +8,7 @@ import { MorseWordPlayer } from './player/morseWordPlayer.ts'
 // import RSSParser from 'rss-parser';
 
 import MorseLessonPlugin from './lessons/morseLessonPlugin.ts'
-import { MorseLoadImages } from './morseLoadImages.js'
+import { MorseLoadImages } from './images/morseLoadImages.ts'
 import { MorseShortcutKeys } from './shortcutKeys/morseShortcutKeys.ts'
 import { MorseExtenders } from './morseExtenders.js'
 import { MorseCookies } from './cookies/morseCookies.ts'

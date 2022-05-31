@@ -40,7 +40,7 @@ export class MorseVoice {
 
     if (voicesTry.length > 0) {
       this.voices = voicesTry
-      console.log(this.voices)
+      // console.log(this.voices)
       this.voiceVoices(this.voices)
     }
   }

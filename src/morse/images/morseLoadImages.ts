@@ -1,4 +1,4 @@
-import licwlogoPng from '../assets/CW-Club-logo-clear400-300x300.png'
+import licwlogoPng from '../../assets/CW-Club-logo-clear400-300x300.png'
 import downloadSvg from 'bootstrap-icons/icons/download.svg'
 import volumeSvg from 'bootstrap-icons/icons/volume-up.svg'
 import githubSvg from 'bootstrap-icons/icons/github.svg'
@@ -86,7 +86,7 @@ export class MorseLoadImages {
       if (!dupe) {
         const target = document.getElementById(i.key)
         if (target) {
-          target.src = i.src
+          (target as any).src = i.src
         }
         dupes.push(i.key)
       } else {
@@ -98,7 +98,7 @@ export class MorseLoadImages {
   /* This lets any element use data-bind="attr:{src: morseLoadImages().getSrc('xyzImage') }" */
   /* this means many elements can use the same image a little easier and works better for lazy added elements */
 
-  getSrc = (key) => {
+  getSrc (key) {
     const target = this.info.find(x => x.key === key)
     return target.src
   }
