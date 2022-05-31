@@ -10,7 +10,7 @@ import { MorseWordPlayer } from './player/morseWordPlayer'
 import MorseLessonPlugin from './lessons/morseLessonPlugin'
 import { MorseLoadImages } from './images/morseLoadImages'
 import { MorseShortcutKeys } from './shortcutKeys/morseShortcutKeys'
-import { MorseExtenders } from './morseExtenders.js'
+import { MorseExtenders } from './koextenders/morseExtenders'
 import { MorseCookies } from './cookies/morseCookies'
 import { MorseSettings } from './settings/settings'
 import { MorseVoice } from './voice/MorseVoice'
@@ -79,7 +79,7 @@ export class MorseViewModel {
     this.morseLoadImages(new MorseLoadImages())
 
     // create the helper extenders
-    MorseExtenders.init(ko, this)
+    MorseExtenders.init(this)
 
     // create settings (note do this after extenders)
     this.settings = new MorseSettings()
