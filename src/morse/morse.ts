@@ -13,6 +13,10 @@ import { FlaggedWords } from './flaggedWords/flaggedWords'
 import { NoiseConfig } from './player/soundmakers/NoiseConfig'
 import MorseRssPlugin from './rss/morseRssPlugin'
 import { RssConfig } from './rss/RssConfig'
+import SimpleImageTemplate from './components/morseImage/simpleImage'
+import NoiseAccordion from './components/noiseAccordion/noiseAccordion'
+import RssAccordion from './components/rssAccordion/rssAccordion'
+import FlaggedWordsAccordion from './components/flaggedWordsAccordion/flaggedWordsAccordion'
 export class MorseViewModel {
   textBuffer:ko.Observable<string> = ko.observable('')
   hideList:ko.Observable<boolean> = ko.observable(true)
@@ -126,6 +130,12 @@ export class MorseViewModel {
 
     // are we on the dev site?
     this.isDev(window.location.href.toLowerCase().indexOf('/dev/') > -1)
+
+    // images
+    ko.components.register('simpleimage', SimpleImageTemplate)
+    ko.components.register('noiseaccordion', NoiseAccordion)
+    ko.components.register('rssaccordion', RssAccordion)
+    ko.components.register('flaggedwordsaccordion', FlaggedWordsAccordion)
   }
   // END CONSTRUCTOR
 
