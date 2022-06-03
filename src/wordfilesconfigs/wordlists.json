@@ -349,7 +349,7 @@
     {"sort":348, "userTarget": "INSTRUCTOR", "class": "ICR", "letterGroup": "PHRASES", "newlineChunking":true,"display":"1-4 LETTER", "fileName": "ICR9.txt" },
     {"sort":349, "userTarget": "INSTRUCTOR", "class": "ICR", "letterGroup": "PHRASES", "newlineChunking":true,"display":"1-5 LETTER", "fileName": "ICR10.txt" },
     {"sort":350, "userTarget": "INSTRUCTOR", "class": "ICR", "letterGroup": "PHRASES", "newlineChunking":true,"display":"1-6 LETTER", "fileName": "ICR11.txt" },
-    {"sort":351, "userTarget": "INSTRUCTOR", "class": "ICR", "letterGroup": "PHRASES", "newlineChunking":true,"display":"ALL", "fileName": "ICR12.txt" }
+    {"sort":351, "userTarget": "INSTRUCTOR", "class": "ICR", "letterGroup": "PHRASES", "newlineChunking":true,"display":"ALL", "fileName": "ICR12.txt" },
     {"sort":352, "userTarget": "INSTRUCTOR", "class": "PERIODICITY", "letterGroup": "LETTER", "newlineChunking":false,"display":"3 X 3", "fileName": "per1.txt" },
     {"sort":353, "userTarget": "INSTRUCTOR", "class": "PERIODICITY", "letterGroup": "LETTER", "newlineChunking":false,"display":"4 X 4", "fileName": "per2.txt" },
     {"sort":354, "userTarget": "INSTRUCTOR", "class": "PERIODICITY", "letterGroup": "LETTER", "newlineChunking":false,"display":"5 X 5", "fileName": "per3.txt" },
