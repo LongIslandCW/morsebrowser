@@ -722,7 +722,7 @@
                     <div class="button-group me-2" role="group" aria-label="Basic mixed styles example">
 
                         <button id="btnShuffle" type="button" class="btn btn-secondary"
-                            data-bind="click: shuffleWords"><span
+                            data-bind="click: () => shuffleWords(false)"><span
                                 data-bind="text: isShuffled()?'UnShuffle':'Shuffle'"></span>&nbsp;<img id="shuffleImage"
                                 height="20" width="20"></button>
 

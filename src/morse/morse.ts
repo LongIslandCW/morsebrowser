@@ -179,15 +179,23 @@ export class MorseViewModel {
     return this.sentences()[this.currentSentanceIndex()]
   }, this)
 
-  shuffleWords = () => {
-    if (!this.isShuffled()) {
+  shuffleWords = (fromLoopRestart:boolean = false) => {
+    // if it's not currently shuffled, or we're in a loop, re-shuffle
+    if (!this.isShuffled() || fromLoopRestart) {
       const hasPhrases = this.rawText().indexOf('\n') !== -1
-      this.preShuffled = this.rawText()
+      // if we're in a loop or otherwise already shuffled, we don't want to loose the preShuffled
+      if (!this.isShuffled()) {
+        this.preShuffled = this.rawText()
+      }
       this.setText(this.rawText().split(hasPhrases ? '\n' : ' ').sort(() => { return 0.5 - Math.random() }).join(hasPhrases ? '\n' : ' '))
+      if (!this.isShuffled()) {
+        this.isShuffled(true)
+      }
     } else {
+      // otherwise, user wants things put back the way they were
       this.setText(this.preShuffled)
+      this.isShuffled(false)
     }
-    this.isShuffled(!this.isShuffled())
   }
 
   incrementIndex = () => {
@@ -416,6 +424,8 @@ export class MorseViewModel {
       this.preSpaceUsed(false)
       if (this.loop() && !fromStopButton && !fromPauseButton) {
         // as if user pressed play again
+        // shuffle before we loop again
+        this.shuffleWords(true)
         this.doPlay(false, true)
       }
     }, true)
