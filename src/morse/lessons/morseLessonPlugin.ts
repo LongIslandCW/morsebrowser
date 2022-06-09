@@ -44,7 +44,7 @@ export default class MorseLessonPlugin implements ICookieHandler {
     this.autoCloseCookieName = 'autoCloseLessonAccordian'
     this.morseSettings = morseSettings
     this.autoCloseLessonAccordion = ko.observable(false).extend({ saveCookie: this.autoCloseCookieName } as ko.ObservableExtenderOptions<boolean>)
-    this.userTarget = ko.observable('')
+    this.userTarget = ko.observable('STUDENT')
     this.selectedClass = ko.observable('')
     this.userTargetInitialized = false
     this.selectedClassInitialized = false
