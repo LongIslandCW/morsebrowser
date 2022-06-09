@@ -6,6 +6,6 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 // they are used by the accordian.
 // eslint-disable-next-line no-unused-vars
 import { Tooltip, Toast, Popover } from 'bootstrap'
-import { MorseViewModel } from './morse/morse'
+import { MorseViewModel } from './morse/morse.ts'
 
 ko.applyBindings(new MorseViewModel())
