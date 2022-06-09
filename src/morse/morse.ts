@@ -326,6 +326,13 @@ export class MorseViewModel {
     // voice or trail have timers that might call this after user has hit stop
     // specifically they have built in pauses for "thinking time" during which the user
     // might have hit stop
+
+    // note that if speaking and trailing, speaking is "in the driver's seat"
+    // and the trailing delays are ignored
+
+    // TODO: the code here is getting a little nasty. probably needs to be refactored to manage the states
+    // and rules (once they're all finalized). leaving as is because rules are still a little unstable.
+
     if (fromVoiceOrTrail && !this.playerPlaying()) {
       return
     }
@@ -336,18 +343,26 @@ export class MorseViewModel {
     const anyNewLines = this.rawText().indexOf('\n') !== -1
     const needToSpeak = this.morseVoice.voiceEnabled() && !fromVoiceOrTrail
     const needToTrail = this.trailReveal() && !fromVoiceOrTrail
+    const speakAndTrail = needToSpeak && needToTrail
+
     const noDelays = !needToSpeak && !needToTrail
     const advanceTrail = () => {
+      // note we eliminate the trail delays if speaking
       if (this.trailReveal()) {
         setTimeout(() => {
           this.maxRevealedTrail(this.maxRevealedTrail() + 1)
           setTimeout(() => {
-            this.playEnded(true)
-          }, this.trailPostDelay() * 1000)
+            // if speak is in the driver's seat it will call this, 
+            // if not then trail will
+            if (!speakAndTrail) {
+              this.playEnded(true)
+            }
+          }, speakAndTrail ? 0 : this.trailPostDelay() * 1000)
         }
-        , this.trailPreDelay() * 1000)
+        , speakAndTrail ? 0 : this.trailPreDelay() * 1000)
       }
     }
+
     const finalizeTrail = (finalCallback) => {
       if (this.trailReveal()) {
         setTimeout(() => {
@@ -391,14 +406,21 @@ export class MorseViewModel {
         // clear the buffer
         this.morseVoice.voiceBuffer = []
         setTimeout(() => {
-          this.morseVoice.speakPhrase(phraseToSpeak, () => { this.playEnded(true) })
+          this.morseVoice.speakPhrase(phraseToSpeak, () => {
+            // what gets called after speaking
+            if (needToTrail) {
+              advanceTrail()
+            }
+            this.playEnded(true)
+          })
         }, this.morseVoice.voiceThinkingTime() * 1000)
       } else {
         this.playEnded(true)
       }
     }
 
-    if (needToTrail) {
+    // if trail is turned on but not speaking
+    if (needToTrail && !speakAndTrail) {
       advanceTrail()
     }
   }
