@@ -350,12 +350,12 @@
     {"sort":349, "userTarget": "INSTRUCTOR", "class": "ICR", "letterGroup": "PHRASES", "newlineChunking":true,"display":"1-5 LETTER", "fileName": "ICR10.txt" },
     {"sort":350, "userTarget": "INSTRUCTOR", "class": "ICR", "letterGroup": "PHRASES", "newlineChunking":true,"display":"1-6 LETTER", "fileName": "ICR11.txt" },
     {"sort":351, "userTarget": "INSTRUCTOR", "class": "ICR", "letterGroup": "PHRASES", "newlineChunking":true,"display":"ALL", "fileName": "ICR12.txt" },
-    {"sort":352, "userTarget": "INSTRUCTOR", "class": "PERIODICITY", "letterGroup": "LETTER", "newlineChunking":false,"display":"3 X 3", "fileName": "per1.txt" },
-    {"sort":353, "userTarget": "INSTRUCTOR", "class": "PERIODICITY", "letterGroup": "LETTER", "newlineChunking":false,"display":"4 X 4", "fileName": "per2.txt" },
-    {"sort":354, "userTarget": "INSTRUCTOR", "class": "PERIODICITY", "letterGroup": "LETTER", "newlineChunking":false,"display":"5 X 5", "fileName": "per3.txt" },
-    {"sort":355, "userTarget": "INSTRUCTOR", "class": "PERIODICITY", "letterGroup": "FOCUS", "newlineChunking":false,"display":"FOCUS", "fileName": "per4.txt" },
-    {"sort":356, "userTarget": "INSTRUCTOR", "class": "PERIODICITY", "letterGroup": "SENTENCE", "newlineChunking":false,"display":"ONE", "fileName": "per5.txt" },
-    {"sort":357, "userTarget": "INSTRUCTOR", "class": "PERIODICITY", "letterGroup": "SENTENCE", "newlineChunking":false,"display":"TWO", "fileName": "per6.txt" },
-    {"sort":358, "userTarget": "INSTRUCTOR", "class": "PERIODICITY", "letterGroup": "SENTENCE", "newlineChunking":false,"display":"THREE", "fileName": "per7.txt" },
-    {"sort":359, "userTarget": "INSTRUCTOR", "class": "PERIODICITY", "letterGroup": "SENTENCE", "newlineChunking":false,"display":"FOUR", "fileName": "per8.txt" }
+    {"sort":352, "userTarget": "INSTRUCTOR", "class": "VAR SPEED", "letterGroup": "LETTER", "newlineChunking":false,"display":"3 X 3", "fileName": "per1.txt" },
+    {"sort":353, "userTarget": "INSTRUCTOR", "class": "VAR SPEED", "letterGroup": "LETTER", "newlineChunking":false,"display":"4 X 4", "fileName": "per2.txt" },
+    {"sort":354, "userTarget": "INSTRUCTOR", "class": "VAR SPEED", "letterGroup": "LETTER", "newlineChunking":false,"display":"5 X 5", "fileName": "per3.txt" },
+    {"sort":355, "userTarget": "INSTRUCTOR", "class": "VAR SPEED", "letterGroup": "FOCUS", "newlineChunking":false,"display":"FOCUS", "fileName": "per4.txt" },
+    {"sort":356, "userTarget": "INSTRUCTOR", "class": "VAR SPEED", "letterGroup": "SENTENCE", "newlineChunking":false,"display":"ONE", "fileName": "per5.txt" },
+    {"sort":357, "userTarget": "INSTRUCTOR", "class": "VAR SPEED", "letterGroup": "SENTENCE", "newlineChunking":false,"display":"TWO", "fileName": "per6.txt" },
+    {"sort":358, "userTarget": "INSTRUCTOR", "class": "VAR SPEED", "letterGroup": "SENTENCE", "newlineChunking":false,"display":"THREE", "fileName": "per7.txt" },
+    {"sort":359, "userTarget": "INSTRUCTOR", "class": "VAR SPEED", "letterGroup": "SENTENCE", "newlineChunking":false,"display":"FOUR", "fileName": "per8.txt" }
 ]}
