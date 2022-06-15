@@ -1,0 +1,15 @@
+{
+    "wordifications":[
+        { "characters": ",", "replacement": "comma", "onlyAlone" : false},
+        { "characters": ".", "replacement": "period", "onlyAlone" : false},
+        { "characters": "?", "replacement": "question mark", "onlyAlone" : false},
+        { "characters": "/", "replacement": "stroke", "onlyAlone" : false},
+        { "characters": ":", "replacement": "colon", "onlyAlone" : false},
+        { "characters": "!", "replacement": "exclamation", "onlyAlone" : false},
+        { "characters": "-", "replacement": "dash", "onlyAlone" : false},
+        { "characters": "AR", "replacement": "Arkansas", "onlyAlone" : true},
+        { "characters": "FL", "replacement": "Florida", "onlyAlone" : true},
+        { "characters": "TNX", "replacement": "thanks", "onlyAlone" : true},
+        { "characters": "<AR>", "replacement": "AR", "onlyAlone" : false, "comment": "make sure to put Arkansas above"}
+    ]
+}
