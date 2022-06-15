@@ -77,12 +77,12 @@ export default class MorseStringUtils {
           console.log(`mychars:${myChars}`)
           console.log(`fixed:${fixed}`)
         } */
-        const myRegex = new RegExp(`${myChars}`, 'g')
+        const myRegex = new RegExp(`${myChars}`, 'gi')
         fixed = fixed.replace(myRegex, ` ${w.replacement} `)
       } else {
         // console.log(`mychars:${myChars}`)
         // guard state abbreviations from being part of a prosign
-        const myRegex = new RegExp(`\\b(?<!<)${myChars}\\b`, 'g')
+        const myRegex = new RegExp(`\\b(?<!<)${myChars}\\b`, 'gi')
         fixed = fixed.replace(myRegex, ` ${w.replacement} `)
       }
     })
