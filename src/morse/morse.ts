@@ -71,6 +71,7 @@ export class MorseViewModel {
   // rssPlayCallback: any
   // rssCookieWhiteList: any
   rss:MorseRssPlugin
+  lastShuffled:string = ''
 
   // END KO observables declarations
   constructor () {
@@ -187,7 +188,8 @@ export class MorseViewModel {
       if (!this.isShuffled()) {
         this.preShuffled = this.rawText()
       }
-      this.setText(this.rawText().split(hasPhrases ? '\n' : ' ').sort(() => { return 0.5 - Math.random() }).join(hasPhrases ? '\n' : ' '))
+      this.lastShuffled = this.rawText().split(hasPhrases ? '\n' : ' ').sort(() => { return 0.5 - Math.random() }).join(hasPhrases ? '\n' : ' ')
+      this.setText(this.lastShuffled)
       if (!this.isShuffled()) {
         this.isShuffled(true)
       }
