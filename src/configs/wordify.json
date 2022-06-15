@@ -10,6 +10,6 @@
         { "characters": "AR", "replacement": "Arkansas", "onlyAlone" : true},
         { "characters": "FL", "replacement": "Florida", "onlyAlone" : true},
         { "characters": "TNX", "replacement": "thanks", "onlyAlone" : true},
-        { "characters": "<AR>", "replacement": "AR", "onlyAlone" : false, "comment": "make sure to put Arkansas above"}
+        { "characters": "<AR>", "replacement": "AR", "onlyAlone" : false}
     ]
 }
