@@ -119,5 +119,5 @@
 	{ "characters": "WX", "replacement": "Weather", "onlyAlone" : true},
 	{ "characters": "YRS", "replacement": "Years", "onlyAlone" : true},
 	{ "characters": "DE", "replacement": "From", "onlyAlone" : true}
-  ]
+	]
 }
