@@ -16,5 +16,6 @@ export class SoundMakerConfig {
   riseMsOffset:number
   decayMsOffset:number
   offline:boolean = false
+  trimLastWordSpace:boolean = false
   get frequency ():number { return this.ditFrequency }
 }

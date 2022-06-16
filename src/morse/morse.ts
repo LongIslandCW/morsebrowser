@@ -269,6 +269,11 @@ export class MorseViewModel {
     config.decayTimeConstant = parseFloat(this.decayTimeConstant() as any)
     config.riseMsOffset = parseFloat(this.riseMsOffset() as any)
     config.decayMsOffset = parseFloat(this.decayMsOffset() as any)
+    // suppress wordspaces when using speak so "thinking time" will control
+    if (this.morseVoice) {
+      config.trimLastWordSpace = this.morseVoice.voiceEnabled()
+    }
+
     return config
   }
 

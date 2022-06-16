@@ -135,7 +135,7 @@ export default class SmoothedSoundsPlayer implements ISoundMaker {
     this.config = config
     this.sourceEnded = false
     this.sourceEndedCallBack = onEnded
-    const endTime = this.getEndTime(wavInfo)
+    const endTime = this.getEndTime(wavInfo, config)
     this.getContext(endTime)
     this.setGainTimings(wavInfo, scaledVolume, config)
 
@@ -189,11 +189,12 @@ export default class SmoothedSoundsPlayer implements ISoundMaker {
     }
   }
 
-  getEndTime = (wavInfo:CreatedWav) => {
+  getEndTime = (wavInfo:CreatedWav, config:SoundMakerConfig) => {
     const l = wavInfo.timeLine.length
     const wordSpaceTime = wavInfo.timingUnits.wordSpaceMultiplier * wavInfo.timingUnits.calculatedFWUnitsMs
     const xtraWordSpaceDits = this.config.xtraWordSpaceDits * wavInfo.timingUnits.calculatedFWUnitsMs * wavInfo.timingUnits.ditUnitMultiPlier
-    return wavInfo.timeLine[l - 1].time + wordSpaceTime + xtraWordSpaceDits
+    const endTime = config.trimLastWordSpace ? 0 : wordSpaceTime + xtraWordSpaceDits
+    return wavInfo.timeLine[l - 1].time + endTime
   }
 
   forceStop = (pauseCallBack, killNoise) => {
