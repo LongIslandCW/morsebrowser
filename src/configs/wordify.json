@@ -102,8 +102,6 @@
 	{ "characters": "SKED", "replacement": "Schedule", "onlyAlone" : true},
 	{ "characters": "SRI", "replacement": "Sorry", "onlyAlone" : true},
 	{ "characters": "SSB", "replacement": "Single side band", "onlyAlone" : true},
-	{ "characters": "T", "replacement": "Zero", "onlyAlone" : true},
-	{ "characters": "N", "replacement": "Nine", "onlyAlone" : true},
 	{ "characters": "Temp", "replacement": "Temperature", "onlyAlone" : true},
 	{ "characters": "TKS", "replacement": "Thanks", "onlyAlone" : true},
 	{ "characters": "TNX", "replacement": "Thanks", "onlyAlone" : true},
