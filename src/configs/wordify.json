@@ -7,8 +7,8 @@
 	{ "characters": ":", "replacement": "colon", "onlyAlone" : false},
 	{ "characters": "!", "replacement": "exclamation", "onlyAlone" : false},
 	{ "characters": "-", "replacement": "dash", "onlyAlone" : false},
-	{ "characters": "<AR>", "replacement": "end of message", "onlyAlone" : false}
-	{ "characters": "<BT>", "replacement": "pause", "onlyAlone" : false}
+	{ "characters": "<AR>", "replacement": "end of message", "onlyAlone" : false},
+	{ "characters": "<BT>", "replacement": "pause", "onlyAlone" : false},
 	{ "characters": "<SK>", "replacement": "end of contact", "onlyAlone" : false},
 	{ "characters": "AL", "replacement": "Alabama", "onlyAlone" : true},
 	{ "characters": "AK", "replacement": "Alaska", "onlyAlone" : true},
