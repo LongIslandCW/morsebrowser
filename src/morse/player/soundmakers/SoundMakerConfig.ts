@@ -17,5 +17,6 @@ export class SoundMakerConfig {
   decayMsOffset:number
   offline:boolean = false
   trimLastWordSpace:boolean = false
+  morseDisabled:boolean = false
   get frequency ():number { return this.ditFrequency }
 }

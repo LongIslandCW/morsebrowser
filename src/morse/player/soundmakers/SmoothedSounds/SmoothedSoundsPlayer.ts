@@ -124,7 +124,7 @@ export default class SmoothedSoundsPlayer implements ISoundMaker {
   }
 
   play = (config:SoundMakerConfig, onEnded:any) => {
-    const wavInfo = MorseStringToWavBuffer.createWav(config, false)
+    const wavInfo = !config.morseDisabled ? MorseStringToWavBuffer.createWav(config, false) : null
     config.noise.scaledNoiseVolume = config.noise.volume / 10
     this.doPlay(wavInfo, config.volume / 10, config, onEnded)
   }
@@ -135,13 +135,16 @@ export default class SmoothedSoundsPlayer implements ISoundMaker {
     this.config = config
     this.sourceEnded = false
     this.sourceEndedCallBack = onEnded
-    const endTime = this.getEndTime(wavInfo, config)
-    this.getContext(endTime)
-    this.setGainTimings(wavInfo, scaledVolume, config)
+    const endTime = !config.morseDisabled ? this.getEndTime(wavInfo, config) : 0
 
-    // only do noise if not an offline recording
-    if (!this.config.offline) {
-      this.handleNoiseSettings(config)
+    if (!config.morseDisabled) {
+      this.getContext(endTime)
+      this.setGainTimings(wavInfo, scaledVolume, config)
+
+      // only do noise if not an offline recording
+      if (!this.config.offline) {
+        this.handleNoiseSettings(config)
+      }
     }
 
     // if its not an offline, we know by the endtime when it will end

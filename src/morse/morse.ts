@@ -63,6 +63,7 @@ export class MorseViewModel {
   riseMsOffset:ko.Observable<number> = ko.observable(1.5)
   decayMsOffset:ko.Observable<number> = ko.observable(1.5)
   smoothing:ko.Observable<boolean> = ko.observable(true)
+  morseDisabled:ko.Observable<boolean> = ko.observable(false)
   settings:MorseSettings
   lessons:MorseLessonPlugin
   flaggedWords:FlaggedWords
@@ -105,7 +106,12 @@ export class MorseViewModel {
 
     // check for noise feature turned on
     if (this.getParameterByName('noiseEnabled')) {
-      this.noiseEnabled(true)
+      this.noiseEnabled(this.getParameterByName('noiseEnabled') === 'true')
+    }
+
+    // check for noise feature turned on
+    if (this.getParameterByName('morseDisabled')) {
+      this.morseDisabled(this.getParameterByName('morseDisabled') === 'true')
     }
 
     // seems to need to happen early
@@ -278,7 +284,7 @@ export class MorseViewModel {
     if (this.morseVoice) {
       config.trimLastWordSpace = this.morseVoice.voiceEnabled()
     }
-
+    config.morseDisabled = this.morseDisabled()
     return config
   }
 
