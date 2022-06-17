@@ -125,6 +125,11 @@ export class MorseViewModel {
     // voice
     this.morseVoice = new MorseVoice()
 
+    // check for voice feature turned on
+    if (this.getParameterByName('voiceEnabled')) {
+      this.morseVoice.voiceEnabled(true)
+    }
+
     this.shortCutKeys = new MorseShortcutKeys(this.settings)
 
     this.flaggedWords = new FlaggedWords()
