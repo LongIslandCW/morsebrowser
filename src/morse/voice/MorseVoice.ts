@@ -67,6 +67,9 @@ export class MorseVoice {
     const easySpeechStatus = EasySpeech.status()
     if (easySpeechStatus.voices && easySpeechStatus.voices.length) {
       this.voices = easySpeechStatus.voices
+      this.voices.forEach(v => {
+        this.logToFlaggedWords(`voiceAvailable:${v.name}  ${v.lang}`)
+      })
       this.voiceVoices(this.voices)
       this.logToFlaggedWords(`loaded voices:${easySpeechStatus.voices.length}`)
     } else {
