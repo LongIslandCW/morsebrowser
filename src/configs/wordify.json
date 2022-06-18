@@ -2,6 +2,7 @@
 	"wordifications":[
 	{ "characters": ",", "replacement": "comma", "onlyAlone" : false},
 	{ "characters": ".", "replacement": "period", "onlyAlone" : false},
+	{ "characters": "HW?", "replacement": "How copy", "onlyAlone" : true},
 	{ "characters": "?", "replacement": "question mark", "onlyAlone" : false},
 	{ "characters": "/", "replacement": "stroke", "onlyAlone" : false},
 	{ "characters": ":", "replacement": "colon", "onlyAlone" : false},
@@ -86,7 +87,6 @@
 	{ "characters": "HPE", "replacement": "Hope", "onlyAlone" : true},
 	{ "characters": "HR", "replacement": "Hear", "onlyAlone" : true},
 	{ "characters": "HW", "replacement": "How", "onlyAlone" : true},
-	{ "characters": "HW?", "replacement": "How copy", "onlyAlone" : true},
 	{ "characters": "OM", "replacement": "Old man", "onlyAlone" : true},
 	{ "characters": "OP", "replacement": "Operatoe", "onlyAlone" : true},
 	{ "characters": "OT", "replacement": "Old timer", "onlyAlone" : true},

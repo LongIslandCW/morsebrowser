@@ -65,25 +65,36 @@ export default class MorseStringUtils {
     let fixed = s
     wordifiers.wordifications.forEach(w => {
       let myChars = w.characters
+      const before = w.characters
+      myChars = myChars.replace(/\?/g, '\\?')
+        .replace(/\./g, '\\.')
+        .replace(/\//g, '\\/')
+      /*  if (before === 'HW?') {
+        console.log(myChars)
+      } */
+      const fakeSpace = '|'
       if (!w.onlyAlone) {
-        switch (myChars) {
-          case '.':
-          case '?':
-          case '/':
-            myChars = `\\${myChars}`
-            break
-        }
         /* if (myChars === '<AR>') {
           console.log(`mychars:${myChars}`)
           console.log(`fixed:${fixed}`)
         } */
         const myRegex = new RegExp(`${myChars}`, 'gi')
-        fixed = fixed.replace(myRegex, ` ${w.replacement} `)
+        fixed = fixed.replace(myRegex, `${fakeSpace}${w.replacement}${fakeSpace}`)
       } else {
         // console.log(`mychars:${myChars}`)
         // guard state abbreviations from being part of a prosign
-        const myRegex = new RegExp(`\\b(?<!<)${myChars}\\b`, 'gi')
-        fixed = fixed.replace(myRegex, ` ${w.replacement} `)
+        // not all browsers suppor this
+        // const myRegex = new RegExp(`\\b(?<!<)${myChars}\\b`, 'gi')
+        // fixed = fixed.replace(myRegex, ` ${w.replacement} `)
+        // if (before === 'HW?') {
+        //   console.log(`fixed:${fixed}`)
+        // }
+
+        // TODO: for now we ignore multiline/spaces
+        if (before.length === fixed.length) {
+          const myRegex = new RegExp(`${myChars}`, 'gi')
+          fixed = fixed.replace(myRegex, `${fakeSpace}${w.replacement}${fakeSpace}`)
+        }
       }
     })
     return fixed
