@@ -136,7 +136,21 @@ export class MorseVoice {
     try {
       const morseVoiceInfo = new MorseVoiceInfo()
       morseVoiceInfo.textToSpeak = phraseToSpeak
-      morseVoiceInfo.voice = this.voiceVoice()
+      // console.log(`voiceVoice:${this.voiceVoice()}`)
+      if (this.voiceVoice()) {
+        this.logToFlaggedWords(`user selected a voice ${this.voiceVoice().name} ${this.voiceVoice().lang}`)
+        morseVoiceInfo.voice = this.voiceVoice()
+      } else {
+        this.logToFlaggedWords('user did not select a voice')
+        if (this.voices.length > 0) {
+          this.logToFlaggedWords(`selecting default 0 voice ${this.voices[0].name} ${this.voices[0].lang}`)
+          morseVoiceInfo.voice = this.voices[0]
+        } else {
+          this.logToFlaggedWords('no voices')
+          morseVoiceInfo.voice = null
+        }
+      }
+
       morseVoiceInfo.volume = this.voiceVolume() / 10
       morseVoiceInfo.rate = this.voiceRate()
       morseVoiceInfo.pitch = this.voicePitch()
