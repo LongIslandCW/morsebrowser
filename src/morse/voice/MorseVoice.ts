@@ -45,9 +45,14 @@ export class MorseVoice {
   }
 
   initEasySpeech = async () => {
-    const easySpeechInitStatus = await EasySpeech.init()
-    this.logToFlaggedWords(`easyspeechinit: ${easySpeechInitStatus}`)
-    this.populateVoiceList()
+    // let easySpeechInitStatus
+
+    EasySpeech.init().then((e) => {
+      this.logToFlaggedWords(`easyspeechinit: ${e}`)
+      this.populateVoiceList()
+    }).catch((e) => {
+      this.logToFlaggedWords(`error in easyspeechinit: ${e}`)
+    })
   }
 
   logToFlaggedWords = (s) => {
@@ -120,7 +125,7 @@ export class MorseVoice {
         pause: e => this.logToFlaggedWords('pause event')
       }
 
-      EasySpeech.speak(esConfig) 
+      EasySpeech.speak(esConfig)
     } catch (e) {
       this.logToFlaggedWords(`caught in speakInfo2:${e}`)
       morseVoiceInfo.onEnd()
