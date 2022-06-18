@@ -141,7 +141,13 @@ export class MorseVoice {
       morseVoiceInfo.rate = this.voiceRate()
       morseVoiceInfo.pitch = this.voicePitch()
       morseVoiceInfo.onEnd = onEndCallBack
-      this.speakInfo2(morseVoiceInfo)
+      if (this.voiceVoices().length > 0) {
+        this.logToFlaggedWords('using speakinfo2')
+        this.speakInfo2(morseVoiceInfo)
+      } else {
+        this.logToFlaggedWords('using old speakInfo')
+        this.speakInfo(morseVoiceInfo)
+      }
     } catch (e) {
       this.logToFlaggedWords(`caught in speakPhrase:${e}`)
       onEndCallBack()
