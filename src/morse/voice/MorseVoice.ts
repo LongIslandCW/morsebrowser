@@ -51,7 +51,7 @@ export class MorseVoice {
   }
 
   logToFlaggedWords = (s) => {
-    this.ctxt.flaggedWords.flaggedWords(this.ctxt.flaggedWords.flaggedWords() + s + '\n')
+    this.ctxt.logToFlaggedWords(s)
   }
 
   populateVoiceList = () => {
@@ -102,27 +102,44 @@ export class MorseVoice {
   }
 
   speakInfo2 = (morseVoiceInfo:MorseVoiceInfo) => {
-    const esConfig = {
-      text: morseVoiceInfo.textToSpeak,
-      pitch: morseVoiceInfo.pitch,
-      rate: morseVoiceInfo.rate,
-      end: morseVoiceInfo.onEnd,
-      volume: morseVoiceInfo.volume,
-      voice: morseVoiceInfo.voice ?? null,
-      error: e => this.logToFlaggedWords(e)
-    }
+    try {
+      const esConfig = {
+        text: morseVoiceInfo.textToSpeak,
+        pitch: morseVoiceInfo.pitch,
+        rate: morseVoiceInfo.rate,
+        end: e => {
+          this.logToFlaggedWords('end event')
+          morseVoiceInfo.onEnd()
+          this.logToFlaggedWords('onEnd called')
+        },
+        volume: morseVoiceInfo.volume,
+        voice: morseVoiceInfo.voice ?? null,
+        error: e => this.logToFlaggedWords(`error event during speak:${e}`),
+        boundary: e => this.logToFlaggedWords('boundary event'),
+        mark: e => this.logToFlaggedWords('mark event'),
+        pause: e => this.logToFlaggedWords('pause event')
+      }
 
-    EasySpeech.speak(esConfig)
+      EasySpeech.speak(esConfig) 
+    } catch (e) {
+      this.logToFlaggedWords(`caught in speakInfo2:${e}`)
+      morseVoiceInfo.onEnd()
+    }
   }
 
   speakPhrase = (phraseToSpeak:string, onEndCallBack) => {
-    const morseVoiceInfo = new MorseVoiceInfo()
-    morseVoiceInfo.textToSpeak = phraseToSpeak
-    morseVoiceInfo.voice = this.voiceVoice()
-    morseVoiceInfo.volume = this.voiceVolume() / 10
-    morseVoiceInfo.rate = this.voiceRate()
-    morseVoiceInfo.pitch = this.voicePitch()
-    morseVoiceInfo.onEnd = onEndCallBack
-    this.speakInfo2(morseVoiceInfo)
+    try {
+      const morseVoiceInfo = new MorseVoiceInfo()
+      morseVoiceInfo.textToSpeak = phraseToSpeak
+      morseVoiceInfo.voice = this.voiceVoice()
+      morseVoiceInfo.volume = this.voiceVolume() / 10
+      morseVoiceInfo.rate = this.voiceRate()
+      morseVoiceInfo.pitch = this.voicePitch()
+      morseVoiceInfo.onEnd = onEndCallBack
+      this.speakInfo2(morseVoiceInfo)
+    } catch (e) {
+      this.logToFlaggedWords(`caught in speakPhrase:${e}`)
+      onEndCallBack()
+    }
   }
 }

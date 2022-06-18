@@ -73,6 +73,8 @@ export class MorseViewModel {
   // rssCookieWhiteList: any
   rss:MorseRssPlugin
   lastShuffled:string = ''
+  flaggedWordsLogCount:number = 0
+  flaggedWordsLog:any[] = []
 
   // END KO observables declarations
   constructor () {
@@ -150,6 +152,20 @@ export class MorseViewModel {
     ko.components.register('flaggedwordsaccordion', FlaggedWordsAccordion)
   }
   // END CONSTRUCTOR
+
+  logToFlaggedWords = (s) => {
+    this.flaggedWordsLogCount++
+    // const myPieces = this.flaggedWords.flaggedWords().split('\n')
+    // console.log(myPieces)
+    this.flaggedWordsLog[0] = { timeStamp: 0, msg: `LOGGED LINES:${this.flaggedWordsLogCount}` }
+    const timeStamp = new Date()
+    this.flaggedWordsLog[this.flaggedWordsLog.length] = { timeStamp, msg: `${s}` }
+    const myPieces = this.flaggedWordsLog.map((e, i, a) => {
+      return `${i < 2 ? e.timeStamp : e.timeStamp - a[i - 1].timeStamp}: ${e.msg}`
+    })
+    const out = myPieces.filter(s => s).join('\n')
+    this.flaggedWords.flaggedWords(out)
+  }
 
   // helper
   // https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
@@ -419,13 +435,21 @@ export class MorseViewModel {
       const currentWord = this.words()[this.currentIndex()]
       const hasNewline = currentWord.indexOf('\n') !== -1
       this.morseVoice.voiceBuffer.push(currentWord)
+      this.logToFlaggedWords(`currentWord:${currentWord}`)
+      this.logToFlaggedWords(`hasNewline:${hasNewline} isNotLastWord: ${isNotLastWord} anyNewLines:${anyNewLines}`)
       if (hasNewline || !isNotLastWord || !anyNewLines) {
         const phraseToSpeak = MorseStringUtils.wordifyPunctuation(this.morseVoice.voiceBuffer.join(' '))
+        this.logToFlaggedWords(`phraseToSpeak:'${phraseToSpeak}'`)
         // clear the buffer
         this.morseVoice.voiceBuffer = []
+        this.logToFlaggedWords(`voiceThinkingTime:${this.morseVoice.voiceThinkingTime()}`)
+
         setTimeout(() => {
+          this.logToFlaggedWords('aboutToSpeak...')
           this.morseVoice.speakPhrase(phraseToSpeak, () => {
+            this.logToFlaggedWords('returned from speaking...')
             // what gets called after speaking
+            this.logToFlaggedWords(`needToTrail:${needToTrail}`)
             if (needToTrail) {
               advanceTrail()
             }
