@@ -128,8 +128,10 @@ export class MorseViewModel {
     // initialize the wordlist
     this.lessons.initializeWordList()
 
+    this.flaggedWords = new FlaggedWords()
+
     // voice
-    this.morseVoice = new MorseVoice()
+    this.morseVoice = new MorseVoice(this)
 
     // check for voice feature turned on
     if (this.getParameterByName('voiceEnabled')) {
@@ -137,8 +139,6 @@ export class MorseViewModel {
     }
 
     this.shortCutKeys = new MorseShortcutKeys(this.settings)
-
-    this.flaggedWords = new FlaggedWords()
 
     // are we on the dev site?
     this.isDev(window.location.href.toLowerCase().indexOf('/dev/') > -1)

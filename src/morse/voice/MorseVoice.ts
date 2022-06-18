@@ -1,5 +1,7 @@
 import * as ko from 'knockout'
 import { MorseVoiceInfo } from './MorseVoiceInfo'
+import EasySpeech from 'easy-speech'
+import { MorseViewModel } from '../morse'
 export class MorseVoice {
   voices = []
   voicesInited:boolean = false
@@ -13,10 +15,12 @@ export class MorseVoice {
   voiceLang:ko.Observable<string>
   voiceVoices:ko.ObservableArray<any>
   voiceBuffer:Array<any>
+  ctxt:MorseViewModel
 
-  constructor () {
+  constructor (context:MorseViewModel) {
+    this.ctxt = context
     this.voiceEnabled = ko.observable(false)
-    this.voiceCapable = ko.observable((typeof speechSynthesis !== 'undefined'))
+    this.voiceCapable = ko.observable(false)
     this.voiceThinkingTime = ko.observable(0)
     this.voiceVoice = ko.observable()
     this.voiceVolume = ko.observable(10)
@@ -25,32 +29,59 @@ export class MorseVoice {
     this.voiceLang = ko.observable('en-us')
     this.voiceVoices = ko.observableArray([])
     this.voiceBuffer = []
-    if (typeof speechSynthesis !== 'undefined' && speechSynthesis.onvoiceschanged !== undefined) {
-      speechSynthesis.addEventListener('voiceschanged', () => this.populateVoiceList())
+    const speechDetection = EasySpeech.detect()
+
+    if (speechDetection.speechSynthesis && speechDetection.speechSynthesisUtterance) {
+      this.logToFlaggedWords('Speech Available')
+      this.voiceCapable(true)
+    } else {
+      this.logToFlaggedWords(`Synthesis: ${speechDetection.speechSynthesis} Utterance:${speechDetection.speechSynthesisUtterance}`)
     }
+
+    /* if (typeof speechSynthesis !== 'undefined' && speechSynthesis.onvoiceschanged !== undefined) {
+      speechSynthesis.addEventListener('voiceschanged', () => this.populateVoiceList())
+    } */
+    this.initEasySpeech()
+  }
+
+  initEasySpeech = async () => {
+    const easySpeechInitStatus = await EasySpeech.init()
+    this.logToFlaggedWords(`easyspeechinit: ${easySpeechInitStatus}`)
     this.populateVoiceList()
   }
 
+  logToFlaggedWords = (s) => {
+    this.ctxt.flaggedWords.flaggedWords(this.ctxt.flaggedWords.flaggedWords() + s + '\n')
+  }
+
   populateVoiceList = () => {
-    if (typeof speechSynthesis === 'undefined') {
+    if (!this.voiceCapable()) {
       return
     }
 
-    const voicesTry = speechSynthesis.getVoices()
+    const easySpeechStatus = EasySpeech.status()
+    if (easySpeechStatus.voices && easySpeechStatus.voices.length) {
+      this.voices = easySpeechStatus.voices
+      this.voiceVoices(this.voices)
+      this.logToFlaggedWords(`loaded voices:${easySpeechStatus.voices.length}`)
+    } else {
+      this.logToFlaggedWords('no voices')
+    }
+    /* const voicesTry = speechSynthesis.getVoices()
 
     if (voicesTry.length > 0) {
       this.voices = voicesTry
       // console.log(this.voices)
       this.voiceVoices(this.voices)
-    }
+    } */
   }
 
-  getVoices = () => {
+  /* getVoices = () => {
     // we assume this is all ready through the constructor by the time we use it
     const voices = speechSynthesis.getVoices()
     console.log(voices)
     return voices
-  }
+  } */
 
   initUtterance = (morseVoiceInfo) => {
     const utterance = new SpeechSynthesisUtterance()
@@ -70,6 +101,20 @@ export class MorseVoice {
     window.speechSynthesis.speak(utterance)
   }
 
+  speakInfo2 = (morseVoiceInfo:MorseVoiceInfo) => {
+    const esConfig = {
+      text: morseVoiceInfo.textToSpeak,
+      pitch: morseVoiceInfo.pitch,
+      rate: morseVoiceInfo.rate,
+      end: morseVoiceInfo.onEnd,
+      volume: morseVoiceInfo.volume,
+      voice: morseVoiceInfo.voice ?? null,
+      error: e => this.logToFlaggedWords(e)
+    }
+
+    EasySpeech.speak(esConfig)
+  }
+
   speakPhrase = (phraseToSpeak:string, onEndCallBack) => {
     const morseVoiceInfo = new MorseVoiceInfo()
     morseVoiceInfo.textToSpeak = phraseToSpeak
@@ -78,6 +123,6 @@ export class MorseVoice {
     morseVoiceInfo.rate = this.voiceRate()
     morseVoiceInfo.pitch = this.voicePitch()
     morseVoiceInfo.onEnd = onEndCallBack
-    this.speakInfo(morseVoiceInfo)
+    this.speakInfo2(morseVoiceInfo)
   }
 }
