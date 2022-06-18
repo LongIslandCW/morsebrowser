@@ -437,7 +437,9 @@ export class MorseViewModel {
       this.morseVoice.voiceBuffer.push(currentWord)
       this.logToFlaggedWords(`currentWord:${currentWord}`)
       this.logToFlaggedWords(`hasNewline:${hasNewline} isNotLastWord: ${isNotLastWord} anyNewLines:${anyNewLines}`)
-      if (hasNewline || !isNotLastWord || !anyNewLines) {
+      const speakCondition = hasNewline || !isNotLastWord || !anyNewLines
+      this.logToFlaggedWords(`speakCondition:${speakCondition}`)
+      if (speakCondition) {
         this.logToFlaggedWords(`about to wordify:'${this.morseVoice.voiceBuffer.join(' ')}'`)
         let phraseToSpeak
         try {
