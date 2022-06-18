@@ -438,7 +438,13 @@ export class MorseViewModel {
       this.logToFlaggedWords(`currentWord:${currentWord}`)
       this.logToFlaggedWords(`hasNewline:${hasNewline} isNotLastWord: ${isNotLastWord} anyNewLines:${anyNewLines}`)
       if (hasNewline || !isNotLastWord || !anyNewLines) {
-        const phraseToSpeak = MorseStringUtils.wordifyPunctuation(this.morseVoice.voiceBuffer.join(' '))
+        this.logToFlaggedWords(`about to wordify:'${this.morseVoice.voiceBuffer.join(' ')}'`)
+        let phraseToSpeak
+        try {
+          phraseToSpeak = MorseStringUtils.wordifyPunctuation(this.morseVoice.voiceBuffer.join(' '))
+        } catch (e) {
+          this.logToFlaggedWords(`caught after wordify:${e}`)
+        }
         this.logToFlaggedWords(`phraseToSpeak:'${phraseToSpeak}'`)
         // clear the buffer
         this.morseVoice.voiceBuffer = []
