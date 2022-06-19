@@ -586,8 +586,9 @@
                                                     data-bind="attr:{ src: morseLoadImages().getSrc('soundwaveImage')}">&nbsp;Smoothing&nbsp;<img
                                                     data-bind="attr:{ src: smoothing() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
                                         </div>
+
                                         <!-- risetimeconstant-->
-                                        <div class="col-md-auto" data-bind="if: showExpertSettings() && smoothing()">
+                                        <!-- <div class="col-md-auto" data-bind="if: showExpertSettings() && smoothing()">
                                             <div class="input-group">
                                                 <span class="input-group-text">RiseK&nbsp;<img width=20 height=20
                                                         data-bind="attr:{ src: morseLoadImages().getSrc('graphuparrowImage')}"></span>
@@ -595,9 +596,9 @@
                                                     class="form-control" min="0" max="10" step=".001"
                                                     data-bind="textInput: riseTimeConstant">
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <!-- decaytimeconstant-->
-                                        <div class="col-md-auto" data-bind="if: showExpertSettings() && smoothing()">
+                                        <!-- <div class="col-md-auto" data-bind="if: showExpertSettings() && smoothing()">
                                             <div class="input-group">
                                                 <span class="input-group-text">DecayK&nbsp;<img width=20 height=20
                                                         data-bind="attr:{ src: morseLoadImages().getSrc('graphdownarrowImage')}"></span>
@@ -605,9 +606,9 @@
                                                     class="form-control" min="0" max="10" step=".001"
                                                     data-bind="textInput: decayTimeConstant">
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <!-- decaystart-->
-                                        <div class="col-md-auto" data-bind="if: showExpertSettings() && smoothing()">
+                                        <!-- <div class="col-md-auto" data-bind="if: showExpertSettings() && smoothing()">
                                             <div class="input-group">
                                                 <span class="input-group-text">Decay Start<img width=20 height=20
                                                         data-bind="attr:{ src: morseLoadImages().getSrc('stopwatchImage')}"></span>
@@ -615,7 +616,7 @@
                                                     class="form-control" min=".1" max="5" step=".1"
                                                     data-bind="textInput: decayMsOffset">
                                             </div>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
 
