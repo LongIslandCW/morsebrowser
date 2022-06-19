@@ -286,7 +286,8 @@ export class MorseViewModel {
     config.ditFrequency = parseInt(this.settings.frequency.ditFrequency() as any)
     config.dahFrequency = parseInt(this.settings.frequency.dahFrequency() as any)
     config.prePaddingMs = this.preSpaceUsed() ? 0 : this.preSpace() * 1000
-    config.xtraWordSpaceDits = parseInt(this.xtraWordSpaceDits() as any)
+    // note this was changed so UI is min 1 meaning 0, 1=>7, 2=>14 etc
+    config.xtraWordSpaceDits = (parseInt(this.xtraWordSpaceDits() as any) - 1) * 7
     config.volume = parseInt(this.volume() as any)
     config.noise = new NoiseConfig()
     config.noise.type = this.noiseEnabled() ? this.noiseType() : 'off'

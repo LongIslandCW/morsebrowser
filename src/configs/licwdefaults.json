@@ -38,8 +38,8 @@
         },
         {
             "key": "xtraWordSpaceDits",
-            "value": 0,
-            "comment": "7 is a full word space"
+            "value": 1,
+            "comment": "1=normal wordspacing, 2=2x wordspacing, etc"
         },
         {
             "key": "volume",
