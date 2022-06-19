@@ -70,8 +70,9 @@ export class MorseVoice {
       this.voices.forEach(v => {
         this.logToFlaggedWords(`voiceAvailable:${v.name}  ${v.lang}`)
       })
+      this.voices = this.voices.filter(x => x.lang === 'en-US')
       this.voiceVoices(this.voices)
-      this.logToFlaggedWords(`loaded voices:${easySpeechStatus.voices.length}`)
+      this.logToFlaggedWords(`loaded voices:${this.voices.length}`)
     } else {
       this.logToFlaggedWords('no voices')
     }
