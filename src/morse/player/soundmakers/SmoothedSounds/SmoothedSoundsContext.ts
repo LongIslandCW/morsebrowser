@@ -60,14 +60,19 @@ export class SmoothedSoundsContext {
     if (this.oscillatorNode) {
       this.oscillatorNode.stop()
     }
+    const doAfterClose = () => {
+      if (afterCloseCallback) {
+        afterCloseCallback()
+      }
+    }
     if ((this.audioContext as AudioContext).close) {
       (this.audioContext as AudioContext).close().then(() => {
         this.contextClosed = true
-        afterCloseCallback()
+        doAfterClose()
       })
     } else {
       this.contextClosed = true
-      afterCloseCallback()
+      doAfterClose()
     }
   }
 }
