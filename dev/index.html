@@ -74,7 +74,7 @@
                             <!-- wpm -->
                             <!-- <span class="input-group-text">WPM&nbsp;<img height="20" width="20"
                                     data-bind="attr: {src:morseLoadImages().getSrc('speedometerImage')}" /></span> -->
-                            <span class="input-group-text">WPM&nbsp;
+                            <span class="input-group-text">Character Speed (WPM)&nbsp;
 
                                 <simpleimage
                                     params="root: $root, height:20, width:20, icon:'speedometerImage', labelText:'WPM'">
@@ -85,7 +85,8 @@
                                 aria-label="Username" min="1" data-bind="textInput: settings.speed.wpm">
                             <!-- fwpm -->
                             <span class="input-group-text"
-                                data-bind="click: ()=>settings.speed.syncWpm(!settings.speed.syncWpm())">FWPM&nbsp;<img
+                                data-bind="click: ()=>settings.speed.syncWpm(!settings.speed.syncWpm())">Effective Speed
+                                (FWPM)&nbsp;<img
                                     data-bind="attr:{ src: settings.speed.syncWpm() ? morseLoadImages().getSrc('lockImage') : morseLoadImages().getSrc('unlockImage')}" /></span>
                             <input type="number" style="max-width:75px; min-width: 75px;" class="form-control"
                                 aria-label="Server" min="1"
@@ -355,8 +356,7 @@
                                         <!--custom group run button-->
                                         <button type="button" class="btn btn-success"
                                             data-bind="click: ()=> lessons.setDisplaySelected(lessons.selectedDisplay()), enable: lessons.selectedDisplay().display && !lessons.selectedDisplay().isDummy"
-                                            style="width: 146px; padding-left: 2px; padding-right: 2px;">Regenerate
-                                            Drill</button>
+                                            style="width: 146px; padding-left: 2px; padding-right: 2px;">Apply</button>
                                     </div>
                                 </div>
 
