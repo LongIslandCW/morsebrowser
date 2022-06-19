@@ -160,7 +160,7 @@ export class MorseVoice {
       morseVoiceInfo.onEnd = onEndCallBack
       if (this.voiceVoices().length > 0) {
         this.logToFlaggedWords('using speakinfo2')
-        this.speakInfo2(morseVoiceInfo)
+        this.speakInfo(morseVoiceInfo)
       } else {
         this.logToFlaggedWords('using old speakInfo')
         this.speakInfo(morseVoiceInfo)
