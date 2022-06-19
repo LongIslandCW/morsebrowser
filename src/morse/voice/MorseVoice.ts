@@ -97,6 +97,7 @@ export class MorseVoice {
 
   initUtterance = (morseVoiceInfo) => {
     this.logToFlaggedWords(`morseVoiceInfo:${JSON.stringify(morseVoiceInfo)}`)
+    this.logToFlaggedWords(`morseVoiceInfo.voice.name:${morseVoiceInfo.voice && morseVoiceInfo.voice.name ? morseVoiceInfo.voice.name : 'no name'}`)
     this.currentUtterance = new SpeechSynthesisUtterance()
     this.currentUtterance.voice = morseVoiceInfo.voice || null // Note: some voices don't support altering params
     // (this.currentUtterance as any).voiceURI = morseVoiceInfo.voice && morseVoiceInfo.voice.voiceURI ? morseVoiceInfo.voice.voiceURI : 'native'
