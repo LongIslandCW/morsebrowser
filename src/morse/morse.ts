@@ -445,6 +445,7 @@ export class MorseViewModel {
         let phraseToSpeak
         try {
           phraseToSpeak = MorseStringUtils.wordifyPunctuation(this.morseVoice.voiceBuffer.join(' '))
+          phraseToSpeak = phraseToSpeak.replace(/\n/g, ' ').trim()
         } catch (e) {
           this.logToFlaggedWords(`caught after wordify:${e}`)
         }

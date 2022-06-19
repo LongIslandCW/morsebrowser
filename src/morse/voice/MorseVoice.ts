@@ -105,9 +105,18 @@ export class MorseVoice {
   }
 
   speakInfo = (morseVoiceInfo) => {
-    const utterance = this.initUtterance(morseVoiceInfo)
-    utterance.addEventListener('end', morseVoiceInfo.onEnd)
-    window.speechSynthesis.speak(utterance)
+    try {
+      const utterance = this.initUtterance(morseVoiceInfo)
+      utterance.addEventListener('end', morseVoiceInfo.onEnd)
+      utterance.addEventListener('error', (e) => {
+        this.logToFlaggedWords(`error event during speak:${e}`)
+        morseVoiceInfo.onEnd()
+      })
+      window.speechSynthesis.speak(utterance)
+    } catch (e) {
+      this.logToFlaggedWords(`caught in speakInfo:${e}`)
+      morseVoiceInfo.onEnd()
+    }
   }
 
   speakInfo2 = (morseVoiceInfo:MorseVoiceInfo) => {
