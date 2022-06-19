@@ -150,8 +150,22 @@ export default class SmoothedSoundsPlayer implements ISoundMaker {
     // if its not an offline, we know by the endtime when it will end
     if (!this.config.offline) {
       setTimeout(() => {
-        this.sourceEnded = true
-        this.sourceEndedCallBack()
+        // if voice is enabled, destroy the audio context for safari...
+        // not sure this helps but...
+        setTimeout(() => {
+          const closeOutCallback = () => {
+            this.sourceEnded = true
+            this.sourceEndedCallBack()
+          }
+          if (config.voiceEnabled) {
+            this.ssContext.stopAndCloseContext(closeOutCallback)
+          } else {
+            closeOutCallback()
+          }
+
+          // seems like we need a little padding with voice on to avoid
+          // a popping sound...not sure why
+        }, !config.voiceEnabled ? 0 : 100)
       }, endTime)
     } else {
       // offline so schedule the oscillator stop

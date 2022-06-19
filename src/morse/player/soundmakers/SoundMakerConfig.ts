@@ -18,5 +18,6 @@ export class SoundMakerConfig {
   offline:boolean = false
   trimLastWordSpace:boolean = false
   morseDisabled:boolean = false
+  voiceEnabled:boolean = false
   get frequency ():number { return this.ditFrequency }
 }

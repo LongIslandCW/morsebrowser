@@ -300,8 +300,10 @@ export class MorseViewModel {
     // suppress wordspaces when using speak so "thinking time" will control
     if (this.morseVoice) {
       config.trimLastWordSpace = this.morseVoice.voiceEnabled()
+      config.voiceEnabled = this.morseVoice.voiceEnabled()
     }
     config.morseDisabled = this.morseDisabled()
+
     return config
   }
 
