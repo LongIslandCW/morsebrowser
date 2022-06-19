@@ -118,8 +118,11 @@ export class MorseVoice {
         this.logToFlaggedWords(`error event during speak:${e}`)
         morseVoiceInfo.onEnd()
       })
-      window.speechSynthesis.cancel()
+      utterance.addEventListener('start', () => this.logToFlaggedWords('started utterance...'))
+      // window.speechSynthesis.cancel()
       this.logToFlaggedWords('about to .speak')
+      this.logToFlaggedWords(`is synthesis status paused:${window.speechSynthesis.paused} pending:${window.speechSynthesis.pending} speaking:${window.speechSynthesis.speaking}`)
+
       window.speechSynthesis.speak(utterance)
       this.logToFlaggedWords('called speak')
       // window.speechSynthesis.resume()
