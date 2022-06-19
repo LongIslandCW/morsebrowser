@@ -97,8 +97,8 @@ export class MorseVoice {
 
   initUtterance = (morseVoiceInfo) => {
     this.currentUtterance = new SpeechSynthesisUtterance()
-    this.currentUtterance.voice = morseVoiceInfo.voice || null // Note: some voices don't support altering params
-    // this.currentUtterance.voiceURI = morseVoiceInfo.voice && morseVoiceInfo.voice.voiceURI ? morseVoiceInfo.voice.voiceURI : 'native'
+    this.currentUtterance.voice = morseVoiceInfo.voice || null; // Note: some voices don't support altering params
+    (this.currentUtterance as any).voiceURI = morseVoiceInfo.voice && morseVoiceInfo.voice.voiceURI ? morseVoiceInfo.voice.voiceURI : 'native'
     this.currentUtterance.volume = morseVoiceInfo.volume // 0 to 1
     this.currentUtterance.rate = morseVoiceInfo.rate // 0.1 to 10
     this.currentUtterance.pitch = morseVoiceInfo.pitch // 0 to 2
@@ -115,7 +115,9 @@ export class MorseVoice {
         this.logToFlaggedWords(`error event during speak:${e}`)
         morseVoiceInfo.onEnd()
       })
+      window.speechSynthesis.cancel()
       window.speechSynthesis.speak(utterance)
+      window.speechSynthesis.resume()
     } catch (e) {
       this.logToFlaggedWords(`caught in speakInfo:${e}`)
       morseVoiceInfo.onEnd()
