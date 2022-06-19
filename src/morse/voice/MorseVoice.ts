@@ -16,6 +16,9 @@ export class MorseVoice {
   voiceVoices:ko.ObservableArray<any>
   voiceBuffer:Array<any>
   ctxt:MorseViewModel
+  // keep a reference because read that garbage collector can grab
+  // and onend never fires?!
+  currentUtterance:SpeechSynthesisUtterance
 
   constructor (context:MorseViewModel) {
     this.ctxt = context
@@ -93,15 +96,15 @@ export class MorseVoice {
   } */
 
   initUtterance = (morseVoiceInfo) => {
-    const utterance = new SpeechSynthesisUtterance()
-    utterance.voice = morseVoiceInfo.voice || null // Note: some voices don't support altering params
-    // utterance.voiceURI = morseVoiceInfo.voice && morseVoiceInfo.voice.voiceURI ? morseVoiceInfo.voice.voiceURI : 'native'
-    utterance.volume = morseVoiceInfo.volume // 0 to 1
-    utterance.rate = morseVoiceInfo.rate // 0.1 to 10
-    utterance.pitch = morseVoiceInfo.pitch // 0 to 2
-    utterance.text = morseVoiceInfo.textToSpeak
-    utterance.lang = morseVoiceInfo.voice && morseVoiceInfo.voice.lang ? morseVoiceInfo.voice.lang : 'en-US'
-    return utterance
+    this.currentUtterance = new SpeechSynthesisUtterance()
+    this.currentUtterance.voice = morseVoiceInfo.voice || null // Note: some voices don't support altering params
+    // this.currentUtterance.voiceURI = morseVoiceInfo.voice && morseVoiceInfo.voice.voiceURI ? morseVoiceInfo.voice.voiceURI : 'native'
+    this.currentUtterance.volume = morseVoiceInfo.volume // 0 to 1
+    this.currentUtterance.rate = morseVoiceInfo.rate // 0.1 to 10
+    this.currentUtterance.pitch = morseVoiceInfo.pitch // 0 to 2
+    this.currentUtterance.text = morseVoiceInfo.textToSpeak
+    this.currentUtterance.lang = morseVoiceInfo.voice && morseVoiceInfo.voice.lang ? morseVoiceInfo.voice.lang : 'en-US'
+    return this.currentUtterance
   }
 
   speakInfo = (morseVoiceInfo) => {
