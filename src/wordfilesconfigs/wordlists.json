@@ -355,6 +355,6 @@
     {"sort":354, "userTarget": "INSTRUCTOR", "class": "VAR SPEED", "letterGroup": "FOCUS", "newlineChunking":false,"display":"FOCUS", "fileName": "per4.txt" },
     {"sort":355, "userTarget": "INSTRUCTOR", "class": "VAR SPEED", "letterGroup": "SENTENCE", "newlineChunking":false,"display":"ONE", "fileName": "per5.txt" },
     {"sort":356, "userTarget": "INSTRUCTOR", "class": "VAR SPEED", "letterGroup": "SENTENCE", "newlineChunking":false,"display":"TWO", "fileName": "per6.txt" },
-    {"sort":357 "userTarget": "INSTRUCTOR", "class": "VAR SPEED", "letterGroup": "SENTENCE", "newlineChunking":false,"display":"THREE", "fileName": "per7.txt" },
+    {"sort":357, "userTarget": "INSTRUCTOR", "class": "VAR SPEED", "letterGroup": "SENTENCE", "newlineChunking":false,"display":"THREE", "fileName": "per7.txt" },
     {"sort":358, "userTarget": "INSTRUCTOR", "class": "VAR SPEED", "letterGroup": "SENTENCE", "newlineChunking":false,"display":"FOUR", "fileName": "per8.txt" }
 ]}
