@@ -224,7 +224,7 @@
     {"sort":223, "userTarget": "INSTRUCTOR", "class": "B2", "letterGroup": "KMY", "newlineChunking":false,"display":"B1 KMY", "fileName": "SB2KMY6.json" },
     {"sort":224, "userTarget": "INSTRUCTOR", "class": "B2", "letterGroup": "KMY", "newlineChunking":false,"display":"STATES", "fileName": "IB2KMY8.txt" },
     {"sort":225, "userTarget": "INSTRUCTOR", "class": "B2", "letterGroup": "KMY", "newlineChunking":false,"display":"QSO ABBREVIATIONS", "fileName": "IB2KMY6.txt" },
-    {"sort":226, "userTarget": "INSTRUCTOR", "class": "B2", "letterGroup": "KMY", "newlineChunking":false,"display":"QSO PROTOCOL", "fileName": "IB2KMY7.txt" },
+    {"sort":226, "userTarget": "INSTRUCTOR", "class": "B2", "letterGroup": "KMY", "newlineChunking":true,"display":"QSO PROTOCOL", "fileName": "IB2KMY7.txt" },
     {"sort":227, "userTarget": "INSTRUCTOR", "class": "B2", "letterGroup": "KMY", "newlineChunking":false,"display":"SPEED DRILL", "fileName": "IB2KMY9.json" },
     {"sort":228, "userTarget": "INSTRUCTOR", "class": "B2", "letterGroup": "59,", "newlineChunking":false,"display":"5", "fileName": "IB2591.json" },
     {"sort":229, "userTarget": "INSTRUCTOR", "class": "B2", "letterGroup": "59,", "newlineChunking":false,"display":"9", "fileName": "IB2592.json" },
