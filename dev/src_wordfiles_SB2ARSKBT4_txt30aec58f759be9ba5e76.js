@@ -7,7 +7,7 @@
   \**************************************/
 /***/ ((module) => {
 
-module.exports = "NICE TO CU AGN <BT> OP RIN <BT> RIG KNWD ES ANT DIPOLE UP IN TREE <BT> RETIRED AIR FORCE <BT> RIG TEN TEC <BT> TU FER INFO <BT> HPE CUAGN DR BOB <AR> HPE CUAGN DR HIRO san <AR>";
+module.exports = "NICE TO CU AGN\nOP RIN\nANT DIPOLE UP IN TREE\nRETIRED AIR FORCE\nRIG TEN TEC\nTU FER INFO\nHPE CUAGN DR BOB\nHPE CUAGN DR HIRO san\n";
 
 /***/ })
 
