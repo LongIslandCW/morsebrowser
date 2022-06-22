@@ -7,7 +7,7 @@
   \**************************************/
 /***/ ((module) => {
 
-module.exports = "AL AK AR CA CO CT DE FL GA HI ID IL IN IA KS LA NE NV NH NM NC ND OH PA RI SC SD TN UT WA WI";
+module.exports = "AL AR CA CO CT DE FL GA HI ID IL IN IA LA NE NH NC ND OH PA RI SC SD TN UT WA WI  \n";
 
 /***/ })
 
