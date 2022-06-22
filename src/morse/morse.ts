@@ -440,7 +440,7 @@ export class MorseViewModel {
       this.morseVoice.voiceBuffer.push(currentWord)
       this.logToFlaggedWords(`currentWord:${currentWord}`)
       this.logToFlaggedWords(`hasNewline:${hasNewline} isNotLastWord: ${isNotLastWord} anyNewLines:${anyNewLines}`)
-      const speakCondition = hasNewline || !isNotLastWord || !anyNewLines
+      const speakCondition = hasNewline || !isNotLastWord || !anyNewLines || !this.settings.misc.newlineChunking()
       this.logToFlaggedWords(`speakCondition:${speakCondition}`)
       if (speakCondition) {
         this.logToFlaggedWords(`about to wordify:'${this.morseVoice.voiceBuffer.join(' ')}'`)

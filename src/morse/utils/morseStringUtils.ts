@@ -62,7 +62,7 @@ export default class MorseStringUtils {
   }
 
   static wordifyPunctuation = (s:string):string => {
-    let fixed = s
+    let fixed = s.replace(/\r/g, '').replace(/\n/g, '')
     wordifiers.wordifications.forEach(w => {
       let myChars = w.characters
       const before = w.characters
