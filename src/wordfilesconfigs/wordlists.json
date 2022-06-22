@@ -396,5 +396,13 @@
     {"sort":395, "userTarget": "INSTRUCTOR", "class": "B1", "letterGroup": "HOF", "newlineChunking":false,"display":"HOF LCD PGS STATES", "fileName": "HOF8.txt" },
     {"sort":396, "userTarget": "INSTRUCTOR", "class": "B1", "letterGroup": "HOF", "newlineChunking":false,"display":"HOF LCD PGS    QSO ABBREVIATIONS", "fileName": "HOF9.txt" },
     {"sort":397, "userTarget": "INSTRUCTOR", "class": "B1", "letterGroup": "HOF", "newlineChunking":false,"display":"HOF LCD PGS WORDS", "fileName": "HOF10.txt" },
-    {"sort":398, "userTarget": "INSTRUCTOR", "class": "B1", "letterGroup": "HOF", "newlineChunking":true,"display":"HOF LCD PGS PHRASES", "fileName": "HOF11.txt" }
+    {"sort":398, "userTarget": "INSTRUCTOR", "class": "B1", "letterGroup": "HOF", "newlineChunking":true,"display":"HOF LCD PGS PHRASES", "fileName": "HOF11.txt" },
+    {"sort":399, "userTarget": "STUDENT", "class": "B1", "letterGroup": "UWB", "newlineChunking":false,"display":"UWB HOF LCD STATES", "fileName": "UWB8.txt" },
+    {"sort":400, "userTarget": "STUDENT", "class": "B1", "letterGroup": "UWB", "newlineChunking":false,"display":"UWB HOF LCD    QSO ABBREVIATIONS", "fileName": "UWB9.txt" },
+    {"sort":401, "userTarget": "STUDENT", "class": "B1", "letterGroup": "UWB", "newlineChunking":false,"display":"UWB HOF LCD WORDS", "fileName": "UWB10.txt" },
+    {"sort":402, "userTarget": "STUDENT", "class": "B1", "letterGroup": "UWB", "newlineChunking":true,"display":"UWB HOF LCD PHRASES", "fileName": "UWB11.txt" },
+    {"sort":403, "userTarget": "INSTRUCTOR", "class": "B1", "letterGroup": "UWB", "newlineChunking":false,"display":"UWB HOF LCD STATES", "fileName": "UWB8.txt" },
+    {"sort":404, "userTarget": "INSTRUCTOR", "class": "B1", "letterGroup": "UWB", "newlineChunking":false,"display":"UWB HOF LCD    QSO ABBREVIATIONS", "fileName": "UWB9.txt" },
+    {"sort":405, "userTarget": "INSTRUCTOR", "class": "B1", "letterGroup": "UWB", "newlineChunking":false,"display":"UWB HOF LCD WORDS", "fileName": "UWB10.txt" },
+    {"sort":406, "userTarget": "INSTRUCTOR", "class": "B1", "letterGroup": "UWB", "newlineChunking":true,"display":"UWB HOF LCD PHRASES", "fileName": "UWB11.txt" }
 ]}
