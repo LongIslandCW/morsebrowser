@@ -364,5 +364,13 @@
     {"sort":363, "userTarget": "INSTRUCTOR", "class": "B1", "letterGroup": "REA", "newlineChunking":false,"display":"REA UWB HOF STATES", "fileName": "REA8.txt" },
     {"sort":364, "userTarget": "INSTRUCTOR", "class": "B1", "letterGroup": "REA", "newlineChunking":false,"display":"REA UWB HOF    QSO ABBREVIATIONS", "fileName": "REA9.txt" },
     {"sort":365, "userTarget": "INSTRUCTOR", "class": "B1", "letterGroup": "REA", "newlineChunking":false,"display":"REA UWB HOF WORDS", "fileName": "REA10.txt" },
-    {"sort":366, "userTarget": "INSTRUCTOR", "class": "B1", "letterGroup": "REA", "newlineChunking":true,"display":"REA UWB HOF PHRASES", "fileName": "REA11.txt" }
+    {"sort":366, "userTarget": "INSTRUCTOR", "class": "B1", "letterGroup": "REA", "newlineChunking":true,"display":"REA UWB HOF PHRASES", "fileName": "REA11.txt" },
+    {"sort":367, "userTarget": "STUDENT", "class": "B1", "letterGroup": "TIN", "newlineChunking":false,"display":"REA UWB HOF STATES", "fileName": "TIN8.txt" },
+    {"sort":368, "userTarget": "STUDENT", "class": "B1", "letterGroup": "TIN", "newlineChunking":false,"display":"REA UWB HOF    QSO ABBREVIATIONS", "fileName": "TIN9.txt" },
+    {"sort":369, "userTarget": "STUDENT", "class": "B1", "letterGroup": "TIN", "newlineChunking":false,"display":"REA UWB HOF WORDS", "fileName": "TIN10.txt" },
+    {"sort":370, "userTarget": "STUDENT", "class": "B1", "letterGroup": "TIN", "newlineChunking":true,"display":"REA UWB HOF PHRASES", "fileName": "TIN11.txt" },
+    {"sort":371, "userTarget": "INSTRUCTOR", "class": "B1", "letterGroup": "TIN", "newlineChunking":false,"display":"REA UWB HOF STATES", "fileName": "TIN8.txt" },
+    {"sort":372, "userTarget": "INSTRUCTOR", "class": "B1", "letterGroup": "TIN", "newlineChunking":false,"display":"REA UWB HOF    QSO ABBREVIATIONS", "fileName": "TIN9.txt" },
+    {"sort":373, "userTarget": "INSTRUCTOR", "class": "B1", "letterGroup": "TIN", "newlineChunking":false,"display":"REA UWB HOF WORDS", "fileName": "TIN10.txt" },
+    {"sort":374, "userTarget": "INSTRUCTOR", "class": "B1", "letterGroup": "TIN", "newlineChunking":true,"display":"REA UWB HOF PHRASES", "fileName": "TIN11.txt" }
 ]}
