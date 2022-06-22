@@ -388,5 +388,13 @@
     {"sort":387, "userTarget": "INSTRUCTOR", "class": "B1", "letterGroup": "LCD", "newlineChunking":false,"display":"LCD PGS TIN STATES", "fileName": "LCD8.txt" },
     {"sort":388, "userTarget": "INSTRUCTOR", "class": "B1", "letterGroup": "LCD", "newlineChunking":false,"display":"LCD PGS TIN    QSO ABBREVIATIONS", "fileName": "LCD9.txt" },
     {"sort":389, "userTarget": "INSTRUCTOR", "class": "B1", "letterGroup": "LCD", "newlineChunking":false,"display":"LCD PGS TIN WORDS", "fileName": "LCD10.txt" },
-    {"sort":390, "userTarget": "INSTRUCTOR", "class": "B1", "letterGroup": "LCD", "newlineChunking":true,"display":"LCD PGS TIN PHRASES", "fileName": "LCD11.txt" }
+    {"sort":390, "userTarget": "INSTRUCTOR", "class": "B1", "letterGroup": "LCD", "newlineChunking":true,"display":"LCD PGS TIN PHRASES", "fileName": "LCD11.txt" },
+    {"sort":391, "userTarget": "STUDENT", "class": "B1", "letterGroup": "HOF", "newlineChunking":false,"display":"HOF LCD PGS STATES", "fileName": "HOF8.txt" },
+    {"sort":392, "userTarget": "STUDENT", "class": "B1", "letterGroup": "HOF", "newlineChunking":false,"display":"HOF LCD PGS    QSO ABBREVIATIONS", "fileName": "HOF9.txt" },
+    {"sort":393, "userTarget": "STUDENT", "class": "B1", "letterGroup": "HOF", "newlineChunking":false,"display":"HOF LCD PGS WORDS", "fileName": "HOF10.txt" },
+    {"sort":394, "userTarget": "STUDENT", "class": "B1", "letterGroup": "HOF", "newlineChunking":true,"display":"HOF LCD PGS PHRASES", "fileName": "HOF11.txt" },
+    {"sort":395, "userTarget": "INSTRUCTOR", "class": "B1", "letterGroup": "HOF", "newlineChunking":false,"display":"HOF LCD PGS STATES", "fileName": "HOF8.txt" },
+    {"sort":396, "userTarget": "INSTRUCTOR", "class": "B1", "letterGroup": "HOF", "newlineChunking":false,"display":"HOF LCD PGS    QSO ABBREVIATIONS", "fileName": "HOF9.txt" },
+    {"sort":397, "userTarget": "INSTRUCTOR", "class": "B1", "letterGroup": "HOF", "newlineChunking":false,"display":"HOF LCD PGS WORDS", "fileName": "HOF10.txt" },
+    {"sort":398, "userTarget": "INSTRUCTOR", "class": "B1", "letterGroup": "HOF", "newlineChunking":true,"display":"HOF LCD PGS PHRASES", "fileName": "HOF11.txt" }
 ]}
