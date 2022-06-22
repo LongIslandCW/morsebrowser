@@ -41,9 +41,6 @@ export class MorseVoice {
       this.logToFlaggedWords(`Synthesis: ${speechDetection.speechSynthesis} Utterance:${speechDetection.speechSynthesisUtterance}`)
     }
 
-    /* if (typeof speechSynthesis !== 'undefined' && speechSynthesis.onvoiceschanged !== undefined) {
-      speechSynthesis.addEventListener('voiceschanged', () => this.populateVoiceList())
-    } */
     this.initEasySpeech()
   }
 
@@ -79,60 +76,9 @@ export class MorseVoice {
     } else {
       this.logToFlaggedWords('no voices')
     }
-    /* const voicesTry = speechSynthesis.getVoices()
-
-    if (voicesTry.length > 0) {
-      this.voices = voicesTry
-      // console.log(this.voices)
-      this.voiceVoices(this.voices)
-    } */
   }
 
-  /* getVoices = () => {
-    // we assume this is all ready through the constructor by the time we use it
-    const voices = speechSynthesis.getVoices()
-    console.log(voices)
-    return voices
-  } */
-
-  initUtterance = (morseVoiceInfo) => {
-    this.logToFlaggedWords(`morseVoiceInfo:${JSON.stringify(morseVoiceInfo)}`)
-    this.logToFlaggedWords(`morseVoiceInfo.voice.name:${morseVoiceInfo.voice && morseVoiceInfo.voice.name ? morseVoiceInfo.voice.name : 'no name'}`)
-    this.currentUtterance = new SpeechSynthesisUtterance()
-    this.currentUtterance.voice = morseVoiceInfo.voice || null // Note: some voices don't support altering params
-    // (this.currentUtterance as any).voiceURI = morseVoiceInfo.voice && morseVoiceInfo.voice.voiceURI ? morseVoiceInfo.voice.voiceURI : 'native'
-    this.currentUtterance.volume = morseVoiceInfo.volume // 0 to 1
-    // this.currentUtterance.rate = morseVoiceInfo.rate // 0.1 to 10
-    // this.currentUtterance.pitch = morseVoiceInfo.pitch // 0 to 2
-    this.currentUtterance.text = morseVoiceInfo.textToSpeak
-    this.currentUtterance.lang = morseVoiceInfo.voice && morseVoiceInfo.voice.lang ? morseVoiceInfo.voice.lang : 'en-US'
-    return this.currentUtterance
-  }
-
-  /* speakInfo = (morseVoiceInfo) => {
-    try {
-      const utterance = this.initUtterance(morseVoiceInfo)
-      this.logToFlaggedWords('returned from initUtterance')
-      utterance.addEventListener('end', morseVoiceInfo.onEnd)
-      utterance.addEventListener('error', (e) => {
-        this.logToFlaggedWords(`error event during speak:${e}`)
-        morseVoiceInfo.onEnd()
-      })
-      utterance.addEventListener('start', () => this.logToFlaggedWords('started utterance...'))
-      // window.speechSynthesis.cancel()
-      this.logToFlaggedWords('about to .speak')
-      this.logToFlaggedWords(`is synthesis status paused:${window.speechSynthesis.paused} pending:${window.speechSynthesis.pending} speaking:${window.speechSynthesis.speaking}`)
-
-      window.speechSynthesis.speak(utterance)
-      this.logToFlaggedWords('called speak')
-      // window.speechSynthesis.resume()
-    } catch (e) {
-      this.logToFlaggedWords(`caught in speakInfo:${e}`)
-      morseVoiceInfo.onEnd()
-    }
-  } */
-
-  speakInfo2 = (morseVoiceInfo:MorseVoiceInfo) => {
+  speakInfo = (morseVoiceInfo:MorseVoiceInfo) => {
     try {
       const esConfig = {
         text: morseVoiceInfo.textToSpeak,
@@ -166,7 +112,6 @@ export class MorseVoice {
     try {
       const morseVoiceInfo = new MorseVoiceInfo()
       morseVoiceInfo.textToSpeak = phraseToSpeak
-      // console.log(`voiceVoice:${this.voiceVoice()}`)
       if (this.voiceVoice()) {
         this.logToFlaggedWords(`user selected a voice ${this.voiceVoice().name} ${this.voiceVoice().lang}`)
         morseVoiceInfo.voice = this.voiceVoice()
@@ -185,14 +130,7 @@ export class MorseVoice {
       morseVoiceInfo.rate = this.voiceRate()
       morseVoiceInfo.pitch = this.voicePitch()
       morseVoiceInfo.onEnd = onEndCallBack
-      this.speakInfo2(morseVoiceInfo)
-      /* if (this.voiceVoices().length > 0) {
-        this.logToFlaggedWords('using speakinfo2')
-        this.speakInfo(morseVoiceInfo)
-      } else {
-        this.logToFlaggedWords('using old speakInfo')
-        this.speakInfo(morseVoiceInfo)
-      } */
+      this.speakInfo(morseVoiceInfo)
     } catch (e) {
       this.logToFlaggedWords(`caught in speakPhrase:${e}`)
       onEndCallBack()
