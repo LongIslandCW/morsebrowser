@@ -1,0 +1,773 @@
+<!doctype html>
+<html>
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LICW Morse Practice Page</title>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-STMHYHNZTJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-STMHYHNZTJ');
+    </script>
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-PB8HW3M');</script>
+    <!-- End Google Tag Manager -->
+    <style>
+        simpleimage {
+            display: contents;
+        }
+
+        noiseaccordion {
+            display: contents;
+        }
+    </style>
+<link rel="icon" href="LongIslandCWClub-favicon-2.jpg"><script defer src="bundle1da6e7ff31db8e686101.js"></script><link href="bundle.618c1c2672d3071ffd11.css" rel="stylesheet"></head>
+
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PB8HW3M" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <div class="container-xxl" style="overflow-y:auto;">
+        <div class="row gy-2 row-cols-1">
+            <!-- title header area-->
+            <div class="col">
+                <div class="row row-cols-2 justify-content-md-center">
+                    <div class="col col-md-auto">
+                        <img id="logoImage" height="200px" width="200px" />
+
+                    </div>
+                    <div class="col col-md-auto">
+                        <h1>Morse Practice Page</h1>
+                        <h3>by KN4YRM with assistance from AB5TN, N1CC, VK5PL, and WO6W</h3>
+                        <h6>Inspired by and adapted from the <a href="https://morsecode.world/">SC Phillips</a> <a
+                                href="https://github.com/scp93ch/morse-pro">morse-pro</a> library.</h6>
+                        <h6>To report bugs, request features, view source and more, please go to our <a
+                                href="https://github.com/LongIslandCW/morsebrowser/">github<img id="githubImage">
+                                repository.</a></h6>
+                        <h4 data-bind="if: isDev()">WARNING: You are using the BETA (unstable) version. For the latest
+                            stable release please <a href="../">click here.</a></h3>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- settings area-->
+            <div class="col">
+                <div class="row row-cols-2 gx-2 gy-2">
+                    <!--wpm/fwpm-->
+                    <div class="col-md-auto">
+                        <div class="input-group">
+                            <!-- wpm -->
+                            <!-- <span class="input-group-text">WPM&nbsp;<img height="20" width="20"
+                                    data-bind="attr: {src:morseLoadImages().getSrc('speedometerImage')}" /></span> -->
+                            <span class="input-group-text">WPM&nbsp;
+
+                                <simpleimage
+                                    params="root: $root, height:20, width:20, icon:'speedometerImage', labelText:'WPM'">
+                                </simpleimage>
+                            </span>
+
+                            <input type="number" style="max-width:75px; min-width: 75px;" class="form-control"
+                                aria-label="Username" min="1" data-bind="textInput: settings.speed.wpm">
+                            <!-- fwpm -->
+                            <span class="input-group-text"
+                                data-bind="click: ()=>settings.speed.syncWpm(!settings.speed.syncWpm())">FWPM&nbsp;<img
+                                    data-bind="attr:{ src: settings.speed.syncWpm() ? morseLoadImages().getSrc('lockImage') : morseLoadImages().getSrc('unlockImage')}" /></span>
+                            <input type="number" style="max-width:75px; min-width: 75px;" class="form-control"
+                                aria-label="Server" min="1"
+                                data-bind="textInput: settings.speed.fwpm, enable: !settings.speed.syncWpm(), attr:{ max: settings.speed.trueWpm }">
+                        </div>
+                    </div>
+                    <!--volume-->
+                    <div class="col-md-auto">
+                        <div class="input-group">
+                            <span class="input-group-text"><img id="volumeImage" width=20 height=20></span>
+                            <input id="txtVolume" type="number" style="max-width:75px; min-width: 75px;"
+                                class="form-control" aria-label="Server" min="1" max="10" step="1"
+                                data-bind="textInput: volume">
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+            <!-- working text area-->
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <div class="input-group">
+                            <span class="input-group-text" data-bind="click: ()=>showRaw(!showRaw())">
+                                <div class="container gx-0 px-0">
+                                    <div class="row row-cols-1 justify-content-center">
+                                        <div class="col-md-auto">
+                                            <img height=32 width=32
+                                                data-bind="attr:{ src: showRaw() ? morseLoadImages().getSrc('eyeImage') : morseLoadImages().getSrc('eyeslashImage')}" />
+                                        </div>
+
+                                    </div>
+
+                                    <!------->
+
+                                    <div class="row row-cols-1 gx-0">
+
+                                        <div class="col-auto text-end" style="width: 60px;">
+
+                                            <span>Est <img height="15" width="15"
+                                                    data-bind="attr:{src: morseLoadImages().getSrc('stopwatchImage')}">:&nbsp;</span>
+                                        </div>
+                                        <div class="col-auto">
+                                            <span data-bind="text: timeEstimate().minutes"></span>:<span
+                                                data-bind="text: timeEstimate().normedSeconds"></span>
+
+                                        </div>
+                                    </div>
+                                    <div class="row row-cols-1 gx-0">
+                                        <div class="col-auto text-end" style="width: 60px;">
+                                            <span>Play <img height="15" width="15"
+                                                    data-bind="attr:{src: morseLoadImages().getSrc('stopwatchImage')}">:&nbsp;</span>
+                                        </div>
+                                        <div class="col-auto">
+                                            <span data-bind="text: playingTime().minutes"></span>:<span
+                                                data-bind="text: playingTime().normedSeconds"></span>
+                                        </div>
+                                    </div>
+
+                                    <!------->
+
+                                </div>
+                            </span>
+
+
+
+
+                            <textarea data-bind="textInput: showingText, enable: showRaw" class="form-control"
+                                aria-label="Text"></textarea>
+                        </div>
+
+                    </div>
+                    <div class="col-md-auto">
+                        <div class="btn-group-vertical">
+                            <button id="btnClearText" class="btn btn-light" data-bind="click: doClear"><img
+                                    id="trashImage" height="20" width="20" />&nbsp;Clear</button>
+                            <label id="lblLoadTextFile" for="txtfiletoread"><button id="btnLoadTextFile"
+                                    class="btn btn-light" onclick="getElementById('txtfiletoread').click()"><img
+                                        id="arrowleftImage" height="20" width="20" />&nbsp;Insert File</button></label>
+
+                            <input type="file" accept=".txt" id="txtfiletoread" class="form-control"
+                                data-bind="event: {change: function() { inputFileChange($element) } }" hidden>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!--  accordian area -->
+            <div class="col">
+                <div class="accordion" id="accordionExample">
+                    <!-- lessons -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingMockuplessons">
+                            <!-- accordian button text-->
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseMockup" aria-expanded="false" aria-controls="collapseMockup"
+                                id="lessonAccordianButton">
+                                <img id='bookImage' height=20 width=20 /><span>&nbsp;</span><span>LICW Lessons</span>
+                                <span>&nbsp;</span>
+                                <span class="badge bg-success" data-bind="if: lessons.selectedDisplay().display">
+                                    <span>Type: </span><span data-bind="text: lessons.userTarget"></span>
+                                    <span>&nbsp; Class: </span><span data-bind="text: lessons.selectedClass"></span>
+                                    <span>&nbsp; Letter Group: </span><span
+                                        data-bind="text: lessons.letterGroup"></span>
+                                    <span>&nbsp; Lesson: </span><span
+                                        data-bind="text: lessons.selectedDisplay().display"></span>
+                                </span>
+                                <span class="badge bg-success" data-bind="if: !lessons.selectedDisplay().display">(None
+                                    Currently
+                                    Selected)</span>
+                            </button>
+                        </h2>
+                        <!-- lesson controls-->
+                        <div id="collapseMockup" class="accordion-collapse show" aria-labelledby="headingMockuplessons">
+                            <div class="accordion-body">
+
+                                <div class="row gy-2 row-cols-6">
+                                    <!--user type-->
+                                    <div class="col-auto">
+                                        <div class="btn-group-vertical" role="group"
+                                            aria-label="Basic radio toggle button group"
+                                            data-bind="foreach: lessons.userTargets, childrenComplete: () => lessons.setUserTargetInitialized()">
+                                            <input type="radio" class="btn-check" name="btnradioUserTargets"
+                                                data-bind="checkedValue: $data, checked: $root.lessons.userTarget">
+                                            <label id="btnUserTypeSelection" class="btn btn-outline-primary"
+                                                data-bind="text: $data, click: $root.lessons.changeUserTarget($data)"></label>
+                                        </div>
+                                    </div>
+                                    <!--classes-->
+                                    <div class="col-auto">
+                                        <div class="btn-group-vertical" role="group"
+                                            aria-label="Basic radio toggle button group"
+                                            data-bind="foreach: lessons.classes, childrenComplete: () => lessons.setSelectedClassInitialized()">
+                                            <input type="radio" class="btn-check" name="btnradioClasses"
+                                                data-bind="checkedValue: $data, checked: $root.lessons.selectedClass">
+                                            <label id="btnClassSelection" class="btn btn-outline-primary"
+                                                data-bind="text: $data, click: $root.lessons.changeSelectedClass($data)"></label>
+                                        </div>
+                                    </div>
+                                    <!--letter groups-->
+                                    <div class="col-auto">
+                                        <div class="list-group"
+                                            data-bind="foreach: lessons.letterGroups, childrenComplete: () => lessons.setLetterGroupInitialized()"
+                                            style="overflow-y:auto; height:250px; width: 200px;">
+                                            <button id="btnLetterGroupSelection" type="button"
+                                                class="list-group-item list-group-item-action"
+                                                data-bind="text: $data, click: $root.lessons.setLetterGroup($data), css: { active: $data==$parent.lessons.letterGroup()}"></button>
+                                        </div>
+                                    </div>
+                                    <!--lessons-->
+                                    <div class="col-auto">
+                                        <div class="list-group"
+                                            data-bind="foreach: lessons.displays, childrenComplete: () => lessons.setDisplaysInitialized()"
+                                            style="overflow-y:auto; height:250px; width: 200px;">
+                                            <button id="btnLessonSelection" type="button"
+                                                class="list-group-item list-group-item-action"
+                                                data-bind="text: $data.display, click: ()=>$root.lessons.setDisplaySelected($data), css: { active: $data.display==$parent.lessons.selectedDisplay().display}"></button>
+                                        </div>
+                                    </div>
+
+                                    <!--buttons for overrides and such-->
+                                    <div class="col-auto">
+                                        <div class="btn-group-vertical" role="group"
+                                            aria-label="Basic checkbox toggle button group">
+                                            <!--randomize toggle-->
+                                            <input type="checkbox" class="btn-check" autocomplete="off" id="btncheck1"
+                                                data-bind="checked: lessons.randomizeLessons">
+                                            <label class="btn btn-outline-primary" for="btncheck1">Randomize&nbsp;<img
+                                                    data-bind="attr:{ src: lessons.randomizeLessons() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
+                                            <!--autoclose toggle-->
+                                            <input type="checkbox" class="btn-check" autocomplete="off"
+                                                id="btncheckautoclose"
+                                                data-bind="checked: lessons.autoCloseLessonAccordion">
+                                            <label class="btn btn-outline-primary" for="btncheckautoclose">Auto
+                                                Close&nbsp;<img
+                                                    data-bind="attr:{ src: lessons.autoCloseLessonAccordion() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
+                                            <!--sticky sets toggle-->
+                                            <input type="checkbox" class="btn-check" id="btncheck2stickysetstoggle"
+                                                autocomplete="off" data-bind="checked: lessons.ifStickySets">
+                                            <label class="btn btn-outline-primary" for="btncheck2stickysetstoggle"
+                                                style="width: 125px;">Sticky
+                                                Sets&nbsp;<img
+                                                    data-bind="attr:{ src: lessons.ifStickySets() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
+                                            <!--sticky set text -->
+                                            <input type="text" class="form-control" style="max-width:125px;"
+                                                aria-label="Username" min="0"
+                                                data-bind="textInput: lessons.stickySets, enable: lessons.ifStickySets">
+                                        </div>
+
+                                        <div class="input-group">
+                                            <div class="btn-group-vertical" role="group"
+                                                aria-label="Basic checkbox toggle button group">
+                                                <!--custom group run button-->
+                                                <button type="button" class="btn btn-success"
+                                                    data-bind="click: lessons.doCustomGroup"
+                                                    style="max-width:125px; padding-left: 2px; padding-right: 2px;">Custom
+                                                    Group</button>
+                                                <!--custom group text -->
+                                                <input type="text" class="form-control" style="max-width:125px;"
+                                                    aria-label="Username" min="0"
+                                                    data-bind="textInput: lessons.customGroup">
+                                            </div>
+                                        </div>
+                                        <!--newline chunking toggle-->
+                                        <input type="checkbox" class="btn-check" autocomplete="off"
+                                            id="btnchecknewlinechunking"
+                                            data-bind="checked: settings.misc.newlineChunking">
+                                        <label class="btn btn-outline-primary" for="btnchecknewlinechunking"
+                                            style="width: 125px; max-width:125px;"><span>Keep
+                                                Lines&nbsp;<img
+                                                    data-bind="attr:{ src: settings.misc.newlineChunking() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></span></label>
+
+                                    </div>
+
+                                    <!---->
+                                    <div class="col-auto">
+                                        <!--override time toggle-->
+                                        <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off"
+                                            data-bind="checked: lessons.ifOverrideTime">
+                                        <label class="btn btn-outline-primary" for="btncheck2">Override
+                                            Time&nbsp;<img
+                                                data-bind="attr:{ src: lessons.ifOverrideTime() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
+
+                                        <div class="input-group">
+                                            <!--override minutes-->
+                                            <span style="width: 76px;" class="input-group-text">Mins</span>
+                                            <input type="number" class="form-control" style="max-width:70px;"
+                                                aria-label="Username" min="0"
+                                                data-bind="textInput: lessons.overrideMins, enable: lessons.ifOverrideTime">
+                                        </div>
+
+                                        <div class="btn-group" role="group"
+                                            aria-label="Basic checkbox toggle button group">
+                                            <!--override size toggle-->
+                                            <input type="checkbox" class="btn-check" id="btncheck2overridesize"
+                                                autocomplete="off" data-bind="checked: lessons.ifOverrideMinMax">
+                                            <label style="width: 146px;" class="btn btn-outline-primary"
+                                                for="btncheck2overridesize">Override
+                                                Size&nbsp;<img
+                                                    data-bind="attr:{ src: lessons.ifOverrideMinMax() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
+
+                                        </div>
+
+                                        <div class="input-group">
+                                            <!--min override-->
+                                            <span style="width: 76px;" class="input-group-text">Min</span>
+                                            <input style="width: 70px;" type="number" class="form-control"
+                                                style="max-width:75px;" aria-label="Username" min="1"
+                                                data-bind="textInput: lessons.overrideMin, enable: lessons.ifOverrideMinMax">
+
+                                        </div>
+
+                                        <div class="input-group">
+                                            <!--max override-->
+                                            <span class="input-group-text"
+                                                data-bind="click: ()=>lessons.syncSize(!lessons.syncSize())">Max&nbsp;<img
+                                                    data-bind="attr:{ src: lessons.syncSize() ? morseLoadImages().getSrc('lockImage') : morseLoadImages().getSrc('unlockImage')}" /></span>
+                                            <input type="number" class="form-control" style="max-width:70px;"
+                                                aria-label="Username" min="1"
+                                                data-bind="textInput: lessons.overrideMax, enable: lessons.ifOverrideMinMax() && !lessons.syncSize(), attr: { min: lessons.trueOverrideMin}">
+                                        </div>
+                                        <!--custom group run button-->
+                                        <button type="button" class="btn btn-success"
+                                            data-bind="click: ()=> lessons.setDisplaySelected(lessons.selectedDisplay()), enable: lessons.selectedDisplay().display && !lessons.selectedDisplay().isDummy"
+                                            style="width: 146px; padding-left: 2px; padding-right: 2px;">Regenerate
+                                            Drill</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- more settings-->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingmoresettings">
+                            <button id="moreSettingsAccordionButton" class="accordion-button collapsed" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#collapsemoresettings" aria-expanded="false"
+                                aria-controls="collapsemoresettings">
+                                <img id='gearImage' height=20 width=20 /><span>&nbsp;</span>
+                                More Settings<span>&nbsp;</span>
+                            </button>
+                        </h2>
+                        <div id="collapsemoresettings" class="accordion-collapse collapse"
+                            aria-labelledby="headingmoresettings">
+                            <div class="accordion-body">
+
+                                <div class="row row-cols-5 gx-2 gy-2">
+
+                                    <!--tone-->
+                                    <div class="col-auto">
+                                        <div class="input-group">
+                                            <span class="input-group-text">DIT&nbsp;<img id="musicnoteImage" height=20
+                                                    witdh=20 /></span>
+                                            <input type="number" style="max-width:75px; min-width: 75px;"
+                                                class="form-control" aria-label="Server" min="100" max="1200" step="10"
+                                                data-bind="textInput: settings.frequency.ditFrequency">
+                                            <span class="input-group-text"
+                                                data-bind="click: ()=>settings.frequency.syncFreq(!settings.frequency.syncFreq())">DAH&nbsp;<img
+                                                    data-bind="attr:{ src: settings.frequency.syncFreq() ? morseLoadImages().getSrc('lockImage') : morseLoadImages().getSrc('unlockImage')}" /></span>
+                                            <input type="number" style="max-width:75px; min-width: 75px;"
+                                                class="form-control" aria-label="Server" min="100" max="1200" step="10"
+                                                data-bind="textInput: settings.frequency.dahFrequency, enable: !settings.frequency.syncFreq()">
+                                        </div>
+                                    </div>
+                                    <!--silence & spacing-->
+                                    <div class="col-auto">
+                                        <div class="input-group">
+                                            <span class="input-group-text">PRE&nbsp;<img id="volumemuteImage"
+                                                    height="20" width="20"></span>
+                                            <input type="number" style="max-width:75px; min-width: 75px;"
+                                                class="form-control" aria-label="Server" min="0" max="1200" step=".5"
+                                                data-bind="textInput: preSpace">
+                                            <span class="input-group-text">WORD SPACE&nbsp;<img id="graphuparrowImage"
+                                                    height=20 width=20 /></span>
+                                            <input type="number" style="max-width:75px; min-width: 75px;"
+                                                class="form-control" aria-label="Server" min="0" max="1200" step="1"
+                                                data-bind="textInput: xtraWordSpaceDits">
+
+
+                                        </div>
+                                    </div>
+                                    <!-- card size -->
+                                    <div class="col-auto">
+                                        <div class="input-group">
+                                            <span class="input-group-text">CARD SIZE&nbsp;<img height=20 width=20
+                                                    data-bind="attr: {src: morseLoadImages().getSrc('barchartImage')}" /></span>
+                                            <input type="number" style="max-width:75px; min-width: 75px;"
+                                                class="form-control" aria-label="Server" min="1" max="1200" step="1"
+                                                data-bind="textInput: cardFontPx">
+                                        </div>
+                                    </div>
+                                    <!--trail reveal-->
+                                    <div class="col-auto">
+                                        <div class="input-group">
+                                            <input type="checkbox" data-bind="checked: trailReveal" class="btn-check"
+                                                id="btntrailReveal" autocomplete="off" />
+                                            <label class="btn btn-outline-secondary"
+                                                for="btntrailReveal"><span>Trail&nbsp;</span><img height=20 width=20
+                                                    data-bind="attr:{ src: trailReveal() ? morseLoadImages().getSrc('eyeImage') : morseLoadImages().getSrc('eyeslashImage')}" /></label>
+                                            <span class="input-group-text">Pre Delay&nbsp;<img
+                                                    data-bind="attr:{ src: morseLoadImages().getSrc('stopwatchImage')}"
+                                                    height="20" width="20" /></span>
+                                            <input type="number" style="max-width:75px; min-width: 50px;"
+                                                class="form-control" aria-label="Username" min="0" step=".25"
+                                                data-bind="textInput: trailPreDelay, enable: trailReveal()">
+                                            <span class="input-group-text">Post Delay&nbsp;<img
+                                                    data-bind="attr:{ src: morseLoadImages().getSrc('stopwatchImage')}"
+                                                    height="20" width="20" /></span>
+                                            <input type="number" style="max-width:75px; min-width: 50px;"
+                                                class="form-control" aria-label="Username" min="0" step=".25"
+                                                data-bind="textInput: trailPostDelay, enable: trailReveal()">
+                                            <span class="input-group-text">Final&nbsp;<img
+                                                    data-bind="attr:{ src: morseLoadImages().getSrc('stopwatchImage')}" /></span>
+                                            <input type="number" style="max-width:75px; min-width: 50px;"
+                                                class="form-control" aria-label="Server" min="0" step=".25"
+                                                data-bind="textInput: trailFinal, enable: trailReveal()">
+                                        </div>
+                                    </div>
+                                    <!-- cards visibile -->
+                                    <div class="col-auto">
+
+
+                                        <input type="checkbox" class="btn-check" autocomplete="off"
+                                            id="btncheckcardsvisible" data-bind="checked: cardsVisible">
+                                        <label class=" btn btn-outline-primary" for="btncheckcardsvisible"><img
+                                                data-bind="attr:{ src: morseLoadImages().getSrc('grid3x3gapImage')}">&nbsp;Cards&nbsp;<img
+                                                data-bind="attr:{ src: cardsVisible() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
+                                    </div>
+                                    <!--download audio-->
+                                    <div class="col-auto">
+                                        <button type="button" class="btn btn-success" data-bind="click: doDownload"><img
+                                                id="downloadImage">
+                                            Audio File</button>
+                                        <a id="downloadLink"></a>
+                                    </div>
+                                    <!--expert settings toggle-->
+                                    <div class="col-auto">
+
+                                        <input type="checkbox" class="btn-check" autocomplete="off"
+                                            id="btncheckexpertsettings" data-bind="checked: showExpertSettings">
+                                        <label class="btn btn-outline-danger" for="btncheckexpertsettings"><img
+                                                height="20" width="20"
+                                                data-bind="attr:{ src: morseLoadImages().getSrc('exclamationoctagonImage')}">&nbsp;Expert
+                                            Settings&nbsp;<img
+                                                data-bind="attr:{ src: showExpertSettings() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
+                                    </div>
+
+                                    <!--sentences toggle-->
+                                    <!-- TODO remove 
+                                    <div class="col-auto" data-bind="visible: showExpertSettings">
+
+                                        <input type="checkbox" class="btn-check" autocomplete="off"
+                                            id="btnchecksentences" data-bind="checked: ifParseSentences">
+                                        <label class=" btn btn-outline-primary" for="btnchecksentences"><img
+                                                data-bind="attr:{ src: morseLoadImages().getSrc('numlistImage')}">&nbsp;Sentences&nbsp;<img
+                                                data-bind="attr:{ src: ifParseSentences() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
+                                    </div>
+                                    -->
+                                    <!--noise toggle-->
+                                    <div class="col-auto" data-bind="visible: showExpertSettings">
+
+                                        <input type="checkbox" class="btn-check" autocomplete="off" id="btnchecknoise"
+                                            data-bind="checked: noiseEnabled">
+                                        <label class=" btn btn-outline-primary" for="btnchecknoise"><img
+                                                data-bind="attr:{ src: morseLoadImages().getSrc('soundwaveImage')}">&nbsp;Noise&nbsp;<img
+                                                data-bind="attr:{ src: noiseEnabled() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
+                                    </div>
+
+                                    <!--rss toggle-->
+                                    <div class="col-auto" data-bind="visible: showExpertSettings">
+
+                                        <input type="checkbox" class="btn-check" autocomplete="off" id="btncheckrss"
+                                            data-bind="checked: rss.rssEnabled">
+                                        <label class=" btn btn-outline-primary" for="btncheckrss"><img
+                                                data-bind="attr:{ src: morseLoadImages().getSrc('rssImage')}">&nbsp;RSS&nbsp;<img
+                                                data-bind="attr:{ src: rss.rssEnabled() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
+                                    </div>
+
+                                    <!--voice toggle-->
+                                    <div class="input-group">
+                                        <div class="col-auto" data-bind="visible: showExpertSettings">
+
+                                            <input type="checkbox" class="btn-check" autocomplete="off"
+                                                id="btncheckvoice"
+                                                data-bind="checked: morseVoice.voiceEnabled, enable: morseVoice.voiceCapable()">
+                                            <label class=" btn btn-outline-primary" for="btncheckvoice"><img
+                                                    data-bind="attr:{ src: morseLoadImages().getSrc('chatquoteImage')}">&nbsp;Voice&nbsp;<img
+                                                    data-bind="attr:{ src: morseVoice.voiceEnabled() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
+                                        </div>
+                                        <!-- voice thinktime-->
+                                        <div class="col-md-auto"
+                                            data-bind="if: showExpertSettings() && morseVoice.voiceEnabled()">
+                                            <div class="input-group">
+                                                <span class="input-group-text">Delay<img width=20 height=20
+                                                        data-bind="attr:{ src: morseLoadImages().getSrc('stopwatchImage')}"></span>
+                                                <input type="number" style="max-width:75px; min-width: 75px;"
+                                                    class="form-control" min="0" max="10" step=".25"
+                                                    data-bind="textInput: morseVoice.voiceThinkingTime">
+                                            </div>
+                                        </div>
+                                        <!-- voice speaker-->
+                                        <div class="col-auto"
+                                            data-bind="if: showExpertSettings() && morseVoice.voiceEnabled() && morseVoice.voiceVoices().length">
+                                            <select class="form-select" data-bind="options: morseVoice.voiceVoices,
+                                        optionsText: 'name',
+                                        value: morseVoice.voiceVoice,
+                                        optionsCaption: 'Choose speaker...'"></select>
+                                        </div>
+                                        <!-- voice volume-->
+                                        <div class="col-md-auto"
+                                            data-bind="if: showExpertSettings() && morseVoice.voiceEnabled()">
+                                            <div class="input-group">
+                                                <span class="input-group-text"><img width=20 height=20
+                                                        data-bind="attr:{ src: morseLoadImages().getSrc('volumeImage')}"></span>
+                                                <input type="number" style="max-width:75px; min-width: 75px;"
+                                                    class="form-control" min="0" max="10" step="1"
+                                                    data-bind="textInput: morseVoice.voiceVolume">
+                                            </div>
+                                        </div>
+                                        <!-- voice pitch-->
+                                        <div class="col-md-auto"
+                                            data-bind="if: showExpertSettings() && morseVoice.voiceEnabled()">
+                                            <div class="input-group">
+                                                <span class="input-group-text">Pitch<img width=20 height=20
+                                                        data-bind="attr:{ src: morseLoadImages().getSrc('musicnoteImage')}"></span>
+                                                <input type="number" style="max-width:75px; min-width: 75px;"
+                                                    class="form-control" min="0" max="2" step=".25"
+                                                    data-bind="textInput: morseVoice.voicePitch">
+                                            </div>
+                                        </div>
+                                        <!-- voice rate-->
+                                        <div class="col-md-auto"
+                                            data-bind="if: showExpertSettings() && morseVoice.voiceEnabled()">
+                                            <div class="input-group">
+                                                <span class="input-group-text">Rate<img width=20 height=20
+                                                        data-bind="attr:{ src: morseLoadImages().getSrc('speedometerImage')}"></span>
+                                                <input type="number" style="max-width:75px; min-width: 75px;"
+                                                    class="form-control" min=".1" max="10" step=".1"
+                                                    data-bind="textInput: morseVoice.voiceRate">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!--sound slope -->
+                                    <div class="input-group">
+                                        <div class="col-auto" data-bind="visible: showExpertSettings">
+
+                                            <input type="checkbox" class="btn-check" autocomplete="off"
+                                                id="btncheckmoothing"
+                                                data-bind="checked: smoothing, enable: !playerPlaying(), event: {change: changeSoundMaker}">
+                                            <label class=" btn btn-outline-primary" for="btncheckmoothing"><img
+                                                    data-bind="attr:{ src: morseLoadImages().getSrc('soundwaveImage')}">&nbsp;Smoothing&nbsp;<img
+                                                    data-bind="attr:{ src: smoothing() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
+                                        </div>
+                                        <!-- risetimeconstant-->
+                                        <div class="col-md-auto" data-bind="if: showExpertSettings() && smoothing()">
+                                            <div class="input-group">
+                                                <span class="input-group-text">RiseK&nbsp;<img width=20 height=20
+                                                        data-bind="attr:{ src: morseLoadImages().getSrc('graphuparrowImage')}"></span>
+                                                <input type="number" style="max-width:100px; min-width: 75px;"
+                                                    class="form-control" min="0" max="10" step=".001"
+                                                    data-bind="textInput: riseTimeConstant">
+                                            </div>
+                                        </div>
+                                        <!-- decaytimeconstant-->
+                                        <div class="col-md-auto" data-bind="if: showExpertSettings() && smoothing()">
+                                            <div class="input-group">
+                                                <span class="input-group-text">DecayK&nbsp;<img width=20 height=20
+                                                        data-bind="attr:{ src: morseLoadImages().getSrc('graphdownarrowImage')}"></span>
+                                                <input type="number" style="max-width:100px; min-width: 75px;"
+                                                    class="form-control" min="0" max="10" step=".001"
+                                                    data-bind="textInput: decayTimeConstant">
+                                            </div>
+                                        </div>
+                                        <!-- decaystart-->
+                                        <div class="col-md-auto" data-bind="if: showExpertSettings() && smoothing()">
+                                            <div class="input-group">
+                                                <span class="input-group-text">Decay Start<img width=20 height=20
+                                                        data-bind="attr:{ src: morseLoadImages().getSrc('stopwatchImage')}"></span>
+                                                <input type="number" style="max-width:75px; min-width: 75px;"
+                                                    class="form-control" min=".1" max="5" step=".1"
+                                                    data-bind="textInput: decayMsOffset">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RSS -->
+                    <!-- ko if: rss.rssEnabled() && showExpertSettings() -->
+                    <div class="accordion-item" data-bind="component: {name: 'rssaccordion', params: {root: $root}}">
+                    </div>
+                    <!-- /ko -->
+
+                    <!-- NOISE -->
+                    <!-- ko if: noiseEnabled() && showExpertSettings() -->
+                    <div class="accordion-item" data-bind="component: {name: 'noiseaccordion', params: {root: $root}}">
+                    </div>
+                    <!-- /ko -->
+
+                    <!-- flagged words -->
+                    <div class="accordion-item"
+                        data-bind="component: {name: 'flaggedwordsaccordion', params: {root: $root}}">
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- controls area -->
+            <div class="col">
+
+                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group me-2" role="group" aria-label="Basic mixed styles example">
+                        <!-- play button -->
+                        <button id="btnPlayButton" type="button" class="btn btn-success"
+                            data-bind="click: () => doPlay(false,true)">
+                            <span data-bind="visible: !playerPlaying()">Play</span>
+                            <!--played-->
+                            <span data-bind="visible: playerPlaying()">
+                                <span data-bind="text: playingTime().minutes"></span>:<span
+                                    data-bind="text: playingTime().normedSeconds"></span>
+                            </span>
+                            <!--estimate-->
+                            <span>
+                                <span data-bind="text: timeEstimate().minutes"></span>:<span
+                                    data-bind="text: timeEstimate().normedSeconds"></span>
+
+                            </span>
+
+
+                            &nbsp;
+                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
+                                data-bind="visible: playerPlaying"></span>
+
+                            <img id='playImage' data-bind="visible: !playerPlaying()">
+                        </button>
+                        <button id="btnBackButton" type="button" class="btn btn-warning"
+                            data-bind="click: decrementIndex">Back
+                            1&nbsp;<img height="20" width="20"
+                                data-bind="attr:{src: morseLoadImages().getSrc('skipbackImage') }"></button>
+                        <button id="btnFullRewind" type="button" class="btn btn-success"
+                            data-bind="click: fullRewind">Full
+                            RW&nbsp;<img id="skipstartImage" height="20" width="20" /></button>
+                        <button id="btnSentenceRewind" type="button" class="btn btn-warning"
+                            data-bind="click: sentanceRewind, visible: ifParseSentences() && showExpertSettings()">Sent
+                            RW&nbsp;<img height="20" width="20"
+                                data-bind="attr:{src: morseLoadImages().getSrc('skipbackImage') }"></button>
+                        <button id="btnFwd1" type="button" class="btn btn-secondary"
+                            data-bind="click: incrementIndex">Fwd
+                            1&nbsp;<img id="skipforwardImage" height="20" width="20"></button>
+                        <button id="btnPause" type="button" class="btn btn-info"
+                            data-bind="click: () => {isPaused() ? doPlay(true,false) : doPause(false, true)}">Pause&nbsp;<span
+                                class="spinner-grow spinner-grow-sm text-dark" role="status" aria-hidden="true"
+                                data-bind="visible: isPaused"></span>
+
+                            <img id='pauseImage' data-bind="visible: !isPaused()" height="20" width="20"></button>
+                        <!--stop button-->
+                        <button id="btnStop" type="button" class="btn btn-danger"
+                            data-bind="click: () => doPause(true, false,true)">Stop&nbsp;<img id="stopImage" height="20"
+                                width="20"></button>
+
+                    </div>
+                    <div class="btn-group me-2" role="group" aria-label="second group">
+                        <!-- 
+                                <input type="checkbox" data-bind="checked: showRaw" class="btn-check" id="btnShowRaw" autocomplete="off"/>
+                                <label class="btn btn-outline-primary" for="btnShowRaw">Show Raw Text</label>
+                                -->
+                        <input type="checkbox" data-bind="checked: hideList" class="btn-check" id="btnHideList"
+                            autocomplete="off" />
+                        <label class="btn btn-outline-primary" for="btnHideList"><span>Reveal&nbsp;</span><img height=20
+                                width=20
+                                data-bind="attr:{ src: !hideList() ? morseLoadImages().getSrc('eyeImage') : morseLoadImages().getSrc('eyeslashImage')}" /></label>
+
+                    </div>
+                    <!-- sentence number -->
+                    <!--  TODO remove
+                    <div class="input-group me-2" aria-label="thirdgroupabcd" role="group"
+                        data-bind="visible: ifParseSentences() && showExpertSettings()">
+                        <span class="input-group-text">Sentence&nbsp;<img id='numlistImage' height="20"
+                                width="20" /></span>
+                        <input type="number" style="max-width:75px; min-width: 75px;" class="form-control"
+                            aria-label="Username"
+                            data-bind="textInput: currentSentanceIndex,attr:{min:0, max:sentenceMax}">
+                    </div>
+                    -->
+                    <div class="button-group me-2" role="group" aria-label="Basic mixed styles example">
+
+                        <button id="btnShuffle" type="button" class="btn btn-secondary"
+                            data-bind="click: () => shuffleWords(false)"><span
+                                data-bind="text: isShuffled()?'UnShuffle':'Shuffle'"></span>&nbsp;<img id="shuffleImage"
+                                height="20" width="20"></button>
+
+                    </div>
+
+                    <!-- loop -->
+                    <div class="input-group me-2" aria-label="thirdgroupabcd" role="group">
+
+
+                        <input type="checkbox" class="btn-check" autocomplete="off" id="btncheckloop"
+                            data-bind="checked: loop">
+                        <label class=" btn btn-outline-primary" for="btncheckloop"><img
+                                data-bind="attr:{ src: morseLoadImages().getSrc('arrowrepeatImage')}">&nbsp;Loop&nbsp;<img
+                                data-bind="attr:{ src: loop() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+            <!-- the word list/card area-->
+
+            <div class="col" data-bind="if: cardsVisible">
+
+                <div class="row gx-2 gy-2" data-bind="foreach: words">
+                    <div class="col-auto">
+                        <button class="btn"
+                            data-bind="class: $index()==$parent.currentIndex() ? 'btn-primary':'btn-outline-primary',click:()=>$parent.flaggedWords.addFlaggedWord($data), event:{dblclick: ()=>{$parent.setWordIndex($index())}}">
+                            <!--<h1>-->
+                            <span
+                                data-bind="style: {fontSize: $parent.cardFontPx } ,text: (!$parent.hideList() || ($parent.trailReveal() && $index() <= $parent.maxRevealedTrail() )) ? $data : 'X'.repeat($data.replace('\r','').replace('\n','').length)">
+                            </span>
+                            <!--</h1>-->
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+</body>
+
+</html>
