@@ -7,7 +7,7 @@
   \**********************************/
 /***/ ((module) => {
 
-module.exports = "WO6W DE N1CC GA BOB OP ALAN ANT DIPOLE UP 61 FT, PWR 1W HI HI, HPE CUAGN BOB, PSE RPT INFO, PSE RPT RIG ES ANT, PSE RPT CALL, PWR 1TT W  \n";
+module.exports = "WO6W DE N1CC GA BOB OP ALAN ANT DIPOLE UP 61 FT\nPWR 1W HI HI\nHPE CUAGN BOB\nPSE RPT INFO\nPSE RPT RIG ES ANT\nPSE RPT CALL\nPWR 1TT W  \n";
 
 /***/ })
 
