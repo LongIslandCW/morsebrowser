@@ -380,5 +380,13 @@
     {"sort":379, "userTarget": "INSTRUCTOR", "class": "B1", "letterGroup": "PGS", "newlineChunking":false,"display":"PGS TIN REA STATES", "fileName": "PGS8.txt" },
     {"sort":380, "userTarget": "INSTRUCTOR", "class": "B1", "letterGroup": "PGS", "newlineChunking":false,"display":"PGS TIN REA    QSO ABBREVIATIONS", "fileName": "PGS9.txt" },
     {"sort":381, "userTarget": "INSTRUCTOR", "class": "B1", "letterGroup": "PGS", "newlineChunking":false,"display":"PGS TIN REA WORDS", "fileName": "PGS10.txt" },
-    {"sort":382, "userTarget": "INSTRUCTOR", "class": "B1", "letterGroup": "PGS", "newlineChunking":true,"display":"PGS TIN REA PHRASES", "fileName": "PGS11.txt" }
+    {"sort":382, "userTarget": "INSTRUCTOR", "class": "B1", "letterGroup": "PGS", "newlineChunking":true,"display":"PGS TIN REA PHRASES", "fileName": "PGS11.txt" },
+    {"sort":383, "userTarget": "STUDENT", "class": "B1", "letterGroup": "LCD", "newlineChunking":false,"display":"LCD PGS TIN STATES", "fileName": "LCD8.txt" },
+    {"sort":384, "userTarget": "STUDENT", "class": "B1", "letterGroup": "LCD", "newlineChunking":false,"display":"LCD PGS TIN    QSO ABBREVIATIONS", "fileName": "LCD9.txt" },
+    {"sort":385, "userTarget": "STUDENT", "class": "B1", "letterGroup": "LCD", "newlineChunking":false,"display":"LCD PGS TIN WORDS", "fileName": "LCD10.txt" },
+    {"sort":386, "userTarget": "STUDENT", "class": "B1", "letterGroup": "LCD", "newlineChunking":true,"display":"LCD PGS TIN PHRASES", "fileName": "LCD11.txt" },
+    {"sort":387, "userTarget": "INSTRUCTOR", "class": "B1", "letterGroup": "LCD", "newlineChunking":false,"display":"LCD PGS TIN STATES", "fileName": "LCD8.txt" },
+    {"sort":388, "userTarget": "INSTRUCTOR", "class": "B1", "letterGroup": "LCD", "newlineChunking":false,"display":"LCD PGS TIN    QSO ABBREVIATIONS", "fileName": "LCD9.txt" },
+    {"sort":389, "userTarget": "INSTRUCTOR", "class": "B1", "letterGroup": "LCD", "newlineChunking":false,"display":"LCD PGS TIN WORDS", "fileName": "LCD10.txt" },
+    {"sort":390, "userTarget": "INSTRUCTOR", "class": "B1", "letterGroup": "LCD", "newlineChunking":true,"display":"LCD PGS TIN PHRASES", "fileName": "LCD11.txt" }
 ]}
