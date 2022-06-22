@@ -56,9 +56,6 @@ export default class SmoothedSoundsPlayer implements ISoundMaker {
 
   setVolume = (scaledVolume) => {
     this.scaledVolume = scaledVolume
-    // if (this.myAudioContext) {
-    //   this.gainNode.gain.setValueAtTime(scaledVolume, this.myAudioContext.currentTime)
-    // }
   }
 
   setNoiseVolume = (scaledVolume) => {
@@ -150,24 +147,10 @@ export default class SmoothedSoundsPlayer implements ISoundMaker {
     // if its not an offline, we know by the endtime when it will end
     if (!this.config.offline) {
       setTimeout(() => {
-        // if voice is enabled, destroy the audio context for safari...
-        // not sure this helps but...
-
         const closeOutCallback = () => {
           this.sourceEnded = true
           this.sourceEndedCallBack()
         }
-
-        /* setTimeout(() => {
-          if (config.voiceEnabled) {
-            this.ssContext.stopAndCloseContext(closeOutCallback)
-          } else {
-            closeOutCallback()
-          }
-
-          // seems like we need a little padding with voice on to avoid
-          // a popping sound...not sure why
-        }, !config.voiceEnabled ? 0 : 100) */
 
         closeOutCallback()
       }, endTime)
@@ -243,16 +226,9 @@ export default class SmoothedSoundsPlayer implements ISoundMaker {
       config.offline = true
       this.play(config, (renderedBuffer:AudioBuffer) => {
         this.sourceEnded = true
-        // console.log('renderedbuffer')
-        // console.log(renderedBuffer)
-        // console.log('ended')
         const myWav = toWav(renderedBuffer)
-        // console.log('towav')
-        // console.log(myWav)
         resolve(myWav)
       })
-      // const wav = MorseStringToWavBuffer.createWav(config, true)
-      // resolve(wav.wav)
     })
     return myPromise
   }
