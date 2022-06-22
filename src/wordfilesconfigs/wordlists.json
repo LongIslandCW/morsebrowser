@@ -372,5 +372,13 @@
     {"sort":371, "userTarget": "INSTRUCTOR", "class": "B1", "letterGroup": "TIN", "newlineChunking":false,"display":"TIN REA UWB STATES", "fileName": "TIN8.txt" },
     {"sort":372, "userTarget": "INSTRUCTOR", "class": "B1", "letterGroup": "TIN", "newlineChunking":false,"display":"TIN REA UWB    QSO ABBREVIATIONS", "fileName": "TIN9.txt" },
     {"sort":373, "userTarget": "INSTRUCTOR", "class": "B1", "letterGroup": "TIN", "newlineChunking":false,"display":"TIN REA UWB WORDS", "fileName": "TIN10.txt" },
-    {"sort":374, "userTarget": "INSTRUCTOR", "class": "B1", "letterGroup": "TIN", "newlineChunking":true,"display":"TIN REA UWB PHRASES", "fileName": "TIN11.txt" }
+    {"sort":374, "userTarget": "INSTRUCTOR", "class": "B1", "letterGroup": "TIN", "newlineChunking":true,"display":"TIN REA UWB PHRASES", "fileName": "TIN11.txt" },
+    {"sort":375, "userTarget": "STUDENT", "class": "B1", "letterGroup": "PGS", "newlineChunking":false,"display":"PGS TIN REA STATES", "fileName": "PGS8.txt" },
+    {"sort":376, "userTarget": "STUDENT", "class": "B1", "letterGroup": "PGS", "newlineChunking":false,"display":"PGS TIN REA    QSO ABBREVIATIONS", "fileName": "PGS9.txt" },
+    {"sort":377, "userTarget": "STUDENT", "class": "B1", "letterGroup": "PGS", "newlineChunking":false,"display":"PGS TIN REA WORDS", "fileName": "PGS10.txt" },
+    {"sort":378, "userTarget": "STUDENT", "class": "B1", "letterGroup": "PGS", "newlineChunking":true,"display":"PGS TIN REA PHRASES", "fileName": "PGS11.txt" },
+    {"sort":379, "userTarget": "INSTRUCTOR", "class": "B1", "letterGroup": "PGS", "newlineChunking":false,"display":"PGS TIN REA STATES", "fileName": "PGS8.txt" },
+    {"sort":380, "userTarget": "INSTRUCTOR", "class": "B1", "letterGroup": "PGS", "newlineChunking":false,"display":"PGS TIN REA    QSO ABBREVIATIONS", "fileName": "PGS9.txt" },
+    {"sort":381, "userTarget": "INSTRUCTOR", "class": "B1", "letterGroup": "PGS", "newlineChunking":false,"display":"PGS TIN REA WORDS", "fileName": "PGS10.txt" },
+    {"sort":382, "userTarget": "INSTRUCTOR", "class": "B1", "letterGroup": "PGS", "newlineChunking":true,"display":"PGS TIN REA PHRASES", "fileName": "PGS11.txt" }
 ]}
