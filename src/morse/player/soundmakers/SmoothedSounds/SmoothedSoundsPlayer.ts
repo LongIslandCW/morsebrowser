@@ -56,9 +56,6 @@ export default class SmoothedSoundsPlayer implements ISoundMaker {
 
   setVolume = (scaledVolume) => {
     this.scaledVolume = scaledVolume
-    // if (this.myAudioContext) {
-    //   this.gainNode.gain.setValueAtTime(scaledVolume, this.myAudioContext.currentTime)
-    // }
   }
 
   setNoiseVolume = (scaledVolume) => {
@@ -124,7 +121,7 @@ export default class SmoothedSoundsPlayer implements ISoundMaker {
   }
 
   play = (config:SoundMakerConfig, onEnded:any) => {
-    const wavInfo = MorseStringToWavBuffer.createWav(config, false)
+    const wavInfo = !config.morseDisabled ? MorseStringToWavBuffer.createWav(config, false) : null
     config.noise.scaledNoiseVolume = config.noise.volume / 10
     this.doPlay(wavInfo, config.volume / 10, config, onEnded)
   }
@@ -135,20 +132,27 @@ export default class SmoothedSoundsPlayer implements ISoundMaker {
     this.config = config
     this.sourceEnded = false
     this.sourceEndedCallBack = onEnded
-    const endTime = this.getEndTime(wavInfo)
-    this.getContext(endTime)
-    this.setGainTimings(wavInfo, scaledVolume, config)
+    const endTime = !config.morseDisabled ? this.getEndTime(wavInfo, config) : 0
 
-    // only do noise if not an offline recording
-    if (!this.config.offline) {
-      this.handleNoiseSettings(config)
+    if (!config.morseDisabled) {
+      this.getContext(endTime)
+      this.setGainTimings(wavInfo, scaledVolume, config)
+
+      // only do noise if not an offline recording
+      if (!this.config.offline) {
+        this.handleNoiseSettings(config)
+      }
     }
 
     // if its not an offline, we know by the endtime when it will end
     if (!this.config.offline) {
       setTimeout(() => {
-        this.sourceEnded = true
-        this.sourceEndedCallBack()
+        const closeOutCallback = () => {
+          this.sourceEnded = true
+          this.sourceEndedCallBack()
+        }
+
+        closeOutCallback()
       }, endTime)
     } else {
       // offline so schedule the oscillator stop
@@ -189,11 +193,12 @@ export default class SmoothedSoundsPlayer implements ISoundMaker {
     }
   }
 
-  getEndTime = (wavInfo:CreatedWav) => {
+  getEndTime = (wavInfo:CreatedWav, config:SoundMakerConfig) => {
     const l = wavInfo.timeLine.length
     const wordSpaceTime = wavInfo.timingUnits.wordSpaceMultiplier * wavInfo.timingUnits.calculatedFWUnitsMs
     const xtraWordSpaceDits = this.config.xtraWordSpaceDits * wavInfo.timingUnits.calculatedFWUnitsMs * wavInfo.timingUnits.ditUnitMultiPlier
-    return wavInfo.timeLine[l - 1].time + wordSpaceTime + xtraWordSpaceDits
+    const endTime = config.trimLastWordSpace ? 0 : wordSpaceTime + xtraWordSpaceDits
+    return wavInfo.timeLine[l - 1].time + endTime
   }
 
   forceStop = (pauseCallBack, killNoise) => {
@@ -221,16 +226,9 @@ export default class SmoothedSoundsPlayer implements ISoundMaker {
       config.offline = true
       this.play(config, (renderedBuffer:AudioBuffer) => {
         this.sourceEnded = true
-        // console.log('renderedbuffer')
-        // console.log(renderedBuffer)
-        // console.log('ended')
         const myWav = toWav(renderedBuffer)
-        // console.log('towav')
-        // console.log(myWav)
         resolve(myWav)
       })
-      // const wav = MorseStringToWavBuffer.createWav(config, true)
-      // resolve(wav.wav)
     })
     return myPromise
   }

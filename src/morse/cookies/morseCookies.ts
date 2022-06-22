@@ -29,7 +29,7 @@ export class MorseCookies {
     if (workAry) {
       workAry.forEach((setting) => {
         const key = keyResolver(setting)
-        const val = valResolver(setting)
+        let val = valResolver(setting)
 
         if (!whiteList || whiteList.indexOf(key) > -1) {
           switch (key) {
@@ -43,6 +43,10 @@ export class MorseCookies {
               break
             default:
               if (typeof ctxt[key] !== 'undefined') {
+                if (key === 'xtraWordSpaceDits' && parseInt(val) === 0) {
+                  // prior functionality may have this at 0 so make it 1
+                  val = 1
+                }
                 ctxt[key](GeneralUtils.booleanize(val))
               } else {
                 otherHandling.push(<CookieInfo>{ key, val })
@@ -55,6 +59,7 @@ export class MorseCookies {
         handler.handleCookies(otherHandling)
       })
       specialHandling.forEach((x) => {
+        console.log('in special handling')
         ctxt[x.key](x.val)
       })
     }

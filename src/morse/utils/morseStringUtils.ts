@@ -1,3 +1,4 @@
+import wordifiers from '../../configs/wordify.json'
 export default class MorseStringUtils {
   static doReplacements = (s:string):string => {
     const afterReplaced = s
@@ -61,12 +62,41 @@ export default class MorseStringUtils {
   }
 
   static wordifyPunctuation = (s:string):string => {
-    return s.replace(/,/g, ' comma ')
-      .replace(/\./g, ' period ')
-      .replace(/\?/g, ' question mark ')
-      .replace(/\//g, ' stroke ')
-      .replace(/:/g, ' colon ')
-      .replace(/!/g, ' exclamation ')
-      .replace(/-/g, ' dash ')
+    let fixed = s.replace(/\r/g, '').replace(/\n/g, '')
+    wordifiers.wordifications.forEach(w => {
+      let myChars = w.characters
+      const before = w.characters
+      myChars = myChars.replace(/\?/g, '\\?')
+        .replace(/\./g, '\\.')
+        .replace(/\//g, '\\/')
+      /*  if (before === 'HW?') {
+        console.log(myChars)
+      } */
+      const fakeSpace = '|'
+      if (!w.onlyAlone) {
+        /* if (myChars === '<AR>') {
+          console.log(`mychars:${myChars}`)
+          console.log(`fixed:${fixed}`)
+        } */
+        const myRegex = new RegExp(`${myChars}`, 'gi')
+        fixed = fixed.replace(myRegex, `${fakeSpace}${w.replacement}${fakeSpace}`)
+      } else {
+        // console.log(`mychars:${myChars}`)
+        // guard state abbreviations from being part of a prosign
+        // not all browsers suppor this
+        // const myRegex = new RegExp(`\\b(?<!<)${myChars}\\b`, 'gi')
+        // fixed = fixed.replace(myRegex, ` ${w.replacement} `)
+        // if (before === 'HW?') {
+        //   console.log(`fixed:${fixed}`)
+        // }
+
+        // TODO: for now we ignore multiline/spaces
+        if (before.length === fixed.length) {
+          const myRegex = new RegExp(`${myChars}`, 'gi')
+          fixed = fixed.replace(myRegex, `${fakeSpace}${w.replacement}${fakeSpace}`)
+        }
+      }
+    })
+    return fixed
   }
 }

@@ -34,7 +34,6 @@ export class MorseViewModel {
   rawText:ko.Observable<string> = ko.observable()
   showingText:ko.Observable<string> = ko.observable('')
   showRaw:ko.Observable<boolean> = ko.observable(true)
-  // rssInitializedOnce:ko.Observable<boolean> = ko.observable(false)
   volume:ko.Observable<number> = ko.observable()
   noiseEnabled:ko.Observable<boolean> = ko.observable(false)
   noiseVolume:ko.Observable<number> = ko.observable(2)
@@ -63,14 +62,16 @@ export class MorseViewModel {
   riseMsOffset:ko.Observable<number> = ko.observable(1.5)
   decayMsOffset:ko.Observable<number> = ko.observable(1.5)
   smoothing:ko.Observable<boolean> = ko.observable(true)
+  morseDisabled:ko.Observable<boolean> = ko.observable(false)
   settings:MorseSettings
   lessons:MorseLessonPlugin
   flaggedWords:FlaggedWords
   voiceBuffer:string[]
   doPlayTimeout:any
-  // rssPlayCallback: any
-  // rssCookieWhiteList: any
   rss:MorseRssPlugin
+  lastShuffled:string = ''
+  flaggedWordsLogCount:number = 0
+  flaggedWordsLog:any[] = []
 
   // END KO observables declarations
   constructor () {
@@ -104,7 +105,12 @@ export class MorseViewModel {
 
     // check for noise feature turned on
     if (this.getParameterByName('noiseEnabled')) {
-      this.noiseEnabled(true)
+      this.noiseEnabled(this.getParameterByName('noiseEnabled') === 'true')
+    }
+
+    // check for noise feature turned on
+    if (this.getParameterByName('morseDisabled')) {
+      this.morseDisabled(this.getParameterByName('morseDisabled') === 'true')
     }
 
     // seems to need to happen early
@@ -121,12 +127,17 @@ export class MorseViewModel {
     // initialize the wordlist
     this.lessons.initializeWordList()
 
+    this.flaggedWords = new FlaggedWords()
+
     // voice
-    this.morseVoice = new MorseVoice()
+    this.morseVoice = new MorseVoice(this)
+
+    // check for voice feature turned on
+    if (this.getParameterByName('voiceEnabled')) {
+      this.morseVoice.voiceEnabled(true)
+    }
 
     this.shortCutKeys = new MorseShortcutKeys(this.settings)
-
-    this.flaggedWords = new FlaggedWords()
 
     // are we on the dev site?
     this.isDev(window.location.href.toLowerCase().indexOf('/dev/') > -1)
@@ -138,6 +149,20 @@ export class MorseViewModel {
     ko.components.register('flaggedwordsaccordion', FlaggedWordsAccordion)
   }
   // END CONSTRUCTOR
+
+  logToFlaggedWords = (s) => {
+    this.flaggedWordsLogCount++
+    // const myPieces = this.flaggedWords.flaggedWords().split('\n')
+    // console.log(myPieces)
+    this.flaggedWordsLog[0] = { timeStamp: 0, msg: `LOGGED LINES:${this.flaggedWordsLogCount}` }
+    const timeStamp = new Date()
+    this.flaggedWordsLog[this.flaggedWordsLog.length] = { timeStamp, msg: `${s}` }
+    const myPieces = this.flaggedWordsLog.map((e, i, a) => {
+      return `${i < 2 ? e.timeStamp : e.timeStamp - a[i - 1].timeStamp}: ${e.msg}`
+    })
+    const out = myPieces.filter(s => s).join('\n')
+    this.flaggedWords.flaggedWords(out)
+  }
 
   // helper
   // https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
@@ -182,12 +207,13 @@ export class MorseViewModel {
   shuffleWords = (fromLoopRestart:boolean = false) => {
     // if it's not currently shuffled, or we're in a loop, re-shuffle
     if (!this.isShuffled() || fromLoopRestart) {
-      const hasPhrases = this.rawText().indexOf('\n') !== -1
+      const hasPhrases = this.rawText().indexOf('\n') !== -1 && this.settings.misc.newlineChunking()
       // if we're in a loop or otherwise already shuffled, we don't want to loose the preShuffled
       if (!this.isShuffled()) {
         this.preShuffled = this.rawText()
       }
-      this.setText(this.rawText().split(hasPhrases ? '\n' : ' ').sort(() => { return 0.5 - Math.random() }).join(hasPhrases ? '\n' : ' '))
+      this.lastShuffled = this.rawText().split(hasPhrases ? '\n' : ' ').sort(() => { return 0.5 - Math.random() }).join(hasPhrases ? '\n' : ' ')
+      this.setText(this.lastShuffled)
       if (!this.isShuffled()) {
         this.isShuffled(true)
       }
@@ -257,7 +283,8 @@ export class MorseViewModel {
     config.ditFrequency = parseInt(this.settings.frequency.ditFrequency() as any)
     config.dahFrequency = parseInt(this.settings.frequency.dahFrequency() as any)
     config.prePaddingMs = this.preSpaceUsed() ? 0 : this.preSpace() * 1000
-    config.xtraWordSpaceDits = parseInt(this.xtraWordSpaceDits() as any)
+    // note this was changed so UI is min 1 meaning 0, 1=>7, 2=>14 etc
+    config.xtraWordSpaceDits = (parseInt(this.xtraWordSpaceDits() as any) - 1) * 7
     config.volume = parseInt(this.volume() as any)
     config.noise = new NoiseConfig()
     config.noise.type = this.noiseEnabled() ? this.noiseType() : 'off'
@@ -267,6 +294,13 @@ export class MorseViewModel {
     config.decayTimeConstant = parseFloat(this.decayTimeConstant() as any)
     config.riseMsOffset = parseFloat(this.riseMsOffset() as any)
     config.decayMsOffset = parseFloat(this.decayMsOffset() as any)
+    // suppress wordspaces when using speak so "thinking time" will control
+    if (this.morseVoice) {
+      config.trimLastWordSpace = this.morseVoice.voiceEnabled()
+      config.voiceEnabled = this.morseVoice.voiceEnabled()
+    }
+    config.morseDisabled = this.morseDisabled()
+
     return config
   }
 
@@ -401,13 +435,30 @@ export class MorseViewModel {
       const currentWord = this.words()[this.currentIndex()]
       const hasNewline = currentWord.indexOf('\n') !== -1
       this.morseVoice.voiceBuffer.push(currentWord)
-      if (hasNewline || !isNotLastWord || !anyNewLines) {
-        const phraseToSpeak = MorseStringUtils.wordifyPunctuation(this.morseVoice.voiceBuffer.join(' '))
+      this.logToFlaggedWords(`currentWord:${currentWord}`)
+      this.logToFlaggedWords(`hasNewline:${hasNewline} isNotLastWord: ${isNotLastWord} anyNewLines:${anyNewLines}`)
+      const speakCondition = hasNewline || !isNotLastWord || !anyNewLines || !this.settings.misc.newlineChunking()
+      this.logToFlaggedWords(`speakCondition:${speakCondition}`)
+      if (speakCondition) {
+        this.logToFlaggedWords(`about to wordify:'${this.morseVoice.voiceBuffer.join(' ')}'`)
+        let phraseToSpeak
+        try {
+          phraseToSpeak = MorseStringUtils.wordifyPunctuation(this.morseVoice.voiceBuffer.join(' '))
+          phraseToSpeak = phraseToSpeak.replace(/\n/g, ' ').trim()
+        } catch (e) {
+          this.logToFlaggedWords(`caught after wordify:${e}`)
+        }
+        this.logToFlaggedWords(`phraseToSpeak:'${phraseToSpeak}'`)
         // clear the buffer
         this.morseVoice.voiceBuffer = []
+        this.logToFlaggedWords(`voiceThinkingTime:${this.morseVoice.voiceThinkingTime()}`)
+
         setTimeout(() => {
+          this.logToFlaggedWords('aboutToSpeak...')
           this.morseVoice.speakPhrase(phraseToSpeak, () => {
+            this.logToFlaggedWords('returned from speaking...')
             // what gets called after speaking
+            this.logToFlaggedWords(`needToTrail:${needToTrail}`)
             if (needToTrail) {
               advanceTrail()
             }
@@ -467,6 +518,8 @@ export class MorseViewModel {
       // need to clear or else won't fire if use clears the text area
       // and then tries to reload the same again
       element.value = null
+      // request to undo "apply" after file load
+      this.lessons.selectedDisplay({})
     }
     fr.readAsText(file)
   }

@@ -54,6 +54,19 @@ export class MorseExtenders {
       return target
     }
 
+    ko.extenders.undoIsShuffled = (target, option) => {
+      target.subscribe((newValue) => {
+        if (ctxt.isShuffled()) {
+          // we are shuffled, but are we showing the correct text?
+          // idea is that if something changes the text, it breaks out of shuffle
+          if (ctxt.lastShuffled !== newValue) {
+            ctxt.isShuffled(false)
+          }
+        }
+      })
+      return target
+    }
+
     ko.extenders.dummyLogger = (target, option) => {
       target.subscribe((newValue) => {
         console.log(`dummyloggerextension option:${option} newValue:${newValue}`)
@@ -75,5 +88,7 @@ export class MorseExtenders {
     // ctxt.rssEnabled.extend({ initRss: 'rssEnabled' })
     ctxt.showExpertSettings.extend({ saveCookie: 'showExpertSettings' } as ko.ObservableExtenderOptions<boolean>)
     ctxt.cardFontPx.extend({ saveCookie: 'cardFontPx' } as ko.ObservableExtenderOptions<boolean>)
+
+    ctxt.rawText.extend({ undoIsShuffled: 'rawText' } as ko.ObservableExtenderOptions<boolean>)
   }
 }

@@ -58,8 +58,9 @@
                         <h6>To report bugs, request features, view source and more, please go to our <a
                                 href="https://github.com/LongIslandCW/morsebrowser/">github<img id="githubImage">
                                 repository.</a></h6>
-                        <h4 data-bind="if: isDev()">WARNING: You are using the BETA (unstable) version. For the latest
+                        <h3 data-bind="if: isDev()">WARNING: You are using the BETA (unstable) version. For the latest
                             stable release please <a href="../">click here.</a></h3>
+                        <h6>Version 1.0.3</h6>
                     </div>
                 </div>
 
@@ -74,7 +75,7 @@
                             <!-- wpm -->
                             <!-- <span class="input-group-text">WPM&nbsp;<img height="20" width="20"
                                     data-bind="attr: {src:morseLoadImages().getSrc('speedometerImage')}" /></span> -->
-                            <span class="input-group-text">WPM&nbsp;
+                            <span class="input-group-text">Character Speed (WPM)&nbsp;
 
                                 <simpleimage
                                     params="root: $root, height:20, width:20, icon:'speedometerImage', labelText:'WPM'">
@@ -85,7 +86,8 @@
                                 aria-label="Username" min="1" data-bind="textInput: settings.speed.wpm">
                             <!-- fwpm -->
                             <span class="input-group-text"
-                                data-bind="click: ()=>settings.speed.syncWpm(!settings.speed.syncWpm())">FWPM&nbsp;<img
+                                data-bind="click: ()=>settings.speed.syncWpm(!settings.speed.syncWpm())">Effective Speed
+                                (FWPM)&nbsp;<img
                                     data-bind="attr:{ src: settings.speed.syncWpm() ? morseLoadImages().getSrc('lockImage') : morseLoadImages().getSrc('unlockImage')}" /></span>
                             <input type="number" style="max-width:75px; min-width: 75px;" class="form-control"
                                 aria-label="Server" min="1"
@@ -355,8 +357,7 @@
                                         <!--custom group run button-->
                                         <button type="button" class="btn btn-success"
                                             data-bind="click: ()=> lessons.setDisplaySelected(lessons.selectedDisplay()), enable: lessons.selectedDisplay().display && !lessons.selectedDisplay().isDummy"
-                                            style="width: 146px; padding-left: 2px; padding-right: 2px;">Regenerate
-                                            Drill</button>
+                                            style="width: 146px; padding-left: 2px; padding-right: 2px;">Apply</button>
                                     </div>
                                 </div>
 
@@ -406,7 +407,7 @@
                                             <span class="input-group-text">WORD SPACE&nbsp;<img id="graphuparrowImage"
                                                     height=20 width=20 /></span>
                                             <input type="number" style="max-width:75px; min-width: 75px;"
-                                                class="form-control" aria-label="Server" min="0" max="1200" step="1"
+                                                class="form-control" aria-label="Server" min="1" max="10" step="1"
                                                 data-bind="textInput: xtraWordSpaceDits">
 
 
@@ -500,14 +501,14 @@
                                     </div>
 
                                     <!--rss toggle-->
-                                    <div class="col-auto" data-bind="visible: showExpertSettings">
+                                    <!--  <div class="col-auto" data-bind="visible: showExpertSettings">
 
                                         <input type="checkbox" class="btn-check" autocomplete="off" id="btncheckrss"
                                             data-bind="checked: rss.rssEnabled">
                                         <label class=" btn btn-outline-primary" for="btncheckrss"><img
                                                 data-bind="attr:{ src: morseLoadImages().getSrc('rssImage')}">&nbsp;RSS&nbsp;<img
                                                 data-bind="attr:{ src: rss.rssEnabled() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
-                                    </div>
+                                    </div> -->
 
                                     <!--voice toggle-->
                                     <div class="input-group">
@@ -575,8 +576,8 @@
                                     </div>
 
                                     <!--sound slope -->
-                                    <div class="input-group">
-                                        <div class="col-auto" data-bind="visible: showExpertSettings">
+                                    <!-- <div class="input-group"> -->
+                                    <!--  <div class="col-auto" data-bind="visible: showExpertSettings">
 
                                             <input type="checkbox" class="btn-check" autocomplete="off"
                                                 id="btncheckmoothing"
@@ -584,9 +585,10 @@
                                             <label class=" btn btn-outline-primary" for="btncheckmoothing"><img
                                                     data-bind="attr:{ src: morseLoadImages().getSrc('soundwaveImage')}">&nbsp;Smoothing&nbsp;<img
                                                     data-bind="attr:{ src: smoothing() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
-                                        </div>
-                                        <!-- risetimeconstant-->
-                                        <div class="col-md-auto" data-bind="if: showExpertSettings() && smoothing()">
+                                        </div> -->
+
+                                    <!-- risetimeconstant-->
+                                    <!-- <div class="col-md-auto" data-bind="if: showExpertSettings() && smoothing()">
                                             <div class="input-group">
                                                 <span class="input-group-text">RiseK&nbsp;<img width=20 height=20
                                                         data-bind="attr:{ src: morseLoadImages().getSrc('graphuparrowImage')}"></span>
@@ -594,9 +596,9 @@
                                                     class="form-control" min="0" max="10" step=".001"
                                                     data-bind="textInput: riseTimeConstant">
                                             </div>
-                                        </div>
-                                        <!-- decaytimeconstant-->
-                                        <div class="col-md-auto" data-bind="if: showExpertSettings() && smoothing()">
+                                        </div> -->
+                                    <!-- decaytimeconstant-->
+                                    <!-- <div class="col-md-auto" data-bind="if: showExpertSettings() && smoothing()">
                                             <div class="input-group">
                                                 <span class="input-group-text">DecayK&nbsp;<img width=20 height=20
                                                         data-bind="attr:{ src: morseLoadImages().getSrc('graphdownarrowImage')}"></span>
@@ -604,9 +606,9 @@
                                                     class="form-control" min="0" max="10" step=".001"
                                                     data-bind="textInput: decayTimeConstant">
                                             </div>
-                                        </div>
-                                        <!-- decaystart-->
-                                        <div class="col-md-auto" data-bind="if: showExpertSettings() && smoothing()">
+                                        </div> -->
+                                    <!-- decaystart-->
+                                    <!-- <div class="col-md-auto" data-bind="if: showExpertSettings() && smoothing()">
                                             <div class="input-group">
                                                 <span class="input-group-text">Decay Start<img width=20 height=20
                                                         data-bind="attr:{ src: morseLoadImages().getSrc('stopwatchImage')}"></span>
@@ -614,8 +616,8 @@
                                                     class="form-control" min=".1" max="5" step=".1"
                                                     data-bind="textInput: decayMsOffset">
                                             </div>
-                                        </div>
-                                    </div>
+                                        </div> -->
+                                    <!-- </div> -->
                                 </div>
 
                             </div>
