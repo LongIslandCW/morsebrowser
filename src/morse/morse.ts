@@ -521,6 +521,8 @@ export class MorseViewModel {
       // need to clear or else won't fire if use clears the text area
       // and then tries to reload the same again
       element.value = null
+      // request to undo "apply" after file load
+      this.lessons.selectedDisplay({})
     }
     fr.readAsText(file)
   }
