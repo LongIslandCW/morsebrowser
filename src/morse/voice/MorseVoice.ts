@@ -109,7 +109,7 @@ export class MorseVoice {
     return this.currentUtterance
   }
 
-  speakInfo = (morseVoiceInfo) => {
+  /* speakInfo = (morseVoiceInfo) => {
     try {
       const utterance = this.initUtterance(morseVoiceInfo)
       this.logToFlaggedWords('returned from initUtterance')
@@ -130,7 +130,7 @@ export class MorseVoice {
       this.logToFlaggedWords(`caught in speakInfo:${e}`)
       morseVoiceInfo.onEnd()
     }
-  }
+  } */
 
   speakInfo2 = (morseVoiceInfo:MorseVoiceInfo) => {
     try {
@@ -145,10 +145,14 @@ export class MorseVoice {
         },
         volume: morseVoiceInfo.volume,
         voice: morseVoiceInfo.voice ?? null,
-        error: e => this.logToFlaggedWords(`error event during speak:${e}`),
+        error: e => {
+          this.logToFlaggedWords(`error event during speak:${e}`)
+          morseVoiceInfo.onEnd()
+        },
         boundary: e => this.logToFlaggedWords('boundary event'),
         mark: e => this.logToFlaggedWords('mark event'),
-        pause: e => this.logToFlaggedWords('pause event')
+        pause: e => this.logToFlaggedWords('pause event'),
+        force: true
       }
 
       EasySpeech.speak(esConfig)
@@ -181,13 +185,14 @@ export class MorseVoice {
       morseVoiceInfo.rate = this.voiceRate()
       morseVoiceInfo.pitch = this.voicePitch()
       morseVoiceInfo.onEnd = onEndCallBack
-      if (this.voiceVoices().length > 0) {
+      this.speakInfo2(morseVoiceInfo)
+      /* if (this.voiceVoices().length > 0) {
         this.logToFlaggedWords('using speakinfo2')
         this.speakInfo(morseVoiceInfo)
       } else {
         this.logToFlaggedWords('using old speakInfo')
         this.speakInfo(morseVoiceInfo)
-      }
+      } */
     } catch (e) {
       this.logToFlaggedWords(`caught in speakPhrase:${e}`)
       onEndCallBack()
