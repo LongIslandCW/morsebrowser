@@ -358,11 +358,11 @@
     {"sort":357, "userTarget": "INSTRUCTOR", "class": "VAR SPEED", "letterGroup": "SENTENCE", "newlineChunking":false,"display":"THREE", "fileName": "per7.txt" },
     {"sort":358, "userTarget": "INSTRUCTOR", "class": "VAR SPEED", "letterGroup": "SENTENCE", "newlineChunking":false,"display":"FOUR", "fileName": "per8.txt" },
     {"sort":359, "userTarget": "STUDENT", "class": "B1", "letterGroup": "REA", "newlineChunking":false,"display":"REA UWB HOF STATES", "fileName": "REA8.txt" },
-    {"sort":360, "userTarget": "STUDENT", "class": "B1", "letterGroup": "REA", "newlineChunking":false,"display":"REA UWB HOF QSO ABBREVIATIONS", "fileName": "REA9.txt" },
+    {"sort":360, "userTarget": "STUDENT", "class": "B1", "letterGroup": "REA", "newlineChunking":false,"display":"REA UWB HOF    QSO ABBREVIATIONS", "fileName": "REA9.txt" },
     {"sort":361, "userTarget": "STUDENT", "class": "B1", "letterGroup": "REA", "newlineChunking":false,"display":"REA UWB HOF WORDS", "fileName": "REA10.txt" },
     {"sort":362, "userTarget": "STUDENT", "class": "B1", "letterGroup": "REA", "newlineChunking":true,"display":"REA UWB HOF PHRASES", "fileName": "REA11.txt" },
     {"sort":363, "userTarget": "INSTRUCTOR", "class": "B1", "letterGroup": "REA", "newlineChunking":false,"display":"REA UWB HOF STATES", "fileName": "REA8.txt" },
-    {"sort":364, "userTarget": "INSTRUCTOR", "class": "B1", "letterGroup": "REA", "newlineChunking":false,"display":"REA UWB HOF QSO ABBREVIATIONS", "fileName": "REA9.txt" },
+    {"sort":364, "userTarget": "INSTRUCTOR", "class": "B1", "letterGroup": "REA", "newlineChunking":false,"display":"REA UWB HOF    QSO ABBREVIATIONS", "fileName": "REA9.txt" },
     {"sort":365, "userTarget": "INSTRUCTOR", "class": "B1", "letterGroup": "REA", "newlineChunking":false,"display":"REA UWB HOF WORDS", "fileName": "REA10.txt" },
     {"sort":366, "userTarget": "INSTRUCTOR", "class": "B1", "letterGroup": "REA", "newlineChunking":true,"display":"REA UWB HOF PHRASES", "fileName": "REA11.txt" }
 ]}
