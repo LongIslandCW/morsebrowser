@@ -7,7 +7,7 @@
   \********************************/
 /***/ ((module) => {
 
-module.exports = "BUT NEW EAT WET AIR TUNE TUNER TIN WIRE WENT BURN TEN ART WATER TRAIN NUT BAIT RENT\n";
+module.exports = "ABT ANT BEEN TU R RAIN RR UR EA RU EU U NW NR RU NET\n";
 
 /***/ })
 
