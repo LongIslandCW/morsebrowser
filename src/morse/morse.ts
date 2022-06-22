@@ -34,7 +34,6 @@ export class MorseViewModel {
   rawText:ko.Observable<string> = ko.observable()
   showingText:ko.Observable<string> = ko.observable('')
   showRaw:ko.Observable<boolean> = ko.observable(true)
-  // rssInitializedOnce:ko.Observable<boolean> = ko.observable(false)
   volume:ko.Observable<number> = ko.observable()
   noiseEnabled:ko.Observable<boolean> = ko.observable(false)
   noiseVolume:ko.Observable<number> = ko.observable(2)
@@ -69,8 +68,6 @@ export class MorseViewModel {
   flaggedWords:FlaggedWords
   voiceBuffer:string[]
   doPlayTimeout:any
-  // rssPlayCallback: any
-  // rssCookieWhiteList: any
   rss:MorseRssPlugin
   lastShuffled:string = ''
   flaggedWordsLogCount:number = 0
@@ -210,7 +207,7 @@ export class MorseViewModel {
   shuffleWords = (fromLoopRestart:boolean = false) => {
     // if it's not currently shuffled, or we're in a loop, re-shuffle
     if (!this.isShuffled() || fromLoopRestart) {
-      const hasPhrases = this.rawText().indexOf('\n') !== -1
+      const hasPhrases = this.rawText().indexOf('\n') !== -1 && this.settings.misc.newlineChunking()
       // if we're in a loop or otherwise already shuffled, we don't want to loose the preShuffled
       if (!this.isShuffled()) {
         this.preShuffled = this.rawText()
