@@ -302,9 +302,13 @@ export default class MorseLessonPlugin implements ICookieHandler {
     if (!cookies) {
       return
     }
-    const target:CookieInfo = cookies.find(x => x.key === this.autoCloseCookieName)
+    let target:CookieInfo = cookies.find(x => x.key === this.autoCloseCookieName)
     if (target) {
       this.autoCloseLessonAccordion(GeneralUtils.booleanize(target.val))
+    }
+    target = cookies.find(x => x.key === 'stickySets')
+    if (target) {
+      this.stickySets(GeneralUtils.booleanize(target.val))
     }
   }
 
