@@ -7,7 +7,7 @@
   \**********************************/
 /***/ ((module) => {
 
-module.exports = "ANT DIPOLE UP 4Ø FT\nAGE 4Ø\nNICE TO CU AGN ON 4Ø\nNICE SIG ON 4Ø\nADØWE DE AI4PL\nGØPOT DE WBØISG GA NED NICE SIG ON 4Ø  \n";
+module.exports = "ANT DIPOLE UP 4Ø FT\nAGE 4Ø\nNICE TO CU AGN ON 4Ø\nNICE SIG ON 4Ø\nADØWE DE AI4PL\nGØPOT DE WBØISG\n";
 
 /***/ })
 
