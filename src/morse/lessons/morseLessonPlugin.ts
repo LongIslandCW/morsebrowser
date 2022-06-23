@@ -55,7 +55,7 @@ export default class MorseLessonPlugin implements ICookieHandler {
     this.wordLists = ko.observableArray([])
     this.setText = setTextCallBack
     this.getTimeEstimate = timeEstimateCallback
-    this.ifStickySets = ko.observable(true)
+    this.ifStickySets = ko.observable(false)
     this.stickySets = ko.observable('')
     this.randomizeLessons = ko.observable(true)
     this.ifOverrideTime = ko.observable(false)
@@ -309,6 +309,10 @@ export default class MorseLessonPlugin implements ICookieHandler {
     target = cookies.find(x => x.key === 'stickySets')
     if (target) {
       this.stickySets(GeneralUtils.booleanize(target.val))
+    }
+    target = cookies.find(x => x.key === 'ifStickySets')
+    if (target) {
+      this.ifStickySets(GeneralUtils.booleanize(target.val))
     }
   }
 
