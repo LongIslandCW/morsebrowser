@@ -331,6 +331,8 @@ export class MorseViewModel {
       this.runningPlayMs(0)
       // clear the voice cache
       this.voiceBuffer = []
+      // prime the pump for safari
+      this.morseVoice.primeThePump()
     }
     // experience shows it is good to put a little pause here when user forces us here,
     // e.g. hitting back or play b/c word was misunderstood,

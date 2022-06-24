@@ -108,32 +108,47 @@ export class MorseVoice {
     }
   }
 
+  initMorseVoiceInfo = (phraseToSpeak:string):MorseVoiceInfo => {
+    const morseVoiceInfo = new MorseVoiceInfo()
+    morseVoiceInfo.textToSpeak = phraseToSpeak
+    if (this.voiceVoice()) {
+      this.logToFlaggedWords(`user selected a voice ${this.voiceVoice().name} ${this.voiceVoice().lang}`)
+      morseVoiceInfo.voice = this.voiceVoice()
+    } else {
+      this.logToFlaggedWords('user did not select a voice')
+      if (this.voices.length > 0) {
+        this.logToFlaggedWords(`selecting default 0 voice ${this.voices[0].name} ${this.voices[0].lang}`)
+        morseVoiceInfo.voice = this.voices[0]
+      } else {
+        this.logToFlaggedWords('no voices')
+        morseVoiceInfo.voice = null
+      }
+    }
+
+    morseVoiceInfo.volume = this.voiceVolume() / 10
+    morseVoiceInfo.rate = this.voiceRate()
+    morseVoiceInfo.pitch = this.voicePitch()
+
+    return morseVoiceInfo
+  }
+
   speakPhrase = (phraseToSpeak:string, onEndCallBack) => {
     try {
-      const morseVoiceInfo = new MorseVoiceInfo()
-      morseVoiceInfo.textToSpeak = phraseToSpeak
-      if (this.voiceVoice()) {
-        this.logToFlaggedWords(`user selected a voice ${this.voiceVoice().name} ${this.voiceVoice().lang}`)
-        morseVoiceInfo.voice = this.voiceVoice()
-      } else {
-        this.logToFlaggedWords('user did not select a voice')
-        if (this.voices.length > 0) {
-          this.logToFlaggedWords(`selecting default 0 voice ${this.voices[0].name} ${this.voices[0].lang}`)
-          morseVoiceInfo.voice = this.voices[0]
-        } else {
-          this.logToFlaggedWords('no voices')
-          morseVoiceInfo.voice = null
-        }
-      }
-
-      morseVoiceInfo.volume = this.voiceVolume() / 10
-      morseVoiceInfo.rate = this.voiceRate()
-      morseVoiceInfo.pitch = this.voicePitch()
+      const morseVoiceInfo = this.initMorseVoiceInfo(phraseToSpeak)
       morseVoiceInfo.onEnd = onEndCallBack
       this.speakInfo(morseVoiceInfo)
     } catch (e) {
       this.logToFlaggedWords(`caught in speakPhrase:${e}`)
       onEndCallBack()
     }
+  }
+
+  primeThePump = () => {
+    const morseVoiceInfo = this.initMorseVoiceInfo('i')
+    morseVoiceInfo.volume = 0
+    morseVoiceInfo.rate = 5
+    morseVoiceInfo.pitch = 1
+    morseVoiceInfo.onEnd = () => { this.logToFlaggedWords('pump primed') }
+    this.speakInfo(morseVoiceInfo)
   }
 }
