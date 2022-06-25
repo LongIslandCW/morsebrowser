@@ -151,4 +151,25 @@ export class MorseVoice {
     morseVoiceInfo.onEnd = () => { this.logToFlaggedWords('pump primed') }
     this.speakInfo(morseVoiceInfo)
   }
+
+  speakerSelect = (e, f) => {
+    // do a double-check for safari
+    const idx = f.target.selectedIndex
+
+    // we assume if voiceVoice has already been set, or skipped
+    const voiceName = !this.voiceVoice() || typeof this.voiceVoice().name === 'undefined' ? '' : this.voiceVoice.name
+
+    // if no voice just set to null
+    if (idx === 0 && voiceName) {
+      this.voiceVoice(null)
+      return
+    }
+
+    if (idx > 0) {
+      const target = this.voiceVoices()[idx - 1]
+      if (voiceName !== target.name) {
+        this.voiceVoice(target)
+      }
+    }
+  }
 }

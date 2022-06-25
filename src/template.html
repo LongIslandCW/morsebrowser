@@ -538,7 +538,9 @@
                                             <select class="form-select" data-bind="options: morseVoice.voiceVoices,
                                         optionsText: 'name',
                                         value: morseVoice.voiceVoice,
-                                        optionsCaption: 'Choose speaker...'"></select>
+                                        optionsCaption: 'Choose speaker...',
+                                        event: { change: morseVoice.speakerSelect }">
+                                            </select>
                                         </div>
                                         <!-- voice volume-->
                                         <div class="col-md-auto"
