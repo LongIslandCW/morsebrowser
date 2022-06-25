@@ -110,7 +110,7 @@ export class MorseVoice {
 
   initMorseVoiceInfo = (phraseToSpeak:string):MorseVoiceInfo => {
     const morseVoiceInfo = new MorseVoiceInfo()
-    morseVoiceInfo.textToSpeak = phraseToSpeak
+    morseVoiceInfo.textToSpeak = phraseToSpeak.toLowerCase()
     if (this.voiceVoice()) {
       this.logToFlaggedWords(`user selected a voice ${this.voiceVoice().name} ${this.voiceVoice().lang}`)
       morseVoiceInfo.voice = this.voiceVoice()
