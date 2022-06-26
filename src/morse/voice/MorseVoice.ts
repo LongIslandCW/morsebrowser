@@ -2,6 +2,7 @@ import * as ko from 'knockout'
 import { MorseVoiceInfo } from './MorseVoiceInfo'
 import EasySpeech from 'easy-speech'
 import { MorseViewModel } from '../morse'
+
 export class MorseVoice {
   voices = []
   voicesInited:boolean = false
