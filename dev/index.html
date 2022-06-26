@@ -34,7 +34,7 @@
             display: contents;
         }
     </style>
-<link rel="icon" href="LongIslandCWClub-favicon-2.jpg"><script defer src="bundle69cc22f19bfe0437b5e9.js"></script><link href="bundle.618c1c2672d3071ffd11.css" rel="stylesheet"></head>
+<link rel="icon" href="LongIslandCWClub-favicon-2.jpg"><script defer src="bundlea9e61cbc15b776e04f74.js"></script><link href="bundle.618c1c2672d3071ffd11.css" rel="stylesheet"></head>
 
 <body>
     <!-- Google Tag Manager (noscript) -->
@@ -535,11 +535,11 @@
                                         <!-- voice speaker-->
                                         <div class="col-auto"
                                             data-bind="if: showExpertSettings() && morseVoice.voiceEnabled() && morseVoice.voiceVoices().length">
-                                            <select class="form-select" data-bind="options: morseVoice.voiceVoices,
+                                            <select id='selectVoiceDropdown' class="form-select" data-bind="options: morseVoice.voiceVoices,
                                         optionsText: 'name',
-                                        value: morseVoice.voiceVoice,
-                                        optionsCaption: 'Choose speaker...',
-                                        event: { blur: morseVoice.speakerSelect }">
+                                        optionsValue: 'idx',
+                                        value: morseVoice.voiceVoiceIdx,
+                                        optionsCaption: 'Choose speaker...'">
                                             </select>
                                         </div>
                                         <!-- voice volume-->
