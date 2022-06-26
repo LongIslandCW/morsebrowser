@@ -105,7 +105,9 @@ export class MorseVoice {
           this.logToFlaggedWords('onEnd called')
         },
         volume: morseVoiceInfo.volume,
-        voice: morseVoiceInfo.voice ?? null,
+        voice: morseVoiceInfo.voice ? morseVoiceInfo.voice : null,
+        lang: morseVoiceInfo.voice ? morseVoiceInfo.voice.lang : null,
+        voiceURI: morseVoiceInfo.voice ? morseVoiceInfo.voice.voiceURI : null,
         error: e => {
           this.logToFlaggedWords(`error event during speak:${e}`)
           morseVoiceInfo.onEnd()
@@ -154,6 +156,7 @@ export class MorseVoice {
     morseVoiceInfo.volume = this.voiceVolume() / 10
     morseVoiceInfo.rate = this.voiceRate()
     morseVoiceInfo.pitch = this.voicePitch()
+    console.log(morseVoiceInfo.voice)
 
     return morseVoiceInfo
   }
