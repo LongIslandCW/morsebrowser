@@ -1,6 +1,6 @@
 import * as ko from 'knockout'
 import { MorseVoiceInfo } from './MorseVoiceInfo'
-import EasySpeech from 'easy-speech'
+import EasySpeech from '../../easyspeech/easyspeech.js'
 import { MorseViewModel } from '../morse'
 
 export class MorseVoice {
@@ -96,6 +96,7 @@ export class MorseVoice {
   speakInfo = (morseVoiceInfo:MorseVoiceInfo) => {
     try {
       const esConfig = {
+        logger: this.logToFlaggedWords,
         text: morseVoiceInfo.textToSpeak,
         pitch: morseVoiceInfo.pitch,
         rate: morseVoiceInfo.rate,
@@ -156,7 +157,7 @@ export class MorseVoice {
     morseVoiceInfo.volume = this.voiceVolume() / 10
     morseVoiceInfo.rate = this.voiceRate()
     morseVoiceInfo.pitch = this.voicePitch()
-    console.log(morseVoiceInfo.voice)
+    // console.log(morseVoiceInfo.voice)
 
     return morseVoiceInfo
   }
