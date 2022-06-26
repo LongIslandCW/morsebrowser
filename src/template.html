@@ -535,11 +535,11 @@
                                         <!-- voice speaker-->
                                         <div class="col-auto"
                                             data-bind="if: showExpertSettings() && morseVoice.voiceEnabled() && morseVoice.voiceVoices().length">
-                                            <select class="form-select" data-bind="options: morseVoice.voiceVoices,
+                                            <select id='selectVoiceDropdown' class="form-select" data-bind="options: morseVoice.voiceVoices,
                                         optionsText: 'name',
-                                        value: morseVoice.voiceVoice,
-                                        optionsCaption: 'Choose speaker...',
-                                        event: { blur: morseVoice.speakerSelect }">
+                                        optionsValue: 'idx',
+                                        value: morseVoice.voiceVoiceIdx,
+                                        optionsCaption: 'Choose speaker...'">
                                             </select>
                                         </div>
                                         <!-- voice volume-->
