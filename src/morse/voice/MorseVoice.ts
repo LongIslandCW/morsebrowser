@@ -127,12 +127,12 @@ export class MorseVoice {
     const morseVoiceInfo = new MorseVoiceInfo()
     morseVoiceInfo.textToSpeak = phraseToSpeak.toLowerCase()
     const target = document.getElementById('selectVoiceDropdown')
-    // console.log(target)
+    this.logToFlaggedWords(`target:${target ? 'target found' : 'target not found'}`)
     // const selectedIndex = target ? (target as any).selectedIndex : -1
     const selectedVal = target && (target as any).value ? parseInt(`${(target as any).value}`) : -1
     const idx = this.voiceVoiceIdx() ? this.voiceVoiceIdx() : -1
-    // console.log(`selectedVal:${selectedVal}`)
-    // console.log(`idx:${idx}`)
+    this.logToFlaggedWords(`selectedVal:${selectedVal}`)
+    this.logToFlaggedWords(`idx:${idx}`)
     if (idx !== selectedVal) {
       this.voiceVoiceIdx(selectedVal)
     }
