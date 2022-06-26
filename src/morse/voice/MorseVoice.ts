@@ -80,7 +80,7 @@ export class MorseVoice {
     if (easySpeechStatus.voices && easySpeechStatus.voices.length) {
       this.voices = easySpeechStatus.voices
       this.voices.forEach(v => {
-        this.logToFlaggedWords(`voiceAvailable:${v.name}  ${v.lang}`)
+        this.logToFlaggedWords(`voiceAvailable:${v.name}  lang:${v.lang} voiceURI:${v.voiceURI}`)
       })
       this.voices = this.voices.filter(x => x.lang === 'en-US').map((v) => {
         v.idx = idx++
