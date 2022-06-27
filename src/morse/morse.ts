@@ -151,7 +151,7 @@ export class MorseViewModel {
   // END CONSTRUCTOR
 
   logToFlaggedWords = (s) => {
-    this.flaggedWordsLogCount++
+    /* this.flaggedWordsLogCount++
     // const myPieces = this.flaggedWords.flaggedWords().split('\n')
     // console.log(myPieces)
     this.flaggedWordsLog[0] = { timeStamp: 0, msg: `LOGGED LINES:${this.flaggedWordsLogCount}` }
@@ -161,7 +161,7 @@ export class MorseViewModel {
       return `${i < 2 ? e.timeStamp : e.timeStamp - a[i - 1].timeStamp}: ${e.msg}`
     })
     const out = myPieces.filter(s => s).join('\n')
-    this.flaggedWords.flaggedWords(out)
+    this.flaggedWords.flaggedWords(out) */
   }
 
   // helper
