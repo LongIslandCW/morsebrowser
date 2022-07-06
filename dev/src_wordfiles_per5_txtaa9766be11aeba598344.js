@@ -7,7 +7,7 @@
   \********************************/
 /***/ ((module) => {
 
-module.exports = "V V R R TNX FER CALL UR RST 348 348 QTH NR AUSTIN, TX\n";
+module.exports = "RR TNX FER CALL UR RST 348 348 QTH NR AUSTIN, TX\n";
 
 /***/ })
 
