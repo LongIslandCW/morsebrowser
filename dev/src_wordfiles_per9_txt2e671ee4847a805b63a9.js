@@ -7,7 +7,7 @@
   \********************************/
 /***/ ((module) => {
 
-module.exports = "6B\nHS\n5H\nH5\n4V\n1J\n";
+module.exports = "VV\n6B\nHS\n5H\nH5\n4V\n1J\n";
 
 /***/ })
 
