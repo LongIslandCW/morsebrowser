@@ -404,5 +404,11 @@
     {"sort":403, "userTarget": "INSTRUCTOR", "class": "B1", "letterGroup": "UWB", "newlineChunking":false,"display":"UWB HOF LCD STATES", "fileName": "UWB8.txt" },
     {"sort":404, "userTarget": "INSTRUCTOR", "class": "B1", "letterGroup": "UWB", "newlineChunking":false,"display":"UWB HOF LCD    QSO ABBREVIATIONS", "fileName": "UWB9.txt" },
     {"sort":405, "userTarget": "INSTRUCTOR", "class": "B1", "letterGroup": "UWB", "newlineChunking":false,"display":"UWB HOF LCD WORDS", "fileName": "UWB10.txt" },
-    {"sort":406, "userTarget": "INSTRUCTOR", "class": "B1", "letterGroup": "UWB", "newlineChunking":true,"display":"UWB HOF LCD PHRASES", "fileName": "UWB11.txt" }
+    {"sort":406, "userTarget": "INSTRUCTOR", "class": "B1", "letterGroup": "UWB", "newlineChunking":true,"display":"UWB HOF LCD PHRASES", "fileName": "UWB11.txt" },
+    {"sort":407, "userTarget": "INSTRUCTOR", "class": "VAR SPEED", "letterGroup": "COMMON SUBSTITUTION", "newlineChunking":false,"display":"2 X 6", "fileName": "per9.txt" },
+    {"sort":408, "userTarget": "INSTRUCTOR", "class": "VAR SPEED", "letterGroup": "COMMON SUBSTITUTION", "newlineChunking":false,"display":"3 X 6", "fileName": "per10.txt" },
+    {"sort":409, "userTarget": "INSTRUCTOR", "class": "VAR SPEED", "letterGroup": "COMMON SUBSTITUTION", "newlineChunking":false,"display":"4 X 6", "fileName": "per11.txt" },
+    {"sort":410, "userTarget": "STUDENT", "class": "VAR SPEED", "letterGroup": "COMMON SUBSTITUTION", "newlineChunking":false,"display":"2 X 6", "fileName": "per9.txt" },
+    {"sort":411, "userTarget": "STUDENT", "class": "VAR SPEED", "letterGroup": "COMMON SUBSTITUTION", "newlineChunking":false,"display":"3 X 6", "fileName": "per10.txt" },
+    {"sort":412, "userTarget": "STUDENT", "class": "VAR SPEED", "letterGroup": "COMMON SUBSTITUTION", "newlineChunking":false,"display":"4 X 6", "fileName": "per11.txt" }
 ]}
