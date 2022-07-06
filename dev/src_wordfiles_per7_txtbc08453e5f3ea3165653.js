@@ -7,7 +7,7 @@
   \********************************/
 /***/ ((module) => {
 
-module.exports = "QRX 5 QRX 5 STBY PHONE CALL SRI ARBK\n";
+module.exports = "QRX 5 QRX 5 STBY PHONE CALL SRI <AR> BK\n";
 
 /***/ })
 
