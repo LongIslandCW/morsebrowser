@@ -7,7 +7,7 @@
   \********************************/
 /***/ ((module) => {
 
-module.exports = "TNX FER NICE QSO CU AGN BEST 73 DE WA2AKV\n";
+module.exports = "TNX FER NICE QSO CU AGN BEST 73 DE WA2AKV <AR> BK\n";
 
 /***/ })
 
