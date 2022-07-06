@@ -7,7 +7,7 @@
   \********************************/
 /***/ ((module) => {
 
-module.exports = "CQ CQ DE LIWC CLUB INTERVAL TRAMPOLINE CORSAIR. K\n";
+module.exports = "CQ CQ DE LIWC CLUB INTERVAL TRAMPOLINE CORSAIR <AR> BK\n";
 
 /***/ })
 
