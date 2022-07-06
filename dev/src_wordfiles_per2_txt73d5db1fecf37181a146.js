@@ -7,7 +7,7 @@
   \********************************/
 /***/ ((module) => {
 
-module.exports = "V V CAKE, CARD, JUNK, GOLD /\n";
+module.exports = "CAKE\nCARD\nJUNK\nGOLD\n";
 
 /***/ })
 
