@@ -68,12 +68,12 @@
         },
         {
             "key": "hideList",
-            "value": false,
+            "value": true,
             "comment": "by default hide the word list boxes/cards that get generated i.e. don't reveal"
         },
         {
             "key": "showRaw",
-            "value": true,
+            "value": false,
             "comment": "by default dont hide the main top text area"
         },
         {
