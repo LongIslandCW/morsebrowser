@@ -73,7 +73,7 @@
         },
         {
             "key": "showRaw",
-            "value": false,
+            "value": true,
             "comment": "by default dont hide the main top text area"
         },
         {
