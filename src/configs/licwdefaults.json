@@ -52,6 +52,11 @@
             "comment": "put a space between sets"
         },
         {
+            "key": "ifStickySets",
+            "value": false,
+            "comment": "whether stickysets functionality on"
+        },
+        {
             "key": "syncWpm",
             "value": true,
             "comment": "make this false if wpm and fwpm are different above"
@@ -63,7 +68,7 @@
         },
         {
             "key": "hideList",
-            "value": true,
+            "value": false,
             "comment": "by default hide the word list boxes/cards that get generated i.e. don't reveal"
         },
         {

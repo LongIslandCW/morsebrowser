@@ -60,7 +60,7 @@
                                 repository.</a></h6>
                         <h3 data-bind="if: isDev()">WARNING: You are using the BETA (unstable) version. For the latest
                             stable release please <a href="../">click here.</a></h3>
-                        <h6>Version 1.0.3</h6>
+                        <h6>Version 1.0.4</h6>
                     </div>
                 </div>
 
@@ -535,10 +535,12 @@
                                         <!-- voice speaker-->
                                         <div class="col-auto"
                                             data-bind="if: showExpertSettings() && morseVoice.voiceEnabled() && morseVoice.voiceVoices().length">
-                                            <select class="form-select" data-bind="options: morseVoice.voiceVoices,
+                                            <select id='selectVoiceDropdown' class="form-select" data-bind="options: morseVoice.voiceVoices,
                                         optionsText: 'name',
-                                        value: morseVoice.voiceVoice,
-                                        optionsCaption: 'Choose speaker...'"></select>
+                                        optionsValue: 'idx',
+                                        value: morseVoice.voiceVoiceIdx,
+                                        optionsCaption: 'Choose speaker...'">
+                                            </select>
                                         </div>
                                         <!-- voice volume-->
                                         <div class="col-md-auto"
@@ -577,7 +579,7 @@
 
                                     <!--sound slope -->
                                     <!-- <div class="input-group"> -->
-                                    <!--  <div class="col-auto" data-bind="visible: showExpertSettings">
+                                    <!-- <div class="col-auto" data-bind="visible: showExpertSettings">
 
                                             <input type="checkbox" class="btn-check" autocomplete="off"
                                                 id="btncheckmoothing"

@@ -1,14 +1,16 @@
 import * as ko from 'knockout'
 import { MorseVoiceInfo } from './MorseVoiceInfo'
-import EasySpeech from 'easy-speech'
+import EasySpeech from '../../easyspeech/easyspeech.js'
 import { MorseViewModel } from '../morse'
+
 export class MorseVoice {
   voices = []
   voicesInited:boolean = false
   voiceEnabled:ko.Observable<boolean>
   voiceCapable:ko.Observable<boolean>
   voiceThinkingTime:ko.Observable<number>
-  voiceVoice:ko.Observable<any>
+  voiceVoice:ko.Computed<any>
+  voiceVoiceIdx:ko.Observable<number>
   voiceVolume:ko.Observable<number>
   voiceRate:ko.Observable<number>
   voicePitch:ko.Observable<number>
@@ -25,7 +27,8 @@ export class MorseVoice {
     this.voiceEnabled = ko.observable(false)
     this.voiceCapable = ko.observable(false)
     this.voiceThinkingTime = ko.observable(0)
-    this.voiceVoice = ko.observable()
+    // this.voiceVoice = ko.observable()
+    this.voiceVoiceIdx = ko.observable(-1)
     this.voiceVolume = ko.observable(10)
     this.voiceRate = ko.observable(1)
     this.voicePitch = ko.observable(1)
@@ -42,6 +45,14 @@ export class MorseVoice {
     }
 
     this.initEasySpeech()
+
+    this.voiceVoice = ko.computed(() => {
+      if (this.voiceVoiceIdx() === -1) {
+        return null
+      }
+
+      return this.voiceVoices()[this.voiceVoiceIdx()]
+    }, this)
   }
 
   initEasySpeech = async () => {
@@ -65,12 +76,16 @@ export class MorseVoice {
     }
 
     const easySpeechStatus = EasySpeech.status()
+    let idx = 0
     if (easySpeechStatus.voices && easySpeechStatus.voices.length) {
       this.voices = easySpeechStatus.voices
       this.voices.forEach(v => {
-        this.logToFlaggedWords(`voiceAvailable:${v.name}  ${v.lang}`)
+        this.logToFlaggedWords(`voiceAvailable:${v.name}  lang:${v.lang} voiceURI:${v.voiceURI}`)
       })
-      this.voices = this.voices.filter(x => x.lang === 'en-US')
+      this.voices = this.voices.filter(x => x.lang === 'en-US').map((v) => {
+        v.idx = idx++
+        return v
+      })
       this.voiceVoices(this.voices)
       this.logToFlaggedWords(`loaded voices:${this.voices.length}`)
     } else {
@@ -81,6 +96,7 @@ export class MorseVoice {
   speakInfo = (morseVoiceInfo:MorseVoiceInfo) => {
     try {
       const esConfig = {
+        logger: this.logToFlaggedWords,
         text: morseVoiceInfo.textToSpeak,
         pitch: morseVoiceInfo.pitch,
         rate: morseVoiceInfo.rate,
@@ -90,7 +106,9 @@ export class MorseVoice {
           this.logToFlaggedWords('onEnd called')
         },
         volume: morseVoiceInfo.volume,
-        voice: morseVoiceInfo.voice ?? null,
+        voice: morseVoiceInfo.voice ? morseVoiceInfo.voice : null,
+        lang: morseVoiceInfo.voice ? morseVoiceInfo.voice.lang : null,
+        voiceURI: morseVoiceInfo.voice ? morseVoiceInfo.voice.voiceURI : null,
         error: e => {
           this.logToFlaggedWords(`error event during speak:${e}`)
           morseVoiceInfo.onEnd()
@@ -108,32 +126,81 @@ export class MorseVoice {
     }
   }
 
-  speakPhrase = (phraseToSpeak:string, onEndCallBack) => {
-    try {
-      const morseVoiceInfo = new MorseVoiceInfo()
-      morseVoiceInfo.textToSpeak = phraseToSpeak
-      if (this.voiceVoice()) {
-        this.logToFlaggedWords(`user selected a voice ${this.voiceVoice().name} ${this.voiceVoice().lang}`)
-        morseVoiceInfo.voice = this.voiceVoice()
-      } else {
-        this.logToFlaggedWords('user did not select a voice')
-        if (this.voices.length > 0) {
-          this.logToFlaggedWords(`selecting default 0 voice ${this.voices[0].name} ${this.voices[0].lang}`)
-          morseVoiceInfo.voice = this.voices[0]
-        } else {
-          this.logToFlaggedWords('no voices')
-          morseVoiceInfo.voice = null
-        }
-      }
+  initMorseVoiceInfo = (phraseToSpeak:string):MorseVoiceInfo => {
+    const morseVoiceInfo = new MorseVoiceInfo()
+    morseVoiceInfo.textToSpeak = phraseToSpeak.toLowerCase()
+    const target = document.getElementById('selectVoiceDropdown')
+    this.logToFlaggedWords(`target:${target ? 'target found' : 'target not found'}`)
+    // const selectedIndex = target ? (target as any).selectedIndex : -1
+    const selectedVal = target && (target as any).value ? parseInt(`${(target as any).value}`) : -1
+    const idx = this.voiceVoiceIdx() ? this.voiceVoiceIdx() : -1
+    this.logToFlaggedWords(`selectedVal:${selectedVal}`)
+    this.logToFlaggedWords(`idx:${idx}`)
+    if (idx !== selectedVal) {
+      this.voiceVoiceIdx(selectedVal)
+    }
 
-      morseVoiceInfo.volume = this.voiceVolume() / 10
-      morseVoiceInfo.rate = this.voiceRate()
-      morseVoiceInfo.pitch = this.voicePitch()
+    if (this.voiceVoice()) {
+      this.logToFlaggedWords(`user selected a voice ${this.voiceVoice().name} ${this.voiceVoice().lang}`)
+      morseVoiceInfo.voice = this.voiceVoice()
+    } else {
+      this.logToFlaggedWords('user did not select a voice')
+      if (this.voices.length > 0) {
+        this.logToFlaggedWords(`selecting default 0 voice ${this.voices[0].name} ${this.voices[0].lang}`)
+        morseVoiceInfo.voice = this.voices[0]
+      } else {
+        this.logToFlaggedWords('no voices')
+        morseVoiceInfo.voice = null
+      }
+    }
+
+    morseVoiceInfo.volume = this.voiceVolume() / 10
+    morseVoiceInfo.rate = this.voiceRate()
+    morseVoiceInfo.pitch = this.voicePitch()
+    // console.log(morseVoiceInfo.voice)
+
+    return morseVoiceInfo
+  }
+
+  speakPhrase = (phraseToSpeak:string, onEndCallBack) => {
+    // console.log(this.voiceVoice().name)
+    try {
+      const morseVoiceInfo = this.initMorseVoiceInfo(phraseToSpeak)
       morseVoiceInfo.onEnd = onEndCallBack
       this.speakInfo(morseVoiceInfo)
     } catch (e) {
       this.logToFlaggedWords(`caught in speakPhrase:${e}`)
       onEndCallBack()
+    }
+  }
+
+  primeThePump = () => {
+    const morseVoiceInfo = this.initMorseVoiceInfo('i')
+    morseVoiceInfo.volume = 0
+    morseVoiceInfo.rate = 5
+    morseVoiceInfo.pitch = 1
+    morseVoiceInfo.onEnd = () => { this.logToFlaggedWords('pump primed') }
+    this.speakInfo(morseVoiceInfo)
+  }
+
+  speakerSelect = (e, f) => {
+    // do a double-check for safari
+    const idx = f.target.selectedIndex
+
+    // we assume if voiceVoice has already been set, or skipped
+    const voiceName = !this.voiceVoice() || typeof this.voiceVoice().name === 'undefined' ? '' : this.voiceVoice.name
+
+    // if no voice just set to null
+    if (idx === 0 && voiceName) {
+      this.voiceVoice(null)
+      return
+    }
+
+    if (idx > 0) {
+      const target = this.voiceVoices()[idx - 1]
+      if (voiceName !== target.name) {
+        this.voiceVoice(target)
+      }
     }
   }
 }

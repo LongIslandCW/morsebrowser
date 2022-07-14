@@ -151,7 +151,7 @@ export class MorseViewModel {
   // END CONSTRUCTOR
 
   logToFlaggedWords = (s) => {
-    /*  this.flaggedWordsLogCount++
+    /* this.flaggedWordsLogCount++
     // const myPieces = this.flaggedWords.flaggedWords().split('\n')
     // console.log(myPieces)
     this.flaggedWordsLog[0] = { timeStamp: 0, msg: `LOGGED LINES:${this.flaggedWordsLogCount}` }
@@ -331,6 +331,8 @@ export class MorseViewModel {
       this.runningPlayMs(0)
       // clear the voice cache
       this.voiceBuffer = []
+      // prime the pump for safari
+      this.morseVoice.primeThePump()
     }
     // experience shows it is good to put a little pause here when user forces us here,
     // e.g. hitting back or play b/c word was misunderstood,
@@ -386,7 +388,7 @@ export class MorseViewModel {
         setTimeout(() => {
           this.maxRevealedTrail(this.maxRevealedTrail() + 1)
           setTimeout(() => {
-            // if speak is in the driver's seat it will call this, 
+            // if speak is in the driver's seat it will call this,
             // if not then trail will
             if (!speakAndTrail) {
               this.playEnded(true)
