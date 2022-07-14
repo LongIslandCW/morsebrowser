@@ -1,9 +1,9 @@
 "use strict";
-(self["webpackChunk"] = self["webpackChunk"] || []).push([["src_wordfiles_IB1PGS4_json"],{
+(self["webpackChunk"] = self["webpackChunk"] || []).push([["src_wordfiles_IB1PGS2_json"],{
 
-/***/ "./src/wordfiles/IB1PGS4.json":
+/***/ "./src/wordfiles/IB1PGS2.json":
 /*!************************************!*\
-  !*** ./src/wordfiles/IB1PGS4.json ***!
+  !*** ./src/wordfiles/IB1PGS2.json ***!
   \************************************/
 /***/ ((module) => {
 

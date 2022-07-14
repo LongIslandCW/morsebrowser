@@ -7,7 +7,7 @@
   \********************************/
 /***/ ((module) => {
 
-module.exports = "V V QSL ON ALL NAME HR IS SALLY RIG HR COLLINS 75S 3.\n";
+module.exports = "QSL ON ALL NAME HR IS SALLY RIG HR COLLINS 75S 3 <AR> BK\n";
 
 /***/ })
 

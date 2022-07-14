@@ -7,7 +7,7 @@
   \********************************/
 /***/ ((module) => {
 
-module.exports = "V V DIODE, APPLE, BASIS, SLASH /\n";
+module.exports = "V V\nDIODE\nAPPLE\nBASIS\nSLASH \n/\n";
 
 /***/ })
 
