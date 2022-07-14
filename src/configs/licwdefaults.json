@@ -68,7 +68,7 @@
         },
         {
             "key": "hideList",
-            "value": true,
+            "value": false,
             "comment": "by default hide the word list boxes/cards that get generated i.e. don't reveal"
         },
         {
