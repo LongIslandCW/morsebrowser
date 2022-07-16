@@ -445,7 +445,11 @@ export class MorseViewModel {
         this.logToFlaggedWords(`about to wordify:'${this.morseVoice.voiceBuffer.join(' ')}'`)
         let phraseToSpeak
         try {
-          phraseToSpeak = MorseStringUtils.wordifyPunctuation(this.morseVoice.voiceBuffer.join(' '))
+          let joinedBuffer = this.morseVoice.voiceBuffer.join(' ')
+          if (this.morseVoice.voiceSpelling()) {
+            joinedBuffer = joinedBuffer.split('').join(' ')
+          }
+          phraseToSpeak = MorseStringUtils.wordifyPunctuation(joinedBuffer)
           phraseToSpeak = phraseToSpeak.replace(/\n/g, ' ').trim()
         } catch (e) {
           this.logToFlaggedWords(`caught after wordify:${e}`)
