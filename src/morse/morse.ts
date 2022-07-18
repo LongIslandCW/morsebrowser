@@ -511,6 +511,9 @@ export class MorseViewModel {
     if (fullRewind) {
       this.fullRewind()
     }
+    if (fromStopButton) {
+      this.maxRevealedTrail(-1)
+    }
   }
 
   inputFileChange = (element) => {
