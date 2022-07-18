@@ -72,6 +72,7 @@ export class MorseViewModel {
   lastShuffled:string = ''
   flaggedWordsLogCount:number = 0
   flaggedWordsLog:any[] = []
+  cardBuffer:string[] = []
 
   // END KO observables declarations
   constructor () {
@@ -333,6 +334,8 @@ export class MorseViewModel {
       this.voiceBuffer = []
       // prime the pump for safari
       this.morseVoice.primeThePump()
+      // clear the card buffer
+      this.cardBuffer = []
     }
     // experience shows it is good to put a little pause here when user forces us here,
     // e.g. hitting back or play b/c word was misunderstood,
