@@ -17,6 +17,7 @@ import SimpleImageTemplate from './components/morseImage/simpleImage'
 import NoiseAccordion from './components/noiseAccordion/noiseAccordion'
 import RssAccordion from './components/rssAccordion/rssAccordion'
 import FlaggedWordsAccordion from './components/flaggedWordsAccordion/flaggedWordsAccordion'
+import { CardBufferManager } from './utils/cardBufferManager'
 export class MorseViewModel {
   textBuffer:ko.Observable<string> = ko.observable('')
   hideList:ko.Observable<boolean> = ko.observable(true)
@@ -72,7 +73,7 @@ export class MorseViewModel {
   lastShuffled:string = ''
   flaggedWordsLogCount:number = 0
   flaggedWordsLog:any[] = []
-  cardBuffer:string[] = []
+  cardBufferManager:CardBufferManager
 
   // END KO observables declarations
   constructor () {
@@ -148,6 +149,9 @@ export class MorseViewModel {
     ko.components.register('noiseaccordion', NoiseAccordion)
     ko.components.register('rssaccordion', RssAccordion)
     ko.components.register('flaggedwordsaccordion', FlaggedWordsAccordion)
+
+    // card buffer manager
+    this.cardBufferManager = new CardBufferManager(() => this.currentIndex(), () => this.words())
   }
   // END CONSTRUCTOR
 
@@ -297,7 +301,7 @@ export class MorseViewModel {
     config.decayMsOffset = parseFloat(this.decayMsOffset() as any)
     // suppress wordspaces when using speak so "thinking time" will control
     if (this.morseVoice) {
-      config.trimLastWordSpace = this.morseVoice.voiceEnabled()
+      config.trimLastWordSpace = this.morseVoice.voiceEnabled() && !this.cardBufferManager.hasMoreMorse()
       config.voiceEnabled = this.morseVoice.voiceEnabled()
     }
     config.morseDisabled = this.morseDisabled()
@@ -335,7 +339,7 @@ export class MorseViewModel {
       // prime the pump for safari
       this.morseVoice.primeThePump()
       // clear the card buffer
-      this.cardBuffer = []
+      this.cardBufferManager.clear()
     }
     // experience shows it is good to put a little pause here when user forces us here,
     // e.g. hitting back or play b/c word was misunderstood,
@@ -350,7 +354,7 @@ export class MorseViewModel {
       this.morseWordPlayer.pause(() => {
       // help trailing reveal, max should always be one behind before we're about to play
         this.maxRevealedTrail(this.currentIndex() - 1)
-        const config = this.getMorseStringToWavBufferConfig(this.words()[this.currentIndex()])
+        const config = this.getMorseStringToWavBufferConfig(this.cardBufferManager.getNextMorse())
         this.morseWordPlayer.play(config, this.playEnded)
         this.lastPartialPlayStart(Date.now())
         this.preSpaceUsed(true)
@@ -380,7 +384,7 @@ export class MorseViewModel {
     const isNotLastWord = this.currentIndex() < this.words().length - 1
     const isNotLastSentence = this.currentSentanceIndex() < this.sentenceMax()
     const anyNewLines = this.rawText().indexOf('\n') !== -1
-    const needToSpeak = this.morseVoice.voiceEnabled() && !fromVoiceOrTrail
+    const needToSpeak = this.morseVoice.voiceEnabled() && !fromVoiceOrTrail && !this.cardBufferManager.hasMoreMorse()
     const needToTrail = this.trailReveal() && !fromVoiceOrTrail
     const speakAndTrail = needToSpeak && needToTrail
 
@@ -415,8 +419,10 @@ export class MorseViewModel {
     if (noDelays) {
       // no speaking, so play more morse
       this.runningPlayMs(this.runningPlayMs() + (Date.now() - this.lastPartialPlayStart()))
-      if (isNotLastWord) {
-        this.incrementIndex()
+      if (isNotLastWord || this.cardBufferManager.hasMoreMorse()) {
+        if (!this.cardBufferManager.hasMoreMorse()) {
+          this.incrementIndex()
+        }
         this.doPlay(true, false)
       } else if (isNotLastSentence) {
       // move to next sentence
