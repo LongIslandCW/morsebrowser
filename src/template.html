@@ -545,6 +545,17 @@
                                                     data-bind="textInput: morseVoice.voiceThinkingTime">
                                             </div>
                                         </div>
+                                        <!-- voice after thinktime-->
+                                        <div class="col-md-auto"
+                                            data-bind="if: showExpertSettings() && morseVoice.voiceEnabled()">
+                                            <div class="input-group">
+                                                <span class="input-group-text">Post Delay<img width=20 height=20
+                                                        data-bind="attr:{ src: morseLoadImages().getSrc('stopwatchImage')}"></span>
+                                                <input type="number" style="max-width:75px; min-width: 75px;"
+                                                    class="form-control" min="0" max="10" step=".25"
+                                                    data-bind="textInput: morseVoice.voiceAfterThinkingTime">
+                                            </div>
+                                        </div>
                                         <!-- voice speaker-->
                                         <div class="col-auto"
                                             data-bind="if: showExpertSettings() && morseVoice.voiceEnabled() && morseVoice.voiceVoices().length">
