@@ -88,7 +88,7 @@
 	{ "characters": "HR", "replacement": "Hear", "onlyAlone" : true},
 	{ "characters": "HW", "replacement": "How", "onlyAlone" : true},
 	{ "characters": "OM", "replacement": "Old man", "onlyAlone" : true},
-	{ "characters": "OP", "replacement": "Operatoe", "onlyAlone" : true},
+	{ "characters": "OP", "replacement": "Operator", "onlyAlone" : true},
 	{ "characters": "OT", "replacement": "Old timer", "onlyAlone" : true},
 	{ "characters": "PSE", "replacement": "Please", "onlyAlone" : true},
 	{ "characters": "PWR", "replacement": "Power", "onlyAlone" : true},
