@@ -152,6 +152,8 @@ export class MorseViewModel {
 
     // card buffer manager
     this.cardBufferManager = new CardBufferManager(() => this.currentIndex(), () => this.words())
+
+    this.showRaw(false)
   }
   // END CONSTRUCTOR
 
