@@ -282,6 +282,13 @@ export class MorseViewModel {
     }
   }
 
+  clearFlagged = () => {
+    if (this.flaggedWords.flaggedWords().trim()) {
+      this.flaggedWords.clear()
+      document.getElementById('btnFlaggedWordsAccordianButton').click()
+    }
+  }
+
   getMorseStringToWavBufferConfig = (text) => {
     const config = new SoundMakerConfig()
     config.word = MorseStringUtils.doReplacements(text)

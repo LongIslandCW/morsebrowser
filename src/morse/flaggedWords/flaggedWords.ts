@@ -15,6 +15,10 @@ export class FlaggedWords {
     }, this)
   }
 
+  clear = () => {
+    this.flaggedWords('')
+  }
+
   addFlaggedWord = (word) => {
     if (!this.flaggedWords().trim()) {
       this.flaggedWords(this.flaggedWords().trim() + word)
