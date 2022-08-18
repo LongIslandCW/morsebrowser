@@ -7,7 +7,7 @@
   \**********************************/
 /***/ ((module) => {
 
-module.exports = "ADØWE \nAI4PL \nG4FON \nGØPOT \nWBØISG \nN4DTR \nWB4UTB \nWBØHOA \nAAØTIN \nAC4LCD \nABØCD \nN4FOH \nNØCDL  \n";
+module.exports = "\n";
 
 /***/ })
 
