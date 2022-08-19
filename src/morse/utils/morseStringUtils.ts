@@ -3,6 +3,8 @@ export default class MorseStringUtils {
   static doReplacements = (s:string):string => {
     const afterReplaced = s
     // a few ad-hoc attempts to fix unicode or other problems
+    // weird slashed 0 Ø
+      .replace(/Ø/g, '0')
     // seems like apostraphe is not morse-able
       .replace(/’/g, '')
       .replace(/‘/g, '')
