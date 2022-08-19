@@ -63,7 +63,7 @@
                                 href="https://groups.io/g/MorsePracticePageQuestions">groups.io</a>. </h6>
                         <h3 data-bind="if: isDev()">WARNING: You are using the BETA (unstable) version. For the latest
                             stable release please <a href="../">click here.</a></h3>
-                        <h6>Version 1.0.4</h6>
+                        <h6>Version 1.0.5</h6>
                     </div>
                 </div>
 
@@ -543,6 +543,17 @@
                                                 <input type="number" style="max-width:75px; min-width: 75px;"
                                                     class="form-control" min="0" max="10" step=".25"
                                                     data-bind="textInput: morseVoice.voiceThinkingTime">
+                                            </div>
+                                        </div>
+                                        <!-- voice after thinktime-->
+                                        <div class="col-md-auto"
+                                            data-bind="if: showExpertSettings() && morseVoice.voiceEnabled()">
+                                            <div class="input-group">
+                                                <span class="input-group-text">Post Delay<img width=20 height=20
+                                                        data-bind="attr:{ src: morseLoadImages().getSrc('stopwatchImage')}"></span>
+                                                <input type="number" style="max-width:75px; min-width: 75px;"
+                                                    class="form-control" min="0" max="10" step=".25"
+                                                    data-bind="textInput: morseVoice.voiceAfterThinkingTime">
                                             </div>
                                         </div>
                                         <!-- voice speaker-->

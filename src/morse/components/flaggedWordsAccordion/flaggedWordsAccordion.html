@@ -14,6 +14,8 @@
                     data-bind="attr:{src: morseLoadImages().getSrc('uploadImage')}">&nbsp;Load
                 As
                 Text</span>
+            <span id="btnSetFlagged" class="input-group-text" data-bind="click:clearFlagged"><img height="20" width="20"
+                    data-bind="attr:{src: morseLoadImages().getSrc('trashImage')}">&nbsp;Clear</span>
             <textarea data-bind="textInput: flaggedWords.flaggedWords" class="form-control"
                 aria-label="Text"></textarea>
 

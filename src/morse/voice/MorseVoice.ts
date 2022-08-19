@@ -9,6 +9,7 @@ export class MorseVoice {
   voiceEnabled:ko.Observable<boolean>
   voiceCapable:ko.Observable<boolean>
   voiceThinkingTime:ko.Observable<number>
+  voiceAfterThinkingTime:ko.Observable<number>
   voiceVoice:ko.Computed<any>
   voiceVoiceIdx:ko.Observable<number>
   voiceVolume:ko.Observable<number>
@@ -28,6 +29,7 @@ export class MorseVoice {
     this.voiceEnabled = ko.observable(false)
     this.voiceCapable = ko.observable(false)
     this.voiceThinkingTime = ko.observable(0)
+    this.voiceAfterThinkingTime = ko.observable(0)
     // this.voiceVoice = ko.observable()
     this.voiceVoiceIdx = ko.observable(-1)
     this.voiceVolume = ko.observable(10)
@@ -166,13 +168,16 @@ export class MorseVoice {
 
   speakPhrase = (phraseToSpeak:string, onEndCallBack) => {
     // console.log(this.voiceVoice().name)
+    const doOnEndCallBack = () => {
+      setTimeout(onEndCallBack,this.voiceAfterThinkingTime() * 1000)
+    }
     try {
       const morseVoiceInfo = this.initMorseVoiceInfo(phraseToSpeak)
-      morseVoiceInfo.onEnd = onEndCallBack
+      morseVoiceInfo.onEnd = doOnEndCallBack
       this.speakInfo(morseVoiceInfo)
     } catch (e) {
       this.logToFlaggedWords(`caught in speakPhrase:${e}`)
-      onEndCallBack()
+      doOnEndCallBack()
     }
   }
 
