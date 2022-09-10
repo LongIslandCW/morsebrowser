@@ -414,7 +414,7 @@
     {"sort":413, "userTarget": "INSTRUCTOR", "class": "INTERMEDIATE", "letterGroup": "20/5 to 12/12", "newlineChunking":true,"display":"LETTERS", "fileName": "INT1.txt" },
     {"sort":414, "userTarget": "INSTRUCTOR", "class": "INTERMEDIATE", "letterGroup": "20/5 to 12/12", "newlineChunking":true,"display":"NUMBERS", "fileName": "INT2.txt" },
     {"sort":415, "userTarget": "INSTRUCTOR", "class": "INTERMEDIATE", "letterGroup": "20/5 to 12/12", "newlineChunking":true,"display":"LETTERS PUNCTUATION NUMBERS", "fileName": "INT3.txt" },
-    {"sort":416, "userTarget": "INSTRUCTOR", "class": "INTERMEDIATE", "letterGroup": "20/5 to 12/12", "newlineChunking":true,"display":"PROSIGNS", "fileName": "IB2ARSKBT5.json" },
+    {"sort":416, "userTarget": "INSTRUCTOR", "class": "INTERMEDIATE", "letterGroup": "20/5 to 12/12", "newlineChunking":true,"display":"PROSIGNS and BK", "fileName": "INT8.json" },
     {"sort":417, "userTarget": "INSTRUCTOR", "class": "INTERMEDIATE", "letterGroup": "20/5 to 12/12", "newlineChunking":true,"display":"PUNCTUATION", "fileName": "INT4.json" },
     {"sort":418, "userTarget": "INSTRUCTOR", "class": "INTERMEDIATE", "letterGroup": "20/5 to 12/12", "newlineChunking":true,"display":"STATES", "fileName": "IB2C8.txt" },
     {"sort":419, "userTarget": "INSTRUCTOR", "class": "INTERMEDIATE", "letterGroup": "20/5 to 12/12", "newlineChunking":true,"display":"QSO ABBREVIATIONS ", "fileName": "IB2C2.txt" },
