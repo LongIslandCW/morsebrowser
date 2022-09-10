@@ -435,7 +435,7 @@
     {"sort":421, "userTarget": "INSTRUCTOR", "class": "INTERMEDIATE", "letterGroup": "12 to 16", "newlineChunking":true,"display":"QSO PROTOCOL 2", "fileName": "IB2C4.txt" },
     {"sort":422, "userTarget": "INSTRUCTOR", "class": "INTERMEDIATE", "letterGroup": "12 to 16", "newlineChunking":true,"display":"QSO PROTOCOL 3", "fileName": "IB2C5.txt" },
     {"sort":423, "userTarget": "INSTRUCTOR", "class": "INTERMEDIATE", "letterGroup": "12 to 16", "newlineChunking":true,"display":"QSO PROTOCOL 4", "fileName": "IB2C6.txt" },
-    {"sort":424, "userTarget": "INSTRUCTOR", "class": "INTERMEDIATE", "letterGroup": "12 to 16", "newlineChunking":true,"display":"US CALLSIGNS", "fileName": "INT6.txt" },
+    {"sort":424, "userTarget": "INSTRUCTOR", "class": "INTERMEDIATE", "letterGroup": "12 to 16", "newlineChunking":true,"display":"FOREIGN CALLSIGNS", "fileName": "INT14.txt" },
      {"sort":423, "userTarget": "INSTRUCTOR", "class": "INTERMEDIATE", "letterGroup": "12 to 16", "newlineChunking":true,"display":"PREFIX", "fileName": "INT11.txt" },
     {"sort":424, "userTarget": "INSTRUCTOR", "class": "INTERMEDIATE", "letterGroup": "12 to 16", "newlineChunking":true,"display":"SUFFIX", "fileName": "INT12.txt" },   
     {"sort":425, "userTarget": "INSTRUCTOR", "class": "INTERMEDIATE", "letterGroup": "12 to 16", "newlineChunking":true,"display":"TOP 500 WORDS", "fileName": "INT13.txt" }
