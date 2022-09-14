@@ -74,6 +74,7 @@ export class MorseViewModel {
   flaggedWordsLogCount:number = 0
   flaggedWordsLog:any[] = []
   cardBufferManager:CardBufferManager
+  charsPlayed:ko.Observable<number> = ko.observable(0)
 
   // END KO observables declarations
   constructor () {
@@ -209,6 +210,13 @@ export class MorseViewModel {
 
   words:ko.Computed<string[]> = ko.computed(() => {
     return this.sentences()[this.currentSentanceIndex()]
+  }, this)
+
+  rawTextCharCount:ko.Computed<number> = ko.computed(() => {
+    if (!this.rawText()) {
+      return 0
+    }
+    return this.rawText().replace(' ', '').length
   }, this)
 
   shuffleWords = (fromLoopRestart:boolean = false) => {
@@ -349,6 +357,7 @@ export class MorseViewModel {
       this.morseVoice.primeThePump()
       // clear the card buffer
       this.cardBufferManager.clear()
+      this.charsPlayed(0)
     }
     // experience shows it is good to put a little pause here when user forces us here,
     // e.g. hitting back or play b/c word was misunderstood,
@@ -364,7 +373,10 @@ export class MorseViewModel {
       // help trailing reveal, max should always be one behind before we're about to play
         this.maxRevealedTrail(this.currentIndex() - 1)
         const config = this.getMorseStringToWavBufferConfig(this.cardBufferManager.getNextMorse())
-        this.morseWordPlayer.play(config, this.playEnded)
+        this.morseWordPlayer.play(config, (fromVoiceOrTrail) => {
+          this.charsPlayed(this.charsPlayed() + config.word.replace(' ', '').length)
+          this.playEnded(fromVoiceOrTrail)
+        })
         this.lastPartialPlayStart(Date.now())
         this.preSpaceUsed(true)
         // pause wants killNoiseparater
