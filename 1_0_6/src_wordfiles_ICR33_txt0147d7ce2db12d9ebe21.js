@@ -1,0 +1,14 @@
+"use strict";
+(self["webpackChunk"] = self["webpackChunk"] || []).push([["src_wordfiles_ICR33_txt"],{
+
+/***/ "./src/wordfiles/ICR33.txt":
+/*!*********************************!*\
+  !*** ./src/wordfiles/ICR33.txt ***!
+  \*********************************/
+/***/ ((module) => {
+
+module.exports = "knowledge is power\na different kettle of fish\na good beginning makes a good ending\na little knowledge is a dangerous thing\na millstone around ones neck\nabsent minded professor\naccidents will happen\nan albatross around ones neck\nas fast as greased lightning\nbuild a better mousetrap\ncarbon footprint\ncharm offensive\nclimb on the bandwagon\ncrocodile tears\ncuriosity killed the cat\ndelusions of grandeur\ndollars to doughnuts\ndont change horses in midstream\ndont throw the baby out with the bathwater\neverybody out\nthe exception to the rule\nfaith will move mountains\nfellow traveller\nforbidden fruit\ngood samaritan\ngraveyard shift\ngreased lightning\nharbinger of doom\nheard it through the grapevine\nhousehold words\nimitation is the sincerest form of flattery\nin the limelight\njump on the bandwagon\nliving daylights\nmint condition\nmoving the goalposts\nnecessity is the mother of invention\nnothing ventured, nothing gained\non the shoulders of giants\npreaching to the choir\nraspberry tart\nthe road less travelled\nsay goodnight gracie\nshrinking violet\nstanding on the shoulders of giants\nthe living daylights\nzero tolerance\nat the beginning of the\nin the aftermath of the\nto do something about it\nlet me tell you something\nhad something to do with\nis important to note that\nin the direction of the\nlistening to talk of the\nit is important to note\nto take advantage of the\nmath equations\none of the most important\nline equations\nmultiple line equations\nthe scorching sun\nget something out of your system\nwrap your head around something\ncomparing apples to oranges\ndo something at the drop of a hat\nignorance is bliss\nput something on ice\na little learning is a dangerous thing\nget wind of something\ndoubt is the beginning of wisdom\ngood fences make good neighbors\nhe who hesitates is lost\nhindsight is always 20/20\nlaugh before breakfast\nlife is too short not to do something that matters\nlightning never strikes twice in the same place\nno friends but the mountains\nseeing is believing\nsometimes we are the student\nthe end justifies the means\nthere is an exception to every rule\nthose who know many languages\nto travel hopefully is better\nwhy keep a dog and bark yourself?\nwork expands to fill the time available\nzeal without knowledge is fire without light\nany publicity is good publicity\nask no questions and hear no lies\n";
+
+/***/ })
+
+}]);
