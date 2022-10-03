@@ -23,6 +23,7 @@ export class MorseVoice {
   // keep a reference because read that garbage collector can grab
   // and onend never fires?!
   currentUtterance:SpeechSynthesisUtterance
+  voiceLastOnly:ko.Observable<boolean>
 
   constructor (context:MorseViewModel) {
     this.ctxt = context
@@ -39,6 +40,7 @@ export class MorseVoice {
     this.voiceVoices = ko.observableArray([])
     this.voiceBuffer = []
     this.voiceSpelling = ko.observable(false)
+    this.voiceLastOnly = ko.observable(false)
     const speechDetection = EasySpeech.detect()
 
     if (speechDetection.speechSynthesis && speechDetection.speechSynthesisUtterance) {

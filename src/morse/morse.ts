@@ -75,6 +75,8 @@ export class MorseViewModel {
   flaggedWordsLog:any[] = []
   cardBufferManager:CardBufferManager
   charsPlayed:ko.Observable<number> = ko.observable(0)
+  cardSpace:ko.Observable<number> = ko.observable(0)
+  cardSpaceTimerHandle:any = 0
 
   // END KO observables declarations
   constructor () {
@@ -441,10 +443,12 @@ export class MorseViewModel {
       // no speaking, so play more morse
       this.runningPlayMs(this.runningPlayMs() + (Date.now() - this.lastPartialPlayStart()))
       if (isNotLastWord || this.cardBufferManager.hasMoreMorse()) {
+        let cardChanged = false
         if (!this.cardBufferManager.hasMoreMorse()) {
           this.incrementIndex()
+          cardChanged = true
         }
-        this.doPlay(true, false)
+        this.cardSpaceTimerHandle = setTimeout(() => { this.doPlay(true, false) }, !cardChanged ? 0 : this.cardSpace() * 1000)
       } else if (isNotLastSentence) {
       // move to next sentence
         this.currentSentanceIndex(Number(this.currentSentanceIndex()) + 1)
@@ -489,6 +493,10 @@ export class MorseViewModel {
         this.morseVoice.voiceBuffer = []
         this.logToFlaggedWords(`voiceThinkingTime:${this.morseVoice.voiceThinkingTime()}`)
 
+        if (this.morseVoice.voiceLastOnly()) {
+          const phrasePieces = phraseToSpeak.split(' ')
+          phraseToSpeak = phrasePieces[phrasePieces.length - 1]
+        }
         setTimeout(() => {
           this.logToFlaggedWords('aboutToSpeak...')
           this.morseVoice.speakPhrase(phraseToSpeak, () => {
@@ -543,6 +551,11 @@ export class MorseViewModel {
     }
     if (fromStopButton) {
       this.maxRevealedTrail(-1)
+    }
+
+    if (this.cardSpaceTimerHandle) {
+      clearTimeout(this.cardSpaceTimerHandle)
+      this.cardSpaceTimerHandle = 0
     }
   }
 

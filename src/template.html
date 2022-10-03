@@ -63,7 +63,7 @@
                                 href="https://groups.io/g/MorsePracticePageQuestions">groups.io</a>. </h6>
                         <h3 data-bind="if: isDev()">WARNING: You are using the BETA (unstable) version. For the latest
                             stable release please <a href="../">click here.</a></h3>
-                        <h6>Version 1.0.7</h6>
+                        <h6>Version 1.0.8</h6>
                     </div>
                 </div>
 
@@ -425,6 +425,12 @@
                                                 class="form-control" aria-label="Server" min="1" max="10" step="1"
                                                 data-bind="textInput: xtraWordSpaceDits">
 
+                                            <span class="input-group-text">CARD WAIT&nbsp;<img height=20 width=20
+                                                    data-bind="attr: {src: morseLoadImages().getSrc('graphuparrowImage')}" /></span>
+                                            <input type="number" style="max-width:75px; min-width: 75px;"
+                                                class="form-control" aria-label="Server" min="0" max="10" step="1"
+                                                data-bind="textInput: cardSpace">
+
 
                                         </div>
                                     </div>
@@ -588,6 +594,17 @@
                                                     class="form-control" min="0" max="10" step="1"
                                                     data-bind="textInput: morseVoice.voiceVolume">
                                             </div>
+                                        </div>
+                                        <!-- voice last only-->
+                                        <div class="col-auto"
+                                            data-bind="if: showExpertSettings() && morseVoice.voiceEnabled()">
+
+                                            <input type="checkbox" class="btn-check" autocomplete="off"
+                                                id="btnvoicelastonly" data-bind="checked: morseVoice.voiceLastOnly">
+                                            <label class=" btn btn-outline-primary" for="btnvoicelastonly"><img
+                                                    data-bind="attr:{ src: morseLoadImages().getSrc('alignendImage')}">&nbsp;Last
+                                                Only&nbsp;<img
+                                                    data-bind="attr:{ src: morseVoice.voiceLastOnly() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
                                         </div>
                                         <!-- voice pitch-->
                                         <div class="col-md-auto"
