@@ -61,9 +61,17 @@
                         <h6>To ask user questions, report bugs, request features and more <a
                                 href="mailto:MorsePracticePageQuestions@groups.io">email us</a> or join our <a
                                 href="https://groups.io/g/MorsePracticePageQuestions">groups.io</a>. </h6>
+                        <h6>Videos to help you use this site are found <a
+                                href="https://www.dropbox.com/sh/j63lkeqnuq19wr5/AAAh8oFpq6IorEqp2x-KLuRda/70%20%20%20New%20Curriculum/LICW%20Practice%20Page%20Videos?dl=0&subfolder_nav_tracking=1">here.</a>
+                        </h6>
+                        <h6>Link to the Student Guides in <a
+                                href="https://groups.io/g/LongIslandCWClub/files/New%20Curriculum/Student%20and%20Instructor%20Guides">LICW
+                                groups.io</a></h6>
+
+
                         <h3 data-bind="if: isDev()">WARNING: You are using the BETA (unstable) version. For the latest
                             stable release please <a href="../">click here.</a></h3>
-                        <h6>Version 1.0.8</h6>
+                        <h6>Version 1.0.9</h6>
                     </div>
                 </div>
 
@@ -371,7 +379,7 @@
                                         </div>
                                         <!--custom group run button-->
                                         <button type="button" class="btn btn-success"
-                                            data-bind="click: ()=> lessons.setDisplaySelected(lessons.selectedDisplay()), enable: lessons.selectedDisplay().display && !lessons.selectedDisplay().isDummy"
+                                            data-bind="click: ()=> lessons.customGroup() ? lessons.doCustomGroup() : lessons.setDisplaySelected(lessons.selectedDisplay()), enable: (lessons.selectedDisplay().display && !lessons.selectedDisplay().isDummy) || lessons.customGroup"
                                             style="width: 146px; padding-left: 2px; padding-right: 2px;">Apply</button>
                                     </div>
                                 </div>
