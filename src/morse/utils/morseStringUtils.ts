@@ -1,4 +1,7 @@
+import { setMaxListeners } from 'process'
 import wordifiers from '../../configs/wordify.json'
+import WordInfo from './wordInfo'
+import xml2js from 'xml2js'
 export default class MorseStringUtils {
   static doReplacements = (s:string):string => {
     const afterReplaced = s
@@ -14,53 +17,37 @@ export default class MorseStringUtils {
     // in the square brackets we add all symbols supported by morse-pro (see more-pro.js), otherwise replace with space
     // note we will preserve \r and \n for voice which uses these are phrase delimiters
     // eslint-disable-next-line no-useless-escape
-      .replace(/(?![\.\,\:\?\\\-\/\(\)\"\@\=\&\+\!\<\>\r\n])\W/g, ' ')
+      .replace(/(?![\|\{\}\.\,\:\?\\\-\/\(\)\"\@\=\&\+\!\<\>\r\n])\W/g, ' ')
     return afterReplaced
   }
 
-  static splitIntoSentences = (replaced:string):string[] => {
-    // split on period or question mark or exclamation mark
-    // eslint-disable-next-line no-useless-escape
-    const splitSents = replaced.split(/([\.\?\!])/)
-    // example
-    //  "hello there. how are you? I am fine".split(/([\.\?])/)
-    // eslint-disable-next-line no-irregular-whitespace
-    // eslint-disable-next-line no-irregular-whitespace
-    // (5) ['hello there', '.', ' how are you', '?', ' I am fine']
-    // now put the punctuation back on the end of sentences
-    const splitsGlued = splitSents.map((val, i, ary) => {
-      if (i === 0 || i % 2 === 0) {
-        return val + (((i + 1) < ary.length) ? ary[i + 1] : '')
-      } else {
-        return ''
-      }
-    }).filter(y => y !== '')
-    return splitsGlued
-  }
+  static getSentences = (s:string, newlineChunking:boolean) => {
+    const words = newlineChunking
+      ? this.doReplacements(s).split(/\n(?![^{]*})/)
+      : this.doReplacements(s).split(/ (?![^{]*})/)
+    const wordInfos = words.map(w => {
+      const wordInfo = new WordInfo(w)
 
-  static getSentences = (s:string, dontSplit:boolean, newlineChunking:boolean):string[][] => {
+      return wordInfo
+    })
     const replaced:string = this.doReplacements(s)
-    const splitsGlued:string[] = dontSplit ? [replaced] : this.splitIntoSentences(replaced)
-    const sents:string[][] = splitsGlued
-      .map((sentence) => {
-        const hasNewLine = newlineChunking // sentence.indexOf('\n') !== -1
-        return sentence
-          .trim()
-        // remove double spaces
-        // eslint-disable-next-line no-regex-spaces
-          .replace(/  /g, ' ')
-        // add spaces after newlines
-          .replace(/\n/g, '\n ')
-        // split up into words
-          .split(hasNewLine ? '\n ' : ' ')
-        // add back newline to the end of each for voice
-          .map((word) => hasNewLine ? `${word}\n` : word)
-        // get rid fo stray empties
-          .filter(x => x.trim().length > 0)
-      })
-      .filter(x => x.length > 1 || x[0] !== '.')
+    const hasNewLine = newlineChunking // sentence.indexOf('\n') !== -1
+    // eslint-disable-next-line no-unused-vars
+    const sents:string[] = replaced
+      .trim()
+    // remove double spaces
+    // eslint-disable-next-line no-regex-spaces
+      .replace(/  /g, ' ')
+    // add spaces after newlines
+      .replace(/\n/g, '\n ')
+    // split up into words
+      .split(hasNewLine ? '\n ' : ' ')
+    // add back newline to the end of each for voice
+      .map((word) => hasNewLine ? `${word}\n` : word)
+    // get rid fo stray empties
+      .filter(x => x.trim().length > 0)
 
-    return sents
+    return wordInfos
   }
 
   static wordifyPunctuation = (s:string):string => {

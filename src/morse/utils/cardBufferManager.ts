@@ -1,3 +1,5 @@
+import WordInfo from "./wordInfo"
+
 class CardWordSubPart {
   word:string
   played:boolean = false
@@ -22,8 +24,8 @@ class CardWord {
 export class CardBufferManager {
   _buffer:CardWord[] = []
   _getCurrentIndex!:()=>number
-  _getWords!:()=>string[]
-  constructor (getCurrentIndex:()=>number, getWords:()=>string[]) {
+  _getWords!:()=>WordInfo[]
+  constructor (getCurrentIndex:()=>number, getWords:()=>WordInfo[]) {
     this._getCurrentIndex = getCurrentIndex
     this._getWords = getWords
     // this.populateBuffer()
@@ -31,7 +33,7 @@ export class CardBufferManager {
 
   populateBuffer = () => {
     this._buffer = []
-    this._buffer.push(new CardWord(this._getWords()[this._getCurrentIndex()]))
+    this._buffer.push(new CardWord(this._getWords()[this._getCurrentIndex()].displayWord))
   }
 
   hasMoreMorse = ():boolean => {

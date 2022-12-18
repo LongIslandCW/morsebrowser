@@ -8,7 +8,7 @@
         },
         {
             "key": "showingText",
-            "value": "CQ LICW",
+            "value": "CQ {LICW|L I C W} HELLO",
             "comment": "text that shows up every time browser refreshed. advise you keep something here so newb can just hit play..."
         },
         {

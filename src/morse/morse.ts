@@ -18,10 +18,10 @@ import NoiseAccordion from './components/noiseAccordion/noiseAccordion'
 import RssAccordion from './components/rssAccordion/rssAccordion'
 import FlaggedWordsAccordion from './components/flaggedWordsAccordion/flaggedWordsAccordion'
 import { CardBufferManager } from './utils/cardBufferManager'
+import WordInfo from './utils/wordInfo'
 export class MorseViewModel {
   textBuffer:ko.Observable<string> = ko.observable('')
   hideList:ko.Observable<boolean> = ko.observable(true)
-  currentSentanceIndex:ko.Observable<number> = ko.observable(0)
   currentIndex:ko.Observable<number> = ko.observable(0)
   playerPlaying:ko.Observable<boolean> = ko.observable(false)
   lastFullPlayTime = ko.observable(new Date(1900, 0, 0).getMilliseconds())
@@ -40,7 +40,6 @@ export class MorseViewModel {
   noiseVolume:ko.Observable<number> = ko.observable(2)
   noiseType:ko.Observable<string> = ko.observable('off')
   lastPlayFullStart = null
-  ifParseSentences:ko.Observable<boolean> = ko.observable(false)
   runningPlayMs:ko.Observable<number> = ko.observable(0)
   lastPartialPlayStart = ko.observable()
   isPaused:ko.Observable<boolean> = ko.observable(false)
@@ -198,20 +197,12 @@ export class MorseViewModel {
     }
   }
 
-  sentences:ko.Computed<string[][]> = ko.computed(() => {
+  words:ko.Computed<WordInfo[]> = ko.computed(() => {
     if (!this.rawText()) {
       return []
     }
 
-    return MorseStringUtils.getSentences(this.rawText(), !this.ifParseSentences(), this.settings.misc.newlineChunking())
-  }, this)
-
-  sentenceMax:ko.Computed<number> = ko.computed(() => {
-    return this.sentences().length - 1
-  }, this)
-
-  words:ko.Computed<string[]> = ko.computed(() => {
-    return this.sentences()[this.currentSentanceIndex()]
+    return MorseStringUtils.getSentences(this.rawText(), this.settings.misc.newlineChunking())
   }, this)
 
   rawTextCharCount:ko.Computed<number> = ko.computed(() => {
@@ -229,7 +220,9 @@ export class MorseViewModel {
       if (!this.isShuffled()) {
         this.preShuffled = this.rawText()
       }
-      this.lastShuffled = this.rawText().split(hasPhrases ? '\n' : ' ').sort(() => { return 0.5 - Math.random() }).join(hasPhrases ? '\n' : ' ')
+      const shuffledWords = this.words().sort(() => { return 0.5 - Math.random() })
+      this.lastShuffled = shuffledWords.map(w => w.rawWord).join(hasPhrases ? '\n' : ' ')
+      // this.lastShuffled = this.rawText().split(hasPhrases ? '\n' : ' ').sort(() => { return 0.5 - Math.random() }).join(hasPhrases ? '\n' : ' ')
       this.setText(this.lastShuffled)
       if (!this.isShuffled()) {
         this.isShuffled(true)
@@ -244,12 +237,6 @@ export class MorseViewModel {
   incrementIndex = () => {
     if (this.currentIndex() < this.words().length - 1) {
       this.currentIndex(this.currentIndex() + 1)
-    } else {
-      // move to next sentence
-      if (this.currentSentanceIndex() < this.sentenceMax()) {
-        this.currentSentanceIndex(Number(this.currentSentanceIndex()) + 1)
-        this.currentIndex(0)
-      }
     }
   }
 
@@ -265,7 +252,6 @@ export class MorseViewModel {
   }
 
   fullRewind = () => {
-    this.currentSentanceIndex(0)
     this.currentIndex(0)
   }
 
@@ -405,7 +391,6 @@ export class MorseViewModel {
 
     // where are we in the words to process?
     const isNotLastWord = this.currentIndex() < this.words().length - 1
-    const isNotLastSentence = this.currentSentanceIndex() < this.sentenceMax()
     const anyNewLines = this.rawText().indexOf('\n') !== -1
     const needToSpeak = this.morseVoice.voiceEnabled() && !fromVoiceOrTrail && !this.cardBufferManager.hasMoreMorse()
     const needToTrail = this.trailReveal() && !fromVoiceOrTrail
@@ -449,11 +434,6 @@ export class MorseViewModel {
           cardChanged = true
         }
         this.cardSpaceTimerHandle = setTimeout(() => { this.doPlay(true, false) }, !cardChanged ? 0 : this.cardSpace() * 1000)
-      } else if (isNotLastSentence) {
-      // move to next sentence
-        this.currentSentanceIndex(Number(this.currentSentanceIndex()) + 1)
-        this.currentIndex(0)
-        this.doPlay(true, false)
       } else {
       // nothing more to play
         const finalToDo = () => this.doPause(true, false, false)
@@ -469,8 +449,8 @@ export class MorseViewModel {
     if (needToSpeak) {
       // speak the voice buffer if there's a newline or nothing more to play
       const currentWord = this.words()[this.currentIndex()]
-      const hasNewline = currentWord.indexOf('\n') !== -1
-      this.morseVoice.voiceBuffer.push(currentWord)
+      const hasNewline = currentWord.speakText.indexOf('\n') !== -1
+      this.morseVoice.voiceBuffer.push(currentWord.speakText)
       this.logToFlaggedWords(`currentWord:${currentWord}`)
       this.logToFlaggedWords(`hasNewline:${hasNewline} isNotLastWord: ${isNotLastWord} anyNewLines:${anyNewLines}`)
       const speakCondition = hasNewline || !isNotLastWord || !anyNewLines || !this.settings.misc.newlineChunking()
@@ -578,12 +558,11 @@ export class MorseViewModel {
 
   doDownload = async () => {
     let allWords = ''
-    const sentences = this.sentences()
-    sentences.forEach((sentence) => {
-      sentence.forEach((word) => {
-        allWords += allWords.length > 0 ? ' ' + word : word
-      })
+    const words = this.words()
+    words.forEach((word) => {
+      allWords += allWords.length > 0 ? ' ' + word : word
     })
+
     const config = this.getMorseStringToWavBufferConfig(allWords)
     const wav = await this.morseWordPlayer.getWavAndSample(config)
     const ary = new Uint8Array(wav)
@@ -610,7 +589,7 @@ export class MorseViewModel {
     if (!this.rawText()) {
       return { minutes: 0, seconds: 0, normedSeconds: '00' }
     }
-    const config = this.getMorseStringToWavBufferConfig(this.rawText())
+    const config = this.getMorseStringToWavBufferConfig(this.words().map(w => w.displayWord).join(' '))
     const est = this.morseWordPlayer.getTimeEstimate(config)
     const minutes = Math.floor(est.timeCalcs.totalTime / 60000)
     const seconds = ((est.timeCalcs.totalTime % 60000) / 1000).toFixed(0)
