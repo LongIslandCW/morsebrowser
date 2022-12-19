@@ -1,5 +1,5 @@
-W2LCW DE WB2UZE FB CPY RICH ES TNX FER NICE RPRT	
-RIG IC7300 ES PWR 100W 	
-ANT DIPOLE UP 35 FT	
-WX RAIN ES TEMP 40F
-OK HW? <AR> W2LCW DE WB2UZE K
+W2LCW {DE|from} WB2UZE {FB|fine business} {CPY|copy} RICH {ES|and} {TNX|thanks} {FER|for} NICE {RPRT|report} 
+RIG IC7300 {ES|and} {PWR|power} 100{W|watts} 
+{ANT|antenna} DIPOLE UP 35 {FT|feet} 	
+{WX|weather}  RAIN {ES|and} TEMP 40{F|fahrenheit}
+OK {HW?|how copy} {<AR>|end of message} W2LCW {DE|from} WB2UZE {K|invitation to transmit} 
