@@ -1,5 +1,5 @@
-W2LCW {DE|from} W2JSJ OK JOHN SOLID {CPY|copy} 
+{W2LCW|w 2 l c w} {DE|from} {W2JSJ|w 2 j s j} OK JOHN SOLID {CPY|copy} 
 AGE 58 {YRS|years}	
 BEEN HAM {FER|for} 30 {YRS|years}
 RETIRED TEACHER
-OK {HW?|how copy} {<AR>|end of message} W2LCW {DE|from} W2JSJ {K|invitation to transmit} 
+OK {HW?|how copy} {<AR>|end of message} {W2LCW|w 2 l c w} {DE|from} {W2JSJ|w 2 j s j} {K|invitation to transmit} 
