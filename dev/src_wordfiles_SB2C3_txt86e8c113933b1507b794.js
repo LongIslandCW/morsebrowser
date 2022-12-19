@@ -7,7 +7,7 @@
   \*********************************/
 /***/ ((module) => {
 
-module.exports = "W2LCW DE K2UPS GE ES TNX FER CALL\t\nUR RST 599 5NN\nQTH LONG ISLAND, NY LONG ISLAND, NY\nNAME RICH RICH\nOK HW? <AR> W2LCW DE K2UPS\n";
+module.exports = "W2LCW {DE|from} K2UPS {GE|good evening} {ES|and} {TNX|thanks} {FER|for} CALL\t\n{UR|your} RST {599|five nine nine} {5NN|five nine nine} \n{QTH|location} LONG ISLAND, NY LONG ISLAND, NY\nNAME RICH RICH\nOK {HW?|how copy} {<AR>|end of message} W2LCW {DE|from} K2UPS\n";
 
 /***/ })
 
