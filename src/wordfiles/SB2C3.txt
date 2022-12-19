@@ -1,5 +1,5 @@
-W2LCW {DE|from} K2UPS {GE|good evening} {ES|and} {TNX|thanks} {FER|for} CALL	
+{W2LCW|w 2 l c w} {DE|from} {K2UPS|k 2 u p s} {GE|good evening} {ES|and} {TNX|thanks} {FER|for} CALL	
 {UR|your} RST {599|five nine nine} {5NN|five nine nine} 
 {QTH|location} LONG ISLAND, NY LONG ISLAND, NY
 NAME RICH RICH
-OK {HW?|how copy} {<AR>|end of message} W2LCW {DE|from} K2UPS
+OK {HW?|how copy} {<AR>|end of message} {W2LCW|w 2 l c w} {DE|from} {K2UPS|k 2 u p s}
