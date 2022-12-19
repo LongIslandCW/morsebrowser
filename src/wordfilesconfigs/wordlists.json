@@ -313,7 +313,7 @@
     {"sort":310, "userTarget": "INSTRUCTOR", "class": "BC2", "letterGroup": "40", "newlineChunking":false,"display":"SPEED DRILL", "fileName": "IB2408.json" },
     {"sort":311, "userTarget": "INSTRUCTOR", "class": "PT", "letterGroup": "PT", "newlineChunking":false,"display":"B1B2 REVIEW", "fileName": "SB2C2.txt" },
     {"sort":312, "userTarget": "INSTRUCTOR", "class": "PT", "letterGroup": "PT", "newlineChunking":false,"display":"QSO ABBREVIATIONS ", "fileName": "IB2C2.txt" },
-    {"sort":313, "userTarget": "INSTRUCTOR", "class": "PT", "letterGroup": "PT", "newlineChunking":true,"display":"QSO PROTOCOL 1", "fileName": "IB2C3.txt" },
+    {"sort":313, "userTarget": "INSTRUCTOR", "class": "PT", "letterGroup": "PT", "newlineChunking":true,"display":"QSO PROTOCOL 1", "fileName": "SB2C3.txt" },
     {"sort":314, "userTarget": "INSTRUCTOR", "class": "PT", "letterGroup": "PT", "newlineChunking":true,"display":"QSO PROTOCOL 2", "fileName": "IB2C4.txt" },
     {"sort":315, "userTarget": "INSTRUCTOR", "class": "PT", "letterGroup": "PT", "newlineChunking":true,"display":"QSO PROTOCOL 3", "fileName": "IB2C5.txt" },
     {"sort":316, "userTarget": "INSTRUCTOR", "class": "PT", "letterGroup": "PT", "newlineChunking":true,"display":"QSO PROTOCOL 4", "fileName": "IB2C6.txt" },
