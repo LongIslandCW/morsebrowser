@@ -5,7 +5,8 @@
 73 
 {5NN|five nine nine} 
 {ABT|about} 
-AGE {AGN|again} 
+AGE 
+{AGN|again} 
 AM 
 {ANT|antenna} 
 {B4|before} 
