@@ -31,6 +31,7 @@ DIPOLE
 {DX|foreign countries} 
 {EL|element} 
 {ES|and} 
+{F|fahrenheit}
 {FB|fine business} 
 {FER|for} 
 FM 
@@ -43,6 +44,7 @@ FM
 {GUD|good} 
 HAM 
 {HI|laugh} 
+{HP|hope} 
 {HPE|hope} 
 {HR|here} 
 {HW|how} 
