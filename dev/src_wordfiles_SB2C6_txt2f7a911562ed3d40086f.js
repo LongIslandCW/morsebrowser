@@ -7,7 +7,7 @@
   \*********************************/
 /***/ ((module) => {
 
-module.exports = "W2LCW DE WB0JRH OK RICH TNX FER FB QSO \nES HP CUAGN 73 <AR> W2LCW DE WB0JRH TU <SK>\n";
+module.exports = "W2LCW {DE|from} WB0JRH OK RICH {TNX|thanks} {FER|for} {FB|fine business} {QSO|communicate with} \n{ES|and} {HP|hope} {CUAGN|see you again} 73 {<AR>|end of message} W2LCW {DE|from} WB0JRH {TU|thank you} {<SK>|end of contact} \n";
 
 /***/ })
 
