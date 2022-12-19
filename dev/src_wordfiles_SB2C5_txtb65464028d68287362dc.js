@@ -7,7 +7,7 @@
   \*********************************/
 /***/ ((module) => {
 
-module.exports = "W2LCW DE W2JSJ OK JOHN SOLID CPY\nAGE 58 YRS\t\nBEEN HAM FER 30 YRS\nRETIRED TEACHER\nOK HW? <AR> W2LCW DE W2JSJ K\n";
+module.exports = "W2LCW {DE|from} W2JSJ OK JOHN SOLID {CPY|copy} \nAGE 58 {YRS|years}\t\nBEEN HAM {FER|for} 30 {YRS|years}\nRETIRED TEACHER\nOK {HW?|how copy} {<AR>|end of message} W2LCW {DE|from} W2JSJ {K|invitation to transmit} \n";
 
 /***/ })
 
