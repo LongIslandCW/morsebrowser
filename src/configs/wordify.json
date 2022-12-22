@@ -113,7 +113,7 @@
 	{ "characters": “QSO”, "replacement": "contact", "onlyAlone" : true},
 	{ "characters": “QSY”, "replacement": "change to another frequency", "onlyAlone" : true},
 	{ "characters": “QTH”, "replacement": "location", "onlyAlone" : true},
-	{ "characters": "R", "replacement": "Roger roger", "onlyAlone" : true},
+	{ "characters": "R", "replacement": "Roger", "onlyAlone" : true},
 	{ "characters": "RR", "replacement": "Roger roger", "onlyAlone" : true},
 	{ "characters": "RST”, "replacement": "R S T” , "onlyAlone" : true},
 	{ "characters": "RX", "replacement": "Receiver", "onlyAlone" : true},
