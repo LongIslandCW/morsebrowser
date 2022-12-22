@@ -7,7 +7,7 @@
 {ABT|about} 
 AGE 
 {AGN|again} 
-AM 
+{AM|a m} 
 {ANT|antenna} 
 {B4|before} 
 BEEN 
@@ -19,11 +19,11 @@ CALL
 CLEAR 
 {CPI|copy} 
 {CPY|copy} 
-CQ 
+{CQ|c q} 
 {CU|see you} 
 {CUAGN|see you again} 
 {CUL|see you later} 
-CW 
+{CW|c w} 
 {DE|from} 
 DIPOLE 
 {DN|down} 
@@ -34,7 +34,7 @@ DIPOLE
 {F|fahrenheit}
 {FB|fine business} 
 {FER|for} 
-FM 
+{FM|f m} 
 {FT|feet} 
 {GA|good afternoon} 
 {GE|good evening} 
@@ -72,18 +72,18 @@ INFO
 {R|roger} 
 RAIN 
 RETIRED 
-RFI 
+{RFI|r f i} 
 RIG 
 {RPRT|report} 
 {RPT|report} 
 {RR|roger roger} 
-RST 
+{RST|r s t} 
 {RX|receiver} 
 {SIG|signal} 
 {SKED|schedule} 
 SOLID 
 {SRI|sorry} 
-SSB 
+{SSB|s s b} 
 SUN 
 {T|zero} 
 {TEMP|temperature} 
@@ -95,7 +95,7 @@ SUN
 UP 
 {UR|your} 
 {VERT|vertical} 
-{VY\very} 
+{VY|very} 
 {W|watts} 
 {WID|with} 
 WIND 
