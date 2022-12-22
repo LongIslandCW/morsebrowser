@@ -202,7 +202,7 @@ export class MorseViewModel {
       return []
     }
 
-    return MorseStringUtils.getSentences(this.rawText(), this.settings.misc.newlineChunking())
+    return MorseStringUtils.getWords(this.rawText(), this.settings.misc.newlineChunking())
   }, this)
 
   rawTextCharCount:ko.Computed<number> = ko.computed(() => {

@@ -21,15 +21,17 @@ export default class MorseStringUtils {
     return afterReplaced
   }
 
-  static getSentences = (s:string, newlineChunking:boolean) => {
+  static getWords = (s:string, newlineChunking:boolean) => {
     const words = newlineChunking
       ? this.doReplacements(s).split(/\n(?![^{]*})/)
       : this.doReplacements(s).split(/ (?![^{]*})/)
-    const wordInfos = words.map(w => {
-      const wordInfo = new WordInfo(w)
+    const wordInfos = words
+      .filter(w => w.replace(/\s/g, '').length > 0)
+      .map(w => {
+        const wordInfo = new WordInfo(w)
 
-      return wordInfo
-    })
+        return wordInfo
+      })
     const replaced:string = this.doReplacements(s)
     const hasNewLine = newlineChunking // sentence.indexOf('\n') !== -1
     // eslint-disable-next-line no-unused-vars
