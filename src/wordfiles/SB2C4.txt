@@ -1,5 +1,5 @@
 {W2LCW|w 2 l c w} {DE|from} {WB2UZE|w b 2 u z e} {FB|fine business} {CPY|copy} RICH {ES|and} {TNX|thanks} {FER|for} NICE {RPRT|report} 
-RIG IC7300 {ES|and} {PWR|power} 100 {W|watts} 
+RIG {IC7300|i c 7 3 0 0 } {ES|and} {PWR|power} 100 {W|watts} 
 {ANT|antenna} DIPOLE UP 35 {FT|feet} 	
-{WX|weather}  RAIN {ES|and} TEMP 40{F|fahrenheit}
+{WX|weather}  RAIN {ES|and} TEMP 40 {F|fahrenheit}
 OK {HW?|how copy} {<AR>|end of message} {W2LCW|w 2 l c w} {DE|from} {WB2UZE|w b 2 u z e} {K|invitation to transmit} 
