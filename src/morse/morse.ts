@@ -449,8 +449,10 @@ export class MorseViewModel {
     if (needToSpeak) {
       // speak the voice buffer if there's a newline or nothing more to play
       const currentWord = this.words()[this.currentIndex()]
-      const hasNewline = currentWord.speakText.indexOf('\n') !== -1
-      this.morseVoice.voiceBuffer.push(currentWord.speakText)
+      const speakText = currentWord.speakText(this.morseVoice.voiceSpelling())
+      // console.log(`speaktext:${speakText}`)
+      const hasNewline = speakText.indexOf('\n') !== -1
+      this.morseVoice.voiceBuffer.push(speakText)
       this.logToFlaggedWords(`currentWord:${currentWord}`)
       this.logToFlaggedWords(`hasNewline:${hasNewline} isNotLastWord: ${isNotLastWord} anyNewLines:${anyNewLines}`)
       const speakCondition = hasNewline || !isNotLastWord || !anyNewLines || !this.settings.misc.newlineChunking()
@@ -459,11 +461,12 @@ export class MorseViewModel {
         this.logToFlaggedWords(`about to wordify:'${this.morseVoice.voiceBuffer.join(' ')}'`)
         let phraseToSpeak
         try {
-          let joinedBuffer = this.morseVoice.voiceBuffer.join(' ')
-          if (this.morseVoice.voiceSpelling()) {
+          const joinedBuffer = this.morseVoice.voiceBuffer.join(' ')
+          phraseToSpeak = joinedBuffer
+          /* if (this.morseVoice.voiceSpelling()) {
             joinedBuffer = joinedBuffer.split('').join(' ')
           }
-          phraseToSpeak = MorseStringUtils.wordifyPunctuation(joinedBuffer)
+          phraseToSpeak = MorseStringUtils.wordifyPunctuation(joinedBuffer) */
           phraseToSpeak = phraseToSpeak.replace(/\n/g, ' ').trim()
         } catch (e) {
           this.logToFlaggedWords(`caught after wordify:${e}`)

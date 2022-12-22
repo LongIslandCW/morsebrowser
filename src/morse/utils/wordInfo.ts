@@ -8,24 +8,36 @@ export default class WordInfo {
     return s.indexOf('{') > -1
   }
 
+  getBracesIndex (p:string, i:number):string {
+    const pieces = p.replace('{', '').replace('}', '').split('|')
+    return MorseStringUtils.doReplacements(pieces[i])
+  }
+
   get displayWord ():string {
     return this.pieces.map(p => {
       if (!this.hasOverride(p)) {
         return MorseStringUtils.doReplacements(p)
       } else {
-        const pieces = p.replace('{', '').replace('}', '').split('|')
-        return MorseStringUtils.doReplacements(pieces[0])
+        return this.getBracesIndex(p, 0)
       }
     }).join(' ')
   }
 
-  get speakText ():string {
+  speakText (forceSpelling:boolean):string {
     return this.pieces.map(p => {
       if (!this.hasOverride(p)) {
-        return MorseStringUtils.doReplacements(p) + '\n'
+        const base = MorseStringUtils.doReplacements(p) + '\n'
+        if (!forceSpelling) {
+          return MorseStringUtils.wordifyPunctuation(base)
+        }
+
+        return base.split('').join(' ')
       } else {
-        const pieces = p.replace('{', '').replace('}', '').split('|')
-        return MorseStringUtils.doReplacements(pieces[1])
+        if (!forceSpelling) {
+          return this.getBracesIndex(p, 1)
+        }
+
+        return this.getBracesIndex(p, 0).split('').join(' ')
       }
     }).join(' ') + '\n'
   }
