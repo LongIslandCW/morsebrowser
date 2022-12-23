@@ -171,7 +171,7 @@ export class MorseVoice {
   speakPhrase = (phraseToSpeak:string, onEndCallBack) => {
     // console.log(this.voiceVoice().name)
     const doOnEndCallBack = () => {
-      setTimeout(onEndCallBack,this.voiceAfterThinkingTime() * 1000)
+      setTimeout(onEndCallBack, this.voiceAfterThinkingTime() * 1000)
     }
     try {
       const morseVoiceInfo = this.initMorseVoiceInfo(phraseToSpeak)
