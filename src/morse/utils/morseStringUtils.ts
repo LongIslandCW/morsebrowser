@@ -1,7 +1,6 @@
 import { setMaxListeners } from 'process'
 import wordifiers from '../../configs/wordify.json'
 import WordInfo from './wordInfo'
-import xml2js from 'xml2js'
 export default class MorseStringUtils {
   static doReplacements = (s:string):string => {
     const afterReplaced = s
