@@ -19,5 +19,7 @@ export class SoundMakerConfig {
   trimLastWordSpace:boolean = false
   morseDisabled:boolean = false
   voiceEnabled:boolean = false
+  isToneTest:boolean = false
+  testToneDuration:number = 10000
   get frequency ():number { return this.ditFrequency }
 }

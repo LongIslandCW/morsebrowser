@@ -1,5 +1,6 @@
 import Cookies from 'js-cookie'
 import licwDefaults from '../../configs/licwdefaults.json'
+import { MorseViewModel } from '../morse'
 import { GeneralUtils } from '../utils/general'
 import { CookieInfo } from './CookieInfo'
 import { ICookieHandler } from './ICookieHandler'
@@ -10,7 +11,7 @@ export class MorseCookies {
     MorseCookies.registeredHandlers.push(handler)
   }
 
-  static loadCookiesOrDefaults = (ctxt, whiteList, ifLoadSettings) => {
+  static loadCookiesOrDefaults = (ctxt:MorseViewModel, ifLoadSettings:boolean) => {
     // load any existing cookie values
 
     const cks = Cookies.get()
@@ -30,28 +31,25 @@ export class MorseCookies {
       workAry.forEach((setting) => {
         const key = keyResolver(setting)
         let val = valResolver(setting)
-
-        if (!whiteList || whiteList.indexOf(key) > -1) {
-          switch (key) {
-            case 'syncWpm':
-            case 'wpm':
-            case 'fwpm':
-            case 'syncFreq':
-            case 'ditFrequency':
-            case 'dahFrequency':
-              xtraspecialHandling.push(<CookieInfo>{ key, val })
-              break
-            default:
-              if (typeof ctxt[key] !== 'undefined') {
-                if (key === 'xtraWordSpaceDits' && parseInt(val) === 0) {
-                  // prior functionality may have this at 0 so make it 1
-                  val = 1
-                }
-                ctxt[key](GeneralUtils.booleanize(val))
-              } else {
-                otherHandling.push(<CookieInfo>{ key, val })
+        switch (key) {
+          case 'syncWpm':
+          case 'wpm':
+          case 'fwpm':
+          case 'syncFreq':
+          case 'ditFrequency':
+          case 'dahFrequency':
+            xtraspecialHandling.push(<CookieInfo>{ key, val })
+            break
+          default:
+            if (typeof ctxt[key] !== 'undefined') {
+              if (key === 'xtraWordSpaceDits' && parseInt(val) === 0) {
+                // prior functionality may have this at 0 so make it 1
+                val = 1
               }
-          }
+              ctxt[key](GeneralUtils.booleanize(val))
+            } else {
+              otherHandling.push(<CookieInfo>{ key, val })
+            }
         }
       })
       MorseCookies.registeredHandlers.forEach((handler) => {

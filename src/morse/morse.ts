@@ -123,10 +123,10 @@ export class MorseViewModel {
     this.morseWordPlayer.setSoundMaker(this.smoothing())
 
     // load defaults
-    MorseCookies.loadCookiesOrDefaults(this, null, true)
+    MorseCookies.loadCookiesOrDefaults(this, true)
 
     // load cookies
-    MorseCookies.loadCookiesOrDefaults(this, null, false)
+    MorseCookies.loadCookiesOrDefaults(this, false)
 
     // initialize the wordlist
     this.lessons.initializeWordList()
@@ -312,6 +312,15 @@ export class MorseViewModel {
     config.morseDisabled = this.morseDisabled()
 
     return config
+  }
+
+  testTone = () => {
+    const config = this.getMorseStringToWavBufferConfig('T')
+    config.isToneTest = true
+    this.morseWordPlayer.play(config, (fromVoiceOrTrail) => {
+      // this.charsPlayed(this.charsPlayed() + config.word.replace(' ', '').length)
+      // this.playEnded(fromVoiceOrTrail)
+    })
   }
 
   doPlay = (playJustEnded:boolean, fromPlayButton:boolean) => {
