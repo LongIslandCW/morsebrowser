@@ -314,6 +314,10 @@ export default class MorseLessonPlugin implements ICookieHandler {
     if (target) {
       this.ifStickySets(GeneralUtils.booleanize(target.val))
     }
+    target = cookies.find(x => x.key === 'customGroup')
+    if (target) {
+      this.customGroup(target.val)
+    }
   }
 
   handleCookie = (cookie: string) => {}

@@ -20,6 +20,7 @@ import FlaggedWordsAccordion from './components/flaggedWordsAccordion/flaggedWor
 import HapticAccordion from './components/hapticAccordion/hapticAccordion'
 import { CardBufferManager } from './utils/cardBufferManager'
 import WordInfo from './utils/wordInfo'
+import SavedSettingsInfo from './settings/savedSettingsInfo'
 export class MorseViewModel {
   textBuffer:ko.Observable<string> = ko.observable('')
   hideList:ko.Observable<boolean> = ko.observable(true)
@@ -628,5 +629,54 @@ export class MorseViewModel {
     // stop playing
     this.doPause(true, false, false)
     this.setText('')
+  }
+
+  saveSettings = () => {
+    const savedInfos:SavedSettingsInfo[] = []
+    const settings = { morseSettings: savedInfos }
+    savedInfos.push(new SavedSettingsInfo('wpm', this.settings.speed.wpm()))
+    savedInfos.push(new SavedSettingsInfo('fwpm', this.settings.speed.fwpm()))
+    savedInfos.push(new SavedSettingsInfo('ditFrequency', this.settings.frequency.ditFrequency()))
+    savedInfos.push(new SavedSettingsInfo('dahFrequency', this.settings.frequency.dahFrequency()))
+    savedInfos.push(new SavedSettingsInfo('preSpace', this.preSpace()))
+    savedInfos.push(new SavedSettingsInfo('xtraWordSpaceDits', this.xtraWordSpaceDits()))
+    savedInfos.push(new SavedSettingsInfo('volume', this.volume()))
+    savedInfos.push(new SavedSettingsInfo('stickySets', this.lessons.stickySets()))
+    savedInfos.push(new SavedSettingsInfo('ifStickySets', this.lessons.ifStickySets()))
+    savedInfos.push(new SavedSettingsInfo('syncWpm', this.settings.speed.syncWpm()))
+    savedInfos.push(new SavedSettingsInfo('syncFreq', this.settings.frequency.syncFreq()))
+    savedInfos.push(new SavedSettingsInfo('hideList', this.hideList()))
+    savedInfos.push(new SavedSettingsInfo('showRaw', this.showRaw()))
+    savedInfos.push(new SavedSettingsInfo('autoCloseLessonAccordian', this.lessons.autoCloseLessonAccordion()))
+    savedInfos.push(new SavedSettingsInfo('cardFontPx', this.cardFontPx()))
+    savedInfos.push(new SavedSettingsInfo('customGroup', this.lessons.customGroup()))
+    // console.log(settings)
+    const elemx = document.createElement('a')
+    elemx.href = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(settings, null, '\t')) // ! encodeURIComponent
+    elemx.download = 'LICWSettings.json'
+    elemx.style.display = 'none'
+    document.body.appendChild(elemx)
+    elemx.click()
+    document.body.removeChild(elemx)
+  }
+
+  settingsFileChange = (element) => {
+    // thanks to https://newbedev.com/how-to-access-file-input-with-knockout-binding
+    // console.log(file)
+    const file = element.files[0]
+    console.log(element.value)
+    const fr = new FileReader()
+    fr.onload = (data) => {
+      const settings = JSON.parse(data.target.result as string)
+      console.log(settings)
+      // this.setText(data.target.result as string)
+      // need to clear or else won't fire if use clears the text area
+      // and then tries to reload the same again
+      element.value = null
+      // request to undo "apply" after file load
+      // this.lessons.selectedDisplay({})
+      MorseCookies.loadCookiesOrDefaults(this, true, true, settings.morseSettings)
+    }
+    fr.readAsText(file)
   }
 }

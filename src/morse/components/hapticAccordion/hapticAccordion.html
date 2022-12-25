@@ -11,12 +11,26 @@
     <div class="accordion-body">
         <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
             <div class="btn-group me-2" role="group" aria-label="Basic mixed styles example">
-                <!-- play button -->
+                <!-- zero beat button -->
                 <button id="zeroBeatButton" type="button" class="btn btn-success" data-bind="click: () => testTone()">
                     <span>Zero Beat</span>
 
                 </button>
 
+                <!-- save settings button -->
+                <button id="saveSettingsButton" type="button" class="btn btn-primary"
+                    data-bind="click: () => saveSettings()">
+                    <span>Save Settings</span>
+
+                </button>
+                <!-- load settings button -->
+                <button id="loadSettingsButton" type="button" class="btn btn-info"
+                    onclick="getElementById('settingsfiletoread').click()">
+                    <span>Load Settings</span>
+
+                </button>
+                <input type="file" accept=".json" id="settingsfiletoread" class="form-control"
+                    data-bind="event: {change: function() { settingsFileChange($element) } }" hidden>
 
             </div>
 

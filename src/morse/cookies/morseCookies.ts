@@ -1,6 +1,7 @@
 import Cookies from 'js-cookie'
 import licwDefaults from '../../configs/licwdefaults.json'
 import { MorseViewModel } from '../morse'
+import SavedSettingsInfo from '../settings/savedSettingsInfo'
 import { GeneralUtils } from '../utils/general'
 import { CookieInfo } from './CookieInfo'
 import { ICookieHandler } from './ICookieHandler'
@@ -11,7 +12,7 @@ export class MorseCookies {
     MorseCookies.registeredHandlers.push(handler)
   }
 
-  static loadCookiesOrDefaults = (ctxt:MorseViewModel, ifLoadSettings:boolean) => {
+  static loadCookiesOrDefaults = (ctxt:MorseViewModel, ifLoadSettings:boolean, ignoreCookies:boolean = false, custom:SavedSettingsInfo[] = null) => {
     // load any existing cookie values
 
     const cks = Cookies.get()
@@ -20,8 +21,16 @@ export class MorseCookies {
       cksKeys.push(key)
     }
 
-    // ignore setting for which there's a cookie
-    const workAry = ifLoadSettings ? licwDefaults.startupSettings.filter((x) => cksKeys.indexOf(x.key) < 0) : cksKeys
+    const settings = custom || licwDefaults.startupSettings
+    const cookieFiltered = (ss) => {
+      if (ignoreCookies) {
+        return ss
+      }
+      // ignore setting for which there's a cookie
+      return ss.filter((x) => cksKeys.indexOf(x.key) < 0)
+    }
+
+    const workAry = ifLoadSettings ? cookieFiltered(settings) : cksKeys
     const keyResolver = ifLoadSettings ? (x) => x.key : (x) => x
     const valResolver = ifLoadSettings ? (x) => x.value : (x) => cks[x]
     const specialHandling: CookieInfo[] = []
