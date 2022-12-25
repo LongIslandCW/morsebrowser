@@ -17,6 +17,7 @@ import SimpleImageTemplate from './components/morseImage/simpleImage'
 import NoiseAccordion from './components/noiseAccordion/noiseAccordion'
 import RssAccordion from './components/rssAccordion/rssAccordion'
 import FlaggedWordsAccordion from './components/flaggedWordsAccordion/flaggedWordsAccordion'
+import HapticAccordion from './components/hapticAccordion/hapticAccordion'
 import { CardBufferManager } from './utils/cardBufferManager'
 import WordInfo from './utils/wordInfo'
 export class MorseViewModel {
@@ -150,6 +151,7 @@ export class MorseViewModel {
     ko.components.register('simpleimage', SimpleImageTemplate)
     ko.components.register('noiseaccordion', NoiseAccordion)
     ko.components.register('rssaccordion', RssAccordion)
+    ko.components.register('hapticaccordion', HapticAccordion)
     ko.components.register('flaggedwordsaccordion', FlaggedWordsAccordion)
 
     // card buffer manager

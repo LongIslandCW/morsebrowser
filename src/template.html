@@ -404,8 +404,8 @@
                                     <!--tone-->
                                     <div class="col-auto">
                                         <div class="input-group">
-                                            <span class="input-group-text" data-bind="click: testTone">DIT&nbsp;<img
-                                                    id="musicnoteImage" height=20 witdh=20 /></span>
+                                            <span class="input-group-text">DIT&nbsp;<img id="musicnoteImage" height=20
+                                                    witdh=20 /></span>
                                             <input type="number" style="max-width:75px; min-width: 75px;"
                                                 class="form-control" aria-label="Server" min="100" max="1200" step="10"
                                                 data-bind="textInput: settings.frequency.ditFrequency">
@@ -686,6 +686,10 @@
                     <div class="accordion-item" data-bind="component: {name: 'noiseaccordion', params: {root: $root}}">
                     </div>
                     <!-- /ko -->
+
+                    <!-- haptic -->
+                    <div class="accordion-item" data-bind="component: {name: 'hapticaccordion', params: {root: $root}}">
+                    </div>
 
                     <!-- flagged words -->
                     <div class="accordion-item"
