@@ -650,6 +650,14 @@ export class MorseViewModel {
     savedInfos.push(new SavedSettingsInfo('autoCloseLessonAccordian', this.lessons.autoCloseLessonAccordion()))
     savedInfos.push(new SavedSettingsInfo('cardFontPx', this.cardFontPx()))
     savedInfos.push(new SavedSettingsInfo('customGroup', this.lessons.customGroup()))
+    savedInfos.push(new SavedSettingsInfo('showExpertSettings', this.showExpertSettings()))
+    savedInfos.push(new SavedSettingsInfo('voiceEnabled', this.morseVoice.voiceEnabled()))
+    savedInfos.push(new SavedSettingsInfo('voiceSpelling', this.morseVoice.voiceSpelling()))
+    savedInfos.push(new SavedSettingsInfo('voiceThinkingTime', this.morseVoice.voiceThinkingTime()))
+    savedInfos.push(new SavedSettingsInfo('voiceAfterThinkingTime', this.morseVoice.voiceAfterThinkingTime()))
+    savedInfos.push(new SavedSettingsInfo('voiceVolume', this.morseVoice.voiceVolume()))
+    savedInfos.push(new SavedSettingsInfo('voiceLastOnly', this.morseVoice.voiceLastOnly()))
+
     // console.log(settings)
     const elemx = document.createElement('a')
     elemx.href = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(settings, null, '\t')) // ! encodeURIComponent
