@@ -658,6 +658,12 @@ export class MorseViewModel {
     savedInfos.push(new SavedSettingsInfo('voiceVolume', this.morseVoice.voiceVolume()))
     savedInfos.push(new SavedSettingsInfo('voiceLastOnly', this.morseVoice.voiceLastOnly()))
 
+    savedInfos.push(new SavedSettingsInfo('keepLines', this.settings.misc.newlineChunking()))
+    savedInfos.push(new SavedSettingsInfo('overrideSize', this.lessons.ifOverrideMinMax()))
+    savedInfos.push(new SavedSettingsInfo('overrideSizeMin', this.lessons.overrideMin()))
+    savedInfos.push(new SavedSettingsInfo('overrideSizeMax', this.lessons.overrideMax()))
+    savedInfos.push(new SavedSettingsInfo('cardSpace', this.cardSpace(), 'AKA cardWait'))
+
     // console.log(settings)
     const elemx = document.createElement('a')
     elemx.href = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(settings, null, '\t')) // ! encodeURIComponent

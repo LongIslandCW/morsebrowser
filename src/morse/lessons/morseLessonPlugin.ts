@@ -318,6 +318,18 @@ export default class MorseLessonPlugin implements ICookieHandler {
     if (target) {
       this.customGroup(target.val)
     }
+    target = cookies.find(x => x.key === 'overrideSize')
+    if (target) {
+      this.ifOverrideMinMax(GeneralUtils.booleanize(target.val))
+    }
+    target = cookies.find(x => x.key === 'overrideSizeMin')
+    if (target) {
+      this.overrideMin(target.val as unknown as number)
+    }
+    target = cookies.find(x => x.key === 'overrideSizeMax')
+    if (target) {
+      this.overrideMax(target.val as unknown as number)
+    }
   }
 
   handleCookie = (cookie: string) => {}

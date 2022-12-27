@@ -62,6 +62,8 @@ export class MorseCookies {
         }
       })
       MorseCookies.registeredHandlers.forEach((handler) => {
+        // console.log(xtraspecialHandling)
+        // console.log(otherHandling)
         handler.handleCookies(xtraspecialHandling)
         handler.handleCookies(otherHandling)
       })
