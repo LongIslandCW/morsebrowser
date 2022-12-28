@@ -17,10 +17,11 @@ import SimpleImageTemplate from './components/morseImage/simpleImage'
 import NoiseAccordion from './components/noiseAccordion/noiseAccordion'
 import RssAccordion from './components/rssAccordion/rssAccordion'
 import FlaggedWordsAccordion from './components/flaggedWordsAccordion/flaggedWordsAccordion'
-import HapticAccordion from './components/hapticAccordion/hapticAccordion'
+import HapticVm, { HapticAccordion } from './components/hapticAccordion/hapticAccordion'
 import { CardBufferManager } from './utils/cardBufferManager'
 import WordInfo from './utils/wordInfo'
 import SavedSettingsInfo from './settings/savedSettingsInfo'
+
 export class MorseViewModel {
   textBuffer:ko.Observable<string> = ko.observable('')
   hideList:ko.Observable<boolean> = ko.observable(true)
@@ -78,6 +79,7 @@ export class MorseViewModel {
   charsPlayed:ko.Observable<number> = ko.observable(0)
   cardSpace:ko.Observable<number> = ko.observable(0)
   cardSpaceTimerHandle:any = 0
+  hapticAccordion:HapticAccordion
 
   // END KO observables declarations
   constructor () {
@@ -152,7 +154,7 @@ export class MorseViewModel {
     ko.components.register('simpleimage', SimpleImageTemplate)
     ko.components.register('noiseaccordion', NoiseAccordion)
     ko.components.register('rssaccordion', RssAccordion)
-    ko.components.register('hapticaccordion', HapticAccordion)
+    ko.components.register('hapticaccordion', HapticVm)
     ko.components.register('flaggedwordsaccordion', FlaggedWordsAccordion)
 
     // card buffer manager
@@ -663,6 +665,8 @@ export class MorseViewModel {
     savedInfos.push(new SavedSettingsInfo('overrideSizeMin', this.lessons.overrideMin()))
     savedInfos.push(new SavedSettingsInfo('overrideSizeMax', this.lessons.overrideMax()))
     savedInfos.push(new SavedSettingsInfo('cardSpace', this.cardSpace(), 'AKA cardWait'))
+
+    savedInfos.push(new SavedSettingsInfo('hapticAccordionOpen', this.hapticAccordion.isAccordionOpen))
 
     // console.log(settings)
     const elemx = document.createElement('a')
