@@ -202,6 +202,9 @@ export default class MorseLessonPlugin implements ICookieHandler {
         if (targetClass.defaultSetFile) {
           // sps.push({ display: targetClass.defaultSetFile })
           MorsePresetSetFileFinder.getMorsePresetSetFile(targetClass.defaultSetFile, (data) => handleData(data))
+        } else {
+          // no matches so use default
+          this.settingsPresets(sps)
         }
       }
     }
