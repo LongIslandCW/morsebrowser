@@ -32,7 +32,7 @@
     "zip-a-folder": "^1.1.3"
   },
   "scripts": {
-    "prebuild": "node ./prebuildLessons.js",
+    "prebuild": "node ./prebuildLessons.js && node ./prebuildPresetSets.js && node ./prebuildPresets.js",
     "build": "webpack",
     "postbuild": "node ./zipdist.js && node ./checklessons.js",
     "dev": "webpack serve"

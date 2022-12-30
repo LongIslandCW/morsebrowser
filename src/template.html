@@ -274,6 +274,17 @@
                                         </div>
                                     </div>
 
+                                    <!--setting presets-->
+                                    <div class="col-auto">
+                                        <div class="list-group"
+                                            data-bind="foreach: lessons.settingsPresets, childrenComplete: () => lessons.setSettingsPresetsInitialized()"
+                                            style="overflow-y:auto; height:250px; width: 200px;">
+                                            <button id="btnLessonSettingsPresets" type="button"
+                                                class="list-group-item list-group-item-action"
+                                                data-bind="text: $data.display, click: ()=>$root.lessons.setPresetSelected($data), css: { active: $data.display==$parent.lessons.selectedSettingsPreset().display}"></button>
+                                        </div>
+                                    </div>
+
                                     <!--buttons for overrides and such-->
                                     <div class="col-auto">
                                         <div class="btn-group-vertical" role="group"

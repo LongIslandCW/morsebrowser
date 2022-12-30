@@ -1,0 +1,33 @@
+{
+    "classes": [
+        {
+            "className": "BC1",
+            "defaultSetFile": "bc1.json",
+            "letterGroups": []
+        },
+        {
+            "className": "BC2",
+            "defaultSetFile": "bc2.json",
+            "letterGroups": []
+        },
+        {
+            "className": "BPT",
+            "defaultSetFile": "bpt.json",
+            "letterGroups": []
+        },
+        {
+            "className": "INTERMEDIATE",
+            "defaultSetFile": "",
+            "letterGroups": [
+                {
+                    "letterGroup": "12 to 16",
+                    "setFile": "int_12_16.json"
+                },
+                {
+                    "letterGroup": "16 to 20",
+                    "setFile": "int_16_20.json"
+                }
+            ]
+        }
+    ]
+}

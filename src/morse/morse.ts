@@ -21,6 +21,7 @@ import HapticVm, { HapticAccordion } from './components/hapticAccordion/hapticAc
 import { CardBufferManager } from './utils/cardBufferManager'
 import WordInfo from './utils/wordInfo'
 import SavedSettingsInfo from './settings/savedSettingsInfo'
+import { GeneralUtils } from './utils/general'
 
 export class MorseViewModel {
   textBuffer:ko.Observable<string> = ko.observable('')
@@ -101,7 +102,7 @@ export class MorseViewModel {
       const config = this.getMorseStringToWavBufferConfig(str)
       const est = this.morseWordPlayer.getTimeEstimate(config)
       return est
-    })
+    }, this)
 
     this.rss = new MorseRssPlugin(new RssConfig(this.setText, this.fullRewind, this.doPlay, this.lastFullPlayTime, this.playerPlaying))
 
@@ -667,7 +668,7 @@ export class MorseViewModel {
     savedInfos.push(new SavedSettingsInfo('cardSpace', this.cardSpace(), 'AKA cardWait'))
 
     savedInfos.push(new SavedSettingsInfo('hapticAccordionOpen', this.hapticAccordion.isAccordionOpen))
-
+    savedInfos.push(new SavedSettingsInfo('miscSettingsAccordionOpen', this.settings.misc.isMoreSettingsAccordionOpen))
     // console.log(settings)
     const elemx = document.createElement('a')
     elemx.href = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(settings, null, '\t')) // ! encodeURIComponent
@@ -697,4 +698,6 @@ export class MorseViewModel {
     }
     fr.readAsText(file)
   }
+
+  
 }
