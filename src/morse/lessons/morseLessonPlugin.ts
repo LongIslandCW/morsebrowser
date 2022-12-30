@@ -182,8 +182,8 @@ export default class MorseLessonPlugin implements ICookieHandler {
     const sps = []
     sps.push({ display: 'Your Settings', filename: 'dummy.json', isDummy: true })
     const handleData = (d) => {
-      console.log(d)
-      console.log(typeof d.data.options)
+      // console.log(d)
+      // console.log(typeof d.data.options)
       if (typeof d.data !== 'undefined' && typeof d.data.options !== 'undefined') {
         this.settingsPresets(sps.concat(d.data.options))
       } else {
@@ -317,14 +317,14 @@ export default class MorseLessonPlugin implements ICookieHandler {
   changeSelectedClass = (selectedClass) => {
     if (this.selectedClassInitialized) {
       this.selectedClass(selectedClass)
-      console.log(selectedClass)
-      console.log(ClassPresets)
+      // console.log(selectedClass)
+      // console.log(ClassPresets)
     }
   }
 
   setLetterGroup = (letterGroup) => {
     if (this.letterGroupInitialized) {
-      console.log('setlettergroup')
+      // console.log('setlettergroup')
       this.letterGroup(letterGroup)
     }
   }
@@ -351,13 +351,16 @@ export default class MorseLessonPlugin implements ICookieHandler {
   setPresetSelected = (preset) => {
     if (this.settingsPresetsInitialized) {
       this.selectedSettingsPreset(preset)
-      console.log(preset)
+      // console.log(preset)
       if (typeof preset.isDummy !== 'undefined' && preset.isDummy) {
         // restore whatever the defaults are
-        this.morseViewModel.loadDefaultsAndCookieSettings()
+        // console.log(this.morseViewModel.currentSerializedSettings)
+        if (this.morseViewModel.currentSerializedSettings) {
+          MorseCookies.loadCookiesOrDefaults(this.morseViewModel, true, true, this.morseViewModel.currentSerializedSettings.morseSettings, true)
+        }
       } else {
         MorsePresetFileFinder.getMorsePresetFile(preset.filename, (d) => {
-          console.log(d)
+          // console.log(d)
           if (d.found) {
             MorseCookies.loadCookiesOrDefaults(this.morseViewModel, true, true, d.data.morseSettings, true)
           }

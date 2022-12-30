@@ -15,6 +15,10 @@ export class MorseCookies {
   static loadCookiesOrDefaults = (ctxt:MorseViewModel, ifLoadSettings:boolean, ignoreCookies:boolean = false, custom:SavedSettingsInfo[] = null, lockoutCookieChanges:boolean = false) => {
     // load any existing cookie values
     if (lockoutCookieChanges) {
+      if (!ctxt.lockoutSaveCookies) {
+        // not currently locked out so save serialized settings
+        ctxt.currentSerializedSettings = ctxt.getCurrentSerializedSettings()
+      }
       if (ctxt.lockoutSaveCookiesTimerHandle) {
         clearTimeout(ctxt.lockoutSaveCookiesTimerHandle)
       }

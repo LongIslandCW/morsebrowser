@@ -82,6 +82,7 @@ export class MorseViewModel {
   hapticAccordion:HapticAccordion
   lockoutSaveCookies:boolean = false
   lockoutSaveCookiesTimerHandle:any = null
+  currentSerializedSettings:any = null
 
   // END KO observables declarations
   constructor () {
@@ -639,7 +640,7 @@ export class MorseViewModel {
     this.setText('')
   }
 
-  saveSettings = () => {
+  getCurrentSerializedSettings = () => {
     const savedInfos:SavedSettingsInfo[] = []
     const settings = { morseSettings: savedInfos }
     savedInfos.push(new SavedSettingsInfo('wpm', this.settings.speed.wpm()))
@@ -674,6 +675,11 @@ export class MorseViewModel {
 
     savedInfos.push(new SavedSettingsInfo('hapticAccordionOpen', this.hapticAccordion.isAccordionOpen))
     savedInfos.push(new SavedSettingsInfo('miscSettingsAccordionOpen', this.settings.misc.isMoreSettingsAccordionOpen))
+    return settings
+  }
+
+  saveSettings = () => {
+    const settings = this.getCurrentSerializedSettings()
     // console.log(settings)
     const elemx = document.createElement('a')
     elemx.href = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(settings, null, '\t')) // ! encodeURIComponent
