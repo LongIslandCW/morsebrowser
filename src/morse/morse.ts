@@ -21,7 +21,6 @@ import HapticVm, { HapticAccordion } from './components/hapticAccordion/hapticAc
 import { CardBufferManager } from './utils/cardBufferManager'
 import WordInfo from './utils/wordInfo'
 import SavedSettingsInfo from './settings/savedSettingsInfo'
-import { GeneralUtils } from './utils/general'
 
 export class MorseViewModel {
   textBuffer:ko.Observable<string> = ko.observable('')
@@ -81,6 +80,8 @@ export class MorseViewModel {
   cardSpace:ko.Observable<number> = ko.observable(0)
   cardSpaceTimerHandle:any = 0
   hapticAccordion:HapticAccordion
+  lockoutSaveCookies:boolean = false
+  lockoutSaveCookiesTimerHandle:any = null
 
   // END KO observables declarations
   constructor () {
@@ -127,11 +128,7 @@ export class MorseViewModel {
     this.morseWordPlayer = new MorseWordPlayer()
     this.morseWordPlayer.setSoundMaker(this.smoothing())
 
-    // load defaults
-    MorseCookies.loadCookiesOrDefaults(this, true)
-
-    // load cookies
-    MorseCookies.loadCookiesOrDefaults(this, false)
+    this.loadDefaultsAndCookieSettings()
 
     // initialize the wordlist
     this.lessons.initializeWordList()
@@ -164,6 +161,14 @@ export class MorseViewModel {
     this.showRaw(false)
   }
   // END CONSTRUCTOR
+
+  loadDefaultsAndCookieSettings = () => {
+    // load defaults
+    MorseCookies.loadCookiesOrDefaults(this, true)
+
+    // load cookies
+    MorseCookies.loadCookiesOrDefaults(this, false)
+  }
 
   logToFlaggedWords = (s) => {
     /* this.flaggedWordsLogCount++
@@ -698,6 +703,4 @@ export class MorseViewModel {
     }
     fr.readAsText(file)
   }
-
-  
 }

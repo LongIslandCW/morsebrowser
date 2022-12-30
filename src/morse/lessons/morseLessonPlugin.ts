@@ -82,7 +82,7 @@ export default class MorseLessonPlugin implements ICookieHandler {
     this.trueOverrideMin = ko.observable(3)
     this.trueOverrideMax = ko.observable(3)
     this.syncSize = ko.observable(true)
-    this.settingsPresets = ko.observableArray([{ display: 'Your Settings', filename: 'dummy.json' }])
+    this.settingsPresets = ko.observableArray([{ display: 'Your Settings', filename: 'dummy.json', isDummy: true }])
 
     this.overrideMin = ko.pureComputed({
       read: () => {
@@ -180,7 +180,7 @@ export default class MorseLessonPlugin implements ICookieHandler {
 
   getSettingsPresets = () => {
     const sps = []
-    sps.push({ display: 'Your Settings', filename: 'dummy.json' })
+    sps.push({ display: 'Your Settings', filename: 'dummy.json', isDummy: true })
     const handleData = (d) => {
       console.log(d)
       console.log(typeof d.data.options)
@@ -352,12 +352,17 @@ export default class MorseLessonPlugin implements ICookieHandler {
     if (this.settingsPresetsInitialized) {
       this.selectedSettingsPreset(preset)
       console.log(preset)
-      MorsePresetFileFinder.getMorsePresetFile(preset.filename, (d) => {
-        console.log(d)
-        if (d.found) {
-          MorseCookies.loadCookiesOrDefaults(this.morseViewModel, true, true, d.data.morseSettings)
-        }
-      })
+      if (typeof preset.isDummy !== 'undefined' && preset.isDummy) {
+        // restore whatever the defaults are
+        this.morseViewModel.loadDefaultsAndCookieSettings()
+      } else {
+        MorsePresetFileFinder.getMorsePresetFile(preset.filename, (d) => {
+          console.log(d)
+          if (d.found) {
+            MorseCookies.loadCookiesOrDefaults(this.morseViewModel, true, true, d.data.morseSettings, true)
+          }
+        })
+      }
     }
   }
 
