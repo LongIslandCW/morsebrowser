@@ -46,10 +46,12 @@ export default class MorseLessonPlugin implements ICookieHandler {
   settingsPresets:ko.ObservableArray<any>
   selectedSettingsPreset:ko.Observable<any>
   morseViewModel:MorseViewModel
+  yourSettingsDummy:any
 
   constructor (morseSettings:MorseSettings, setTextCallBack:any, timeEstimateCallback:any, morseViewModel:MorseViewModel) {
     MorseCookies.registerHandler(this)
     this.morseViewModel = morseViewModel
+    this.yourSettingsDummy = { display: 'Your Settings', filename: 'dummy.json', isDummy: true }
     ko.extenders.classOrLetterGroupChange = (target, option) => {
       target.subscribe((newValue) => {
         this.getSettingsPresets()
@@ -68,7 +70,7 @@ export default class MorseLessonPlugin implements ICookieHandler {
     this.displaysInitialized = false
     this.letterGroup = ko.observable('').extend({ classOrLetterGroupChange: null } as ko.ObservableExtenderOptions<boolean>)
     this.selectedDisplay = ko.observable({})
-    this.selectedSettingsPreset = ko.observable({})
+    this.selectedSettingsPreset = ko.observable(this.yourSettingsDummy)
     this.wordLists = ko.observableArray([])
     this.setText = setTextCallBack
     this.getTimeEstimate = timeEstimateCallback
@@ -82,7 +84,7 @@ export default class MorseLessonPlugin implements ICookieHandler {
     this.trueOverrideMin = ko.observable(3)
     this.trueOverrideMax = ko.observable(3)
     this.syncSize = ko.observable(true)
-    this.settingsPresets = ko.observableArray([{ display: 'Your Settings', filename: 'dummy.json', isDummy: true }])
+    this.settingsPresets = ko.observableArray([this.yourSettingsDummy])
 
     this.overrideMin = ko.pureComputed({
       read: () => {
@@ -180,7 +182,7 @@ export default class MorseLessonPlugin implements ICookieHandler {
 
   getSettingsPresets = () => {
     const sps = []
-    sps.push({ display: 'Your Settings', filename: 'dummy.json', isDummy: true })
+    sps.push(this.yourSettingsDummy)
     const handleData = (d) => {
       // console.log(d)
       // console.log(typeof d.data.options)
