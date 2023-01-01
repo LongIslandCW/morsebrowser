@@ -121,6 +121,11 @@
 			"comment": null
 		},
 		{
+			"key": "syncSize",
+			"value": false,
+			"comment": null
+		},
+		{
 			"key": "overrideSize",
 			"value": true,
 			"comment": null
