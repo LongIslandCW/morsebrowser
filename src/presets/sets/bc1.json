@@ -6,7 +6,7 @@
         },
         {
             "display": "Random groups 1-3",
-            "filename": "BC1_Random_groups_1-3.json"
+            "filename": "BC1_Random_groups_1_3.json"
         },
         {
             "display": "VST",
@@ -29,7 +29,7 @@
             "filename": "BC1_Von_Son.json"
         },
         {
-            "display": "Voice On &Spell Off",
+            "display": "Voice On & Spell Off",
             "filename": "BC1_Von_Soff.json"
         },
         {
@@ -39,10 +39,6 @@
         {
             "display": "Phrases – Voice On",
             "filename": "BC1_Phrases_Von.json"
-        },
-        {
-            "display": "Randy Test",
-            "filename": "Randy_Test.json"
         }
     ]
 }

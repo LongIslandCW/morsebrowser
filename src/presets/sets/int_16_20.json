@@ -1,48 +1,56 @@
 {
     "options": [
         {
-            "display": "Default 12/8",
-            "filename": "BC1_Default.json"
+            "display": "Default 16/16",
+            "filename": "INT2_Default_16.json"
         },
         {
-            "display": "Random groups 1-3",
-            "filename": "BC1_Random_groups_1-3.json"
+            "display": "Default 12/12",
+            "filename": "INT2_Default_12.json"
+        },
+        {
+            "display": "Default 20/20",
+            "filename": "INT2_Default_20.json"
+        },
+        {
+            "display": "Random Groups 1-5",
+            "filename": "INT2_Random_1_5.json"
         },
         {
             "display": "VST",
-            "filename": "BC1_VST.json"
+            "filename": "INT2_VST.json"
         },
         {
             "display": "Groups of 5",
-            "filename": "BC1_Groups_of_5.json"
+            "filename": "INT2_Groups_5.json"
+        },
+        {
+            "display": "Inter-character Head Copy",
+            "filename": "INT2_ICHC.json"
         },
         {
             "display": "ICR",
-            "filename": "BC1_ICR.json"
+            "filename": "INT2_ICR.json"
         },
         {
             "display": "VET",
-            "filename": "BC1_VET.json"
+            "filename": "INT2_VET.json"
+        },
+        {
+            "display": "Instant Word Recognition",
+            "filename": "INT2_IWR.json"
+        },
+        {
+            "display": "Progressive Word Building",
+            "filename": "INT2_PWG.json"
         },
         {
             "display": "Voice On & Spell On",
-            "filename": "BC1_Von_Son.json"
+            "filename": "INT2_Von_Son.json"
         },
         {
-            "display": "Voice On &Spell Off",
-            "filename": "BC1_Von_Soff.json"
-        },
-        {
-            "display": "Phrases – Voice Off",
-            "filename": "BC1_Phrases_Voff.json"
-        },
-        {
-            "display": "Phrases – Voice On",
-            "filename": "BC1_Phrases_Von.json"
-        },
-        {
-            "display": "Randy Test",
-            "filename": "Randy_Test.json"
+            "display": "Voice On & Spell Off",
+            "filename": "INT2_Von_Soff.jsoff"
         }
     ]
 }
