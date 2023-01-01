@@ -356,20 +356,25 @@ export default class MorseLessonPlugin implements ICookieHandler {
   setPresetSelected = (preset) => {
     if (this.settingsPresetsInitialized) {
       this.selectedSettingsPreset(preset)
-      // console.log(preset)
+
       if (typeof preset.isDummy !== 'undefined' && preset.isDummy) {
         // restore whatever the defaults are
-        // console.log(this.morseViewModel.currentSerializedSettings)
+
         if (this.morseViewModel.currentSerializedSettings) {
           MorseCookies.loadCookiesOrDefaults(this.morseViewModel, true, true, this.morseViewModel.currentSerializedSettings.morseSettings, true)
         }
       } else {
         MorsePresetFileFinder.getMorsePresetFile(preset.filename, (d) => {
-          // console.log(d)
           if (d.found) {
             MorseCookies.loadCookiesOrDefaults(this.morseViewModel, true, true, d.data.morseSettings, true)
           }
         })
+      }
+
+      // give time for settings to change, then re-init the lesson
+      if (this.morseViewModel.lessons.selectedDisplay().display && !this.morseViewModel.lessons.selectedDisplay().isDummy) {
+        setTimeout(() => { this.morseViewModel.lessons.setDisplaySelected(this.morseViewModel.lessons.selectedDisplay()) }
+          , 1000)
       }
     }
   }
