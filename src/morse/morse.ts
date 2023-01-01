@@ -668,6 +668,8 @@ export class MorseViewModel {
     savedInfos.push(new SavedSettingsInfo('voiceLastOnly', this.morseVoice.voiceLastOnly()))
 
     savedInfos.push(new SavedSettingsInfo('keepLines', this.settings.misc.newlineChunking()))
+    savedInfos.push(new SavedSettingsInfo('syncSize', this.lessons.syncSize()))
+
     savedInfos.push(new SavedSettingsInfo('overrideSize', this.lessons.ifOverrideMinMax()))
     savedInfos.push(new SavedSettingsInfo('overrideSizeMin', this.lessons.overrideMin()))
     savedInfos.push(new SavedSettingsInfo('overrideSizeMax', this.lessons.overrideMax()))
