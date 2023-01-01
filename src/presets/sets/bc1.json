@@ -39,14 +39,6 @@
         {
             "display": "Phrases – Voice On",
             "filename": "BC1_Phrases_Von.json"
-        },
-        {
-            "display": "Mike Test",
-            "filename": "mike_test.json"
-        },
-        {
-            "display": "Randy Test",
-            "filename": "Randy_Test.json"
         }
     ]
 }
