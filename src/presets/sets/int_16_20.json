@@ -2,55 +2,55 @@
     "options": [
         {
             "display": "Default 16/16",
-            "filename": "BC1_Default.json"
+            "filename": "INT2_Default_16.json"
         },
         {
             "display": "Default 12/12",
-            "filename": "BC1_Random_groups_1-3.json"
+            "filename": "INT2_Default_12.json"
         },
         {
             "display": "Default 20/20",
-            "filename": "BC1_VST.json"
+            "filename": "INT2_Default_20.json"
         },
         {
             "display": "Random Groups 1-5",
-            "filename": "BC1_Groups_of_5.json"
+            "filename": "INT2_Random_1-5.json"
         },
         {
             "display": "VST",
-            "filename": "BC1_ICR.json"
+            "filename": "INT2_VST.json"
         },
         {
             "display": "Groups of 5",
-            "filename": "BC1_VET.json"
+            "filename": "INT2_Groups_5.json"
         },
         {
             "display": "Inter-character Head Copy",
-            "filename": "BC1_Von_Son.json"
+            "filename": "INT2_ICHC.json"
         },
         {
             "display": "ICR",
-            "filename": "BC1_Von_Soff.json"
+            "filename": "INT2_ICR.json"
         },
         {
             "display": "VET",
-            "filename": "BC1_Phrases_Voff.json"
+            "filename": "INT2_VET.json"
         },
         {
             "display": "Instant Word Recognition",
-            "filename": "BC1_Phrases_Von.json"
+            "filename": "INT2_IWR.json"
         },
         {
             "display": "Progressive Word Building",
-            "filename": "Randy_Test.json"
+            "filename": "INT2_PWG.json"
         },
         {
             "display": "Voice On & Spell On",
-            "filename": "Randy_Test.json"
+            "filename": "INT2_Von_Son.json"
         },
         {
             "display": "Voice On & Spell Off",
-            "filename": "Randy_Test.json"
+            "filename": "INT2_Von_Soff.jsoff"
         }
     ]
 }
