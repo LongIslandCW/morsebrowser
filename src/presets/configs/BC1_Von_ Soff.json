@@ -157,7 +157,7 @@
 		},
 		{
 			"key": "speedInterval",
-			"value": false,
+			"value": "false",
 			"comment": null
 		},
 		{
