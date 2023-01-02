@@ -12,17 +12,17 @@
 		},
 		{
 			"key": "ditFrequency",
-			"value": 700,
+			"value": 600,
 			"comment": null
 		},
 		{
 			"key": "dahFrequency",
-			"value": 700,
+			"value": 600,
 			"comment": null
 		},
 		{
 			"key": "preSpace",
-			"value": "1",
+			"value": "0",
 			"comment": null
 		},
 		{
@@ -32,7 +32,7 @@
 		},
 		{
 			"key": "volume",
-			"value": "10",
+			"value": "7",
 			"comment": null
 		},
 		{
@@ -57,7 +57,7 @@
 		},
 		{
 			"key": "hideList",
-			"value": false,
+			"value": true,
 			"comment": null
 		},
 		{
@@ -72,7 +72,7 @@
 		},
 		{
 			"key": "cardFontPx",
-			"value": "15",
+			"value": "38",
 			"comment": null
 		},
 		{
@@ -82,7 +82,7 @@
 		},
 		{
 			"key": "showExpertSettings",
-			"value": false,
+			"value": "true",
 			"comment": null
 		},
 		{
@@ -97,7 +97,7 @@
 		},
 		{
 			"key": "voiceThinkingTime",
-			"value": 0,
+			"value": "0",
 			"comment": null
 		},
 		{
@@ -147,12 +147,32 @@
 		},
 		{
 			"key": "hapticAccordionOpen",
-			"value": "true",
+			"value": "false",
 			"comment": null
 		},
 		{
 			"key": "miscSettingsAccordionOpen",
 			"value": false,
+			"comment": null
+		},
+		{
+			"key": "speedInterval",
+			"value": false,
+			"comment": null
+		},
+		{
+			"key": "intervalTimingsText",
+			"value": "",
+			"comment": null
+		},
+		{
+			"key": "intervalWpmText",
+			"value": "",
+			"comment": null
+		},
+		{
+			"key": "intervalFwpmText",
+			"value": "",
 			"comment": null
 		}
 	]

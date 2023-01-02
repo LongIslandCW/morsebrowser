@@ -2,27 +2,27 @@
 	"morseSettings": [
 		{
 			"key": "wpm",
-			"value": "12",
+			"value": 12,
 			"comment": null
 		},
 		{
 			"key": "fwpm",
-			"value": "8",
+			"value": 8,
 			"comment": null
 		},
 		{
 			"key": "ditFrequency",
-			"value": 700,
+			"value": 600,
 			"comment": null
 		},
 		{
 			"key": "dahFrequency",
-			"value": 700,
+			"value": 600,
 			"comment": null
 		},
 		{
 			"key": "preSpace",
-			"value": "1",
+			"value": "0",
 			"comment": null
 		},
 		{
@@ -32,7 +32,7 @@
 		},
 		{
 			"key": "volume",
-			"value": "10",
+			"value": "7",
 			"comment": null
 		},
 		{
@@ -42,7 +42,7 @@
 		},
 		{
 			"key": "ifStickySets",
-			"value": true,
+			"value": false,
 			"comment": null
 		},
 		{
@@ -57,7 +57,7 @@
 		},
 		{
 			"key": "hideList",
-			"value": false,
+			"value": true,
 			"comment": null
 		},
 		{
@@ -72,7 +72,7 @@
 		},
 		{
 			"key": "cardFontPx",
-			"value": "15",
+			"value": "38",
 			"comment": null
 		},
 		{
@@ -82,7 +82,7 @@
 		},
 		{
 			"key": "showExpertSettings",
-			"value": false,
+			"value": "true",
 			"comment": null
 		},
 		{
@@ -97,7 +97,7 @@
 		},
 		{
 			"key": "voiceThinkingTime",
-			"value": "0.75",
+			"value": 0,
 			"comment": null
 		},
 		{
@@ -117,6 +117,11 @@
 		},
 		{
 			"key": "keepLines",
+			"value": false,
+			"comment": null
+		},
+		{
+			"key": "syncSize",
 			"value": false,
 			"comment": null
 		},
@@ -142,12 +147,32 @@
 		},
 		{
 			"key": "hapticAccordionOpen",
-			"value": "true",
+			"value": false,
 			"comment": null
 		},
 		{
 			"key": "miscSettingsAccordionOpen",
 			"value": "true",
+			"comment": null
+		},
+		{
+			"key": "speedInterval",
+			"value": true,
+			"comment": null
+		},
+		{
+			"key": "intervalTimingsText",
+			"value": "30, 30, 30, 30",
+			"comment": null
+		},
+		{
+			"key": "intervalWpmText",
+			"value": "12",
+			"comment": null
+		},
+		{
+			"key": "intervalFwpmText",
+			"value": "8, 10, 11, 12",
 			"comment": null
 		}
 	]
