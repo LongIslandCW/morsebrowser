@@ -2,12 +2,12 @@
 	"morseSettings": [
 		{
 			"key": "wpm",
-			"value": 24,
+			"value": 12,
 			"comment": null
 		},
 		{
 			"key": "fwpm",
-			"value": 24,
+			"value": 8,
 			"comment": null
 		},
 		{
@@ -147,7 +147,7 @@
 		},
 		{
 			"key": "hapticAccordionOpen",
-			"value": "true",
+			"value": "false",
 			"comment": null
 		},
 		{
@@ -157,22 +157,22 @@
 		},
 		{
 			"key": "speedInterval",
-			"value": false,
+			"value": true,
 			"comment": null
 		},
 		{
 			"key": "intervalTimingsText",
-			"value": "",
+			"value": "30, 30, 30, 30",
 			"comment": null
 		},
 		{
 			"key": "intervalWpmText",
-			"value": "",
+			"value": "24, 20, 16, 12",
 			"comment": null
 		},
 		{
 			"key": "intervalFwpmText",
-			"value": "",
+			"value": "8",
 			"comment": null
 		}
 	]
