@@ -124,6 +124,26 @@ export default class SpeedSettings implements ICookieHandler {
     if (target) {
       this.fwpm(parseInt(target.val))
     }
+
+    target = cookies.find(x => x.key === 'speedInterval')
+    if (target) {
+      this.speedInterval(GeneralUtils.booleanize(target.val))
+    }
+
+    target = cookies.find(x => x.key === 'intervalTimingsText')
+    if (target) {
+      this.intervalTimingsText(target.val)
+    }
+
+    target = cookies.find(x => x.key === 'intervalWpmText')
+    if (target) {
+      this.intervalWpmText(target.val)
+    }
+
+    target = cookies.find(x => x.key === 'intervalFwpmText')
+    if (target) {
+      this.intervalFwpmText(target.val)
+    }
   }
 
   handleCookie = (cookie: string) => {}

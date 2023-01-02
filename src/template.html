@@ -510,21 +510,18 @@
                                             data-bind="visible: settings.speed.speedInterval()">Timings&nbsp;<img
                                                 data-bind="attr:{ src: morseLoadImages().getSrc('stopwatchImage')}"
                                                 height="20" width="20" /></span>
-                                        <input type="text" style="max-width:100px; min-width: 100px;"
+                                        <input type="text" style="max-width:200px; min-width: 200px;"
                                             class="form-control" aria-label="Username"
                                             data-bind="textInput: settings.speed.intervalTimingsText, enable: settings.speed.speedInterval(), visible: settings.speed.speedInterval()">
                                         <span class="input-group-text"
-                                            data-bind="visible: settings.speed.speedInterval()">WPM&nbsp;<img
-                                                data-bind="attr:{ src: morseLoadImages().getSrc('stopwatchImage')}"
-                                                height="20" width="20" /></span>
-                                        <input type="text" style="max-width:75px; min-width: 50px;" class="form-control"
-                                            aria-label="Username"
+                                            data-bind="visible: settings.speed.speedInterval()">WPM&nbsp;</span>
+                                        <input type="text" style="max-width:100px; min-width: 100px;"
+                                            class="form-control" aria-label="Username"
                                             data-bind="textInput: settings.speed.intervalWpmText, enable: settings.speed.speedInterval(), visible: settings.speed.speedInterval()">
                                         <span class="input-group-text"
-                                            data-bind="visible: settings.speed.speedInterval()">FWPM&nbsp;<img
-                                                data-bind="attr:{ src: morseLoadImages().getSrc('stopwatchImage')}" /></span>
-                                        <input type="text" style="max-width:75px; min-width: 50px;" class="form-control"
-                                            aria-label="Server"
+                                            data-bind="visible: settings.speed.speedInterval()">FWPM&nbsp;</span>
+                                        <input type="text" style="max-width:100px; min-width: 100px;"
+                                            class="form-control" aria-label="Server"
                                             data-bind="textInput: settings.speed.intervalFwpmText, enable: settings.speed.speedInterval(), visible: settings.speed.speedInterval()">
 
                                     </div>
