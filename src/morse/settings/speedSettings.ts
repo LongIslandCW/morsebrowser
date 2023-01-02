@@ -1,5 +1,4 @@
 import * as ko from 'knockout'
-import { exit } from 'process'
 import { CookieInfo } from '../cookies/CookieInfo'
 import { ICookieHandler } from '../cookies/ICookieHandler'
 import { MorseCookies } from '../cookies/morseCookies'
