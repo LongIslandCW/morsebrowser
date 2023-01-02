@@ -1,21 +1,40 @@
 import * as ko from 'knockout'
+import { exit } from 'process'
 import { CookieInfo } from '../cookies/CookieInfo'
 import { ICookieHandler } from '../cookies/ICookieHandler'
 import { MorseCookies } from '../cookies/morseCookies'
+import { MorseViewModel } from '../morse'
 import { GeneralUtils } from '../utils/general'
 
-export class SpeedSettings implements ICookieHandler {
+export class ApplicableSpeed {
+  wpm:number = 0
+  fwpm:number = 0
+  constructor (wpm:number, fwpm:number) {
+    this.wpm = wpm
+    this.fwpm = fwpm
+  }
+}
+export default class SpeedSettings implements ICookieHandler {
   wpm: ko.PureComputed<number>
   fwpm: ko.PureComputed<number>
   trueWpm: ko.Observable<number>
   trueFwpm: ko.Observable<number>
   syncWpm: ko.Observable<boolean>
+  speedInterval:ko.Observable<boolean>
+  intervalTimingsText:ko.Observable<string>
+  intervalWpmText:ko.Observable<string>
+  intervalFwpmText:ko.Observable<string>
+  morseViewModel:MorseViewModel
 
   constructor () {
     MorseCookies.registerHandler(this)
     this.trueWpm = ko.observable()
     this.trueFwpm = ko.observable()
     this.syncWpm = ko.observable(true)
+    this.speedInterval = ko.observable(false)
+    this.intervalTimingsText = ko.observable('')
+    this.intervalWpmText = ko.observable('')
+    this.intervalFwpmText = ko.observable('')
 
     this.wpm = ko.pureComputed({
       read: () => {
@@ -54,6 +73,37 @@ export class SpeedSettings implements ICookieHandler {
     this.wpm.extend({ saveCookie: 'wpm' } as ko.ObservableExtenderOptions<number>)
     this.fwpm.extend({ saveCookie: 'fwpm' } as ko.ObservableExtenderOptions<number>)
     this.syncWpm.extend({ saveCookie: 'syncWpm' } as ko.ObservableExtenderOptions<boolean>)
+  }
+
+  getApplicableSpeed = (secondsPassed:number) => {
+    if (!this.speedInterval() || !this.intervalTimingsText()) {
+      return new ApplicableSpeed(this.wpm(), this.fwpm())
+    }
+
+    const times = this.intervalTimingsText().split(',').map(x => parseFloat(x))
+    let runningSum = 0
+    const adjTimes = times.map(t => {
+      runningSum += t
+      return runningSum
+    })
+    console.log(`adjTimes:${JSON.stringify(adjTimes)}`)
+    const wpms = this.intervalWpmText().split(',').map(x => parseInt(x))
+    const fwpms = this.intervalFwpmText().split(',').map(x => parseInt(x))
+    let idx = -1
+    adjTimes.forEach((t, i, ary) => {
+      if (idx === -1 && secondsPassed < t) {
+        // this is the interval
+        idx = i
+      }
+    })
+    if (idx === -1) {
+      idx = Math.max(wpms.length - 1, fwpms.length - 1)
+    }
+
+    const wpm = wpms.length - 1 >= idx ? wpms[idx] : wpms[wpms.length - 1]
+    const fwpm = fwpms.length - 1 >= idx ? fwpms[idx] : fwpms[fwpms.length - 1]
+    console.log(`sec:${secondsPassed},idx:${idx},wpm:${wpm},fwpm${fwpm}`)
+    return new ApplicableSpeed(wpm, fwpm)
   }
 
   handleCookies = (cookies: Array<CookieInfo>) => {

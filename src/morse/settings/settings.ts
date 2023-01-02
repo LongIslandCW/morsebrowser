@@ -1,7 +1,7 @@
 // import * as ko from 'knockout'
 import { FrequencySettings } from './frequencySettings'
 import { MiscSettings } from './miscSettings'
-import { SpeedSettings } from './speedSettings'
+import SpeedSettings from './speedSettings'
 
 export class MorseSettings {
   speed: SpeedSettings

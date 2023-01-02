@@ -300,8 +300,9 @@ export class MorseViewModel {
   getMorseStringToWavBufferConfig = (text) => {
     const config = new SoundMakerConfig()
     config.word = MorseStringUtils.doReplacements(text)
-    config.wpm = parseInt(this.settings.speed.wpm() as any)
-    config.fwpm = parseInt(this.settings.speed.fwpm() as any)
+    const speeds = this.settings.speed.getApplicableSpeed(parseFloat(this.playingTime().seconds))
+    config.wpm = parseInt(speeds.wpm as any)
+    config.fwpm = parseInt(speeds.fwpm as any)
     config.ditFrequency = parseInt(this.settings.frequency.ditFrequency() as any)
     config.dahFrequency = parseInt(this.settings.frequency.dahFrequency() as any)
     config.prePaddingMs = this.preSpaceUsed() ? 0 : this.preSpace() * 1000
