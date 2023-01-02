@@ -2,12 +2,12 @@
 	"morseSettings": [
 		{
 			"key": "wpm",
-			"value": 12,
+			"value": "12",
 			"comment": null
 		},
 		{
 			"key": "fwpm",
-			"value": 8,
+			"value": "8",
 			"comment": null
 		},
 		{
@@ -57,7 +57,7 @@
 		},
 		{
 			"key": "hideList",
-			"value": true,
+			"value": false,
 			"comment": null
 		},
 		{
@@ -97,7 +97,7 @@
 		},
 		{
 			"key": "voiceThinkingTime",
-			"value": 0,
+			"value": "0",
 			"comment": null
 		},
 		{
@@ -137,7 +137,7 @@
 		},
 		{
 			"key": "overrideSizeMax",
-			"value": 3,
+			"value": "3",
 			"comment": null
 		},
 		{
