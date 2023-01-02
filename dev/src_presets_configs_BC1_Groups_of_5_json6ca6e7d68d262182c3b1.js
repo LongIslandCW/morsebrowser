@@ -1,9 +1,9 @@
 "use strict";
 (self["webpackChunk"] = self["webpackChunk"] || []).push([["src_presets_configs_BC1_Groups_of_5_json"],{
 
-/***/ "./src/presets/configs/BC1_Groups of 5.json":
+/***/ "./src/presets/configs/BC1_Groups_of_5.json":
 /*!**************************************************!*\
-  !*** ./src/presets/configs/BC1_Groups of 5.json ***!
+  !*** ./src/presets/configs/BC1_Groups_of_5.json ***!
   \**************************************************/
 /***/ ((module) => {
 
