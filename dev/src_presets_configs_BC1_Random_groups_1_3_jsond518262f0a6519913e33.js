@@ -1,5 +1,5 @@
 "use strict";
-(self["webpackChunk"] = self["webpackChunk"] || []).push([["src_presets_configs_BC1_Random_groups_1_3_json-_df00"],{
+(self["webpackChunk"] = self["webpackChunk"] || []).push([["src_presets_configs_BC1_Random_groups_1_3_json"],{
 
 /***/ "./src/presets/configs/BC1_Random_groups_1_3.json":
 /*!********************************************************!*\
