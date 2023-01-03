@@ -152,7 +152,7 @@
 		},
 		{
 			"key": "miscSettingsAccordionOpen",
-			"value": "true",
+			"value": false,
 			"comment": null
 		},
 		{
