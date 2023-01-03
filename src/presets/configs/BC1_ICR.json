@@ -72,7 +72,7 @@
 		},
 		{
 			"key": "cardFontPx",
-			"value": "38",
+			"value": "15",
 			"comment": null
 		},
 		{
@@ -152,27 +152,27 @@
 		},
 		{
 			"key": "miscSettingsAccordionOpen",
-			"value": "true",
-			"comment": null
-		},
-		{
-			"key": "speedInterval",
 			"value": true,
 			"comment": null
 		},
 		{
+			"key": "speedInterval",
+			"value": "false",
+			"comment": null
+		},
+		{
 			"key": "intervalTimingsText",
-			"value": "30, 30, 30, 30",
+			"value": "",
 			"comment": null
 		},
 		{
 			"key": "intervalWpmText",
-			"value": "24, 20, 16, 12",
+			"value": "",
 			"comment": null
 		},
 		{
 			"key": "intervalFwpmText",
-			"value": "8",
+			"value": "",
 			"comment": null
 		}
 	]
