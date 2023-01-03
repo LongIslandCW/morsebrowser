@@ -366,7 +366,9 @@ export default class MorseLessonPlugin implements ICookieHandler {
       } else {
         MorsePresetFileFinder.getMorsePresetFile(preset.filename, (d) => {
           if (d.found) {
-            MorseCookies.loadCookiesOrDefaults(this.morseViewModel, true, true, d.data.morseSettings, true)
+            MorseCookies.loadCookiesOrDefaults(this.morseViewModel, true, true,
+              d.data.morseSettings.filter(f => f.key !== 'showRaw'),
+              true)
           }
         })
       }

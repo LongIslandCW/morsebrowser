@@ -85,7 +85,7 @@ export default class SpeedSettings implements ICookieHandler {
       runningSum += t
       return runningSum
     })
-    console.log(`adjTimes:${JSON.stringify(adjTimes)}`)
+    // console.log(`adjTimes:${JSON.stringify(adjTimes)}`)
     const wpms = this.intervalWpmText().split(',').map(x => parseInt(x))
     const fwpms = this.intervalFwpmText().split(',').map(x => parseInt(x))
     let idx = -1
@@ -101,7 +101,7 @@ export default class SpeedSettings implements ICookieHandler {
 
     const wpm = wpms.length - 1 >= idx ? wpms[idx] : wpms[wpms.length - 1]
     const fwpm = fwpms.length - 1 >= idx ? fwpms[idx] : fwpms[fwpms.length - 1]
-    console.log(`sec:${secondsPassed},idx:${idx},wpm:${wpm},fwpm${fwpm}`)
+    // console.log(`sec:${secondsPassed},idx:${idx},wpm:${wpm},fwpm${fwpm}`)
     return new ApplicableSpeed(wpm, fwpm)
   }
 
