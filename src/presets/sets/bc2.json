@@ -40,7 +40,8 @@
             "display": "Voice On & Spell On",
             "filename": "BC2_Von_Son.json"
         },
-            "display": "Voice On & Spell Off",
+        {  
+        "display": "Voice On & Spell Off",
             "filename": "BC2_Von_Soff.json"
         }    
     ]
