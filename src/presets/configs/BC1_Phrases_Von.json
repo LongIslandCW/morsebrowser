@@ -2,12 +2,12 @@
 	"morseSettings": [
 		{
 			"key": "wpm",
-			"value": "12",
+			"value": 12,
 			"comment": null
 		},
 		{
 			"key": "fwpm",
-			"value": "8",
+			"value": 8,
 			"comment": null
 		},
 		{
@@ -72,7 +72,7 @@
 		},
 		{
 			"key": "cardFontPx",
-			"value": "38",
+			"value": "15",
 			"comment": null
 		},
 		{
@@ -147,12 +147,12 @@
 		},
 		{
 			"key": "hapticAccordionOpen",
-			"value": "true",
+			"value": "false",
 			"comment": null
 		},
 		{
 			"key": "miscSettingsAccordionOpen",
-			"value": false,
+			"value": "true",
 			"comment": null
 		},
 		{
