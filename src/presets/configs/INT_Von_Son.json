@@ -27,7 +27,7 @@
 		},
 		{
 			"key": "xtraWordSpaceDits",
-			"value": "1",
+			"value": "2",
 			"comment": null
 		},
 		{
@@ -97,7 +97,7 @@
 		},
 		{
 			"key": "voiceThinkingTime",
-			"value": "0.75",
+			"value": "1",
 			"comment": null
 		},
 		{
