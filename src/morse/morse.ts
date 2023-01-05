@@ -80,7 +80,7 @@ export class MorseViewModel {
   cardSpace:ko.Observable<number> = ko.observable(0)
   cardSpaceTimerHandle:any = 0
   hapticAccordion:HapticAccordion
-  lockoutSaveCookies:boolean = false
+  allowSaveCookies:ko.Observable<boolean> = ko.observable(true)
   lockoutSaveCookiesTimerHandle:any = null
   currentSerializedSettings:any = null
 

@@ -283,7 +283,7 @@
                                             style="overflow-y:auto; height:250px; width: 200px;">
                                             <button id="btnLessonSettingsPresets" type="button"
                                                 class="list-group-item list-group-item-action"
-                                                data-bind="text: $data.display, click: ()=>$root.lessons.setPresetSelected($data), css: { active: $data.display==$parent.lessons.selectedSettingsPreset().display}"></button>
+                                                data-bind="enable: $root.allowSaveCookies, text: $data.display, click: ()=>$root.lessons.setPresetSelected($data), css: { active: $data.display==$parent.lessons.selectedSettingsPreset().display}"></button>
                                         </div>
                                     </div>
 

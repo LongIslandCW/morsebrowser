@@ -15,15 +15,15 @@ export class MorseCookies {
   static loadCookiesOrDefaults = (ctxt:MorseViewModel, ifLoadSettings:boolean, ignoreCookies:boolean = false, custom:SavedSettingsInfo[] = null, lockoutCookieChanges:boolean = false) => {
     // load any existing cookie values
     if (lockoutCookieChanges) {
-      if (!ctxt.lockoutSaveCookies) {
+      if (ctxt.allowSaveCookies()) {
         // not currently locked out so save serialized settings
         ctxt.currentSerializedSettings = ctxt.getCurrentSerializedSettings()
       }
       if (ctxt.lockoutSaveCookiesTimerHandle) {
         clearTimeout(ctxt.lockoutSaveCookiesTimerHandle)
       }
-      ctxt.lockoutSaveCookies = true
-      ctxt.lockoutSaveCookiesTimerHandle = setTimeout(() => { ctxt.lockoutSaveCookies = false }, 1500)
+      ctxt.allowSaveCookies(false)
+      ctxt.lockoutSaveCookiesTimerHandle = setTimeout(() => { ctxt.allowSaveCookies(true) }, 700)
     }
     const cks = Cookies.get()
     const cksKeys = []

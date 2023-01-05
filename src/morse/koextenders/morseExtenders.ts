@@ -6,7 +6,7 @@ export class MorseExtenders {
   static init = (ctxt:MorseViewModel) => {
     ko.extenders.saveCookie = (target, option) => {
       target.subscribe((newValue) => {
-        if (!ctxt.lockoutSaveCookies) {
+        if (ctxt.allowSaveCookies()) {
           Cookies.set(option, newValue, { expires: 365 })
         }
       })
