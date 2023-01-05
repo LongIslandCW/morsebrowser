@@ -46,7 +46,7 @@
         },
         {
             "display": "Voice On & Spell Off",
-            "filename": "INT2_Von_Soff.jsoff"
+            "filename": "INT2_Von_Soff.json"
         }
     ]
 }

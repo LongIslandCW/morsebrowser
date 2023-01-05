@@ -42,11 +42,11 @@
         },
         {
             "display": "Voice On & Spell On",
-            "filename": "INT_Von_ Son.json"
+            "filename": "INT_Von_Son.json"
         },
          {
             "display": "Voice On & Spell Off",
-            "filename": "INT_Von_ Soff.json"
+            "filename": "INT_Von_Soff.json"
         }
     ]
 }
