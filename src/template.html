@@ -33,6 +33,16 @@
         noiseaccordion {
             display: contents;
         }
+        .sr-only {
+            border: 0;
+            clip: rect(0 0 0 0);
+            height: 1px;
+            margin: -1px;
+            overflow: hidden;
+            padding: 0;
+            position: absolute;
+            width: 1px;
+        }
     </style>
 </head>
 
@@ -124,7 +134,7 @@
 
 
             <!-- working text area-->
-            <div class="col">
+            <section class="col" aria-label="Working text">
                 <div class="row">
                     <div class="col">
                         <div class="input-group">
@@ -132,48 +142,55 @@
                                 <div class="container gx-0 px-0">
                                     <div class="row row-cols-1 justify-content-center">
                                         <div class="col-md-auto">
-                                            <img height=32 width=32
-                                                data-bind="attr:{ src: showRaw() ? morseLoadImages().getSrc('eyeImage') : morseLoadImages().getSrc('eyeslashImage')}" />
+                                            <input type="image" alt="Show raw text" role="checkbox" height=32 width=32
+                                                data-bind="attr:{ 'aria-checked': showRaw(), src: showRaw() ? morseLoadImages().getSrc('eyeImage') : morseLoadImages().getSrc('eyeslashImage')}" />
                                         </div>
 
                                     </div>
 
                                     <!------->
-
                                     <div class="row row-cols-1 gx-0">
 
                                         <div class="col-auto text-end" style="width: 60px;">
-
-                                            <span>Est <img height="15" width="15"
+                                            <span id="estimated-time-label" class="sr-only">Estimated time</span>
+                                            <span aria-hidden="true">Est <img alt="" height="15" width="15"
                                                     data-bind="attr:{src: morseLoadImages().getSrc('stopwatchImage')}">:&nbsp;</span>
                                         </div>
                                         <div class="col-auto">
-                                            <span data-bind="text: timeEstimate().minutes"></span>:<span
-                                                data-bind="text: timeEstimate().normedSeconds"></span>
+                                            <span aria-describedby="estimated-time-label" class="sr-only"
+                                                data-bind="text: '' + timeEstimate().minutes + ':' + timeEstimate().normedSeconds"></span>
+                                            <span aria-hidden="true"><span data-bind="text: timeEstimate().minutes"></span>:<span
+                                                data-bind="text: timeEstimate().normedSeconds"></span></span>
 
                                         </div>
                                     </div>
                                     <div class="row row-cols-1 gx-0">
                                         <div class="col-auto text-end" style="width: 60px;">
-                                            <span>Play <img height="15" width="15"
+                                            <span id="play-time-label" class="sr-only">Play time</span>
+                                            <span aria-hidden="true">Play <img alt="" height="15" width="15"
                                                     data-bind="attr:{src: morseLoadImages().getSrc('stopwatchImage')}">:&nbsp;</span>
                                         </div>
                                         <div class="col-auto">
-                                            <span data-bind="text: playingTime().minutes"></span>:<span
-                                                data-bind="text: playingTime().normedSeconds"></span>
+                                            <span aria-describedby="play-time-label" class="sr-only"
+                                                data-bind="text: '' + playingTime().minutes + ':' + playingTime().normedSeconds"></span>
+                                            <span aria-hidden="true"><span data-bind="text: playingTime().minutes"></span>:<span
+                                                data-bind="text: playingTime().normedSeconds"></span></span>
                                         </div>
                                     </div>
 
                                     <div class="row row-cols-1 gx-0">
                                         <div class="col-auto text-end" style="width: 60px;">
-                                            <span>Chars
+                                            <span id="characters-played-label" class="sr-only">Characters played</span>
+                                            <span aria-hidden="true">Chars
                                                 <!-- <img height="15" width="15"
                                                     data-bind="attr:{src: morseLoadImages().getSrc('stopwatchImage')}"> -->:&nbsp;
                                             </span>
                                         </div>
                                         <div class="col-auto">
-                                            <span data-bind="text: charsPlayed()"></span>/<span
-                                                data-bind="text: rawTextCharCount()"></span>
+                                            <span aria-describedby="characters-played-label" class="sr-only"
+                                                data-bind="text: charsPlayed() + ' of ' + rawTextCharCount()"></span>
+                                            <span aria-hidden="true"><span data-bind="text: charsPlayed()"></span>/<span
+                                                data-bind="text: rawTextCharCount()"></span></span>
                                         </div>
                                     </div>
                                     <!------->
@@ -183,7 +200,7 @@
 
 
 
-
+                            <p role="note" class="sr-only">The following textarea contains the text that will be used for practice. This can be set manually or selected using the options found in the LICW Lessons section.</p>
                             <textarea data-bind="textInput: showingText, enable: showRaw" class="form-control"
                                 aria-label="Text"></textarea>
                         </div>
@@ -204,7 +221,7 @@
                     </div>
 
                 </div>
-            </div>
+            </section>
 
             <!--  accordian area -->
             <div class="col">
