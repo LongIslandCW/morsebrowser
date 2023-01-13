@@ -15,7 +15,7 @@ IL
 IA
 KS
 KY
-LA
+{LA|louisiana}
 {ME|maine}
 MD
 MA
