@@ -1,1 +1,9 @@
-AR IN IA NE RI TN UT WA WI
+AR 
+{IN|indiana} 
+IA
+NE
+RI
+TN
+UT
+WA
+WI
