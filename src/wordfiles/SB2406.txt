@@ -3,7 +3,7 @@ AR
 CA
 CO
 CT
-SB2406.txt
+{DE|delaware}
 FL
 {GA|georgia} 
 {HI|hawaii} 
