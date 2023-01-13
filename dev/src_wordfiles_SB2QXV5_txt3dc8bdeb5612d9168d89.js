@@ -7,7 +7,7 @@
   \***********************************/
 /***/ ((module) => {
 
-module.exports = "AL AR CA CO CT DE FL GA HI ID IL IN IA LA NE NV NH NC ND OH PA RI SC SD TN TX UT VT VA WA WV WI\n";
+module.exports = "AL \nAR \nCA \nCO \nCT \n{DE|delaware} \nFL \n{GA|georgia} \n{HI|hawaii} \n{ID|idaho}\nIL\n{IN|indiana} \nIA\n{LA|louisiana}\nNE\nNV\nNH\nNC\nND\n{OH|ohio} \nPA\nRI\nSC\nSD\nTN\nTX\nUT\nVT\nVA\nWA\nWV\nWI\n";
 
 /***/ })
 
