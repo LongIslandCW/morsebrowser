@@ -7,7 +7,7 @@
   \********************************/
 /***/ ((module) => {
 
-module.exports = "CO FL OH\n";
+module.exports = "CO \nFL\n{OH|ohio} \n";
 
 /***/ })
 
