@@ -7,7 +7,7 @@
   \********************************/
 /***/ ((module) => {
 
-module.exports = "CT ID IL IN NC ND SC SD TN\n";
+module.exports = "CT \n{ID|idaho}\nIL\n{IN|indiana} \nNC\nND\nSC\nSD\nTN\n\n";
 
 /***/ })
 
