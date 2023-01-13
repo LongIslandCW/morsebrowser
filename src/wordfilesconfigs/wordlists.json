@@ -487,7 +487,7 @@
     {"sort":388, "userTarget": "INSTRUCTOR", "class": "BC1", "letterGroup": "LCD", "newlineChunking":false,"display":"LCD PSG TIN    QSO ABBREVIATIONS", "fileName": "LCD9.txt" },
     {"sort":389, "userTarget": "INSTRUCTOR", "class": "BC1", "letterGroup": "LCD", "newlineChunking":false,"display":"LCD PSG TIN WORDS", "fileName": "LCD10.txt" },
     {"sort":390, "userTarget": "INSTRUCTOR", "class": "BC1", "letterGroup": "LCD", "newlineChunking":true,"display":"LCD PSG TIN PHRASES", "fileName": "LCD11.txt" },
-    {"sort":391, "userTarget": "STUDENT", "class": "BC1", "letterGroup": "HOF", "newlineChunking":false,"display":"HOF LCD PSG STATES", "fileName": "HOF8.txt" },
+    {"sort":391, "userTarget": "STUDENT", "class": "BC1", "letterGroup": "HOF", "newlineChunking":true,"display":"HOF LCD PSG STATES", "fileName": "HOF8.txt" },
     {"sort":392, "userTarget": "STUDENT", "class": "BC1", "letterGroup": "HOF", "newlineChunking":false,"display":"HOF LCD PSG    QSO ABBREVIATIONS", "fileName": "HOF9.txt" },
     {"sort":393, "userTarget": "STUDENT", "class": "BC1", "letterGroup": "HOF", "newlineChunking":false,"display":"HOF LCD PSG WORDS", "fileName": "HOF10.txt" },
     {"sort":394, "userTarget": "STUDENT", "class": "BC1", "letterGroup": "HOF", "newlineChunking":true,"display":"HOF LCD PSG PHRASES", "fileName": "HOF11.txt" },
