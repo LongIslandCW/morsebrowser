@@ -2,12 +2,12 @@
 	"morseSettings": [
 		{
 			"key": "wpm",
-			"value": "27",
+			"value": "15",
 			"comment": null
 		},
 		{
 			"key": "fwpm",
-			"value": "27",
+			"value": "9",
 			"comment": null
 		},
 		{
