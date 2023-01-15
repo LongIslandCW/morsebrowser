@@ -93,7 +93,7 @@ export class MorseViewModel {
     MorseExtenders.init(this)
 
     // create settings (note do this after extenders)
-    this.settings = new MorseSettings()
+    this.settings = new MorseSettings(this)
     // apply extenders
     MorseExtenders.apply(this)
 
