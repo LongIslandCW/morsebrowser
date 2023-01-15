@@ -4,6 +4,7 @@ import { ICookieHandler } from '../cookies/ICookieHandler'
 import { MorseCookies } from '../cookies/morseCookies'
 import { MorseViewModel } from '../morse'
 import { GeneralUtils } from '../utils/general'
+import { PlayingTimeInfo } from '../utils/playingTimeInfo'
 
 export class ApplicableSpeed {
   wpm:number = 0
@@ -85,7 +86,7 @@ export default class SpeedSettings implements ICookieHandler {
     this.syncWpm.extend({ saveCookie: 'syncWpm' } as ko.ObservableExtenderOptions<boolean>)
   }
 
-  getApplicableSpeed = (secondsPassed:number) => {
+  getApplicableSpeed = (playingTimeInfo:PlayingTimeInfo) => {
     if (!this.speedInterval() || !this.intervalTimingsText()) {
       return new ApplicableSpeed(this.wpm(), this.fwpm())
     }
@@ -101,7 +102,7 @@ export default class SpeedSettings implements ICookieHandler {
     const fwpms = this.intervalFwpmText().split(',').map(x => parseInt(x))
     let idx = -1
     adjTimes.forEach((t, i, ary) => {
-      if (idx === -1 && secondsPassed < t) {
+      if (idx === -1 && playingTimeInfo.totalSeconds < t) {
         // this is the interval
         idx = i
       }

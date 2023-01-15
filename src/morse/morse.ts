@@ -21,6 +21,7 @@ import HapticVm, { HapticAccordion } from './components/hapticAccordion/hapticAc
 import { CardBufferManager } from './utils/cardBufferManager'
 import WordInfo from './utils/wordInfo'
 import SavedSettingsInfo from './settings/savedSettingsInfo'
+import { PlayingTimeInfo } from './utils/playingTimeInfo'
 
 export class MorseViewModel {
   textBuffer:ko.Observable<string> = ko.observable('')
@@ -300,7 +301,7 @@ export class MorseViewModel {
   getMorseStringToWavBufferConfig = (text) => {
     const config = new SoundMakerConfig()
     config.word = MorseStringUtils.doReplacements(text)
-    const speeds = this.settings.speed.getApplicableSpeed(parseFloat(this.playingTime().seconds))
+    const speeds = this.settings.speed.getApplicableSpeed(this.playingTime())
     config.wpm = parseInt(speeds.wpm as any)
     config.fwpm = parseInt(speeds.fwpm as any)
     config.ditFrequency = parseInt(this.settings.frequency.ditFrequency() as any)
@@ -625,11 +626,12 @@ export class MorseViewModel {
     return timeFigures
   }, this)
 
-  playingTime = ko.computed(() => {
+  playingTime = ko.computed(():PlayingTimeInfo => {
     const minutes = Math.floor(this.runningPlayMs() / 60000)
-    const seconds = ((this.runningPlayMs() % 60000) / 1000).toFixed(0)
-    const normedSeconds = (parseInt(seconds) < 10 ? '0' : '') + seconds
-    const timeFigures = { minutes, seconds, normedSeconds }
+    const seconds = parseFloat(((this.runningPlayMs() % 60000) / 1000).toFixed(0))
+    const timeFigures = new PlayingTimeInfo(minutes, seconds)
+    /* const normedSeconds = (parseInt(seconds) < 10 ? '0' : '') + seconds
+    const timeFigures = { minutes, seconds, normedSeconds } */
     // console.log(timeFigures)
     // console.log(est)
     return timeFigures
