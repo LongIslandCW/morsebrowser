@@ -95,6 +95,7 @@ export default class SmoothedSoundsPlayer implements ISoundMaker {
     wavInfo.timeLine.forEach((soundEvent) => {
       const eventType = soundEvent.event
       const time = soundEvent.time + currentTimeMs
+      const endTime = !config.isToneTest ? time : time + config.testToneDuration
       // const eventDuration = time - lastTime
       const riseTimeTarget = (time / 1000) // - (config.riseMsOffset / 1000)
       switch (eventType) {
@@ -110,7 +111,7 @@ export default class SmoothedSoundsPlayer implements ISoundMaker {
           break
         case 'dah_end':
         case 'dit_end':
-          this.ssContext.gainNode.gain.setTargetAtTime(0, (time / 1000) - (config.decayMsOffset / 1000), config.decayTimeConstant)
+          this.ssContext.gainNode.gain.setTargetAtTime(0, (endTime / 1000) - (config.decayMsOffset / 1000), config.decayTimeConstant)
           break
         default:
           // gainNode.gain.setTargetAtTime(0, time / 1000, decayTimeConstant)

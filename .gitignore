@@ -2,3 +2,4 @@ node_modules
 morse.zip
 dist
 morseLessonFinder.js
+morsePresetFinder.js

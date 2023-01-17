@@ -7,6 +7,10 @@ import { MorseLessonFileFinder } from '../morseLessonFinder'
 import { MorseSettings } from '../settings/settings'
 import { GeneralUtils } from '../utils/general'
 import { FileOptionsInfo } from './FileOptionsInfo'
+import ClassPresets from '../../presets/config.json'
+import { MorsePresetSetFileFinder } from '../morsePresetSetFinder'
+import { MorsePresetFileFinder } from '../morsePresetFinder'
+import { MorseViewModel } from '../morse'
 export default class MorseLessonPlugin implements ICookieHandler {
   autoCloseLessonAccordion:ko.Observable<boolean>
   userTarget:ko.Observable<string>
@@ -15,6 +19,7 @@ export default class MorseLessonPlugin implements ICookieHandler {
   selectedClassInitialized:boolean
   letterGroupInitialized:boolean
   displaysInitialized:boolean
+  settingsPresetsInitialized:boolean
   letterGroup:ko.Observable<string>
   selectedDisplay:ko.Observable<any>
   wordLists:ko.ObservableArray<FileOptionsInfo>
@@ -38,20 +43,34 @@ export default class MorseLessonPlugin implements ICookieHandler {
   letterGroups:ko.Computed<Array<any>>
   displays:ko.Computed<Array<any>>
   autoCloseCookieName:string
+  settingsPresets:ko.ObservableArray<any>
+  selectedSettingsPreset:ko.Observable<any>
+  morseViewModel:MorseViewModel
+  yourSettingsDummy:any
 
-  constructor (morseSettings:MorseSettings, setTextCallBack:any, timeEstimateCallback:any) {
+  constructor (morseSettings:MorseSettings, setTextCallBack:any, timeEstimateCallback:any, morseViewModel:MorseViewModel) {
     MorseCookies.registerHandler(this)
+    this.morseViewModel = morseViewModel
+    this.yourSettingsDummy = { display: 'Your Settings', filename: 'dummy.json', isDummy: true }
+    ko.extenders.classOrLetterGroupChange = (target, option) => {
+      target.subscribe((newValue) => {
+        this.getSettingsPresets()
+      })
+      return target
+    }
+
     this.autoCloseCookieName = 'autoCloseLessonAccordian'
     this.morseSettings = morseSettings
     this.autoCloseLessonAccordion = ko.observable(false).extend({ saveCookie: this.autoCloseCookieName } as ko.ObservableExtenderOptions<boolean>)
     this.userTarget = ko.observable('STUDENT')
-    this.selectedClass = ko.observable('')
+    this.selectedClass = ko.observable('').extend({ classOrLetterGroupChange: null } as ko.ObservableExtenderOptions<boolean>)
     this.userTargetInitialized = false
     this.selectedClassInitialized = false
     this.letterGroupInitialized = false
     this.displaysInitialized = false
-    this.letterGroup = ko.observable('')
+    this.letterGroup = ko.observable('').extend({ classOrLetterGroupChange: null } as ko.ObservableExtenderOptions<boolean>)
     this.selectedDisplay = ko.observable({})
+    this.selectedSettingsPreset = ko.observable(this.yourSettingsDummy)
     this.wordLists = ko.observableArray([])
     this.setText = setTextCallBack
     this.getTimeEstimate = timeEstimateCallback
@@ -65,6 +84,7 @@ export default class MorseLessonPlugin implements ICookieHandler {
     this.trueOverrideMin = ko.observable(3)
     this.trueOverrideMax = ko.observable(3)
     this.syncSize = ko.observable(true)
+    this.settingsPresets = ko.observableArray([this.yourSettingsDummy])
 
     this.overrideMin = ko.pureComputed({
       read: () => {
@@ -159,6 +179,40 @@ export default class MorseLessonPlugin implements ICookieHandler {
   }
 
   // end constructor
+
+  getSettingsPresets = () => {
+    const sps = []
+    sps.push(this.yourSettingsDummy)
+    const handleData = (d) => {
+      // console.log(d)
+      // console.log(typeof d.data.options)
+      if (typeof d.data !== 'undefined' && typeof d.data.options !== 'undefined') {
+        this.settingsPresets(sps.concat(d.data.options))
+      } else {
+        this.settingsPresets(sps)
+      }
+    }
+    if (this.selectedClass() === '') {
+      // do nothing
+    } else {
+      const targetClass = ClassPresets.classes.find(c => c.className === this.selectedClass())
+      const targetLesson = targetClass.letterGroups.find(l => l.letterGroup === this.letterGroup())
+      if (targetLesson) {
+        // sps.push({ display: targetLesson.setFile })
+        MorsePresetSetFileFinder.getMorsePresetSetFile(targetLesson.setFile, (data) => handleData(data))
+      } else {
+        if (targetClass.defaultSetFile) {
+          // sps.push({ display: targetClass.defaultSetFile })
+          MorsePresetSetFileFinder.getMorsePresetSetFile(targetClass.defaultSetFile, (data) => handleData(data))
+        } else {
+          // no matches so use default
+          this.settingsPresets(sps)
+        }
+      }
+    }
+    // this.settingsPresets(sps)
+  }
+
   doCustomGroup = () => {
     if (this.customGroup()) {
       const data = { letters: this.customGroup().trim().replace(/ /g, '') }
@@ -254,6 +308,10 @@ export default class MorseLessonPlugin implements ICookieHandler {
     this.displaysInitialized = true
   }
 
+  setSettingsPresetsInitialized = () => {
+    this.settingsPresetsInitialized = true
+  }
+
   changeUserTarget = (userTarget) => {
     if (this.userTargetInitialized) {
       this.userTarget(userTarget)
@@ -264,12 +322,14 @@ export default class MorseLessonPlugin implements ICookieHandler {
   changeSelectedClass = (selectedClass) => {
     if (this.selectedClassInitialized) {
       this.selectedClass(selectedClass)
+      // console.log(selectedClass)
+      // console.log(ClassPresets)
     }
   }
 
   setLetterGroup = (letterGroup) => {
     if (this.letterGroupInitialized) {
-      console.log('setlettergroup')
+      // console.log('setlettergroup')
       this.letterGroup(letterGroup)
     }
   }
@@ -289,6 +349,34 @@ export default class MorseLessonPlugin implements ICookieHandler {
         // setText(`when we have lesson files, load ${selectedDisplay().fileName}`)
         this.getWordList(this.selectedDisplay().fileName)
         this.closeLessonAccordianIfAutoClosing()
+      }
+    }
+  }
+
+  setPresetSelected = (preset) => {
+    if (this.settingsPresetsInitialized) {
+      this.selectedSettingsPreset(preset)
+
+      if (typeof preset.isDummy !== 'undefined' && preset.isDummy) {
+        // restore whatever the defaults are
+
+        if (this.morseViewModel.currentSerializedSettings) {
+          MorseCookies.loadCookiesOrDefaults(this.morseViewModel, true, true, this.morseViewModel.currentSerializedSettings.morseSettings, true)
+        }
+      } else {
+        MorsePresetFileFinder.getMorsePresetFile(preset.filename, (d) => {
+          if (d.found) {
+            MorseCookies.loadCookiesOrDefaults(this.morseViewModel, true, true,
+              d.data.morseSettings.filter(f => f.key !== 'showRaw'),
+              true)
+          }
+        })
+      }
+
+      // give time for settings to change, then re-init the lesson
+      if (this.morseViewModel.lessons.selectedDisplay().display && !this.morseViewModel.lessons.selectedDisplay().isDummy) {
+        setTimeout(() => { this.morseViewModel.lessons.setDisplaySelected(this.morseViewModel.lessons.selectedDisplay()) }
+          , 1000)
       }
     }
   }
@@ -313,6 +401,26 @@ export default class MorseLessonPlugin implements ICookieHandler {
     target = cookies.find(x => x.key === 'ifStickySets')
     if (target) {
       this.ifStickySets(GeneralUtils.booleanize(target.val))
+    }
+    target = cookies.find(x => x.key === 'customGroup')
+    if (target) {
+      this.customGroup(target.val)
+    }
+    target = cookies.find(x => x.key === 'overrideSize')
+    if (target) {
+      this.ifOverrideMinMax(GeneralUtils.booleanize(target.val))
+    }
+    target = cookies.find(x => x.key === 'overrideSizeMin')
+    if (target) {
+      this.overrideMin(target.val as unknown as number)
+    }
+    target = cookies.find(x => x.key === 'overrideSizeMax')
+    if (target) {
+      this.overrideMax(target.val as unknown as number)
+    }
+    target = cookies.find(x => x.key === 'syncSize')
+    if (target) {
+      this.syncSize(GeneralUtils.booleanize(target.val))
     }
   }
 

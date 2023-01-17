@@ -2,8 +2,12 @@ import * as ko from 'knockout'
 import { MorseVoiceInfo } from './MorseVoiceInfo'
 import EasySpeech from '../../easyspeech/easyspeech.js'
 import { MorseViewModel } from '../morse'
+import { ICookieHandler } from '../cookies/ICookieHandler'
+import { CookieInfo } from '../cookies/CookieInfo'
+import { GeneralUtils } from '../utils/general'
+import { MorseCookies } from '../cookies/morseCookies'
 
-export class MorseVoice {
+export class MorseVoice implements ICookieHandler {
   voices = []
   voicesInited:boolean = false
   voiceEnabled:ko.Observable<boolean>
@@ -26,6 +30,7 @@ export class MorseVoice {
   voiceLastOnly:ko.Observable<boolean>
 
   constructor (context:MorseViewModel) {
+    MorseCookies.registerHandler(this)
     this.ctxt = context
     this.voiceEnabled = ko.observable(false)
     this.voiceCapable = ko.observable(false)
@@ -171,7 +176,7 @@ export class MorseVoice {
   speakPhrase = (phraseToSpeak:string, onEndCallBack) => {
     // console.log(this.voiceVoice().name)
     const doOnEndCallBack = () => {
-      setTimeout(onEndCallBack,this.voiceAfterThinkingTime() * 1000)
+      setTimeout(onEndCallBack, this.voiceAfterThinkingTime() * 1000)
     }
     try {
       const morseVoiceInfo = this.initMorseVoiceInfo(phraseToSpeak)
@@ -212,4 +217,38 @@ export class MorseVoice {
       }
     }
   }
+
+  // cookie handling
+  handleCookies = (cookies: Array<CookieInfo>) => {
+    if (!cookies) {
+      return
+    }
+
+    let target:CookieInfo = cookies.find(x => x.key === 'voiceEnabled')
+    if (target) {
+      this.voiceEnabled(GeneralUtils.booleanize(target.val))
+    }
+    target = cookies.find(x => x.key === 'voiceSpelling')
+    if (target) {
+      this.voiceSpelling(GeneralUtils.booleanize(target.val))
+    }
+    target = cookies.find(x => x.key === 'voiceThinkingTime')
+    if (target) {
+      this.voiceThinkingTime(target.val as unknown as number)
+    }
+    target = cookies.find(x => x.key === 'voiceAfterThinkingTime')
+    if (target) {
+      this.voiceAfterThinkingTime(target.val as unknown as number)
+    }
+    target = cookies.find(x => x.key === 'voiceVolume')
+    if (target) {
+      this.voiceVolume(target.val as unknown as number)
+    }
+    target = cookies.find(x => x.key === 'voiceLastOnly')
+    if (target) {
+      this.voiceLastOnly(GeneralUtils.booleanize(target.val))
+    }
+  }
+
+  handleCookie = (cookie: string) => {}
 }

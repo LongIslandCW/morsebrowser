@@ -8,27 +8,27 @@
         },
         {
             "key": "showingText",
-            "value": "CQ LICW",
+            "value": "{CQ|c q} {LICW|l i c w}",
             "comment": "text that shows up every time browser refreshed. advise you keep something here so newb can just hit play..."
         },
         {
             "key": "wpm",
-            "value": 20,
+            "value": 12,
             "comment": ""
         },
         {
             "key": "fwpm",
-            "value": 20,
+            "value": 12,
             "comment": "remember if this deviates from wpm, set syncWpm below to false"
         },
         {
             "key": "ditFrequency",
-            "value": 600,
+            "value": 700,
             "comment": ""
         },
         {
             "key": "dahFrequency",
-            "value": 600,
+            "value": 700,
             "comment": "remember if dit dah are different, set syncFreq below to false"
         },
         {

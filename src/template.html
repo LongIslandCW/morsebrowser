@@ -41,7 +41,7 @@
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PB8HW3M" height="0" width="0"
             style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
-    <div class="container-xxl" style="overflow-y:auto;">
+    <div class="container-fluid" style="overflow-y:auto;">
         <div class="row gy-2 row-cols-1">
             <!-- title header area-->
             <div class="col">
@@ -52,7 +52,7 @@
                     </div>
                     <div class="col col-md-auto">
                         <h1>Morse Practice Page</h1>
-                        <h3>by KN4YRM with assistance from AB5TN, N1CC, VK5PL, WO6W, and W4YES</h3>
+                        <h3>by KN4YRM with assistance from AB5TN, N1CC, VE3QBZ, VK5PL, WO6W, and W4YES</h3>
                         <h6>Inspired by and adapted from the <a href="https://morsecode.world/">SC Phillips</a> <a
                                 href="https://github.com/scp93ch/morse-pro">morse-pro</a> library.
                             To view source, please go to our <a
@@ -61,9 +61,15 @@
                         <h6>To ask user questions, report bugs, request features and more <a
                                 href="mailto:MorsePracticePageQuestions@groups.io">email us</a> or join our <a
                                 href="https://groups.io/g/MorsePracticePageQuestions">groups.io</a>. </h6>
+                        <h6>Videos to help you use this site are found <a
+                                href="https://www.youtube.com/playlist?list=PLyARUjdG9q-Xywoch5QJRGfgPZTucfhfB">here.</a>
+                        </h6>
+
+
+
                         <h3 data-bind="if: isDev()">WARNING: You are using the BETA (unstable) version. For the latest
                             stable release please <a href="../">click here.</a></h3>
-                        <h6>Version 1.0.8</h6>
+                        <h6>Version 1.0.9</h6>
                     </div>
                 </div>
 
@@ -86,7 +92,11 @@
                             </span>
 
                             <input type="number" style="max-width:75px; min-width: 75px;" class="form-control"
-                                aria-label="Username" min="1" data-bind="textInput: settings.speed.wpm">
+                                aria-label="Username" min="1"
+                                data-bind="textInput: settings.speed.wpm, hidden: settings.speed.variableSpeedDisplay">
+                            <input type="number" style="max-width:75px; min-width: 75px;" class="form-control"
+                                aria-label="Username"
+                                data-bind="textInput: settings.speed.vWpm, visible: settings.speed.variableSpeedDisplay, enable: false">
                             <!-- fwpm -->
                             <span class="input-group-text"
                                 data-bind="click: ()=>settings.speed.syncWpm(!settings.speed.syncWpm())">Effective Speed
@@ -94,7 +104,11 @@
                                     data-bind="attr:{ src: settings.speed.syncWpm() ? morseLoadImages().getSrc('lockImage') : morseLoadImages().getSrc('unlockImage')}" /></span>
                             <input type="number" style="max-width:75px; min-width: 75px;" class="form-control"
                                 aria-label="Server" min="1"
-                                data-bind="textInput: settings.speed.fwpm, enable: !settings.speed.syncWpm(), attr:{ max: settings.speed.trueWpm }">
+                                data-bind="textInput: settings.speed.fwpm, enable: !settings.speed.syncWpm(), attr:{ max: settings.speed.trueWpm }, hidden: settings.speed.variableSpeedDisplay">
+                            <input type="number" style="max-width:75px; min-width: 75px;" class="form-control"
+                                aria-label="Server"
+                                data-bind="textInput: settings.speed.vFwpm, visible: settings.speed.variableSpeedDisplay, enable: false">
+
                         </div>
                     </div>
                     <!--volume-->
@@ -214,6 +228,8 @@
                                         data-bind="text: lessons.letterGroup"></span>
                                     <span>&nbsp; Lesson: </span><span
                                         data-bind="text: lessons.selectedDisplay().display"></span>
+                                    <span>&nbsp; Settings: </span><span
+                                        data-bind="text: lessons.selectedSettingsPreset().display"></span>
                                 </span>
                                 <span class="badge bg-success" data-bind="if: !lessons.selectedDisplay().display">(None
                                     Currently
@@ -265,6 +281,17 @@
                                             <button id="btnLessonSelection" type="button"
                                                 class="list-group-item list-group-item-action"
                                                 data-bind="text: $data.display, click: ()=>$root.lessons.setDisplaySelected($data), css: { active: $data.display==$parent.lessons.selectedDisplay().display}"></button>
+                                        </div>
+                                    </div>
+
+                                    <!--setting presets-->
+                                    <div class="col-auto">
+                                        <div class="list-group"
+                                            data-bind="foreach: lessons.settingsPresets, childrenComplete: () => lessons.setSettingsPresetsInitialized()"
+                                            style="overflow-y:auto; height:250px; width: 200px;">
+                                            <button id="btnLessonSettingsPresets" type="button"
+                                                class="list-group-item list-group-item-action"
+                                                data-bind="enable: $root.allowSaveCookies, text: $data.display, click: ()=>$root.lessons.setPresetSelected($data), css: { active: $data.display==$parent.lessons.selectedSettingsPreset().display}"></button>
                                         </div>
                                     </div>
 
@@ -371,7 +398,7 @@
                                         </div>
                                         <!--custom group run button-->
                                         <button type="button" class="btn btn-success"
-                                            data-bind="click: ()=> lessons.setDisplaySelected(lessons.selectedDisplay()), enable: lessons.selectedDisplay().display && !lessons.selectedDisplay().isDummy"
+                                            data-bind="click: ()=> lessons.customGroup() ? lessons.doCustomGroup() : lessons.setDisplaySelected(lessons.selectedDisplay()), enable: (lessons.selectedDisplay().display && !lessons.selectedDisplay().isDummy) || lessons.customGroup"
                                             style="width: 146px; padding-left: 2px; padding-right: 2px;">Apply</button>
                                     </div>
                                 </div>
@@ -471,6 +498,42 @@
                                                 data-bind="textInput: trailFinal, enable: trailReveal()">
                                         </div>
                                     </div>
+
+                                    <!--speed intervals-->
+                                    <div class="input-group">
+                                        <div class="col-auto">
+
+                                            <input type="checkbox" class="btn-check" autocomplete="off"
+                                                id="btncheckspeedinterval"
+                                                data-bind="checked: settings.speed.speedInterval">
+                                            <label class=" btn btn-outline-primary" for="btncheckspeedinterval"><img
+                                                    data-bind="attr:{ src: morseLoadImages().getSrc('rocketTakeoffImage')}">&nbsp;Speed
+                                                Intervals&nbsp;<img
+                                                    data-bind="attr:{ src: settings.speed.speedInterval() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
+
+
+                                        </div>
+
+                                        <span class="input-group-text"
+                                            data-bind="visible: settings.speed.speedInterval()">Timings&nbsp;<img
+                                                data-bind="attr:{ src: morseLoadImages().getSrc('stopwatchImage')}"
+                                                height="20" width="20" /></span>
+                                        <input type="text" style="max-width:200px; min-width: 200px;"
+                                            class="form-control" aria-label="Username"
+                                            data-bind="textInput: settings.speed.intervalTimingsText, enable: settings.speed.speedInterval(), visible: settings.speed.speedInterval()">
+                                        <span class="input-group-text"
+                                            data-bind="visible: settings.speed.speedInterval()">WPM&nbsp;</span>
+                                        <input type="text" style="max-width:200px; min-width: 200px;"
+                                            class="form-control" aria-label="Username"
+                                            data-bind="textInput: settings.speed.intervalWpmText, enable: settings.speed.speedInterval(), visible: settings.speed.speedInterval()">
+                                        <span class="input-group-text"
+                                            data-bind="visible: settings.speed.speedInterval()">FWPM&nbsp;</span>
+                                        <input type="text" style="max-width:200px; min-width: 200px;"
+                                            class="form-control" aria-label="Server"
+                                            data-bind="textInput: settings.speed.intervalFwpmText, enable: settings.speed.speedInterval(), visible: settings.speed.speedInterval()">
+
+                                    </div>
+
                                     <!-- cards visibile -->
                                     <div class="col-auto">
 
@@ -500,17 +563,7 @@
                                                 data-bind="attr:{ src: showExpertSettings() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
                                     </div>
 
-                                    <!--sentences toggle-->
-                                    <!-- TODO remove 
-                                    <div class="col-auto" data-bind="visible: showExpertSettings">
 
-                                        <input type="checkbox" class="btn-check" autocomplete="off"
-                                            id="btnchecksentences" data-bind="checked: ifParseSentences">
-                                        <label class=" btn btn-outline-primary" for="btnchecksentences"><img
-                                                data-bind="attr:{ src: morseLoadImages().getSrc('numlistImage')}">&nbsp;Sentences&nbsp;<img
-                                                data-bind="attr:{ src: ifParseSentences() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
-                                    </div>
-                                    -->
                                     <!--noise toggle-->
                                     <div class="col-auto" data-bind="visible: showExpertSettings">
 
@@ -543,7 +596,7 @@
                                                     data-bind="attr:{ src: morseVoice.voiceEnabled() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
                                         </div>
                                         <!-- voice spell out-->
-                                        <!-- <div class="col-auto"
+                                        <div class="col-auto"
                                             data-bind="if: showExpertSettings() && morseVoice.voiceEnabled()">
 
                                             <input type="checkbox" class="btn-check" autocomplete="off"
@@ -551,7 +604,7 @@
                                             <label class=" btn btn-outline-primary" for="btncheckvoicespell"><img
                                                     data-bind="attr:{ src: morseLoadImages().getSrc('spellcheckImage')}">&nbsp;Spell&nbsp;<img
                                                     data-bind="attr:{ src: morseVoice.voiceSpelling() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
-                                        </div> -->
+                                        </div>
                                         <!-- voice thinktime-->
                                         <div class="col-md-auto"
                                             data-bind="if: showExpertSettings() && morseVoice.voiceEnabled()">
@@ -691,6 +744,10 @@
                     </div>
                     <!-- /ko -->
 
+                    <!-- haptic -->
+                    <div class="accordion-item" data-bind="component: {name: 'hapticaccordion', params: {root: $root}}">
+                    </div>
+
                     <!-- flagged words -->
                     <div class="accordion-item"
                         data-bind="component: {name: 'flaggedwordsaccordion', params: {root: $root}}">
@@ -734,10 +791,6 @@
                         <button id="btnFullRewind" type="button" class="btn btn-success"
                             data-bind="click: fullRewind">Full
                             RW&nbsp;<img id="skipstartImage" height="20" width="20" /></button>
-                        <button id="btnSentenceRewind" type="button" class="btn btn-warning"
-                            data-bind="click: sentanceRewind, visible: ifParseSentences() && showExpertSettings()">Sent
-                            RW&nbsp;<img height="20" width="20"
-                                data-bind="attr:{src: morseLoadImages().getSrc('skipbackImage') }"></button>
                         <button id="btnFwd1" type="button" class="btn btn-secondary"
                             data-bind="click: incrementIndex">Fwd
                             1&nbsp;<img id="skipforwardImage" height="20" width="20"></button>
@@ -765,17 +818,7 @@
                                 data-bind="attr:{ src: !hideList() ? morseLoadImages().getSrc('eyeImage') : morseLoadImages().getSrc('eyeslashImage')}" /></label>
 
                     </div>
-                    <!-- sentence number -->
-                    <!--  TODO remove
-                    <div class="input-group me-2" aria-label="thirdgroupabcd" role="group"
-                        data-bind="visible: ifParseSentences() && showExpertSettings()">
-                        <span class="input-group-text">Sentence&nbsp;<img id='numlistImage' height="20"
-                                width="20" /></span>
-                        <input type="number" style="max-width:75px; min-width: 75px;" class="form-control"
-                            aria-label="Username"
-                            data-bind="textInput: currentSentanceIndex,attr:{min:0, max:sentenceMax}">
-                    </div>
-                    -->
+
                     <div class="button-group me-2" role="group" aria-label="Basic mixed styles example">
 
                         <button id="btnShuffle" type="button" class="btn btn-secondary"
@@ -809,10 +852,10 @@
                 <div class="row gx-2 gy-2" data-bind="foreach: words">
                     <div class="col-auto">
                         <button class="btn"
-                            data-bind="class: $index()==$parent.currentIndex() ? 'btn-primary':'btn-outline-primary',click:()=>$parent.flaggedWords.addFlaggedWord($data), event:{dblclick: ()=>{$parent.setWordIndex($index())}}">
+                            data-bind="class: $index()==$parent.currentIndex() ? ($index()==$parent.words().length-1 ? 'btn-danger' : 'btn-primary'): ($index()==$parent.words().length-1 ? 'btn-outline-danger' : 'btn-outline-primary' ) ,click:()=>$parent.flaggedWords.addFlaggedWord($data), event:{dblclick: ()=>{$parent.setWordIndex($index())}}">
                             <!--<h1>-->
                             <span
-                                data-bind="style: {fontSize: $parent.cardFontPx } ,text: (!$parent.hideList() || ($parent.trailReveal() && $index() <= $parent.maxRevealedTrail() )) ? $data : 'X'.repeat($data.replace('\r','').replace('\n','').length)">
+                                data-bind="style: {fontSize: $parent.cardFontPx } ,text: (!$parent.hideList() || ($parent.trailReveal() && $index() <= $parent.maxRevealedTrail() )) ? $data.displayWord : 'X'.repeat($data.displayWord.replace('\r','').replace('\n','').length)">
                             </span>
                             <!--</h1>-->
                         </button>

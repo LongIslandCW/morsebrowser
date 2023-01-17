@@ -1,1 +1,8 @@
-AR GA IN IA NE PA RI TN
+AR 
+GA
+{IN|indiana} 
+IA
+NE
+PA
+RI
+TN

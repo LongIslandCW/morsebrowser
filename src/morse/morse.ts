@@ -17,11 +17,15 @@ import SimpleImageTemplate from './components/morseImage/simpleImage'
 import NoiseAccordion from './components/noiseAccordion/noiseAccordion'
 import RssAccordion from './components/rssAccordion/rssAccordion'
 import FlaggedWordsAccordion from './components/flaggedWordsAccordion/flaggedWordsAccordion'
+import HapticVm, { HapticAccordion } from './components/hapticAccordion/hapticAccordion'
 import { CardBufferManager } from './utils/cardBufferManager'
+import WordInfo from './utils/wordInfo'
+import SavedSettingsInfo from './settings/savedSettingsInfo'
+import { PlayingTimeInfo } from './utils/playingTimeInfo'
+
 export class MorseViewModel {
   textBuffer:ko.Observable<string> = ko.observable('')
   hideList:ko.Observable<boolean> = ko.observable(true)
-  currentSentanceIndex:ko.Observable<number> = ko.observable(0)
   currentIndex:ko.Observable<number> = ko.observable(0)
   playerPlaying:ko.Observable<boolean> = ko.observable(false)
   lastFullPlayTime = ko.observable(new Date(1900, 0, 0).getMilliseconds())
@@ -40,7 +44,6 @@ export class MorseViewModel {
   noiseVolume:ko.Observable<number> = ko.observable(2)
   noiseType:ko.Observable<string> = ko.observable('off')
   lastPlayFullStart = null
-  ifParseSentences:ko.Observable<boolean> = ko.observable(false)
   runningPlayMs:ko.Observable<number> = ko.observable(0)
   lastPartialPlayStart = ko.observable()
   isPaused:ko.Observable<boolean> = ko.observable(false)
@@ -77,6 +80,10 @@ export class MorseViewModel {
   charsPlayed:ko.Observable<number> = ko.observable(0)
   cardSpace:ko.Observable<number> = ko.observable(0)
   cardSpaceTimerHandle:any = 0
+  hapticAccordion:HapticAccordion
+  allowSaveCookies:ko.Observable<boolean> = ko.observable(true)
+  lockoutSaveCookiesTimerHandle:any = null
+  currentSerializedSettings:any = null
 
   // END KO observables declarations
   constructor () {
@@ -87,7 +94,7 @@ export class MorseViewModel {
     MorseExtenders.init(this)
 
     // create settings (note do this after extenders)
-    this.settings = new MorseSettings()
+    this.settings = new MorseSettings(this)
     // apply extenders
     MorseExtenders.apply(this)
 
@@ -98,7 +105,7 @@ export class MorseViewModel {
       const config = this.getMorseStringToWavBufferConfig(str)
       const est = this.morseWordPlayer.getTimeEstimate(config)
       return est
-    })
+    }, this)
 
     this.rss = new MorseRssPlugin(new RssConfig(this.setText, this.fullRewind, this.doPlay, this.lastFullPlayTime, this.playerPlaying))
 
@@ -123,11 +130,7 @@ export class MorseViewModel {
     this.morseWordPlayer = new MorseWordPlayer()
     this.morseWordPlayer.setSoundMaker(this.smoothing())
 
-    // load defaults
-    MorseCookies.loadCookiesOrDefaults(this, null, true)
-
-    // load cookies
-    MorseCookies.loadCookiesOrDefaults(this, null, false)
+    this.loadDefaultsAndCookieSettings()
 
     // initialize the wordlist
     this.lessons.initializeWordList()
@@ -151,6 +154,7 @@ export class MorseViewModel {
     ko.components.register('simpleimage', SimpleImageTemplate)
     ko.components.register('noiseaccordion', NoiseAccordion)
     ko.components.register('rssaccordion', RssAccordion)
+    ko.components.register('hapticaccordion', HapticVm)
     ko.components.register('flaggedwordsaccordion', FlaggedWordsAccordion)
 
     // card buffer manager
@@ -159,6 +163,14 @@ export class MorseViewModel {
     this.showRaw(false)
   }
   // END CONSTRUCTOR
+
+  loadDefaultsAndCookieSettings = () => {
+    // load defaults
+    MorseCookies.loadCookiesOrDefaults(this, true)
+
+    // load cookies
+    MorseCookies.loadCookiesOrDefaults(this, false)
+  }
 
   logToFlaggedWords = (s) => {
     /* this.flaggedWordsLogCount++
@@ -198,20 +210,12 @@ export class MorseViewModel {
     }
   }
 
-  sentences:ko.Computed<string[][]> = ko.computed(() => {
+  words:ko.Computed<WordInfo[]> = ko.computed(() => {
     if (!this.rawText()) {
       return []
     }
 
-    return MorseStringUtils.getSentences(this.rawText(), !this.ifParseSentences(), this.settings.misc.newlineChunking())
-  }, this)
-
-  sentenceMax:ko.Computed<number> = ko.computed(() => {
-    return this.sentences().length - 1
-  }, this)
-
-  words:ko.Computed<string[]> = ko.computed(() => {
-    return this.sentences()[this.currentSentanceIndex()]
+    return MorseStringUtils.getWords(this.rawText(), this.settings.misc.newlineChunking())
   }, this)
 
   rawTextCharCount:ko.Computed<number> = ko.computed(() => {
@@ -229,7 +233,9 @@ export class MorseViewModel {
       if (!this.isShuffled()) {
         this.preShuffled = this.rawText()
       }
-      this.lastShuffled = this.rawText().split(hasPhrases ? '\n' : ' ').sort(() => { return 0.5 - Math.random() }).join(hasPhrases ? '\n' : ' ')
+      const shuffledWords = this.words().sort(() => { return 0.5 - Math.random() })
+      this.lastShuffled = shuffledWords.map(w => w.rawWord).join(hasPhrases ? '\n' : ' ')
+      // this.lastShuffled = this.rawText().split(hasPhrases ? '\n' : ' ').sort(() => { return 0.5 - Math.random() }).join(hasPhrases ? '\n' : ' ')
       this.setText(this.lastShuffled)
       if (!this.isShuffled()) {
         this.isShuffled(true)
@@ -244,12 +250,6 @@ export class MorseViewModel {
   incrementIndex = () => {
     if (this.currentIndex() < this.words().length - 1) {
       this.currentIndex(this.currentIndex() + 1)
-    } else {
-      // move to next sentence
-      if (this.currentSentanceIndex() < this.sentenceMax()) {
-        this.currentSentanceIndex(Number(this.currentSentanceIndex()) + 1)
-        this.currentIndex(0)
-      }
     }
   }
 
@@ -265,7 +265,6 @@ export class MorseViewModel {
   }
 
   fullRewind = () => {
-    this.currentSentanceIndex(0)
     this.currentIndex(0)
   }
 
@@ -302,8 +301,9 @@ export class MorseViewModel {
   getMorseStringToWavBufferConfig = (text) => {
     const config = new SoundMakerConfig()
     config.word = MorseStringUtils.doReplacements(text)
-    config.wpm = parseInt(this.settings.speed.wpm() as any)
-    config.fwpm = parseInt(this.settings.speed.fwpm() as any)
+    const speeds = this.settings.speed.getApplicableSpeed(this.playingTime())
+    config.wpm = parseInt(speeds.wpm as any)
+    config.fwpm = parseInt(speeds.fwpm as any)
     config.ditFrequency = parseInt(this.settings.frequency.ditFrequency() as any)
     config.dahFrequency = parseInt(this.settings.frequency.dahFrequency() as any)
     config.prePaddingMs = this.preSpaceUsed() ? 0 : this.preSpace() * 1000
@@ -326,6 +326,15 @@ export class MorseViewModel {
     config.morseDisabled = this.morseDisabled()
 
     return config
+  }
+
+  testTone = () => {
+    const config = this.getMorseStringToWavBufferConfig('T')
+    config.isToneTest = true
+    this.morseWordPlayer.play(config, (fromVoiceOrTrail) => {
+      // this.charsPlayed(this.charsPlayed() + config.word.replace(' ', '').length)
+      // this.playEnded(fromVoiceOrTrail)
+    })
   }
 
   doPlay = (playJustEnded:boolean, fromPlayButton:boolean) => {
@@ -405,7 +414,6 @@ export class MorseViewModel {
 
     // where are we in the words to process?
     const isNotLastWord = this.currentIndex() < this.words().length - 1
-    const isNotLastSentence = this.currentSentanceIndex() < this.sentenceMax()
     const anyNewLines = this.rawText().indexOf('\n') !== -1
     const needToSpeak = this.morseVoice.voiceEnabled() && !fromVoiceOrTrail && !this.cardBufferManager.hasMoreMorse()
     const needToTrail = this.trailReveal() && !fromVoiceOrTrail
@@ -449,11 +457,6 @@ export class MorseViewModel {
           cardChanged = true
         }
         this.cardSpaceTimerHandle = setTimeout(() => { this.doPlay(true, false) }, !cardChanged ? 0 : this.cardSpace() * 1000)
-      } else if (isNotLastSentence) {
-      // move to next sentence
-        this.currentSentanceIndex(Number(this.currentSentanceIndex()) + 1)
-        this.currentIndex(0)
-        this.doPlay(true, false)
       } else {
       // nothing more to play
         const finalToDo = () => this.doPause(true, false, false)
@@ -469,8 +472,10 @@ export class MorseViewModel {
     if (needToSpeak) {
       // speak the voice buffer if there's a newline or nothing more to play
       const currentWord = this.words()[this.currentIndex()]
-      const hasNewline = currentWord.indexOf('\n') !== -1
-      this.morseVoice.voiceBuffer.push(currentWord)
+      const speakText = currentWord.speakText(this.morseVoice.voiceSpelling())
+      // console.log(`speaktext:${speakText}`)
+      const hasNewline = speakText.indexOf('\n') !== -1
+      this.morseVoice.voiceBuffer.push(speakText)
       this.logToFlaggedWords(`currentWord:${currentWord}`)
       this.logToFlaggedWords(`hasNewline:${hasNewline} isNotLastWord: ${isNotLastWord} anyNewLines:${anyNewLines}`)
       const speakCondition = hasNewline || !isNotLastWord || !anyNewLines || !this.settings.misc.newlineChunking()
@@ -479,11 +484,12 @@ export class MorseViewModel {
         this.logToFlaggedWords(`about to wordify:'${this.morseVoice.voiceBuffer.join(' ')}'`)
         let phraseToSpeak
         try {
-          let joinedBuffer = this.morseVoice.voiceBuffer.join(' ')
-          if (this.morseVoice.voiceSpelling()) {
+          const joinedBuffer = this.morseVoice.voiceBuffer.join(' ')
+          phraseToSpeak = joinedBuffer
+          /* if (this.morseVoice.voiceSpelling()) {
             joinedBuffer = joinedBuffer.split('').join(' ')
           }
-          phraseToSpeak = MorseStringUtils.wordifyPunctuation(joinedBuffer)
+          phraseToSpeak = MorseStringUtils.wordifyPunctuation(joinedBuffer) */
           phraseToSpeak = phraseToSpeak.replace(/\n/g, ' ').trim()
         } catch (e) {
           this.logToFlaggedWords(`caught after wordify:${e}`)
@@ -578,12 +584,11 @@ export class MorseViewModel {
 
   doDownload = async () => {
     let allWords = ''
-    const sentences = this.sentences()
-    sentences.forEach((sentence) => {
-      sentence.forEach((word) => {
-        allWords += allWords.length > 0 ? ' ' + word : word
-      })
+    const words = this.words()
+    words.forEach((word) => {
+      allWords += allWords.length > 0 ? ' ' + word : word
     })
+
     const config = this.getMorseStringToWavBufferConfig(allWords)
     const wav = await this.morseWordPlayer.getWavAndSample(config)
     const ary = new Uint8Array(wav)
@@ -610,7 +615,7 @@ export class MorseViewModel {
     if (!this.rawText()) {
       return { minutes: 0, seconds: 0, normedSeconds: '00' }
     }
-    const config = this.getMorseStringToWavBufferConfig(this.rawText())
+    const config = this.getMorseStringToWavBufferConfig(this.words().map(w => w.displayWord).join(' '))
     const est = this.morseWordPlayer.getTimeEstimate(config)
     const minutes = Math.floor(est.timeCalcs.totalTime / 60000)
     const seconds = ((est.timeCalcs.totalTime % 60000) / 1000).toFixed(0)
@@ -621,11 +626,12 @@ export class MorseViewModel {
     return timeFigures
   }, this)
 
-  playingTime = ko.computed(() => {
+  playingTime = ko.computed(():PlayingTimeInfo => {
     const minutes = Math.floor(this.runningPlayMs() / 60000)
-    const seconds = ((this.runningPlayMs() % 60000) / 1000).toFixed(0)
-    const normedSeconds = (parseInt(seconds) < 10 ? '0' : '') + seconds
-    const timeFigures = { minutes, seconds, normedSeconds }
+    const seconds = parseFloat(((this.runningPlayMs() % 60000) / 1000).toFixed(0))
+    const timeFigures = new PlayingTimeInfo(minutes, seconds)
+    /* const normedSeconds = (parseInt(seconds) < 10 ? '0' : '') + seconds
+    const timeFigures = { minutes, seconds, normedSeconds } */
     // console.log(timeFigures)
     // console.log(est)
     return timeFigures
@@ -635,5 +641,83 @@ export class MorseViewModel {
     // stop playing
     this.doPause(true, false, false)
     this.setText('')
+  }
+
+  getCurrentSerializedSettings = () => {
+    const savedInfos:SavedSettingsInfo[] = []
+    const settings = { morseSettings: savedInfos }
+    savedInfos.push(new SavedSettingsInfo('wpm', this.settings.speed.wpm()))
+    savedInfos.push(new SavedSettingsInfo('fwpm', this.settings.speed.fwpm()))
+    savedInfos.push(new SavedSettingsInfo('ditFrequency', this.settings.frequency.ditFrequency()))
+    savedInfos.push(new SavedSettingsInfo('dahFrequency', this.settings.frequency.dahFrequency()))
+    savedInfos.push(new SavedSettingsInfo('preSpace', this.preSpace()))
+    savedInfos.push(new SavedSettingsInfo('xtraWordSpaceDits', this.xtraWordSpaceDits()))
+    savedInfos.push(new SavedSettingsInfo('volume', this.volume()))
+    savedInfos.push(new SavedSettingsInfo('stickySets', this.lessons.stickySets()))
+    savedInfos.push(new SavedSettingsInfo('ifStickySets', this.lessons.ifStickySets()))
+    savedInfos.push(new SavedSettingsInfo('syncWpm', this.settings.speed.syncWpm()))
+    savedInfos.push(new SavedSettingsInfo('syncFreq', this.settings.frequency.syncFreq()))
+    savedInfos.push(new SavedSettingsInfo('hideList', this.hideList()))
+    savedInfos.push(new SavedSettingsInfo('showRaw', this.showRaw()))
+    savedInfos.push(new SavedSettingsInfo('autoCloseLessonAccordian', this.lessons.autoCloseLessonAccordion()))
+    savedInfos.push(new SavedSettingsInfo('cardFontPx', this.cardFontPx()))
+    savedInfos.push(new SavedSettingsInfo('customGroup', this.lessons.customGroup()))
+    savedInfos.push(new SavedSettingsInfo('showExpertSettings', this.showExpertSettings()))
+    savedInfos.push(new SavedSettingsInfo('voiceEnabled', this.morseVoice.voiceEnabled()))
+    savedInfos.push(new SavedSettingsInfo('voiceSpelling', this.morseVoice.voiceSpelling()))
+    savedInfos.push(new SavedSettingsInfo('voiceThinkingTime', this.morseVoice.voiceThinkingTime()))
+    savedInfos.push(new SavedSettingsInfo('voiceAfterThinkingTime', this.morseVoice.voiceAfterThinkingTime()))
+    savedInfos.push(new SavedSettingsInfo('voiceVolume', this.morseVoice.voiceVolume()))
+    savedInfos.push(new SavedSettingsInfo('voiceLastOnly', this.morseVoice.voiceLastOnly()))
+
+    savedInfos.push(new SavedSettingsInfo('keepLines', this.settings.misc.newlineChunking()))
+    savedInfos.push(new SavedSettingsInfo('syncSize', this.lessons.syncSize()))
+
+    savedInfos.push(new SavedSettingsInfo('overrideSize', this.lessons.ifOverrideMinMax()))
+    savedInfos.push(new SavedSettingsInfo('overrideSizeMin', this.lessons.overrideMin()))
+    savedInfos.push(new SavedSettingsInfo('overrideSizeMax', this.lessons.overrideMax()))
+    savedInfos.push(new SavedSettingsInfo('cardSpace', this.cardSpace(), 'AKA cardWait'))
+
+    savedInfos.push(new SavedSettingsInfo('hapticAccordionOpen', this.hapticAccordion.isAccordionOpen))
+    savedInfos.push(new SavedSettingsInfo('miscSettingsAccordionOpen', this.settings.misc.isMoreSettingsAccordionOpen))
+
+    savedInfos.push(new SavedSettingsInfo('speedInterval', this.settings.speed.speedInterval()))
+    savedInfos.push(new SavedSettingsInfo('intervalTimingsText', this.settings.speed.intervalTimingsText()))
+    savedInfos.push(new SavedSettingsInfo('intervalWpmText', this.settings.speed.intervalWpmText()))
+    savedInfos.push(new SavedSettingsInfo('intervalFwpmText', this.settings.speed.intervalFwpmText()))
+
+    return settings
+  }
+
+  saveSettings = () => {
+    const settings = this.getCurrentSerializedSettings()
+    // console.log(settings)
+    const elemx = document.createElement('a')
+    elemx.href = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(settings, null, '\t')) // ! encodeURIComponent
+    elemx.download = 'LICWSettings.json'
+    elemx.style.display = 'none'
+    document.body.appendChild(elemx)
+    elemx.click()
+    document.body.removeChild(elemx)
+  }
+
+  settingsFileChange = (element) => {
+    // thanks to https://newbedev.com/how-to-access-file-input-with-knockout-binding
+    // console.log(file)
+    const file = element.files[0]
+    console.log(element.value)
+    const fr = new FileReader()
+    fr.onload = (data) => {
+      const settings = JSON.parse(data.target.result as string)
+      console.log(settings)
+      // this.setText(data.target.result as string)
+      // need to clear or else won't fire if use clears the text area
+      // and then tries to reload the same again
+      element.value = null
+      // request to undo "apply" after file load
+      // this.lessons.selectedDisplay({})
+      MorseCookies.loadCookiesOrDefaults(this, true, true, settings.morseSettings)
+    }
+    fr.readAsText(file)
   }
 }
