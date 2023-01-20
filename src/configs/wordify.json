@@ -2,7 +2,7 @@
 	"wordifications":[
 	{ "characters": ",", "replacement": "comma", "onlyAlone" : false},
 	{ "characters": ".", "replacement": "period", "onlyAlone" : false},
-	{ "characters": "?", "replacement": "question mark", "onlyAlone" : false},
+	{ "characters": "?", "replacement": "question mark", "onlyAlone" : true},
 	{ "characters": "/", "replacement": "stroke", "onlyAlone" : false},
 	{ "characters": ":", "replacement": "colon", "onlyAlone" : false},
 	{ "characters": "!", "replacement": "exclamation", "onlyAlone" : false},
