@@ -1,0 +1,9 @@
+AR 
+{IN|indiana} 
+IA
+NE
+RI
+TN
+UT
+WA
+WI

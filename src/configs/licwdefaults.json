@@ -8,27 +8,27 @@
         },
         {
             "key": "showingText",
-            "value": "CQ LICW",
+            "value": "{CQ|c q} {LICW|l i c w}",
             "comment": "text that shows up every time browser refreshed. advise you keep something here so newb can just hit play..."
         },
         {
             "key": "wpm",
-            "value": 20,
+            "value": 12,
             "comment": ""
         },
         {
             "key": "fwpm",
-            "value": 20,
+            "value": 12,
             "comment": "remember if this deviates from wpm, set syncWpm below to false"
         },
         {
             "key": "ditFrequency",
-            "value": 600,
+            "value": 700,
             "comment": ""
         },
         {
             "key": "dahFrequency",
-            "value": 600,
+            "value": 700,
             "comment": "remember if dit dah are different, set syncFreq below to false"
         },
         {
@@ -38,8 +38,8 @@
         },
         {
             "key": "xtraWordSpaceDits",
-            "value": 0,
-            "comment": "7 is a full word space"
+            "value": 1,
+            "comment": "1=normal wordspacing, 2=2x wordspacing, etc"
         },
         {
             "key": "volume",
@@ -50,6 +50,11 @@
             "key": "stickySets",
             "value": "BK",
             "comment": "put a space between sets"
+        },
+        {
+            "key": "ifStickySets",
+            "value": false,
+            "comment": "whether stickysets functionality on"
         },
         {
             "key": "syncWpm",
@@ -63,7 +68,7 @@
         },
         {
             "key": "hideList",
-            "value": true,
+            "value": false,
             "comment": "by default hide the word list boxes/cards that get generated i.e. don't reveal"
         },
         {

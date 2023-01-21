@@ -82,6 +82,15 @@ module.exports = {
       {
         test: /\.txt/,
         type: 'asset/source'
+      },
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/
+      },
+      {
+        test: /\.html$/, // All Knockout.js component HTML templates
+        use: 'html-loader' // Adds the component templates to the bundle
       }
     ]
   },
@@ -96,6 +105,7 @@ module.exports = {
       buffer: require.resolve('buffer/'),
       os: require.resolve('os-browserify')
 
-    }
+    },
+    extensions: ['.tsx', '.ts', '.js']
   }
 }

@@ -64,6 +64,17 @@ jobs:
           clean-exclude: |
             dev 
             1_0_0
+            1_0_1
+            1_0_2
+            1_0_3
+            1_0_4
+            1_0_5
+            1_0_6
+            1_0_7
+            1_0_8
+            1_0_9
+            1_0_10
+            soundslope
           # Do not actually push back, but use `--dry-run` on `git push` invocations insead.
           # dry-run: # optional
           # Whether to force-push and overwrite any existing deployment. Setting this to false will attempt to rebase simultaneous deployments. This option is on by default and can be toggled off by setting it to false.

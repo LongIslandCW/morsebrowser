@@ -23,7 +23,7 @@ import MorseCW from './morse-pro-cw';
  */
 export default class MorseCWWave extends MorseCW {
     /**
-     * @param {number} [frequency=550] - frequency of wave in Hz
+     * @param {any} [frequency=550] - frequency of wave in Hz
      * @param {number} [sampleRate=8000] - sample rate for the waveform in Hz
      */
     constructor(useProsigns, wpm, fwpm, frequency = 550, sampleRate = 8000) {
