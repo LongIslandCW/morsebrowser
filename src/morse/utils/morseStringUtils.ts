@@ -51,9 +51,15 @@ export default class MorseStringUtils {
     return wordInfos
   }
 
-  static wordifyPunctuation = (s:string):string => {
+  static wordifyPunctuation = (s:string, spellOverridesOnly:boolean = false):string => {
+    let wordifiersApplicable
+    if (!spellOverridesOnly) {
+      wordifiersApplicable = wordifiers.wordifications
+    } else {
+      wordifiersApplicable = wordifiers.wordifications.filter(f => f.overrideSpell)
+    }
     let fixed = s.replace(/\r/g, '').replace(/\n/g, '')
-    wordifiers.wordifications.forEach(w => {
+    wordifiersApplicable.forEach(w => {
       let myChars = w.characters
       const before = w.characters
       myChars = myChars.replace(/\?/g, '\\?')
