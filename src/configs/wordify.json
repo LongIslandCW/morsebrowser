@@ -6,7 +6,7 @@
 	{ "characters": "/", "replacement": "stroke", "onlyAlone" : false, "overrideSpell" : true},
 	{ "characters": ":", "replacement": "colon", "onlyAlone" : false, "overrideSpell" : true},
 	{ "characters": "!", "replacement": "exclamation", "onlyAlone" : false, "overrideSpell" : true},
-	{ "characters": "-", "replacement": "dash", "onlyAlone" : false},
+	{ "characters": "-", "replacement": "dash", "onlyAlone" : false, "overrideSpell" : true},
 	{ "characters": "<AR>", "replacement": "end of message", "onlyAlone" : false},
 	{ "characters": "<BT>", "replacement": "pause", "onlyAlone" : false},
 	{ "characters": "<SK>", "replacement": "end of contact", "onlyAlone" : false},
