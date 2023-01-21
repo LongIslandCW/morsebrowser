@@ -29,9 +29,10 @@ export default class WordInfo {
         const base = MorseStringUtils.doReplacements(p) + '\n'
         if (!forceSpelling) {
           return MorseStringUtils.wordifyPunctuation(base)
+        } else {
+          // force spelling and wordify voice overrides
+          return base.split('').map(m => MorseStringUtils.wordifyPunctuation(m, true)).join(' ')
         }
-
-        return base.split('').join(' ')
       } else {
         if (!forceSpelling) {
           return this.getBracesIndex(p, 1)
