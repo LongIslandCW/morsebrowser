@@ -24,13 +24,17 @@ export default class WordInfo {
   }
 
   speakText (forceSpelling:boolean):string {
+    console.log('pieces')
+    console.log(this.pieces)
     return this.pieces.map(p => {
+      console.log(`hasoverride(p):${this.hasOverride(p)}`)
       if (!this.hasOverride(p)) {
         const base = MorseStringUtils.doReplacements(p) + '\n'
         if (!forceSpelling) {
           return MorseStringUtils.wordifyPunctuation(base)
         } else {
           // force spelling and wordify voice overrides
+          console.log('no override')
           return base.split('').map(m => MorseStringUtils.wordifyPunctuation(m, true)).join(' ')
         }
       } else {

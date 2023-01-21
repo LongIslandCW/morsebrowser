@@ -472,8 +472,9 @@ export class MorseViewModel {
     if (needToSpeak) {
       // speak the voice buffer if there's a newline or nothing more to play
       const currentWord = this.words()[this.currentIndex()]
+      console.log(`currentword:${currentWord.rawWord}`)
       const speakText = currentWord.speakText(this.morseVoice.voiceSpelling())
-      // console.log(`speaktext:${speakText}`)
+      console.log(`speaktext:${speakText}`)
       const hasNewline = speakText.indexOf('\n') !== -1
       this.morseVoice.voiceBuffer.push(speakText)
       this.logToFlaggedWords(`currentWord:${currentWord}`)
@@ -505,7 +506,13 @@ export class MorseViewModel {
         }
         setTimeout(() => {
           this.logToFlaggedWords('aboutToSpeak...')
-          this.morseVoice.speakPhrase(phraseToSpeak, () => {
+          console.log(`about to speak:${phraseToSpeak}`)
+          console.log(phraseToSpeak)
+          // for reasons I can't recall, wordifyPunctuation adds pipe character
+          // remove it
+          const finalPhraseToSpeak = phraseToSpeak.replace(/\|/g, ' ')
+          console.log(`finalPhrase:${finalPhraseToSpeak}`)
+          this.morseVoice.speakPhrase(finalPhraseToSpeak, () => {
             this.logToFlaggedWords('returned from speaking...')
             // what gets called after speaking
             this.logToFlaggedWords(`needToTrail:${needToTrail}`)
