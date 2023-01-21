@@ -770,12 +770,13 @@
             </section>
 
             <!-- controls area -->
-            <div class="col">
+            <section aria-label="Playback" class="col">
 
-                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                    <div class="btn-group me-2" role="group" aria-label="Basic mixed styles example">
+                <div class="btn-toolbar" role="toolbar" aria-label="Playback controls">
+                    <div class="btn-group me-2" role="group">
                         <!-- play button -->
                         <button id="btnPlayButton" type="button" class="btn btn-success"
+                            aria-label="Play"
                             data-bind="click: () => doPlay(false,true)">
                             <span data-bind="visible: !playerPlaying()">Play</span>
                             <!--played-->
@@ -792,10 +793,10 @@
 
 
                             &nbsp;
-                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
+                            <span class="spinner-border spinner-border-sm" role="status" aria-label="Playing"
                                 data-bind="visible: playerPlaying"></span>
 
-                            <img id='playImage' data-bind="visible: !playerPlaying()">
+                            <img id='playImage' data-bind="visible: !playerPlaying()" alt="">
                         </button>
                         <button id="btnBackButton" type="button" class="btn btn-warning"
                             data-bind="click: decrementIndex">Back
@@ -819,35 +820,35 @@
                                 width="20"></button>
 
                     </div>
-                    <div class="btn-group me-2" role="group" aria-label="second group">
+                    <div class="btn-group me-2" role="group">
                         <!-- 
                                 <input type="checkbox" data-bind="checked: showRaw" class="btn-check" id="btnShowRaw" autocomplete="off"/>
                                 <label class="btn btn-outline-primary" for="btnShowRaw">Show Raw Text</label>
                                 -->
-                        <input type="checkbox" data-bind="checked: hideList" class="btn-check" id="btnHideList"
+                        <input aria-label="Hide cards" type="checkbox" data-bind="checked: hideList" class="btn-check" id="btnHideList"
                             autocomplete="off" />
-                        <label class="btn btn-outline-primary" for="btnHideList"><span>Reveal&nbsp;</span><img height=20
+                        <label aria-hidden="true" class="btn btn-outline-primary" for="btnHideList"><span>Reveal&nbsp;</span><img height=20
                                 width=20
                                 data-bind="attr:{ src: !hideList() ? morseLoadImages().getSrc('eyeImage') : morseLoadImages().getSrc('eyeslashImage')}" /></label>
 
                     </div>
 
-                    <div class="button-group me-2" role="group" aria-label="Basic mixed styles example">
+                    <div class="button-group me-2">
 
                         <button id="btnShuffle" type="button" class="btn btn-secondary"
                             data-bind="click: () => shuffleWords(false)"><span
-                                data-bind="text: isShuffled()?'UnShuffle':'Shuffle'"></span>&nbsp;<img id="shuffleImage"
+                                data-bind="text: isShuffled()?'UnShuffle':'Shuffle'"></span>&nbsp;<img alt="" id="shuffleImage"
                                 height="20" width="20"></button>
 
                     </div>
 
                     <!-- loop -->
-                    <div class="input-group me-2" aria-label="thirdgroupabcd" role="group">
+                    <div class="input-group me-2">
 
 
-                        <input type="checkbox" class="btn-check" autocomplete="off" id="btncheckloop"
+                        <input aria-label="Loop" type="checkbox" class="btn-check" autocomplete="off" id="btncheckloop"
                             data-bind="checked: loop">
-                        <label class=" btn btn-outline-primary" for="btncheckloop"><img
+                        <label aria-hidden="true" class=" btn btn-outline-primary" for="btncheckloop"><img
                                 data-bind="attr:{ src: morseLoadImages().getSrc('arrowrepeatImage')}">&nbsp;Loop&nbsp;<img
                                 data-bind="attr:{ src: loop() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
                     </div>
@@ -855,12 +856,12 @@
 
                 </div>
 
-            </div>
+            </section>
 
 
             <!-- the word list/card area-->
 
-            <div class="col" data-bind="if: cardsVisible">
+            <section aria-label="Cards" class="col" data-bind="if: cardsVisible">
 
                 <div class="row gx-2 gy-2" data-bind="foreach: words">
                     <div class="col-auto">
@@ -868,14 +869,14 @@
                             data-bind="class: $index()==$parent.currentIndex() ? ($index()==$parent.words().length-1 ? 'btn-danger' : 'btn-primary'): ($index()==$parent.words().length-1 ? 'btn-outline-danger' : 'btn-outline-primary' ) ,click:()=>$parent.flaggedWords.addFlaggedWord($data), event:{dblclick: ()=>{$parent.setWordIndex($index())}}">
                             <!--<h1>-->
                             <span
-                                data-bind="style: {fontSize: $parent.cardFontPx } ,text: (!$parent.hideList() || ($parent.trailReveal() && $index() <= $parent.maxRevealedTrail() )) ? $data.displayWord : 'X'.repeat($data.displayWord.replace('\r','').replace('\n','').length)">
+                                data-bind="style: {fontSize: $parent.cardFontPx } ,text: (!$parent.hideList() || ($parent.trailReveal() && $index() &lt;= $parent.maxRevealedTrail() )) ? $data.displayWord : 'X'.repeat($data.displayWord.replace('\r','').replace('\n','').length)">
                             </span>
                             <!--</h1>-->
                         </button>
                     </div>
                 </div>
 
-            </div>
+            </section>
 
         </div>
 
