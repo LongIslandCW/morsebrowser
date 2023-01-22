@@ -22,6 +22,7 @@ import { CardBufferManager } from './utils/cardBufferManager'
 import WordInfo from './utils/wordInfo'
 import SavedSettingsInfo from './settings/savedSettingsInfo'
 import { PlayingTimeInfo } from './utils/playingTimeInfo'
+import { SettingsChangeInfo } from './settings/settingsChangeInfo'
 
 export class MorseViewModel {
   textBuffer:ko.Observable<string> = ko.observable('')
@@ -166,10 +167,14 @@ export class MorseViewModel {
 
   loadDefaultsAndCookieSettings = () => {
     // load defaults
-    MorseCookies.loadCookiesOrDefaults(this, true)
+    let settingsInfo = new SettingsChangeInfo(this)
+    settingsInfo.ifLoadSettings = true
+    MorseCookies.loadCookiesOrDefaults(settingsInfo)
 
     // load cookies
-    MorseCookies.loadCookiesOrDefaults(this, false)
+    settingsInfo = new SettingsChangeInfo(this)
+    settingsInfo.ifLoadSettings = false
+    MorseCookies.loadCookiesOrDefaults(settingsInfo)
   }
 
   logToFlaggedWords = (s) => {
@@ -655,15 +660,15 @@ export class MorseViewModel {
     const settings = { morseSettings: savedInfos }
     savedInfos.push(new SavedSettingsInfo('wpm', this.settings.speed.wpm()))
     savedInfos.push(new SavedSettingsInfo('fwpm', this.settings.speed.fwpm()))
-    savedInfos.push(new SavedSettingsInfo('ditFrequency', this.settings.frequency.ditFrequency()))
-    savedInfos.push(new SavedSettingsInfo('dahFrequency', this.settings.frequency.dahFrequency()))
+    /* savedInfos.push(new SavedSettingsInfo('ditFrequency', this.settings.frequency.ditFrequency()))
+    savedInfos.push(new SavedSettingsInfo('dahFrequency', this.settings.frequency.dahFrequency())) */
     savedInfos.push(new SavedSettingsInfo('preSpace', this.preSpace()))
     savedInfos.push(new SavedSettingsInfo('xtraWordSpaceDits', this.xtraWordSpaceDits()))
     savedInfos.push(new SavedSettingsInfo('volume', this.volume()))
     savedInfos.push(new SavedSettingsInfo('stickySets', this.lessons.stickySets()))
     savedInfos.push(new SavedSettingsInfo('ifStickySets', this.lessons.ifStickySets()))
     savedInfos.push(new SavedSettingsInfo('syncWpm', this.settings.speed.syncWpm()))
-    savedInfos.push(new SavedSettingsInfo('syncFreq', this.settings.frequency.syncFreq()))
+    /*   savedInfos.push(new SavedSettingsInfo('syncFreq', this.settings.frequency.syncFreq())) */
     savedInfos.push(new SavedSettingsInfo('hideList', this.hideList()))
     savedInfos.push(new SavedSettingsInfo('showRaw', this.showRaw()))
     savedInfos.push(new SavedSettingsInfo('autoCloseLessonAccordian', this.lessons.autoCloseLessonAccordion()))
@@ -723,7 +728,11 @@ export class MorseViewModel {
       element.value = null
       // request to undo "apply" after file load
       // this.lessons.selectedDisplay({})
-      MorseCookies.loadCookiesOrDefaults(this, true, true, settings.morseSettings)
+      const settingsInfo = new SettingsChangeInfo(this)
+      settingsInfo.ifLoadSettings = true
+      settingsInfo.ignoreCookies = true
+      settingsInfo.custom = settings.morseSettings
+      MorseCookies.loadCookiesOrDefaults(settingsInfo)
     }
     fr.readAsText(file)
   }

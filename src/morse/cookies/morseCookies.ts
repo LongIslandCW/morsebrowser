@@ -1,10 +1,9 @@
 import Cookies from 'js-cookie'
 import licwDefaults from '../../configs/licwdefaults.json'
-import { MorseViewModel } from '../morse'
-import SavedSettingsInfo from '../settings/savedSettingsInfo'
 import { GeneralUtils } from '../utils/general'
 import { CookieInfo } from './CookieInfo'
 import { ICookieHandler } from './ICookieHandler'
+import { SettingsChangeInfo } from '../settings/settingsChangeInfo'
 
 export class MorseCookies {
   static registeredHandlers:ICookieHandler[] = []
@@ -12,8 +11,9 @@ export class MorseCookies {
     MorseCookies.registeredHandlers.push(handler)
   }
 
-  static loadCookiesOrDefaults = (ctxt:MorseViewModel, ifLoadSettings:boolean, ignoreCookies:boolean = false, custom:SavedSettingsInfo[] = null, lockoutCookieChanges:boolean = false) => {
+  static loadCookiesOrDefaults = (settingsChangeInfo:SettingsChangeInfo) => {
     // load any existing cookie values
+    const { lockoutCookieChanges, ctxt, custom, ignoreCookies, ifLoadSettings, keyBlacklist } = settingsChangeInfo
     if (lockoutCookieChanges) {
       if (ctxt.allowSaveCookies()) {
         // not currently locked out so save serialized settings
@@ -49,26 +49,28 @@ export class MorseCookies {
     if (workAry) {
       workAry.forEach((setting) => {
         const key = keyResolver(setting)
-        let val = valResolver(setting)
-        switch (key) {
-          case 'syncWpm':
-          case 'wpm':
-          case 'fwpm':
-          case 'syncFreq':
-          case 'ditFrequency':
-          case 'dahFrequency':
-            xtraspecialHandling.push(<CookieInfo>{ key, val })
-            break
-          default:
-            if (typeof ctxt[key] !== 'undefined') {
-              if (key === 'xtraWordSpaceDits' && parseInt(val) === 0) {
+        if (!keyBlacklist.some(s => s === key)) {
+          let val = valResolver(setting)
+          switch (key) {
+            case 'syncWpm':
+            case 'wpm':
+            case 'fwpm':
+            case 'syncFreq':
+            case 'ditFrequency':
+            case 'dahFrequency':
+              xtraspecialHandling.push(<CookieInfo>{ key, val })
+              break
+            default:
+              if (typeof ctxt[key] !== 'undefined') {
+                if (key === 'xtraWordSpaceDits' && parseInt(val) === 0) {
                 // prior functionality may have this at 0 so make it 1
-                val = 1
+                  val = 1
+                }
+                ctxt[key](GeneralUtils.booleanize(val))
+              } else {
+                otherHandling.push(<CookieInfo>{ key, val })
               }
-              ctxt[key](GeneralUtils.booleanize(val))
-            } else {
-              otherHandling.push(<CookieInfo>{ key, val })
-            }
+          }
         }
       })
       MorseCookies.registeredHandlers.forEach((handler) => {
