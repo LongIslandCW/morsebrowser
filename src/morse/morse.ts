@@ -655,15 +655,15 @@ export class MorseViewModel {
     const settings = { morseSettings: savedInfos }
     savedInfos.push(new SavedSettingsInfo('wpm', this.settings.speed.wpm()))
     savedInfos.push(new SavedSettingsInfo('fwpm', this.settings.speed.fwpm()))
-    savedInfos.push(new SavedSettingsInfo('ditFrequency', this.settings.frequency.ditFrequency()))
-    savedInfos.push(new SavedSettingsInfo('dahFrequency', this.settings.frequency.dahFrequency()))
+    /* savedInfos.push(new SavedSettingsInfo('ditFrequency', this.settings.frequency.ditFrequency()))
+    savedInfos.push(new SavedSettingsInfo('dahFrequency', this.settings.frequency.dahFrequency())) */
     savedInfos.push(new SavedSettingsInfo('preSpace', this.preSpace()))
     savedInfos.push(new SavedSettingsInfo('xtraWordSpaceDits', this.xtraWordSpaceDits()))
     savedInfos.push(new SavedSettingsInfo('volume', this.volume()))
     savedInfos.push(new SavedSettingsInfo('stickySets', this.lessons.stickySets()))
     savedInfos.push(new SavedSettingsInfo('ifStickySets', this.lessons.ifStickySets()))
     savedInfos.push(new SavedSettingsInfo('syncWpm', this.settings.speed.syncWpm()))
-    savedInfos.push(new SavedSettingsInfo('syncFreq', this.settings.frequency.syncFreq()))
+  /*   savedInfos.push(new SavedSettingsInfo('syncFreq', this.settings.frequency.syncFreq())) */
     savedInfos.push(new SavedSettingsInfo('hideList', this.hideList()))
     savedInfos.push(new SavedSettingsInfo('showRaw', this.showRaw()))
     savedInfos.push(new SavedSettingsInfo('autoCloseLessonAccordian', this.lessons.autoCloseLessonAccordion()))
