@@ -11,6 +11,7 @@ import ClassPresets from '../../presets/config.json'
 import { MorsePresetSetFileFinder } from '../morsePresetSetFinder'
 import { MorsePresetFileFinder } from '../morsePresetFinder'
 import { MorseViewModel } from '../morse'
+import { SettingsChangeInfo } from '../settings/settingsChangeInfo'
 export default class MorseLessonPlugin implements ICookieHandler {
   autoCloseLessonAccordion:ko.Observable<boolean>
   userTarget:ko.Observable<string>
@@ -356,19 +357,26 @@ export default class MorseLessonPlugin implements ICookieHandler {
   setPresetSelected = (preset) => {
     if (this.settingsPresetsInitialized) {
       this.selectedSettingsPreset(preset)
+      const settingsInfo = new SettingsChangeInfo(this.morseViewModel)
+      settingsInfo.ifLoadSettings = true
+      settingsInfo.ignoreCookies = true
+      settingsInfo.lockoutCookieChanges = true
+      settingsInfo.keyBlacklist = ['ditFrequency', 'dahFrequency', 'syncFreq']
 
       if (typeof preset.isDummy !== 'undefined' && preset.isDummy) {
         // restore whatever the defaults are
 
         if (this.morseViewModel.currentSerializedSettings) {
-          MorseCookies.loadCookiesOrDefaults(this.morseViewModel, true, true, this.morseViewModel.currentSerializedSettings.morseSettings, true)
+          settingsInfo.custom = this.morseViewModel.currentSerializedSettings.morseSettings
+
+          MorseCookies.loadCookiesOrDefaults(settingsInfo)
         }
       } else {
         MorsePresetFileFinder.getMorsePresetFile(preset.filename, (d) => {
           if (d.found) {
-            MorseCookies.loadCookiesOrDefaults(this.morseViewModel, true, true,
-              d.data.morseSettings.filter(f => f.key !== 'showRaw'),
-              true)
+            /* did this filter before keyBlacklist feature was added... */
+            settingsInfo.custom = d.data.morseSettings.filter(f => f.key !== 'showRaw')
+            MorseCookies.loadCookiesOrDefaults(settingsInfo)
           }
         })
       }
