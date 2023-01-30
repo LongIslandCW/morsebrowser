@@ -7,7 +7,7 @@
   \***************************************/
 /***/ ((module) => {
 
-module.exports = JSON.parse('{"letters":"<ar> <sk> <bt>","minWordSize":3,"maxWordSize":3,"practiceSeconds":120}');
+module.exports = JSON.parse('{"letters":"<ar><sk><bt>","minWordSize":3,"maxWordSize":3,"practiceSeconds":120}');
 
 /***/ })
 
