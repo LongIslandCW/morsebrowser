@@ -33,7 +33,7 @@
         },
         {
             "key": "preSpace",
-            "value": 1,
+            "value": 2,
             "comment": "seconds of silence before playing first word, for blue tooth etc"
         },
         {
