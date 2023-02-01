@@ -35,6 +35,7 @@ export default class WordInfo {
         } else {
           // force spelling and wordify voice overrides
           console.log('no override')
+          /*
           const checkforprosigns = base.split(/(<.*?>)/).filter(f => f !== '')
           const newBase = []
           checkforprosigns.forEach(f => {
@@ -45,8 +46,9 @@ export default class WordInfo {
                 newBase.push(x)
               })
             }
-          })
-          return newBase.map(m => MorseStringUtils.wordifyPunctuation(m, true)).join(' ')
+          }) */
+
+          return base.replace(/>/g, '').replace(/</g, '').split('').map(m => MorseStringUtils.wordifyPunctuation(m, true)).join(' ')
         }
       } else {
         if (!forceSpelling) {
