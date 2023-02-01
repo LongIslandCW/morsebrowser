@@ -35,7 +35,20 @@ export default class WordInfo {
         } else {
           // force spelling and wordify voice overrides
           console.log('no override')
-          return base.split('').map(m => MorseStringUtils.wordifyPunctuation(m, true)).join(' ')
+          /*
+          const checkforprosigns = base.split(/(<.*?>)/).filter(f => f !== '')
+          const newBase = []
+          checkforprosigns.forEach(f => {
+            if (f.indexOf('<') > -1) {
+              newBase.push(f)
+            } else {
+              f.split('').forEach(x => {
+                newBase.push(x)
+              })
+            }
+          }) */
+
+          return base.replace(/>/g, '').replace(/</g, '').split('').map(m => MorseStringUtils.wordifyPunctuation(m, true)).join(' ')
         }
       } else {
         if (!forceSpelling) {
