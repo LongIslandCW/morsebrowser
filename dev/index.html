@@ -33,6 +33,7 @@
         noiseaccordion {
             display: contents;
         }
+
         .sr-only {
             border: 0;
             clip: rect(0 0 0 0);
@@ -101,15 +102,17 @@
                                 </simpleimage>
                             </label>
 
-                            <input id="wpm" name="wpm" type="number" style="max-width:75px; min-width: 75px;" class="form-control"
-                                min="1" data-bind="textInput: settings.speed.wpm, hidden: settings.speed.variableSpeedDisplay">
+                            <input id="wpm" name="wpm" type="number" style="max-width:75px; min-width: 75px;"
+                                class="form-control" min="1"
+                                data-bind="textInput: settings.speed.wpm, hidden: settings.speed.variableSpeedDisplay">
                             <input type="number" style="max-width:75px; min-width: 75px;" class="form-control"
                                 data-bind="textInput: settings.speed.vWpm, visible: settings.speed.variableSpeedDisplay, enable: false">
                             <!-- fwpm -->
                             <span class="input-group-text"
-                                data-bind="click: ()=>settings.speed.syncWpm(!settings.speed.syncWpm())"><label for="trueWpm">Effective Speed
+                                data-bind="click: ()=>settings.speed.syncWpm(!settings.speed.syncWpm())"><label
+                                    for="trueWpm">Effective Speed
                                     (FWPM)</label>&nbsp;<input type="image" role="checkbox" alt="Sync WPM speed"
-                                data-bind="attr:{ 'aria-checked': settings.speed.syncWpm(), src: settings.speed.syncWpm() ? morseLoadImages().getSrc('lockImage') : morseLoadImages().getSrc('unlockImage')}" /></span>
+                                    data-bind="attr:{ 'aria-checked': settings.speed.syncWpm(), src: settings.speed.syncWpm() ? morseLoadImages().getSrc('lockImage') : morseLoadImages().getSrc('unlockImage')}" /></span>
                             <input id="trueWpm" name="trueWpm" type="number" style="max-width:75px; min-width: 75px;"
                                 class="form-control" min="1"
                                 data-bind="textInput: settings.speed.fwpm, enable: !settings.speed.syncWpm(), attr:{ max: settings.speed.trueWpm }, hidden: settings.speed.variableSpeedDisplay">
@@ -121,9 +124,10 @@
                     <!--volume-->
                     <div class="col-md-auto">
                         <div class="input-group">
-                            <label for="txtVolume" class="input-group-text"><img alt="Volume" id="volumeImage" width=20 height=20></label>
-                            <input id="txtVolume" name="txtVolume" type="number" style="max-width:75px; min-width: 75px;"
-                                class="form-control" min="1" max="10" step="1"
+                            <label for="txtVolume" class="input-group-text"><img alt="Volume" id="volumeImage" width=20
+                                    height=20></label>
+                            <input id="txtVolume" name="txtVolume" type="number"
+                                style="max-width:75px; min-width: 75px;" class="form-control" min="1" max="10" step="1"
                                 data-bind="textInput: volume">
                         </div>
                     </div>
@@ -159,8 +163,9 @@
                                         <div class="col-auto">
                                             <span aria-describedby="estimated-time-label" class="sr-only"
                                                 data-bind="text: '' + timeEstimate().minutes + ':' + timeEstimate().normedSeconds"></span>
-                                            <span aria-hidden="true"><span data-bind="text: timeEstimate().minutes"></span>:<span
-                                                data-bind="text: timeEstimate().normedSeconds"></span></span>
+                                            <span aria-hidden="true"><span
+                                                    data-bind="text: timeEstimate().minutes"></span>:<span
+                                                    data-bind="text: timeEstimate().normedSeconds"></span></span>
 
                                         </div>
                                     </div>
@@ -173,8 +178,9 @@
                                         <div class="col-auto">
                                             <span aria-describedby="play-time-label" class="sr-only"
                                                 data-bind="text: '' + playingTime().minutes + ':' + playingTime().normedSeconds"></span>
-                                            <span aria-hidden="true"><span data-bind="text: playingTime().minutes"></span>:<span
-                                                data-bind="text: playingTime().normedSeconds"></span></span>
+                                            <span aria-hidden="true"><span
+                                                    data-bind="text: playingTime().minutes"></span>:<span
+                                                    data-bind="text: playingTime().normedSeconds"></span></span>
                                         </div>
                                     </div>
 
@@ -190,7 +196,7 @@
                                             <span aria-describedby="characters-played-label" class="sr-only"
                                                 data-bind="text: charsPlayed() + ' of ' + rawTextCharCount()"></span>
                                             <span aria-hidden="true"><span data-bind="text: charsPlayed()"></span>/<span
-                                                data-bind="text: rawTextCharCount()"></span></span>
+                                                    data-bind="text: rawTextCharCount()"></span></span>
                                         </div>
                                     </div>
                                     <!------->
@@ -200,7 +206,9 @@
 
 
 
-                            <p role="note" class="sr-only">The following textarea contains the text that will be used for practice. This can be set manually or selected using the options found in the LICW Lessons section.</p>
+                            <p role="note" class="sr-only">The following textarea contains the text that will be used
+                                for practice. This can be set manually or selected using the options found in the LICW
+                                Lessons section.</p>
                             <textarea data-bind="textInput: showingText, enable: showRaw" class="form-control"
                                 aria-label="Text"></textarea>
                         </div>
@@ -231,9 +239,11 @@
                         <h2 class="accordion-header" id="headingLessonControls">
                             <!-- accordian button text-->
                             <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#accordianItemLessonControls" aria-controls="accordianItemLessonControls"
-                                aria-expanded="true" id="lessonAccordianButton">
-                                <img id='bookImage' height=20 width=20 alt="" /><span>&nbsp;</span><span>LICW Lessons</span>
+                                data-bs-target="#accordianItemLessonControls"
+                                aria-controls="accordianItemLessonControls" aria-expanded="true"
+                                id="lessonAccordianButton">
+                                <img id='bookImage' height=20 width=20 alt="" /><span>&nbsp;</span><span>LICW
+                                    Lessons</span>
                                 <span>&nbsp;</span>
                                 <span class="badge bg-success" data-bind="if: lessons.selectedDisplay().display">
                                     <span>Type: </span><span data-bind="text: lessons.userTarget"></span>
@@ -251,7 +261,8 @@
                             </button>
                         </h2>
                         <!-- lesson controls-->
-                        <div id="accordianItemLessonControls" class="accordion-collapse show" aria-labelledby="headingLessonControls">
+                        <div id="accordianItemLessonControls" class="accordion-collapse show"
+                            aria-labelledby="headingLessonControls">
                             <div class="accordion-body">
 
                                 <div class="row gy-2 row-cols-6">
@@ -280,7 +291,8 @@
                                         <div role="radiogroup" aria-label="Wordlist" class="list-group"
                                             data-bind="foreach: lessons.letterGroups, childrenComplete: () => lessons.setLetterGroupInitialized()"
                                             style="overflow-y:auto; height:250px; width: 200px;">
-                                            <button role="radio" type="button" class="list-group-item list-group-item-action"
+                                            <button role="radio" type="button"
+                                                class="list-group-item list-group-item-action"
                                                 data-bind="text: $data, attr:{ 'aria-checked': $root.lessons.letterGroup()==$data }, click: ()=>$root.lessons.setLetterGroup($data), css: { active: $data==$parent.lessons.letterGroup()}"></button>
                                         </div>
                                     </div>
@@ -289,7 +301,8 @@
                                         <div role="radiogroup" aria-label="Lesson" class="list-group"
                                             data-bind="foreach: lessons.displays, childrenComplete: () => lessons.setDisplaysInitialized()"
                                             style="overflow-y:auto; height:250px; width: 200px;">
-                                            <button role="radio" type="button" class="list-group-item list-group-item-action"
+                                            <button role="radio" type="button"
+                                                class="list-group-item list-group-item-action"
                                                 data-bind="text: $data.display, attr:{ 'aria-checked': $data.display==$parent.lessons.selectedDisplay().display }, click: ()=>$root.lessons.setDisplaySelected($data), css: { active: $data.display==$parent.lessons.selectedDisplay().display}"></button>
                                         </div>
                                     </div>
@@ -309,22 +322,26 @@
                                     <div class="col-auto">
                                         <div class="btn-group-vertical" role="group">
                                             <!--randomize toggle-->
-                                            <input aria-label="Randomize" type="checkbox" class="btn-check" autocomplete="off" id="btncheck1"
+                                            <input aria-label="Randomize" type="checkbox" class="btn-check"
+                                                autocomplete="off" id="btncheck1"
                                                 data-bind="checked: lessons.randomizeLessons">
-                                            <label aria-hidden="true" class="btn btn-outline-primary" for="btncheck1">Randomize&nbsp;<img
+                                            <label aria-hidden="true" class="btn btn-outline-primary"
+                                                for="btncheck1">Randomize&nbsp;<img
                                                     data-bind="attr:{ src: lessons.randomizeLessons() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
                                             <!--autoclose toggle-->
-                                            <input aria-label="Auto close" type="checkbox" class="btn-check" autocomplete="off"
-                                                id="btncheckautoclose"
+                                            <input aria-label="Auto close" type="checkbox" class="btn-check"
+                                                autocomplete="off" id="btncheckautoclose"
                                                 data-bind="checked: lessons.autoCloseLessonAccordion">
-                                            <label aria-hidden="true" class="btn btn-outline-primary" for="btncheckautoclose">Auto
+                                            <label aria-hidden="true" class="btn btn-outline-primary"
+                                                for="btncheckautoclose">Auto
                                                 Close&nbsp;<img
                                                     data-bind="attr:{ src: lessons.autoCloseLessonAccordion() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
                                             <!--sticky sets toggle-->
-                                            <input aria-label="Sticky sets" type="checkbox" class="btn-check" id="btncheck2stickysetstoggle"
-                                                autocomplete="off" data-bind="checked: lessons.ifStickySets">
-                                            <label aria-hidden="true" class="btn btn-outline-primary" for="btncheck2stickysetstoggle"
-                                                style="width: 125px;">Sticky
+                                            <input aria-label="Sticky sets" type="checkbox" class="btn-check"
+                                                id="btncheck2stickysetstoggle" autocomplete="off"
+                                                data-bind="checked: lessons.ifStickySets">
+                                            <label aria-hidden="true" class="btn btn-outline-primary"
+                                                for="btncheck2stickysetstoggle" style="width: 125px;">Sticky
                                                 Sets&nbsp;<img
                                                     data-bind="attr:{ src: lessons.ifStickySets() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
                                             <!--sticky set text -->
@@ -334,10 +351,12 @@
                                         </div>
 
                                         <div class="input-group">
-                                            <div aria-label="Custom group generation" class="btn-group-vertical" role="group">
+                                            <div aria-label="Custom group generation" class="btn-group-vertical"
+                                                role="group">
                                                 <p role="note" class="sr-only">
                                                     When pressed, the "Custom group" button generates working text using
-                                                    the text entered in the "Custom group text" text input instead of from
+                                                    the text entered in the "Custom group text" text input instead of
+                                                    from
                                                     a lesson.
                                                 </p>
                                                 <!--custom group run button-->
@@ -355,7 +374,8 @@
                                         <input type="checkbox" class="btn-check" autocomplete="off"
                                             aria-label="Keep lines" id="btnchecknewlinechunking"
                                             data-bind="checked: settings.misc.newlineChunking">
-                                        <label aria-hidden="true" class="btn btn-outline-primary" for="btnchecknewlinechunking"
+                                        <label aria-hidden="true" class="btn btn-outline-primary"
+                                            for="btnchecknewlinechunking"
                                             style="width: 125px; max-width:125px;"><span>Keep
                                                 Lines&nbsp;<img
                                                     data-bind="attr:{ src: settings.misc.newlineChunking() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></span></label>
@@ -365,15 +385,18 @@
                                     <!---->
                                     <div class="col-auto">
                                         <!--override time toggle-->
-                                        <input aria-label="Override time" type="checkbox" class="btn-check" id="btncheck2" autocomplete="off"
+                                        <input aria-label="Override time" type="checkbox" class="btn-check"
+                                            id="btncheck2" autocomplete="off"
                                             data-bind="checked: lessons.ifOverrideTime">
-                                        <label aria-hidden="true" class="btn btn-outline-primary" for="btncheck2">Override
+                                        <label aria-hidden="true" class="btn btn-outline-primary"
+                                            for="btncheck2">Override
                                             Time&nbsp;<img
                                                 data-bind="attr:{ src: lessons.ifOverrideTime() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
 
                                         <div class="input-group">
                                             <!--override minutes-->
-                                            <span aria-hidden="true" style="width: 76px;" class="input-group-text">Mins</span>
+                                            <span aria-hidden="true" style="width: 76px;"
+                                                class="input-group-text">Mins</span>
                                             <input type="number" class="form-control" style="max-width:70px;"
                                                 aria-label="minutes" min="0"
                                                 data-bind="textInput: lessons.overrideMins, enable: lessons.ifOverrideTime">
@@ -381,10 +404,11 @@
 
                                         <div class="btn-group" role="group">
                                             <!--override size toggle-->
-                                            <input aria-label="Override size" type="checkbox" class="btn-check" id="btncheck2overridesize"
-                                                autocomplete="off" data-bind="checked: lessons.ifOverrideMinMax">
-                                            <label aria-hidden="true" style="width: 146px;" class="btn btn-outline-primary"
-                                                for="btncheck2overridesize">Override
+                                            <input aria-label="Override size" type="checkbox" class="btn-check"
+                                                id="btncheck2overridesize" autocomplete="off"
+                                                data-bind="checked: lessons.ifOverrideMinMax">
+                                            <label aria-hidden="true" style="width: 146px;"
+                                                class="btn btn-outline-primary" for="btncheck2overridesize">Override
                                                 Size&nbsp;<img
                                                     data-bind="attr:{ src: lessons.ifOverrideMinMax() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
 
@@ -392,16 +416,18 @@
 
                                         <div class="input-group">
                                             <!--min override-->
-                                            <span aria-hidden="true" style="width: 76px;" class="input-group-text">Min</span>
-                                            <input aria-label="Minimum" style="width: 70px;" type="number" class="form-control"
-                                                style="max-width:75px;" min="1"
+                                            <span aria-hidden="true" style="width: 76px;"
+                                                class="input-group-text">Min</span>
+                                            <input aria-label="Minimum" style="width: 70px;" type="number"
+                                                class="form-control" style="max-width:75px;" min="1"
                                                 data-bind="textInput: lessons.overrideMin, enable: lessons.ifOverrideMinMax">
 
                                         </div>
 
                                         <div class="input-group">
                                             <!--max override-->
-                                            <span role="checkbox" aria-label="Sync minimum and maximum size" class="input-group-text"
+                                            <span role="checkbox" aria-label="Sync minimum and maximum size"
+                                                class="input-group-text"
                                                 data-bind="click: ()=>lessons.syncSize(!lessons.syncSize()), attr: {'aria-checked': lessons.syncSize() ? 'true' : 'false'}">Max&nbsp;<img
                                                     aria-hidden="true"
                                                     data-bind="attr:{ src: lessons.syncSize() ? morseLoadImages().getSrc('lockImage') : morseLoadImages().getSrc('unlockImage')}" /></span>
@@ -775,8 +801,7 @@
                 <div class="btn-toolbar" role="toolbar" aria-label="Playback controls">
                     <div class="btn-group me-2" role="group">
                         <!-- play button -->
-                        <button id="btnPlayButton" type="button" class="btn btn-success"
-                            aria-label="Play"
+                        <button id="btnPlayButton" type="button" class="btn btn-success" aria-label="Play"
                             data-bind="click: () => doPlay(false,true)">
                             <span data-bind="visible: !playerPlaying()">Play</span>
                             <!--played-->
@@ -825,10 +850,10 @@
                                 <input type="checkbox" data-bind="checked: showRaw" class="btn-check" id="btnShowRaw" autocomplete="off"/>
                                 <label class="btn btn-outline-primary" for="btnShowRaw">Show Raw Text</label>
                                 -->
-                        <input aria-label="Hide cards" type="checkbox" data-bind="checked: hideList" class="btn-check" id="btnHideList"
-                            autocomplete="off" />
-                        <label aria-hidden="true" class="btn btn-outline-primary" for="btnHideList"><span>Reveal&nbsp;</span><img height=20
-                                width=20
+                        <input aria-label="Hide cards" type="checkbox" data-bind="checked: hideList" class="btn-check"
+                            id="btnHideList" autocomplete="off" />
+                        <label aria-hidden="true" class="btn btn-outline-primary"
+                            for="btnHideList"><span>Reveal&nbsp;</span><img height=20 width=20
                                 data-bind="attr:{ src: !hideList() ? morseLoadImages().getSrc('eyeImage') : morseLoadImages().getSrc('eyeslashImage')}" /></label>
 
                     </div>
@@ -837,8 +862,8 @@
 
                         <button id="btnShuffle" type="button" class="btn btn-secondary"
                             data-bind="click: () => shuffleWords(false)"><span
-                                data-bind="text: isShuffled()?'UnShuffle':'Shuffle'"></span>&nbsp;<img alt="" id="shuffleImage"
-                                height="20" width="20"></button>
+                                data-bind="text: isShuffled()?'UnShuffle':'Shuffle'"></span>&nbsp;<img alt=""
+                                id="shuffleImage" height="20" width="20"></button>
 
                     </div>
 
@@ -869,7 +894,7 @@
                             data-bind="class: $index()==$parent.currentIndex() ? ($index()==$parent.words().length-1 ? 'btn-danger' : 'btn-primary'): ($index()==$parent.words().length-1 ? 'btn-outline-danger' : 'btn-outline-primary' ) ,click:()=>$parent.flaggedWords.addFlaggedWord($data), event:{dblclick: ()=>{$parent.setWordIndex($index())}}">
                             <!--<h1>-->
                             <span
-                                data-bind="style: {fontSize: $parent.cardFontPx } ,text: (!$parent.hideList() || ($parent.trailReveal() && $index() &lt;= $parent.maxRevealedTrail() )) ? $data.displayWord : 'X'.repeat($data.displayWord.replace('\r','').replace('\n','').length)">
+                                data-bind="style: {fontSize: $parent.cardFontPx } ,text: (!$parent.hideList() || ($parent.trailReveal() && $index() &lt;= $parent.maxRevealedTrail() )) ? $data.displayWord : 'X'.repeat($data.displayWord.replace('\r','').replace('\n','').trim().length)">
                             </span>
                             <!--</h1>-->
                         </button>
