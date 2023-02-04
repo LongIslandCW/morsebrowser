@@ -21,4 +21,6 @@ export class SettingsChangeInfo {
   lockoutCookieChanges:boolean = false
 
   keyBlacklist:string[] = []
+
+  isYourSettings:boolean = false
 }

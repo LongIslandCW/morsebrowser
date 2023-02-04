@@ -1,0 +1,22 @@
+{
+    "overrides": [
+        {
+            "settings": [
+                {
+                    "name": "stickySets",
+                    "value": "BK"
+                },
+                {
+                    "name": "ifStickySets",
+                    "value": true
+                }
+            ],
+            "filters": {
+                "letterGroup": [
+                    "28BK"
+                ],
+                "fileName": []
+            }
+        }
+    ]
+}
