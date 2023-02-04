@@ -12,10 +12,12 @@
                 }
             ],
             "filters": {
-                "letterGroup": [
-                    "28BK"
-                ],
-                "fileName": []
+                "letterGroup": [],
+                "fileName": [
+                    "IB228BK5.json",
+                    "IB228BK4.json",
+                    "SB228BK7.json"
+                ]
             }
         }
     ]
