@@ -48,6 +48,7 @@ export default class MorseLessonPlugin implements ICookieHandler {
   settingsPresets:ko.ObservableArray<any>
   selectedSettingsPreset:ko.Observable<any>
   lastSelectedSettingsPreset:ko.Observable<any>
+  settingsOverridden:ko.Observable<boolean>
   morseViewModel:MorseViewModel
   yourSettingsDummy:any
 
@@ -75,6 +76,7 @@ export default class MorseLessonPlugin implements ICookieHandler {
     this.selectedDisplay = ko.observable({})
     this.selectedSettingsPreset = ko.observable(this.yourSettingsDummy)
     this.lastSelectedSettingsPreset = ko.observable(this.yourSettingsDummy)
+    this.settingsOverridden = ko.observable(false)
     this.wordLists = ko.observableArray([])
     this.setText = setTextCallBack
     this.getTimeEstimate = timeEstimateCallback
@@ -366,10 +368,10 @@ export default class MorseLessonPlugin implements ICookieHandler {
   setPresetSelected = (preset, skipReinit = false) => {
     if (this.settingsPresetsInitialized) {
       // before we do anything, if the prior was Your Settings, then
-      // make those the saved serialized
+      // make those the saved serialized, unless they've been overridden
 
       const last = this.lastSelectedSettingsPreset()
-      if (typeof last.isDummy !== 'undefined' && last.isDummy) {
+      if (typeof last.isDummy !== 'undefined' && last.isDummy && !this.settingsOverridden()) {
         this.morseViewModel.currentSerializedSettings = this.morseViewModel.getCurrentSerializedSettings()
       }
 
@@ -380,6 +382,39 @@ export default class MorseLessonPlugin implements ICookieHandler {
       settingsInfo.lockoutCookieChanges = true
       settingsInfo.keyBlacklist = ['ditFrequency', 'dahFrequency', 'syncFreq']
 
+      const applyOverrides = () => {
+        /* make a copy as it seems some caching may be happening */
+        const customCopy = []
+        settingsInfo.custom.forEach(f => {
+          customCopy.push({ key: f.key, value: f.value })
+        })
+        settingsInfo.custom = customCopy
+        /* handle overrides */
+        // console.log(`lettergroup:${this.letterGroup()}`)
+        // console.log(`file:${this.selectedDisplay().fileName}`)
+        // console.log(settingsInfo.custom)
+        SettingsOverridesJson.overrides.forEach(o => {
+          if (
+            (o.filters.letterGroup.some(s => s === this.letterGroup())) ||
+            (o.filters.fileName.some(s => s === this.selectedDisplay().fileName))
+          ) {
+            // console.log('filter found!')
+            // note, possibly they match but issue for another day...
+            this.settingsOverridden(true)
+            o.settings.forEach(f => {
+              const target = settingsInfo.custom.find(t => t.key === f.name)
+              if (target) {
+                target.value = f.value
+              } else {
+                settingsInfo.custom.push({ key: f.name, value: f.value })
+              }
+            })
+          } else {
+            this.settingsOverridden(false)
+          }
+        })
+      }
+
       if (typeof preset.isDummy !== 'undefined' && preset.isDummy) {
         // restore whatever the defaults are
         // console.log('restoring settings')
@@ -389,6 +424,7 @@ export default class MorseLessonPlugin implements ICookieHandler {
               return { key: m.key, value: m.value }
             })
 
+          applyOverrides()
           MorseCookies.loadCookiesOrDefaults(settingsInfo)
         } else {
           // console.log('no serialized originals')
@@ -401,32 +437,7 @@ export default class MorseLessonPlugin implements ICookieHandler {
             /* did this filter before keyBlacklist feature was added... */
             settingsInfo.custom = d.data.morseSettings.filter(f => f.key !== 'showRaw')
 
-            /* make a copy as it seems some caching may be happening */
-            const customCopy = []
-            settingsInfo.custom.forEach(f => {
-              customCopy.push({ key: f.key, value: f.value })
-            })
-            settingsInfo.custom = customCopy
-            /* handle overrides */
-            // console.log(`lettergroup:${this.letterGroup()}`)
-            // console.log(`file:${this.selectedDisplay().fileName}`)
-            // console.log(settingsInfo.custom)
-            SettingsOverridesJson.overrides.forEach(o => {
-              if (
-                (o.filters.letterGroup.some(s => s === this.letterGroup())) ||
-                  (o.filters.fileName.some(s => s === this.selectedDisplay().fileName))
-              ) {
-                // console.log('filter found!')
-                o.settings.forEach(f => {
-                  const target = settingsInfo.custom.find(t => t.key === f.name)
-                  if (target) {
-                    target.value = f.value
-                  } else {
-                    settingsInfo.custom.push({ key: f.name, value: f.value })
-                  }
-                })
-              }
-            })
+            applyOverrides()
             // console.log(settingsInfo.custom)
             MorseCookies.loadCookiesOrDefaults(settingsInfo)
           }
