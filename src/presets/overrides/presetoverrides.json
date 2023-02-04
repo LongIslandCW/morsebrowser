@@ -1,0 +1,33 @@
+{
+    "overrides": [
+        {
+            "settings": [
+                {
+                    "name": "stickySets",
+                    "value": "BK"
+                },
+                {
+                    "name": "ifStickySets",
+                    "value": true
+                }
+            ],
+            "filters": {
+                "letterGroup": [],
+                "fileName": [
+                    "IB228BK5.json",
+                    "IB228BK4.json",
+                    "SB228BK7.json",
+                    "SB228BK2.json",
+                    "SB228BK8.json",
+                    "SB228BK9.json",
+                    "SB228BK10.json",
+                    "SB228BK11.json",
+                    "SB228BK12.json",
+                    "SB228BK13.json",
+                    "SB228BK14.json",
+                    "B1B2.json"
+                ]
+            }
+        }
+    ]
+}

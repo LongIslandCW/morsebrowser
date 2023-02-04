@@ -12,6 +12,7 @@ import { MorsePresetSetFileFinder } from '../morsePresetSetFinder'
 import { MorsePresetFileFinder } from '../morsePresetFinder'
 import { MorseViewModel } from '../morse'
 import { SettingsChangeInfo } from '../settings/settingsChangeInfo'
+import SettingsOverridesJson from '../../presets/overrides/presetoverrides.json'
 export default class MorseLessonPlugin implements ICookieHandler {
   autoCloseLessonAccordion:ko.Observable<boolean>
   userTarget:ko.Observable<string>
@@ -46,6 +47,8 @@ export default class MorseLessonPlugin implements ICookieHandler {
   autoCloseCookieName:string
   settingsPresets:ko.ObservableArray<any>
   selectedSettingsPreset:ko.Observable<any>
+  lastSelectedSettingsPreset:ko.Observable<any>
+  settingsOverridden:ko.Observable<boolean>
   morseViewModel:MorseViewModel
   yourSettingsDummy:any
 
@@ -72,6 +75,8 @@ export default class MorseLessonPlugin implements ICookieHandler {
     this.letterGroup = ko.observable('').extend({ classOrLetterGroupChange: null } as ko.ObservableExtenderOptions<boolean>)
     this.selectedDisplay = ko.observable({})
     this.selectedSettingsPreset = ko.observable(this.yourSettingsDummy)
+    this.lastSelectedSettingsPreset = ko.observable(this.yourSettingsDummy)
+    this.settingsOverridden = ko.observable(false)
     this.wordLists = ko.observableArray([])
     this.setText = setTextCallBack
     this.getTimeEstimate = timeEstimateCallback
@@ -317,6 +322,7 @@ export default class MorseLessonPlugin implements ICookieHandler {
     if (this.userTargetInitialized) {
       this.userTarget(userTarget)
       // console.log('usertarget')
+      this.setPresetSelected(this.selectedSettingsPreset(), true)
     }
   }
 
@@ -325,6 +331,7 @@ export default class MorseLessonPlugin implements ICookieHandler {
       this.selectedClass(selectedClass)
       // console.log(selectedClass)
       // console.log(ClassPresets)
+      this.setPresetSelected(this.selectedSettingsPreset(), true)
     }
   }
 
@@ -332,6 +339,7 @@ export default class MorseLessonPlugin implements ICookieHandler {
     if (this.letterGroupInitialized) {
       // console.log('setlettergroup')
       this.letterGroup(letterGroup)
+      this.setPresetSelected(this.selectedSettingsPreset(), true)
     }
   }
 
@@ -342,7 +350,7 @@ export default class MorseLessonPlugin implements ICookieHandler {
     }
   }
 
-  setDisplaySelected = (display) => {
+  setDisplaySelected = (display, skipPresets = false) => {
     if (!display.isDummy) {
       if (this.displaysInitialized) {
         this.selectedDisplay(display)
@@ -350,12 +358,23 @@ export default class MorseLessonPlugin implements ICookieHandler {
         // setText(`when we have lesson files, load ${selectedDisplay().fileName}`)
         this.getWordList(this.selectedDisplay().fileName)
         this.closeLessonAccordianIfAutoClosing()
+        if (!skipPresets) {
+          this.setPresetSelected(this.selectedSettingsPreset(), true)
+        }
       }
     }
   }
 
-  setPresetSelected = (preset) => {
+  setPresetSelected = (preset, skipReinit = false) => {
     if (this.settingsPresetsInitialized) {
+      // before we do anything, if the prior was Your Settings, then
+      // make those the saved serialized, unless they've been overridden
+
+      const last = this.lastSelectedSettingsPreset()
+      if (typeof last.isDummy !== 'undefined' && last.isDummy && !this.settingsOverridden()) {
+        this.morseViewModel.currentSerializedSettings = this.morseViewModel.getCurrentSerializedSettings()
+      }
+
       this.selectedSettingsPreset(preset)
       const settingsInfo = new SettingsChangeInfo(this.morseViewModel)
       settingsInfo.ifLoadSettings = true
@@ -363,29 +382,77 @@ export default class MorseLessonPlugin implements ICookieHandler {
       settingsInfo.lockoutCookieChanges = true
       settingsInfo.keyBlacklist = ['ditFrequency', 'dahFrequency', 'syncFreq']
 
+      const applyOverrides = () => {
+        /* make a copy as it seems some caching may be happening */
+        const customCopy = []
+        settingsInfo.custom.forEach(f => {
+          customCopy.push({ key: f.key, value: f.value })
+        })
+        settingsInfo.custom = customCopy
+        /* handle overrides */
+        // console.log(`lettergroup:${this.letterGroup()}`)
+        // console.log(`file:${this.selectedDisplay().fileName}`)
+        // console.log(settingsInfo.custom)
+        SettingsOverridesJson.overrides.forEach(o => {
+          if (
+            (o.filters.letterGroup.some(s => s === this.letterGroup())) ||
+            (o.filters.fileName.some(s => s === this.selectedDisplay().fileName))
+          ) {
+            // console.log('filter found!')
+            // note, possibly they match but issue for another day...
+            this.settingsOverridden(true)
+            o.settings.forEach(f => {
+              const target = settingsInfo.custom.find(t => t.key === f.name)
+              if (target) {
+                target.value = f.value
+              } else {
+                settingsInfo.custom.push({ key: f.name, value: f.value })
+              }
+            })
+          } else {
+            this.settingsOverridden(false)
+          }
+        })
+      }
+
       if (typeof preset.isDummy !== 'undefined' && preset.isDummy) {
         // restore whatever the defaults are
-
+        // console.log('restoring settings')
         if (this.morseViewModel.currentSerializedSettings) {
           settingsInfo.custom = this.morseViewModel.currentSerializedSettings.morseSettings
+            .map((m) => {
+              return { key: m.key, value: m.value }
+            })
 
+          applyOverrides()
           MorseCookies.loadCookiesOrDefaults(settingsInfo)
+        } else {
+          // console.log('no serialized originals')
+          this.morseViewModel.currentSerializedSettings = this.morseViewModel.getCurrentSerializedSettings()
         }
       } else {
+        // console.log(`presetfilename:${preset.filename}`)
         MorsePresetFileFinder.getMorsePresetFile(preset.filename, (d) => {
           if (d.found) {
             /* did this filter before keyBlacklist feature was added... */
             settingsInfo.custom = d.data.morseSettings.filter(f => f.key !== 'showRaw')
+
+            applyOverrides()
+            // console.log(settingsInfo.custom)
             MorseCookies.loadCookiesOrDefaults(settingsInfo)
           }
         })
       }
 
       // give time for settings to change, then re-init the lesson
-      if (this.morseViewModel.lessons.selectedDisplay().display && !this.morseViewModel.lessons.selectedDisplay().isDummy) {
-        setTimeout(() => { this.morseViewModel.lessons.setDisplaySelected(this.morseViewModel.lessons.selectedDisplay()) }
-          , 1000)
+      if (!skipReinit) {
+        if (this.morseViewModel.lessons.selectedDisplay().display && !this.morseViewModel.lessons.selectedDisplay().isDummy) {
+          setTimeout(() => { this.morseViewModel.lessons.setDisplaySelected(this.morseViewModel.lessons.selectedDisplay(), true) }
+            , 1000)
+        }
       }
+
+      this.lastSelectedSettingsPreset(preset)
     }
   }
 

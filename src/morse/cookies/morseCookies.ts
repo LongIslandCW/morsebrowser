@@ -15,8 +15,9 @@ export class MorseCookies {
     // load any existing cookie values
     const { lockoutCookieChanges, ctxt, custom, ignoreCookies, ifLoadSettings, keyBlacklist } = settingsChangeInfo
     if (lockoutCookieChanges) {
-      if (ctxt.allowSaveCookies()) {
+      if (ctxt.allowSaveCookies() && settingsChangeInfo.isYourSettings) {
         // not currently locked out so save serialized settings
+        // console.log('setting current serialized')
         ctxt.currentSerializedSettings = ctxt.getCurrentSerializedSettings()
       }
       if (ctxt.lockoutSaveCookiesTimerHandle) {
