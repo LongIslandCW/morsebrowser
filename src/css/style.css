@@ -21,3 +21,35 @@ noiseaccordion {
     width: 1px;
 }
 
+#contributor-info {
+    display: block;
+    margin-bottom: .5rem;
+    font-size: calc(1.3rem + .6vw);
+    font-size: 1.75rem;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+#credits-and-info>span {
+    display: block;
+    margin-top: 0;
+    margin-bottom: .5rem;
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.2;
+    box-sizing: border-box;
+}
+
+#credits-and-info>span#contributor-info, #credits-and-info>span.warning {
+    font-size: calc(1.3rem + .6vw);
+}
+
+@media (min-width: 1200px) {
+    #contributor-info {
+        font-size: 1.75rem;
+    }
+
+    #credits-and-info>span#contributor-info, #credits-and-info>span.warning {
+        font-size: 1.75rem;
+    }
+}

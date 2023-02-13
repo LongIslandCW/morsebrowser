@@ -38,32 +38,21 @@
             <header class="col">
                 <div class="row row-cols-2 justify-content-md-center">
                     <div class="col col-md-auto">
-                        <img id="logoImage" height="200px" width="200px" alt="LICW Logo" />
+                        <img id="logoImage" height="200px" width="200px" alt="Long Island CW Club Logo depicting a hand on a straight key and the club call sign W2LCW" />
 
                     </div>
                     <div class="col col-md-auto">
                         <h1>Morse Practice Page</h1>
-                        <h3>by KN4YRM with assistance from AB5TN, KN6WKV, N1CC, VE3QBZ, VK5PL, WO6W, and W4YES</h3>
-                        <h6>Inspired by and adapted from the <a href="https://morsecode.world/">SC Phillips</a> <a
-                                href="https://github.com/scp93ch/morse-pro">morse-pro</a> library.
-                            To view source, please go to our <a
-                                href="https://github.com/LongIslandCW/morsebrowser/">github<img id="githubImage">
-                                repository.</a></h6>
-                        <h6>To ask user questions, report bugs, request features and more <a
-                                href="mailto:MorsePracticePageQuestions@groups.io">email us</a> or join our <a
-                                href="https://groups.io/g/MorsePracticePageQuestions">groups.io</a>. </h6>
-                        <h6>Videos to help you use this site are found <a
-                                href="https://www.youtube.com/playlist?list=PLyARUjdG9q-Xywoch5QJRGfgPZTucfhfB">here.</a>
-                        </h6>
-
-
-
-                        <h3 data-bind="if: isDev()">WARNING: You are using the BETA (unstable) version. For the latest
-                            stable release please <a href="../">click here.</a></h3>
-                        <h6>Version 1.0.9</h6>
+                        <section id="credits-and-info" title="Credits and additional information" aria-label="Credits and additional information">
+                            <span title="Contributor info" id="contributor-info">by KN4YRM with assistance from AB5TN, KN6WKV, N1CC, VE3QBZ, VK5PL, WO6W, and W4YES</span>
+                            <span>Inspired by and adapted from the <a href="https://morsecode.world/">SC Phillips</a> <a href="https://github.com/scp93ch/morse-pro">morse-pro library</a>. To view source, please go to <a href="https://github.com/LongIslandCW/morsebrowser/">our github<img id="githubImage" aria-hidden="true"> repository.</a></span>
+                            <span>To ask user questions, report bugs, request features and more <a href="mailto:MorsePracticePageQuestions@groups.io">email us</a> or join <a href="https://groups.io/g/MorsePracticePageQuestions">our groups.io</a>.</span>
+                            <span><a href="https://www.youtube.com/playlist?list=PLyARUjdG9q-Xywoch5QJRGfgPZTucfhfB">Videos to help you use this site</a> are found on YouTube</span>
+                            <span class="warning" data-bind="if: isDev()">WARNING: You are using the BETA (unstable) version. The <a href="../">latest stable release</a> is recommended.</a></span>
+                            <span id="version-info">Version 1.0.9</span>
+                        </section>
                     </div>
                 </div>
-
             </header>
 
             <!-- settings area-->
@@ -115,7 +104,6 @@
 
                 </div>
             </section>
-
 
             <!-- working text area-->
             <section class="col" aria-label="Working text">
