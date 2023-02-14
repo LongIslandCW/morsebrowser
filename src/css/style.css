@@ -1,0 +1,72 @@
+simpleimage {
+    display: contents;
+}
+
+noiseaccordion {
+    display: contents;
+}
+
+/*
+ * The sr-only class indicates content that is meant only for screen readers
+ * and which should not be rendered on a graphical display.
+ */
+.sr-only {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+section:last-of-type {
+    padding-bottom: 2rem;
+}
+
+#contributor-info {
+    display: block;
+    margin-bottom: .5rem;
+    font-size: calc(1.3rem + .6vw);
+    font-size: 1.75rem;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+#credits-and-info>span {
+    display: block;
+    margin-top: 0;
+    margin-bottom: .5rem;
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.2;
+    box-sizing: border-box;
+}
+
+#credits-and-info>span#contributor-info, #credits-and-info>span.warning {
+    font-size: calc(1.3rem + .6vw);
+}
+
+#keyboard-shortcuts table thead tr {
+    background-color: #e7f1ff;
+}
+
+#keyboard-shortcuts table th, #keyboard-shortcuts table td {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+#keyboard-shortcuts table td.key {
+    text-align: right;
+}
+
+@media (min-width: 1200px) {
+    #contributor-info {
+        font-size: 1.75rem;
+    }
+
+    #credits-and-info>span#contributor-info, #credits-and-info>span.warning {
+        font-size: 1.75rem;
+    }
+}

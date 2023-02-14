@@ -25,6 +25,7 @@ import { PlayingTimeInfo } from './utils/playingTimeInfo'
 import { SettingsChangeInfo } from './settings/settingsChangeInfo'
 
 export class MorseViewModel {
+  accessibilityAnnouncement:ko.Observable<string> = ko.observable(undefined)
   textBuffer:ko.Observable<string> = ko.observable('')
   hideList:ko.Observable<boolean> = ko.observable(true)
   currentIndex:ko.Observable<number> = ko.observable(0)
@@ -53,7 +54,7 @@ export class MorseViewModel {
   cardFontPx = ko.observable()
   loop:ko.Observable<boolean> = ko.observable(false)
   morseVoice:MorseVoice
-  shortCutKeys:MorseShortcutKeys
+  shortcutKeys:MorseShortcutKeys
   // note this is whether you see any cards at all,
   // not whether the words on them are obscured
   cardsVisible:ko.Observable<boolean> = ko.observable(true)
@@ -85,6 +86,7 @@ export class MorseViewModel {
   allowSaveCookies:ko.Observable<boolean> = ko.observable(true)
   lockoutSaveCookiesTimerHandle:any = null
   currentSerializedSettings:any = null
+  allShortcutKeys:ko.ObservableArray
 
   // END KO observables declarations
   constructor () {
@@ -146,8 +148,6 @@ export class MorseViewModel {
       this.morseVoice.voiceEnabled(true)
     }
 
-    this.shortCutKeys = new MorseShortcutKeys(this.settings)
-
     // are we on the dev site?
     this.isDev(window.location.href.toLowerCase().indexOf('/dev/') > -1)
 
@@ -160,6 +160,14 @@ export class MorseViewModel {
 
     // card buffer manager
     this.cardBufferManager = new CardBufferManager(() => this.currentIndex(), () => this.words())
+
+    // Keep track of registered shortcut keys in an observable array
+    // so we can display them on the page without having to hard-code them.
+    this.allShortcutKeys = ko.observableArray([])
+    this.shortcutKeys = new MorseShortcutKeys((key, title) => {
+      this.allShortcutKeys.push({'key':key, 'title': title})
+    })
+    this.registerKeyboardShortcutHandlers()
 
     this.showRaw(false)
   }
@@ -340,6 +348,15 @@ export class MorseViewModel {
       // this.charsPlayed(this.charsPlayed() + config.word.replace(' ', '').length)
       // this.playEnded(fromVoiceOrTrail)
     })
+  }
+
+  // Convenience method for toggling playback
+  togglePlayback = () => {
+    if (this.playerPlaying()) {
+      this.doPause(false, true, false)
+    } else {
+      this.doPlay(true,false)
+    }
   }
 
   doPlay = (playJustEnded:boolean, fromPlayButton:boolean) => {
@@ -735,5 +752,80 @@ export class MorseViewModel {
       MorseCookies.loadCookiesOrDefaults(settingsInfo)
     }
     fr.readAsText(file)
+  }
+
+  // Any object that has access to the ShortcutKeys object can register
+  // its own shortcuts, but for now we register them all centrally, which
+  // makes providing accessibility announcements in response to shortcuts
+  // a bit easier.
+  registerKeyboardShortcutHandlers = () => {
+    // Toggle play/pause
+    this.shortcutKeys.registerShortcutKeyHandler('k', "Toggle playback", () => {
+      this.togglePlayback()
+    })
+
+    // Back 1
+    this.shortcutKeys.registerShortcutKeyHandler(',', "Back 1", () => {
+      this.decrementIndex()
+    })
+
+    // Full rewind
+    this.shortcutKeys.registerShortcutKeyHandler('<', "Full rewind", () => {
+      this.fullRewind()
+    })
+
+    // Forward 1
+    this.shortcutKeys.registerShortcutKeyHandler('.', "Forward 1", () => {
+      this.incrementIndex()
+    })
+
+    // Toggle reveal cards
+    this.shortcutKeys.registerShortcutKeyHandler('c', "Toggle card visibility", () => {
+      this.hideList(!this.hideList())
+      this.accessibilityAnnouncement(this.hideList() ? "Cards hidden" : "Cards revealed")
+    })
+
+    // Toggle shuffle
+    this.shortcutKeys.registerShortcutKeyHandler('/', "Toggle shuffle", () => {
+      this.shuffleWords(false)
+      this.accessibilityAnnouncement(this.isShuffled() ? "Shuffled" : "Unshuffled")
+    })
+
+    // Toggle loop
+    this.shortcutKeys.registerShortcutKeyHandler('l', "Toggle looping", () => {
+      this.loop(!this.loop())
+      this.accessibilityAnnouncement(this.loop() ? "Looping" : "Not looping")
+    })
+
+    var changeFarnsworth = (x) => {
+      // console.log('changing farnsworth')
+      const newWpm = parseInt(this.settings.speed.wpm() as any) + x
+      const newFwpm = parseInt(this.settings.speed.fwpm() as any) + x
+      if (newWpm < 1 || newFwpm < 1) {
+        return
+      }
+  
+      if (this.settings.speed.syncWpm()) {
+        this.settings.speed.wpm(newWpm)
+        this.accessibilityAnnouncement("" + this.settings.speed.fwpm() + " FWPM")
+        return
+      }
+  
+      if (newFwpm > this.settings.speed.wpm()) {
+        this.settings.speed.wpm(newWpm)
+      }
+      this.settings.speed.fwpm(newFwpm)
+      this.accessibilityAnnouncement("" + this.settings.speed.fwpm() + " FWPM")
+    }
+
+    // Reduce FWPM
+    this.shortcutKeys.registerShortcutKeyHandler('z', 'Reduce Farnsworth WPM', () => {
+      changeFarnsworth(-1)
+    })
+
+    // Increase FWPM
+    this.shortcutKeys.registerShortcutKeyHandler('x', 'Increase Farnsworth WPM', () => {
+      changeFarnsworth(1)
+    })
   }
 }

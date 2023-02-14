@@ -25,26 +25,6 @@
                     'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
         })(window, document, 'script', 'dataLayer', 'GTM-PB8HW3M');</script>
     <!-- End Google Tag Manager -->
-    <style>
-        simpleimage {
-            display: contents;
-        }
-
-        noiseaccordion {
-            display: contents;
-        }
-
-        .sr-only {
-            border: 0;
-            clip: rect(0 0 0 0);
-            height: 1px;
-            margin: -1px;
-            overflow: hidden;
-            padding: 0;
-            position: absolute;
-            width: 1px;
-        }
-    </style>
 </head>
 
 <body>
@@ -58,36 +38,25 @@
             <header class="col">
                 <div class="row row-cols-2 justify-content-md-center">
                     <div class="col col-md-auto">
-                        <img id="logoImage" height="200px" width="200px" alt="LICW Logo" />
+                        <img id="logoImage" height="200px" width="200px" alt="Long Island CW Club Logo depicting a hand on a straight key and the club call sign W2LCW" />
 
                     </div>
                     <div class="col col-md-auto">
                         <h1>Morse Practice Page</h1>
-                        <h3>by KN4YRM with assistance from AB5TN, KN6WKV, N1CC, VE3QBZ, VK5PL, WO6W, and W4YES</h3>
-                        <h6>Inspired by and adapted from the <a href="https://morsecode.world/">SC Phillips</a> <a
-                                href="https://github.com/scp93ch/morse-pro">morse-pro</a> library.
-                            To view source, please go to our <a
-                                href="https://github.com/LongIslandCW/morsebrowser/">github<img id="githubImage">
-                                repository.</a></h6>
-                        <h6>To ask user questions, report bugs, request features and more <a
-                                href="mailto:MorsePracticePageQuestions@groups.io">email us</a> or join our <a
-                                href="https://groups.io/g/MorsePracticePageQuestions">groups.io</a>. </h6>
-                        <h6>Videos to help you use this site are found <a
-                                href="https://www.youtube.com/playlist?list=PLyARUjdG9q-Xywoch5QJRGfgPZTucfhfB">here.</a>
-                        </h6>
-
-
-
-                        <h3 data-bind="if: isDev()">WARNING: You are using the BETA (unstable) version. For the latest
-                            stable release please <a href="../">click here.</a></h3>
-                        <h6>Version 1.0.9</h6>
+                        <section id="credits-and-info" title="Credits and additional information" aria-label="Credits and additional information">
+                            <span title="Contributor info" id="contributor-info">by KN4YRM with assistance from AB5TN, KN6WKV, N1CC, VE3QBZ, VK5PL, WO6W, and W4YES</span>
+                            <span>Inspired by and adapted from the <a href="https://morsecode.world/">SC Phillips</a> <a href="https://github.com/scp93ch/morse-pro">morse-pro library</a>. To view source, please go to <a href="https://github.com/LongIslandCW/morsebrowser/">our github<img id="githubImage" aria-hidden="true"> repository.</a></span>
+                            <span>To ask user questions, report bugs, request features and more <a href="mailto:MorsePracticePageQuestions@groups.io">email us</a> or join <a href="https://groups.io/g/MorsePracticePageQuestions">our groups.io</a>.</span>
+                            <span><a href="https://www.youtube.com/playlist?list=PLyARUjdG9q-Xywoch5QJRGfgPZTucfhfB">Videos to help you use this site</a> are found on YouTube</span>
+                            <span class="warning" data-bind="if: isDev()">WARNING: You are using the BETA (unstable) version. The <a href="../">latest stable release</a> is recommended.</a></span>
+                            <span id="version-info">Version 1.0.9</span>
+                        </section>
                     </div>
                 </div>
-
             </header>
 
             <!-- settings area-->
-            <section class="col" aria-label="Basic settings">
+            <section class="col" title="Basic settings" aria-label="Basic settings">
                 <div class="row row-cols-2 gx-2 gy-2">
                     <!--wpm/fwpm-->
                     <div class="col-md-auto">
@@ -136,9 +105,8 @@
                 </div>
             </section>
 
-
             <!-- working text area-->
-            <section class="col" aria-label="Working text">
+            <section class="col" title="Working text" aria-label="Working text">
                 <div class="row">
                     <div class="col">
                         <div class="input-group">
@@ -232,7 +200,7 @@
             </section>
 
             <!--  accordian area -->
-            <section aria-label="Settings" class="col">
+            <section title="Settings" aria-label="Settings" class="col">
                 <div class="accordion" id="accordionArea">
                     <!-- lessons -->
                     <div class="accordion-item">
@@ -796,9 +764,8 @@
             </section>
 
             <!-- controls area -->
-            <section aria-label="Playback" class="col">
+            <section class="col btn-toolbar" aria-label="Playback controls">
 
-                <div class="btn-toolbar" role="toolbar" aria-label="Playback controls">
                     <div class="btn-group me-2" role="group">
                         <!-- play button -->
                         <button id="btnPlayButton" type="button" class="btn btn-success" aria-label="Play"
@@ -828,7 +795,7 @@
                             1&nbsp;<img height="20" width="20"
                                 data-bind="attr:{src: morseLoadImages().getSrc('skipbackImage') }"></button>
                         <button id="btnFullRewind" type="button" class="btn btn-success"
-                            data-bind="click: fullRewind">Full
+                            data-bind="click: fullRewind" aria-label="Full rewind">Full
                             RW&nbsp;<img id="skipstartImage" height="20" width="20" /></button>
                         <button id="btnFwd1" type="button" class="btn btn-secondary"
                             data-bind="click: incrementIndex">Fwd
@@ -846,10 +813,6 @@
 
                     </div>
                     <div class="btn-group me-2" role="group">
-                        <!-- 
-                                <input type="checkbox" data-bind="checked: showRaw" class="btn-check" id="btnShowRaw" autocomplete="off"/>
-                                <label class="btn btn-outline-primary" for="btnShowRaw">Show Raw Text</label>
-                                -->
                         <input aria-label="Hide cards" type="checkbox" data-bind="checked: hideList" class="btn-check"
                             id="btnHideList" autocomplete="off" />
                         <label aria-hidden="true" class="btn btn-outline-primary"
@@ -862,8 +825,7 @@
 
                         <button id="btnShuffle" type="button" class="btn btn-secondary"
                             data-bind="click: () => shuffleWords(false)"><span
-                                data-bind="text: isShuffled()?'UnShuffle':'Shuffle'"></span>&nbsp;<img alt=""
-                                id="shuffleImage" height="20" width="20"></button>
+                                data-bind="text: isShuffled()?'UnShuffle':'Shuffle'"></span>&nbsp;<img alt="" id="shuffleImage" height="20" width="20"></button>
 
                     </div>
 
@@ -878,9 +840,6 @@
                                 data-bind="attr:{ src: loop() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
                     </div>
 
-
-                </div>
-
             </section>
 
 
@@ -892,19 +851,36 @@
                     <div class="col-auto">
                         <button class="btn"
                             data-bind="class: $index()==$parent.currentIndex() ? ($index()==$parent.words().length-1 ? 'btn-danger' : 'btn-primary'): ($index()==$parent.words().length-1 ? 'btn-outline-danger' : 'btn-outline-primary' ) ,click:()=>$parent.flaggedWords.addFlaggedWord($data), event:{dblclick: ()=>{$parent.setWordIndex($index())}}">
-                            <!--<h1>-->
                             <span
                                 data-bind="style: {fontSize: $parent.cardFontPx } ,text: (!$parent.hideList() || ($parent.trailReveal() && $index() &lt;= $parent.maxRevealedTrail() )) ? $data.displayWord : 'X'.repeat($data.displayWord.replace('\r','').replace('\n','').trim().length)">
                             </span>
-                            <!--</h1>-->
                         </button>
                     </div>
                 </div>
 
             </section>
 
+            <details id="keyboard-shortcuts">
+                <summary>Keyboard Shortcuts</summary>
+                <p>
+                    The following keyboard shortcuts are available to help access commonly used features.
+                </p>
+                <table>
+                    <thead>
+                        <tr><th>Keyboard shortcut</th><th>Function</th></tr>
+                    </thead>
+                    <tbody data-bind="foreach: allShortcutKeys">
+                        <tr><td class="key"><span data-bind="text: $data.key"></td><td class="function" data-bind="text: $data.title"></td></tr>
+                    </tbody>
+                </table>
+            </details>
+            <br>
+            <br>
         </div>
 
+        <status class="sr-only" aria-live="polite" aria-label="Latest status announcement">
+            <p data-bind="text: accessibilityAnnouncement()"></p>
+        </status>
 
     </div>
 </body>
