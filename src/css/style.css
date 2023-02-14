@@ -21,6 +21,10 @@ noiseaccordion {
     width: 1px;
 }
 
+section:last-of-type {
+    padding-bottom: 2rem;
+}
+
 #contributor-info {
     display: block;
     margin-bottom: .5rem;
