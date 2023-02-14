@@ -299,6 +299,22 @@
                                                 class="list-group-item list-group-item-action"
                                                 data-bind="enable: $root.allowSaveCookies, text: $data.display, attr:{ 'aria-checked': $data.display==$parent.lessons.selectedSettingsPreset().display }, click: ()=>$root.lessons.setPresetSelected($data), css: { active: $data.display==$parent.lessons.selectedSettingsPreset().display}"></button>
                                         </div>
+                                        
+                                        <!-- save settings button -->
+                                        <button id="saveSettingsButton" type="button" class="btn btn-success"
+                                            data-bind="click: () => saveSettings()">
+                                            <span>Save</span>
+
+                                        </button>
+                                        
+                                        <!-- load settings button -->
+                                        <button id="loadSettingsButton" type="button" class="btn btn-success"
+                                            onclick="getElementById('settingsfiletoread').click()">
+                                            <span>Load</span>
+
+                                        </button>
+                                        <input type="file" accept=".json" id="settingsfiletoread" class="form-control"
+                                            data-bind="event: {change: function() { settingsFileChange($element) } }" hidden>
                                     </div>
 
                                     <!--buttons for overrides and such-->
@@ -458,6 +474,10 @@
                                             <input type="number" style="max-width:75px; min-width: 75px;"
                                                 class="form-control" aria-label="Server" min="100" max="1200" step="10"
                                                 data-bind="textInput: settings.frequency.dahFrequency, enable: !settings.frequency.syncFreq()">
+                                            <!-- zero beat button -->
+                                            <button id="zeroBeatButton" type="button" class="btn btn-success" data-bind="click: () => testTone()">
+                                                <span>Zero Beat</span>
+                                            </button>
                                         </div>
                                     </div>
                                     <!--silence & spacing-->
@@ -788,10 +808,6 @@
                     <div class="accordion-item" data-bind="component: {name: 'noiseaccordion', params: {root: $root}}">
                     </div>
                     <!-- /ko -->
-
-                    <!-- haptic -->
-                    <div class="accordion-item" data-bind="component: {name: 'hapticaccordion', params: {root: $root}}">
-                    </div>
 
                     <!-- flagged words -->
                     <div class="accordion-item"
