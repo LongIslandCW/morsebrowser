@@ -860,8 +860,27 @@
 
             </section>
 
+            <details id="keyboard-shortcuts">
+                <summary>Keyboard Shortcuts</summary>
+                <p>
+                    The following keyboard shortcuts are available to help access commonly used features.
+                </p>
+                <table>
+                    <thead>
+                        <tr><th>Keyboard shortcut</th><th>Function</th></tr>
+                    </thead>
+                    <tbody data-bind="foreach: allShortcutKeys">
+                        <tr><td class="key"><span data-bind="text: $data.key"></td><td class="function" data-bind="text: $data.title"></td></tr>
+                    </tbody>
+                </table>
+            </details>
+            <br>
+            <br>
         </div>
 
+        <status class="sr-only" aria-live="polite" aria-label="Latest status announcement">
+            <p data-bind="text: accessibilityAnnouncement()"></p>
+        </status>
 
     </div>
 </body>

@@ -1,52 +1,58 @@
 import { MorseSettings } from '../settings/settings'
 
+class ShortcutHandler {
+    key: string
+    title:string
+    handler:VoidFunction
+
+    constructor (key:string, title:string, handler:VoidFunction) {
+      this.key = key
+      this.title = title
+      this.handler = handler
+    }
+}
+
 export class MorseShortcutKeys {
-  morseSettings:MorseSettings
-  constructor (morseSettings:MorseSettings) {
-    this.morseSettings = morseSettings
+  registeredHandlers:Array<ShortcutHandler>
+  registrationCallback:(key:string, title:string) => void
+  
+  /**
+   * Instantiates a new MorseShortcutKeys instance
+   * 
+   * @param registrationCallback A callback that is called whenever a new shortcut key is registered.
+   */
+  constructor (registrationCallback:(key:string, title:string) => void) {
+    this.registrationCallback = registrationCallback
+    this.registeredHandlers = []
+
     // add the shortcut key listener
     document.addEventListener('keypress', (e) => {
       const tagName = (<any>e.target).tagName
       if (tagName !== 'INPUT' && tagName !== 'TEXTAREA') {
-        // var input = document.querySelector(".my-input");
-        // input.focus();
-        // input.value = e.key;
-        // console.log(e.target.tagName)
-        // console.log(e.key)
         this.routeShortcutKey(e.key)
         e.preventDefault()
       }
     })
   }
 
-  routeShortcutKey = (key) => {
+  routeShortcutKey = (key:string) => {
     // console.log('routing shortcut key')
-    switch (key) {
-      case 'z':
-        this.changeFarnsworth(-1)
-        break
-      case 'x':
-        this.changeFarnsworth(1)
-        break
+    const handler:ShortcutHandler = this.registeredHandlers[key]
+    if (handler != undefined) {
+      handler.handler()
     }
   }
 
-  changeFarnsworth = (x) => {
-    // console.log('changing farnsworth')
-    const newWpm = parseInt(this.morseSettings.speed.wpm() as any) + x
-    const newFwpm = parseInt(this.morseSettings.speed.fwpm() as any) + x
-    if (newWpm < 1 || newFwpm < 1) {
-      return
-    }
-
-    if (this.morseSettings.speed.syncWpm()) {
-      this.morseSettings.speed.wpm(newWpm)
-      return
-    }
-
-    if (newFwpm > this.morseSettings.speed.wpm()) {
-      this.morseSettings.speed.wpm(newWpm)
-    }
-    this.morseSettings.speed.fwpm(newFwpm)
+  /**
+   * Registers a shortcut key, which when pressed will call the provided handler
+   * 
+   * @param key The shortcut key, such as 'z'
+   * @param title A brief description of the shortcut's function
+   * @param handler The handler to be called in response to pressing the shortcut key
+   */
+  registerShortcutKeyHandler = (key:string, title:string, handler:VoidFunction) => {
+    const shortcutHandler = new ShortcutHandler(key, title, handler)
+    this.registeredHandlers[key] = shortcutHandler
+    this.registrationCallback(key, title)
   }
 }

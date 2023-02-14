@@ -48,6 +48,19 @@ section:last-of-type {
     font-size: calc(1.3rem + .6vw);
 }
 
+#keyboard-shortcuts table thead tr {
+    background-color: #e7f1ff;
+}
+
+#keyboard-shortcuts table th, #keyboard-shortcuts table td {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+#keyboard-shortcuts table td.key {
+    text-align: right;
+}
+
 @media (min-width: 1200px) {
     #contributor-info {
         font-size: 1.75rem;
