@@ -324,7 +324,7 @@ export class MorseViewModel {
     config.riseMsOffset = parseFloat(this.riseMsOffset() as any)
     config.decayMsOffset = parseFloat(this.decayMsOffset() as any)
     // suppress wordspaces when using speak so "thinking time" will control
-    if (this.morseVoice) {
+    if (this.morseVoice && !this.morseVoice.manualVoice()) {
       config.trimLastWordSpace = this.morseVoice.voiceEnabled() && !this.cardBufferManager.hasMoreMorse()
       config.voiceEnabled = this.morseVoice.voiceEnabled()
     }
@@ -476,51 +476,26 @@ export class MorseViewModel {
 
     if (needToSpeak) {
       // speak the voice buffer if there's a newline or nothing more to play
+      // populate the voiceBuffer even if not speaking, as we might be caching
       const currentWord = this.words()[this.currentIndex()]
-      console.log(`currentword:${currentWord.rawWord}`)
       const speakText = currentWord.speakText(this.morseVoice.voiceSpelling())
-      console.log(`speaktext:${speakText}`)
       const hasNewline = speakText.indexOf('\n') !== -1
       this.morseVoice.voiceBuffer.push(speakText)
-      this.logToFlaggedWords(`currentWord:${currentWord}`)
-      this.logToFlaggedWords(`hasNewline:${hasNewline} isNotLastWord: ${isNotLastWord} anyNewLines:${anyNewLines}`)
-      const speakCondition = hasNewline || !isNotLastWord || !anyNewLines || !this.settings.misc.newlineChunking()
-      this.logToFlaggedWords(`speakCondition:${speakCondition}`)
+      const speakCondition = !this.morseVoice.manualVoice() && (hasNewline || !isNotLastWord || !anyNewLines || !this.settings.misc.newlineChunking())
       if (speakCondition) {
-        this.logToFlaggedWords(`about to wordify:'${this.morseVoice.voiceBuffer.join(' ')}'`)
-        let phraseToSpeak
-        try {
-          const joinedBuffer = this.morseVoice.voiceBuffer.join(' ')
-          phraseToSpeak = joinedBuffer
-          /* if (this.morseVoice.voiceSpelling()) {
-            joinedBuffer = joinedBuffer.split('').join(' ')
-          }
-          phraseToSpeak = MorseStringUtils.wordifyPunctuation(joinedBuffer) */
-          phraseToSpeak = phraseToSpeak.replace(/\n/g, ' ').trim()
-        } catch (e) {
-          this.logToFlaggedWords(`caught after wordify:${e}`)
-        }
-        this.logToFlaggedWords(`phraseToSpeak:'${phraseToSpeak}'`)
-        // clear the buffer
-        this.morseVoice.voiceBuffer = []
-        this.logToFlaggedWords(`voiceThinkingTime:${this.morseVoice.voiceThinkingTime()}`)
-
+        let phraseToSpeak = this.getPhraseToSpeakFromBuffer()
         if (this.morseVoice.voiceLastOnly()) {
           const phrasePieces = phraseToSpeak.split(' ')
           phraseToSpeak = phrasePieces[phrasePieces.length - 1]
         }
         setTimeout(() => {
-          this.logToFlaggedWords('aboutToSpeak...')
-          console.log(`about to speak:${phraseToSpeak}`)
-          console.log(phraseToSpeak)
           // for reasons I can't recall, wordifyPunctuation adds pipe character
           // remove it
           const finalPhraseToSpeak = phraseToSpeak.replace(/\|/g, ' ')
-          console.log(`finalPhrase:${finalPhraseToSpeak}`)
+
           this.morseVoice.speakPhrase(finalPhraseToSpeak, () => {
-            this.logToFlaggedWords('returned from speaking...')
             // what gets called after speaking
-            this.logToFlaggedWords(`needToTrail:${needToTrail}`)
+
             if (needToTrail) {
               advanceTrail()
             }
@@ -536,6 +511,32 @@ export class MorseViewModel {
     if (needToTrail && !speakAndTrail) {
       advanceTrail()
     }
+  }
+
+  speakVoiceBuffer = () => {
+    if (this.morseVoice.voiceBuffer.length > 0) {
+      const phrase = this.morseVoice.voiceBuffer.shift()
+      this.morseVoice.speakPhrase(phrase, () => {
+      // what gets called after speaking
+        setTimeout(() => { this.speakVoiceBuffer() }, 500)
+      })
+    }
+  }
+
+  getPhraseToSpeakFromBuffer = () => {
+    let phraseToSpeak
+    try {
+      const joinedBuffer = this.morseVoice.voiceBuffer.join(' ')
+      phraseToSpeak = joinedBuffer
+      phraseToSpeak = phraseToSpeak.replace(/\n/g, ' ').trim()
+    } catch (e) {
+      // this.logToFlaggedWords(`caught after wordify:${e}`)
+    }
+
+    // clear the buffer
+    this.morseVoice.voiceBuffer = []
+
+    return phraseToSpeak
   }
 
   doPause = (fullRewind, fromPauseButton, fromStopButton) => {

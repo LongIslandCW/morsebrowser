@@ -644,6 +644,16 @@
                                                     data-bind="attr:{ src: morseLoadImages().getSrc('spellcheckImage')}">&nbsp;Spell&nbsp;<img
                                                     data-bind="attr:{ src: morseVoice.voiceSpelling() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
                                         </div>
+                                        <!-- voice manual-->
+                                        <div class="col-auto"
+                                            data-bind="if: showExpertSettings() && morseVoice.voiceEnabled()">
+
+                                            <input type="checkbox" class="btn-check" autocomplete="off"
+                                                id="btncheckmanualVoice" data-bind="checked: morseVoice.manualVoice">
+                                            <label class=" btn btn-outline-primary" for="btncheckmanualVoice"><img
+                                                    data-bind="attr:{ src: morseLoadImages().getSrc('spellcheckImage')}">&nbsp;Manual&nbsp;<img
+                                                    data-bind="attr:{ src: morseVoice.manualVoice() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
+                                        </div>
                                         <!-- voice thinktime-->
                                         <div class="col-md-auto"
                                             data-bind="if: showExpertSettings() && morseVoice.voiceEnabled()">
@@ -878,6 +888,12 @@
                                 data-bind="attr:{ src: loop() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
                     </div>
 
+                    <div class="input-group me-2">
+                        <button id="btnmanualvoice" type="button" class="btn btn-info"
+                            data-bind="click: () => {speakVoiceBuffer()}">Manual Voice&nbsp;
+
+                        </button>
+                    </div>
 
                 </div>
 

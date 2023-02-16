@@ -28,6 +28,7 @@ export class MorseVoice implements ICookieHandler {
   // and onend never fires?!
   currentUtterance:SpeechSynthesisUtterance
   voiceLastOnly:ko.Observable<boolean>
+  manualVoice:ko.Observable<boolean>
 
   constructor (context:MorseViewModel) {
     MorseCookies.registerHandler(this)
@@ -46,6 +47,7 @@ export class MorseVoice implements ICookieHandler {
     this.voiceBuffer = []
     this.voiceSpelling = ko.observable(false)
     this.voiceLastOnly = ko.observable(false)
+    this.manualVoice = ko.observable(false)
     const speechDetection = EasySpeech.detect()
 
     if (speechDetection.speechSynthesis && speechDetection.speechSynthesisUtterance) {
