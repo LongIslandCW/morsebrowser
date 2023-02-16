@@ -502,5 +502,6 @@
     {"sort":403, "userTarget": "INSTRUCTOR", "class": "BC1", "letterGroup": "UWB", "newlineChunking":true,"display":"UWB HOF LCD STATES", "fileName": "UWB8.txt" },
     {"sort":404, "userTarget": "INSTRUCTOR", "class": "BC1", "letterGroup": "UWB", "newlineChunking":false,"display":"UWB HOF LCD    QSO ABBREVIATIONS", "fileName": "UWB9.txt" },
     {"sort":405, "userTarget": "INSTRUCTOR", "class": "BC1", "letterGroup": "UWB", "newlineChunking":false,"display":"UWB HOF LCD WORDS", "fileName": "UWB10.txt" },
-    {"sort":406, "userTarget": "INSTRUCTOR", "class": "BC1", "letterGroup": "UWB", "newlineChunking":true,"display":"UWB HOF LCD PHRASES", "fileName": "UWB11.txt" }
+    {"sort":406, "userTarget": "INSTRUCTOR", "class": "INTERMEDIATE", "letterGroup": "SUDUKO", "newlineChunking":false,"display":"SUDUKO", "fileName": "suduko1.txt" },
+    {"sort":407, "userTarget": "INSTRUCTOR", "class": "BC1", "letterGroup": "UWB", "newlineChunking":true,"display":"UWB HOF LCD PHRASES", "fileName": "UWB11.txt" }
 ]}
