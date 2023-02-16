@@ -629,7 +629,7 @@
                                             <input type="checkbox" class="btn-check" autocomplete="off"
                                                 id="btncheckmanualVoice" data-bind="checked: morseVoice.manualVoice">
                                             <label class=" btn btn-outline-primary" for="btncheckmanualVoice"><img
-                                                    data-bind="attr:{ src: morseLoadImages().getSrc('wrenchAdjustableImage')}">&nbsp;Manual&nbsp;<img
+                                                    data-bind="attr:{ src: morseLoadImages().getSrc('wrenchAdjustableImage')}">&nbsp;Recap&nbsp;<img
                                                     data-bind="attr:{ src: morseVoice.manualVoice() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
                                         </div>
                                         <!-- voice thinktime-->
@@ -863,8 +863,8 @@
                 <!-- manual voice -->
                 <div class="input-group me-2">
                     <button id="btnmanualvoice" type="button" class="btn btn-info"
-                        data-bind="click: () => {speakVoiceBuffer()}, visible: morseVoice.manualVoice">Manual
-                        Voice&nbsp;<img data-bind="attr:{ src: morseLoadImages().getSrc('wrenchAdjustableImage')}">
+                        data-bind="click: () => {speakVoiceBuffer()}, visible: morseVoice.manualVoice && morseVoice.voiceEnabled">Voice
+                        Recap&nbsp;<img data-bind="attr:{ src: morseLoadImages().getSrc('wrenchAdjustableImage')}">
 
                     </button>
                 </div>
