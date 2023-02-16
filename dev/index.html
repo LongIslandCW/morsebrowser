@@ -25,7 +25,7 @@
                     'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
         })(window, document, 'script', 'dataLayer', 'GTM-PB8HW3M');</script>
     <!-- End Google Tag Manager -->
-<link rel="icon" href="LongIslandCWClub-favicon-2.jpg"><script defer src="bundle96ab51eb2a8277f3eae8.js"></script><link href="bundle.b790b1369a7194e0d144.css" rel="stylesheet"></head>
+<link rel="icon" href="LongIslandCWClub-favicon-2.jpg"><script defer src="bundle94c712afc2377229b250.js"></script><link href="bundle.b790b1369a7194e0d144.css" rel="stylesheet"></head>
 
 <body>
     <!-- Google Tag Manager (noscript) -->
@@ -629,7 +629,7 @@
                                             <input type="checkbox" class="btn-check" autocomplete="off"
                                                 id="btncheckmanualVoice" data-bind="checked: morseVoice.manualVoice">
                                             <label class=" btn btn-outline-primary" for="btncheckmanualVoice"><img
-                                                    data-bind="attr:{ src: morseLoadImages().getSrc('wrenchAdjustableImage')}">&nbsp;Manual&nbsp;<img
+                                                    data-bind="attr:{ src: morseLoadImages().getSrc('wrenchAdjustableImage')}">&nbsp;Recap&nbsp;<img
                                                     data-bind="attr:{ src: morseVoice.manualVoice() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
                                         </div>
                                         <!-- voice thinktime-->
@@ -863,8 +863,8 @@
                 <!-- manual voice -->
                 <div class="input-group me-2">
                     <button id="btnmanualvoice" type="button" class="btn btn-info"
-                        data-bind="click: () => {speakVoiceBuffer()}, visible: morseVoice.manualVoice">Manual
-                        Voice&nbsp;<img data-bind="attr:{ src: morseLoadImages().getSrc('wrenchAdjustableImage')}">
+                        data-bind="click: () => {speakVoiceBuffer()}, visible: morseVoice.manualVoice && morseVoice.voiceEnabled">Voice
+                        Recap&nbsp;<img data-bind="attr:{ src: morseLoadImages().getSrc('wrenchAdjustableImage')}">
 
                     </button>
                 </div>
