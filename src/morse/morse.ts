@@ -533,16 +533,24 @@ export class MorseViewModel {
   }
 
   addToVoiceBuffer = () => {
+    // console.log(`currenindex:${this.currentIndex()} len:${this.morseVoice.voiceBuffer.length}`)
+    // make sure we don't add the same card twice...someday figure what causes
+    if (this.currentIndex() >= this.morseVoice.voiceBuffer.length) {
     // populate the voiceBuffer even if not speaking, as we might be caching
-    const currentWord = this.words()[this.currentIndex()]
-    const speakText = currentWord.speakText(this.morseVoice.voiceSpelling())
-    this.morseVoice.voiceBuffer.push(speakText)
+      const currentWord = this.words()[this.currentIndex()]
+      const speakText = currentWord.speakText(this.morseVoice.voiceSpelling())
+      // console.log(`speaktext:${speakText}`)
+      this.morseVoice.voiceBuffer.push(speakText)
+    }
   }
 
   speakVoiceBuffer = () => {
     if (this.morseVoice.voiceBuffer.length > 0) {
       const phrase = this.morseVoice.voiceBuffer.shift()
-      this.morseVoice.speakPhrase(phrase, () => {
+      // for reasons I can't recall, wordifyPunctuation adds pipe character
+      // remove it
+      const finalPhraseToSpeak = phrase.replace(/\|/g, ' ')
+      this.morseVoice.speakPhrase(finalPhraseToSpeak, () => {
       // what gets called after speaking
         setTimeout(() => { this.speakVoiceBuffer() }, 250)
       })
