@@ -25,7 +25,7 @@
                     'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
         })(window, document, 'script', 'dataLayer', 'GTM-PB8HW3M');</script>
     <!-- End Google Tag Manager -->
-<link rel="icon" href="LongIslandCWClub-favicon-2.jpg"><script defer src="bundle4763ba6816375ebd49ce.js"></script><link href="bundle.b790b1369a7194e0d144.css" rel="stylesheet"></head>
+<link rel="icon" href="LongIslandCWClub-favicon-2.jpg"><script defer src="bundle0443c0c12f73345f6743.js"></script><link href="bundle.b790b1369a7194e0d144.css" rel="stylesheet"></head>
 
 <body>
     <!-- Google Tag Manager (noscript) -->
@@ -38,17 +38,27 @@
             <header class="col">
                 <div class="row row-cols-2 justify-content-md-center">
                     <div class="col col-md-auto">
-                        <img id="logoImage" height="200px" width="200px" alt="Long Island CW Club Logo depicting a hand on a straight key and the club call sign W2LCW" />
+                        <img id="logoImage" height="200px" width="200px"
+                            alt="Long Island CW Club Logo depicting a hand on a straight key and the club call sign W2LCW" />
 
                     </div>
                     <div class="col col-md-auto">
                         <h1>Morse Practice Page</h1>
-                        <section id="credits-and-info" title="Credits and additional information" aria-label="Credits and additional information">
-                            <span title="Contributor info" id="contributor-info">by KN4YRM with assistance from AB5TN, KN6WKV, N1CC, VE3QBZ, VK5PL, WO6W, and W4YES</span>
-                            <span>Inspired by and adapted from the <a href="https://morsecode.world/">SC Phillips</a> <a href="https://github.com/scp93ch/morse-pro">morse-pro library</a>. To view source, please go to <a href="https://github.com/LongIslandCW/morsebrowser/">our github<img id="githubImage" aria-hidden="true"> repository.</a></span>
-                            <span>To ask user questions, report bugs, request features and more <a href="mailto:MorsePracticePageQuestions@groups.io">email us</a> or join <a href="https://groups.io/g/MorsePracticePageQuestions">our groups.io</a>.</span>
-                            <span><a href="https://www.youtube.com/playlist?list=PLyARUjdG9q-Xywoch5QJRGfgPZTucfhfB">Videos to help you use this site</a> are found on YouTube</span>
-                            <span class="warning" data-bind="if: isDev()">WARNING: You are using the BETA (unstable) version. The <a href="../">latest stable release</a> is recommended.</a></span>
+                        <section id="credits-and-info" title="Credits and additional information"
+                            aria-label="Credits and additional information">
+                            <span title="Contributor info" id="contributor-info">by KN4YRM with assistance from AB5TN,
+                                KN6WKV, N1CC, VE3QBZ, VK5PL, WO6W, and W4YES</span>
+                            <span>Inspired by and adapted from the <a href="https://morsecode.world/">SC Phillips</a> <a
+                                    href="https://github.com/scp93ch/morse-pro">morse-pro library</a>. To view source,
+                                please go to <a href="https://github.com/LongIslandCW/morsebrowser/">our github<img
+                                        id="githubImage" aria-hidden="true"> repository.</a></span>
+                            <span>To ask user questions, report bugs, request features and more <a
+                                    href="mailto:MorsePracticePageQuestions@groups.io">email us</a> or join <a
+                                    href="https://groups.io/g/MorsePracticePageQuestions">our groups.io</a>.</span>
+                            <span><a href="https://www.youtube.com/playlist?list=PLyARUjdG9q-Xywoch5QJRGfgPZTucfhfB">Videos
+                                    to help you use this site</a> are found on YouTube</span>
+                            <span class="warning" data-bind="if: isDev()">WARNING: You are using the BETA (unstable)
+                                version. The <a href="../">latest stable release</a> is recommended.</a></span>
                             <span id="version-info">Version 1.0.9</span>
                         </section>
                     </div>
@@ -612,6 +622,16 @@
                                                     data-bind="attr:{ src: morseLoadImages().getSrc('spellcheckImage')}">&nbsp;Spell&nbsp;<img
                                                     data-bind="attr:{ src: morseVoice.voiceSpelling() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
                                         </div>
+                                        <!-- voice manual-->
+                                        <div class="col-auto"
+                                            data-bind="if: showExpertSettings() && morseVoice.voiceEnabled()">
+
+                                            <input type="checkbox" class="btn-check" autocomplete="off"
+                                                id="btncheckmanualVoice" data-bind="checked: morseVoice.manualVoice">
+                                            <label class=" btn btn-outline-primary" for="btncheckmanualVoice"><img
+                                                    data-bind="attr:{ src: morseLoadImages().getSrc('spellcheckImage')}">&nbsp;Manual&nbsp;<img
+                                                    data-bind="attr:{ src: morseVoice.manualVoice() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
+                                        </div>
                                         <!-- voice thinktime-->
                                         <div class="col-md-auto"
                                             data-bind="if: showExpertSettings() && morseVoice.voiceEnabled()">
@@ -766,121 +786,136 @@
             <!-- controls area -->
             <section class="col btn-toolbar" aria-label="Playback controls">
 
-                    <div class="btn-group me-2" role="group">
-                        <!-- play button -->
-                        <button id="btnPlayButton" type="button" class="btn btn-success" aria-label="Play"
-                            data-bind="click: () => doPlay(false,true)">
-                            <span data-bind="visible: !playerPlaying()">Play</span>
-                            <!--played-->
-                            <span data-bind="visible: playerPlaying()">
-                                <span data-bind="text: playingTime().minutes"></span>:<span
-                                    data-bind="text: playingTime().normedSeconds"></span>
-                            </span>
-                            <!--estimate-->
-                            <span>
-                                <span data-bind="text: timeEstimate().minutes"></span>:<span
-                                    data-bind="text: timeEstimate().normedSeconds"></span>
+                <div class="btn-group me-2" role="group">
+                    <!-- play button -->
+                    <button id="btnPlayButton" type="button" class="btn btn-success" aria-label="Play"
+                        data-bind="click: () => doPlay(false,true)">
+                        <span data-bind="visible: !playerPlaying()">Play</span>
+                        <!--played-->
+                        <span data-bind="visible: playerPlaying()">
+                            <span data-bind="text: playingTime().minutes"></span>:<span
+                                data-bind="text: playingTime().normedSeconds"></span>
+                        </span>
+                        <!--estimate-->
+                        <span>
+                            <span data-bind="text: timeEstimate().minutes"></span>:<span
+                                data-bind="text: timeEstimate().normedSeconds"></span>
 
-                            </span>
-
-
-                            &nbsp;
-                            <span class="spinner-border spinner-border-sm" role="status" aria-label="Playing"
-                                data-bind="visible: playerPlaying"></span>
-
-                            <img id='playImage' data-bind="visible: !playerPlaying()" alt="">
-                        </button>
-                        <button id="btnBackButton" type="button" class="btn btn-warning"
-                            data-bind="click: decrementIndex">Back
-                            1&nbsp;<img height="20" width="20"
-                                data-bind="attr:{src: morseLoadImages().getSrc('skipbackImage') }"></button>
-                        <button id="btnFullRewind" type="button" class="btn btn-success"
-                            data-bind="click: fullRewind" aria-label="Full rewind">Full
-                            RW&nbsp;<img id="skipstartImage" height="20" width="20" /></button>
-                        <button id="btnFwd1" type="button" class="btn btn-secondary"
-                            data-bind="click: incrementIndex">Fwd
-                            1&nbsp;<img id="skipforwardImage" height="20" width="20"></button>
-                        <button id="btnPause" type="button" class="btn btn-info"
-                            data-bind="click: () => {isPaused() ? doPlay(true,false) : doPause(false, true)}">Pause&nbsp;<span
-                                class="spinner-grow spinner-grow-sm text-dark" role="status" aria-hidden="true"
-                                data-bind="visible: isPaused"></span>
-
-                            <img id='pauseImage' data-bind="visible: !isPaused()" height="20" width="20"></button>
-                        <!--stop button-->
-                        <button id="btnStop" type="button" class="btn btn-danger"
-                            data-bind="click: () => doPause(true, false,true)">Stop&nbsp;<img id="stopImage" height="20"
-                                width="20"></button>
-
-                    </div>
-                    <div class="btn-group me-2" role="group">
-                        <input aria-label="Hide cards" type="checkbox" data-bind="checked: hideList" class="btn-check"
-                            id="btnHideList" autocomplete="off" />
-                        <label aria-hidden="true" class="btn btn-outline-primary"
-                            for="btnHideList"><span>Reveal&nbsp;</span><img height=20 width=20
-                                data-bind="attr:{ src: !hideList() ? morseLoadImages().getSrc('eyeImage') : morseLoadImages().getSrc('eyeslashImage')}" /></label>
-
-                    </div>
-
-                    <div class="button-group me-2">
-
-                        <button id="btnShuffle" type="button" class="btn btn-secondary"
-                            data-bind="click: () => shuffleWords(false)"><span
-                                data-bind="text: isShuffled()?'UnShuffle':'Shuffle'"></span>&nbsp;<img alt="" id="shuffleImage" height="20" width="20"></button>
-
-                    </div>
-
-                    <!-- loop -->
-                    <div class="input-group me-2">
+                        </span>
 
 
-                        <input aria-label="Loop" type="checkbox" class="btn-check" autocomplete="off" id="btncheckloop"
-                            data-bind="checked: loop">
-                        <label aria-hidden="true" class=" btn btn-outline-primary" for="btncheckloop"><img
-                                data-bind="attr:{ src: morseLoadImages().getSrc('arrowrepeatImage')}">&nbsp;Loop&nbsp;<img
-                                data-bind="attr:{ src: loop() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
-                    </div>
+                        &nbsp;
+                        <span class="spinner-border spinner-border-sm" role="status" aria-label="Playing"
+                            data-bind="visible: playerPlaying"></span>
 
-            </section>
+                        <img id='playImage' data-bind="visible: !playerPlaying()" alt="">
+                    </button>
+                    <button id="btnBackButton" type="button" class="btn btn-warning"
+                        data-bind="click: decrementIndex">Back
+                        1&nbsp;<img height="20" width="20"
+                            data-bind="attr:{src: morseLoadImages().getSrc('skipbackImage') }"></button>
+                    <button id="btnFullRewind" type="button" class="btn btn-success" data-bind="click: fullRewind"
+                        aria-label="Full rewind">Full
+                        RW&nbsp;<img id="skipstartImage" height="20" width="20" /></button>
+                    <button id="btnFwd1" type="button" class="btn btn-secondary" data-bind="click: incrementIndex">Fwd
+                        1&nbsp;<img id="skipforwardImage" height="20" width="20"></button>
+                    <button id="btnPause" type="button" class="btn btn-info"
+                        data-bind="click: () => {isPaused() ? doPlay(true,false) : doPause(false, true)}">Pause&nbsp;<span
+                            class="spinner-grow spinner-grow-sm text-dark" role="status" aria-hidden="true"
+                            data-bind="visible: isPaused"></span>
 
+                        <img id='pauseImage' data-bind="visible: !isPaused()" height="20" width="20"></button>
+                    <!--stop button-->
+                    <button id="btnStop" type="button" class="btn btn-danger"
+                        data-bind="click: () => doPause(true, false,true)">Stop&nbsp;<img id="stopImage" height="20"
+                            width="20"></button>
 
-            <!-- the word list/card area-->
+                </div>
+                <div class="btn-group me-2" role="group">
+                    <input aria-label="Hide cards" type="checkbox" data-bind="checked: hideList" class="btn-check"
+                        id="btnHideList" autocomplete="off" />
+                    <label aria-hidden="true" class="btn btn-outline-primary"
+                        for="btnHideList"><span>Reveal&nbsp;</span><img height=20 width=20
+                            data-bind="attr:{ src: !hideList() ? morseLoadImages().getSrc('eyeImage') : morseLoadImages().getSrc('eyeslashImage')}" /></label>
 
-            <section aria-label="Cards" class="col" data-bind="if: cardsVisible">
-
-                <div class="row gx-2 gy-2" data-bind="foreach: words">
-                    <div class="col-auto">
-                        <button class="btn"
-                            data-bind="class: $index()==$parent.currentIndex() ? ($index()==$parent.words().length-1 ? 'btn-danger' : 'btn-primary'): ($index()==$parent.words().length-1 ? 'btn-outline-danger' : 'btn-outline-primary' ) ,click:()=>$parent.flaggedWords.addFlaggedWord($data), event:{dblclick: ()=>{$parent.setWordIndex($index())}}">
-                            <span
-                                data-bind="style: {fontSize: $parent.cardFontPx } ,text: (!$parent.hideList() || ($parent.trailReveal() && $index() &lt;= $parent.maxRevealedTrail() )) ? $data.displayWord : 'X'.repeat($data.displayWord.replace('\r','').replace('\n','').trim().length)">
-                            </span>
-                        </button>
-                    </div>
                 </div>
 
-            </section>
+                <div class="button-group me-2">
 
-            <details id="keyboard-shortcuts">
-                <summary>Keyboard Shortcuts</summary>
-                <p>
-                    The following keyboard shortcuts are available to help access commonly used features.
-                </p>
-                <table>
-                    <thead>
-                        <tr><th>Keyboard shortcut</th><th>Function</th></tr>
-                    </thead>
-                    <tbody data-bind="foreach: allShortcutKeys">
-                        <tr><td class="key"><span data-bind="text: $data.key"></td><td class="function" data-bind="text: $data.title"></td></tr>
-                    </tbody>
-                </table>
-            </details>
-            <br>
-            <br>
+                    <button id="btnShuffle" type="button" class="btn btn-secondary"
+                        data-bind="click: () => shuffleWords(false)"><span
+                            data-bind="text: isShuffled()?'UnShuffle':'Shuffle'"></span>&nbsp;<img alt=""
+                            id="shuffleImage" height="20" width="20"></button>
+
+                </div>
+
+                <!-- loop -->
+                <div class="input-group me-2">
+
+
+                    <input aria-label="Loop" type="checkbox" class="btn-check" autocomplete="off" id="btncheckloop"
+                        data-bind="checked: loop">
+                    <label aria-hidden="true" class=" btn btn-outline-primary" for="btncheckloop"><img
+                            data-bind="attr:{ src: morseLoadImages().getSrc('arrowrepeatImage')}">&nbsp;Loop&nbsp;<img
+                            data-bind="attr:{ src: loop() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
+                </div>
+
+                <div class="input-group me-2">
+                    <button id="btnmanualvoice" type="button" class="btn btn-info"
+                        data-bind="click: () => {speakVoiceBuffer()}">Manual Voice&nbsp;
+
+                    </button>
+                </div>
+
         </div>
 
-        <status class="sr-only" aria-live="polite" aria-label="Latest status announcement">
-            <p data-bind="text: accessibilityAnnouncement()"></p>
-        </status>
+        </section>
+
+
+        <!-- the word list/card area-->
+
+        <section aria-label="Cards" class="col" data-bind="if: cardsVisible">
+
+            <div class="row gx-2 gy-2" data-bind="foreach: words">
+                <div class="col-auto">
+                    <button class="btn"
+                        data-bind="class: $index()==$parent.currentIndex() ? ($index()==$parent.words().length-1 ? 'btn-danger' : 'btn-primary'): ($index()==$parent.words().length-1 ? 'btn-outline-danger' : 'btn-outline-primary' ) ,click:()=>$parent.flaggedWords.addFlaggedWord($data), event:{dblclick: ()=>{$parent.setWordIndex($index())}}">
+                        <span
+                            data-bind="style: {fontSize: $parent.cardFontPx } ,text: (!$parent.hideList() || ($parent.trailReveal() && $index() &lt;= $parent.maxRevealedTrail() )) ? $data.displayWord : 'X'.repeat($data.displayWord.replace('\r','').replace('\n','').trim().length)">
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+        </section>
+
+        <details id="keyboard-shortcuts">
+            <summary>Keyboard Shortcuts</summary>
+            <p>
+                The following keyboard shortcuts are available to help access commonly used features.
+            </p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Keyboard shortcut</th>
+                        <th>Function</th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: allShortcutKeys">
+                    <tr>
+                        <td class="key"><span data-bind="text: $data.key"></td>
+                        <td class="function" data-bind="text: $data.title"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </details>
+        <br>
+        <br>
+    </div>
+
+    <status class="sr-only" aria-live="polite" aria-label="Latest status announcement">
+        <p data-bind="text: accessibilityAnnouncement()"></p>
+    </status>
 
     </div>
 </body>
