@@ -165,7 +165,7 @@ export class MorseViewModel {
     // so we can display them on the page without having to hard-code them.
     this.allShortcutKeys = ko.observableArray([])
     this.shortcutKeys = new MorseShortcutKeys((key, title) => {
-      this.allShortcutKeys.push({'key':key, 'title': title})
+      this.allShortcutKeys.push({ key, title })
     })
     this.registerKeyboardShortcutHandlers()
 
@@ -355,7 +355,7 @@ export class MorseViewModel {
     if (this.playerPlaying()) {
       this.doPause(false, true, false)
     } else {
-      this.doPlay(true,false)
+      this.doPlay(true, false)
     }
   }
 
@@ -406,6 +406,7 @@ export class MorseViewModel {
       // help trailing reveal, max should always be one behind before we're about to play
         this.maxRevealedTrail(this.currentIndex() - 1)
         const config = this.getMorseStringToWavBufferConfig(this.cardBufferManager.getNextMorse())
+        this.addToVoiceBuffer()
         this.morseWordPlayer.play(config, (fromVoiceOrTrail) => {
           this.charsPlayed(this.charsPlayed() + config.word.replace(' ', '').length)
           this.playEnded(fromVoiceOrTrail)
@@ -478,7 +479,10 @@ export class MorseViewModel {
           this.incrementIndex()
           cardChanged = true
         }
-        this.cardSpaceTimerHandle = setTimeout(() => { this.doPlay(true, false) }, !cardChanged ? 0 : this.cardSpace() * 1000)
+        this.cardSpaceTimerHandle = setTimeout(() => {
+          // this.addToVoiceBuffer()
+          this.doPlay(true, false)
+        }, !cardChanged ? 0 : this.cardSpace() * 1000)
       } else {
       // nothing more to play
         const finalToDo = () => this.doPause(true, false, false)
@@ -493,11 +497,9 @@ export class MorseViewModel {
 
     if (needToSpeak) {
       // speak the voice buffer if there's a newline or nothing more to play
-      // populate the voiceBuffer even if not speaking, as we might be caching
-      const currentWord = this.words()[this.currentIndex()]
-      const speakText = currentWord.speakText(this.morseVoice.voiceSpelling())
+      const speakText = this.morseVoice.voiceBuffer[0]
       const hasNewline = speakText.indexOf('\n') !== -1
-      this.morseVoice.voiceBuffer.push(speakText)
+
       const speakCondition = !this.morseVoice.manualVoice() && (hasNewline || !isNotLastWord || !anyNewLines || !this.settings.misc.newlineChunking())
       if (speakCondition) {
         let phraseToSpeak = this.getPhraseToSpeakFromBuffer()
@@ -530,12 +532,19 @@ export class MorseViewModel {
     }
   }
 
+  addToVoiceBuffer = () => {
+    // populate the voiceBuffer even if not speaking, as we might be caching
+    const currentWord = this.words()[this.currentIndex()]
+    const speakText = currentWord.speakText(this.morseVoice.voiceSpelling())
+    this.morseVoice.voiceBuffer.push(speakText)
+  }
+
   speakVoiceBuffer = () => {
     if (this.morseVoice.voiceBuffer.length > 0) {
       const phrase = this.morseVoice.voiceBuffer.shift()
       this.morseVoice.speakPhrase(phrase, () => {
       // what gets called after speaking
-        setTimeout(() => { this.speakVoiceBuffer() }, 500)
+        setTimeout(() => { this.speakVoiceBuffer() }, 250)
       })
     }
   }
@@ -761,62 +770,62 @@ export class MorseViewModel {
   // a bit easier.
   registerKeyboardShortcutHandlers = () => {
     // Toggle play/pause
-    this.shortcutKeys.registerShortcutKeyHandler('k', "Toggle playback", () => {
+    this.shortcutKeys.registerShortcutKeyHandler('k', 'Toggle playback', () => {
       this.togglePlayback()
     })
 
     // Back 1
-    this.shortcutKeys.registerShortcutKeyHandler(',', "Back 1", () => {
+    this.shortcutKeys.registerShortcutKeyHandler(',', 'Back 1', () => {
       this.decrementIndex()
     })
 
     // Full rewind
-    this.shortcutKeys.registerShortcutKeyHandler('<', "Full rewind", () => {
+    this.shortcutKeys.registerShortcutKeyHandler('<', 'Full rewind', () => {
       this.fullRewind()
     })
 
     // Forward 1
-    this.shortcutKeys.registerShortcutKeyHandler('.', "Forward 1", () => {
+    this.shortcutKeys.registerShortcutKeyHandler('.', 'Forward 1', () => {
       this.incrementIndex()
     })
 
     // Toggle reveal cards
-    this.shortcutKeys.registerShortcutKeyHandler('c', "Toggle card visibility", () => {
+    this.shortcutKeys.registerShortcutKeyHandler('c', 'Toggle card visibility', () => {
       this.hideList(!this.hideList())
-      this.accessibilityAnnouncement(this.hideList() ? "Cards hidden" : "Cards revealed")
+      this.accessibilityAnnouncement(this.hideList() ? 'Cards hidden' : 'Cards revealed')
     })
 
     // Toggle shuffle
-    this.shortcutKeys.registerShortcutKeyHandler('/', "Toggle shuffle", () => {
+    this.shortcutKeys.registerShortcutKeyHandler('/', 'Toggle shuffle', () => {
       this.shuffleWords(false)
-      this.accessibilityAnnouncement(this.isShuffled() ? "Shuffled" : "Unshuffled")
+      this.accessibilityAnnouncement(this.isShuffled() ? 'Shuffled' : 'Unshuffled')
     })
 
     // Toggle loop
-    this.shortcutKeys.registerShortcutKeyHandler('l', "Toggle looping", () => {
+    this.shortcutKeys.registerShortcutKeyHandler('l', 'Toggle looping', () => {
       this.loop(!this.loop())
-      this.accessibilityAnnouncement(this.loop() ? "Looping" : "Not looping")
+      this.accessibilityAnnouncement(this.loop() ? 'Looping' : 'Not looping')
     })
 
-    var changeFarnsworth = (x) => {
+    const changeFarnsworth = (x) => {
       // console.log('changing farnsworth')
       const newWpm = parseInt(this.settings.speed.wpm() as any) + x
       const newFwpm = parseInt(this.settings.speed.fwpm() as any) + x
       if (newWpm < 1 || newFwpm < 1) {
         return
       }
-  
+
       if (this.settings.speed.syncWpm()) {
         this.settings.speed.wpm(newWpm)
-        this.accessibilityAnnouncement("" + this.settings.speed.fwpm() + " FWPM")
+        this.accessibilityAnnouncement('' + this.settings.speed.fwpm() + ' FWPM')
         return
       }
-  
+
       if (newFwpm > this.settings.speed.wpm()) {
         this.settings.speed.wpm(newWpm)
       }
       this.settings.speed.fwpm(newFwpm)
-      this.accessibilityAnnouncement("" + this.settings.speed.fwpm() + " FWPM")
+      this.accessibilityAnnouncement('' + this.settings.speed.fwpm() + ' FWPM')
     }
 
     // Reduce FWPM
