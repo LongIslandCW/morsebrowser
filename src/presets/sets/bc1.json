@@ -27,6 +27,10 @@
         {
             "display": "Voice On & Spell On",
             "filename": "BC1_Von_Son.json"
+        },      
+        {
+            "display": "Sending Practice",
+            "filename": "BC2_Sending.json"
         },
         {
             "display": "Voice On & Spell Off",
