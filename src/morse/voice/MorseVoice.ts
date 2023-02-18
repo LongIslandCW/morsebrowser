@@ -250,6 +250,10 @@ export class MorseVoice implements ICookieHandler {
     if (target) {
       this.voiceLastOnly(GeneralUtils.booleanize(target.val))
     }
+    target = cookies.find(x => x.key === 'voiceRecap')
+    if (target) {
+      this.manualVoice(GeneralUtils.booleanize(target.val))
+    }
   }
 
   handleCookie = (cookie: string) => {}
