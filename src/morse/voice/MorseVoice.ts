@@ -33,7 +33,7 @@ export class MorseVoice implements ICookieHandler {
   constructor (context:MorseViewModel) {
     MorseCookies.registerHandler(this)
     this.ctxt = context
-    this.voiceEnabled = ko.observable(false)
+    this.voiceEnabled = ko.observable(true)
     this.voiceCapable = ko.observable(false)
     this.voiceThinkingTime = ko.observable(0)
     this.voiceAfterThinkingTime = ko.observable(0)
