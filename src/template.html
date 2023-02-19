@@ -414,8 +414,8 @@
                                                 data-bind="textInput: lessons.overrideMax, enable: lessons.ifOverrideMinMax() && !lessons.syncSize(), attr: { min: lessons.trueOverrideMin}">
                                         </div>
                                         <!--custom group run button-->
-                                        <button type="button" class="btn btn-success"
-                                            data-bind="click: ()=> lessons.customGroup() ? lessons.doCustomGroup() : lessons.setDisplaySelected(lessons.selectedDisplay()), enable: (lessons.selectedDisplay().display && !lessons.selectedDisplay().isDummy) || lessons.customGroup"
+                                        <button type="button" class="btn btn-success" id="btnApply"
+                                            data-bind="click: doApply, enable: applyEnabled"
                                             style="width: 146px; padding-left: 2px; padding-right: 2px;">Apply</button>
                                     </div>
                                 </div>

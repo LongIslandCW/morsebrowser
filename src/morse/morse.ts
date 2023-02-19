@@ -87,6 +87,7 @@ export class MorseViewModel {
   lockoutSaveCookiesTimerHandle:any = null
   currentSerializedSettings:any = null
   allShortcutKeys:ko.ObservableArray
+  applyEnabled:ko.Computed<boolean>
 
   // END KO observables declarations
   constructor () {
@@ -170,6 +171,13 @@ export class MorseViewModel {
     this.registerKeyboardShortcutHandlers()
 
     this.showRaw(false)
+
+    this.applyEnabled = ko.computed(() => {
+      if (this.lessons && this.lessons.customGroup()) {
+        return true
+      }
+      return this.lessons.selectedDisplay().display && !this.lessons.selectedDisplay().isDummy
+    }, this)
   }
   // END CONSTRUCTOR
 
@@ -749,6 +757,14 @@ export class MorseViewModel {
     document.body.removeChild(elemx)
   }
 
+  doApply = () => {
+    if (this.lessons.customGroup()) {
+      this.lessons.doCustomGroup()
+    } else {
+      this.lessons.setDisplaySelected(this.lessons.selectedDisplay())
+    }
+  }
+
   settingsFileChange = (element) => {
     // thanks to https://newbedev.com/how-to-access-file-input-with-knockout-binding
     // console.log(file)
@@ -768,6 +784,11 @@ export class MorseViewModel {
       settingsInfo.ifLoadSettings = true
       settingsInfo.ignoreCookies = true
       settingsInfo.custom = settings.morseSettings
+      settingsInfo.afterSettingsChange = () => {
+        if (this.applyEnabled()) {
+          this.doApply()
+        }
+      }
       MorseCookies.loadCookiesOrDefaults(settingsInfo)
     }
     fr.readAsText(file)
