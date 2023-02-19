@@ -25,7 +25,7 @@
                     'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
         })(window, document, 'script', 'dataLayer', 'GTM-PB8HW3M');</script>
     <!-- End Google Tag Manager -->
-<link rel="icon" href="LongIslandCWClub-favicon-2.jpg"><script defer src="bundleec0fc4637d1f64c90604.js"></script><link href="bundle.b790b1369a7194e0d144.css" rel="stylesheet"></head>
+<link rel="icon" href="LongIslandCWClub-favicon-2.jpg"><script defer src="bundlec3171b1fc2f89de8f1f8.js"></script><link href="bundle.b790b1369a7194e0d144.css" rel="stylesheet"></head>
 
 <body>
     <!-- Google Tag Manager (noscript) -->
@@ -414,8 +414,8 @@
                                                 data-bind="textInput: lessons.overrideMax, enable: lessons.ifOverrideMinMax() && !lessons.syncSize(), attr: { min: lessons.trueOverrideMin}">
                                         </div>
                                         <!--custom group run button-->
-                                        <button type="button" class="btn btn-success"
-                                            data-bind="click: ()=> lessons.customGroup() ? lessons.doCustomGroup() : lessons.setDisplaySelected(lessons.selectedDisplay()), enable: (lessons.selectedDisplay().display && !lessons.selectedDisplay().isDummy) || lessons.customGroup"
+                                        <button type="button" class="btn btn-success" id="btnApply"
+                                            data-bind="click: doApply, enable: applyEnabled"
                                             style="width: 146px; padding-left: 2px; padding-right: 2px;">Apply</button>
                                     </div>
                                 </div>
