@@ -785,9 +785,13 @@ export class MorseViewModel {
       settingsInfo.ignoreCookies = true
       settingsInfo.custom = settings.morseSettings
       settingsInfo.afterSettingsChange = () => {
-        if (this.applyEnabled()) {
-          this.doApply()
-        }
+        // if (this.applyEnabled()) {
+        // this.doApply()
+        // }
+        // trigger a refresh with new settings
+        const originalText = this.rawText()
+        this.setText('')
+        this.setText(originalText)
       }
       MorseCookies.loadCookiesOrDefaults(settingsInfo)
     }
