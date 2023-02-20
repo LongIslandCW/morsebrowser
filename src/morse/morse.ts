@@ -23,6 +23,7 @@ import WordInfo from './utils/wordInfo'
 import SavedSettingsInfo from './settings/savedSettingsInfo'
 import { PlayingTimeInfo } from './utils/playingTimeInfo'
 import { SettingsChangeInfo } from './settings/settingsChangeInfo'
+import { SettingsOption } from './settings/settingsOption'
 
 export class MorseViewModel {
   accessibilityAnnouncement:ko.Observable<string> = ko.observable(undefined)
@@ -769,9 +770,18 @@ export class MorseViewModel {
     // thanks to https://newbedev.com/how-to-access-file-input-with-knockout-binding
     // console.log(file)
     const file = element.files[0]
-    console.log(element.value)
+    console.log(`file:${file}`)
+    console.log(`filname:${file.name}`)
+
+    console.log(`element:${element}`)
+    console.log(`elementvalue:${element.value}`)
     const fr = new FileReader()
     fr.onload = (data) => {
+      console.log(`data:${data}`)
+      // set to your settings
+      // this.lessons.selectedSettingsPreset(this.lessons.yourSettingsDummy)
+
+      // setTimeout(() => {
       const settings = JSON.parse(data.target.result as string)
       console.log(settings)
       // this.setText(data.target.result as string)
@@ -789,11 +799,21 @@ export class MorseViewModel {
         // this.doApply()
         // }
         // trigger a refresh with new settings
-        const originalText = this.rawText()
+        /* const originalText = this.rawText()
         this.setText('')
-        this.setText(originalText)
+        this.setText(originalText) */
       }
-      MorseCookies.loadCookiesOrDefaults(settingsInfo)
+      const option = new SettingsOption()
+      option.display = file.name.split('.')[0]
+      option.filename = file.name
+      option.isCustom = true
+      option.isDummy = false
+      option.morseSettings = settings.morseSettings
+      this.lessons.customSettingsOptions.push(option)
+      this.lessons.getSettingsPresets(true)
+      this.lessons.setPresetSelected(option)
+      // MorseCookies.loadCookiesOrDefaults(settingsInfo)
+      // }, 1000)
     }
     fr.readAsText(file)
   }

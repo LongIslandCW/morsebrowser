@@ -13,6 +13,7 @@ import { MorsePresetFileFinder } from '../morsePresetFinder'
 import { MorseViewModel } from '../morse'
 import { SettingsChangeInfo } from '../settings/settingsChangeInfo'
 import SettingsOverridesJson from '../../presets/overrides/presetoverrides.json'
+import { SettingsOption } from '../settings/settingsOption'
 export default class MorseLessonPlugin implements ICookieHandler {
   autoCloseLessonAccordion:ko.Observable<boolean>
   userTarget:ko.Observable<string>
@@ -45,12 +46,13 @@ export default class MorseLessonPlugin implements ICookieHandler {
   letterGroups:ko.Computed<Array<any>>
   displays:ko.Computed<Array<any>>
   autoCloseCookieName:string
-  settingsPresets:ko.ObservableArray<any>
-  selectedSettingsPreset:ko.Observable<any>
-  lastSelectedSettingsPreset:ko.Observable<any>
+  settingsPresets:ko.ObservableArray<SettingsOption>
+  selectedSettingsPreset:ko.Observable<SettingsOption>
+  lastSelectedSettingsPreset:ko.Observable<SettingsOption>
   settingsOverridden:ko.Observable<boolean>
   morseViewModel:MorseViewModel
-  yourSettingsDummy:any
+  yourSettingsDummy:SettingsOption
+  customSettingsOptions:SettingsOption[] = []
 
   constructor (morseSettings:MorseSettings, setTextCallBack:any, timeEstimateCallback:any, morseViewModel:MorseViewModel) {
     MorseCookies.registerHandler(this)
@@ -186,9 +188,10 @@ export default class MorseLessonPlugin implements ICookieHandler {
 
   // end constructor
 
-  getSettingsPresets = () => {
-    const sps = []
+  getSettingsPresets = (forceRefresh:boolean = false) => {
+    let sps:SettingsOption[] = []
     sps.push(this.yourSettingsDummy)
+    sps = sps.concat(this.customSettingsOptions)
     const handleData = (d) => {
       // console.log(d)
       // console.log(typeof d.data.options)
@@ -200,6 +203,9 @@ export default class MorseLessonPlugin implements ICookieHandler {
     }
     if (this.selectedClass() === '') {
       // do nothing
+      if (forceRefresh) {
+        this.settingsPresets(sps)
+      }
     } else {
       const targetClass = ClassPresets.classes.find(c => c.className === this.selectedClass())
       const targetLesson = targetClass.letterGroups.find(l => l.letterGroup === this.letterGroup())
@@ -365,7 +371,7 @@ export default class MorseLessonPlugin implements ICookieHandler {
     }
   }
 
-  setPresetSelected = (preset, skipReinit = false) => {
+  setPresetSelected = (preset:SettingsOption, skipReinit = false) => {
     if (this.settingsPresetsInitialized) {
       // before we do anything, if the prior was Your Settings, then
       // make those the saved serialized, unless they've been overridden
@@ -432,16 +438,26 @@ export default class MorseLessonPlugin implements ICookieHandler {
         }
       } else {
         // console.log(`presetfilename:${preset.filename}`)
-        MorsePresetFileFinder.getMorsePresetFile(preset.filename, (d) => {
-          if (d.found) {
-            /* did this filter before keyBlacklist feature was added... */
-            settingsInfo.custom = d.data.morseSettings.filter(f => f.key !== 'showRaw')
 
-            applyOverrides()
-            // console.log(settingsInfo.custom)
-            MorseCookies.loadCookiesOrDefaults(settingsInfo)
-          }
-        })
+        if (!preset.isCustom) {
+          MorsePresetFileFinder.getMorsePresetFile(preset.filename, (d) => {
+            if (d.found) {
+            /* did this filter before keyBlacklist feature was added... */
+              settingsInfo.custom = d.data.morseSettings.filter(f => f.key !== 'showRaw')
+
+              applyOverrides()
+              // console.log(settingsInfo.custom)
+              MorseCookies.loadCookiesOrDefaults(settingsInfo)
+            }
+          })
+        } else {
+          // the settings are just attached to the option
+          settingsInfo.custom = preset.morseSettings.filter(f => f.key !== 'showRaw')
+
+          applyOverrides()
+          // console.log(settingsInfo.custom)
+          MorseCookies.loadCookiesOrDefaults(settingsInfo)
+        }
       }
 
       // give time for settings to change, then re-init the lesson
