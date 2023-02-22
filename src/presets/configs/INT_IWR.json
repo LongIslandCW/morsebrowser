@@ -11,16 +11,6 @@
 			"comment": null
 		},
 		{
-			"key": "ditFrequency",
-			"value": 600,
-			"comment": null
-		},
-		{
-			"key": "dahFrequency",
-			"value": 600,
-			"comment": null
-		},
-		{
 			"key": "preSpace",
 			"value": "0",
 			"comment": null
@@ -51,13 +41,8 @@
 			"comment": null
 		},
 		{
-			"key": "syncFreq",
-			"value": "true",
-			"comment": null
-		},
-		{
 			"key": "hideList",
-			"value": "true",
+			"value": true,
 			"comment": null
 		},
 		{
@@ -112,6 +97,11 @@
 		},
 		{
 			"key": "voiceLastOnly",
+			"value": false,
+			"comment": null
+		},
+		{
+			"key": "voiceRecap",
 			"value": false,
 			"comment": null
 		},
