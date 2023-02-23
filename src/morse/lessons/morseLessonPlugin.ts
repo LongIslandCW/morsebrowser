@@ -60,6 +60,8 @@ export default class MorseLessonPlugin implements ICookieHandler {
     this.yourSettingsDummy = { display: 'Your Settings', filename: 'dummy.json', isDummy: true }
     ko.extenders.classOrLetterGroupChange = (target, option) => {
       target.subscribe((newValue) => {
+        // console.log(`gettingsettingspresets:class:${this.selectedClass()}`)
+        // console.log(`lettergroup:${this.letterGroup()}`)
         this.getSettingsPresets(false, true)
       })
       return target
@@ -192,6 +194,19 @@ export default class MorseLessonPlugin implements ICookieHandler {
     let sps:SettingsOption[] = []
     sps.push(this.yourSettingsDummy)
     sps = sps.concat(this.customSettingsOptions)
+
+    const handleAutoSelect = () => {
+      if (selectFirstNonYour) {
+        // console.log(`length:${this.settingsPresets().length}`)
+        if (this.settingsPresets().length > 1) {
+          // console.log(`class:${this.selectedClass()}`)
+          if (this.selectedSettingsPreset().isDummy ||
+          this.selectedSettingsPreset().filename !== this.settingsPresets()[1].filename) {
+            this.setPresetSelected(this.settingsPresets()[1])
+          }
+        }
+      }
+    }
     const handleData = (d) => {
       // console.log(d)
       // console.log(typeof d.data.options)
@@ -200,11 +215,14 @@ export default class MorseLessonPlugin implements ICookieHandler {
       } else {
         this.settingsPresets(sps)
       }
+      handleAutoSelect()
     }
+
     if (this.selectedClass() === '') {
       // do nothing
       if (forceRefresh) {
         this.settingsPresets(sps)
+        handleAutoSelect()
       }
     } else {
       const targetClass = ClassPresets.classes.find(c => c.className === this.selectedClass())
@@ -219,15 +237,7 @@ export default class MorseLessonPlugin implements ICookieHandler {
         } else {
           // no matches so use default
           this.settingsPresets(sps)
-        }
-      }
-    }
-
-    if (selectFirstNonYour) {
-      if (this.settingsPresets().length > 1) {
-        if (this.selectedSettingsPreset().isDummy ||
-        this.selectedSettingsPreset().filename !== this.settingsPresets()[1].filename) {
-          this.setPresetSelected(this.settingsPresets()[1])
+          handleAutoSelect()
         }
       }
     }
