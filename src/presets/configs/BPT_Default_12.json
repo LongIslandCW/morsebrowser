@@ -11,16 +11,6 @@
 			"comment": null
 		},
 		{
-			"key": "ditFrequency",
-			"value": 600,
-			"comment": null
-		},
-		{
-			"key": "dahFrequency",
-			"value": 600,
-			"comment": null
-		},
-		{
 			"key": "preSpace",
 			"value": "0",
 			"comment": null
@@ -48,11 +38,6 @@
 		{
 			"key": "syncWpm",
 			"value": false,
-			"comment": null
-		},
-		{
-			"key": "syncFreq",
-			"value": true,
 			"comment": null
 		},
 		{
@@ -87,17 +72,17 @@
 		},
 		{
 			"key": "voiceEnabled",
-			"value": false,
+			"value": true,
 			"comment": null
 		},
 		{
 			"key": "voiceSpelling",
-			"value": false,
+			"value": true,
 			"comment": null
 		},
 		{
 			"key": "voiceThinkingTime",
-			"value": "0.75",
+			"value": "0",
 			"comment": null
 		},
 		{
@@ -113,6 +98,11 @@
 		{
 			"key": "voiceLastOnly",
 			"value": false,
+			"comment": null
+		},
+		{
+			"key": "voiceRecap",
+			"value": true,
 			"comment": null
 		},
 		{
@@ -147,12 +137,12 @@
 		},
 		{
 			"key": "hapticAccordionOpen",
-			"value": "true",
+			"value": "false",
 			"comment": null
 		},
 		{
 			"key": "miscSettingsAccordionOpen",
-			"value": false,
+			"value": "false",
 			"comment": null
 		},
 		{

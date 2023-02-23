@@ -2,12 +2,12 @@
 	"morseSettings": [
 		{
 			"key": "wpm",
-			"value": "12",
+			"value": 12,
 			"comment": null
 		},
 		{
 			"key": "fwpm",
-			"value": "12",
+			"value": 12,
 			"comment": null
 		},
 		{
@@ -42,7 +42,7 @@
 		},
 		{
 			"key": "hideList",
-			"value": false,
+			"value": true,
 			"comment": null
 		},
 		{
@@ -142,7 +142,7 @@
 		},
 		{
 			"key": "miscSettingsAccordionOpen",
-			"value": false,
+			"value": "true",
 			"comment": null
 		},
 		{
