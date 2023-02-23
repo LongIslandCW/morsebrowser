@@ -60,7 +60,7 @@ export default class MorseLessonPlugin implements ICookieHandler {
     this.yourSettingsDummy = { display: 'Your Settings', filename: 'dummy.json', isDummy: true }
     ko.extenders.classOrLetterGroupChange = (target, option) => {
       target.subscribe((newValue) => {
-        this.getSettingsPresets()
+        this.getSettingsPresets(false, true)
       })
       return target
     }
@@ -188,7 +188,7 @@ export default class MorseLessonPlugin implements ICookieHandler {
 
   // end constructor
 
-  getSettingsPresets = (forceRefresh:boolean = false) => {
+  getSettingsPresets = (forceRefresh:boolean = false, selectFirstNonYour:boolean = false) => {
     let sps:SettingsOption[] = []
     sps.push(this.yourSettingsDummy)
     sps = sps.concat(this.customSettingsOptions)
@@ -222,7 +222,15 @@ export default class MorseLessonPlugin implements ICookieHandler {
         }
       }
     }
-    // this.settingsPresets(sps)
+
+    if (selectFirstNonYour) {
+      if (this.settingsPresets().length > 1) {
+        if (this.selectedSettingsPreset().isDummy ||
+        this.selectedSettingsPreset().filename !== this.settingsPresets()[1].filename) {
+          this.setPresetSelected(this.settingsPresets()[1])
+        }
+      }
+    }
   }
 
   doCustomGroup = () => {
@@ -286,21 +294,23 @@ export default class MorseLessonPlugin implements ICookieHandler {
   }
 
   getWordList = (filename) => {
-    const isText = filename.endsWith('txt')
+    if (filename) {
+      const isText = filename.endsWith('txt')
 
-    const afterFound = (result) => {
-      if (result.found) {
-        if (isText) {
-          this.setText(result.data)
+      const afterFound = (result) => {
+        if (result.found) {
+          if (isText) {
+            this.setText(result.data)
+          } else {
+            this.randomWordList(result.data, false)
+          }
         } else {
-          this.randomWordList(result.data, false)
+          this.setText(`ERROR: Couldn't find ${filename} or it lacks .txt or .json extension.`)
         }
-      } else {
-        this.setText(`ERROR: Couldn't find ${filename} or it lacks .txt or .json extension.`)
       }
-    }
 
-    MorseLessonFileFinder.getMorseLessonFile(filename, afterFound)
+      MorseLessonFileFinder.getMorseLessonFile(filename, afterFound)
+    }
   }
 
   setUserTargetInitialized = () => {
