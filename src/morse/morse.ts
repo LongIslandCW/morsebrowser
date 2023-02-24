@@ -73,7 +73,7 @@ export class MorseViewModel {
   settings:MorseSettings
   lessons:MorseLessonPlugin
   flaggedWords:FlaggedWords
-  voiceBuffer:string[]
+  // voiceBuffer:string[]
   doPlayTimeout:any
   rss:MorseRssPlugin
   lastShuffled:string = ''
@@ -230,6 +230,8 @@ export class MorseViewModel {
     } else {
       this.rawText(s)
     }
+    // whenever text changes, clear the voice buffer
+    this.morseVoice.voiceBuffer = []
   }
 
   words:ko.Computed<WordInfo[]> = ko.computed(() => {
@@ -394,7 +396,7 @@ export class MorseViewModel {
     if (freshStart) {
       this.runningPlayMs(0)
       // clear the voice cache
-      this.voiceBuffer = []
+      this.morseVoice.voiceBuffer = []
       // prime the pump for safari
       this.morseVoice.primeThePump()
       // clear the card buffer
