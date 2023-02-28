@@ -518,11 +518,29 @@ export class MorseViewModel {
           const phrasePieces = phraseToSpeak.split(' ')
           phraseToSpeak = phrasePieces[phrasePieces.length - 1]
         }
+
+        const voiceAction = (p:number, pieces:string[]) => {
+          this.morseVoice.speakPhrase(pieces[p], () => {
+            // what gets called after speaking
+            if ((p + 1) === pieces.length) {
+              if (needToTrail) {
+                advanceTrail()
+              }
+              this.playEnded(true)
+            } else {
+              voiceAction(p + 1, pieces)
+            }
+          })
+        }
+
         setTimeout(() => {
           // for reasons I can't recall, wordifyPunctuation adds pipe character
           // remove it
           const finalPhraseToSpeak = phraseToSpeak.replace(/\|/g, ' ')
-
+          console.log(`finalphrasetospeak:${finalPhraseToSpeak}`)
+          const pieces = finalPhraseToSpeak.split(' ')
+          voiceAction(0, pieces)
+          /* const piece = 0
           this.morseVoice.speakPhrase(finalPhraseToSpeak, () => {
             // what gets called after speaking
 
@@ -530,7 +548,7 @@ export class MorseViewModel {
               advanceTrail()
             }
             this.playEnded(true)
-          })
+          }) */
         }, this.morseVoice.voiceThinkingTime() * 1000)
       } else {
         this.playEnded(true)
