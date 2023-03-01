@@ -537,10 +537,13 @@ export class MorseViewModel {
           // for reasons I can't recall, wordifyPunctuation adds pipe character
           // remove it
           const finalPhraseToSpeak = phraseToSpeak.replace(/\|/g, ' ')
+            .replace(/\WV\W/g, ' VEE ')
+            .replace(/^V\W/g, ' VEE ')
+            .replace(/\WV$/g, ' VEE ')
           console.log(`finalphrasetospeak:${finalPhraseToSpeak}`)
-          const pieces = finalPhraseToSpeak.split(' ')
-          voiceAction(0, pieces)
-          /* const piece = 0
+          // const pieces = finalPhraseToSpeak.split(' ')
+          // voiceAction(0, pieces)
+          // const piece = 0
           this.morseVoice.speakPhrase(finalPhraseToSpeak, () => {
             // what gets called after speaking
 
@@ -548,7 +551,7 @@ export class MorseViewModel {
               advanceTrail()
             }
             this.playEnded(true)
-          }) */
+          })
         }, this.morseVoice.voiceThinkingTime() * 1000)
       } else {
         this.playEnded(true)
@@ -580,7 +583,11 @@ export class MorseViewModel {
       // for reasons I can't recall, wordifyPunctuation adds pipe character
       // remove it
       const finalPhraseToSpeak = phrase.replace(/\|/g, ' ')
-      const voicAction = (p:number, pieces:string[]) => {
+        .replace(/\|/g, ' ')
+        .replace(/\WV\W/g, ' VEE ')
+        .replace(/^V\W/g, ' VEE ')
+        .replace(/\WV$/g, ' VEE ')
+      /* const voicAction = (p:number, pieces:string[]) => {
         this.morseVoice.speakPhrase(pieces[p], () => {
           // what gets called after speaking
           if ((p + 1) === pieces.length) {
@@ -591,11 +598,11 @@ export class MorseViewModel {
         }
         )
       }
-      voicAction(0, finalPhraseToSpeak.split(' '))
-      /* this.morseVoice.speakPhrase(finalPhraseToSpeak, () => {
+      voicAction(0, finalPhraseToSpeak.split(' ')) */
+      this.morseVoice.speakPhrase(finalPhraseToSpeak, () => {
       // what gets called after speaking
         setTimeout(() => { this.speakVoiceBuffer() }, 250)
-      }) */
+      })
     }
   }
 
