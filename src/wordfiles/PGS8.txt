@@ -1,8 +1,8 @@
 AR 
-GA
+GA 
 {IN|indiana} 
-IA
-NE
-PA
-RI
-TN
+IA 
+NE 
+PA 
+RI 
+TN 
