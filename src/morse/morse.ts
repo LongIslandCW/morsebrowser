@@ -130,7 +130,6 @@ export class MorseViewModel {
       this.morseDisabled(this.getParameterByName('morseDisabled') === 'true')
     }
 
-    
     // seems to need to happen early
     // this.morseWordPlayer = new MorseWordPlayer(new MorseWavBufferPlayer())
     this.morseWordPlayer = new MorseWordPlayer()
@@ -807,6 +806,7 @@ export class MorseViewModel {
     savedInfos.push(new SavedSettingsInfo('intervalTimingsText', this.settings.speed.intervalTimingsText()))
     savedInfos.push(new SavedSettingsInfo('intervalWpmText', this.settings.speed.intervalWpmText()))
     savedInfos.push(new SavedSettingsInfo('intervalFwpmText', this.settings.speed.intervalFwpmText()))
+    savedInfos.push(new SavedSettingsInfo('voiceBufferMaxLength', this.morseVoice.voiceBufferMaxLength()))
 
     return settings
   }

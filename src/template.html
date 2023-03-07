@@ -708,6 +708,18 @@
                                                     data-bind="textInput: morseVoice.voiceRate">
                                             </div>
                                         </div>
+
+                                        <!-- voice buffermax-->
+                                        <div class="col-md-auto"
+                                            data-bind="if: showExpertSettings() && morseVoice.voiceEnabled()">
+                                            <div class="input-group">
+                                                <span class="input-group-text">Buffer Words<img width=20 height=20
+                                                        data-bind="attr:{ src: morseLoadImages().getSrc('bookshelfImage')}"></span>
+                                                <input type="number" style="max-width:75px; min-width: 75px;"
+                                                    class="form-control" min="1" max="999" step="1"
+                                                    data-bind="textInput: morseVoice.voiceBufferMaxLength">
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <!--sound slope -->
