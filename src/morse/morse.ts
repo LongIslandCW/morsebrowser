@@ -440,8 +440,15 @@ export class MorseViewModel {
     if (this.morseVoice.voiceBufferMaxLength() === 1) {
       return true
     }
+    // console.log(`voiceBufferMaxLength:${this.morseVoice.voiceBufferMaxLength()}`)
     const isNotLastWord = this.currentIndex() < this.words().length - 1
-    const maxBufferReached = !isNotLastWord || (this.morseVoice.voiceBuffer.length === this.morseVoice.voiceBufferMaxLength())
+    if (!isNotLastWord) {
+      return true
+    }
+    // console.log(`isnotlastword${isNotLastWord}`)
+    // console.log(`bufferlength:${this.morseVoice.voiceBuffer.length}`)
+    // force to int just in case
+    const maxBufferReached = this.morseVoice.voiceBuffer.length === parseInt(this.morseVoice.voiceBufferMaxLength() as any)
     // console.log(`maxBufferReached:${maxBufferReached}`)
     return maxBufferReached
   }
@@ -531,6 +538,7 @@ export class MorseViewModel {
 
     if (needToSpeak) {
       // speak the voice buffer if there's a newline or nothing more to play
+      console.log('entered needtospeak')
       const speakText = this.morseVoice.voiceBuffer[0]
       const hasNewline = speakText.indexOf('\n') !== -1
 
