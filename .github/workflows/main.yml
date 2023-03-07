@@ -74,6 +74,7 @@ jobs:
             1_0_8
             1_0_9
             1_0_10
+            1_10
             soundslope
           # Do not actually push back, but use `--dry-run` on `git push` invocations insead.
           # dry-run: # optional
