@@ -130,6 +130,7 @@ export class MorseViewModel {
       this.morseDisabled(this.getParameterByName('morseDisabled') === 'true')
     }
 
+    
     // seems to need to happen early
     // this.morseWordPlayer = new MorseWordPlayer(new MorseWavBufferPlayer())
     this.morseWordPlayer = new MorseWordPlayer()
@@ -150,6 +151,10 @@ export class MorseViewModel {
       this.morseVoice.voiceEnabled(true)
     }
 
+    // check for voicebuffermax
+    if (this.getParameterByName('voiceBufferMax')) {
+      this.morseVoice.voiceBufferMaxLength(parseInt(this.getParameterByName('voiceBufferMax')))
+    }
     // are we on the dev site?
     this.isDev(window.location.href.toLowerCase().indexOf('/dev/') > -1)
 
@@ -343,7 +348,7 @@ export class MorseViewModel {
     config.riseMsOffset = parseFloat(this.riseMsOffset() as any)
     config.decayMsOffset = parseFloat(this.decayMsOffset() as any)
     // suppress wordspaces when using speak so "thinking time" will control
-    if (this.morseVoice && !this.morseVoice.manualVoice()) {
+    if (this.morseVoice && !this.morseVoice.manualVoice() && this.ifMaxVoiceBufferReached()) {
       config.trimLastWordSpace = this.morseVoice.voiceEnabled() && !this.cardBufferManager.hasMoreMorse()
       config.voiceEnabled = this.morseVoice.voiceEnabled()
     }
@@ -431,6 +436,13 @@ export class MorseViewModel {
     playJustEnded || fromPlayButton ? 0 : 1000)
   }
 
+  ifMaxVoiceBufferReached = ():boolean => {
+    const isNotLastWord = this.currentIndex() < this.words().length - 1
+    const maxBufferReached = !isNotLastWord || (this.morseVoice.voiceBuffer.length === this.morseVoice.voiceBufferMaxLength())
+    // console.log(`maxBufferReached:${maxBufferReached}`)
+    return maxBufferReached
+  }
+
   playEnded = (fromVoiceOrTrail) => {
     // voice or trail have timers that might call this after user has hit stop
     // specifically they have built in pauses for "thinking time" during which the user
@@ -449,11 +461,19 @@ export class MorseViewModel {
     // where are we in the words to process?
     const isNotLastWord = this.currentIndex() < this.words().length - 1
     const anyNewLines = this.rawText().indexOf('\n') !== -1
-    const needToSpeak = this.morseVoice.voiceEnabled() && !fromVoiceOrTrail && !this.cardBufferManager.hasMoreMorse()
+    const maxBufferReached = this.ifMaxVoiceBufferReached()
+    // console.log(`maxBufferReached:${maxBufferReached}`)
+    const needToSpeak = this.morseVoice.voiceEnabled() &&
+      !fromVoiceOrTrail &&
+      !this.cardBufferManager.hasMoreMorse() &&
+      maxBufferReached
+
+    // console.log(`need to speak:${needToSpeak}`)
     const needToTrail = this.trailReveal() && !fromVoiceOrTrail
     const speakAndTrail = needToSpeak && needToTrail
 
     const noDelays = !needToSpeak && !needToTrail
+
     const advanceTrail = () => {
       // note we eliminate the trail delays if speaking
       if (this.trailReveal()) {
@@ -511,7 +531,8 @@ export class MorseViewModel {
       const speakText = this.morseVoice.voiceBuffer[0]
       const hasNewline = speakText.indexOf('\n') !== -1
 
-      const speakCondition = !this.morseVoice.manualVoice() && (hasNewline || !isNotLastWord || !anyNewLines || !this.settings.misc.newlineChunking())
+      const speakCondition = !this.morseVoice.manualVoice() &&
+                (hasNewline || !isNotLastWord || !anyNewLines || !this.settings.misc.newlineChunking())
       if (speakCondition) {
         let phraseToSpeak = this.getPhraseToSpeakFromBuffer()
         if (this.morseVoice.voiceLastOnly()) {

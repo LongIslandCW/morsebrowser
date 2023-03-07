@@ -22,6 +22,7 @@ export class MorseVoice implements ICookieHandler {
   voiceLang:ko.Observable<string>
   voiceVoices:ko.ObservableArray<any>
   voiceBuffer:Array<any>
+  voiceBufferMaxLength:ko.Observable<number>
   ctxt:MorseViewModel
   voiceSpelling:ko.Observable<boolean>
   // keep a reference because read that garbage collector can grab
@@ -45,6 +46,7 @@ export class MorseVoice implements ICookieHandler {
     this.voiceLang = ko.observable('en-us')
     this.voiceVoices = ko.observableArray([])
     this.voiceBuffer = []
+    this.voiceBufferMaxLength = ko.observable(1)
     this.voiceSpelling = ko.observable(true)
     this.voiceLastOnly = ko.observable(false)
     this.manualVoice = ko.observable(true)
