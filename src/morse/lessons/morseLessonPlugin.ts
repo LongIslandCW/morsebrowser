@@ -13,6 +13,7 @@ import { MorsePresetFileFinder } from '../morsePresetFinder'
 import { MorseViewModel } from '../morse'
 import { SettingsChangeInfo } from '../settings/settingsChangeInfo'
 import SettingsOverridesJson from '../../presets/overrides/presetoverrides.json'
+import { SettingsOption } from '../settings/settingsOption'
 export default class MorseLessonPlugin implements ICookieHandler {
   autoCloseLessonAccordion:ko.Observable<boolean>
   userTarget:ko.Observable<string>
@@ -45,12 +46,13 @@ export default class MorseLessonPlugin implements ICookieHandler {
   letterGroups:ko.Computed<Array<any>>
   displays:ko.Computed<Array<any>>
   autoCloseCookieName:string
-  settingsPresets:ko.ObservableArray<any>
-  selectedSettingsPreset:ko.Observable<any>
-  lastSelectedSettingsPreset:ko.Observable<any>
+  settingsPresets:ko.ObservableArray<SettingsOption>
+  selectedSettingsPreset:ko.Observable<SettingsOption>
+  lastSelectedSettingsPreset:ko.Observable<SettingsOption>
   settingsOverridden:ko.Observable<boolean>
   morseViewModel:MorseViewModel
-  yourSettingsDummy:any
+  yourSettingsDummy:SettingsOption
+  customSettingsOptions:SettingsOption[] = []
 
   constructor (morseSettings:MorseSettings, setTextCallBack:any, timeEstimateCallback:any, morseViewModel:MorseViewModel) {
     MorseCookies.registerHandler(this)
@@ -58,7 +60,9 @@ export default class MorseLessonPlugin implements ICookieHandler {
     this.yourSettingsDummy = { display: 'Your Settings', filename: 'dummy.json', isDummy: true }
     ko.extenders.classOrLetterGroupChange = (target, option) => {
       target.subscribe((newValue) => {
-        this.getSettingsPresets()
+        // console.log(`gettingsettingspresets:class:${this.selectedClass()}`)
+        // console.log(`lettergroup:${this.letterGroup()}`)
+        this.getSettingsPresets(false, true)
       })
       return target
     }
@@ -186,9 +190,23 @@ export default class MorseLessonPlugin implements ICookieHandler {
 
   // end constructor
 
-  getSettingsPresets = () => {
-    const sps = []
+  getSettingsPresets = (forceRefresh:boolean = false, selectFirstNonYour:boolean = false) => {
+    let sps:SettingsOption[] = []
     sps.push(this.yourSettingsDummy)
+    sps = sps.concat(this.customSettingsOptions)
+
+    const handleAutoSelect = () => {
+      if (selectFirstNonYour) {
+        // console.log(`length:${this.settingsPresets().length}`)
+        if (this.settingsPresets().length > 1) {
+          // console.log(`class:${this.selectedClass()}`)
+          if (this.selectedSettingsPreset().isDummy ||
+          this.selectedSettingsPreset().filename !== this.settingsPresets()[1].filename) {
+            this.setPresetSelected(this.settingsPresets()[1])
+          }
+        }
+      }
+    }
     const handleData = (d) => {
       // console.log(d)
       // console.log(typeof d.data.options)
@@ -197,9 +215,15 @@ export default class MorseLessonPlugin implements ICookieHandler {
       } else {
         this.settingsPresets(sps)
       }
+      handleAutoSelect()
     }
+
     if (this.selectedClass() === '') {
       // do nothing
+      if (forceRefresh) {
+        this.settingsPresets(sps)
+        handleAutoSelect()
+      }
     } else {
       const targetClass = ClassPresets.classes.find(c => c.className === this.selectedClass())
       const targetLesson = targetClass.letterGroups.find(l => l.letterGroup === this.letterGroup())
@@ -213,10 +237,10 @@ export default class MorseLessonPlugin implements ICookieHandler {
         } else {
           // no matches so use default
           this.settingsPresets(sps)
+          handleAutoSelect()
         }
       }
     }
-    // this.settingsPresets(sps)
   }
 
   doCustomGroup = () => {
@@ -280,21 +304,23 @@ export default class MorseLessonPlugin implements ICookieHandler {
   }
 
   getWordList = (filename) => {
-    const isText = filename.endsWith('txt')
+    if (filename) {
+      const isText = filename.endsWith('txt')
 
-    const afterFound = (result) => {
-      if (result.found) {
-        if (isText) {
-          this.setText(result.data)
+      const afterFound = (result) => {
+        if (result.found) {
+          if (isText) {
+            this.setText(result.data)
+          } else {
+            this.randomWordList(result.data, false)
+          }
         } else {
-          this.randomWordList(result.data, false)
+          this.setText(`ERROR: Couldn't find ${filename} or it lacks .txt or .json extension.`)
         }
-      } else {
-        this.setText(`ERROR: Couldn't find ${filename} or it lacks .txt or .json extension.`)
       }
-    }
 
-    MorseLessonFileFinder.getMorseLessonFile(filename, afterFound)
+      MorseLessonFileFinder.getMorseLessonFile(filename, afterFound)
+    }
   }
 
   setUserTargetInitialized = () => {
@@ -365,7 +391,7 @@ export default class MorseLessonPlugin implements ICookieHandler {
     }
   }
 
-  setPresetSelected = (preset, skipReinit = false) => {
+  setPresetSelected = (preset:SettingsOption, skipReinit = false) => {
     if (this.settingsPresetsInitialized) {
       // before we do anything, if the prior was Your Settings, then
       // make those the saved serialized, unless they've been overridden
@@ -432,16 +458,26 @@ export default class MorseLessonPlugin implements ICookieHandler {
         }
       } else {
         // console.log(`presetfilename:${preset.filename}`)
-        MorsePresetFileFinder.getMorsePresetFile(preset.filename, (d) => {
-          if (d.found) {
-            /* did this filter before keyBlacklist feature was added... */
-            settingsInfo.custom = d.data.morseSettings.filter(f => f.key !== 'showRaw')
 
-            applyOverrides()
-            // console.log(settingsInfo.custom)
-            MorseCookies.loadCookiesOrDefaults(settingsInfo)
-          }
-        })
+        if (!preset.isCustom) {
+          MorsePresetFileFinder.getMorsePresetFile(preset.filename, (d) => {
+            if (d.found) {
+            /* did this filter before keyBlacklist feature was added... */
+              settingsInfo.custom = d.data.morseSettings.filter(f => f.key !== 'showRaw')
+
+              applyOverrides()
+              // console.log(settingsInfo.custom)
+              MorseCookies.loadCookiesOrDefaults(settingsInfo)
+            }
+          })
+        } else {
+          // the settings are just attached to the option
+          settingsInfo.custom = preset.morseSettings.filter(f => f.key !== 'showRaw')
+
+          applyOverrides()
+          // console.log(settingsInfo.custom)
+          MorseCookies.loadCookiesOrDefaults(settingsInfo)
+        }
       }
 
       // give time for settings to change, then re-init the lesson

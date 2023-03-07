@@ -13,7 +13,7 @@ export class MorseCookies {
 
   static loadCookiesOrDefaults = (settingsChangeInfo:SettingsChangeInfo) => {
     // load any existing cookie values
-    const { lockoutCookieChanges, ctxt, custom, ignoreCookies, ifLoadSettings, keyBlacklist } = settingsChangeInfo
+    const { lockoutCookieChanges, ctxt, custom, ignoreCookies, ifLoadSettings, keyBlacklist, afterSettingsChange } = settingsChangeInfo
     if (lockoutCookieChanges) {
       if (ctxt.allowSaveCookies() && settingsChangeInfo.isYourSettings) {
         // not currently locked out so save serialized settings
@@ -84,6 +84,9 @@ export class MorseCookies {
         console.log('in special handling')
         ctxt[x.key](x.val)
       })
+    }
+    if (afterSettingsChange) {
+      afterSettingsChange()
     }
   }
 }

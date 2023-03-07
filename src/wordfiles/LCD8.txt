@@ -1,10 +1,10 @@
 CT 
-{ID|idaho}
-IL
+{ID|idaho} 
+IL 
 {IN|indiana} 
-NC
-ND
-SC
-SD
-TN
+NC 
+ND 
+SC 
+SD 
+TN 
 

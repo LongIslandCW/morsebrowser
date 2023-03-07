@@ -40,6 +40,10 @@
             "display": "Progressive Word Building",
             "filename": "INT_PWG.json"
         },
+          {
+            "display": "Suduko",
+            "filename": "suduko16.json"
+        },
         {
             "display": "Voice On & Spell On",
             "filename": "INT_Von_Son.json"

@@ -2,22 +2,12 @@
 	"morseSettings": [
 		{
 			"key": "wpm",
-			"value": "30",
+			"value": 30,
 			"comment": null
 		},
 		{
 			"key": "fwpm",
-			"value": "30",
-			"comment": null
-		},
-		{
-			"key": "ditFrequency",
-			"value": 600,
-			"comment": null
-		},
-		{
-			"key": "dahFrequency",
-			"value": 600,
+			"value": 30,
 			"comment": null
 		},
 		{
@@ -48,11 +38,6 @@
 		{
 			"key": "syncWpm",
 			"value": false,
-			"comment": null
-		},
-		{
-			"key": "syncFreq",
-			"value": "true",
 			"comment": null
 		},
 		{
@@ -112,6 +97,11 @@
 		},
 		{
 			"key": "voiceLastOnly",
+			"value": false,
+			"comment": null
+		},
+		{
+			"key": "voiceRecap",
 			"value": false,
 			"comment": null
 		},

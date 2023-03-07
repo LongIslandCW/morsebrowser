@@ -40,6 +40,8 @@ import spellcheckSvg from 'bootstrap-icons/icons/spellcheck.svg'
 import alignendSvg from 'bootstrap-icons/icons/align-end.svg'
 import universalcircleSvg from 'bootstrap-icons/icons/universal-access-circle.svg'
 import rocketTakeoffSvg from 'bootstrap-icons/icons/rocket-takeoff.svg'
+import wrenchAdjustableSvg from 'bootstrap-icons/icons/wrench-adjustable.svg'
+import bootstrapRebootSvg from 'bootstrap-icons/icons/bootstrap-reboot.svg'
 
 export class MorseLoadImages {
   info = []
@@ -86,6 +88,8 @@ export class MorseLoadImages {
     this.info.push({ key: 'alignendImage', src: alignendSvg })
     this.info.push({ key: 'universalCircleImage', src: universalcircleSvg })
     this.info.push({ key: 'rocketTakeoffImage', src: rocketTakeoffSvg })
+    this.info.push({ key: 'wrenchAdjustableImage', src: wrenchAdjustableSvg })
+    this.info.push({ key: 'bootstrapRebootImage', src: bootstrapRebootSvg })
     const dupes = []
     /* Accomodate where id="xyzImage" This is discouraged because good practice not to duplicate ids */
     /* see below getSrc */

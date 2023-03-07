@@ -23,8 +23,10 @@ import WordInfo from './utils/wordInfo'
 import SavedSettingsInfo from './settings/savedSettingsInfo'
 import { PlayingTimeInfo } from './utils/playingTimeInfo'
 import { SettingsChangeInfo } from './settings/settingsChangeInfo'
+import { SettingsOption } from './settings/settingsOption'
 
 export class MorseViewModel {
+  accessibilityAnnouncement:ko.Observable<string> = ko.observable(undefined)
   textBuffer:ko.Observable<string> = ko.observable('')
   hideList:ko.Observable<boolean> = ko.observable(true)
   currentIndex:ko.Observable<number> = ko.observable(0)
@@ -53,7 +55,7 @@ export class MorseViewModel {
   cardFontPx = ko.observable()
   loop:ko.Observable<boolean> = ko.observable(false)
   morseVoice:MorseVoice
-  shortCutKeys:MorseShortcutKeys
+  shortcutKeys:MorseShortcutKeys
   // note this is whether you see any cards at all,
   // not whether the words on them are obscured
   cardsVisible:ko.Observable<boolean> = ko.observable(true)
@@ -71,7 +73,7 @@ export class MorseViewModel {
   settings:MorseSettings
   lessons:MorseLessonPlugin
   flaggedWords:FlaggedWords
-  voiceBuffer:string[]
+  // voiceBuffer:string[]
   doPlayTimeout:any
   rss:MorseRssPlugin
   lastShuffled:string = ''
@@ -85,6 +87,8 @@ export class MorseViewModel {
   allowSaveCookies:ko.Observable<boolean> = ko.observable(true)
   lockoutSaveCookiesTimerHandle:any = null
   currentSerializedSettings:any = null
+  allShortcutKeys:ko.ObservableArray
+  applyEnabled:ko.Computed<boolean>
 
   // END KO observables declarations
   constructor () {
@@ -126,6 +130,7 @@ export class MorseViewModel {
       this.morseDisabled(this.getParameterByName('morseDisabled') === 'true')
     }
 
+    
     // seems to need to happen early
     // this.morseWordPlayer = new MorseWordPlayer(new MorseWavBufferPlayer())
     this.morseWordPlayer = new MorseWordPlayer()
@@ -146,8 +151,10 @@ export class MorseViewModel {
       this.morseVoice.voiceEnabled(true)
     }
 
-    this.shortCutKeys = new MorseShortcutKeys(this.settings)
-
+    // check for voicebuffermax
+    if (this.getParameterByName('voiceBufferMax')) {
+      this.morseVoice.voiceBufferMaxLength(parseInt(this.getParameterByName('voiceBufferMax')))
+    }
     // are we on the dev site?
     this.isDev(window.location.href.toLowerCase().indexOf('/dev/') > -1)
 
@@ -161,7 +168,22 @@ export class MorseViewModel {
     // card buffer manager
     this.cardBufferManager = new CardBufferManager(() => this.currentIndex(), () => this.words())
 
+    // Keep track of registered shortcut keys in an observable array
+    // so we can display them on the page without having to hard-code them.
+    this.allShortcutKeys = ko.observableArray([])
+    this.shortcutKeys = new MorseShortcutKeys((key, title) => {
+      this.allShortcutKeys.push({ key, title })
+    })
+    this.registerKeyboardShortcutHandlers()
+
     this.showRaw(false)
+
+    this.applyEnabled = ko.computed(() => {
+      if (this.lessons && this.lessons.customGroup()) {
+        return true
+      }
+      return this.lessons.selectedDisplay().display && !this.lessons.selectedDisplay().isDummy
+    }, this)
   }
   // END CONSTRUCTOR
 
@@ -213,6 +235,8 @@ export class MorseViewModel {
     } else {
       this.rawText(s)
     }
+    // whenever text changes, clear the voice buffer
+    this.morseVoice.voiceBuffer = []
   }
 
   words:ko.Computed<WordInfo[]> = ko.computed(() => {
@@ -324,7 +348,7 @@ export class MorseViewModel {
     config.riseMsOffset = parseFloat(this.riseMsOffset() as any)
     config.decayMsOffset = parseFloat(this.decayMsOffset() as any)
     // suppress wordspaces when using speak so "thinking time" will control
-    if (this.morseVoice) {
+    if (this.morseVoice && !this.morseVoice.manualVoice() && this.ifMaxVoiceBufferReached()) {
       config.trimLastWordSpace = this.morseVoice.voiceEnabled() && !this.cardBufferManager.hasMoreMorse()
       config.voiceEnabled = this.morseVoice.voiceEnabled()
     }
@@ -340,6 +364,15 @@ export class MorseViewModel {
       // this.charsPlayed(this.charsPlayed() + config.word.replace(' ', '').length)
       // this.playEnded(fromVoiceOrTrail)
     })
+  }
+
+  // Convenience method for toggling playback
+  togglePlayback = () => {
+    if (this.playerPlaying()) {
+      this.doPause(false, true, false)
+    } else {
+      this.doPlay(true, false)
+    }
   }
 
   doPlay = (playJustEnded:boolean, fromPlayButton:boolean) => {
@@ -368,7 +401,7 @@ export class MorseViewModel {
     if (freshStart) {
       this.runningPlayMs(0)
       // clear the voice cache
-      this.voiceBuffer = []
+      this.morseVoice.voiceBuffer = []
       // prime the pump for safari
       this.morseVoice.primeThePump()
       // clear the card buffer
@@ -389,6 +422,7 @@ export class MorseViewModel {
       // help trailing reveal, max should always be one behind before we're about to play
         this.maxRevealedTrail(this.currentIndex() - 1)
         const config = this.getMorseStringToWavBufferConfig(this.cardBufferManager.getNextMorse())
+        this.addToVoiceBuffer()
         this.morseWordPlayer.play(config, (fromVoiceOrTrail) => {
           this.charsPlayed(this.charsPlayed() + config.word.replace(' ', '').length)
           this.playEnded(fromVoiceOrTrail)
@@ -400,6 +434,17 @@ export class MorseViewModel {
     },
     // timeout parameters
     playJustEnded || fromPlayButton ? 0 : 1000)
+  }
+
+  ifMaxVoiceBufferReached = ():boolean => {
+    // ignore if is 1
+    if (this.morseVoice.voiceBufferMaxLength() === 1) {
+      return true
+    }
+    const isNotLastWord = this.currentIndex() < this.words().length - 1
+    const maxBufferReached = !isNotLastWord || (this.morseVoice.voiceBuffer.length === this.morseVoice.voiceBufferMaxLength())
+    // console.log(`maxBufferReached:${maxBufferReached}`)
+    return maxBufferReached
   }
 
   playEnded = (fromVoiceOrTrail) => {
@@ -420,11 +465,19 @@ export class MorseViewModel {
     // where are we in the words to process?
     const isNotLastWord = this.currentIndex() < this.words().length - 1
     const anyNewLines = this.rawText().indexOf('\n') !== -1
-    const needToSpeak = this.morseVoice.voiceEnabled() && !fromVoiceOrTrail && !this.cardBufferManager.hasMoreMorse()
+    const maxBufferReached = this.ifMaxVoiceBufferReached()
+    // console.log(`maxBufferReached:${maxBufferReached}`)
+    const needToSpeak = this.morseVoice.voiceEnabled() &&
+      !fromVoiceOrTrail &&
+      !this.cardBufferManager.hasMoreMorse() &&
+      maxBufferReached
+
+    // console.log(`need to speak:${needToSpeak}`)
     const needToTrail = this.trailReveal() && !fromVoiceOrTrail
     const speakAndTrail = needToSpeak && needToTrail
 
     const noDelays = !needToSpeak && !needToTrail
+
     const advanceTrail = () => {
       // note we eliminate the trail delays if speaking
       if (this.trailReveal()) {
@@ -461,7 +514,10 @@ export class MorseViewModel {
           this.incrementIndex()
           cardChanged = true
         }
-        this.cardSpaceTimerHandle = setTimeout(() => { this.doPlay(true, false) }, !cardChanged ? 0 : this.cardSpace() * 1000)
+        this.cardSpaceTimerHandle = setTimeout(() => {
+          // this.addToVoiceBuffer()
+          this.doPlay(true, false)
+        }, !cardChanged ? 0 : this.cardSpace() * 1000)
       } else {
       // nothing more to play
         const finalToDo = () => this.doPause(true, false, false)
@@ -476,51 +532,46 @@ export class MorseViewModel {
 
     if (needToSpeak) {
       // speak the voice buffer if there's a newline or nothing more to play
-      const currentWord = this.words()[this.currentIndex()]
-      console.log(`currentword:${currentWord.rawWord}`)
-      const speakText = currentWord.speakText(this.morseVoice.voiceSpelling())
-      console.log(`speaktext:${speakText}`)
+      const speakText = this.morseVoice.voiceBuffer[0]
       const hasNewline = speakText.indexOf('\n') !== -1
-      this.morseVoice.voiceBuffer.push(speakText)
-      this.logToFlaggedWords(`currentWord:${currentWord}`)
-      this.logToFlaggedWords(`hasNewline:${hasNewline} isNotLastWord: ${isNotLastWord} anyNewLines:${anyNewLines}`)
-      const speakCondition = hasNewline || !isNotLastWord || !anyNewLines || !this.settings.misc.newlineChunking()
-      this.logToFlaggedWords(`speakCondition:${speakCondition}`)
-      if (speakCondition) {
-        this.logToFlaggedWords(`about to wordify:'${this.morseVoice.voiceBuffer.join(' ')}'`)
-        let phraseToSpeak
-        try {
-          const joinedBuffer = this.morseVoice.voiceBuffer.join(' ')
-          phraseToSpeak = joinedBuffer
-          /* if (this.morseVoice.voiceSpelling()) {
-            joinedBuffer = joinedBuffer.split('').join(' ')
-          }
-          phraseToSpeak = MorseStringUtils.wordifyPunctuation(joinedBuffer) */
-          phraseToSpeak = phraseToSpeak.replace(/\n/g, ' ').trim()
-        } catch (e) {
-          this.logToFlaggedWords(`caught after wordify:${e}`)
-        }
-        this.logToFlaggedWords(`phraseToSpeak:'${phraseToSpeak}'`)
-        // clear the buffer
-        this.morseVoice.voiceBuffer = []
-        this.logToFlaggedWords(`voiceThinkingTime:${this.morseVoice.voiceThinkingTime()}`)
 
+      const speakCondition = !this.morseVoice.manualVoice() &&
+                (hasNewline || !isNotLastWord || !anyNewLines || !this.settings.misc.newlineChunking())
+      if (speakCondition) {
+        let phraseToSpeak = this.getPhraseToSpeakFromBuffer()
         if (this.morseVoice.voiceLastOnly()) {
           const phrasePieces = phraseToSpeak.split(' ')
           phraseToSpeak = phrasePieces[phrasePieces.length - 1]
         }
+
+        const voiceAction = (p:number, pieces:string[]) => {
+          this.morseVoice.speakPhrase(pieces[p], () => {
+            // what gets called after speaking
+            if ((p + 1) === pieces.length) {
+              if (needToTrail) {
+                advanceTrail()
+              }
+              this.playEnded(true)
+            } else {
+              voiceAction(p + 1, pieces)
+            }
+          })
+        }
+
         setTimeout(() => {
-          this.logToFlaggedWords('aboutToSpeak...')
-          console.log(`about to speak:${phraseToSpeak}`)
-          console.log(phraseToSpeak)
           // for reasons I can't recall, wordifyPunctuation adds pipe character
           // remove it
           const finalPhraseToSpeak = phraseToSpeak.replace(/\|/g, ' ')
-          console.log(`finalPhrase:${finalPhraseToSpeak}`)
+            .replace(/\WV\W/g, ' VEE ')
+            .replace(/^V\W/g, ' VEE ')
+            .replace(/\WV$/g, ' VEE ')
+          console.log(`finalphrasetospeak:${finalPhraseToSpeak}`)
+          // const pieces = finalPhraseToSpeak.split(' ')
+          // voiceAction(0, pieces)
+          // const piece = 0
           this.morseVoice.speakPhrase(finalPhraseToSpeak, () => {
-            this.logToFlaggedWords('returned from speaking...')
             // what gets called after speaking
-            this.logToFlaggedWords(`needToTrail:${needToTrail}`)
+
             if (needToTrail) {
               advanceTrail()
             }
@@ -536,6 +587,64 @@ export class MorseViewModel {
     if (needToTrail && !speakAndTrail) {
       advanceTrail()
     }
+  }
+
+  addToVoiceBuffer = () => {
+    // console.log(`currenindex:${this.currentIndex()} len:${this.morseVoice.voiceBuffer.length}`)
+    // make sure we don't add the same card twice...someday figure what causes
+    if (this.currentIndex() >= this.morseVoice.voiceBuffer.length) {
+    // populate the voiceBuffer even if not speaking, as we might be caching
+      const currentWord = this.words()[this.currentIndex()]
+      const speakText = currentWord.speakText(this.morseVoice.voiceSpelling())
+      // console.log(`speaktext:${speakText}`)
+      this.morseVoice.voiceBuffer.push(speakText)
+    }
+  }
+
+  // used by recap
+  speakVoiceBuffer = () => {
+    if (this.morseVoice.voiceBuffer.length > 0) {
+      const phrase = this.morseVoice.voiceBuffer.shift()
+      // for reasons I can't recall, wordifyPunctuation adds pipe character
+      // remove it
+      const finalPhraseToSpeak = phrase.replace(/\|/g, ' ')
+        .replace(/\|/g, ' ')
+        .replace(/\WV\W/g, ' VEE ')
+        .replace(/^V\W/g, ' VEE ')
+        .replace(/\WV$/g, ' VEE ')
+      /* const voicAction = (p:number, pieces:string[]) => {
+        this.morseVoice.speakPhrase(pieces[p], () => {
+          // what gets called after speaking
+          if ((p + 1) === pieces.length) {
+            setTimeout(() => { this.speakVoiceBuffer() }, 250)
+          } else {
+            voicAction(p + 1, pieces)
+          }
+        }
+        )
+      }
+      voicAction(0, finalPhraseToSpeak.split(' ')) */
+      this.morseVoice.speakPhrase(finalPhraseToSpeak, () => {
+      // what gets called after speaking
+        setTimeout(() => { this.speakVoiceBuffer() }, 250)
+      })
+    }
+  }
+
+  getPhraseToSpeakFromBuffer = () => {
+    let phraseToSpeak
+    try {
+      const joinedBuffer = this.morseVoice.voiceBuffer.join(' ')
+      phraseToSpeak = joinedBuffer
+      phraseToSpeak = phraseToSpeak.replace(/\n/g, ' ').trim()
+    } catch (e) {
+      // this.logToFlaggedWords(`caught after wordify:${e}`)
+    }
+
+    // clear the buffer
+    this.morseVoice.voiceBuffer = []
+
+    return phraseToSpeak
   }
 
   doPause = (fullRewind, fromPauseButton, fromStopButton) => {
@@ -681,6 +790,7 @@ export class MorseViewModel {
     savedInfos.push(new SavedSettingsInfo('voiceAfterThinkingTime', this.morseVoice.voiceAfterThinkingTime()))
     savedInfos.push(new SavedSettingsInfo('voiceVolume', this.morseVoice.voiceVolume()))
     savedInfos.push(new SavedSettingsInfo('voiceLastOnly', this.morseVoice.voiceLastOnly()))
+    savedInfos.push(new SavedSettingsInfo('voiceRecap', this.morseVoice.manualVoice()))
 
     savedInfos.push(new SavedSettingsInfo('keepLines', this.settings.misc.newlineChunking()))
     savedInfos.push(new SavedSettingsInfo('syncSize', this.lessons.syncSize()))
@@ -713,13 +823,30 @@ export class MorseViewModel {
     document.body.removeChild(elemx)
   }
 
+  doApply = () => {
+    if (this.lessons.customGroup()) {
+      this.lessons.doCustomGroup()
+    } else {
+      this.lessons.setDisplaySelected(this.lessons.selectedDisplay())
+    }
+  }
+
   settingsFileChange = (element) => {
     // thanks to https://newbedev.com/how-to-access-file-input-with-knockout-binding
     // console.log(file)
     const file = element.files[0]
-    console.log(element.value)
+    console.log(`file:${file}`)
+    console.log(`filname:${file.name}`)
+
+    console.log(`element:${element}`)
+    console.log(`elementvalue:${element.value}`)
     const fr = new FileReader()
     fr.onload = (data) => {
+      console.log(`data:${data}`)
+      // set to your settings
+      // this.lessons.selectedSettingsPreset(this.lessons.yourSettingsDummy)
+
+      // setTimeout(() => {
       const settings = JSON.parse(data.target.result as string)
       console.log(settings)
       // this.setText(data.target.result as string)
@@ -732,8 +859,102 @@ export class MorseViewModel {
       settingsInfo.ifLoadSettings = true
       settingsInfo.ignoreCookies = true
       settingsInfo.custom = settings.morseSettings
-      MorseCookies.loadCookiesOrDefaults(settingsInfo)
+      settingsInfo.afterSettingsChange = () => {
+        // if (this.applyEnabled()) {
+        // this.doApply()
+        // }
+        // trigger a refresh with new settings
+        /* const originalText = this.rawText()
+        this.setText('')
+        this.setText(originalText) */
+      }
+      const option = new SettingsOption()
+      option.display = file.name.split('.')[0]
+      option.filename = file.name
+      option.isCustom = true
+      option.isDummy = false
+      option.morseSettings = settings.morseSettings
+      this.lessons.customSettingsOptions.push(option)
+      this.lessons.getSettingsPresets(true)
+      this.lessons.setPresetSelected(option)
+      // MorseCookies.loadCookiesOrDefaults(settingsInfo)
+      // }, 1000)
     }
     fr.readAsText(file)
+  }
+
+  // Any object that has access to the ShortcutKeys object can register
+  // its own shortcuts, but for now we register them all centrally, which
+  // makes providing accessibility announcements in response to shortcuts
+  // a bit easier.
+  registerKeyboardShortcutHandlers = () => {
+    // Toggle play/pause
+    this.shortcutKeys.registerShortcutKeyHandler('k', 'Toggle playback', () => {
+      this.togglePlayback()
+    })
+
+    // Back 1
+    this.shortcutKeys.registerShortcutKeyHandler(',', 'Back 1', () => {
+      this.decrementIndex()
+    })
+
+    // Full rewind
+    this.shortcutKeys.registerShortcutKeyHandler('<', 'Full rewind', () => {
+      this.fullRewind()
+    })
+
+    // Forward 1
+    this.shortcutKeys.registerShortcutKeyHandler('.', 'Forward 1', () => {
+      this.incrementIndex()
+    })
+
+    // Toggle reveal cards
+    this.shortcutKeys.registerShortcutKeyHandler('c', 'Toggle card visibility', () => {
+      this.hideList(!this.hideList())
+      this.accessibilityAnnouncement(this.hideList() ? 'Cards hidden' : 'Cards revealed')
+    })
+
+    // Toggle shuffle
+    this.shortcutKeys.registerShortcutKeyHandler('/', 'Toggle shuffle', () => {
+      this.shuffleWords(false)
+      this.accessibilityAnnouncement(this.isShuffled() ? 'Shuffled' : 'Unshuffled')
+    })
+
+    // Toggle loop
+    this.shortcutKeys.registerShortcutKeyHandler('l', 'Toggle looping', () => {
+      this.loop(!this.loop())
+      this.accessibilityAnnouncement(this.loop() ? 'Looping' : 'Not looping')
+    })
+
+    const changeFarnsworth = (x) => {
+      // console.log('changing farnsworth')
+      const newWpm = parseInt(this.settings.speed.wpm() as any) + x
+      const newFwpm = parseInt(this.settings.speed.fwpm() as any) + x
+      if (newWpm < 1 || newFwpm < 1) {
+        return
+      }
+
+      if (this.settings.speed.syncWpm()) {
+        this.settings.speed.wpm(newWpm)
+        this.accessibilityAnnouncement('' + this.settings.speed.fwpm() + ' FWPM')
+        return
+      }
+
+      if (newFwpm > this.settings.speed.wpm()) {
+        this.settings.speed.wpm(newWpm)
+      }
+      this.settings.speed.fwpm(newFwpm)
+      this.accessibilityAnnouncement('' + this.settings.speed.fwpm() + ' FWPM')
+    }
+
+    // Reduce FWPM
+    this.shortcutKeys.registerShortcutKeyHandler('z', 'Reduce Farnsworth WPM', () => {
+      changeFarnsworth(-1)
+    })
+
+    // Increase FWPM
+    this.shortcutKeys.registerShortcutKeyHandler('x', 'Increase Farnsworth WPM', () => {
+      changeFarnsworth(1)
+    })
   }
 }

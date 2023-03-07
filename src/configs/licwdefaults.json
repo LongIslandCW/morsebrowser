@@ -23,17 +23,17 @@
         },
         {
             "key": "ditFrequency",
-            "value": 700,
+            "value": 500,
             "comment": ""
         },
         {
             "key": "dahFrequency",
-            "value": 700,
+            "value": 500,
             "comment": "remember if dit dah are different, set syncFreq below to false"
         },
         {
             "key": "preSpace",
-            "value": 1,
+            "value": 2,
             "comment": "seconds of silence before playing first word, for blue tooth etc"
         },
         {

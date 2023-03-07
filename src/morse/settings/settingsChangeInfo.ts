@@ -23,4 +23,6 @@ export class SettingsChangeInfo {
   keyBlacklist:string[] = []
 
   isYourSettings:boolean = false
+
+  afterSettingsChange:any = null
 }

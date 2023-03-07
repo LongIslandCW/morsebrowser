@@ -22,17 +22,19 @@ export class MorseVoice implements ICookieHandler {
   voiceLang:ko.Observable<string>
   voiceVoices:ko.ObservableArray<any>
   voiceBuffer:Array<any>
+  voiceBufferMaxLength:ko.Observable<number>
   ctxt:MorseViewModel
   voiceSpelling:ko.Observable<boolean>
   // keep a reference because read that garbage collector can grab
   // and onend never fires?!
   currentUtterance:SpeechSynthesisUtterance
   voiceLastOnly:ko.Observable<boolean>
+  manualVoice:ko.Observable<boolean>
 
   constructor (context:MorseViewModel) {
     MorseCookies.registerHandler(this)
     this.ctxt = context
-    this.voiceEnabled = ko.observable(false)
+    this.voiceEnabled = ko.observable(true)
     this.voiceCapable = ko.observable(false)
     this.voiceThinkingTime = ko.observable(0)
     this.voiceAfterThinkingTime = ko.observable(0)
@@ -44,8 +46,10 @@ export class MorseVoice implements ICookieHandler {
     this.voiceLang = ko.observable('en-us')
     this.voiceVoices = ko.observableArray([])
     this.voiceBuffer = []
-    this.voiceSpelling = ko.observable(false)
+    this.voiceBufferMaxLength = ko.observable(1)
+    this.voiceSpelling = ko.observable(true)
     this.voiceLastOnly = ko.observable(false)
+    this.manualVoice = ko.observable(true)
     const speechDetection = EasySpeech.detect()
 
     if (speechDetection.speechSynthesis && speechDetection.speechSynthesisUtterance) {
@@ -247,6 +251,10 @@ export class MorseVoice implements ICookieHandler {
     target = cookies.find(x => x.key === 'voiceLastOnly')
     if (target) {
       this.voiceLastOnly(GeneralUtils.booleanize(target.val))
+    }
+    target = cookies.find(x => x.key === 'voiceRecap')
+    if (target) {
+      this.manualVoice(GeneralUtils.booleanize(target.val))
     }
   }
 

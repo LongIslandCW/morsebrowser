@@ -12,7 +12,7 @@
 		},
 		{
 			"key": "preSpace",
-			"value": "0",
+			"value": "2",
 			"comment": null
 		},
 		{
@@ -22,7 +22,7 @@
 		},
 		{
 			"key": "volume",
-			"value": "7",
+			"value": "10",
 			"comment": null
 		},
 		{
@@ -37,12 +37,12 @@
 		},
 		{
 			"key": "syncWpm",
-			"value": false,
+			"value": true,
 			"comment": null
 		},
 		{
 			"key": "hideList",
-			"value": "true",
+			"value": true,
 			"comment": null
 		},
 		{
@@ -67,7 +67,7 @@
 		},
 		{
 			"key": "showExpertSettings",
-			"value": "true",
+			"value": true,
 			"comment": null
 		},
 		{
@@ -77,12 +77,12 @@
 		},
 		{
 			"key": "voiceSpelling",
-			"value": false,
+			"value": true,
 			"comment": null
 		},
 		{
 			"key": "voiceThinkingTime",
-			"value": 0,
+			"value": "0",
 			"comment": null
 		},
 		{
@@ -107,7 +107,7 @@
 		},
 		{
 			"key": "keepLines",
-			"value": false,
+			"value": true,
 			"comment": null
 		},
 		{
@@ -132,7 +132,7 @@
 		},
 		{
 			"key": "cardSpace",
-			"value": 0,
+			"value": "2",
 			"comment": "AKA cardWait"
 		},
 		{
@@ -142,7 +142,7 @@
 		},
 		{
 			"key": "miscSettingsAccordionOpen",
-			"value": false,
+			"value": "true",
 			"comment": null
 		},
 		{
