@@ -437,6 +437,10 @@ export class MorseViewModel {
   }
 
   ifMaxVoiceBufferReached = ():boolean => {
+    // ignore if is 1
+    if (this.morseVoice.voiceBufferMaxLength() === 1) {
+      return true
+    }
     const isNotLastWord = this.currentIndex() < this.words().length - 1
     const maxBufferReached = !isNotLastWord || (this.morseVoice.voiceBuffer.length === this.morseVoice.voiceBufferMaxLength())
     // console.log(`maxBufferReached:${maxBufferReached}`)
