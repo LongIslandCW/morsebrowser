@@ -823,11 +823,12 @@ export class MorseViewModel {
     document.body.removeChild(elemx)
   }
 
-  doApply = () => {
+  doApply = (fromUserClick:boolean = false) => {
     if (this.lessons.customGroup()) {
       this.lessons.doCustomGroup()
     } else {
-      this.lessons.setDisplaySelected(this.lessons.selectedDisplay())
+      // skip presets if user clicked, assume they wanted to change something
+      this.lessons.setDisplaySelected(this.lessons.selectedDisplay(), fromUserClick)
     }
   }
 
