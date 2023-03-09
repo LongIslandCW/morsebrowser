@@ -6,6 +6,7 @@ import { ICookieHandler } from '../cookies/ICookieHandler'
 import { CookieInfo } from '../cookies/CookieInfo'
 import { GeneralUtils } from '../utils/general'
 import { MorseCookies } from '../cookies/morseCookies'
+import { VoiceBufferInfo } from './VoiceBufferInfo'
 
 export class MorseVoice implements ICookieHandler {
   voices = []
@@ -21,7 +22,7 @@ export class MorseVoice implements ICookieHandler {
   voicePitch:ko.Observable<number>
   voiceLang:ko.Observable<string>
   voiceVoices:ko.ObservableArray<any>
-  voiceBuffer:Array<any>
+  voiceBuffer:Array<VoiceBufferInfo>
   voiceBufferMaxLength:ko.Observable<number>
   ctxt:MorseViewModel
   voiceSpelling:ko.Observable<boolean>
