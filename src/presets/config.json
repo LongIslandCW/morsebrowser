@@ -32,7 +32,12 @@
         {
             "className": "ADVANCED",
             "defaultSetFile": "",
-            "letterGroups": [ADVANCED]
-        },
+            "letterGroups": [
+                {
+                    "letterGroup": "Head Copy",
+                    "setFile": "int_16_20.json"
+                }
+            ]
+        }
     ]
 }
