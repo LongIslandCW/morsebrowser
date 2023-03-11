@@ -786,7 +786,7 @@ export class MorseViewModel {
     savedInfos.push(new SavedSettingsInfo('fwpm', this.settings.speed.fwpm()))
     /* savedInfos.push(new SavedSettingsInfo('ditFrequency', this.settings.frequency.ditFrequency()))
     savedInfos.push(new SavedSettingsInfo('dahFrequency', this.settings.frequency.dahFrequency())) */
-    savedInfos.push(new SavedSettingsInfo('preSpace', this.preSpace()))
+    // savedInfos.push(new SavedSettingsInfo('preSpace', this.preSpace()))
     savedInfos.push(new SavedSettingsInfo('xtraWordSpaceDits', this.xtraWordSpaceDits()))
     savedInfos.push(new SavedSettingsInfo('volume', this.volume()))
     savedInfos.push(new SavedSettingsInfo('stickySets', this.lessons.stickySets()))
@@ -796,7 +796,7 @@ export class MorseViewModel {
     savedInfos.push(new SavedSettingsInfo('hideList', this.hideList()))
     savedInfos.push(new SavedSettingsInfo('showRaw', this.showRaw()))
     savedInfos.push(new SavedSettingsInfo('autoCloseLessonAccordian', this.lessons.autoCloseLessonAccordion()))
-    savedInfos.push(new SavedSettingsInfo('cardFontPx', this.cardFontPx()))
+    // savedInfos.push(new SavedSettingsInfo('cardFontPx', this.cardFontPx()))
     savedInfos.push(new SavedSettingsInfo('customGroup', this.lessons.customGroup()))
     savedInfos.push(new SavedSettingsInfo('showExpertSettings', this.showExpertSettings()))
     savedInfos.push(new SavedSettingsInfo('voiceEnabled', this.morseVoice.voiceEnabled()))
@@ -885,6 +885,7 @@ export class MorseViewModel {
         this.setText('')
         this.setText(originalText) */
       }
+      settingsInfo.keyBlacklist = ['cardFontPx', 'preSpace']
       const option = new SettingsOption()
       option.display = file.name.split('.')[0]
       option.filename = file.name
