@@ -29,5 +29,10 @@
                 }
             ]
         }
+        {
+            "className": "ADVANCED",
+            "defaultSetFile": "",
+            "letterGroups": [ADVANCED]
+        },
     ]
 }
