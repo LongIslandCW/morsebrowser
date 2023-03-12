@@ -508,5 +508,6 @@
     {"sort":500, "userTarget": "STUDENT", "class": "INTERMEDIATE", "letterGroup": "12 to 16", "newlineChunking":true,"display":"SUDUKO", "fileName": "suduko1.txt" },
     {"sort":501, "userTarget": "INSTRUCTOR", "class": "INTERMEDIATE", "letterGroup": "16 to 20", "newlineChunking":true,"display":"SUDUKO", "fileName": "suduko1.txt" },
     {"sort":502, "userTarget": "STUDENT", "class": "INTERMEDIATE", "letterGroup": "16 to 20", "newlineChunking":true,"display":"SUDUKO", "fileName": "suduko1.txt" },
-    {"sort":503, "userTarget": "INSTRUCTOR", "class": "BC1", "letterGroup": "UWB", "newlineChunking":true,"display":"UWB HOF LCD PHRASES", "fileName": "UWB11.txt" }
+    {"sort":503, "userTarget": "INSTRUCTOR", "class": "BC1", "letterGroup": "UWB", "newlineChunking":true,"display":"UWB HOF LCD PHRASES", "fileName": "UWB11.txt" },
+    {"sort":504, "userTarget": "INSTRUCTOR", "class": "ADVANCED", "letterGroup": "SENTENCES", "newlineChunking":true,"display":"2 WORD PHRASES", "fileName": "ADV2W.txt" }
 ]}
