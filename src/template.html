@@ -246,6 +246,7 @@
                                 <div class="row gy-2 row-cols-6">
                                     <!--user type-->
                                     <div class="col-auto">
+                                        <div class="row"><span>TYPE</span></div>
                                         <fieldset aria-label="Curriculum kind" class="btn-group-vertical"
                                             data-bind="foreach: lessons.userTargets, childrenComplete: () => lessons.setUserTargetInitialized()">
                                             <input type="radio" class="btn-check" name="btnradioUserTargets"
@@ -256,6 +257,7 @@
                                     </div>
                                     <!--classes-->
                                     <div class="col-auto">
+                                        <div class="row"><span>CLASS</span></div>
                                         <fieldset aria-label="Class" class="btn-group-vertical"
                                             data-bind="foreach: lessons.classes, childrenComplete: () => lessons.setSelectedClassInitialized()">
                                             <input type="radio" class="btn-check" name="btnradioClasses"
@@ -266,6 +268,7 @@
                                     </div>
                                     <!--letter groups-->
                                     <div class="col-auto">
+                                        <div class="row"><span>LETTER GROUP</span></div>
                                         <div role="radiogroup" aria-label="Wordlist" class="list-group"
                                             data-bind="foreach: lessons.letterGroups, childrenComplete: () => lessons.setLetterGroupInitialized()"
                                             style="overflow-y:auto; height:250px; width: 200px;">
@@ -276,6 +279,7 @@
                                     </div>
                                     <!--lessons-->
                                     <div class="col-auto">
+                                        <div class="row"><span>LESSON</span></div>
                                         <div role="radiogroup" aria-label="Lesson" class="list-group"
                                             data-bind="foreach: lessons.displays, childrenComplete: () => lessons.setDisplaysInitialized()"
                                             style="overflow-y:auto; height:250px; width: 200px;">
@@ -287,6 +291,7 @@
 
                                     <!--setting presets-->
                                     <div class="col-auto">
+                                        <div class="row"><span>PRESETS</span></div>
                                         <div role="radiogroup" aria-label="Settings preset" class="list-group"
                                             data-bind="foreach: lessons.settingsPresets, childrenComplete: () => lessons.setSettingsPresetsInitialized()"
                                             style="overflow-y:auto; height:250px; width: 200px;">
