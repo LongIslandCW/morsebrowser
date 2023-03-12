@@ -9,19 +9,19 @@
             "filename": "ADVBUF.json"
         },
         {
-            "display": "2 Words",
+            "display": "Voice after 2 words",
             "filename": "ADV2WB.json"
         },
         {
-            "display": "3 Words",
+            "display": "Voice after 3 words",
             "filename": "ADV3WB.json"
         },
         {
-            "display": "4 Words",
+            "display": "Voice after 4 words",
             "filename": "ADV4WB.json"
         },
         {
-            "display": "5 Words",
+            "display": "Voice after 5 words",
             "filename": "ADV5WB.json"
         },
         {
