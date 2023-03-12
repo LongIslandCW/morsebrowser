@@ -538,5 +538,5 @@
     {"sort":530, "userTarget": "INSTRUCTOR", "class": "ADVANCED", "letterGroup": "PREFIXES", "newlineChunking":true,"display":"3 WORDS", "fileName": "PREFIX.txt" },
     {"sort":531, "userTarget": "INSTRUCTOR", "class": "ADVANCED", "letterGroup": "SUFFIXES", "newlineChunking":true,"display":"3 WORDS", "fileName": "SUFFIX.txt" },
     {"sort":532, "userTarget": "STUDENT", "class": "ADVANCED", "letterGroup": "PREFIXES", "newlineChunking":true,"display":"3 WORDS", "fileName": "PREFIX.txt" },
-    {"sort":533, "userTarget": "STUDENT", "class": "ADVANCED", "letterGroup": "SUFFIXES", "newlineChunking":true,"display":"3 WORDS", "fileName": "SUFFIX.txt" },
+    {"sort":533, "userTarget": "STUDENT", "class": "ADVANCED", "letterGroup": "SUFFIXES", "newlineChunking":true,"display":"3 WORDS", "fileName": "SUFFIX.txt" }
 ]}
