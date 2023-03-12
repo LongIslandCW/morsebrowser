@@ -28,7 +28,7 @@
                     "setFile": "int_16_20.json"
                 }
             ]
-        },
+        }
         {
             "className": "ADVANCED",
             "defaultSetFile": "ADV.json",
