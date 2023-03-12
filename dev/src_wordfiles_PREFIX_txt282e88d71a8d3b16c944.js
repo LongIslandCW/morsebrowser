@@ -7,7 +7,7 @@
   \**********************************/
 /***/ ((module) => {
 
-module.exports = "PRO  PRODUCTS PRODUCT PROGRAM \r\nCON - CONTACT, CONTROL, CONTENT \r\nCOM - COMPANY COMMENTS COMMUNITY";
+module.exports = "PRO  PRODUCTS PRODUCT PROGRAM \r\nCON CONTACT CONTROL CONTENT \r\nCOM COMPANY COMMENTS COMMUNITY \r\n";
 
 /***/ })
 
