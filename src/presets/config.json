@@ -28,16 +28,6 @@
                     "setFile": "int_16_20.json"
                 }
             ]
-        },
-        {
-            "className": "ADVANCED",
-            "defaultSetFile": "",
-            "letterGroups": [
-                {
-                    "letterGroup": "Head Copy",
-                    "setFile": "int_16_20.json"
-                }
-            ]
         }
     ]
 }
