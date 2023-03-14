@@ -72,12 +72,12 @@
 		},
 		{
 			"key": "voiceThinkingTime",
-			"value": 0,
+			"value": 0.5,
 			"comment": null
 		},
 		{
 			"key": "voiceAfterThinkingTime",
-			"value": "0.5",
+			"value": "0",
 			"comment": null
 		},
 		{
