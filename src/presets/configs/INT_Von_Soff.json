@@ -169,6 +169,11 @@
 			"key": "voiceBufferMaxLength",
 			"value": "1",
 			"comment": null
+		},
+		{
+			"key": "voiceBufferMaxLength",
+			"value": "1",
+			"comment": null
 		}
 	]
 }
