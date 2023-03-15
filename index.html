@@ -612,7 +612,7 @@
 
                                             <input type="checkbox" class="btn-check" autocomplete="off"
                                                 id="btncheckvoice"
-                                                data-bind="checked: morseVoice.voiceEnabled, enable: morseVoice.voiceCapable()">
+                                                data-bind="checked: morseVoice.voiceEnabled, enable: morseVoice.voiceCapable() && !morseVoice.manualVoice()">
                                             <label class=" btn btn-outline-primary" for="btncheckvoice"><img
                                                     data-bind="attr:{ src: morseLoadImages().getSrc('chatquoteImage')}">&nbsp;Voice&nbsp;<img
                                                     data-bind="attr:{ src: morseVoice.voiceEnabled() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
@@ -634,7 +634,8 @@
                                             <input type="checkbox" class="btn-check" autocomplete="off"
                                                 id="btncheckmanualVoice" data-bind="checked: morseVoice.manualVoice">
                                             <label class=" btn btn-outline-primary" for="btncheckmanualVoice"><img
-                                                    data-bind="attr:{ src: morseLoadImages().getSrc('bootstrapRebootImage')}">&nbsp;Recap&nbsp;<img
+                                                    data-bind="attr:{ src: morseLoadImages().getSrc('bootstrapRebootImage')}">&nbsp;Arm
+                                                Recap&nbsp;<img
                                                     data-bind="attr:{ src: morseVoice.manualVoice() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
                                         </div>
                                         <!-- voice thinktime-->
