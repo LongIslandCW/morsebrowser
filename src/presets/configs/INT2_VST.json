@@ -164,6 +164,11 @@
 			"key": "intervalFwpmText",
 			"value": "20",
 			"comment": null
+		},
+		{
+			"key": "voiceBufferMaxLength",
+			"value": "1",
+			"comment": null
 		}
 	]
 }
