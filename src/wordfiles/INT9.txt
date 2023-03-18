@@ -19,11 +19,15 @@ KY
 {ME|maine}
 MD 
 MA 
+MD
+ME
 MI 
 MN 
 MS 
 MO 
 MT 
+NC 
+ND
 NE 
 NV 
 NH 
@@ -34,6 +38,7 @@ NC
 ND 
 {OH|ohio} 
 {OK|oklahoma}  
+{OR|oregon} 
 PA 
 RI 
 SC 
