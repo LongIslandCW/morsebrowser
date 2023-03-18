@@ -5,7 +5,7 @@ AR
 CA 
 CO 
 CT 
-{DE|delaware}
+{DE|delaware} 
 FL 
 {GA|georgia} 
 {HI|hawaii} 
@@ -19,15 +19,15 @@ KY
 {ME|maine}
 MD 
 MA 
-MD
-ME
+MD 
+ME 
 MI 
 MN 
 MS 
 MO 
 MT 
 NC 
-ND
+ND 
 NE 
 NV 
 NH 
