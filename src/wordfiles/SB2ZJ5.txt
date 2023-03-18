@@ -1,5 +1,6 @@
 AL 
 AR 
+AZ 
 CA 
 CO 
 CT 
@@ -17,6 +18,7 @@ NH
 NC 
 ND 
 {OH|ohio} 
+{OR|oregon} 
 PA 
 RI 
 SC 
