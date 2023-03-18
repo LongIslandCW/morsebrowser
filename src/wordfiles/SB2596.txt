@@ -17,6 +17,7 @@ NH
 NC 
 ND 
 OH 
+{OR|oregon} 
 PA 
 RI 
 SC 
