@@ -7,7 +7,7 @@
   \************************************/
 /***/ ((module) => {
 
-module.exports = "AL \nAR \nCA \nCO \nCT \n{DE|delaware} \nFL \n{GA|georgia} \n{HI|hawaii} \n{ID|idaho} \nID \nIL \n{IN|indiana} \nIA \n{IN|indiana} \nNE \nNH \nNC \nND \n{OH|ohio} \nPA \nRI \nSC \nSD \nTN \nUT \nWA \nWI \n";
+module.exports = "AL \nAR \nCA \nCO \nCT \n{DE|delaware} \nFL \n{GA|georgia} \n{HI|hawaii} \n{ID|idaho} \nID \nIL \n{IN|indiana} \nIA \n{IN|indiana} \nNE \nNH \nNC \nND \n{OH|ohio} \n{OR|oregon} \nPA \nRI \nSC \nSD \nTN \nUT \nWA \nWI \n";
 
 /***/ })
 
