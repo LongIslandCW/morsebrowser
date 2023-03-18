@@ -17,6 +17,7 @@ NE
 NH 
 NC 
 ND 
+NJ 
 {OH|ohio} 
 {OR|oregon} 
 PA 
