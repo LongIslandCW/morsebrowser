@@ -34,6 +34,7 @@ NC
 ND 
 {OH|ohio} 
 {OK|oklahoma} 
+{OR|oregon} 
 PA 
 RI 
 SC 
