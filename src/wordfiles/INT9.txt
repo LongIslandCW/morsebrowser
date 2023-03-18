@@ -34,8 +34,6 @@ NH
 NJ 
 NM 
 NY 
-NC 
-ND 
 {OH|ohio} 
 {OK|oklahoma}  
 {OR|oregon} 
