@@ -131,7 +131,6 @@ export class MorseViewModel {
       this.morseDisabled(this.getParameterByName('morseDisabled') === 'true')
     }
 
-    
     // seems to need to happen early
     // this.morseWordPlayer = new MorseWordPlayer(new MorseWavBufferPlayer())
     this.morseWordPlayer = new MorseWordPlayer()
@@ -442,8 +441,15 @@ export class MorseViewModel {
     if (this.morseVoice.voiceBufferMaxLength() === 1) {
       return true
     }
+    // console.log(`voiceBufferMaxLength:${this.morseVoice.voiceBufferMaxLength()}`)
     const isNotLastWord = this.currentIndex() < this.words().length - 1
-    const maxBufferReached = !isNotLastWord || (this.morseVoice.voiceBuffer.length === this.morseVoice.voiceBufferMaxLength())
+    if (!isNotLastWord) {
+      return true
+    }
+    // console.log(`isnotlastword${isNotLastWord}`)
+    // console.log(`bufferlength:${this.morseVoice.voiceBuffer.length}`)
+    // force to int just in case
+    const maxBufferReached = this.morseVoice.voiceBuffer.length === parseInt(this.morseVoice.voiceBufferMaxLength() as any)
     // console.log(`maxBufferReached:${maxBufferReached}`)
     return maxBufferReached
   }
@@ -816,6 +822,7 @@ export class MorseViewModel {
     savedInfos.push(new SavedSettingsInfo('intervalTimingsText', this.settings.speed.intervalTimingsText()))
     savedInfos.push(new SavedSettingsInfo('intervalWpmText', this.settings.speed.intervalWpmText()))
     savedInfos.push(new SavedSettingsInfo('intervalFwpmText', this.settings.speed.intervalFwpmText()))
+    savedInfos.push(new SavedSettingsInfo('voiceBufferMaxLength', this.morseVoice.voiceBufferMaxLength()))
 
     return settings
   }

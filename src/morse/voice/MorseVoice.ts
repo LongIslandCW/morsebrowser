@@ -257,6 +257,11 @@ export class MorseVoice implements ICookieHandler {
     if (target) {
       this.manualVoice(GeneralUtils.booleanize(target.val))
     }
+
+    target = cookies.find(x => x.key === 'voiceBufferMaxLength')
+    if (target) {
+      this.voiceBufferMaxLength(parseInt(target.val))
+    }
   }
 
   handleCookie = (cookie: string) => {}

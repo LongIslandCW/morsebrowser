@@ -6,6 +6,9 @@ export class MorsePresetSetFileFinder {
   static getMorsePresetSetFile = (fileName, afterFound) => {
     switch (fileName) {
       // BEGINA
+      case 'ADV.json':
+        import('../presets/sets/ADV.json').then(({ default: x }) => afterFound({ found: true, data: x }))
+        break
       case 'bc1.json':
         import('../presets/sets/bc1.json').then(({ default: x }) => afterFound({ found: true, data: x }))
         break

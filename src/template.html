@@ -59,7 +59,7 @@
                                     to help you use this site</a> are found on YouTube</span>
                             <span class="warning" data-bind="if: isDev()">WARNING: You are using the BETA (unstable)
                                 version. The <a href="../">latest stable release</a> is recommended.</a></span>
-                            <span id="version-info">Version 1.10</span>
+                            <span id="version-info">Version 1.11</span>
                         </section>
                     </div>
                 </div>
@@ -712,6 +712,18 @@
                                                 <input type="number" style="max-width:75px; min-width: 75px;"
                                                     class="form-control" min=".1" max="10" step=".1"
                                                     data-bind="textInput: morseVoice.voiceRate">
+                                            </div>
+                                        </div>
+
+                                        <!-- voice buffermax-->
+                                        <div class="col-md-auto"
+                                            data-bind="if: showExpertSettings() && morseVoice.voiceEnabled()">
+                                            <div class="input-group">
+                                                <span class="input-group-text">Voice After<img width=20 height=20
+                                                        data-bind="attr:{ src: morseLoadImages().getSrc('bookshelfImage')}"></span>
+                                                <input type="number" style="max-width:75px; min-width: 75px;"
+                                                    class="form-control" min="1" max="999" step="1"
+                                                    data-bind="textInput: morseVoice.voiceBufferMaxLength">
                                             </div>
                                         </div>
                                     </div>
