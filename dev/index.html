@@ -25,7 +25,7 @@
                     'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
         })(window, document, 'script', 'dataLayer', 'GTM-PB8HW3M');</script>
     <!-- End Google Tag Manager -->
-<link rel="icon" href="LongIslandCWClub-favicon-2.jpg"><script defer src="bundle79b6345e55684683ebc3.js"></script><link href="bundle.b790b1369a7194e0d144.css" rel="stylesheet"></head>
+<link rel="icon" href="LongIslandCWClub-favicon-2.jpg"><script defer src="bundled5a5912d4bc57aa74922.js"></script><link href="bundle.b790b1369a7194e0d144.css" rel="stylesheet"></head>
 
 <body>
     <!-- Google Tag Manager (noscript) -->
@@ -59,7 +59,7 @@
                                     to help you use this site</a> are found on YouTube</span>
                             <span class="warning" data-bind="if: isDev()">WARNING: You are using the BETA (unstable)
                                 version. The <a href="../">latest stable release</a> is recommended.</a></span>
-                            <span id="version-info">Version 1.0.9</span>
+                            <span id="version-info">Version 1.10</span>
                         </section>
                     </div>
                 </div>
@@ -246,6 +246,7 @@
                                 <div class="row gy-2 row-cols-6">
                                     <!--user type-->
                                     <div class="col-auto">
+                                        <div class="row"><span>TYPE</span></div>
                                         <fieldset aria-label="Curriculum kind" class="btn-group-vertical"
                                             data-bind="foreach: lessons.userTargets, childrenComplete: () => lessons.setUserTargetInitialized()">
                                             <input type="radio" class="btn-check" name="btnradioUserTargets"
@@ -256,6 +257,7 @@
                                     </div>
                                     <!--classes-->
                                     <div class="col-auto">
+                                        <div class="row"><span>CLASS</span></div>
                                         <fieldset aria-label="Class" class="btn-group-vertical"
                                             data-bind="foreach: lessons.classes, childrenComplete: () => lessons.setSelectedClassInitialized()">
                                             <input type="radio" class="btn-check" name="btnradioClasses"
@@ -266,6 +268,7 @@
                                     </div>
                                     <!--letter groups-->
                                     <div class="col-auto">
+                                        <div class="row"><span>LETTER GROUP</span></div>
                                         <div role="radiogroup" aria-label="Wordlist" class="list-group"
                                             data-bind="foreach: lessons.letterGroups, childrenComplete: () => lessons.setLetterGroupInitialized()"
                                             style="overflow-y:auto; height:250px; width: 200px;">
@@ -276,6 +279,7 @@
                                     </div>
                                     <!--lessons-->
                                     <div class="col-auto">
+                                        <div class="row"><span>LESSON</span></div>
                                         <div role="radiogroup" aria-label="Lesson" class="list-group"
                                             data-bind="foreach: lessons.displays, childrenComplete: () => lessons.setDisplaysInitialized()"
                                             style="overflow-y:auto; height:250px; width: 200px;">
@@ -287,6 +291,7 @@
 
                                     <!--setting presets-->
                                     <div class="col-auto">
+                                        <div class="row"><span>PRESETS</span></div>
                                         <div role="radiogroup" aria-label="Settings preset" class="list-group"
                                             data-bind="foreach: lessons.settingsPresets, childrenComplete: () => lessons.setSettingsPresetsInitialized()"
                                             style="overflow-y:auto; height:250px; width: 200px;">
@@ -415,7 +420,7 @@
                                         </div>
                                         <!--custom group run button-->
                                         <button type="button" class="btn btn-success" id="btnApply"
-                                            data-bind="click: doApply, enable: applyEnabled"
+                                            data-bind="click: ()=>doApply(true), enable: applyEnabled"
                                             style="width: 146px; padding-left: 2px; padding-right: 2px;">Apply</button>
                                     </div>
                                 </div>
@@ -607,7 +612,7 @@
 
                                             <input type="checkbox" class="btn-check" autocomplete="off"
                                                 id="btncheckvoice"
-                                                data-bind="checked: morseVoice.voiceEnabled, enable: morseVoice.voiceCapable()">
+                                                data-bind="checked: morseVoice.voiceEnabled, enable: morseVoice.voiceCapable() && !morseVoice.manualVoice()">
                                             <label class=" btn btn-outline-primary" for="btncheckvoice"><img
                                                     data-bind="attr:{ src: morseLoadImages().getSrc('chatquoteImage')}">&nbsp;Voice&nbsp;<img
                                                     data-bind="attr:{ src: morseVoice.voiceEnabled() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
@@ -629,7 +634,8 @@
                                             <input type="checkbox" class="btn-check" autocomplete="off"
                                                 id="btncheckmanualVoice" data-bind="checked: morseVoice.manualVoice">
                                             <label class=" btn btn-outline-primary" for="btncheckmanualVoice"><img
-                                                    data-bind="attr:{ src: morseLoadImages().getSrc('bootstrapRebootImage')}">&nbsp;Recap&nbsp;<img
+                                                    data-bind="attr:{ src: morseLoadImages().getSrc('bootstrapRebootImage')}">&nbsp;Arm
+                                                Recap&nbsp;<img
                                                     data-bind="attr:{ src: morseVoice.manualVoice() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
                                         </div>
                                         <!-- voice thinktime-->
@@ -706,6 +712,18 @@
                                                 <input type="number" style="max-width:75px; min-width: 75px;"
                                                     class="form-control" min=".1" max="10" step=".1"
                                                     data-bind="textInput: morseVoice.voiceRate">
+                                            </div>
+                                        </div>
+
+                                        <!-- voice buffermax-->
+                                        <div class="col-md-auto"
+                                            data-bind="if: showExpertSettings() && morseVoice.voiceEnabled()">
+                                            <div class="input-group">
+                                                <span class="input-group-text">Voice After<img width=20 height=20
+                                                        data-bind="attr:{ src: morseLoadImages().getSrc('bookshelfImage')}"></span>
+                                                <input type="number" style="max-width:75px; min-width: 75px;"
+                                                    class="form-control" min="1" max="999" step="1"
+                                                    data-bind="textInput: morseVoice.voiceBufferMaxLength">
                                             </div>
                                         </div>
                                     </div>
