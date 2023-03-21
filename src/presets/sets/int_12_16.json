@@ -37,6 +37,10 @@
             "filename": "INT_IWR.json"
         },
         {
+            "display": "Sending Practice",
+            "filename": "INT_Sending.json"
+        },        
+        {
             "display": "Progressive Word Building",
             "filename": "INT_PWG.json"
         },

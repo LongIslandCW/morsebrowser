@@ -142,7 +142,7 @@
 		},
 		{
 			"key": "miscSettingsAccordionOpen",
-			"value": false,
+			"value": true,
 			"comment": null
 		},
 		{
@@ -163,6 +163,11 @@
 		{
 			"key": "intervalFwpmText",
 			"value": "",
+			"comment": null
+		},
+		{
+			"key": "voiceBufferMaxLength",
+			"value": "1",
 			"comment": null
 		}
 	]
