@@ -885,7 +885,7 @@ export class MorseViewModel {
         this.setText('')
         this.setText(originalText) */
       }
-      settingsInfo.keyBlacklist = ['cardFontPx', 'preSpace']
+      settingsInfo.keyBlacklist = ['cardFontPx', 'preSpace', 'volume', 'voiceVolume']
       const option = new SettingsOption()
       option.display = file.name.split('.')[0]
       option.filename = file.name
