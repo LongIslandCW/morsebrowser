@@ -406,7 +406,7 @@ export default class MorseLessonPlugin implements ICookieHandler {
       settingsInfo.ifLoadSettings = true
       settingsInfo.ignoreCookies = true
       settingsInfo.lockoutCookieChanges = true
-      settingsInfo.keyBlacklist = ['ditFrequency', 'dahFrequency', 'syncFreq', 'cardFontPx', 'preSpace']
+      settingsInfo.keyBlacklist = ['ditFrequency', 'dahFrequency', 'syncFreq', 'cardFontPx', 'preSpace', 'volume', 'voiceVolume']
 
       const applyOverrides = () => {
         /* make a copy as it seems some caching may be happening */
