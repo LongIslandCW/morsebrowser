@@ -922,6 +922,14 @@ export class MorseViewModel {
       this.incrementIndex()
     })
 
+    // Flag card
+    this.shortcutKeys.registerShortcutKeyHandler('f', 'Flag current card', () => {
+      const index = this.currentIndex()
+      const word = this.words()[index]
+      this.flaggedWords.addFlaggedWord(word)
+      this.accessibilityAnnouncement('Flagged')
+    })
+
     // Toggle reveal cards
     this.shortcutKeys.registerShortcutKeyHandler('c', 'Toggle card visibility', () => {
       this.hideList(!this.hideList())
