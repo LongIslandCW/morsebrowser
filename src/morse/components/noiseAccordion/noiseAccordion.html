@@ -12,30 +12,30 @@
     <div class="accordion-body">
         <div class="row row-cols-2 gy-2 gx-2">
             <div class="col-auto">
-                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <fieldset class="btn-group" aria-label="Noise Type">
                     <input type="radio" class="btn-check" value='off' name="btnradio" id="btnradio1" autocomplete="off"
-                        data-bind="checked: noiseType">
-                    <label class="btn btn-outline-primary" for="btnradio1">Off</label>
+                        data-bind="checked: noiseType" aria-label="Off">
+                    <label class="btn btn-outline-primary" for="btnradio1" aria-hidden="true">Off</label>
 
                     <input type="radio" class="btn-check" value='white' name="btnradio" id="btnradio2"
-                        autocomplete="off" data-bind="checked: noiseType">
-                    <label class="btn btn-outline-info" for="btnradio2">White</label>
+                        autocomplete="off" data-bind="checked: noiseType" aria-label="White">
+                    <label class="btn btn-outline-info" for="btnradio2" aria-hidden="true">White</label>
 
                     <input type="radio" class="btn-check" value='brown' name="btnradio" id="btnradio3"
-                        autocomplete="off" data-bind="checked: noiseType">
-                    <label class="btn btn-outline-secondary" for="btnradio3">Brown</label>
+                        autocomplete="off" data-bind="checked: noiseType" aria-label="Brown">
+                    <label class="btn btn-outline-secondary" for="btnradio3" aria-hidden="true">Brown</label>
 
                     <input type="radio" class="btn-check" value='pink' name="btnradio" id="btnradio4" autocomplete="off"
-                        data-bind="checked: noiseType">
-                    <label class="btn btn-outline-danger" for="btnradio4">Pink</label>
-                </div>
+                        data-bind="checked: noiseType" aria-label="Pink">
+                    <label class="btn btn-outline-danger" for="btnradio4" aria-hidden="true">Pink</label>
+                </fieldset>
 
             </div>
             <div class="col-auto">
                 <div class="input-group">
-                    <span class="input-group-text"><img height="20" with="20"
-                            data-bind="attr: {src: morseLoadImages().getSrc('volumeImage')}"></span>
-                    <input type="number" class="form-control" aria-label="Server" min="1" max="10" step="1"
+                    <label for="noiseVolume" class="input-group-text"><img role="text" height="20" with="20"
+                            data-bind="attr: {src: morseLoadImages().getSrc('volumeImage')}" alt="Noise Volume"></label>
+                    <input id="noiseVolume" name="noiseVolume" type="number" class="form-control" min="1" max="10" step="1"
                         data-bind="textInput: noiseVolume">
                 </div>
             </div>
