@@ -17,7 +17,6 @@ import SimpleImageTemplate from './components/morseImage/simpleImage'
 import NoiseAccordion from './components/noiseAccordion/noiseAccordion'
 import RssAccordion from './components/rssAccordion/rssAccordion'
 import FlaggedWordsAccordion from './components/flaggedWordsAccordion/flaggedWordsAccordion'
-import HapticVm, { HapticAccordion } from './components/hapticAccordion/hapticAccordion'
 import { CardBufferManager } from './utils/cardBufferManager'
 import WordInfo from './utils/wordInfo'
 import SavedSettingsInfo from './settings/savedSettingsInfo'
@@ -84,7 +83,6 @@ export class MorseViewModel {
   charsPlayed:ko.Observable<number> = ko.observable(0)
   cardSpace:ko.Observable<number> = ko.observable(0)
   cardSpaceTimerHandle:any = 0
-  hapticAccordion:HapticAccordion
   allowSaveCookies:ko.Observable<boolean> = ko.observable(true)
   lockoutSaveCookiesTimerHandle:any = null
   currentSerializedSettings:any = null
@@ -162,7 +160,6 @@ export class MorseViewModel {
     ko.components.register('simpleimage', SimpleImageTemplate)
     ko.components.register('noiseaccordion', NoiseAccordion)
     ko.components.register('rssaccordion', RssAccordion)
-    ko.components.register('hapticaccordion', HapticVm)
     ko.components.register('flaggedwordsaccordion', FlaggedWordsAccordion)
 
     // card buffer manager
@@ -815,7 +812,6 @@ export class MorseViewModel {
     savedInfos.push(new SavedSettingsInfo('overrideSizeMax', this.lessons.overrideMax()))
     savedInfos.push(new SavedSettingsInfo('cardSpace', this.cardSpace(), 'AKA cardWait'))
 
-    savedInfos.push(new SavedSettingsInfo('hapticAccordionOpen', this.hapticAccordion.isAccordionOpen))
     savedInfos.push(new SavedSettingsInfo('miscSettingsAccordionOpen', this.settings.misc.isMoreSettingsAccordionOpen))
 
     savedInfos.push(new SavedSettingsInfo('speedInterval', this.settings.speed.speedInterval()))
@@ -924,6 +920,14 @@ export class MorseViewModel {
     // Forward 1
     this.shortcutKeys.registerShortcutKeyHandler('.', 'Forward 1', () => {
       this.incrementIndex()
+    })
+
+    // Flag card
+    this.shortcutKeys.registerShortcutKeyHandler('f', 'Flag current card', () => {
+      const index = this.currentIndex()
+      const word = this.words()[index]
+      this.flaggedWords.addFlaggedWord(word)
+      this.accessibilityAnnouncement('Flagged')
     })
 
     // Toggle reveal cards
