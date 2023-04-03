@@ -12,7 +12,7 @@
         },
         {
             "className": "BPT",
-            "defaultSetFile": "bc3.json",
+            "defaultSetFile": "bpt.json",
             "letterGroups": []
         },
         {
