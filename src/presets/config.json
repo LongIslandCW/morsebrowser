@@ -20,7 +20,7 @@
             "defaultSetFile": "",
             "letterGroups": [
                 {
-                    "letterGroup": "12 to 16",
+                    "letterGroup": "INT2 (12 to 16)",
                     "setFile": "int_12_16.json"
                 },
                 {
