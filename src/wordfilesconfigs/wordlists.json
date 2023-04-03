@@ -166,7 +166,7 @@
     {"sort":165, "userTarget": "STUDENT", "class": "BC2", "letterGroup": "40", "newlineChunking":true,"display":"STATES", "fileName": "SB2406.txt" },
     {"sort":166, "userTarget": "STUDENT", "class": "BC2", "letterGroup": "40", "newlineChunking":false,"display":"QSO ABBREVIATIONS", "fileName": "SB2403.txt" },
     {"sort":167, "userTarget": "STUDENT", "class": "BC2", "letterGroup": "40", "newlineChunking":true,"display":"QSO PROTOCOL", "fileName": "SB2404.txt" },
-    {"sort":168, "userTarget": "STUDENT", "class": "BPT", "letterGroup": "BPT", "newlineChunking":false,"display":"B1B2 REVIEW", "fileName": "SB2C1.json" },
+    {"sort":168, "userTarget": "STUDENT", "class": "INT 1 (12)", "letterGroup": "BPT", "newlineChunking":false,"display":"B1B2 REVIEW", "fileName": "SB2C1.json" },
     {"sort":413, "userTarget": "STUDENT", "class": "BPT", "letterGroup": "BPT", "newlineChunking":false,"display":"LETTERS", "fileName": "INT1.json" },
     {"sort":414, "userTarget": "STUDENT", "class": "BPT", "letterGroup": "BPT", "newlineChunking":false,"display":"NUMBERS", "fileName": "INT2.json" },
     {"sort":417, "userTarget": "STUDENT", "class": "BPT", "letterGroup": "BPT", "newlineChunking":false,"display":"PUNCTUATION", "fileName": "INT4.json" },
