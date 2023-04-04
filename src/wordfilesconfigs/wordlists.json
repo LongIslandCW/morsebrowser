@@ -540,5 +540,6 @@
     {"sort":532, "userTarget": "STUDENT", "class": "ADVANCED", "letterGroup": "PREFIXES", "newlineChunking":true,"display":"3 WORDS", "fileName": "PREFIX.txt" },
     {"sort":533, "userTarget": "STUDENT", "class": "ADVANCED", "letterGroup": "SUFFIXES", "newlineChunking":true,"display":"3 WORDS", "fileName": "SUFFIX.txt" },
     {"sort":534, "userTarget": "INSTRUCTOR", "class": "ADVANCED", "letterGroup": "WORDS", "newlineChunking":true,"display":"TOP 500 WORDS", "fileName": "INT13.txt" },
-    {"sort":535, "userTarget": "STUDENT", "class": "ADVANCED", "letterGroup": "WORDS", "newlineChunking":true,"display":"TOP 500 WORDS", "fileName": "INT13.txt" }
+    {"sort":535, "userTarget": "STUDENT", "class": "ADVANCED", "letterGroup": "WORDS", "newlineChunking":true,"display":"TOP 500 WORDS", "fileName": "INT13.txt" },
+    {"sort":544, "userTarget": "STUDENT", "class": "BC3","letterGroup": "BC3", "newlineChunking":true,"display":"CALLSIGNS 3-4 CHARACTERS", "fileName": "ICR15.txt" }
 ]}
