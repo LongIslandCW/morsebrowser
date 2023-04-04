@@ -9,6 +9,10 @@
             "filename": "BPT_Default_15.json"
         },
         {
+            "display": "ICR",
+            "filename": "BPT_ICR.json"
+        },
+        {
             "display": "Sending Practice",
             "filename": "BPT_Sending.json"
         },        
