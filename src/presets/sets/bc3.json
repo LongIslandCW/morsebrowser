@@ -9,8 +9,8 @@
             "filename": "BPT_Default_15.json"
         },
         {
-            "display": "ICR",
-            "filename": "BPT_ICR.json"
+            "display": "Call Signs",
+            "filename": "bc3_cs.json"
         },
         {
             "display": "Sending Practice",
