@@ -11,8 +11,8 @@
             "letterGroups": []
         },
         {
-            "className": "BC3",
-            "defaultSetFile": "bc3.json",
+            "className": "BPT",
+            "defaultSetFile": "bpt.json",
             "letterGroups": []
         },
         {
