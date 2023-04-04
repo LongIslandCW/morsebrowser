@@ -179,7 +179,7 @@
     {"sort":554, "userTarget": "INSTRUCTOR", "class": "BC3","letterGroup": "BC3", "newlineChunking":true,"display":"QSO PROTOCOL 1", "fileName": "SB2C3.txt" },
     {"sort":555, "userTarget": "INSTRUCTOR", "class": "BC3","letterGroup": "BC3", "newlineChunking":true,"display":"QSO PROTOCOL 2", "fileName": "SB2C4.txt" },
     {"sort":556, "userTarget": "INSTRUCTOR", "class": "BC3","letterGroup": "BC3", "newlineChunking":true,"display":"QSO PROTOCOL 3", "fileName": "SB2C5.txt" },
-    {"sort":557, "userTarget": "INSTRUCTOR", "class": "BC3","letterGroup": "BC3", "newlineChunking":true,"display":"QSO PROTOCOL 4", "fileName": "SB2C6.txt" }
+    {"sort":557, "userTarget": "INSTRUCTOR", "class": "BC3","letterGroup": "BC3", "newlineChunking":true,"display":"QSO PROTOCOL 4", "fileName": "SB2C6.txt" },
     {"sort":168, "userTarget": "STUDENT", "class": "INTERMEDIATE", "letterGroup": "INT 1 (12)", "newlineChunking":false,"display":"B1B2 REVIEW", "fileName": "SB2C1.json" },
     {"sort":413, "userTarget": "STUDENT", "class": "INTERMEDIATE", "letterGroup": "INT 1 (12)", "newlineChunking":false,"display":"LETTERS", "fileName": "INT1.json" },
     {"sort":414, "userTarget": "STUDENT", "class": "INTERMEDIATE", "letterGroup": "INT 1 (12)", "newlineChunking":false,"display":"NUMBERS", "fileName": "INT2.json" },
