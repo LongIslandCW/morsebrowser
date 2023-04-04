@@ -541,7 +541,7 @@
     {"sort":533, "userTarget": "STUDENT", "class": "ADVANCED", "letterGroup": "SUFFIXES", "newlineChunking":true,"display":"3 WORDS", "fileName": "SUFFIX.txt" },
     {"sort":534, "userTarget": "INSTRUCTOR", "class": "ADVANCED", "letterGroup": "WORDS", "newlineChunking":true,"display":"TOP 500 WORDS", "fileName": "INT13.txt" },
     {"sort":535, "userTarget": "STUDENT", "class": "ADVANCED", "letterGroup": "WORDS", "newlineChunking":true,"display":"TOP 500 WORDS", "fileName": "INT13.txt" },
-    {"sort":544, "userTarget": "STUDENT", "class": "BC3","letterGroup": "BC3", "newlineChunking":true,"display":"CALLSIGNS 3-4 CHARACTERS", "fileName": "ICR15.txt" }
+    {"sort":544, "userTarget": "STUDENT", "class": "BC3","letterGroup": "BC3", "newlineChunking":true,"display":"CALLSIGNS 3-4 CHARACTERS", "fileName": "ICR15.txt" },
     {"sort":545, "userTarget": "STUDENT", "class": "BC3","letterGroup": "BC3", "newlineChunking":true,"display":"CALLSIGNS 3-5 CHARACTERS", "fileName": "ICR16.txt" },
     {"sort":546, "userTarget": "STUDENT", "class": "BC3","letterGroup": "BC3", "newlineChunking":true,"display":"QSO ABBREVIATIONS", "fileName": "SB2C2.txt" },
     {"sort":547, "userTarget": "STUDENT", "class": "BC3","letterGroup": "BC3", "newlineChunking":true,"display":"QSO PROTOCOL 1", "fileName": "SB2C3.txt" },
