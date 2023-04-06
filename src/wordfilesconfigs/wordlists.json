@@ -555,5 +555,6 @@
     {"sort":533, "userTarget": "STUDENT", "class": "ADVANCED", "letterGroup": "SUFFIXES", "newlineChunking":true,"display":"3 WORDS", "fileName": "SUFFIX.txt" },
     {"sort":534, "userTarget": "INSTRUCTOR", "class": "ADVANCED", "letterGroup": "WORDS", "newlineChunking":true,"display":"TOP 500 WORDS", "fileName": "INT13.txt" },
     {"sort":535, "userTarget": "STUDENT", "class": "ADVANCED", "letterGroup": "WORDS", "newlineChunking":true,"display":"TOP 500 WORDS", "fileName": "INT13.txt" },
-    {"sort":558, "userTarget": "STUDENT", "class": "INTERMEDIATE", "letterGroup": "INT 1 (12)", "newlineChunking":true,"display":"Progressive Phrase Building", "fileName": "2_PPB.txt" }
+    {"sort":558, "userTarget": "STUDENT", "class": "INTERMEDIATE", "letterGroup": "INT 1 (12)", "newlineChunking":true,"display":"PROGRESSIVE PHRASE BUILDING", "fileName": "2_PPB.txt" },
+    {"sort":558, "userTarget": "STUDENT", "class": "INTERMEDIATE", "letterGroup": "INT 1 (12)", "newlineChunking":true,"display":"PROGRESSIVE PHRASE BUILDING", "fileName": "2_PPB.txt" }
 ]}
