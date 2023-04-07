@@ -44,6 +44,10 @@
             "display": "Progressive Word Building",
             "filename": "INT_PWG.json"
         },
+        {
+            "display": "Progressive Phrase Building",
+            "filename": "INT_2_PPB.json"
+        },
           {
             "display": "Suduko",
             "filename": "suduko16.json"
