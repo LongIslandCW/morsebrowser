@@ -556,6 +556,7 @@
     {"sort":534, "userTarget": "INSTRUCTOR", "class": "ADVANCED", "letterGroup": "WORDS", "newlineChunking":true,"display":"TOP 500 WORDS", "fileName": "INT13.txt" },
     {"sort":535, "userTarget": "STUDENT", "class": "ADVANCED", "letterGroup": "WORDS", "newlineChunking":true,"display":"TOP 500 WORDS", "fileName": "INT13.txt" },
     {"sort":558, "userTarget": "STUDENT", "class": "INTERMEDIATE", "letterGroup": "INT 1 (12)", "newlineChunking":true,"display":"PROGRESSIVE PHRASE BUILDING - 2 Words", "fileName": "2_PPB.txt" },
-    {"sort":559, "userTarget": "INSTRUCTOR", "class": "INTERMEDIATE", "letterGroup": "INT 1 (12)", "newlineChunking":true,"display":"PROGRESSIVE PHRASE BUILDING - 3 Words", "fileName": "3_PPB.txt" },
+    {"sort":558, "userTarget": "INSTRUCTOR", "class": "INTERMEDIATE", "letterGroup": "INT 1 (12)", "newlineChunking":true,"display":"PROGRESSIVE PHRASE BUILDING - 2 Words", "fileName": "2_PPB.txt" },
+    {"sort":559, "userTarget": "STUDENT", "class": "INTERMEDIATE", "letterGroup": "INT 1 (12)", "newlineChunking":true,"display":"PROGRESSIVE PHRASE BUILDING - 3 Words", "fileName": "3_PPB.txt" },
     {"sort":560, "userTarget": "INSTRUCTOR", "class": "INTERMEDIATE", "letterGroup": "INT 1 (12)", "newlineChunking":true,"display":"PROGRESSIVE PHRASE BUILDING - 3 Words", "fileName": "3_PPB.txt" }
 ]}
