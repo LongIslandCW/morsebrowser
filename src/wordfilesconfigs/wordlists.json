@@ -558,5 +558,11 @@
     {"sort":558, "userTarget": "STUDENT", "class": "INTERMEDIATE", "letterGroup": "INT 1 (12)", "newlineChunking":true,"display":"PROGRESSIVE PHRASE BUILDING - 2 Words", "fileName": "2_PPB.txt" },
     {"sort":558, "userTarget": "INSTRUCTOR", "class": "INTERMEDIATE", "letterGroup": "INT 1 (12)", "newlineChunking":true,"display":"PROGRESSIVE PHRASE BUILDING - 2 Words", "fileName": "2_PPB.txt" },
     {"sort":559, "userTarget": "STUDENT", "class": "INTERMEDIATE", "letterGroup": "INT 1 (12)", "newlineChunking":true,"display":"PROGRESSIVE PHRASE BUILDING - 3 Words", "fileName": "3_PPB.txt" },
-    {"sort":560, "userTarget": "INSTRUCTOR", "class": "INTERMEDIATE", "letterGroup": "INT 1 (12)", "newlineChunking":true,"display":"PROGRESSIVE PHRASE BUILDING - 3 Words", "fileName": "3_PPB.txt" }
+    {"sort":560, "userTarget": "INSTRUCTOR", "class": "INTERMEDIATE", "letterGroup": "INT 1 (12)", "newlineChunking":true,"display":"PROGRESSIVE PHRASE BUILDING - 3 Words", "fileName": "3_PPB.txt" },
+    {"sort":558, "userTarget": "STUDENT", "class": "INTERMEDIATE", "letterGroup": "INT 2 (12-16)", "newlineChunking":true,"display":"PROGRESSIVE PHRASE BUILDING - 2 Words", "fileName": "2_PPB.txt" },
+    {"sort":558, "userTarget": "INSTRUCTOR", "class": "INTERMEDIATE", "letterGroup": "INT 2 (12-16)", "newlineChunking":true,"display":"PROGRESSIVE PHRASE BUILDING - 2 Words", "fileName": "2_PPB.txt" },
+    {"sort":559, "userTarget": "STUDENT", "class": "INTERMEDIATE", "letterGroup": "INT 2 (12-16)", "newlineChunking":true,"display":"PROGRESSIVE PHRASE BUILDING - 3 Words", "fileName": "3_PPB.txt" },
+    {"sort":560, "userTarget": "INSTRUCTOR", "class": "INTERMEDIATE", "letterGroup": "INT 2 (12-16)", "newlineChunking":true,"display":"PROGRESSIVE PHRASE BUILDING - 3 Words", "fileName": "3_PPB.txt" },
+    {"sort":559, "userTarget": "STUDENT", "class": "INTERMEDIATE", "letterGroup": "INT 2 (12-16)", "newlineChunking":true,"display":"PROGRESSIVE PHRASE BUILDING - 4 Words", "fileName": "4_PPB.txt" },
+    {"sort":560, "userTarget": "INSTRUCTOR", "class": "INTERMEDIATE", "letterGroup": "INT 2 (12-16)", "newlineChunking":true,"display":"PROGRESSIVE PHRASE BUILDING - 4 Words", "fileName": "4_PPB.txt" }
 ]}
