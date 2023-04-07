@@ -1,0 +1,458 @@
+{Thank|} 
+{Thank you|} 
+{Thank you very|} 
+Thank you very much.
+{  |}
+{Oh|} 
+{Oh no|} 
+{Oh no you|} 
+Oh no you didnt.
+{  |}
+{I|} 
+{I want|} 
+{I want you|} 
+I want you so.
+{  |}
+{Writings|} 
+{Writings on|} 
+{Writings on the|} 
+Writings on the wall.
+{  |}
+{Put|} 
+{Put your|} 
+{Put your dukes|} 
+Put your dukes up.
+{  |}
+{I|} 
+{I love|} 
+{I love you|} 
+I love you so.
+{  |}
+{Let|} 
+{Let your|} 
+{Let your hair|} 
+Let your hair down.
+{  |}
+{From|} 
+{From the|} 
+{From the horses|} 
+From the horses mouth.
+{  |}
+{I|} 
+{I miss|} 
+{I miss you|} 
+I miss you so.
+{  |}
+{Wet|} 
+{Wet behind|} 
+{Wet behind the|} 
+Wet behind the ears.
+{  |}
+{Pig|} 
+{Pig in|} 
+{Pig in a|} 
+Pig in a poke.
+{  |}
+{I|} 
+{I need|} 
+{I need you|} 
+I need you so.
+{  |}
+{Paint|} 
+{Paint the|} 
+{Paint the town|} 
+Paint the town red.
+{  |}
+{Skin|} 
+{Skin of|} 
+{Skin of your|} 
+Skin of your teeth.
+{  |}
+{Raining|} 
+{Raining cats|} 
+{Raining cats and|} 
+Raining cats and dogs.
+{  |}
+{I|} 
+{I am|} 
+{I am a|} 
+I am a rock.
+{  |}
+{High|} 
+{High on|} 
+{High on the|} 
+High on the hog.
+{  |}
+{A|} 
+{A stiff|} 
+{A stiff upper|} 
+A stiff upper lip.
+{  |}
+{Skeletons|} 
+{Skeletons in|} 
+{Skeletons in the|} 
+Skeletons in the closet.
+{  |}
+{Clean|} 
+{Clean as|} 
+{Clean as a|} 
+Clean as a whistle.
+{  |}
+{Throw|} 
+{Throw in|} 
+{Throw in the|} 
+Throw in the towel.
+{  |}
+{Bats|} 
+{Bats in|} 
+{Bats in the|} 
+Bats in the belfry.
+{  |}
+{Fit|} 
+{Fit as|} 
+{Fit as a|} 
+Fit as a fiddle.
+{  |}
+{Pull|} 
+{Pull in|} 
+{Pull in the|} 
+Pull in the horns.
+{  |}
+{Called|} 
+{Called on|} 
+{Called on the|} 
+Called on the carpet.
+{  |}
+{Hes|} 
+{Hes no|} 
+{Hes no spring|} 
+Hes no spring chicken.
+{  |}
+{Get|} 
+{Get the|} 
+{Get the lead|} 
+Get the lead out.
+{  |}
+{Reveal|} 
+{Reveal your|} 
+{Reveal your 1|} 
+Reveal your true colors.
+{  |}
+{Ride|} 
+{Ride like|} 
+{Ride like the|} 
+Ride like the wind.
+{  |}
+{The|} 
+{The whole|} 
+{The whole nine|} 
+The whole nine yards.
+{  |}
+{One|} 
+{One life,|} 
+{One life, one|} 
+One life, one chance.
+{  |}
+{The|} 
+{The past|} 
+{The past is|} 
+The past is practice.
+{  |}
+{Absent|} 
+{Absent without|} 
+{Absent without official|} 
+Absent without official leave.
+{  |}
+{Lock,|} 
+{Lock, stock,|} 
+{Lock, stock, and|} 
+Lock, stock, and barrel.
+{  |}
+{Hook,|} 
+{Hook, line,|} 
+{Hook, line, and|} 
+Hook, line, and sinker.
+{  |}
+{Beat|} 
+{Beat around|} 
+{Beat around the|} 
+Beat around the bush.
+{  |}
+{Read|} 
+{Read between|} 
+{Read between the|} 
+Read between the lines.
+{  |}
+{To|} 
+{To make|} 
+{To make ends|} 
+To make ends meet.
+{  |}
+{Rub|} 
+{Rub the|} 
+{Rub the wrong|} 
+Rub the wrong way.
+{  |}
+{Work|} 
+{Work the|} 
+{Work the graveyard|} 
+Work the graveyard shift.
+{  |}
+{Dead|} 
+{Dead as|} 
+{Dead as a|} 
+Dead as a doornail.
+{  |}
+{Nip|} 
+{Nip in|} 
+{Nip in the|} 
+Nip in the bud.
+{  |}
+{My|} 
+{My lips|} 
+{My lips are|} 
+My lips are sealed.
+{  |}
+{Bring|} 
+{Bring home|} 
+{Bring home the|} 
+Bring home the bacon.
+{  |}
+{See,|} 
+{See, hear,|} 
+{See, hear, touch,|} 
+See, hear, touch, feel.
+{  |}
+{Good|} 
+{Good luck|} 
+{Good luck to|} 
+Good luck to you.
+{  |}
+{Go|} 
+{Go your|} 
+{Go your own|} 
+Go your own way.
+{  |}
+{Live,|} 
+{Live, breathe,|} 
+{Live, breathe, laugh,|} 
+Live, breathe, laugh, love.
+{  |}
+{Hearts|} 
+{Hearts beat|} 
+{Hearts beat the|} 
+Hearts beat the same.
+{  |}
+{Its|} 
+{Its all|} 
+{Its all about|} 
+Its all about me.
+{  |}
+{To|} 
+{To thyself|} 
+{To thyself be|} 
+To thyself be true.
+{  |}
+{Thou|} 
+{Thou shall|} 
+{Thou shall not|} 
+Thou shall not surrender.
+{  |}
+{What|} 
+{What did|} 
+{What did you|} 
+What did you say?
+{  |}
+{Not|} 
+{Not on|} 
+{Not on your|} 
+Not on your life.
+{  |}
+{I|} 
+{I think|} 
+{I think I|} 
+I think I can.
+{  |}
+{I|} 
+{I only|} 
+{I only want|} 
+I only want now.
+{  |}
+{I|} 
+{I want|} 
+{I want it|} 
+I want it all.
+{  |}
+{Peace,|} 
+{Peace, love,|} 
+{Peace, love, and|} 
+Peace, love, and understanding.
+{  |}
+{Dont|} 
+{Dont rock|} 
+{Dont rock the|} 
+Dont rock the boat.
+{  |}
+{Sleep|} 
+{Sleep is|} 
+{Sleep is not|} 
+Sleep is not mandatory.
+{  |}
+{Good|} 
+{Good guys|} 
+{Good guys always|} 
+Good guys always win.
+{  |}
+{Live|} 
+{Live for|} 
+{Live for your|} 
+Live for your word.
+{  |}
+{Its|} 
+{Its all|} 
+{Its all about|} 
+Its all about you.
+{  |}
+{God|} 
+{God is|} 
+{God is my|} 
+God is my shield.
+{  |}
+{I|} 
+{I am|} 
+{I am not|} 
+I am not afraid.
+{  |}
+{Its|} 
+{Its all|} 
+{Its all in|} 
+Its all in you.
+{  |}
+{I|} 
+{I stand|} 
+{I stand my|} 
+I stand my ground.
+{  |}
+{Talk|} 
+{Talk to|} 
+{Talk to the|} 
+Talk to the hand.
+{  |}
+{I|} 
+{I want|} 
+{I want to|} 
+I want to cry.
+{  |}
+{Now|} 
+{Now leave|} 
+{Now leave me|} 
+Now leave me alone.
+{  |}
+{Go|} 
+{Go out|} 
+{Go out and|} 
+Go out and play.
+{  |}
+{Money|} 
+{Money cant|} 
+{Money cant buy|} 
+Money cant buy life.
+{  |}
+{Dont|} 
+{Dont worry,|} 
+{Dont worry, be|} 
+Dont worry, be happy.
+{  |}
+{Just|} 
+{Just go|} 
+{Just go for|} 
+Just go for it.
+{  |}
+{Just|} 
+{Just like|} 
+{Just like a|} 
+Just like a man.
+{  |}
+{Work|} 
+{Work hard,|} 
+{Work hard, play|} 
+Work hard, play harder.
+{  |}
+{You|} 
+{You are|} 
+{You are so|} 
+You are so beautiful.
+{  |}
+{Too|} 
+{Too legit|} 
+{Too legit to|} 
+Too legit to quit.
+{  |}
+{1|} 
+{1 love|} 
+{1 love never|} 
+True love never dies.
+{  |}
+{Nice|} 
+{Nice guys|} 
+{Nice guys finish|} 
+Nice guys finish last.
+{  |}
+{God|} 
+{God as|} 
+{God as my|} 
+God as my witness.
+{  |}
+{For|} 
+{For old|} 
+{For old times|} 
+For old times sake.
+{  |}
+{Just|} 
+{Just this|} 
+{Just this one|} 
+Just this one time.
+{  |}
+{Dont|} 
+{Dont talk|} 
+{Dont talk just|} 
+Dont talk just kiss.
+{  |}
+{Dont|} 
+{Dont drink|} 
+{Dont drink and|} 
+Dont drink and drive.
+{  |}
+{A|} 
+{A moment|} 
+{A moment like|} 
+A moment like this.
+{  |}
+{Just|} 
+{Just like|} 
+{Just like a|} 
+Just like a woman.
+{  |}
+{If|} 
+{If you|} 
+{If you want|} 
+If you want me.
+{  |}
+{Dont|} 
+{Dont fall|} 
+{Dont fall in|} 
+Dont fall in love.
+{  |}
+{Lets|} 
+{Lets just|} 
+{Lets just be|} 
+Lets just be friends.
+{  |}
+{Tomorrow|} 
+{Tomorrow is|} 
+{Tomorrow is another|} 
+Tomorrow is another day.
+
+
+
+
