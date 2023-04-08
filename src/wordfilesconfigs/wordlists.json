@@ -516,12 +516,6 @@
     {"sort":403, "userTarget": "INSTRUCTOR", "class": "BC1", "letterGroup": "UWB", "newlineChunking":true,"display":"UWB HOF LCD STATES", "fileName": "UWB8.txt" },
     {"sort":404, "userTarget": "INSTRUCTOR", "class": "BC1", "letterGroup": "UWB", "newlineChunking":false,"display":"UWB HOF LCD    QSO ABBREVIATIONS", "fileName": "UWB9.txt" },
     {"sort":405, "userTarget": "INSTRUCTOR", "class": "BC1", "letterGroup": "UWB", "newlineChunking":false,"display":"UWB HOF LCD WORDS", "fileName": "UWB10.txt" },
-    {"sort":406, "userTarget": "INSTRUCTOR", "class": "INTERMEDIATE", "letterGroup": "INT 1 (12)", "newlineChunking":true,"display":"SUDUKO", "fileName": "suduko1.txt" },
-    {"sort":408, "userTarget": "STUDENT", "class": "INTERMEDIATE", "letterGroup": "INT 1 (12)", "newlineChunking":true,"display":"SUDUKO", "fileName": "suduko1.txt" },
-    {"sort":409, "userTarget": "INSTRUCTOR", "class": "INTERMEDIATE", "letterGroup": "INT 2 (12-16)", "newlineChunking":true,"display":"SUDUKO", "fileName": "suduko1.txt" },
-    {"sort":500, "userTarget": "STUDENT", "class": "INTERMEDIATE", "letterGroup": "INT 2 (12-16)", "newlineChunking":true,"display":"SUDUKO", "fileName": "suduko1.txt" },
-    {"sort":501, "userTarget": "INSTRUCTOR", "class": "INTERMEDIATE", "letterGroup": "INT 3 (16-20)", "newlineChunking":true,"display":"SUDUKO", "fileName": "suduko1.txt" },
-    {"sort":502, "userTarget": "STUDENT", "class": "INTERMEDIATE", "letterGroup": "INT 3 (16-20)", "newlineChunking":true,"display":"SUDUKO", "fileName": "suduko1.txt" },
     {"sort":503, "userTarget": "INSTRUCTOR", "class": "BC1", "letterGroup": "UWB", "newlineChunking":true,"display":"UWB HOF LCD PHRASES", "fileName": "UWB11.txt" },
     {"sort":504, "userTarget": "INSTRUCTOR", "class": "ADVANCED", "letterGroup": "SENTENCES", "newlineChunking":true,"display":"2 WORD PHRASES", "fileName": "ADV2W.txt" },
     {"sort":505, "userTarget": "INSTRUCTOR", "class": "ADVANCED", "letterGroup": "SENTENCES", "newlineChunking":true,"display":"3 WORD SENTENCES", "fileName": "ADV3W.txt" },
@@ -572,5 +566,11 @@
     {"sort":559, "userTarget": "STUDENT", "class": "INTERMEDIATE", "letterGroup": "INT 3 (16-20)", "newlineChunking":true,"display":"PROGRESSIVE PHRASE BUILDING - 4 Words", "fileName": "4_PPB.txt" },
     {"sort":560, "userTarget": "INSTRUCTOR", "class": "INTERMEDIATE", "letterGroup": "INT 3 (16-20)", "newlineChunking":true,"display":"PROGRESSIVE PHRASE BUILDING - 4 Words", "fileName": "4_PPB.txt" },
     {"sort":559, "userTarget": "STUDENT", "class": "INTERMEDIATE", "letterGroup": "INT 3 (16-20)", "newlineChunking":true,"display":"PROGRESSIVE PHRASE BUILDING - 5 Words", "fileName": "5_PPB.txt" },
-    {"sort":560, "userTarget": "INSTRUCTOR", "class": "INTERMEDIATE", "letterGroup": "INT 3 (16-20)", "newlineChunking":true,"display":"PROGRESSIVE PHRASE BUILDING - 5 Words", "fileName": "5_PPB.txt" }
+    {"sort":560, "userTarget": "INSTRUCTOR", "class": "INTERMEDIATE", "letterGroup": "INT 3 (16-20)", "newlineChunking":true,"display":"PROGRESSIVE PHRASE BUILDING - 5 Words", "fileName": "5_PPB.txt" },
+    {"sort":406, "userTarget": "INSTRUCTOR", "class": "INTERMEDIATE", "letterGroup": "INT 1 (12)", "newlineChunking":true,"display":"SUDUKO", "fileName": "suduko1.txt" },
+    {"sort":408, "userTarget": "STUDENT", "class": "INTERMEDIATE", "letterGroup": "INT 1 (12)", "newlineChunking":true,"display":"SUDUKO", "fileName": "suduko1.txt" },
+    {"sort":409, "userTarget": "INSTRUCTOR", "class": "INTERMEDIATE", "letterGroup": "INT 2 (12-16)", "newlineChunking":true,"display":"SUDUKO", "fileName": "suduko1.txt" },
+    {"sort":500, "userTarget": "STUDENT", "class": "INTERMEDIATE", "letterGroup": "INT 2 (12-16)", "newlineChunking":true,"display":"SUDUKO", "fileName": "suduko1.txt" },
+    {"sort":501, "userTarget": "INSTRUCTOR", "class": "INTERMEDIATE", "letterGroup": "INT 3 (16-20)", "newlineChunking":true,"display":"SUDUKO", "fileName": "suduko1.txt" },
+    {"sort":502, "userTarget": "STUDENT", "class": "INTERMEDIATE", "letterGroup": "INT 3 (16-20)", "newlineChunking":true,"display":"SUDUKO", "fileName": "suduko1.txt" }
 ]}
