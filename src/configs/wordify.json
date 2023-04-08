@@ -131,6 +131,7 @@
 	{ "characters": "WUD", "replacement": "Would", "onlyAlone" : true},
 	{ "characters": "WX", "replacement": "Weather", "onlyAlone" : true},
 	{ "characters": "W", "replacement": "Watts", "onlyAlone" : true},
+	{ "characters": "X", "replacement": "X", "onlyAlone" : false, "overrideSpell" : true},
 	{ "characters": "YRS", "replacement": "Years", "onlyAlone" : true}
 	]
 }
