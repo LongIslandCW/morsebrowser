@@ -1,334 +1,333 @@
-{I|}
+{I|} 
 {I Love|} 
- I Love You 
+I Love You 
 {  |}
-{youre|} 
- {youre right|} 
- Maybe youre right 
- {  |}
-{trust|} 
- {trust you|} 
- I trust you 
-{  |}
-{for|} 
- {for it|} 
- Go for it 
-{  |}
-{your|} 
- {your back|} 
- Got your back
- {  |}
-{are|} 
- {are you?|} 
- How are you? 
-{  |}
-{respect|} 
- {respect you|} 
- I respect you 
-{  |}
-{forgive|} 
- {forgive me|} 
- Please forgive me 
-{  |}
-{or|} 
- {or never|} 
- Now or never 
-{  |}
-{enough|} 
- {enough sleep|} 
- Get enough sleep 
-{  |}
-{miss|} 
- {miss you|} 
- I miss you 
-{  |}
-{your|} 
- {your best|} 
- Nurture your best 
-{  |}
-{just|} 
- {just dance|} 
- Lets just dance 
-{  |}
-{it|} 
- {it go|} 
- Let it go 
-{  |}
-{something|} 
- {something new|} 
- Try something new 
-{  |}
-{it|} 
- {it legal|} 
- Keep it legal 
-{  |}
-{am|} 
- {am sorry|} 
- I am sorry 
-{  |}
-{so|} 
- {so much|} 
- Thanks so much 
-{  |}
-{your|} 
- {your health|} 
- Protect your health 
-{  |}
-{it|} 
- {it fun|} 
- Keep it fun 
-{  |}
-{drive|} 
- {drive drunk|} 
- Donâ€™t drive drunk 
-{  |}
-{your|} 
- {your victories|} 
- Celebrate your victories 
-{  |}
-{be|} 
- {be friends|} 
- Lets be friends 
-{  |}
-{is|} 
- {is music|} 
- This is music
- {  |}
-{and|} 
- {and out|} 
- Over and out 
-{  |}
-{are|} 
- {are you?|} 
- Where are you? 
-{  |}
-{your|} 
- {your dreams|} 
- Wake your dreams 
-{  |}
-{wont|} 
- {wont wait|} 
- Life wont wait 
-{  |}
-{in|} 
- {in yourself|} 
- Believe in yourself 
-{  |}
-{it|} 
- {it be|} 
- Let it be 
-{  |}
-{my|} 
- {my hand|} 
- Hold my hand 
-{  |}
-{are|} 
- {are you?|} 
- Who are you? 
-{  |}
-{will|} 
- {will pass|} 
- This will pass 
-{  |}
-{the|} 
- {the truth|} 
- Speak the truth 
-{  |}
-{had|} 
- {had time|} 
- You had time 
-{  |}
-{a|} 
- {a gift|} 
- Todayâ€™s a gift 
-{  |}
-{am|} 
- {am kidding|} 
- I am kidding 
-{  |}
-{me|} 
- {me now|} 
- Marry me now 
-{  |}
-{endures|} 
- {endures delay|} 
- Love endures delay 
-{  |}
-{my|} 
- {my head?|} 
- Whereâ€™s my head? 
-{  |}
-{hope|} 
- {hope remains|} 
- Only hope remains 
-{  |}
-{strings|} 
- {strings attached|} 
- No strings attached 
-{  |}
-{on|} 
- {on man|} 
- Ramble on man 
-{  |}
-{is|} 
- {is good|} 
- Change is good 
-{  |}
-{from|} 
- {from yesterday|} 
- Learn from yesterday 
-{  |}
-{look|} 
- {look back|} 
- Never look back 
-{  |}
-{strength|} 
- {strength fire|} 
- Passion strength fire 
-{  |}
-{is|} 
- {is life|} 
- Life is life 
-{  |}
-{all|} 
- {all odds|} 
- Against all odds 
-{  |}
-{the|} 
- {the day|} 
- Seize the day 
-{  |}
-{life|} 
- {life daily|} 
- Live life daily 
-{  |}
-{you|} 
- {you so|} 
- Thank you so 
-{  |}
-{is|} 
- {is beauty|} 
- Imperfection is beauty 
-{  |}
-{it|} 
- {it happen|} 
- Make it happen 
-{  |}
-{is|} 
- {is forever|} 
- Family is forever 
-{  |}
-{be|} 
- {be yourself|} 
- Always be yourself 
-{  |}
-{heals|} 
- {heals everything|} 
- Time heals everything 
-{  |}
-{my|} 
- {my friend|} 
- Forever my friend 
+{Maybe|} 
+{Maybe youre|} 
+Maybe youre right  
 {  |}
 {I|} 
- {I can|} 
- Because I can 
+{I trust|} 
+I trust you 
 {  |}
-{make|} 
- {make people|} 
- Mistakes make people 
+{Go|} 
+{Go for|} 
+Go for it 
 {  |}
-{before|} 
- {before dishonor|} 
- Death before dishonor 
+{Got|} 
+{Got your|} 
+Got your back 
 {  |}
-{donâ€™t|} 
- {donâ€™t know|} 
- I donâ€™t know 
+{How|} 
+{How are|} 
+How are you? 
 {  |}
-{are|} 
- {are kidding|} 
- You are kidding 
+{I|} 
+{I respect|} 
+I respect you 
 {  |}
-{be|} 
- {be honest|} 
- Always be honest 
+{Please|} 
+{Please forgive|} 
+Please forgive me 
 {  |}
-{can|} 
- {can mend|} 
- Hearts can mend 
+{Now|} 
+{Now or|} 
+Now or never 
 {  |}
-{will|} 
- {will fall|} 
- Rain will fall 
+{Get|} 
+{Get enough|} 
+Get enough sleep 
 {  |}
-{be|} 
- {be afraid|} 
- Dont be afraid 
+{I|} 
+{I miss|} 
+I miss you 
 {  |}
-{is|} 
- {is best|} 
- Laughter is best 
+{Nurture|} 
+{Nurture your|} 
+Nurture your best 
 {  |}
-{is|} 
- {is power|} 
- Knowledge is power 
+{Lets|} 
+{Lets just|} 
+Lets just dance 
 {  |}
-{trumps|} 
- {trumps all|} 
- Hope trumps all 
+{Let|} 
+{Let it|} 
+Let it go 
 {  |}
-{not|} 
- {not judge|} 
- Do not judge 
+{Try|} 
+{Try something|} 
+Try something new 
 {  |}
-{every|} 
- {every penny|} 
- Save every penny 
+{Keep|} 
+{Keep it|} 
+Keep it legal 
 {  |}
-{remain|} 
- {remain neutral|} 
- Always remain neutral 
+{I|} 
+{I am|} 
+I am sorry 
 {  |}
-{help|} 
- {help me|} 
- Please help me 
+{Thanks|} 
+{Thanks so|} 
+Thanks so much 
 {  |}
-{and|} 
- {and sound|} 
- Safe and sound 
+{Protect|} 
+{Protect your|} 
+Protect your health 
 {  |}
-{can|} 
- {can hurt|} 
- Words can hurt 
+{Keep|} 
+{Keep it|} 
+Keep it fun 
 {  |}
-{not|} 
- {not lie|} 
- Do not lie 
+{Don’t|} 
+{Don’t drive|} 
+Don’t drive drunk 
 {  |}
-{the|} 
- {the moon|} 
- Shoot the moon 
+{Celebrate|} 
+{Celebrate your|} 
+Celebrate your victories 
 {  |}
-{my|} 
- {my hero|} 
- Be my hero 
+{Lets|} 
+{Lets be|} 
+Lets be friends 
 {  |}
-{my|} 
- {my soul|} 
- Touch my soul 
+{This|} 
+{This is|} 
+This is music 
 {  |}
-{the|} 
- {the course|} 
- Stay the course 
+{Over|} 
+{Over and|} 
+Over and out 
 {  |}
-{heal|} 
- {heal all|} 
- Hugs heal all 
+{Where|} 
+{Where are|} 
+Where are you? 
 {  |}
-{is|} 
- {is everything|} 
- Love is everything 
+{Wake|} 
+{Wake your|} 
+Wake your dreams 
+{  |}
+{Life|} 
+{Life wont|} 
+Life wont wait 
+{  |}
+{Believe|} 
+{Believe in|} 
+Believe in yourself 
+{  |}
+{Let|} 
+{Let it|} 
+Let it be 
+{  |}
+{Hold|} 
+{Hold my|} 
+Hold my hand 
+{  |}
+{Who|} 
+{Who are|} 
+Who are you? 
+{  |}
+{This|} 
+{This will|} 
+This will pass 
+{  |}
+{Speak|} 
+{Speak the|} 
+Speak the truth 
+{  |}
+{You|} 
+{You had|} 
+You had time 
+{  |}
+{Today’s|} 
+{Today’s a|} 
+Today’s a gift 
+{  |}
+{I|} 
+{I am|} 
+I am kidding 
+{  |}
+{Marry|} 
+{Marry me|} 
+Marry me now 
+{  |}
+{Love|} 
+{Love endures|} 
+Love endures delay 
+{  |}
+{Where’s|} 
+{Where’s my|} 
+Where’s my head? 
+{  |}
+{Only|} 
+{Only hope|} 
+Only hope remains 
+{  |}
+{No|} 
+{No strings|} 
+No strings attached 
+{  |}
+{Ramble|} 
+{Ramble on|} 
+Ramble on man 
+{  |}
+{Change|} 
+{Change is|} 
+Change is good 
+{  |}
+{Learn|} 
+{Learn from|} 
+Learn from yesterday 
+{  |}
+{Never|} 
+{Never look|} 
+Never look back 
+{  |}
+{Passion|} 
+{Passion strength|} 
+Passion strength fire 
+{  |}
+{Life|} 
+{Life is|} 
+Life is life 
+{  |}
+{Against|} 
+{Against all|} 
+Against all odds 
+{  |}
+{Seize|} 
+{Seize the|} 
+Seize the day 
+{  |}
+{Live|} 
+{Live life|} 
+Live life daily 
+{  |}
+{Thank|} 
+{Thank you|} 
+Thank you so 
+{  |}
+{Imperfection|} 
+{Imperfection is|} 
+Imperfection is beauty 
+{  |}
+{Make|} 
+{Make it|} 
+Make it happen 
+{  |}
+{Family|} 
+{Family is|} 
+Family is forever 
+{  |}
+{Always|} 
+{Always be|} 
+Always be yourself 
+{  |}
+{Time|} 
+{Time heals|} 
+Time heals everything 
+{  |}
+{Forever|} 
+{Forever my|} 
+Forever my friend 
+{  |}
+{Because|} 
+{Because I|} 
+Because I can 
+{  |}
+{Mistakes|} 
+{Mistakes make|} 
+Mistakes make people 
+{  |}
+{Death|} 
+{Death before|} 
+Death before dishonor 
+{  |}
+{I|} 
+{I don’t|} 
+I don’t know 
+{  |}
+{You|} 
+{You are|} 
+You are kidding 
+{  |}
+{Always|} 
+{Always be|} 
+Always be honest 
+{  |}
+{Hearts|} 
+{Hearts can|} 
+Hearts can mend 
+{  |}
+{Rain|} 
+{Rain will|} 
+Rain will fall 
+{  |}
+{Dont|} 
+{Dont be|} 
+Dont be afraid 
+{  |}
+{Laughter|} 
+{Laughter is|} 
+Laughter is best 
+{  |}
+{Knowledge|} 
+{Knowledge is|} 
+Knowledge is power 
+{  |}
+{Hope|} 
+{Hope trumps|} 
+Hope trumps all 
+{  |}
+{Do|} 
+{Do not|} 
+Do not judge 
+{  |}
+{Save|} 
+{Save every|} 
+Save every penny 
+{  |}
+{Always|} 
+{Always remain|} 
+Always remain neutral 
+{  |}
+{Please|} 
+{Please help|} 
+Please help me 
+{  |}
+{Safe|} 
+{Safe and|} 
+Safe and sound 
+{  |}
+{Words|} 
+{Words can|} 
+Words can hurt 
+{  |}
+{Do|} 
+{Do not|} 
+Do not lie 
+{  |}
+{Shoot|} 
+{Shoot the|} 
+Sh{  |}oot the moon 
 
+{Be|} 
+{Be my|} 
+Be my hero 
+{  |}
+{Touch|} 
+{Touch my|} 
+Touch my soul 
+{  |}
+{Stay|} 
+{Stay the|} 
+Stay the course 
+{  |}
+{Hugs|} 
+{Hugs heal|} 
+Hugs heal all 
+{  |}
+{Love|} 
+{Love is|} 
+Love is everything 
 
 
