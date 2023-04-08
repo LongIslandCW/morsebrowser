@@ -717,7 +717,7 @@ export class MorseViewModel {
 
   doDownload = async () => {
     let allWords = ''
-    const words = this.words()
+    const words = this.words().map(w => w.displayWord.replace(/\n/g, ' '))
     words.forEach((word) => {
       allWords += allWords.length > 0 ? ' ' + word : word
     })
