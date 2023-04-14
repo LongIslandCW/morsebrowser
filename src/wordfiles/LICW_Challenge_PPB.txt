@@ -1,0 +1,120 @@
+{599|}
+{599 TX|}
+{599 TX TOM|}
+599 TX TOM 450i
+{  |}
+{379|}
+{379 CA|}
+{379 CA DAVID|}
+379 CA DAVID 1974k
+{  |}
+{579|}
+{579 OR|}
+{579 OR GLENN|}
+579 OR GLENN 354
+{  |}
+{599|}
+{599 IL|}
+{599 IL MIKE|}
+599 IL MIKE 2145m
+{  |}
+{479|}
+{479 MN|}
+{479 MN JANE|}
+479 MN JANE 160is
+{  |}
+{5NN|}
+{5NN WA|}
+{5NN WA SID|}
+5NN WA SID 759
+{  |}
+{479|}
+{479 TN|}
+{479 TN HOWARD|}
+479 TN HOWARD 1845a
+{  |}
+{599|}
+{599 OH|}
+{599 OH CAROL|}
+{599 OH CAROL 750i|}
+{  |}
+{459|}
+{459 KS|}
+{459 KS TIM|}
+{459 KS TIM 37m|}
+{  |}
+{599|}
+{599 IA|}
+{599 IA JOE|}
+599 IA JOE 600
+{  |}
+{579|}
+{579 NH|}
+{579 NH JANE|}
+579 NH JANE 14k
+{  |}
+{559|}
+{559 AR|}
+{559 AR GARY|}
+559 AR GARY 927i
+{  |}
+{479|}
+{479 KY|}
+{479 KY ALEX|}
+479 KY ALEX 1257as
+{  |}
+{5NN|}
+{5NN ND|}
+{5NN ND GREG|}
+599NN ND GREG 2900m
+{  |}
+{459|}
+{459 WV|}
+{459 WV JEFF|}
+459 WV JEFF 691I
+{  |}
+{579|}
+{579 SD|}
+{579 SD ROLAND|}
+579 SD ROLAND 375is
+{  |}
+{599|}
+{599 PA|}
+{599 PA DUFF|}
+599 PA DUFF 981
+{  |}
+{479|}
+{479 OK|}
+{479 OK FRANK|}
+479 OK FRANK 1195I
+{  |}
+{599|}
+{599 RI|}
+{599 RI BOB|}
+599 RI BOB 1469m
+{  |}
+{379|}
+{379 MA|}
+{379 MA BILL|}
+379 MA BILL 1757a
+{  |}
+{579|}
+{579 MO|}
+{579 MO SKIP|}
+579 MO SKIP 321k
+{  |}
+{599|}
+{599 AK|}
+{599 AK CATHY|}
+599 AK CATHY 652as
+{  |}
+{479|}
+{479 DE|}
+{479 DE KAT|}
+479 DE KAT 359a
+{  |}
+{559|}
+{559 MT|}
+{559 MT ED|}
+559 MT ED 1441I
+

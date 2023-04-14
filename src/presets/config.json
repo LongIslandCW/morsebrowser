@@ -11,8 +11,8 @@
             "letterGroups": []
         },
         {
-            "className": "BPT",
-            "defaultSetFile": "bpt.json",
+            "className": "BC3",
+            "defaultSetFile": "bc3.json",
             "letterGroups": []
         },
         {
@@ -20,11 +20,15 @@
             "defaultSetFile": "",
             "letterGroups": [
                 {
-                    "letterGroup": "12 to 16",
+                    "letterGroup": "INT 1 (12)",
+                    "setFile": "int_1_12.json"
+                },
+                {
+                    "letterGroup": "INT 2 (12-16)",
                     "setFile": "int_12_16.json"
                 },
                 {
-                    "letterGroup": "16 to 20",
+                    "letterGroup": "INT 3 (16-20)",
                     "setFile": "int_16_20.json"
                 }
             ]

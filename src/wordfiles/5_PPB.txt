@@ -1,0 +1,649 @@
+{The|} 
+{The sun|} 
+{The sun is|} 
+{The sun is very|} 
+The sun is very bright.
+{  |}
+{You|} 
+{You are|} 
+{You are quite|} 
+{You are quite the|} 
+You are quite the actor
+{  |}
+{That's|} 
+{That's a|} 
+{That's a very|} 
+{That's a very small|} 
+That's a very small village.
+{  |}
+{Let's|} 
+{Let's roll|} 
+{Let's roll down|} 
+{Let's roll down the|} 
+Let's roll down the hill.
+{  |}
+{What|} 
+{What language|} 
+{What language do|} 
+{What language do you|} 
+What language do you speak?
+{  |}
+{That|} 
+{That dress|} 
+{That dress was|} 
+{That dress was very|} 
+That dress was very expensive.
+{  |}
+{I|} 
+{I gave|} 
+{I gave him|} 
+{I gave him a|} 
+I gave him a letter.
+{  |}
+{I|} 
+{I have|} 
+{I have nothing|} 
+{I have nothing to|} 
+I have nothing to say.
+{  |}
+{Today|} 
+{Today is|} 
+{Today is a|} 
+{Today is a special|} 
+Today is a special day.
+{  |}
+{I|} 
+{I wrote|} 
+{I wrote him|} 
+{I wrote him a|} 
+I wrote him a letter.
+{  |}
+{You|} 
+{You can't|} 
+{You can't break|} 
+{You can't break the|} 
+You can't break the law.
+{  |}
+{I|} 
+{I come|} 
+{I come from|} 
+{I come from the|} 
+I come from the east.
+{  |}
+{A|} 
+{A circle|} 
+{A circle is|} 
+{A circle is perfectly|} 
+A circle is perfectly round.
+{  |}
+{The|} 
+{The house|} 
+{The house is|} 
+{The house is burning|} 
+The house is burning down.
+{  |}
+{There|} 
+{There are|} 
+{There are many|} 
+{There are many different|} 
+There are many different symbols.
+{  |}
+{I|} 
+{I fell|} 
+{I fell on|} 
+{I fell on the|} 
+I fell on the ground.
+{  |}
+{Maybe|} 
+{Maybe I|} 
+{Maybe I will|} 
+{Maybe I will go|} 
+Maybe I will go home.
+{  |}
+{He|} 
+{He shouted|} 
+{He shouted out|} 
+{He shouted out to|} 
+He shouted out to me.
+{  |}
+{Look|} 
+{Look at|} 
+{Look at that|} 
+{Look at that big|} 
+Look at that big cloud.
+{  |}
+{I|} 
+{I am|} 
+{I am a|} 
+{I am a grown|} 
+I am a grown woman.
+{  |}
+{I|} 
+{I have|} 
+{I have very|} 
+{I have very sensitive|} 
+I have very sensitive skin.
+{  |}
+{16|} 
+{16 was|} 
+{16 was my|} 
+{16 was my favourite|} 
+16 was my favourite age.
+{  |}
+{My|} 
+{My family|} 
+{My family is|} 
+{My family is very|} 
+My family is very poor.
+{  |}
+{It|} 
+{It was|} 
+{It was hot|} 
+{It was hot last|} 
+It was hot last summer.
+{  |}
+{I|} 
+{I cannot|} 
+{I cannot help|} 
+{I cannot help you|} 
+I cannot help you now.
+{  |}
+{The|} 
+{The item|} 
+{The item is|} 
+{The item is half|} 
+The item is half price.
+{  |}
+{What|} 
+{What is|} 
+{What is in|} 
+{What is in the|} 
+What is in the box?
+{  |}
+{That|} 
+{That was|} 
+{That was a|} 
+{That was a good|} 
+That was a good dinner.
+{  |}
+{What|} 
+{What course|} 
+{What course are|} 
+{What course are you|} 
+What course are you taking?
+{  |}
+{Please|} 
+{Please go|} 
+{Please go back|} 
+{Please go back to|} 
+Please go back to sleep
+{  |}
+{Look|} 
+{Look at|} 
+{Look at all|} 
+{Look at all that|} 
+Look at all that soil
+{  |}
+{That|} 
+{That bear|} 
+{That bear is|} 
+{That bear is really|} 
+That bear is really big.
+{  |}
+{That|} 
+{That is|} 
+{That is a|} 
+{That is a neat|} 
+That is a neat method
+{  |}
+{That's|} 
+{That's a|} 
+{That's a very|} 
+{That's a very big|} 
+That's a very big boat
+{  |}
+{I|} 
+{I will|} 
+{I will clean|} 
+{I will clean the|} 
+I will clean the bathroom.
+{  |}
+{My|} 
+{My dog|} 
+{My dog likes|} 
+{My dog likes his|} 
+My dog likes his ball.
+{  |}
+{I|} 
+{I am|} 
+{I am ready|} 
+{I am ready for|} 
+I am ready for anything.
+{  |}
+{I|} 
+{I like|} 
+{I like to|} 
+{I like to play|} 
+I like to play outside.
+{  |}
+{Do|} 
+{Do you|} 
+{Do you like|} 
+{Do you like my|} 
+Do you like my hair?
+{  |}
+{I|} 
+{I love|} 
+{I love my|} 
+{I love my chocolate|} 
+I love my chocolate milk.
+{  |}
+{That|} 
+{That is|} 
+{That is a|} 
+{That is a beautiful|} 
+That is a beautiful flower.
+{  |}
+{My|} 
+{My favourite|} 
+{My favourite colour|} 
+{My favourite colour is|} 
+My favourite colour is blue.
+{  |}
+{She|} 
+{She is|} 
+{She is a|} 
+{She is a nice|} 
+She is a nice teacher.
+{  |}
+{She|} 
+{She said|} 
+{She said she|} 
+{She said she will|} 
+She said she will return.
+{  |}
+{You|} 
+{You picked|} 
+{You picked the|} 
+{You picked the right|} 
+You picked the right one.
+{  |}
+{What|} 
+{What subject|} 
+{What subject are|} 
+{What subject are you|} 
+What subject are you taking?
+{  |}
+{Please|} 
+{Please write|} 
+{Please write a|} 
+{Please write a full|} 
+Please write a full paragraph.
+{  |}
+{How|} 
+{How much|} 
+{How much is|} 
+{How much is the|} 
+How much is the bill?
+{  |}
+{She|} 
+{She can|} 
+{She can make|} 
+{She can make a|} 
+She can make a difference.
+{  |}
+{I|} 
+{I will|} 
+{I will probably|} 
+{I will probably help|} 
+I will probably help him.
+{  |}
+{Winter|} 
+{Winter in|} 
+{Winter in Ontario|} 
+{Winter in Ontario is|} 
+Winter in Ontario is cold.
+{  |}
+{Can|} 
+{Can you|} 
+{Can you read|} 
+{Can you read the|} 
+Can you read the sign?
+{  |}
+{That|} 
+{That is|} 
+{That is a|} 
+{That is a simple|} 
+That is a simple question.
+{  |}
+{Love|} 
+{Love is|} 
+{Love is a|} 
+{Love is a strong|} 
+Love is a strong emotion.
+{  |}
+{That|} 
+{That is|} 
+{That is a|} 
+{That is a long|} 
+That is a long drop.
+{  |}
+{You|} 
+{You need|} 
+{You need legs|} 
+{You need legs to|} 
+You need legs to walk.
+{  |}
+{I|} 
+{I kept|} 
+{I kept this|} 
+{I kept this for|} 
+I kept this for you.
+{  |}
+{Please|} 
+{Please use|} 
+{Please use the|} 
+{Please use the main|} 
+Please use the main doors.
+{  |}
+{Do|} 
+{Do you|} 
+{Do you remember|} 
+{Do you remember your|} 
+Do you remember your past?
+{  |}
+{What's|} 
+{What's your|} 
+{What's your favourite|} 
+{What's your favourite record.|} 
+What's your favourite record.
+{  |}
+{What's|} 
+{What's your|} 
+{What's your third|} 
+{What's your third favourite|} 
+What's your third favourite hobby?
+{  |}
+{Can|} 
+{Can you|} 
+{Can you describe|} 
+{Can you describe that|} 
+Can you describe that please?
+{  |}
+{Would|} 
+{Would you|} 
+{Would you like|} 
+{Would you like to|} 
+Would you like to dance?
+{  |}
+{Your|} 
+{Your hair|} 
+{Your hair feels|} 
+{Your hair feels really|} 
+Your hair feels really soft.
+{  |}
+{Are|} 
+{Are you|} 
+{Are you able|} 
+{Are you able to|} 
+Are you able to drive?
+{  |}
+{It's|} 
+{It's not|} 
+{It's not nice|} 
+{It's not nice to|} 
+It's not nice to lie
+{  |}
+{That|} 
+{That is|} 
+{That is very|} 
+{That is very exciting|} 
+That is very exciting news
+{  |}
+{Your|} 
+{Your music|} 
+{Your music is|} 
+{Your music is very|} 
+Your music is very loud.
+{  |}
+{This|} 
+{This is|} 
+{This is a|} 
+{This is a new|} 
+This is a new rhythm.
+{  |}
+{I|} 
+{I printed|} 
+{I printed out|} 
+{I printed out three|} 
+I printed out three copies.
+{  |}
+{He|} 
+{He always|} 
+{He always buys|} 
+{He always buys fresh|} 
+He always buys fresh fruit.
+{  |}
+{The|} 
+{The workers|} 
+{The workers are|} 
+{The workers are very|} 
+The workers are very healthy.
+{  |}
+{I|} 
+{I bought|} 
+{I bought my|} 
+{I bought my car|} 
+I bought my car yesterday.
+{  |}
+{Whose|} 
+{Whose turn|} 
+{Whose turn is|} 
+{Whose turn is it|} 
+Whose turn is it to deal?
+{  |}
+{Will|} 
+{Will you|} 
+{Will you consider|} 
+{Will you consider my|} 
+Will you consider my idea?
+{  |}
+{I|} 
+{I only|} 
+{I only have|} 
+{I only have ten|} 
+I only have ten dollars.
+{  |}
+{He|} 
+{He arrived|} 
+{He arrived late|} 
+{He arrived late for|} 
+He arrived late for work.
+{  |}
+{What|} 
+{What level|} 
+{What level are|} 
+{What level are you|} 
+What level are you at?
+{  |}
+{What|} 
+{What was|} 
+{What was your|} 
+{What was your final|} 
+What was your final score?
+{  |}
+{They|} 
+{They entered|} 
+{They entered the|} 
+{They entered the room|} 
+They entered the room together
+{  |}
+{My|} 
+{My mother|} 
+{My mother lives|} 
+{My mother lives in|} 
+My mother lives in Washington.
+{  |}
+{Weather|} 
+{Weather conditions|} 
+{Weather conditions are|} 
+{Weather conditions are getting|} 
+Weather conditions are getting bad.
+{  |}
+{We|} 
+{We lifted|} 
+{We lifted many|} 
+{We lifted many boxes|} 
+We lifted many boxes today.
+{  |}
+{I|} 
+{I need|} 
+{I need an|} 
+{I need an electric|} 
+I need an electric stove.
+{  |}
+{The|} 
+{The food|} 
+{The food is|} 
+{The food is all|} 
+The food is all mine.
+{  |}
+{Science|} 
+{Science class|} 
+{Science class is|} 
+{Science class is quite|} 
+Science class is quite interesting.
+{  |}
+{I|} 
+{I think|} 
+{I think insects|} 
+{I think insects are|} 
+I think insects are disgusting
+{  |}
+{That|} 
+{That is|} 
+{That is a|} 
+{That is a compound|} 
+That is a compound word.
+{  |}
+{What|} 
+{What do|} 
+{What do you|} 
+{What do you major|} 
+What do you major in?
+{  |}
+{Look|} 
+{Look at|} 
+{Look at all|} 
+{Look at all the|} 
+Look at all the cattle.
+{  |}
+{I|} 
+{I love|} 
+{I love your|} 
+{I love your cheese|} 
+I love your cheese spread
+{  |}
+{I|} 
+{I repeated|} 
+{I repeated myself|} 
+{I repeated myself three|} 
+I repeated myself three times.
+{  |}
+{Did|} 
+{Did she|} 
+{Did she read|} 
+{Did she read the|} 
+Did she read the column?
+{  |}
+{We|} 
+{We need|} 
+{We need oxygen|} 
+{We need oxygen to|} 
+We need oxygen to breathe.
+{  |}
+{A|} 
+{A triangle|} 
+{A triangle has|} 
+{A triangle has three|} 
+A triangle has three sides.
+{  |}
+{How|} 
+{How difficult|} 
+{How difficult can|} 
+{How difficult can it|} 
+How difficult can it be?
+{  |}
+{An|} 
+{An adjective|} 
+{An adjective describes|} 
+{An adjective describes a|} 
+An adjective describes a noun.
+{  |}
+{My|} 
+{My best|} 
+{My best friend|} 
+{My best friend is|} 
+My best friend is Greek.
+{  |}
+{The|} 
+{The cows|} 
+{The cows are|} 
+{The cows are very|} 
+The cows are very big.
+{  |}
+{Have|} 
+{Have a|} 
+{Have a good|} 
+{Have a good day,|} 
+Have a good day, sir.
+{  |}
+{Is|} 
+{Is that|} 
+{Is that a|} 
+{Is that a fig|} 
+Is that a fig leaf?
+{  |}
+{Those|} 
+{Those two|} 
+{Those two words|} 
+{Those two words are|} 
+Those two words are similar.
+{  |}
+{Give|} 
+{Give me|} 
+{Give me all|} 
+{Give me all the|} 
+Give me all the details.
+{  |}
+{What|} 
+{What is|} 
+{What is the|} 
+{What is the total|} 
+What is the total bill?
+{  |}
+{Let's|} 
+{Let's run|} 
+{Let's run around|} 
+{Let's run around the|} 
+Let's run around the track.
+{  |}
+{Who|} 
+{Who is|} 
+{Who is your|} 
+{Who is your family|} 
+Who is your family doctor?
+{  |}
+{How|} 
+{How does|} 
+{How does your|} 
+{How does your friend|} 
+How does your friend cook?
+{  |}
+{That's|} 
+{That's a|} 
+{That's a very|} 
+{That's a very modern|} 
+That's a very modern kitchen.
+
+

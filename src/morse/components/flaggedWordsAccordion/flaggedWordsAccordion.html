@@ -10,14 +10,14 @@
 <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo">
     <div class="accordion-body">
         <div class="input-group">
-            <span id="btnSetFlagged" class="input-group-text" data-bind="click:setFlagged"><img height="20" width="20"
-                    data-bind="attr:{src: morseLoadImages().getSrc('uploadImage')}">&nbsp;Load
+            <span role="button" id="btnSetFlagged" class="input-group-text" data-bind="click:setFlagged"><img height="20" width="20"
+                    data-bind="attr:{src: morseLoadImages().getSrc('uploadImage')}" alt="">&nbsp;Load
                 As
                 Text</span>
-            <span id="btnSetFlagged" class="input-group-text" data-bind="click:clearFlagged"><img height="20" width="20"
-                    data-bind="attr:{src: morseLoadImages().getSrc('trashImage')}">&nbsp;Clear</span>
+            <span role="button" id="btnSetFlagged" class="input-group-text" data-bind="click:clearFlagged"><img height="20" width="20"
+                    data-bind="attr:{src: morseLoadImages().getSrc('trashImage')}" alt="">&nbsp;Clear</span>
             <textarea data-bind="textInput: flaggedWords.flaggedWords" class="form-control"
-                aria-label="Text"></textarea>
+                aria-label="Flagged Words"></textarea>
 
         </div>
     </div>
