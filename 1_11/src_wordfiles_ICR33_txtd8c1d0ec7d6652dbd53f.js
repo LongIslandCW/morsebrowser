@@ -1,0 +1,14 @@
+"use strict";
+(self["webpackChunk"] = self["webpackChunk"] || []).push([["src_wordfiles_ICR33_txt"],{
+
+/***/ "./src/wordfiles/ICR33.txt":
+/*!*********************************!*\
+  !*** ./src/wordfiles/ICR33.txt ***!
+  \*********************************/
+/***/ ((module) => {
+
+module.exports = "knowledge is power\r\na different kettle of fish\r\na good beginning makes a good ending\r\na little knowledge is a dangerous thing\r\na millstone around ones neck\r\nabsent minded professor\r\naccidents will happen\r\nan albatross around ones neck\r\nas fast as greased lightning\r\nbuild a better mousetrap\r\ncarbon footprint\r\ncharm offensive\r\nclimb on the bandwagon\r\ncrocodile tears\r\ncuriosity killed the cat\r\ndelusions of grandeur\r\ndollars to doughnuts\r\ndont change horses in midstream\r\ndont throw the baby out with the bathwater\r\neverybody out\r\nthe exception to the rule\r\nfaith will move mountains\r\nfellow traveller\r\nforbidden fruit\r\ngood samaritan\r\ngraveyard shift\r\ngreased lightning\r\nharbinger of doom\r\nheard it through the grapevine\r\nhousehold words\r\nimitation is the sincerest form of flattery\r\nin the limelight\r\njump on the bandwagon\r\nliving daylights\r\nmint condition\r\nmoving the goalposts\r\nnecessity is the mother of invention\r\nnothing ventured, nothing gained\r\non the shoulders of giants\r\npreaching to the choir\r\nraspberry tart\r\nthe road less travelled\r\nsay goodnight gracie\r\nshrinking violet\r\nstanding on the shoulders of giants\r\nthe living daylights\r\nzero tolerance\r\nat the beginning of the\r\nin the aftermath of the\r\nto do something about it\r\nlet me tell you something\r\nhad something to do with\r\nis important to note that\r\nin the direction of the\r\nlistening to talk of the\r\nit is important to note\r\nto take advantage of the\r\nmath equations\r\none of the most important\r\nline equations\r\nmultiple line equations\r\nthe scorching sun\r\nget something out of your system\r\nwrap your head around something\r\ncomparing apples to oranges\r\ndo something at the drop of a hat\r\nignorance is bliss\r\nput something on ice\r\na little learning is a dangerous thing\r\nget wind of something\r\ndoubt is the beginning of wisdom\r\ngood fences make good neighbors\r\nhe who hesitates is lost\r\nhindsight is always 20/20\r\nlaugh before breakfast\r\nlife is too short not to do something that matters\r\nlightning never strikes twice in the same place\r\nno friends but the mountains\r\nseeing is believing\r\nsometimes we are the student\r\nthe end justifies the means\r\nthere is an exception to every rule\r\nthose who know many languages\r\nto travel hopefully is better\r\nwhy keep a dog and bark yourself?\r\nwork expands to fill the time available\r\nzeal without knowledge is fire without light\r\nany publicity is good publicity\r\nask no questions and hear no lies\r\n";
+
+/***/ })
+
+}]);
