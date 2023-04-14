@@ -1,9 +1,9 @@
 "use strict";
-(self["webpackChunk"] = self["webpackChunk"] || []).push([["src_presets_configs_bc3_cs_json"],{
+(self["webpackChunk"] = self["webpackChunk"] || []).push([["src_presets_configs_BC3_CS_json"],{
 
-/***/ "./src/presets/configs/bc3_cs.json":
+/***/ "./src/presets/configs/BC3_CS.json":
 /*!*****************************************!*\
-  !*** ./src/presets/configs/bc3_cs.json ***!
+  !*** ./src/presets/configs/BC3_CS.json ***!
   \*****************************************/
 /***/ ((module) => {
 
