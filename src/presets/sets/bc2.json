@@ -13,6 +13,10 @@
             "filename": "BC2_VST.json"
         },
         {
+            "display": "Reverse VST",
+            "filename": "BC2_RVST.json"
+        },
+        {
             "display": "Groups of 5",
             "filename": "BC2_Groups_of_5.json"
         },
@@ -27,6 +31,10 @@
         {
             "display": "VET",
             "filename": "BC2_VET.json"
+        },
+        {
+            "display": "Reverse VET",
+            "filename": "BC2_RVET.json"
         },
         {
             "display": "Prosign Phrases",
