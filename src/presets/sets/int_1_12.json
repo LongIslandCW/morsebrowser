@@ -37,6 +37,10 @@
             "filename": "BPT_VET.json"
         },
         {
+            "display": "Reverse VET",
+            "filename": "BPT_RVET.json"
+        },
+        {
             "display": "Instant Word Recognition",
             "filename": "BPT_IWR.json"
         },
