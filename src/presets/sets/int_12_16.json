@@ -17,6 +17,10 @@
             "filename": "INT_VST.json"
         },
         {
+            "display": "Reverse VST",
+            "filename": "INT_RVST.json"
+        },
+        {
             "display": "Groups of 5",
             "filename": "INT_Groups_5.json"
         },
@@ -31,6 +35,10 @@
         {
             "display": "VET",
             "filename": "INT_VET.json"
+        },
+        {
+            "display": "Reverse VET",
+            "filename": "INT_RVET.json"
         },
         {
             "display": "Instant Word Recognition",
