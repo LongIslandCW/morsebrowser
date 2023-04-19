@@ -9,18 +9,16 @@ CT
 FL 
 {GA|georgia} 
 {HI|hawaii} 
-{ID|idaho}
+{ID|idaho} 
 IL 
 {IN|indiana} 
 IA 
 KS 
 KY 
-{LA|louisiana}
-{ME|maine}
+{LA|louisiana} 
+{ME|maine} 
 MD 
 MA 
-MD 
-ME 
 MI 
 MN 
 MS 
@@ -32,7 +30,7 @@ NE
 NV 
 NH 
 NJ 
-NM 
+{NM|new mexico} 
 NY 
 {OH|ohio} 
 {OK|oklahoma}  
@@ -42,7 +40,7 @@ RI
 SC 
 SD 
 TN 
-TX 
+{TX|texas} 
 UT 
 VT 
 VA 
