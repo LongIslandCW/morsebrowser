@@ -157,12 +157,12 @@
 		},
 		{
 			"key": "intervalWpmText",
-			"value": "12, 11, 10, 8",
+			"value": "12",
 			"comment": null
 		},
 		{
 			"key": "intervalFwpmText",
-			"value": "10",
+			"value": "12, 11, 10, 8",
 			"comment": null
 		},
 		{
