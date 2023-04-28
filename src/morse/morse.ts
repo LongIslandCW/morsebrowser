@@ -43,6 +43,7 @@ export class MorseViewModel {
   showingText:ko.Observable<string> = ko.observable('')
   showRaw:ko.Observable<boolean> = ko.observable(true)
   volume:ko.Observable<number> = ko.observable()
+  noiseHidden:ko.Observable<boolean> = ko.observable(true)
   noiseEnabled:ko.Observable<boolean> = ko.observable(false)
   noiseVolume:ko.Observable<number> = ko.observable(2)
   noiseType:ko.Observable<string> = ko.observable('off')
