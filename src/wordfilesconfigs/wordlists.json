@@ -586,5 +586,5 @@
 {"sort": 500,"userTarget": "STUDENT","class": "INTERMEDIATE","letterGroup": "INT 2 (12-16)","newlineChunking": true,"display": "SUDUKO","fileName": "suduko1.txt"}, 
 {"sort": 501,"userTarget": "INSTRUCTOR","class": "INTERMEDIATE","letterGroup": "INT 3 (16-20)","newlineChunking": true,"display": "SUDUKO","fileName": "suduko1.txt"}, 
 {"sort": 502,"userTarget": "STUDENT","class": "INTERMEDIATE","letterGroup": "INT 3 (16-20)","newlineChunking": true,"display": "SUDUKO","fileName": "suduko1.txt"},
-{"sort": 38,"userTarget": "STUDENT","class": "BC1","letterGroup": "PROGRESS EVALUATION","newlineChunking": false,"display": "Groups of 3","fileName": "BC1_P_Eval_G3.txt"}
+{"sort": 38,"userTarget": "STUDENT","class": "BC1","letterGroup": "PROGRESS EVALUATION","newlineChunking": true,"display": "Groups of 3","fileName": "BC1_P_Eval_G3.txt"}
 ]}
