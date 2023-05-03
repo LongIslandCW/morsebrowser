@@ -10,3 +10,6 @@ FNR
 {HBI|H B I} 
 TLD 
 {IUH|I U H}
+GDL 
+BRD 
+HCA 
