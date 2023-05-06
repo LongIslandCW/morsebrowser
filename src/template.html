@@ -275,7 +275,7 @@
                                         <div class="row"><span>LETTER GROUP</span></div>
                                         <div role="radiogroup" aria-label="Wordlist" class="list-group"
                                             data-bind="foreach: lessons.letterGroups, childrenComplete: () => lessons.setLetterGroupInitialized()"
-                                            style="overflow-y:auto; height:250px; width: 225px;">
+                                            style="overflow-y:auto; height:290px; width: 225px;">
                                             <button role="radio" type="button"
                                                 class="list-group-item list-group-item-action"
                                                 data-bind="text: $data, attr:{ 'aria-checked': $root.lessons.letterGroup()==$data }, click: ()=>$root.lessons.setLetterGroup($data), css: { active: $data==$parent.lessons.letterGroup()}"></button>
