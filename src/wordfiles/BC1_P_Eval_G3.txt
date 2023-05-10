@@ -1,0 +1,15 @@
+EAB 
+WPA 
+GHS 
+SRO 
+{ORO|O R O} 
+RSO 
+CWN 
+{GOF|G O F} 
+FNR 
+{HBI|H B I} 
+TLD 
+{IUH|I U H}
+GDL 
+BRD 
+HCA 

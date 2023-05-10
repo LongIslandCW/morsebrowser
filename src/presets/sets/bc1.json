@@ -51,6 +51,10 @@
         {
             "display": "Phrases – Voice On",
             "filename": "BC1_Phrases_Von.json"
+        },
+        {
+            "display": "Progress Evaluation",
+            "filename": "BC1_P_Eval.json"
         }
     ]
 }

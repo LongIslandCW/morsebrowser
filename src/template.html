@@ -57,6 +57,10 @@
                                     href="https://groups.io/g/MorsePracticePageQuestions">our groups.io</a>.</span>
                             <span><a href="https://www.youtube.com/playlist?list=PLt-EzlLx2AKFY8NVxxPVBbPzR6s-Kz7tJ">Videos
                                     to help you use this site</a> are found on YouTube</span>
+                            <span>Click <a href="https://longislandcwclub.org/academic-downloads/">"here"</a> for a User
+                                Guide to help you use this site or it can be
+                                found on the LICW website at <a
+                                    href="https://longislandcwclub.org/">https://longislandcwclub.org/</a></span>
                             <span class="warning" data-bind="if: isDev()">WARNING: You are using the BETA (unstable)
                                 version. The <a href="../">latest stable release</a> is recommended.</a></span>
                             <span id="version-info">Version 1.12</span>
@@ -271,7 +275,7 @@
                                         <div class="row"><span>LETTER GROUP</span></div>
                                         <div role="radiogroup" aria-label="Wordlist" class="list-group"
                                             data-bind="foreach: lessons.letterGroups, childrenComplete: () => lessons.setLetterGroupInitialized()"
-                                            style="overflow-y:auto; height:250px; width: 200px;">
+                                            style="overflow-y:auto; height:290px; width: 225px;">
                                             <button role="radio" type="button"
                                                 class="list-group-item list-group-item-action"
                                                 data-bind="text: $data, attr:{ 'aria-checked': $root.lessons.letterGroup()==$data }, click: ()=>$root.lessons.setLetterGroup($data), css: { active: $data==$parent.lessons.letterGroup()}"></button>
