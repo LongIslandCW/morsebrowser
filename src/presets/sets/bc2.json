@@ -55,6 +55,10 @@
         {  
         "display": "Voice On & Spell Off",
             "filename": "BC2_Von_Soff.json"
-        }    
+        },
+        {
+        "display": "Progress Evaluation",
+            "filename": "BC2_P_Eval.json"
+        }     
     ]
 }
