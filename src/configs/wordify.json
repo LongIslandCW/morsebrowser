@@ -132,6 +132,9 @@
 	{ "characters": "WX", "replacement": "Weather", "onlyAlone" : true},
 	{ "characters": "W", "replacement": "Watts", "onlyAlone" : true},
 	{ "characters": "X", "replacement": "X", "onlyAlone" : false, "overrideSpell" : true},
-	{ "characters": "YRS", "replacement": "Years", "onlyAlone" : true}
+	{ "characters": "YRS", "replacement": "Years", "onlyAlone" : true},
+	{ "characters": "NEXT", "replacement": "next", "onlyAlone" : true},
+	{ "characters": "ONYX", "replacement": "onyx", "onlyAlone" : true},
+	{ "characters": "VEX", "replacement": "vex", "onlyAlone" : true}
 	]
 }
