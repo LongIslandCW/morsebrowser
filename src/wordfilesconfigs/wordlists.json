@@ -587,6 +587,9 @@
 {"sort": 501,"userTarget": "INSTRUCTOR","class": "INTERMEDIATE","letterGroup": "INT 3 (16-20)","newlineChunking": true,"display": "SUDUKO","fileName": "suduko1.txt"}, 
 {"sort": 502,"userTarget": "STUDENT","class": "INTERMEDIATE","letterGroup": "INT 3 (16-20)","newlineChunking": true,"display": "SUDUKO","fileName": "suduko1.txt"},
 {"sort": 38,"userTarget": "STUDENT","class": "BC1","letterGroup": "PROGRESS EVALUATION","newlineChunking": true,"display": "Groups of 3","fileName": "BC1_P_Eval_G3.txt"},
-        {"sort": 38,"userTarget": "STUDENT","class": "BC1","letterGroup": "PROGRESS EVALUATION","newlineChunking": true,"display": "Words","fileName": "BC1_P_Eval_W.txt"},
-        {"sort": 38,"userTarget": "STUDENT","class": "BC1","letterGroup": "PROGRESS EVALUATION","newlineChunking": true,"display": "Sentences","fileName": "BC1_P_Eval_S.txt"}
+{"sort": 38,"userTarget": "STUDENT","class": "BC1","letterGroup": "PROGRESS EVALUATION","newlineChunking": true,"display": "Words","fileName": "BC1_P_Eval_W.txt"},
+{"sort": 38,"userTarget": "STUDENT","class": "BC1","letterGroup": "PROGRESS EVALUATION","newlineChunking": true,"display": "Sentences","fileName": "BC1_P_Eval_S.txt"},
+{"sort": 38,"userTarget": "STUDENT","class": "BC2","letterGroup": "PROGRESS EVALUATION","newlineChunking": true,"display": "Words","fileName": "BC2_P_Eval_Words.txt"},
+{"sort": 38,"userTarget": "STUDENT","class": "BC2","letterGroup": "PROGRESS EVALUATION","newlineChunking": true,"display": "Sentences","fileName": "BC2_P_Eval_Sent.txt"},
+{"sort": 38,"userTarget": "STUDENT","class": "BC2","letterGroup": "PROGRESS EVALUATION","newlineChunking": true,"display": "Call Signs","fileName":  "BC2_P-Eval_CS.txt"}
 ]}
