@@ -42,7 +42,7 @@
         },
         {
             "display": "Instant Word Recognition",
-            "filename": "BPT_IWR.json"
+            "filename": "IWR.json"
         },
         {
             "display": "Sending Practice",
