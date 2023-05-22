@@ -40,10 +40,6 @@
             "display": "Prosign Phrases",
             "filename": "BC2_Prosign_Phrases.json"
         },
-         {
-            "display": "Instant Word Recognition",
-            "filename": "BC2_IWR.json"
-        },
         {
             "display": "Sending Practice",
             "filename": "BC2_Sending.json"
