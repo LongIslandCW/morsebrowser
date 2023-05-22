@@ -1,0 +1,1472 @@
+GUD 
+{GUD|} 
+{GUD|} 
+{GUD|} 
+{GUD|} 
+{GUD|} 
+{GUD|} 
+{|} 
+WUD 
+{WUD |} 
+{WUD |} 
+{WUD |} 
+{WUD |} 
+{WUD |} 
+{WUD |} 
+{|} 
+SIG 
+{SIG |} 
+{SIG |} 
+{SIG |} 
+{SIG |} 
+{SIG |} 
+{SIG |} 
+{|} 
+ABT 
+{ABT |} 
+{ABT |} 
+{ABT |} 
+{ABT |} 
+{ABT |} 
+{ABT |} 
+{|} 
+DN 
+{DN |} 
+{DN |} 
+{DN |} 
+{DN |} 
+{DN |} 
+{DN |} 
+{|} 
+QRQ 
+{QRQ |} 
+{QRQ |} 
+{QRQ |} 
+{QRQ |} 
+{QRQ |} 
+{QRQ |} 
+{|} 
+RIG 
+{RIG |} 
+{RIG |} 
+{RIG |} 
+{RIG |} 
+{RIG |} 
+{RIG |} 
+{|} 
+QRT 
+{QRT |} 
+{QRT |} 
+{QRT |} 
+{QRT |} 
+{QRT |} 
+{QRT |} 
+{|} 
+DX 
+{DX |} 
+{DX |} 
+{DX |} 
+{DX |} 
+{DX |} 
+{DX |} 
+{|} 
+QSL 
+{QSL |} 
+{QSL |} 
+{QSL |} 
+{QSL |} 
+{QSL |} 
+{QSL |} 
+{|} 
+TX 
+{TX |} 
+{TX |} 
+{TX |} 
+{TX |} 
+{TX |} 
+{TX |} 
+{|} 
+DR 
+{DR |} 
+{DR |} 
+{DR |} 
+{DR |} 
+{DR |} 
+{DR |} 
+{|} 
+IS 
+{IS |} 
+{IS |} 
+{IS |} 
+{IS |} 
+{IS |} 
+{IS |} 
+{|} 
+QRP 
+{QRP |} 
+{QRP |} 
+{QRP |} 
+{QRP |} 
+{QRP |} 
+{QRP |} 
+{|} 
+QRZ 
+{QRZ |} 
+{QRZ |} 
+{QRZ |} 
+{QRZ |} 
+{QRZ |} 
+{QRZ |} 
+{|} 
+QRM 
+{QRM |} 
+{QRM |} 
+{QRM |} 
+{QRM |} 
+{QRM |} 
+{QRM |} 
+{|} 
+PWR 
+{PWR |} 
+{PWR |} 
+{PWR |} 
+{PWR |} 
+{PWR |} 
+{PWR |} 
+{|} 
+<AR> 
+{<AR> |} 
+{<AR> |} 
+{<AR> |} 
+{<AR> |} 
+{<AR> |} 
+{<AR> |} 
+{|} 
+B4 
+{B4 |} 
+{B4 |} 
+{B4 |} 
+{B4 |} 
+{B4 |} 
+{B4 |} 
+{|} 
+VY 
+{VY |} 
+{VY |} 
+{VY |} 
+{VY |} 
+{VY |} 
+{VY |} 
+{|} 
+QRS 
+{QRS |} 
+{QRS |} 
+{QRS |} 
+{QRS |} 
+{QRS |} 
+{QRS |} 
+{|} 
+GND 
+{GND |} 
+{GND |} 
+{GND |} 
+{GND |} 
+{GND |} 
+{GND |} 
+{|} 
+YRS 
+{YRS |} 
+{YRS |} 
+{YRS |} 
+{YRS |} 
+{YRS |} 
+{YRS |} 
+{|} 
+RAIN 
+{RAIN |} 
+{RAIN |} 
+{RAIN |} 
+{RAIN |} 
+{RAIN |} 
+{RAIN |} 
+{|} 
+WIND 
+{WIND |} 
+{WIND |} 
+{WIND |} 
+{WIND |} 
+{WIND |} 
+{WIND |} 
+{|} 
+YAGI 
+{YAGI |} 
+{YAGI |} 
+{YAGI |} 
+{YAGI |} 
+{YAGI |} 
+{YAGI |} 
+{|} 
+CFM 
+{CFM |} 
+{CFM |} 
+{CFM |} 
+{CFM |} 
+{CFM |} 
+{CFM |} 
+{|} 
+WID 
+{WID |} 
+{WID |} 
+{WID |} 
+{WID |} 
+{WID |} 
+{WID |} 
+{|} 
+<SK> 
+{<SK> |} 
+{<SK> |} 
+{<SK> |} 
+{<SK> |} 
+{<SK> |} 
+{<SK> |} 
+{|} 
+QSB 
+{QSB |} 
+{QSB |} 
+{QSB |} 
+{QSB |} 
+{QSB |} 
+{QSB |} 
+{|} 
+CUL 
+{CUL |} 
+{CUL |} 
+{CUL |} 
+{CUL |} 
+{CUL |} 
+{CUL |} 
+{|} 
+INFO 
+{INFO |} 
+{INFO |} 
+{INFO |} 
+{INFO |} 
+{INFO |} 
+{INFO |} 
+{|} 
+RPRT 
+{RPRT |} 
+{RPRT |} 
+{RPRT |} 
+{RPRT |} 
+{RPRT |} 
+{RPRT |} 
+{|} 
+OM
+{OM|} 
+{OM|} 
+{OM|} 
+{OM|} 
+{OM|} 
+{OM|} 
+{|} 
+UP 
+{UP |} 
+{UP |} 
+{UP |} 
+{UP |} 
+{UP |} 
+{UP |} 
+{|} 
+CPI 
+{CPI |} 
+{CPI |} 
+{CPI |} 
+{CPI |} 
+{CPI |} 
+{CPI |} 
+{|} 
+SRI 
+{SRI |} 
+{SRI |} 
+{SRI |} 
+{SRI |} 
+{SRI |} 
+{SRI |} 
+{|} 
+SSB 
+{SSB |} 
+{SSB |} 
+{SSB |} 
+{SSB |} 
+{SSB |} 
+{SSB |} 
+{|} 
+SKED 
+{SKED |} 
+{SKED |} 
+{SKED |} 
+{SKED |} 
+{SKED |} 
+{SKED |} 
+{|} 
+ANT 
+{ANT |} 
+{ANT |} 
+{ANT |} 
+{ANT |} 
+{ANT |} 
+{ANT |} 
+{|} 
+RFI 
+{RFI |} 
+{RFI |} 
+{RFI |} 
+{RFI |} 
+{RFI |} 
+{RFI |} 
+{|} 
+VERT 
+{VERT |} 
+{VERT |} 
+{VERT |} 
+{VERT |} 
+{VERT |} 
+{VERT |} 
+{|} 
+HR 
+{HR |} 
+{HR |} 
+{HR |} 
+{HR |} 
+{HR |} 
+{HR |} 
+{|} 
+<BT> 
+{<BT> |} 
+{<BT> |} 
+{<BT> |} 
+{<BT> |} 
+{<BT> |} 
+{<BT> |} 
+{|} 
+CU 
+{CU |} 
+{CU |} 
+{CU |} 
+{CU |} 
+{CU |} 
+{CU |} 
+{|} 
+BUG 
+{BUG |} 
+{BUG |} 
+{BUG |} 
+{BUG |} 
+{BUG |} 
+{BUG |} 
+{|} 
+QRN 
+{QRN |} 
+{QRN |} 
+{QRN |} 
+{QRN |} 
+{QRN |} 
+{QRN |} 
+{|} 
+GUD 
+{GUD |} 
+{GUD |} 
+{GUD |} 
+{GUD |} 
+{GUD |} 
+{GUD |} 
+{|} 
+AGE 
+{AGE |} 
+{AGE |} 
+{AGE |} 
+{AGE |} 
+{AGE |} 
+{AGE |} 
+{|} 
+TEMP 
+{TEMP |} 
+{TEMP |} 
+{TEMP |} 
+{TEMP |} 
+{TEMP |} 
+{TEMP |} 
+{|} 
+EL 
+{EL |} 
+{EL |} 
+{EL |} 
+{EL |} 
+{EL |} 
+{EL |} 
+{|} 
+WX 
+{WX |} 
+{WX |} 
+{WX |} 
+{WX |} 
+{WX |} 
+{WX |} 
+{|} 
+BEEN 
+{BEEN |} 
+{BEEN |} 
+{BEEN |} 
+{BEEN |} 
+{BEEN |} 
+{BEEN |} 
+{|} 
+SOLID 
+{SOLID |} 
+{SOLID |} 
+{SOLID |} 
+{SOLID |} 
+{SOLID |} 
+{SOLID |} 
+{|} 
+{FT|feet} 
+{FT|} 
+{FT|} 
+{FT|} 
+{FT|}  
+{FT|} 
+{FT|} 
+{|} 
+CW 
+{CW |} 
+{CW |} 
+{CW |} 
+{CW |} 
+{CW |} 
+{CW |} 
+{|} 
+RX 
+{RX |} 
+{RX |} 
+{RX |} 
+{RX |} 
+{RX |} 
+{RX |} 
+{|} 
+CLEAR 
+{CLEAR |} 
+{CLEAR |} 
+{CLEAR |} 
+{CLEAR |} 
+{CLEAR |} 
+{CLEAR |} 
+{|} 
+CUAGN 
+{CUAGN |} 
+{CUAGN |} 
+{CUAGN |} 
+{CUAGN |} 
+{CUAGN |} 
+{CUAGN |} 
+{|} 
+HPE 
+{HPE |} 
+{HPE |} 
+{HPE |} 
+{HPE |} 
+{HPE |} 
+{HPE |} 
+{|} 
+HAM 
+{HAM |} 
+{HAM |} 
+{HAM |} 
+{HAM |} 
+{HAM |} 
+{HAM |} 
+{|} 
+QSY 
+{QSY|} 
+{QSY|} 
+{QSY|} 
+{QSY|} 
+{QSY|} 
+{QSY|} 
+{|} 
+RAIN 
+{RAIN |} 
+{RAIN |} 
+{RAIN |} 
+{RAIN |} 
+{RAIN |} 
+{RAIN |} 
+{|} 
+ANT 
+{ANT |} 
+{ANT |} 
+{ANT |} 
+{ANT |} 
+{ANT |} 
+{ANT |} 
+{|} 
+RX 
+{RX |} 
+{RX |} 
+{RX |} 
+{RX |} 
+{RX |} 
+{RX |} 
+{|} 
+WUD 
+{WUD |} 
+{WUD |} 
+{WUD |} 
+{WUD |} 
+{WUD |} 
+{WUD |} 
+{|} 
+AGE 
+{AGE |} 
+{AGE |} 
+{AGE |} 
+{AGE |} 
+{AGE |} 
+{AGE |} 
+{|} 
+DN 
+{DN |} 
+{DN |} 
+{DN |} 
+{DN |} 
+{DN |} 
+{DN |} 
+{|} 
+QRM 
+{QRM |} 
+{QRM |} 
+{QRM |} 
+{QRM |} 
+{QRM |} 
+{QRM |} 
+{|} 
+SOLID 
+{SOLID |} 
+{SOLID |} 
+{SOLID |} 
+{SOLID |} 
+{SOLID |} 
+{SOLID |} 
+{|} 
+QRQ 
+{QRQ |} 
+{QRQ |} 
+{QRQ |} 
+{QRQ |} 
+{QRQ |} 
+{QRQ |} 
+{|} 
+YAGI 
+{YAGI |} 
+{YAGI |} 
+{YAGI |} 
+{YAGI |} 
+{YAGI |} 
+{YAGI |} 
+{|} 
+VERT 
+{VERT |} 
+{VERT |} 
+{VERT |} 
+{VERT |} 
+{VERT |} 
+{VERT |} 
+{|} 
+SSB 
+{SSB |} 
+{SSB |} 
+{SSB |} 
+{SSB |} 
+{SSB |} 
+{SSB |} 
+{|} 
+DR 
+{DR |} 
+{DR |} 
+{DR |} 
+{DR |} 
+{DR |} 
+{DR |} 
+{|} 
+CLEAR 
+{CLEAR |} 
+{CLEAR |} 
+{CLEAR |} 
+{CLEAR |} 
+{CLEAR |} 
+{CLEAR |} 
+{|} 
+QSL 
+{QSL |} 
+{QSL |} 
+{QSL |} 
+{QSL |} 
+{QSL |} 
+{QSL |} 
+{|} 
+ABT 
+{ABT |} 
+{ABT |} 
+{ABT |} 
+{ABT |} 
+{ABT |} 
+{ABT |} 
+{|} 
+WIND 
+{WIND |} 
+{WIND |} 
+{WIND |} 
+{WIND |} 
+{WIND |} 
+{WIND |} 
+{|} 
+<SK> 
+{<SK> |} 
+{<SK> |} 
+{<SK> |} 
+{<SK> |} 
+{<SK> |} 
+{<SK> |} 
+{|} 
+CFM 
+{CFM |} 
+{CFM |} 
+{CFM |} 
+{CFM |} 
+{CFM |} 
+{CFM |} 
+{|} 
+BUG 
+{BUG |} 
+{BUG |} 
+{BUG |} 
+{BUG |} 
+{BUG |} 
+{BUG |} 
+{|} 
+QSB 
+{QSB |} 
+{QSB |} 
+{QSB |} 
+{QSB |} 
+{QSB |} 
+{QSB |} 
+{|} 
+WX 
+{WX |} 
+{WX |} 
+{WX |} 
+{WX |} 
+{WX |} 
+{WX |} 
+{|} 
+WID 
+{WID |} 
+{WID |} 
+{WID |} 
+{WID |} 
+{WID |} 
+{WID |} 
+{|} 
+B4 
+{B4 |} 
+{B4 |} 
+{B4 |} 
+{B4 |} 
+{B4 |} 
+{B4 |} 
+{|} 
+SKED 
+{SKED |} 
+{SKED |} 
+{SKED |} 
+{SKED |} 
+{SKED |} 
+{SKED |} 
+{|} 
+EL 
+{EL |} 
+{EL |} 
+{EL |} 
+{EL |} 
+{EL |} 
+{EL |} 
+{|} 
+CUAGN 
+{CUAGN |} 
+{CUAGN |} 
+{CUAGN |} 
+{CUAGN |} 
+{CUAGN |} 
+{CUAGN |} 
+{|} 
+BEEN 
+{BEEN |} 
+{BEEN |} 
+{BEEN |} 
+{BEEN |} 
+{BEEN |} 
+{BEEN |} 
+{|} 
+SIG 
+{SIG |} 
+{SIG |} 
+{SIG |} 
+{SIG |} 
+{SIG |} 
+{SIG |} 
+{|} 
+RIG 
+{RIG |} 
+{RIG |} 
+{RIG |} 
+{RIG |} 
+{RIG |} 
+{RIG |} 
+{|} 
+QRN 
+{QRN |} 
+{QRN |} 
+{QRN |} 
+{QRN |} 
+{QRN |} 
+{QRN |} 
+{|} 
+TX 
+{TX |} 
+{TX |} 
+{TX |} 
+{TX |} 
+{TX |} 
+{TX |} 
+{|} 
+<BT> 
+{<BT> |} 
+{<BT> |} 
+{<BT> |} 
+{<BT> |} 
+{<BT> |} 
+{<BT> |} 
+{|} 
+QSY 
+{QSY |} 
+{QSY |} 
+{QSY |} 
+{QSY |} 
+{QSY |} 
+{QSY |} 
+{|} 
+YRS 
+{YRS |} 
+{YRS |} 
+{YRS |} 
+{YRS |} 
+{YRS |} 
+{YRS |} 
+{|} 
+RPRT 
+{RPRT |} 
+{RPRT |} 
+{RPRT |} 
+{RPRT |} 
+{RPRT |} 
+{RPRT |} 
+{|} 
+SRI 
+{SRI |} 
+{SRI |} 
+{SRI |} 
+{SRI |} 
+{SRI |} 
+{SRI |} 
+{|} 
+INFO 
+{INFO |} 
+{INFO |} 
+{INFO |} 
+{INFO |} 
+{INFO |} 
+{INFO |} 
+{|} 
+CPI 
+{CPI |} 
+{CPI |} 
+{CPI |} 
+{CPI |} 
+{CPI |} 
+{CPI |} 
+{|} 
+IS 
+{IS |} 
+{IS |} 
+{IS |} 
+{IS |} 
+{IS |} 
+{IS |} 
+{|} 
+CW 
+{CW |} 
+{CW |} 
+{CW |} 
+{CW |} 
+{CW |} 
+{CW |} 
+{|} 
+<AR> 
+{<AR> |} 
+{<AR> |} 
+{<AR> |} 
+{<AR> |} 
+{<AR> |} 
+{<AR> |} 
+{|} 
+HAM 
+{HAM |} 
+{HAM |} 
+{HAM |} 
+{HAM |} 
+{HAM |} 
+{HAM |} 
+{|} 
+GND 
+{GND |} 
+{GND |} 
+{GND |} 
+{GND |} 
+{GND |} 
+{GND |} 
+{|} 
+QRP 
+{QRP |} 
+{QRP |} 
+{QRP |} 
+{QRP |} 
+{QRP |} 
+{QRP |} 
+{|} 
+PWR 
+{PWR |} 
+{PWR |} 
+{PWR |} 
+{PWR |} 
+{PWR |} 
+{PWR |} 
+{|} 
+CUL
+{CUL|} 
+{CUL|} 
+{CUL|} 
+{CUL|} 
+{CUL|} 
+{CUL|} 
+{|} 
+TEMP 
+{TEMP |} 
+{TEMP |} 
+{TEMP |} 
+{TEMP |} 
+{TEMP |} 
+{TEMP |} 
+{|} 
+DX 
+{DX |} 
+{DX |} 
+{DX |} 
+{DX |} 
+{DX |} 
+{DX |} 
+{|} 
+QRT 
+{QRT |} 
+{QRT |} 
+{QRT |} 
+{QRT |} 
+{QRT |} 
+{QRT |} 
+{|} 
+UP 
+{UP |} 
+{UP |} 
+{UP |} 
+{UP |} 
+{UP |} 
+{UP |} 
+{|} 
+{FT|feet} 
+{FT|} 
+{FT|} 
+{FT|} 
+{FT|}  
+{FT|} 
+{FT|} 
+{|} 
+OM 
+{OM |} 
+{OM |} 
+{OM |} 
+{OM |} 
+{OM |} 
+{OM |} 
+{|} 
+VY 
+{VY |} 
+{VY |} 
+{VY |} 
+{VY |} 
+{VY |} 
+{VY |} 
+{|} 
+QRS 
+{QRS |} 
+{QRS |} 
+{QRS |} 
+{QRS |} 
+{QRS |} 
+{QRS |} 
+{|} 
+QRZ 
+{QRZ |} 
+{QRZ |} 
+{QRZ |} 
+{QRZ |} 
+{QRZ |} 
+{QRZ |} 
+{|} 
+HR 
+{HR |} 
+{HR |} 
+{HR |} 
+{HR |} 
+{HR |} 
+{HR |} 
+{|} 
+CU 
+{CU |} 
+{CU |} 
+{CU |} 
+{CU |} 
+{CU |} 
+{CU |} 
+{|} 
+HPE 
+{HPE |} 
+{HPE |} 
+{HPE |} 
+{HPE |} 
+{HPE |} 
+{HPE |} 
+{|} 
+RFI 
+{RFI |} 
+{RFI |} 
+{RFI |} 
+{RFI |} 
+{RFI |} 
+{RFI |} 
+{|} 
+GUD 
+{GUD|} 
+{GUD|} 
+{GUD|} 
+{GUD|} 
+{GUD|} 
+{GUD|} 
+{|} 
+WUD 
+{WUD |} 
+{WUD |} 
+{WUD |} 
+{WUD |} 
+{WUD |} 
+{WUD |} 
+{|} 
+SIG 
+{SIG |} 
+{SIG |} 
+{SIG |} 
+{SIG |} 
+{SIG |} 
+{SIG |} 
+{|} 
+ABT 
+{ABT |} 
+{ABT |} 
+{ABT |} 
+{ABT |} 
+{ABT |} 
+{ABT |} 
+{|} 
+DN 
+{DN |} 
+{DN |} 
+{DN |} 
+{DN |} 
+{DN |} 
+{DN |} 
+{|} 
+QRQ 
+{QRQ |} 
+{QRQ |} 
+{QRQ |} 
+{QRQ |} 
+{QRQ |} 
+{QRQ |} 
+{|} 
+RIG 
+{RIG |} 
+{RIG |} 
+{RIG |} 
+{RIG |} 
+{RIG |} 
+{RIG |} 
+{|} 
+QRT 
+{QRT |} 
+{QRT |} 
+{QRT |} 
+{QRT |} 
+{QRT |} 
+{QRT |} 
+{|} 
+DX 
+{DX |} 
+{DX |} 
+{DX |} 
+{DX |} 
+{DX |} 
+{DX |} 
+{|} 
+QSL 
+{QSL |} 
+{QSL |} 
+{QSL |} 
+{QSL |} 
+{QSL |} 
+{QSL |} 
+{|} 
+TX 
+{TX |} 
+{TX |} 
+{TX |} 
+{TX |} 
+{TX |} 
+{TX |} 
+{|} 
+DR 
+{DR |} 
+{DR |} 
+{DR |} 
+{DR |} 
+{DR |} 
+{DR |} 
+{|} 
+IS 
+{IS |} 
+{IS |} 
+{IS |} 
+{IS |} 
+{IS |} 
+{IS |} 
+{|} 
+QRP 
+{QRP |} 
+{QRP |} 
+{QRP |} 
+{QRP |} 
+{QRP |} 
+{QRP |} 
+{|} 
+QRZ 
+{QRZ |} 
+{QRZ |} 
+{QRZ |} 
+{QRZ |} 
+{QRZ |} 
+{QRZ |} 
+{|} 
+QRM 
+{QRM |} 
+{QRM |} 
+{QRM |} 
+{QRM |} 
+{QRM |} 
+{QRM |} 
+{|} 
+PWR 
+{PWR |} 
+{PWR |} 
+{PWR |} 
+{PWR |} 
+{PWR |} 
+{PWR |} 
+{|} 
+<AR> 
+{<AR> |} 
+{<AR> |} 
+{<AR> |} 
+{<AR> |} 
+{<AR> |} 
+{<AR> |} 
+{|} 
+B4 
+{B4 |} 
+{B4 |} 
+{B4 |} 
+{B4 |} 
+{B4 |} 
+{B4 |} 
+{|} 
+VY 
+{VY |} 
+{VY |} 
+{VY |} 
+{VY |} 
+{VY |} 
+{VY |} 
+{|} 
+QRS 
+{QRS |} 
+{QRS |} 
+{QRS |} 
+{QRS |} 
+{QRS |} 
+{QRS |} 
+{|} 
+GND 
+{GND |} 
+{GND |} 
+{GND |} 
+{GND |} 
+{GND |} 
+{GND |} 
+{|} 
+YRS 
+{YRS |} 
+{YRS |} 
+{YRS |} 
+{YRS |} 
+{YRS |} 
+{YRS |} 
+{|} 
+RAIN 
+{RAIN |} 
+{RAIN |} 
+{RAIN |} 
+{RAIN |} 
+{RAIN |} 
+{RAIN |} 
+{|} 
+WIND 
+{WIND |} 
+{WIND |} 
+{WIND |} 
+{WIND |} 
+{WIND |} 
+{WIND |} 
+{|} 
+YAGI 
+{YAGI |} 
+{YAGI |} 
+{YAGI |} 
+{YAGI |} 
+{YAGI |} 
+{YAGI |} 
+{|} 
+CFM 
+{CFM |} 
+{CFM |} 
+{CFM |} 
+{CFM |} 
+{CFM |} 
+{CFM |} 
+{|} 
+WID 
+{WID |} 
+{WID |} 
+{WID |} 
+{WID |} 
+{WID |} 
+{WID |} 
+{|} 
+<SK> 
+{<SK> |} 
+{<SK> |} 
+{<SK> |} 
+{<SK> |} 
+{<SK> |} 
+{<SK> |} 
+{|} 
+QSB 
+{QSB |} 
+{QSB |} 
+{QSB |} 
+{QSB |} 
+{QSB |} 
+{QSB |} 
+{|} 
+CUL 
+{CUL |} 
+{CUL |} 
+{CUL |} 
+{CUL |} 
+{CUL |} 
+{CUL |} 
+{|} 
+INFO 
+{INFO |} 
+{INFO |} 
+{INFO |} 
+{INFO |} 
+{INFO |} 
+{INFO |} 
+{|} 
+RPRT 
+{RPRT |} 
+{RPRT |} 
+{RPRT |} 
+{RPRT |} 
+{RPRT |} 
+{RPRT |} 
+{|} 
+OM
+{OM|} 
+{OM|} 
+{OM|} 
+{OM|} 
+{OM|} 
+{OM|} 
+{|} 
+UP 
+{UP |} 
+{UP |} 
+{UP |} 
+{UP |} 
+{UP |} 
+{UP |} 
+{|} 
+CPI 
+{CPI |} 
+{CPI |} 
+{CPI |} 
+{CPI |} 
+{CPI |} 
+{CPI |} 
+{|} 
+SRI 
+{SRI |} 
+{SRI |} 
+{SRI |} 
+{SRI |} 
+{SRI |} 
+{SRI |} 
+{|} 
+SSB 
+{SSB |} 
+{SSB |} 
+{SSB |} 
+{SSB |} 
+{SSB |} 
+{SSB |} 
+{|} 
+SKED 
+{SKED |} 
+{SKED |} 
+{SKED |} 
+{SKED |} 
+{SKED |} 
+{SKED |} 
+{|} 
+ANT 
+{ANT |} 
+{ANT |} 
+{ANT |} 
+{ANT |} 
+{ANT |} 
+{ANT |} 
+{|} 
+RFI 
+{RFI |} 
+{RFI |} 
+{RFI |} 
+{RFI |} 
+{RFI |} 
+{RFI |} 
+{|} 
+VERT 
+{VERT |} 
+{VERT |} 
+{VERT |} 
+{VERT |} 
+{VERT |} 
+{VERT |} 
+{|} 
+HR 
+{HR |} 
+{HR |} 
+{HR |} 
+{HR |} 
+{HR |} 
+{HR |} 
+{|} 
+<BT> 
+{<BT> |} 
+{<BT> |} 
+{<BT> |} 
+{<BT> |} 
+{<BT> |} 
+{<BT> |} 
+{|} 
+CU 
+{CU |} 
+{CU |} 
+{CU |} 
+{CU |} 
+{CU |} 
+{CU |} 
+{|} 
+BUG 
+{BUG |} 
+{BUG |} 
+{BUG |} 
+{BUG |} 
+{BUG |} 
+{BUG |} 
+{|} 
+QRN 
+{QRN |} 
+{QRN |} 
+{QRN |} 
+{QRN |} 
+{QRN |} 
+{QRN |} 
+{|} 
+GUD 
+{GUD |} 
+{GUD |} 
+{GUD |} 
+{GUD |} 
+{GUD |} 
+{GUD |} 
+{|} 
+AGE 
+{AGE |} 
+{AGE |} 
+{AGE |} 
+{AGE |} 
+{AGE |} 
+{AGE |} 
+{|} 
+TEMP 
+{TEMP |} 
+{TEMP |} 
+{TEMP |} 
+{TEMP |} 
+{TEMP |} 
+{TEMP |} 
+{|} 
+EL 
+{EL |} 
+{EL |} 
+{EL |} 
+{EL |} 
+{EL |} 
+{EL |} 
+{|} 
+WX 
+{WX |} 
+{WX |} 
+{WX |} 
+{WX |} 
+{WX |} 
+{WX |} 
+{|} 
+BEEN 
+{BEEN |} 
+{BEEN |} 
+{BEEN |} 
+{BEEN |} 
+{BEEN |} 
+{BEEN |} 
+{|} 
+SOLID 
+{SOLID |} 
+{SOLID |} 
+{SOLID |} 
+{SOLID |} 
+{SOLID |} 
+{SOLID |} 
+{|} 
+{FT|feet} 
+{FT|} 
+{FT|} 
+{FT|} 
+{FT|}  
+{FT|} 
+{FT|} 
+{|} 
+CW 
+{CW |} 
+{CW |} 
+{CW |} 
+{CW |} 
+{CW |} 
+{CW |} 
+{|} 
+RX 
+{RX |} 
+{RX |} 
+{RX |} 
+{RX |} 
+{RX |} 
+{RX |} 
+{|} 
+CLEAR 
+{CLEAR |} 
+{CLEAR |} 
+{CLEAR |} 
+{CLEAR |} 
+{CLEAR |} 
+{CLEAR |} 
+{|} 
+CUAGN 
+{CUAGN |} 
+{CUAGN |} 
+{CUAGN |} 
+{CUAGN |} 
+{CUAGN |} 
+{CUAGN |} 
+{|} 
+HPE 
+{HPE |} 
+{HPE |} 
+{HPE |} 
+{HPE |} 
+{HPE |} 
+{HPE |} 
+{|} 
+HAM 
+{HAM |} 
+{HAM |} 
+{HAM |} 
+{HAM |} 
+{HAM |} 
+{HAM |} 
+{|} 
+QSY 
+{QSY|} 
+{QSY|} 
+{QSY|} 
+{QSY|} 
+{QSY|} 
+{QSY|} 
+{|} 

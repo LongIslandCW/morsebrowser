@@ -1,0 +1,929 @@
+TNX 
+{TNX |} 
+{TNX |} 
+{TNX |} 
+{TNX |} 
+{TNX |} 
+{TNX |} 
+{|} 
+CPY 
+{CPY |} 
+{CPY |} 
+{CPY |} 
+{CPY |} 
+{CPY |} 
+{CPY |} 
+{|} 
+599 
+{599|} 
+{599|} 
+{599|} 
+{599|} 
+{599|} 
+{599|} 
+{|} 
+HW? 
+{HW?|how copy} 
+{HW?|how copy} 
+{HW?|how copy} 
+{HW?|how copy} 
+{HW?|how copy} 
+{HW?|how copy} 
+{|} 
+TKS 
+{TKS|} 
+{TKS|} 
+{TKS|} 
+{TKS|} 
+{TKS|} 
+{TKS|} 
+{|} 
+BK 
+{BK |} 
+{BK |} 
+{BK |} 
+{BK |} 
+{BK |} 
+{BK |} 
+{|} 
+AGN 
+{AGN |} 
+{AGN |} 
+{AGN |} 
+{AGN |} 
+{AGN |} 
+{AGN |} 
+{|} 
+UR 
+{UR |} 
+{UR |} 
+{UR |} 
+{UR |} 
+{UR |} 
+{UR |} 
+{|} 
+OP 
+{OP |} 
+{OP |} 
+{OP |} 
+{OP |} 
+{OP |} 
+{OP |} 
+{|} 
+FB 
+{FB |} 
+{FB |} 
+{FB |} 
+{FB |} 
+{FB |} 
+{FB |} 
+{|} 
+GM 
+{GM |} 
+{GM |} 
+{GM |} 
+{GM |} 
+{GM |} 
+{GM |} 
+{|} 
+QTH 
+{QTH |} 
+{QTH |} 
+{QTH |} 
+{QTH |} 
+{QTH |} 
+{QTH |} 
+{|} 
+GE 
+{GE |} 
+{GE |} 
+{GE |} 
+{GE |} 
+{GE |} 
+{GE |} 
+{|} 
+PSE 
+{PSE |} 
+{PSE |} 
+{PSE |} 
+{PSE |} 
+{PSE |} 
+{PSE |} 
+{|} 
+OK 
+{OK |} 
+{OK |} 
+{OK |} 
+{OK |} 
+{OK |} 
+{OK |} 
+{|} 
+GN 
+{GN |} 
+{GN |} 
+{GN |} 
+{GN |} 
+{GN |} 
+{GN |} 
+{|} 
+73 
+{73|} 
+{73|} 
+{73|} 
+{73|} 
+{73|} 
+{73|} 
+{|} 
+CALL 
+{CALL |} 
+{CALL |} 
+{CALL |} 
+{CALL |} 
+{CALL |} 
+{CALL |} 
+{|} 
+GA 
+{GA |} 
+{GA |} 
+{GA |} 
+{GA |} 
+{GA |} 
+{GA |} 
+{|} 
+RPRT 
+{RPRT|report} 
+{RPRT|report} 
+{RPRT|report} 
+{RPRT|report} 
+{RPRT|report} 
+{RPRT|report} 
+{|} 
+FER 
+{FER |} 
+{FER |} 
+{FER |} 
+{FER |} 
+{FER |} 
+{FER |} 
+{|} 
+NAME 
+{NAME |} 
+{NAME |} 
+{NAME |} 
+{NAME |} 
+{NAME |} 
+{NAME |} 
+{|} 
+TU 
+{TU |} 
+{TU |} 
+{TU |} 
+{TU |} 
+{TU |} 
+{TU |} 
+{|} 
+RST 
+{RST |} 
+{RST |} 
+{RST |} 
+{RST |} 
+{RST |} 
+{RST |} 
+{|} 
+QSO 
+{QSO |} 
+{QSO |} 
+{QSO |} 
+{QSO |} 
+{QSO |} 
+{QSO |} 
+{|} 
+ES 
+{ES |} 
+{ES |} 
+{ES |} 
+{ES |} 
+{ES |} 
+{ES |} 
+{|} 
+5NN 
+{5NN |} 
+{5NN |} 
+{5NN |} 
+{5NN |} 
+{5NN |} 
+{5NN |} 
+{|} 
+CQ 
+{CQ|} 
+{CQ|} 
+{CQ|} 
+{CQ|} 
+{CQ|} 
+{CQ|} 
+{|} 
+DE 
+{DE |} 
+{DE |} 
+{DE |} 
+{DE |} 
+{DE |} 
+{DE |} 
+{|} 
+PSE 
+{PSE |} 
+{PSE |} 
+{PSE |} 
+{PSE |} 
+{PSE |} 
+{PSE |} 
+{|} 
+OP 
+{OP |} 
+{OP |} 
+{OP |} 
+{OP |} 
+{OP |} 
+{OP |} 
+{|} 
+CALL 
+{CALL |} 
+{CALL |} 
+{CALL |} 
+{CALL |} 
+{CALL |} 
+{CALL |} 
+{|} 
+599 
+{599|} 
+{599|} 
+{599|} 
+{599|} 
+{599|} 
+{599|} 
+{|} 
+UR 
+{UR |} 
+{UR |} 
+{UR |} 
+{UR |} 
+{UR |} 
+{UR |} 
+{|} 
+ES 
+{ES |} 
+{ES |} 
+{ES |} 
+{ES |} 
+{ES |} 
+{ES |} 
+{|} 
+OK 
+{OK |} 
+{OK |} 
+{OK |} 
+{OK |} 
+{OK |} 
+{OK |} 
+{|} 
+BK 
+{BK |} 
+{BK |} 
+{BK |} 
+{BK |} 
+{BK |} 
+{BK |} 
+{|} 
+QSO 
+{QSO |} 
+{QSO |} 
+{QSO |} 
+{QSO |} 
+{QSO |} 
+{QSO |} 
+{|} 
+GA 
+{GA |} 
+{GA |} 
+{GA |} 
+{GA |} 
+{GA |} 
+{GA |} 
+{|} 
+CPY 
+{CPY |} 
+{CPY |} 
+{CPY |} 
+{CPY |} 
+{CPY |} 
+{CPY |} 
+{|} 
+TU 
+{TU |} 
+{TU |} 
+{TU |} 
+{TU |} 
+{TU |} 
+{TU |} 
+{|} 
+HW? 
+{HW?|how copy} 
+{HW?|how copy} 
+{HW?|how copy} 
+{HW?|how copy} 
+{HW?|how copy} 
+{HW?|how copy} 
+{|} 
+FB 
+{FB |} 
+{FB |} 
+{FB |} 
+{FB |} 
+{FB |} 
+{FB |} 
+{|} 
+AGN 
+{AGN |} 
+{AGN |} 
+{AGN |} 
+{AGN |} 
+{AGN |} 
+{AGN |} 
+{|} 
+RPRT 
+{RPRT|report} 
+{RPRT|report} 
+{RPRT|report} 
+{RPRT|report} 
+{RPRT|report} 
+{RPRT|report} 
+{|} 
+TKS 
+{TKS |} 
+{TKS |} 
+{TKS |} 
+{TKS |} 
+{TKS |} 
+{TKS |} 
+{|} 
+TNX 
+{TNX |} 
+{TNX |} 
+{TNX |} 
+{TNX |} 
+{TNX |} 
+{TNX |} 
+{|} 
+FER 
+{FER |} 
+{FER |} 
+{FER |} 
+{FER |} 
+{FER |} 
+{FER |} 
+{|} 
+GM 
+{GM |} 
+{GM |} 
+{GM |} 
+{GM |} 
+{GM |} 
+{GM |} 
+{|} 
+5NN 
+{5NN |} 
+{5NN |} 
+{5NN |} 
+{5NN |} 
+{5NN |} 
+{5NN |} 
+{|} 
+GE 
+{GE |} 
+{GE |} 
+{GE |} 
+{GE |} 
+{GE |} 
+{GE |} 
+{|} 
+QTH 
+{QTH |} 
+{QTH |} 
+{QTH |} 
+{QTH |} 
+{QTH |} 
+{QTH |} 
+{|} 
+NAME 
+{NAME |} 
+{NAME |} 
+{NAME |} 
+{NAME |} 
+{NAME |} 
+{NAME |} 
+{|} 
+CQ 
+{CQ |} 
+{CQ |} 
+{CQ |} 
+{CQ |} 
+{CQ |} 
+{CQ |} 
+{|} 
+DE 
+{DE |} 
+{DE |} 
+{DE |} 
+{DE |} 
+{DE |} 
+{DE |} 
+{|} 
+GN 
+{GN |} 
+{GN |} 
+{GN |} 
+{GN |} 
+{GN |} 
+{GN |} 
+{|} 
+RST 
+{RST |} 
+{RST |} 
+{RST |} 
+{RST |} 
+{RST |} 
+{RST |} 
+{|} 
+73 
+{73|} 
+{73|} 
+{73|} 
+{73|} 
+{73|} 
+{73|} 
+{|} 
+UR 
+{UR |} 
+{UR |} 
+{UR |} 
+{UR |} 
+{UR |} 
+{UR |} 
+{|} 
+TU 
+{TU |} 
+{TU |} 
+{TU |} 
+{TU |} 
+{TU |} 
+{TU |} 
+{|} 
+GM 
+{GM |} 
+{GM |} 
+{GM |} 
+{GM |} 
+{GM |} 
+{GM |} 
+{|} 
+OK 
+{OK |} 
+{OK |} 
+{OK |} 
+{OK |} 
+{OK |} 
+{OK |} 
+{|} 
+GN 
+{GN |} 
+{GN |} 
+{GN |} 
+{GN |} 
+{GN |} 
+{GN |} 
+{|} 
+BK 
+{BK |} 
+{BK |} 
+{BK |} 
+{BK |} 
+{BK |} 
+{BK |} 
+{|} 
+CPY 
+{CPY |} 
+{CPY |} 
+{CPY |} 
+{CPY |} 
+{CPY |} 
+{CPY |} 
+{|} 
+ES 
+{ES |} 
+{ES |} 
+{ES |} 
+{ES |} 
+{ES |} 
+{ES |} 
+{|} 
+RPRT 
+{RPRT|report} 
+{RPRT|report} 
+{RPRT|report} 
+{RPRT|report} 
+{RPRT|report} 
+{RPRT|report} 
+{|} 
+QTH 
+{QTH |} 
+{QTH |} 
+{QTH |} 
+{QTH |} 
+{QTH |} 
+{QTH |} 
+{|} 
+FB 
+{FB |} 
+{FB |} 
+{FB |} 
+{FB |} 
+{FB |} 
+{FB |} 
+{|} 
+5NN 
+{5NN |} 
+{5NN |} 
+{5NN |} 
+{5NN |} 
+{5NN |} 
+{5NN |} 
+{|} 
+QSO 
+{QSO |} 
+{QSO |} 
+{QSO |} 
+{QSO |} 
+{QSO |} 
+{QSO |} 
+{|} 
+AGN 
+{AGN |} 
+{AGN |} 
+{AGN |} 
+{AGN |} 
+{AGN |} 
+{AGN |} 
+{|} 
+TKS 
+{TKS |} 
+{TKS |} 
+{TKS |} 
+{TKS |} 
+{TKS |} 
+{TKS |} 
+{|} 
+TNX 
+{TNX |} 
+{TNX |} 
+{TNX |} 
+{TNX |} 
+{TNX |} 
+{TNX |} 
+{|} 
+GE 
+{GE |} 
+{GE |} 
+{GE |} 
+{GE |} 
+{GE |} 
+{GE |} 
+{|} 
+PSE 
+{PSE |} 
+{PSE |} 
+{PSE |} 
+{PSE |} 
+{PSE |} 
+{PSE |} 
+{|} 
+HW? 
+{HW?|how copy} 
+{HW?|how copy} 
+{HW?|how copy} 
+{HW?|how copy} 
+{HW?|how copy} 
+{HW?|how copy} 
+{|} 
+CQ 
+{CQ |} 
+{CQ |} 
+{CQ |} 
+{CQ |} 
+{CQ |} 
+{CQ |} 
+{|} 
+DE 
+{DE |} 
+{DE |} 
+{DE |} 
+{DE |} 
+{DE |} 
+{DE |} 
+{|} 
+599 
+{599|} 
+{599|} 
+{599|} 
+{599|} 
+{599|} 
+{599|} 
+{|} 
+RST 
+{RST |} 
+{RST |} 
+{RST |} 
+{RST |} 
+{RST |} 
+{RST |} 
+{|} 
+OP 
+{OP |} 
+{OP |} 
+{OP |} 
+{OP |} 
+{OP |} 
+{OP |} 
+{|} 
+73 
+{73|} 
+{73|} 
+{73|} 
+{73|} 
+{73|} 
+{73|} 
+{|} 
+CALL 
+{CALL |} 
+{CALL |} 
+{CALL |} 
+{CALL |} 
+{CALL |} 
+{CALL |} 
+{|} 
+NAME 
+{NAME |} 
+{NAME |} 
+{NAME |} 
+{NAME |} 
+{NAME |} 
+{NAME |} 
+{|} 
+GA 
+{GA |} 
+{GA |} 
+{GA |} 
+{GA |} 
+{GA |} 
+{GA |} 
+{|} 
+FER 
+{FER |} 
+{FER |} 
+{FER |} 
+{FER |} 
+{FER |} 
+{FER |} 
+{|} 
+GN 
+{GN |} 
+{GN |} 
+{GN |} 
+{GN |} 
+{GN |} 
+{GN |} 
+{|} 
+UR 
+{UR |} 
+{UR |} 
+{UR |} 
+{UR |} 
+{UR |} 
+{UR |} 
+{|} 
+BK 
+{BK |} 
+{BK |} 
+{BK |} 
+{BK |} 
+{BK |} 
+{BK |} 
+{|} 
+RPRT 
+{RPRT|report} 
+{RPRT|report} 
+{RPRT|report} 
+{RPRT|report} 
+{RPRT|report} 
+{RPRT|report} 
+{|} 
+NAME 
+{NAME |} 
+{NAME |} 
+{NAME |} 
+{NAME |} 
+{NAME |} 
+{NAME |} 
+{|} 
+GE 
+{GE |} 
+{GE |} 
+{GE |} 
+{GE |} 
+{GE |} 
+{GE |} 
+{|} 
+ES 
+{ES |} 
+{ES |} 
+{ES |} 
+{ES |} 
+{ES |} 
+{ES |} 
+{|} 
+73 
+{73|} 
+{73|} 
+{73|} 
+{73|} 
+{73|} 
+{73|} 
+{|} 
+TU 
+{TU |} 
+{TU |} 
+{TU |} 
+{TU |} 
+{TU |} 
+{TU |} 
+{|} 
+AGN 
+{AGN |} 
+{AGN |} 
+{AGN |} 
+{AGN |} 
+{AGN |} 
+{AGN |} 
+{|} 
+FER 
+{FER |} 
+{FER |} 
+{FER |} 
+{FER |} 
+{FER |} 
+{FER |} 
+{|} 
+HW? 
+{HW?|how copy} 
+{HW?|how copy} 
+{HW?|how copy} 
+{HW?|how copy} 
+{HW?|how copy} 
+{HW?|how copy} 
+{|} 
+GA 
+{GA |} 
+{GA |} 
+{GA |} 
+{GA |} 
+{GA |} 
+{GA |} 
+{|} 
+599 
+{599|} 
+{599|} 
+{599|} 
+{599|} 
+{599|} 
+{599|} 
+{|} 
+OP 
+{OP |} 
+{OP |} 
+{OP |} 
+{OP |} 
+{OP |} 
+{OP |} 
+{|} 
+5NN 
+{5NN |} 
+{5NN |} 
+{5NN |} 
+{5NN |} 
+{5NN |} 
+{5NN |} 
+{|} 
+CPY 
+{CPY |} 
+{CPY |} 
+{CPY |} 
+{CPY |} 
+{CPY |} 
+{CPY |} 
+{|} 
+RST 
+{RST |} 
+{RST |} 
+{RST |} 
+{RST |} 
+{RST |} 
+{RST |} 
+{|} 
+TKS 
+{TKS |} 
+{TKS |} 
+{TKS |} 
+{TKS |} 
+{TKS |} 
+{TKS |} 
+{|} 
+TNX 
+{TNX |} 
+{TNX |} 
+{TNX |} 
+{TNX |} 
+{TNX |} 
+{TNX |} 
+{|} 
+GM 
+{GM |} 
+{GM |} 
+{GM |} 
+{GM |} 
+{GM |} 
+{GM |} 
+{|} 
+CQ 
+{CQ |} 
+{CQ |} 
+{CQ |} 
+{CQ |} 
+{CQ |} 
+{CQ |} 
+{|} 
+DE 
+{DE |} 
+{DE |} 
+{DE |} 
+{DE |} 
+{DE |} 
+{DE |} 
+{|} 
+QTH 
+{QTH |} 
+{QTH |} 
+{QTH |} 
+{QTH |} 
+{QTH |} 
+{QTH |} 
+{|} 
+PSE 
+{PSE |} 
+{PSE |} 
+{PSE |} 
+{PSE |} 
+{PSE |} 
+{PSE |} 
+{|} 
+FB 
+{FB |} 
+{FB |} 
+{FB |} 
+{FB |} 
+{FB |} 
+{FB |} 
+{|} 
+QSO 
+{QSO |} 
+{QSO |} 
+{QSO |} 
+{QSO |} 
+{QSO |} 
+{QSO |} 
+{|} 
+OK 
+{OK |} 
+{OK |} 
+{OK |} 
+{OK |} 
+{OK |} 
+{OK |} 
+{|} 
+CALL 
+{CALL |} 
+{CALL |} 
+{CALL |} 
+{CALL |} 
+{CALL |} 
+{CALL |} 
+{|} 
+
