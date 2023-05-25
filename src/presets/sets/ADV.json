@@ -9,6 +9,10 @@
             "filename": "ADVBUF.json"
         },
         {
+            "display": "Instant Word Recognition",
+            "filename": "IWR.json"
+        },        
+        {
             "display": "Voice after 2",
             "filename": "ADV2WB.json"
         },
