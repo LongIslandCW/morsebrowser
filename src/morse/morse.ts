@@ -904,8 +904,13 @@ export class MorseViewModel {
   // a bit easier.
   registerKeyboardShortcutHandlers = () => {
     // Toggle play/pause
-    this.shortcutKeys.registerShortcutKeyHandler('k', 'Toggle playback', () => {
+    this.shortcutKeys.registerShortcutKeyHandler('p', 'Play / Toggle pause', () => {
       this.togglePlayback()
+    })
+
+    // stop
+    this.shortcutKeys.registerShortcutKeyHandler('s', 'Stop playback and rewind', () => {
+      this.doPause(true, false,true)
     })
 
     // Back 1
