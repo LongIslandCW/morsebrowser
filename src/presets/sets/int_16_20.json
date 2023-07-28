@@ -49,14 +49,6 @@
             "filename": "INT2_Sending.json"
         },        
         {
-            "display": "Progressive Word Building",
-            "filename": "INT2_PWG.json"
-        },
-        {
-            "display": "Progressive Phrase Building",
-            "filename": "INT_3_PPB.json"
-        },
-        {
             "display": "Suduko",
             "filename": "suduko20.json"
         },
