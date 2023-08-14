@@ -98,7 +98,7 @@ export class MorseVoice implements ICookieHandler {
       this.voices.forEach(v => {
         this.logToFlaggedWords(`voiceAvailable:${v.name}  lang:${v.lang} voiceURI:${v.voiceURI}`)
       })
-      this.voices = this.voices.filter(x => x.lang === 'en-US').map((v) => {
+      this.voices = this.voices.filter(x => x.lang === 'en-US' || x.lang === 'en_US').map((v) => {
         v.idx = idx++
         return v
       })
