@@ -1,6 +1,6 @@
 import * as ko from 'knockout'
 import { MorseVoiceInfo } from './MorseVoiceInfo'
-import EasySpeech from '../../easyspeech/easyspeech.js'
+import EasySpeech from 'easy-speech'
 import { MorseViewModel } from '../morse'
 import { ICookieHandler } from '../cookies/ICookieHandler'
 import { CookieInfo } from '../cookies/CookieInfo'
