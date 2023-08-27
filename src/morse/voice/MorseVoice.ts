@@ -1,6 +1,6 @@
 import * as ko from 'knockout'
 import { MorseVoiceInfo } from './MorseVoiceInfo'
-import EasySpeech from '../../easyspeech/easyspeech.js'
+import EasySpeech from 'easy-speech'
 import { MorseViewModel } from '../morse'
 import { ICookieHandler } from '../cookies/ICookieHandler'
 import { CookieInfo } from '../cookies/CookieInfo'
@@ -98,7 +98,7 @@ export class MorseVoice implements ICookieHandler {
       this.voices.forEach(v => {
         this.logToFlaggedWords(`voiceAvailable:${v.name}  lang:${v.lang} voiceURI:${v.voiceURI}`)
       })
-      this.voices = this.voices.filter(x => x.lang === 'en-US').map((v) => {
+      this.voices = this.voices.filter(x => x.lang === 'en-US' || x.lang === 'en_US').map((v) => {
         v.idx = idx++
         return v
       })
