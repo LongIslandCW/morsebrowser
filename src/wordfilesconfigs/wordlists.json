@@ -404,7 +404,7 @@
 {"sort": 425,"userTarget": "INSTRUCTOR","class": "INTERMEDIATE","letterGroup": "INT 3 (16-20)","newlineChunking": true,"display": "WORDS 1-8 LETTERS","fileName": "ICR24.txt"}, 
 {"sort": 425,"userTarget": "INSTRUCTOR","class": "INTERMEDIATE","letterGroup": "INT 3 (16-20)","newlineChunking": true,"display": "WORDS 1-9 LETTERS","fileName": "ICR25.txt"}, 
 {"sort": 425,"userTarget": "INSTRUCTOR","class": "INTERMEDIATE","letterGroup": "INT 3 (16-20)","newlineChunking": true,"display": "WORDS 10-14LETTERS","fileName": "ICR26.txt"}, 
-{"sort": 425,"userTarget": "INSTRUCTOR","class": "INTERMEDIATE","letterGroup": "INT 3 (16-20)","newlineChunking": true,"display": "PHRASES 1-7LETTERS","fileName": "ICR31.txt"}, 
+{"sort": 425,"userTarget": "INSTRUCTOR","class": "INTERMEDIATE","letterGroup": "INT 3 (16-20)","newlineChunking": false,"display": "PHRASES 1-7LETTERS","fileName": "ICR31.txt"}, 
 {"sort": 425,"userTarget": "INSTRUCTOR","class": "INTERMEDIATE","letterGroup": "INT 3 (16-20)","newlineChunking": true,"display": "PHRASES 1-8LETTERS","fileName": "ICR32.txt"}, 
 {"sort": 425,"userTarget": "INSTRUCTOR","class": "INTERMEDIATE","letterGroup": "INT 3 (16-20)","newlineChunking": true,"display": "PHRASES 1-9LETTERS","fileName": "ICR33.txt"}, 
 {"sort": 425,"userTarget": "INSTRUCTOR","class": "INTERMEDIATE","letterGroup": "INT 3 (16-20)","newlineChunking": true,"display": "PHRASES 10-15LETTERS","fileName": "ICR34.txt"}, 
