@@ -47,7 +47,11 @@
         {
             "display": "Sending Practice",
             "filename": "INT2_Sending.json"
-        },        
+        },   
+        {
+            "display": "Phrases",
+            "filename": "INT2_Phrases.json"
+        },
         {
             "display": "Suduko",
             "filename": "suduko20.json"
