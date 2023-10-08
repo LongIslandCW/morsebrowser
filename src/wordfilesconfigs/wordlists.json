@@ -597,5 +597,21 @@
 {"sort": 563,"userTarget": "STUDENT","class": "INTERMEDIATE","letterGroup": "INT 3 (16-20)","newlineChunking": false,"display": "Familiarity - Words-4","fileName": "Fam_Words - 4.txt"},
 {"sort": 563,"userTarget": "INSTRUCTOR","class": "INTERMEDIATE","letterGroup": "INT 3 (16-20)","newlineChunking": false,"display": "Familiarity - Words-4","fileName": "Fam_Words - 4.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "ADVANCED","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Abbreviations","fileName": "Fam_Abbrev.txt"},
-{"sort": 563,"userTarget": "INSTRUCTOR","class": "ADVANCED","letterGroup": "FAMILIARITY,"newlineChunking": false,"display": "Abbreviations","fileName": "Fam_Abbrev.txt"}
+{"sort": 563,"userTarget": "INSTRUCTOR","class": "ADVANCED","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Abbreviations","fileName": "Fam_Abbrev.txt"},
+{"sort": 563,"userTarget": "STUDENT","class": "ADVANCED","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Letters","fileName": "Fam_Alph_Ran.txt"},
+{"sort": 563,"userTarget": "INSTRUCTOR","class": "ADVANCED","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Letters","fileName": "Fam_Alph_Ran.txt"},
+{"sort": 563,"userTarget": "STUDENT","class": "ADVANCED","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Numbers","fileName": "Fam_Num_Ran.txt"},
+{"sort": 563,"userTarget": "INSTRUCTOR","class": "ADVANCED","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Numbers","fileName": "Fam_Num_Ran.txt"},
+{"sort": 563,"userTarget": "STUDENT","class": "ADVANCED","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Punctuation","fileName": "Fam_Punc._PS.txt"},
+{"sort": 563,"userTarget": "INSTRUCTOR","class": "ADVANCED","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Punctuation","fileName": "Fam_Punc._PS.txt"},
+{"sort": 563,"userTarget": "STUDENT","class": "ADVANCED","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Q Codes","fileName": "Fam_Q.txt"},
+{"sort": 563,"userTarget": "INSTRUCTOR","class": "ADVANCED","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Q Codes","fileName": "Fam_Q.txt"},
+{"sort": 563,"userTarget": "STUDENT","class": "ADVANCED","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Words-1","fileName": "Fam_Words - 1.txt"},
+{"sort": 563,"userTarget": "INSTRUCTOR","class": "ADVANCED","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Words-1","fileName": "Fam_Words - 1.txt"},
+{"sort": 563,"userTarget": "STUDENT","class": "ADVANCED","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Words-2","fileName": "Fam_Words - 2.txt"},
+{"sort": 563,"userTarget": "INSTRUCTOR","class": "ADVANCED","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Words-2","fileName": "Fam_Words - 2.txt"},
+{"sort": 563,"userTarget": "STUDENT","class": "ADVANCED","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Words-3","fileName": "Fam_Words - 3.txt"},
+{"sort": 563,"userTarget": "INSTRUCTOR","class": "ADVANCED","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Words-3","fileName": "Fam_Words - 3.txt"},
+{"sort": 563,"userTarget": "STUDENT","class": "ADVANCED","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Words-4","fileName": "Fam_Words - 4.txt"},
+{"sort": 563,"userTarget": "INSTRUCTOR","class": "ADVANCED","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Words-4","fileName": "Fam_Words - 4.txt"}
 ]}
