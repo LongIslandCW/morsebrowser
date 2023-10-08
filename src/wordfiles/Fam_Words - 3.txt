@@ -1,0 +1,150 @@
+way  
+{way |} 
+{way |} 
+{way |} 
+way  
+{|} 
+there  
+{there |} 
+{there |} 
+{there |} 
+there  
+{|} 
+from  
+{from |} 
+{from |} 
+{from |} 
+from  
+{|} 
+our  
+{our |} 
+{our |} 
+{our |} 
+our  
+{|} 
+my  
+{my |} 
+{my |} 
+{my |} 
+my  
+{|} 
+see  
+{see |} 
+{see |} 
+{see |} 
+see  
+{|} 
+any  
+{any |} 
+{any |} 
+{any |} 
+any  
+{|} 
+be  
+{be |} 
+{be |} 
+{be |} 
+be  
+{|} 
+get  
+{get |} 
+{get |} 
+{get |} 
+get  
+{|} 
+as  
+{as |} 
+{as |} 
+{as |} 
+as  
+{|} 
+it  
+{it |} 
+{it |} 
+{it |} 
+it  
+{|} 
+only  
+{only |} 
+{only |} 
+{only |} 
+only  
+{|} 
+first  
+{first |} 
+{first |} 
+{first |} 
+first  
+{|} 
+if  
+{if |} 
+{if |} 
+{if |} 
+if  
+{|} 
+at  
+{at |} 
+{at |} 
+{at |} 
+at  
+{|} 
+a  
+{a |} 
+{a |} 
+{a |} 
+a  
+{|} 
+the  
+{the |} 
+{the |} 
+{the |} 
+the  
+{|} 
+you  
+{you |} 
+{you |} 
+{you |} 
+you  
+{|} 
+out  
+{out |} 
+{out |} 
+{out |} 
+out  
+{|} 
+will  
+{will |} 
+{will |} 
+{will |} 
+will  
+{|} 
+with  
+{with |} 
+{with |} 
+{with |} 
+with  
+{|} 
+her  
+{her |} 
+{her |} 
+{her |} 
+her  
+{|} 
+we  
+{we |} 
+{we |} 
+{we |} 
+we  
+{|} 
+think  
+{think |} 
+{think |} 
+{think |} 
+think  
+{|} 
+time  
+{time |} 
+{time |} 
+{time |} 
+time  
+{|} 
