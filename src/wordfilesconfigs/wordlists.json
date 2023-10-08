@@ -559,5 +559,6 @@
 {"sort": 38,"userTarget": "STUDENT","class": "BC1","letterGroup": "PROGRESS EVALUATION","newlineChunking": true,"display": "Sentences","fileName": "BC1_P_Eval_S.txt"},
 {"sort": 38,"userTarget": "STUDENT","class": "BC2","letterGroup": "PROGRESS EVALUATION","newlineChunking": true,"display": "Words","fileName": "BC2_P_Eval_Words.txt"},
 {"sort": 38,"userTarget": "STUDENT","class": "BC2","letterGroup": "PROGRESS EVALUATION","newlineChunking": true,"display": "Sentences","fileName": "BC2_P_Eval_Sent.txt"},
-{"sort": 38,"userTarget": "STUDENT","class": "BC2","letterGroup": "PROGRESS EVALUATION","newlineChunking": true,"display": "Call Signs","fileName":  "BC2_P-Eval_CS.txt"}
+{"sort": 38,"userTarget": "STUDENT","class": "BC2","letterGroup": "PROGRESS EVALUATION","newlineChunking": true,"display": "Call Signs","fileName":  "BC2_P-Eval_CS.txt"},
+{"sort": 563,"userTarget": "STUDENT","class": "INTERMEDIATE","letterGroup": "INT 2 (12-16)","newlineChunking": false,"display": "Familiarity - Abbreviations","fileName": "Fam_Abbrev.txt"}       
 ]}
