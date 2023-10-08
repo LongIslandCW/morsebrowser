@@ -32,7 +32,7 @@
 		},
 		{
 			"key": "syncWpm",
-			"value": true,
+			"value": false,
 			"comment": null
 		},
 		{
