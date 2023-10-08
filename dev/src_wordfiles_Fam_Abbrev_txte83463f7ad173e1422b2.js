@@ -1,0 +1,14 @@
+"use strict";
+(self["webpackChunk"] = self["webpackChunk"] || []).push([["src_wordfiles_Fam_Abbrev_txt"],{
+
+/***/ "./src/wordfiles/Fam_Abbrev.txt":
+/*!**************************************!*\
+  !*** ./src/wordfiles/Fam_Abbrev.txt ***!
+  \**************************************/
+/***/ ((module) => {
+
+module.exports = "\r\n599 \n{599|} \n{599|} \n{599|} \n599 \n{|} \r\n73 \n{73|} \n{73|} \n{73|} \n73 \n{|} \r\n5NN \n{5NN|} \n{5NN|} \n{5NN|} \n5NN \n{|} \r\nABT \n{ABT|} \n{ABT|} \n{ABT|} \nABT \n{|} \r\nAGN \n{AGN|} \n{AGN|} \n{AGN|} \nAGN \n{|} \r\nANT \n{ANT|} \n{ANT|} \n{ANT|} \nANT \n{|} \r\nB4 \n{B4|} \n{B4|} \n{B4|} \nB4 \n{|} \r\n{BCNU|be seeing you} \n{BCNU|} \n{BCNU|} \n{BCNU|} \n{BCNU|be seeing you} \n{|} \r\nCFM \n{CFM|} \n{CFM|} \n{CFM|} \nCFM \n{|} \r\nCPI \n{CPI|} \n{CPI|} \n{CPI|} \nCPI \n{|} \r\nCPY \n{CPY|} \n{CPY|} \n{CPY|} \nCPY \n{|} \r\nCQ \n{CQ|} \n{CQ|} \n{CQ|} \nCQ \n{|} \r\nCU \n{CU|} \n{CU|} \n{CU|} \nCU \n{|} \r\nCUAGN \n{CUAGN|} \n{CUAGN|} \n{CUAGN|} \nCUAGN \n{|} \r\nCUL \n{CUL|} \n{CUL|} \n{CUL|} \nCUL \n{|} \r\nCW \n{CW|} \n{CW|} \n{CW|} \nCW \n{|} \r\nDE \n{DE|} \n{DE|} \n{DE|} \nDE \n{|} \r\n{DX|DX} \n{DX|} \n{DX|} \n{DX|} \n{DX|DX} \n{|} \r\nES \n{ES|} \n{ES|} \n{ES|} \nES \n{|} \r\nFB \n{FB|} \n{FB|} \n{FB|} \nFB \n{|} \r\nFER \n{FER|} \n{FER|} \n{FER|} \nFER \n{|} \r\nFT \n{FT|} \n{FT|} \n{FT|} \nFT \n{|} \r\nGA \n{GA|} \n{GA|} \n{GA|} \nGA \n{|} \r\nGE \n{GE|} \n{GE|} \n{GE|} \nGE \n{|} \r\nGM \n{GM|} \n{GM|} \n{GM|} \nGM \n{|} \r\nGN \n{GN|} \n{GN|} \n{GN|} \nGN \n{|} \r\nGUD \n{GUD|} \n{GUD|} \n{GUD|} \nGUD \n{|} \r\nHR \n{HR|} \n{HR|} \n{HR|} \nHR \n{|} \r\nHW \n{HW|} \n{HW|} \n{HW|} \nHW \n{|} \r\n{HW?|how copy} \n{HW?|} \n{HW?|} \n{HW?|} \n{HW?|how copy} \n{|} \r\nPSE \n{PSE|} \n{PSE|} \n{PSE|} \nPSE \n{|} \r\nPWR \n{PWR|} \n{PWR|} \n{PWR|} \nPWR \n{|} \r\nRPRT \n{RPRT|} \n{RPRT|} \n{RPRT|} \nRPRT \n{|} \r\nRPT \n{RPT|} \n{RPT|} \n{RPT|} \nRPT \n{|} \r\nRST \n{RST|} \n{RST|} \n{RST|} \nRST \n{|} \r\nRX \n{RX|} \n{RX|} \n{RX|} \nRX \n{|} \r\nSIG \n{SIG|} \n{SIG|} \n{SIG|} \nSIG \n{|} \r\nSKED \n{SKED|} \n{SKED|} \n{SKED|} \nSKED \n{|} \r\nSRI \n{SRI|} \n{SRI|} \n{SRI|} \nSRI \n{|} \r\nTEMP \n{TEMP|} \n{TEMP|} \n{TEMP|} \nTEMP \n{|} \r\nTKS \n{TKS|} \n{TKS|} \n{TKS|} \nTKS \n{|} \r\nTNX \n{TNX|} \n{TNX|} \n{TNX|} \nTNX \n{|} \r\nTU \n{TU|} \n{TU|} \n{TU|} \nTU \n{|} \r\nTX \n{TX|} \n{TX|} \n{TX|} \nTX \n{|} \r\nUR \n{UR|} \n{UR|} \n{UR|} \nUR \n{|} \r\nVERT \n{VERT|} \n{VERT|} \n{VERT|} \nVERT \n{|} \r\nVY \n{VY|} \n{VY|} \n{VY|} \nVY \n{|} \r\nWID \n{WID|} \n{WID|} \n{WID|} \nWID \n{|} \r\nWUD \n{WUD|} \n{WUD|} \n{WUD|} \nWUD \n{|} \r\nWX \n{WX|} \n{WX|} \n{WX|} \nWX \n{|} \r\nYRS \n{YRS|} \n{YRS|} \n{YRS|} \nYRS \n{|} \r\n\r\n\r\n";
+
+/***/ })
+
+}]);
