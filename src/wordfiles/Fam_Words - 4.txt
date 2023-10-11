@@ -1,139 +1,139 @@
 who  
-{who |} 
-{who |} 
-{who |} 
+{who|} 
+{who|} 
+{who|} 
 who  
 {|} 
 their  
-{their |} 
-{their |} 
-{their |} 
+{their|} 
+{their|} 
+{their|} 
 their  
 {|} 
 well  
-{well |} 
-{well |} 
-{well |} 
+{well|} 
+{well|} 
+{well|} 
 well  
 {|} 
 do  
-{do |} 
-{do |} 
-{do |} 
+{do|} 
+{do|} 
+{do|} 
 do  
 {|} 
 even  
-{even |} 
-{even |} 
-{even |} 
+{even|} 
+{even|} 
+{even|} 
 even  
 {|} 
 or  
-{or |} 
-{or |} 
-{or |} 
+{or|} 
+{or|} 
+{or|} 
 or  
 {|} 
 but  
-{but |} 
-{but |} 
-{but |} 
+{but|} 
+{but|} 
+{but|} 
 but  
 {|} 
 that  
-{that |} 
-{that |} 
-{that |} 
+{that|} 
+{that|} 
+{that|} 
 that  
 {|} 
 which  
-{which |} 
-{which |} 
-{which |} 
+{which|} 
+{which|} 
+{which|} 
 which  
 {|} 
 give  
-{give |} 
-{give |} 
-{give |} 
+{give|} 
+{give|} 
+{give|} 
 give  
 {|} 
 two  
-{two |} 
-{two |} 
-{two |} 
+{two|} 
+{two|} 
+{two|} 
 two  
 {|} 
 so  
-{so |} 
-{so |} 
-{so |} 
+{so|} 
+{so|} 
+{so|} 
 so  
 {|} 
 him  
-{him |} 
-{him |} 
-{him |} 
+{him|} 
+{him|} 
+{him|} 
 him  
 {|} 
 this  
-{this |} 
-{this |} 
-{this |} 
+{this|} 
+{this|} 
+{this|} 
 this  
 {|} 
 year  
-{year |} 
-{year |} 
-{year |} 
+{year|} 
+{year|} 
+{year|} 
 year  
 {|} 
 your  
-{your |} 
-{your |} 
-{your |} 
+{your|} 
+{your|} 
+{your|} 
 your  
 {|} 
 these  
-{these |} 
-{these |} 
-{these |} 
+{these|} 
+{these|} 
+{these|} 
 these  
 {|} 
 want  
-{want |} 
-{want |} 
-{want |} 
+{want|} 
+{want|} 
+{want|} 
 want  
 {|} 
 they  
-{they |} 
-{they |} 
-{they |} 
+{they|} 
+{they|} 
+{they|} 
 they  
 {|} 
 make  
-{make |} 
-{make |} 
-{make |} 
+{make|} 
+{make|} 
+{make|} 
 make  
 {|} 
 and  
-{and |} 
-{and |} 
-{and |} 
+{and|} 
+{and|} 
+{and|} 
 and  
 {|} 
 new  
-{new |} 
-{new |} 
-{new |} 
+{new|} 
+{new|} 
+{new|} 
 new  
 {|} 
 because  
-{because |} 
-{because |} 
-{because |} 
+{because|} 
+{because|} 
+{because|} 
 because  
 {|} 
 take 
