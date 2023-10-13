@@ -1,9 +1,9 @@
 "use strict";
-(self["webpackChunk"] = self["webpackChunk"] || []).push([["src_presets_configs_INT2FAM__json"],{
+(self["webpackChunk"] = self["webpackChunk"] || []).push([["src_presets_configs_INT1FAM__json"],{
 
-/***/ "./src/presets/configs/INT2FAM_.json":
+/***/ "./src/presets/configs/INT1FAM_.json":
 /*!*******************************************!*\
-  !*** ./src/presets/configs/INT2FAM_.json ***!
+  !*** ./src/presets/configs/INT1FAM_.json ***!
   \*******************************************/
 /***/ ((module) => {
 
