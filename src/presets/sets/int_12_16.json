@@ -47,8 +47,16 @@
         {
             "display": "Sending Practice",
             "filename": "INT_Sending.json"
-        },        
-          {
+        },  
+         {
+            "display": "Phrases",
+            "filename": "INT_Phrases.json"
+        }, 
+        {
+            "display": "Familiarity Training",
+            "filename": "INT2FAM_.json"
+        },
+        {
             "display": "Suduko",
             "filename": "suduko16.json"
         },

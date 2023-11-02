@@ -35,6 +35,10 @@
         {
             "display": "Suffixes",
             "filename": "ADVBUF.json"
+        },
+        {
+            "display": "Familiarity Training",
+            "filename": "ADVFAM.json"
         }
     ]
 }
