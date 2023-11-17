@@ -5,6 +5,10 @@
             "filename": "ADVBUF.json"
         },
         {
+            "display": "ICR",
+            "filename": "ADVICR.json"
+        },
+        {
             "display": "Sentences",
             "filename": "ADVBUF.json"
         },
