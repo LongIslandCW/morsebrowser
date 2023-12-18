@@ -421,10 +421,32 @@ export class MorseViewModel {
         this.maxRevealedTrail(this.currentIndex() - 1)
         const config = this.getMorseStringToWavBufferConfig(this.cardBufferManager.getNextMorse())
         this.addToVoiceBuffer()
-        this.morseWordPlayer.play(config, (fromVoiceOrTrail) => {
-          this.charsPlayed(this.charsPlayed() + config.word.replace(' ', '').length)
-          this.playEnded(fromVoiceOrTrail)
-        })
+        console.log('speak first:' + this.morseVoice.speakFirst())
+        let timesPlayed = 0
+        const playerCmd = () => {
+          this.morseWordPlayer.play(config, (fromVoiceOrTrail) => {
+            timesPlayed++
+            if (this.morseVoice.speakFirst() && timesPlayed < this.morseVoice.speakFirstRepeats()) {
+              playerCmd()
+            } else {
+              this.charsPlayed(this.charsPlayed() + config.word.replace(' ', '').length)
+              this.playEnded(fromVoiceOrTrail)
+            }
+          })
+        }
+
+        if (!this.morseVoice.speakFirst()) {
+          playerCmd()
+        } else {
+          const phraseToSpeak = this.getPhraseToSpeakFromBuffer()
+          setTimeout(() => {
+            const finalPhraseToSpeak = this.prepPhraseToSpeakForFinal(phraseToSpeak)
+            this.morseVoice.speakPhrase(finalPhraseToSpeak, () => {
+              // what gets called after speaking
+              playerCmd()
+            })
+          }, this.morseVoice.voiceThinkingTime() * 1000)
+        }
         this.lastPartialPlayStart(Date.now())
         this.preSpaceUsed(true)
         // pause wants killNoiseparater
@@ -475,7 +497,8 @@ export class MorseViewModel {
     const needToSpeak = this.morseVoice.voiceEnabled() &&
       !fromVoiceOrTrail &&
       !this.cardBufferManager.hasMoreMorse() &&
-      maxBufferReached
+      maxBufferReached &&
+      !this.morseVoice.speakFirst()
 
     // console.log(`need to speak:${needToSpeak}`)
     const needToTrail = this.trailReveal() && !fromVoiceOrTrail
@@ -550,6 +573,7 @@ export class MorseViewModel {
           phraseToSpeak = phrasePieces[phrasePieces.length - 1]
         }
 
+        /*
         const voiceAction = (p:number, pieces:string[]) => {
           this.morseVoice.speakPhrase(pieces[p], () => {
             // what gets called after speaking
@@ -563,19 +587,10 @@ export class MorseViewModel {
             }
           })
         }
+        */
 
         setTimeout(() => {
-          // for reasons I can't recall, wordifyPunctuation adds pipe character
-          // remove it
-          console.log(`phrasetospeak:${phraseToSpeak}`)
-          const finalPhraseToSpeak = phraseToSpeak.replace(/\|/g, ' ')
-            .replace(/\WV\W/g, ' VEE ')
-            .replace(/^V\W/g, ' VEE ')
-            .replace(/\WV$/g, ' VEE ')
-          console.log(`finalphrasetospeak:${finalPhraseToSpeak}`)
-          // const pieces = finalPhraseToSpeak.split(' ')
-          // voiceAction(0, pieces)
-          // const piece = 0
+          const finalPhraseToSpeak = this.prepPhraseToSpeakForFinal(phraseToSpeak)
           this.morseVoice.speakPhrase(finalPhraseToSpeak, () => {
             // what gets called after speaking
 
@@ -594,6 +609,18 @@ export class MorseViewModel {
     if (needToTrail && !speakAndTrail) {
       advanceTrail()
     }
+  }
+
+  prepPhraseToSpeakForFinal = (beforePhrase:string):string => {
+    // for reasons I can't recall, wordifyPunctuation adds pipe character
+    // remove it
+    console.log(`phrasetospeak:${beforePhrase}`)
+    const afterPhrase = beforePhrase.replace(/\|/g, ' ')
+      .replace(/\WV\W/g, ' VEE ')
+      .replace(/^V\W/g, ' VEE ')
+      .replace(/\WV$/g, ' VEE ')
+    console.log(`finalphrasetospeak:${afterPhrase}`)
+    return afterPhrase
   }
 
   addToVoiceBuffer = () => {
@@ -910,7 +937,7 @@ export class MorseViewModel {
 
     // stop
     this.shortcutKeys.registerShortcutKeyHandler('s', 'Stop playback and rewind', () => {
-      this.doPause(true, false,true)
+      this.doPause(true, false, true)
     })
 
     // Back 1
