@@ -407,6 +407,7 @@ export class MorseViewModel {
       this.charsPlayed(0)
       // speakfirst prep
       this.morseVoice.speakFirstLastCardIndex = -1
+      // this.morseVoice.speakFirstCompletedLast = false
     }
     // experience shows it is good to put a little pause here when user forces us here,
     // e.g. hitting back or play b/c word was misunderstood,
@@ -421,16 +422,11 @@ export class MorseViewModel {
       this.morseWordPlayer.pause(() => {
       // help trailing reveal, max should always be one behind before we're about to play
         this.maxRevealedTrail(this.currentIndex() - 1)
-        const config = this.getMorseStringToWavBufferConfig(this.cardBufferManager.getNextMorse())
+        const config = this.getMorseStringToWavBufferConfig(this.cardBufferManager.getNextMorse(!this.morseVoice.speakFirst() ? 0 : this.morseVoice.speakFirstRepeats()))
         this.addToVoiceBuffer()
         console.log('speak first:' + this.morseVoice.speakFirst())
-        let timesPlayed = 0
         const playerCmd = () => {
           this.morseWordPlayer.play(config, (fromVoiceOrTrail) => {
-            timesPlayed++
-            // if (this.morseVoice.speakFirst() && timesPlayed < this.morseVoice.speakFirstRepeats()) {
-            // playerCmd()
-            // } else {
             this.charsPlayed(this.charsPlayed() + config.word.replace(' ', '').length)
             this.playEnded(fromVoiceOrTrail)
             // }
@@ -543,24 +539,30 @@ export class MorseViewModel {
       this.runningPlayMs(this.runningPlayMs() + (Date.now() - this.lastPartialPlayStart()))
       if (isNotLastWord || this.cardBufferManager.hasMoreMorse()) {
         let cardChanged = false
+        const hasMoreMorse = this.cardBufferManager.hasMoreMorse()
+        if (!hasMoreMorse) {
+          if (this.morseVoice.speakFirst()) {
+            // clear the buffer
+            this.morseVoice.voiceBuffer = []
+          }
+          this.incrementIndex()
+          cardChanged = true
+        }
 
-        // debugger
-        if (!this.cardBufferManager.hasMoreMorse()) {
-          this.morseVoice.speakFirstRepeatsTracker++
-          if (!this.morseVoice.speakFirst() || this.morseVoice.speakFirstRepeatsTracker === this.morseVoice.speakFirstRepeats()) {
-            if (this.morseVoice.speakFirst()) {
-              // clear the voice cache
-              this.morseVoice.voiceBuffer = []
-            }
-            this.incrementIndex()
-            cardChanged = true
-            this.morseVoice.speakFirstRepeatsTracker = 0
+        const getCardSpaceTimerHandleDelay = () => {
+          // debugger
+          if (!cardChanged && hasMoreMorse) {
+            // debugger
+            return 0
+          } else {
+            // console.log('cardspace:'+this.cardSpace())
+            return this.cardSpace() * 1000
           }
         }
         this.cardSpaceTimerHandle = setTimeout(() => {
           // this.addToVoiceBuffer()
           this.doPlay(true, false)
-        }, !cardChanged ? 0 : this.cardSpace() * 1000)
+        }, getCardSpaceTimerHandleDelay())
       } else {
       // nothing more to play
         const finalToDo = () => this.doPause(true, false, false)

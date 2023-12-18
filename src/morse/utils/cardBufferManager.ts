@@ -31,21 +31,26 @@ export class CardBufferManager {
     // this.populateBuffer()
   }
 
-  populateBuffer = () => {
+  populateBuffer = (repeats:number = 0) => {
     this._buffer = []
     this._buffer.push(new CardWord(this._getWords()[this._getCurrentIndex()].displayWord))
+    // debugger
+    if (repeats > 0) {
+      this._buffer[0].subparts = this.appendArrayNTimes(this._buffer[0].subparts, repeats)
+    }
+    // debugger
   }
 
   hasMoreMorse = ():boolean => {
     return this._buffer.length !== 0 && this._buffer[0].subparts.length !== 0
   }
 
-  getNextMorse = ():string => {
+  getNextMorse = (repeats:number = 0):string => {
     // eslint-disable-next-line no-debugger
     // debugger
     if (!this.hasMoreMorse()) {
       // return null
-      this.populateBuffer()
+      this.populateBuffer(repeats)
     }
     return this._buffer[0].subparts.shift().word
   }
@@ -62,5 +67,18 @@ export class CardBufferManager {
 
   clear = () => {
     this._buffer = []
+  }
+
+  appendArrayNTimes = (originalArray, n) => {
+    // Ensure n is a positive integer
+    if (!Number.isInteger(n) || n <= 0) {
+      console.error("Please provide a positive integer for 'n'.")
+      return originalArray
+    }
+
+    // Create a new array by concatenating the original array n times
+    const newArray = Array.from({ length: n }, () => [...originalArray]).flat()
+
+    return newArray
   }
 }
