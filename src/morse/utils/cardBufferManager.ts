@@ -1,4 +1,4 @@
-import WordInfo from "./wordInfo"
+import WordInfo from './wordInfo'
 
 class CardWordSubPart {
   word:string
@@ -41,11 +41,23 @@ export class CardBufferManager {
   }
 
   getNextMorse = ():string => {
+    // eslint-disable-next-line no-debugger
+    // debugger
     if (!this.hasMoreMorse()) {
       // return null
       this.populateBuffer()
     }
     return this._buffer[0].subparts.shift().word
+  }
+
+  getAllMorse = ():string => {
+    if (!this.hasMoreMorse()) {
+      this.populateBuffer()
+    }
+
+    const out = this._buffer[0].subparts.map(x => x.word).join(' ')
+    this.clear()
+    return out
   }
 
   clear = () => {

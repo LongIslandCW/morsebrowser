@@ -405,6 +405,8 @@ export class MorseViewModel {
       // clear the card buffer
       this.cardBufferManager.clear()
       this.charsPlayed(0)
+      // speakfirst prep
+      this.morseVoice.speakFirstLastCardIndex = -1
     }
     // experience shows it is good to put a little pause here when user forces us here,
     // e.g. hitting back or play b/c word was misunderstood,
@@ -426,16 +428,18 @@ export class MorseViewModel {
         const playerCmd = () => {
           this.morseWordPlayer.play(config, (fromVoiceOrTrail) => {
             timesPlayed++
-            if (this.morseVoice.speakFirst() && timesPlayed < this.morseVoice.speakFirstRepeats()) {
-              playerCmd()
-            } else {
-              this.charsPlayed(this.charsPlayed() + config.word.replace(' ', '').length)
-              this.playEnded(fromVoiceOrTrail)
-            }
+            // if (this.morseVoice.speakFirst() && timesPlayed < this.morseVoice.speakFirstRepeats()) {
+            // playerCmd()
+            // } else {
+            this.charsPlayed(this.charsPlayed() + config.word.replace(' ', '').length)
+            this.playEnded(fromVoiceOrTrail)
+            // }
           })
         }
 
-        if (!this.morseVoice.speakFirst()) {
+        if (!this.morseVoice.speakFirst() ||
+            (this.morseVoice.speakFirst() && (this.morseVoice.speakFirstLastCardIndex === this.currentIndex()))
+        ) {
           playerCmd()
         } else {
           const phraseToSpeak = this.getPhraseToSpeakFromBuffer()
@@ -443,6 +447,7 @@ export class MorseViewModel {
             const finalPhraseToSpeak = this.prepPhraseToSpeakForFinal(phraseToSpeak)
             this.morseVoice.speakPhrase(finalPhraseToSpeak, () => {
               // what gets called after speaking
+              this.morseVoice.speakFirstLastCardIndex = this.currentIndex()
               playerCmd()
             })
           }, this.morseVoice.voiceThinkingTime() * 1000)
@@ -538,9 +543,19 @@ export class MorseViewModel {
       this.runningPlayMs(this.runningPlayMs() + (Date.now() - this.lastPartialPlayStart()))
       if (isNotLastWord || this.cardBufferManager.hasMoreMorse()) {
         let cardChanged = false
+
+        // debugger
         if (!this.cardBufferManager.hasMoreMorse()) {
-          this.incrementIndex()
-          cardChanged = true
+          this.morseVoice.speakFirstRepeatsTracker++
+          if (!this.morseVoice.speakFirst() || this.morseVoice.speakFirstRepeatsTracker === this.morseVoice.speakFirstRepeats()) {
+            if (this.morseVoice.speakFirst()) {
+              // clear the voice cache
+              this.morseVoice.voiceBuffer = []
+            }
+            this.incrementIndex()
+            cardChanged = true
+            this.morseVoice.speakFirstRepeatsTracker = 0
+          }
         }
         this.cardSpaceTimerHandle = setTimeout(() => {
           // this.addToVoiceBuffer()
