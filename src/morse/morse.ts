@@ -854,6 +854,11 @@ export class MorseViewModel {
     savedInfos.push(new SavedSettingsInfo('voiceLastOnly', this.morseVoice.voiceLastOnly()))
     savedInfos.push(new SavedSettingsInfo('voiceRecap', this.morseVoice.manualVoice()))
 
+    savedInfos.push(new SavedSettingsInfo('speakFirst', this.morseVoice.speakFirst()))
+    savedInfos.push(new SavedSettingsInfo('speakFirstRepeats', this.morseVoice.speakFirstRepeats()))
+    savedInfos.push(new SavedSettingsInfo('speakFirstAdditionalWordspaces', this.morseVoice.speakFirstAdditionalWordspaces()))
+
+
     savedInfos.push(new SavedSettingsInfo('keepLines', this.settings.misc.newlineChunking()))
     savedInfos.push(new SavedSettingsInfo('syncSize', this.lessons.syncSize()))
 

@@ -272,6 +272,21 @@ export class MorseVoice implements ICookieHandler {
     if (target) {
       this.voiceBufferMaxLength(parseInt(target.val))
     }
+
+    target = cookies.find(x => x.key === 'speakFirst')
+    if (target) {
+      this.speakFirst(GeneralUtils.booleanize(target.val))
+    }
+
+    target = cookies.find(x => x.key === 'speakFirstRepeats')
+    if (target) {
+      this.speakFirstRepeats(parseInt(target.val))
+    }
+
+    target = cookies.find(x => x.key === 'speakFirstAdditionalWordspaces')
+    if (target) {
+      this.speakFirstAdditionalWordspaces(parseInt(target.val))
+    }
   }
 
   handleCookie = (cookie: string) => {}
