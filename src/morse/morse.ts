@@ -422,10 +422,11 @@ export class MorseViewModel {
       this.morseWordPlayer.pause(() => {
       // help trailing reveal, max should always be one behind before we're about to play
         this.maxRevealedTrail(this.currentIndex() - 1)
+        console.log('repeats:' + this.morseVoice.speakFirstRepeats())
         const config = this.getMorseStringToWavBufferConfig(
           this.cardBufferManager.getNextMorse(
-            !this.morseVoice.speakFirst() ? 0 : this.morseVoice.speakFirstRepeats(),
-            !this.morseVoice.speakFirst() ? 0 : this.morseVoice.speakFirstAdditionalWordspaces()
+            !this.morseVoice.speakFirst() ? 0 : parseInt(this.morseVoice.speakFirstRepeats() as any),
+            !this.morseVoice.speakFirst() ? 0 : parseInt(this.morseVoice.speakFirstAdditionalWordspaces() as any)
           )
         )
         this.addToVoiceBuffer()

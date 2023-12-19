@@ -737,7 +737,7 @@
                                             <label class=" btn btn-outline-primary" for="btncheckspeakfirst"
                                                 aria-hidden="true">
                                                 <img
-                                                    data-bind="attr:{ src: morseLoadImages().getSrc('bootstrapRebootImage')}">&nbsp;Speak
+                                                    data-bind="attr:{ src: morseLoadImages().getSrc('chatRightDotsImage')}">&nbsp;Voice
                                                 First&nbsp;
                                                 <img
                                                     data-bind="attr:{ src: morseVoice.speakFirst() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" />
@@ -748,8 +748,8 @@
                                             data-bind="if: showExpertSettings() && morseVoice.voiceEnabled()">
                                             <div class="input-group">
                                                 <label for="speakFirstRepeats"
-                                                    class="input-group-text">SpeakFirstRepeats<img width=20 height=20
-                                                        data-bind="attr:{ src: morseLoadImages().getSrc('stopwatchImage')}"
+                                                    class="input-group-text">Repeats&nbsp;<img width=20 height=20
+                                                        data-bind="attr:{ src: morseLoadImages().getSrc('repeatImage')}"
                                                         alt=""></label>
                                                 <input id="speakFirstRepeats" name="speakFirstRepeats" type="number"
                                                     style="max-width:75px; min-width: 75px;" class="form-control"
@@ -762,8 +762,7 @@
                                             data-bind="if: showExpertSettings() && morseVoice.voiceEnabled()">
                                             <div class="input-group">
                                                 <label for="speakFirstAdditionalWordspaces"
-                                                    class="input-group-text">speakFirstAdditionalWordspaces<img width=20
-                                                        height=20
+                                                    class="input-group-text">Repeat Spacing<img width=20 height=20
                                                         data-bind="attr:{ src: morseLoadImages().getSrc('stopwatchImage')}"
                                                         alt=""></label>
                                                 <input id="speakFirstAdditionalWordspaces"

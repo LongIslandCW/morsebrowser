@@ -56,11 +56,11 @@ export class MorseVoice implements ICookieHandler {
     this.voiceSpelling = ko.observable(true)
     this.voiceLastOnly = ko.observable(false)
     this.manualVoice = ko.observable(false)
-    this.speakFirst = ko.observable(true)
-    this.speakFirstRepeats = ko.observable(0)
+    this.speakFirst = ko.observable(false)
+    this.speakFirstRepeats = ko.observable<number>(0)
     this.speakFirstLastCardIndex = -1
     this.speakFirstRepeatsTracker = 0
-    this.speakFirstAdditionalWordspaces = ko.observable(0)
+    this.speakFirstAdditionalWordspaces = ko.observable<number>(0)
     const speechDetection = EasySpeech.detect()
 
     if (speechDetection.speechSynthesis && speechDetection.speechSynthesisUtterance) {
