@@ -31,11 +31,14 @@ export class CardBufferManager {
     // this.populateBuffer()
   }
 
-  populateBuffer = (repeats:number = 0) => {
+  populateBuffer = (repeats:number = 0, additionalWordSpaces:number = 0) => {
     this._buffer = []
     this._buffer.push(new CardWord(this._getWords()[this._getCurrentIndex()].displayWord))
     // debugger
     if (repeats > 0) {
+      for (let i = 0; i < additionalWordSpaces; i++) {
+        this._buffer[0].subparts.push(new CardWordSubPart(''))
+      }
       this._buffer[0].subparts = this.appendArrayNTimes(this._buffer[0].subparts, repeats)
     }
     // debugger
@@ -45,12 +48,12 @@ export class CardBufferManager {
     return this._buffer.length !== 0 && this._buffer[0].subparts.length !== 0
   }
 
-  getNextMorse = (repeats:number = 0):string => {
+  getNextMorse = (repeats:number = 0, additionalWordSpaces:number = 0):string => {
     // eslint-disable-next-line no-debugger
     // debugger
     if (!this.hasMoreMorse()) {
       // return null
-      this.populateBuffer(repeats)
+      this.populateBuffer(repeats, additionalWordSpaces)
     }
     return this._buffer[0].subparts.shift().word
   }
