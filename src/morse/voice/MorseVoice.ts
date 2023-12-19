@@ -40,7 +40,7 @@ export class MorseVoice implements ICookieHandler {
   constructor (context:MorseViewModel) {
     MorseCookies.registerHandler(this)
     this.ctxt = context
-    this.voiceEnabled = ko.observable(true) // put back to false later
+    this.voiceEnabled = ko.observable(false)
     this.voiceCapable = ko.observable(false)
     this.voiceThinkingTime = ko.observable(0)
     this.voiceAfterThinkingTime = ko.observable(0)
@@ -53,14 +53,14 @@ export class MorseVoice implements ICookieHandler {
     this.voiceVoices = ko.observableArray([])
     this.voiceBuffer = []
     this.voiceBufferMaxLength = ko.observable(1)
-    this.voiceSpelling = ko.observable(false) // put back to true later
+    this.voiceSpelling = ko.observable(true)
     this.voiceLastOnly = ko.observable(false)
     this.manualVoice = ko.observable(false)
     this.speakFirst = ko.observable(true)
-    this.speakFirstRepeats = ko.observable(3)
+    this.speakFirstRepeats = ko.observable(0)
     this.speakFirstLastCardIndex = -1
     this.speakFirstRepeatsTracker = 0
-    this.speakFirstAdditionalWordspaces = ko.observable(2)
+    this.speakFirstAdditionalWordspaces = ko.observable(0)
     const speechDetection = EasySpeech.detect()
 
     if (speechDetection.speechSynthesis && speechDetection.speechSynthesisUtterance) {
