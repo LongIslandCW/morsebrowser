@@ -200,7 +200,6 @@ export class MorseViewModel {
   logToFlaggedWords = (s) => {
     /* this.flaggedWordsLogCount++
     // const myPieces = this.flaggedWords.flaggedWords().split('\n')
-    // console.log(myPieces)
     this.flaggedWordsLog[0] = { timeStamp: 0, msg: `LOGGED LINES:${this.flaggedWordsLogCount}` }
     const timeStamp = new Date()
     this.flaggedWordsLog[this.flaggedWordsLog.length] = { timeStamp, msg: `${s}` }
@@ -422,7 +421,6 @@ export class MorseViewModel {
       this.morseWordPlayer.pause(() => {
       // help trailing reveal, max should always be one behind before we're about to play
         this.maxRevealedTrail(this.currentIndex() - 1)
-        console.log('repeats:' + this.morseVoice.speakFirstRepeats())
         const config = this.getMorseStringToWavBufferConfig(
           this.cardBufferManager.getNextMorse(
             !this.morseVoice.speakFirst() ? 0 : parseInt(this.morseVoice.speakFirstRepeats() as any),
@@ -430,13 +428,13 @@ export class MorseViewModel {
           )
         )
         this.addToVoiceBuffer()
-        console.log('speak first:' + this.morseVoice.speakFirst())
         const playerCmd = () => {
-          this.morseWordPlayer.play(config, (fromVoiceOrTrail) => {
-            this.charsPlayed(this.charsPlayed() + config.word.replace(' ', '').length)
-            this.playEnded(fromVoiceOrTrail)
-            // }
-          })
+          if (!this.morseVoice.speakFirst() || this.playerPlaying()) {
+            this.morseWordPlayer.play(config, (fromVoiceOrTrail) => {
+              this.charsPlayed(this.charsPlayed() + config.word.replace(' ', '').length)
+              this.playEnded(fromVoiceOrTrail)
+            })
+          }
         }
 
         if (!this.morseVoice.speakFirst() ||
@@ -468,20 +466,16 @@ export class MorseViewModel {
     if (this.morseVoice.voiceBufferMaxLength() === 1) {
       return true
     }
-    // console.log(`voiceBufferMaxLength:${this.morseVoice.voiceBufferMaxLength()}`)
     const isNotLastWord = this.currentIndex() < this.words().length - 1
     if (!isNotLastWord) {
       return true
     }
-    // console.log(`isnotlastword${isNotLastWord}`)
-    // console.log(`bufferlength:${this.morseVoice.voiceBuffer.length}`)
-    // force to int just in case
     const maxBufferReached = this.morseVoice.voiceBuffer.length === parseInt(this.morseVoice.voiceBufferMaxLength() as any)
-    // console.log(`maxBufferReached:${maxBufferReached}`)
     return maxBufferReached
   }
 
   playEnded = (fromVoiceOrTrail) => {
+    console.log(`playEnded fromVoiceOrTrail:${fromVoiceOrTrail}`)
     // voice or trail have timers that might call this after user has hit stop
     // specifically they have built in pauses for "thinking time" during which the user
     // might have hit stop
@@ -496,18 +490,19 @@ export class MorseViewModel {
       return
     }
 
+    if (this.morseVoice.speakFirst() && !this.playerPlaying()) {
+      return
+    }
     // where are we in the words to process?
     const isNotLastWord = this.currentIndex() < this.words().length - 1
     const anyNewLines = this.rawText().indexOf('\n') !== -1
     const maxBufferReached = this.ifMaxVoiceBufferReached()
-    // console.log(`maxBufferReached:${maxBufferReached}`)
     const needToSpeak = this.morseVoice.voiceEnabled() &&
       !fromVoiceOrTrail &&
       !this.cardBufferManager.hasMoreMorse() &&
       maxBufferReached &&
       !this.morseVoice.speakFirst()
 
-    // console.log(`need to speak:${needToSpeak}`)
     const needToTrail = this.trailReveal() && !fromVoiceOrTrail
     const speakAndTrail = needToSpeak && needToTrail
 
@@ -556,12 +551,9 @@ export class MorseViewModel {
         }
 
         const getCardSpaceTimerHandleDelay = () => {
-          // debugger
           if (!cardChanged && hasMoreMorse) {
-            // debugger
             return 0
           } else {
-            // console.log('cardspace:'+this.cardSpace())
             return this.cardSpace() * 1000
           }
         }
@@ -583,7 +575,6 @@ export class MorseViewModel {
 
     if (needToSpeak) {
       // speak the voice buffer if there's a newline or nothing more to play
-      console.log('entered needtospeak')
       const speakText = this.morseVoice.voiceBuffer[0].txt
       const hasNewline = speakText.indexOf('\n') !== -1
 
@@ -637,17 +628,14 @@ export class MorseViewModel {
   prepPhraseToSpeakForFinal = (beforePhrase:string):string => {
     // for reasons I can't recall, wordifyPunctuation adds pipe character
     // remove it
-    console.log(`phrasetospeak:${beforePhrase}`)
     const afterPhrase = beforePhrase.replace(/\|/g, ' ')
       .replace(/\WV\W/g, ' VEE ')
       .replace(/^V\W/g, ' VEE ')
       .replace(/\WV$/g, ' VEE ')
-    console.log(`finalphrasetospeak:${afterPhrase}`)
     return afterPhrase
   }
 
   addToVoiceBuffer = () => {
-    // console.log(`currenindex:${this.currentIndex()} len:${this.morseVoice.voiceBuffer.length}`)
     // make sure we don't add the same card twice...someday figure what causes
     const lastBufIndex = this.morseVoice.voiceBuffer.length > 0 ? this.morseVoice.voiceBuffer[this.morseVoice.voiceBuffer.length - 1].idx : -1
     if (this.currentIndex() > lastBufIndex &&
@@ -655,8 +643,6 @@ export class MorseViewModel {
     // populate the voiceBuffer even if not speaking, as we might be caching
       const currentWord = this.words()[this.currentIndex()]
       const speakText = currentWord.speakText(this.morseVoice.voiceSpelling())
-      console.log(`currentindex:${this.currentIndex()} bufflength:${this.morseVoice.voiceBuffer.length}`)
-      console.log(`speaktext being added to voicebuffer:${speakText}`)
       const vbInfo = new VoiceBufferInfo()
       vbInfo.txt = speakText
       vbInfo.idx = this.currentIndex()
@@ -711,6 +697,13 @@ export class MorseViewModel {
   }
 
   doPause = (fullRewind, fromPauseButton, fromStopButton) => {
+    console.log(`doPause called fullRewid:${fullRewind} fromPauseButton:${fromPauseButton} fromStopButton:${fromStopButton}`)
+    if (fromStopButton) {
+      if (this.doPlayTimeout) {
+        clearTimeout(this.doPlayTimeout)
+      }
+    }
+
     if (fromPauseButton) {
       this.runningPlayMs(this.runningPlayMs() + (Date.now() - this.lastPartialPlayStart()))
       this.isPaused(!this.isPaused())
@@ -720,9 +713,7 @@ export class MorseViewModel {
     this.playerPlaying(false)
     this.morseWordPlayer.pause(() => {
       // we're here if a complete rawtext finished
-      // console.log('settinglastfullplaytime')
       this.lastFullPlayTime(Date.now())
-      // console.log(`playtime:${this.lastFullPlayTime() - this.lastPlayFullStart}`)
       // TODO make this more generic for any future "plugins"
       if (this.rss.rssPlayCallback) {
         this.rss.rssPlayCallback(false)
@@ -751,9 +742,7 @@ export class MorseViewModel {
 
   inputFileChange = (element) => {
     // thanks to https://newbedev.com/how-to-access-file-input-with-knockout-binding
-    // console.log(file)
     const file = element.files[0]
-    console.log(element.value)
     const fr = new FileReader()
     fr.onload = (data) => {
       this.setText(data.target.result as string)
@@ -788,8 +777,6 @@ export class MorseViewModel {
   }
 
   changeSoundMaker = (data, event) => {
-    // console.log(data.smoothing())
-    // console.log(event)
     this.morseWordPlayer.setSoundMaker(data.smoothing())
   }
 
@@ -805,8 +792,6 @@ export class MorseViewModel {
     const seconds = ((est.timeCalcs.totalTime % 60000) / 1000).toFixed(0)
     const normedSeconds = (parseInt(seconds) < 10 ? '0' : '') + seconds
     const timeFigures = { minutes, seconds, normedSeconds }
-    // console.log(timeFigures)
-    // console.log(est)
     return timeFigures
   }, this)
 
@@ -814,10 +799,6 @@ export class MorseViewModel {
     const minutes = Math.floor(this.runningPlayMs() / 60000)
     const seconds = parseFloat(((this.runningPlayMs() % 60000) / 1000).toFixed(0))
     const timeFigures = new PlayingTimeInfo(minutes, seconds)
-    /* const normedSeconds = (parseInt(seconds) < 10 ? '0' : '') + seconds
-    const timeFigures = { minutes, seconds, normedSeconds } */
-    // console.log(timeFigures)
-    // console.log(est)
     return timeFigures
   }, this)
 
@@ -859,7 +840,6 @@ export class MorseViewModel {
     savedInfos.push(new SavedSettingsInfo('speakFirstRepeats', this.morseVoice.speakFirstRepeats()))
     savedInfos.push(new SavedSettingsInfo('speakFirstAdditionalWordspaces', this.morseVoice.speakFirstAdditionalWordspaces()))
 
-
     savedInfos.push(new SavedSettingsInfo('keepLines', this.settings.misc.newlineChunking()))
     savedInfos.push(new SavedSettingsInfo('syncSize', this.lessons.syncSize()))
 
@@ -881,7 +861,6 @@ export class MorseViewModel {
 
   saveSettings = () => {
     const settings = this.getCurrentSerializedSettings()
-    // console.log(settings)
     const elemx = document.createElement('a')
     elemx.href = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(settings, null, '\t')) // ! encodeURIComponent
     elemx.download = 'LICWSettings.json'
@@ -902,22 +881,14 @@ export class MorseViewModel {
 
   settingsFileChange = (element) => {
     // thanks to https://newbedev.com/how-to-access-file-input-with-knockout-binding
-    // console.log(file)
     const file = element.files[0]
-    console.log(`file:${file}`)
-    console.log(`filname:${file.name}`)
-
-    console.log(`element:${element}`)
-    console.log(`elementvalue:${element.value}`)
     const fr = new FileReader()
     fr.onload = (data) => {
-      console.log(`data:${data}`)
       // set to your settings
       // this.lessons.selectedSettingsPreset(this.lessons.yourSettingsDummy)
 
       // setTimeout(() => {
       const settings = JSON.parse(data.target.result as string)
-      console.log(settings)
       // this.setText(data.target.result as string)
       // need to clear or else won't fire if use clears the text area
       // and then tries to reload the same again
@@ -1010,7 +981,6 @@ export class MorseViewModel {
     })
 
     const changeFarnsworth = (x) => {
-      // console.log('changing farnsworth')
       const newWpm = parseInt(this.settings.speed.wpm() as any) + x
       const newFwpm = parseInt(this.settings.speed.fwpm() as any) + x
       if (newWpm < 1 || newFwpm < 1) {
