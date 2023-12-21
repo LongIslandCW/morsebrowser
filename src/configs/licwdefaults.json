@@ -85,6 +85,21 @@
             "key": "cardFontPx",
             "value": 15,
             "comment": "controls the font size of the cards may help with visibility"
+        },
+        {
+            "key": "speakFirst",
+            "value": false,
+            "comment": "controls speakfirst"
+        },
+        {
+            "key": "speakFirstRepeats",
+            "value": 0,
+            "comment": "controls number of repeats"
+        },
+        {
+            "key": "speakFirstAdditionalWordspaces",
+            "value": 0,
+            "comment": "controls additional wordspaces between speakfirst repeats"
         }
     ]
 }
