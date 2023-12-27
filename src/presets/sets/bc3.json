@@ -13,6 +13,14 @@
             "filename": "BC3_CS.json"
         },
         {
+            "display": "Familiarity Spelling",
+            "filename": "BC3_Spell.json"
+        },
+        {
+            "display": "Familiarity Words",
+            "filename": "BC3_Words.json"
+        },
+        {
             "display": "Sending Practice",
             "filename": "BPT_Sending.json"
         },        
