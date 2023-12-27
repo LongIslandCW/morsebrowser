@@ -37,6 +37,10 @@
             "filename": "BC2_RVET.json"
         },
         {
+            "display": "Familiarity Spelling",
+            "filename": "BC2_Spell.json"
+        },
+        {
             "display": "Prosign Phrases",
             "filename": "BC2_Prosign_Phrases.json"
         },

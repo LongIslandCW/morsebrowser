@@ -37,13 +37,9 @@
             "filename": "BC2_Sending.json"
         },
         {
-            "display": "Voice On & Spell On",
-            "filename": "BC1_Von_Son.json"
-        },      
-        {
-            "display": "Voice On & Spell Off",
-            "filename": "BC1_Von_Soff.json"
-        },
+            "display": "Familiarity Spelling",
+            "filename": "BC1_Spell.json"
+        },    
         {
             "display": "Phrases – Voice Off",
             "filename": "BC1_Phrases_Voff.json"
@@ -51,6 +47,14 @@
         {
             "display": "Phrases – Voice On",
             "filename": "BC1_Phrases_Von.json"
+        },
+        {
+            "display": "Voice On & Spell Off",
+            "filename": "BC1_Von_Soff.json"
+        },
+        {
+            "display": "Voice On & Spell On",
+            "filename": "BC1_Von_Son.json"
         },
         {
             "display": "Progress Evaluation",
