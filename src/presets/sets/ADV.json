@@ -41,8 +41,16 @@
             "filename": "ADVBUF.json"
         },
         {
-            "display": "Familiarity Training",
-            "filename": "ADVFAM.json"
+            "display": "Familiarity 25wpm",
+            "filename": "ADV_FAM_Spell_25.json"
+        },
+                {
+            "display": "Familiarity 30wpm",
+            "filename": "ADV_FAM_Spell_30.json"
+        },
+                {
+            "display": "Familiarity 35wpm",
+            "filename": "ADV_FAM_Spell_35.json"
         }
     ]
 }
