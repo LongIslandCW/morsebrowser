@@ -18,15 +18,15 @@
         },
         {
             "display": "Familiarity Words 25wpm",
-            "filename": "ADV_WORDS_25.json"
+            "filename": "ADV_FAM_WORDS_25.json"
         },
         {
             "display": "Familiarity Words 30wpm",
-            "filename": "ADV_WORDS_30.json"
+            "filename": "ADV_FAM_WORDS_30.json"
         },
         {
             "display": "Familiarity Words 35wpm",
-            "filename": "ADV_WORDS_35.json"
+            "filename": "ADV_FAM_WORDS_35.json"
         },
         {
             "display": "ICR",
