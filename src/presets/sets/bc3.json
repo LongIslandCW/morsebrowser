@@ -14,11 +14,11 @@
         },
         {
             "display": "Familiarity Spelling",
-            "filename": "BC3_Spell.json"
+            "filename": "BC3_FAM_Spell.json"
         },
         {
             "display": "Familiarity Words",
-            "filename": "BC3_Words.json"
+            "filename": "BC3_FAM_Words.json"
         },
         {
             "display": "Sending Practice",
