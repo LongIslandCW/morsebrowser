@@ -592,9 +592,6 @@
 {"sort": 563,"userTarget": "STUDENT","class": "INTERMEDIATE","letterGroup": "INT 3 (16-20)","newlineChunking": false,"display": "Familiarity - Words-3","fileName": "Fam_Words - 3.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "INTERMEDIATE","letterGroup": "INT 3 (16-20)","newlineChunking": false,"display": "Familiarity - Words-4","fileName": "Fam_Words – 4.txt"},
 
-
-
-{"sort": 563,"userTarget": "STUDENT","class": "BC3","letterGroup": "BC3","newlineChunking": false,"display": "Familiarity - Abbreviations","fileName": "Fam_Abbrev.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "INTERMEDIATE","letterGroup": "INT 3 (16-20)","newlineChunking": false,"display": "Familiarity - Alphabet","fileName": "Fam_Alph.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "INTERMEDIATE","letterGroup": "INT 3 (16-20)","newlineChunking": false,"display": "Familiarity - Numbers","fileName": "FAM_Num.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "INTERMEDIATE","letterGroup": "INT 3 (16-20)","newlineChunking": false,"display": "Familiarity - Punctuation","fileName": "Fam_Punc._PS.txt"},
@@ -603,8 +600,6 @@
 {"sort": 563,"userTarget": "STUDENT","class": "INTERMEDIATE","letterGroup": "INT 3 (16-20)","newlineChunking": false,"display": "Familiarity - Words-2","fileName": "Fam_Words - 2.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "INTERMEDIATE","letterGroup": "INT 3 (16-20)","newlineChunking": false,"display": "Familiarity - Words-3","fileName": "Fam_Words - 3.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "INTERMEDIATE","letterGroup": "INT 3 (16-20)","newlineChunking": false,"display": "Familiarity - Words-4","fileName": "Fam_Words – 4.txt"},
-
-
 
 {"sort": 563,"userTarget": "STUDENT","class": "ADVANCED","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Abbreviations","fileName": "Fam_Abbrev.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "ADVANCED","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Alphabet","fileName": "Fam_Alph.txt"},
