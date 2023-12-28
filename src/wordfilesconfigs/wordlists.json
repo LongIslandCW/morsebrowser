@@ -620,6 +620,17 @@
 {"sort": 563,"userTarget": "STUDENT","class": "INTERMEDIATE","letterGroup": "INT 1 (12)","newlineChunking": false,"display": "Familiarity - Words-2","fileName": "Fam_Words - 2.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "INTERMEDIATE","letterGroup": "INT 1 (12)","newlineChunking": false,"display": "Familiarity - Words-3","fileName": "Fam_Words - 3.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "INTERMEDIATE","letterGroup": "INT 1 (12)","newlineChunking": false,"display": "Familiarity - Words-4","fileName": "Fam_Words - 4.txt"},
+
+{"sort": 563,"userTarget": "STUDENT","class": "BC3","letterGroup": "Familiarity","newlineChunking": false,"display": "Abbreviations","fileName": "Fam_Abbrev.txt"},
+{"sort": 563,"userTarget": "STUDENT","class": "BC3","letterGroup": "Familiarity","newlineChunking": false,"display": "Alphabet","fileName": "Fam_Alph.txt"},
+{"sort": 563,"userTarget": "STUDENT","class": "BC3","letterGroup": "Familiarity","newlineChunking": false,"display": "Numbers","fileName": "FAM_Num.txt"},
+{"sort": 563,"userTarget": "STUDENT","class": "BC3","letterGroup": "Familiarity","newlineChunking": false,"display": "Punctuation","fileName": "Fam_Punc._PS.txt"},
+{"sort": 563,"userTarget": "STUDENT","class": "BC3","letterGroup": "Familiarity","newlineChunking": false,"display": "Q Codes","fileName": "Fam_Q.txt"},
+{"sort": 563,"userTarget": "STUDENT","class": "BC3","letterGroup": "Familiarity","newlineChunking": false,"display": "Words-1","fileName": "Fam_Words - 1.txt"},
+{"sort": 563,"userTarget": "STUDENT","class": "BC3","letterGroup": "Familiarity","newlineChunking": false,"display": "Words-2","fileName": "Fam_Words - 2.txt"},
+{"sort": 563,"userTarget": "STUDENT","class": "BC3","letterGroup": "Familiarity","newlineChunking": false,"display": "Words-3","fileName": "Fam_Words - 3.txt"},
+{"sort": 563,"userTarget": "STUDENT","class": "BC3","letterGroup": "Familiarity ","newlineChunking": false,"display": "Words-4","fileName": "Fam_Words – 4.txt"},
+        
 {"sort": 413,"userTarget": "STUDENT","class": "ADVANCED","letterGroup": "ICR","newlineChunking": false,"display": "LETTERS","fileName": "INT1.json"}, 
 {"sort": 414,"userTarget": "STUDENT","class": "ADVANCED","letterGroup": "ICR","newlineChunking": false,"display": "NUMBERS","fileName": "INT2.json"}, 
 {"sort": 417,"userTarget": "STUDENT","class": "ADVANCED","letterGroup": "ICR","newlineChunking": false,"display": "PUNCTUATION","fileName": "INT4.json"}, 
