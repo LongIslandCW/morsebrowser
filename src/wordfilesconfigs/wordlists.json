@@ -174,7 +174,7 @@
 {"sort": 167,"userTarget": "STUDENT","class": "BC2","letterGroup": "40","newlineChunking": true,"display": "QSO PROTOCOL","fileName": "SB2404.txt"}, 
 
         
-{"sort": 544,"userTarget": "STUDENT","class": "BC3","letterGroup": "Call Signs”,"newlineChunking": true,"display": "CALLSIGNS 3-4 CHARACTERS","fileName": "ICR15.txt"}, 
+{"sort": 544,"userTarget": "STUDENT","class": "BC3","letterGroup": "Call Signs","newlineChunking": true,"display": "CALLSIGNS 3-4 CHARACTERS","fileName": "ICR15.txt"}, 
 {"sort": 545,"userTarget": "STUDENT","class": "BC3","letterGroup": "Call Signs","newlineChunking": true,"display": "CALLSIGNS 3-5 CHARACTERS","fileName": "ICR16.txt"}, 
 {"sort": 546,"userTarget": "STUDENT","class": "BC3","letterGroup": "QSO Words","newlineChunking": true,"display": "QSO Words","fileName": "SB2C2.txt"}, 
 {"sort": 547,"userTarget": "STUDENT","class": "BC3","letterGroup": "Protocol","newlineChunking": true,"display": "QSO Protocol 1","fileName": "SB2C3.txt"}, 
