@@ -9,56 +9,60 @@
             "filename": "INT_Default_16.json"
         },
         {
-            "display": "Random Groups 1-5",
-            "filename": "INT_Random_1_5.json"
+            "display": "Familiarity Spelling",
+            "filename": "INT2_FAM_Spell.json"
         },
         {
-            "display": "VST",
-            "filename": "INT_VST.json"
-        },
-        {
-            "display": "Reverse VST",
-            "filename": "INT_RVST.json"
+            "display": "Familiarity Words",
+            "filename": "INT2_FAM_Words.json"
         },
         {
             "display": "Groups of 5",
             "filename": "INT_Groups_5.json"
         },
         {
-            "display": "Inter-character Head Copy",
-            "filename": "INT_ICHC.json"
-        },
-        {
             "display": "ICR",
             "filename": "INT_ICR.json"
-        },
-        {
-            "display": "VET",
-            "filename": "INT_VET.json"
-        },
-        {
-            "display": "Reverse VET",
-            "filename": "INT_RVET.json"
         },
         {
             "display": "Instant Word Recognition",
             "filename": "IWR.json"
         },
         {
+            "display": "Inter-character Head Copy",
+            "filename": "INT_ICHC.json"
+        },
+        {
+            "display": "Phrases",
+            "filename": "INT_Phrases.json"
+        },
+        {
+            "display": "Random Groups 1-5",
+            "filename": "INT_Random_1_5.json"
+        },
+        {
+            "display": "Reverse VET",
+            "filename": "INT_RVET.json"
+        },
+        {
+            "display": "Reverse VST",
+            "filename": "INT_RVST.json"
+        },
+        {
             "display": "Sending Practice",
             "filename": "INT_Sending.json"
         },  
-         {
-            "display": "Phrases",
-            "filename": "INT_Phrases.json"
-        }, 
-        {
-            "display": "Familiarity Training",
-            "filename": "INT2FAM_.json"
-        },
         {
             "display": "Suduko",
             "filename": "suduko16.json"
+        },
+        {
+            "display": "VET",
+            "filename": "INT_VET.json"
+        },
+        {
+            "display": "VST",
+            "filename": "INT_VST.json"
         },
         {
             "display": "Voice On & Spell On",

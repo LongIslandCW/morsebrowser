@@ -9,52 +9,56 @@
             "filename": "BPT_Default_15.json"
         },
         {
-            "display": "Random Groups 1-5",
-            "filename": "BPT_Random_1_5.json"
+            "display": "Familiarity Spelling",
+            "filename": "INT1_FAM_Spell.json"
         },
         {
-            "display": "VST",
-            "filename": "BPT_VST.json"
-        },
-        {
-            "display": "Reverse VST",
-            "filename": "BPT_RVST.json"
+            "display": "Familiarity Words",
+            "filename": "INT1_FAM_Words.json"
         },
         {
             "display": "Groups of 5",
             "filename": "BPT_Groups_5.json"
         },
         {
-            "display": "Inter-character Head Copy",
-            "filename": "BPT_ICHC.json"
-        },
-        {
             "display": "ICR",
             "filename": "BPT_ICR.json"
-        },
-        {
-            "display": "VET",
-            "filename": "BPT_VET.json"
-        },
-        {
-            "display": "Reverse VET",
-            "filename": "BPT_RVET.json"
         },
         {
             "display": "Instant Word Recognition",
             "filename": "IWR.json"
         },
         {
+            "display": "Inter-character Head Copy",
+            "filename": "BPT_ICHC.json"
+        },
+        {
+            "display": "Random Groups 1-5",
+            "filename": "BPT_Random_1_5.json"
+        },
+        {
+            "display": "Reverse VET",
+            "filename": "BPT_RVET.json"
+        },
+        {
+            "display": "Reverse VST",
+            "filename": "BPT_RVST.json"
+        },
+        {
             "display": "Sending Practice",
             "filename": "BPT_Sending.json"
         },    
         {
-            "display": "Familiarity Training",
-            "filename": "INT1FAM_.json"
-        },
-          {
             "display": "Suduko",
             "filename": "suduko12.json"
+        },
+        {
+            "display": "VET",
+            "filename": "BPT_VET.json"
+        },
+        {
+            "display": "VST",
+            "filename": "BPT_VST.json"
         },
         {
             "display": "Voice On & Spell On",

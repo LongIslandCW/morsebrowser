@@ -727,6 +727,51 @@
                                                     data-bind="attr:{ src: morseVoice.manualVoice() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" />
                                             </label>
                                         </div>
+                                        <!-- voice speakfirst-->
+                                        <div class="col-auto"
+                                            data-bind="if: showExpertSettings() && morseVoice.voiceEnabled()">
+
+                                            <input type="checkbox" class="btn-check" autocomplete="off"
+                                                aria-label="Speak First" id="btncheckspeakfirst"
+                                                data-bind="checked: morseVoice.speakFirst">
+                                            <label class=" btn btn-outline-primary" for="btncheckspeakfirst"
+                                                aria-hidden="true">
+                                                <img
+                                                    data-bind="attr:{ src: morseLoadImages().getSrc('chatRightDotsImage')}">&nbsp;Voice
+                                                First&nbsp;
+                                                <img
+                                                    data-bind="attr:{ src: morseVoice.speakFirst() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" />
+                                            </label>
+                                        </div>
+                                        <!-- voice speakfirstrepeats-->
+                                        <div class="col-md-auto"
+                                            data-bind="if: showExpertSettings() && morseVoice.voiceEnabled()">
+                                            <div class="input-group">
+                                                <label for="speakFirstRepeats"
+                                                    class="input-group-text">Repeats&nbsp;<img width=20 height=20
+                                                        data-bind="attr:{ src: morseLoadImages().getSrc('repeatImage')}"
+                                                        alt=""></label>
+                                                <input id="speakFirstRepeats" name="speakFirstRepeats" type="number"
+                                                    style="max-width:75px; min-width: 75px;" class="form-control"
+                                                    min="0" max="10" step="1"
+                                                    data-bind="textInput: morseVoice.speakFirstRepeats">
+                                            </div>
+                                        </div>
+                                        <!-- voice speakfirst additionalwordspaces-->
+                                        <div class="col-md-auto"
+                                            data-bind="if: showExpertSettings() && morseVoice.voiceEnabled()">
+                                            <div class="input-group">
+                                                <label for="speakFirstAdditionalWordspaces"
+                                                    class="input-group-text">Repeat Spacing<img width=20 height=20
+                                                        data-bind="attr:{ src: morseLoadImages().getSrc('stopwatchImage')}"
+                                                        alt=""></label>
+                                                <input id="speakFirstAdditionalWordspaces"
+                                                    name="speakFirstAdditionalWordspaces" type="number"
+                                                    style="max-width:75px; min-width: 75px;" class="form-control"
+                                                    min="0" max="10" step="1"
+                                                    data-bind="textInput: morseVoice.speakFirstAdditionalWordspaces">
+                                            </div>
+                                        </div>
                                         <!-- voice thinktime-->
                                         <div class="col-md-auto"
                                             data-bind="if: showExpertSettings() && morseVoice.voiceEnabled()">
