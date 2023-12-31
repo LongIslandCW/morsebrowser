@@ -470,13 +470,6 @@
 {"sort": 533,"userTarget": "STUDENT","class": "ADVANCED","letterGroup": "SUFFIXES","newlineChunking": true,"display": "3 WORDS","fileName": "SUFFIX.txt"}, 
 
 {"sort": 535,"userTarget": "STUDENT","class": "ADVANCED","letterGroup": "WORDS","newlineChunking": true,"display": "TOP 500 WORDS","fileName": "INT13.txt"}, 
-{"sort": 583,"userTarget": "STUDENT","class": "INTERMEDIATE","letterGroup": "INT 1 (12)","newlineChunking": false,"display": "INSTANT WORD RECOGNITION","fileName": "IWRINT12.txt"}, 
-     
-{"sort": 583,"userTarget": "STUDENT","class": "INTERMEDIATE","letterGroup": "INT 2 (12-16)","newlineChunking": false,"display": "INSTANT WORD RECOGNITION","fileName": "IWRINT12.txt"}, 
-       
-{"sort": 583,"userTarget": "STUDENT","class": "INTERMEDIATE","letterGroup": "INT 3 (16-20)","newlineChunking": false,"display": "INSTANT WORD RECOGNITION","fileName": "IWRINT3.txt"}, 
-       
-{"sort": 583,"userTarget": "STUDENT","class": "ADVANCED","letterGroup": "IWR","newlineChunking": false,"display": "INSTANT WORD RECOGNITION","fileName": "IWR100Words.txt"}, 
            
 
 {"sort": 408,"userTarget": "STUDENT","class": "INTERMEDIATE","letterGroup": "INT 1 (12)","newlineChunking": true,"display": "SUDUKO","fileName": "suduko1.txt"}, 
