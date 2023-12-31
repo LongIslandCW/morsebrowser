@@ -524,7 +524,7 @@
 {"sort": 563,"userTarget": "STUDENT","class": "ADVANCED","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Words-1","fileName": "Fam_Words - 1.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "ADVANCED","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Words-2","fileName": "Fam_Words - 2.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "ADVANCED","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Words-3","fileName": "Fam_Words - 3.txt"},
-{"sort": 563,"userTarget": "STUDENT","class": "ADVANCED","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Words-4","fileName": "Fam_Words - 4.txt"},
+{"sort": 563,"userTarget": "STUDENT","class": "ADVANCED","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Words-4","fileName": "Fam_Words - 4.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "INTERMEDIATE","letterGroup": "INT 1 (12)","newlineChunking": false,"display": "Familiarity - Abbreviations","fileName": "Fam_Abbrev.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "INTERMEDIATE","letterGroup": "INT 1 (12)","newlineChunking": false,"display": "Familiarity - Alphabet","fileName": "Fam_Alph.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "INTERMEDIATE","letterGroup": "INT 1 (12)","newlineChunking": false,"display": "Familiarity - Numbers","fileName": "FAM_Num.txt"},
