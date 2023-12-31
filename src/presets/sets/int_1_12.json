@@ -9,6 +9,10 @@
             "filename": "BPT_Default_15.json"
         },
         {
+            "display": "Familiarity Phrases",
+            "filename": "INT1_FAM_Phrases.json"
+        },
+        {
             "display": "Familiarity Spelling",
             "filename": "INT1_FAM_Spell.json"
         },
