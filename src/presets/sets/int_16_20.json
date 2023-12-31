@@ -29,10 +29,6 @@
             "filename": "INT2_ICR.json"
         },
         {
-            "display": "Inter-character Head Copy",
-            "filename": "INT2_ICHC.json"
-        },
-        {
             "display": "Phrases",
             "filename": "INT2_Phrases.json"
         },
