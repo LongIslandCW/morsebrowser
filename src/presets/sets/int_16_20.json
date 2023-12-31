@@ -9,6 +9,10 @@
             "filename": "INT2_Default_20.json"
         },
         {
+            "display": "Familiarity Phrases",
+            "filename": "INT3_FAM_Phrases.json"
+        },
+        {
             "display": "Familiarity Spelling",
             "filename": "INT3_FAM_Spell.json"
         },
