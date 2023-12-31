@@ -3,6 +3,17 @@
         {
             "display": "Default 25/25",
             "filename": "ADVBUF.json"
+        },{
+            "display": "Familiarity Phrases 25wpm",
+            "filename": "ADV_FAM_Phrases_25.json"
+        },
+        {
+            "display": "Familiarity Phrases 30wpm",
+            "filename": "ADV_FAM_Phrases_30.json"
+        },
+        {
+            "display": "Familiarity Phrases 35wpm",
+            "filename": "ADV_FAM_Phrases_35.json"
         },
         {
             "display": "Familiarity Spell 25wpm",
