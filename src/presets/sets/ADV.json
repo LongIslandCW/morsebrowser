@@ -5,28 +5,40 @@
             "filename": "ADVBUF.json"
         },
         {
-            "display": "Familiarity Spell 25wpm",
-            "filename": "ADV_FAM_Spell_25.json"
+            "display": "Familiarity Spell ADV1",
+            "filename": "ADV1_FAM_Spell.json"
         },
         {
-            "display": "Familiarity Spell 30wpm",
-            "filename": "ADV_FAM_Spell_30.json"
+            "display": "Familiarity Spell ADV2",
+            "filename": "ADV2_FAM_Spell.json"
         },
         {
-            "display": "Familiarity Spell 35wpm",
-            "filename": "ADV_FAM_Spell_35.json"
+            "display": "Familiarity Spell ADV3",
+            "filename": "ADV3_FAM_Spell.json"
         },
         {
-            "display": "Familiarity Words 25wpm",
-            "filename": "ADV_FAM_WORDS_25.json"
+            "display": "Familiarity Words ADV1",
+            "filename": "ADV1_FAM_WORDS.json"
         },
         {
-            "display": "Familiarity Words 30wpm",
-            "filename": "ADV_FAM_WORDS_30.json"
+            "display": "Familiarity Words ADV2",
+            "filename": "ADV2_FAM_WORDS.json"
         },
         {
-            "display": "Familiarity Words 35wpm",
-            "filename": "ADV_FAM_WORDS_35.json"
+            "display": "Familiarity Words ADV3",
+            "filename": "ADV3_FAM_WORDS.json"
+        },
+        {
+            "display": "Familiarity Phrases ADV1",
+            "filename": "ADV1_FAM_Phrases.json"
+        },
+        {
+            "display": "Familiarity Phrases ADV2",
+            "filename": "ADV2_FAM_Phrases.json"
+        },
+        {
+            "display": "Familiarity Phrases ADV3",
+            "filename": "ADV3_FAM_Phrases.json"
         },
         {
             "display": "ICR",
