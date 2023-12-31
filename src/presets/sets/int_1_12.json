@@ -29,10 +29,6 @@
             "filename": "BPT_ICR.json"
         },
         {
-            "display": "Instant Word Recognition",
-            "filename": "IWR.json"
-        },
-        {
             "display": "Inter-character Head Copy",
             "filename": "BPT_ICHC.json"
         },
