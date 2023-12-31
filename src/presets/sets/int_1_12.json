@@ -29,10 +29,6 @@
             "filename": "BPT_ICR.json"
         },
         {
-            "display": "Inter-character Head Copy",
-            "filename": "BPT_ICHC.json"
-        },
-        {
             "display": "Random Groups 1-5",
             "filename": "BPT_Random_1_5.json"
         },
