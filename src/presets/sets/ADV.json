@@ -44,10 +44,6 @@
             "filename": "ADVICR.json"
         },
         {
-            "display": "Instant Word Recognition",
-            "filename": "IWR.json"
-        }, 
-        {
             "display": "Prefixes",
             "filename": "ADVBUF.json"
         },        
