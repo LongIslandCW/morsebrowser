@@ -1,9 +1,9 @@
 "use strict";
-(self["webpackChunk"] = self["webpackChunk"] || []).push([["src_presets_configs_ADV_FAM_Spell_35_json"],{
+(self["webpackChunk"] = self["webpackChunk"] || []).push([["src_presets_configs_ADV_FAM_Spell_30_json"],{
 
-/***/ "./src/presets/configs/ADV_FAM_Spell_35.json":
+/***/ "./src/presets/configs/ADV_FAM_Spell_30.json":
 /*!***************************************************!*\
-  !*** ./src/presets/configs/ADV_FAM_Spell_35.json ***!
+  !*** ./src/presets/configs/ADV_FAM_Spell_30.json ***!
   \***************************************************/
 /***/ ((module) => {
 
