@@ -29,10 +29,6 @@
             "filename": "INT_ICR.json"
         },
         {
-            "display": "Instant Word Recognition",
-            "filename": "IWR.json"
-        },
-        {
             "display": "Inter-character Head Copy",
             "filename": "INT_ICHC.json"
         },
