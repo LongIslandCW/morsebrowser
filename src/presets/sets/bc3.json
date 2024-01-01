@@ -13,6 +13,10 @@
             "filename": "BC3_CS.json"
         },
         {
+            "display": "Familiarity Phrases",
+            "filename": "BC3_FAM_Phrases.json"
+        },
+        {
             "display": "Familiarity Spelling",
             "filename": "BC3_FAM_Spell.json"
         },
