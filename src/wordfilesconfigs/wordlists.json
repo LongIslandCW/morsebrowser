@@ -631,9 +631,9 @@
 {"sort": 563,"userTarget": "STUDENT","class": "INTERMEDIATE","letterGroup": "INT 2 (12-16)","newlineChunking": true,"display": "Familiarity - 3 Line Phrases","fileName": "INT2_Fam_Phrases_3L.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "INTERMEDIATE","letterGroup": "INT 2 (12-16)","newlineChunking": true,"display": "Familiarity - 4 Line Phrases","fileName": "INT2_Fam_Phrases_4L.txt"},    
 {"sort": 563,"userTarget": "STUDENT","class": "INTERMEDIATE","letterGroup": "INT 2 (12-16)","newlineChunking": true,"display": "Familiarity - QSO Phrases","fileName": "INT2_Fam_Phrases_QSO.txt"}, 
-{"sort": 563,"userTarget": "STUDENT","class": "INTERMEDIATE","letterGroup": "INT 3 (16-20)","newlineChunking": true,"display": "Familiarity - 3 Line Phrases","fileName": "INT3_Fam_Phrases_2W3.txt"},   
+{"sort": 563,"userTarget": "STUDENT","class": "INTERMEDIATE","letterGroup": "INT 3 (16-20)","newlineChunking": true,"display": "Familiarity - 3 Line Phrases","fileName": "INT3_Fam_Phrases_3L.txt"},   
 {"sort": 563,"userTarget": "STUDENT","class": "INTERMEDIATE","letterGroup": "INT 3 (16-20)","newlineChunking": true,"display": "Familiarity - 4 Line Phrases","fileName": "INT3_Fam_Phrases_4L.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "INTERMEDIATE","letterGroup": "INT 3 (16-20)","newlineChunking": true,"display": "Familiarity - QSO Phrases","fileName": "INT3_Fam_Phrases_QSO.txt"},
-{"sort": 563,"userTarget": "STUDENT","class": "ADVANCED","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "4 Line Phrases","fileName": "ADV1_Fam_Phrases_2W4L.txt"},
+{"sort": 563,"userTarget": "STUDENT","class": "ADVANCED","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "4 Line Phrases","fileName": "ADV1_Fam_Phrases_4L.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "ADVANCED","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "QSO Phrases","fileName": "ADV1_Fam_Phrases_QSO.txt"}
 ]}
