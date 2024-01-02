@@ -32,14 +32,14 @@
             "display": "Reverse VET",
             "filename": "BC1_RVET.json"
         },
+         {
+            "display": "Familiarity Spelling",
+            "filename": "BC1_FAM_Spell.json"
+        }, 
         {
             "display": "Sending Practice",
             "filename": "BC2_Sending.json"
         },
-        {
-            "display": "Familiarity Spelling",
-            "filename": "BC1_FAM_Spell.json"
-        },    
         {
             "display": "Phrases – Voice Off",
             "filename": "BC1_Phrases_Voff.json"
