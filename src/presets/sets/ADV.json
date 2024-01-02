@@ -4,39 +4,39 @@
             "display": "Default 25/25",
             "filename": "ADVBUF.json"
         },{
-            "display": "Familiarity Phrases 25wpm",
+            "display": "Familiarity Phrases 28wpm",
             "filename": "ADV_FAM_Phrases_25.json"
         },
         {
-            "display": "Familiarity Phrases 30wpm",
+            "display": "Familiarity Phrases 35wpm",
             "filename": "ADV_FAM_Phrases_30.json"
         },
         {
-            "display": "Familiarity Phrases 35wpm",
+            "display": "Familiarity Phrases 40wpm",
             "filename": "ADV_FAM_Phrases_35.json"
         },
         {
-            "display": "Familiarity Spell 25wpm",
+            "display": "Familiarity Spell 28wpm",
             "filename": "ADV_FAM_Spell_25.json"
         },
         {
-            "display": "Familiarity Spell 30wpm",
+            "display": "Familiarity Spell 35wpm",
             "filename": "ADV_FAM_Spell_30.json"
         },
         {
-            "display": "Familiarity Spell 35wpm",
+            "display": "Familiarity Spell 40wpm",
             "filename": "ADV_FAM_Spell_35.json"
         },
         {
-            "display": "Familiarity Words 25wpm",
+            "display": "Familiarity Words 28wpm",
             "filename": "ADV_FAM_WORDS_25.json"
         },
         {
-            "display": "Familiarity Words 30wpm",
+            "display": "Familiarity Words 35wpm",
             "filename": "ADV_FAM_WORDS_30.json"
         },
         {
-            "display": "Familiarity Words 35wpm",
+            "display": "Familiarity Words 40wpm",
             "filename": "ADV_FAM_WORDS_35.json"
         },
         {
