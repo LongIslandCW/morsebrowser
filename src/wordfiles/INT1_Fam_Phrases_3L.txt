@@ -1,31 +1,31 @@
 IT 
 IT COSTS 
 IT COSTS A 
-{e|} 
+{<BT>|}
 HE 
 HE ATE  
 HE ATE VERY 
-{e|} 
+{<BT>|}
 THE 
 THE LAST 
 THE LAST TIME 
-{e|} 
+{<BT>|}
 CALL 
 CALL IT 
 CALL IT A 
-{e|} 
+{<BT>|}
 ITS 
 ITS FINE 
 ITS FINE JUST 
-{e|} 
+{<BT>|}
 LET 
 LET HIM 
 LET HIM OFF 
-{e|} 
+{<BT>|}
 LET 
 LET THE 
 LET THE DOG 
-{e|} 
+{<BT>|}
 ROLL 
 ROLL OVER 
 ROLL OVER THAT 

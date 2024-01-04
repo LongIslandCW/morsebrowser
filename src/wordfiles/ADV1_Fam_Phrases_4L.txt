@@ -2,17 +2,17 @@ He has
 He has as many 
 He has as many children as 
 He has as many children as they do 
-{e|} 
+{<BT>|}
 There are 
 There are only five 
 There are only five students here 
 There are only five students here this day 
-{e|} 
+{<BT>|}
 This is 
 This is what an  
 This is what an orange looks 
 This is what an orange looks like inside 
-{e|} 
+{<BT>|}
 Please be 
 Please be quiet, the 
 Please be quiet, the baby is 

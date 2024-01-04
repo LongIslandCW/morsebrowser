@@ -1,38 +1,38 @@
 YOU 
 YOU WIN 
-{e|} 
+{<BT>|}
 VERY 
 VERY NICE 
-{e|} 
+{<BT>|}
 How 
 HOW ARE 
-{e|} 
+{<BT>|}
 CALL 
 CALL IT 
-{e|} 
+{<BT>|}
 BEST 
 BEST OF 
-{e|} 
+{<BT>|}
 WHY 
 WHY DONT 
-{e|} 
+{<BT>|}
 WE 
 WE JUST 
-{e|} 
+{<BT>|}
 NO 
 NO PAIN 
-{e|} 
+{<BT>|}
 WE 
 WE DONT 
-{e|} 
+{<BT>|}
 EAT 
 EAT NOW 
-{e|} 
+{<BT>|}
 TEN 
 TEN CENTS 
-{e|} 
+{<BT>|}
 GET 
 GET A 
-{e|} 
+{<BT>|}
 ROLL 
 ROLL OVER 

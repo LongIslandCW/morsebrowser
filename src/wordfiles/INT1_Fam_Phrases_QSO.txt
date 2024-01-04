@@ -1,31 +1,31 @@
 ANT 
 ANT IS 
 ANT IS A 
-{e|} 
+{<BT>|}
 RIG 
 RIG IS 
 RIG IS THE 
-{e|} 
+{<BT>|}
 TNX 
 TNX FER 
 TNX FER THE 
-{e|} 
+{<BT>|}
 UR 
 UR RST 
 UR RST IS 
-{e|} 
+{<BT>|}
 VY 
 VY NICE 
 VY NICE QSO 
-{e|} 
+{<BT>|}
 WX 
 WX IS 
 WX IS VRY 
-{e|} 
+{<BT>|}
 AGE 
 AGE 58 
 AGE 58 YRS 
-{e|} 
+{<BT>|}
 RETIRED 
 RETIRED MATH 
 RETIRED MATH TEACHER 
