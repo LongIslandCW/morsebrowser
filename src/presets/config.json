@@ -37,6 +37,11 @@
             "className": "ADVANCED",
             "defaultSetFile": "ADV.json",
             "letterGroups": []
+        },
+        {
+            "className": "ADV 1",
+            "defaultSetFile": "ADV.json",
+            "letterGroups": []
         }
     ]
 }
