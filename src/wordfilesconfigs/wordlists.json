@@ -553,5 +553,6 @@
 {"sort": 563,"userTarget": "STUDENT","class": "INT 3","letterGroup": "Familiarity","newlineChunking": true,"display": "4 Line Phrases","fileName": "INT3_Fam_Phrases_4L.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "INT 3","letterGroup": "Familiarity","newlineChunking": true,"display": "QSO Phrases","fileName": "INT3_Fam_Phrases_QSO.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "Familiarity","newlineChunking": true,"display": "4 Line Phrases","fileName": "ADV1_Fam_Phrases_4L.txt"},
-{"sort": 563,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "Familiarity","newlineChunking": true,"display": "QSO Phrases","fileName": "ADV1_Fam_Phrases_QSO.txt"}
+{"sort": 563,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "Familiarity","newlineChunking": true,"display": "QSO Phrases","fileName": "ADV1_Fam_Phrases_QSO.txt"},
+{"sort": 563,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "Familiarity","newlineChunking": true,"display": "4 Line Phrases","fileName": "ADV2_Fam_Phrases_4L.txt"}
 ]}
