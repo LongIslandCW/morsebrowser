@@ -179,13 +179,7 @@
 {"sort": 548,"userTarget": "STUDENT","class": "BC3","letterGroup": "Protocol","newlineChunking": true,"display": "QSO Protocol 2","fileName": "SB2C4.txt"}, 
 {"sort": 549,"userTarget": "STUDENT","class": "BC3","letterGroup": "Protocol","newlineChunking": true,"display": "QSO Protocol 3","fileName": "SB2C5.txt"}, 
 {"sort": 550,"userTarget": "STUDENT","class": "BC3","letterGroup": "Protocol","newlineChunking": true,"display": "QSO Protocol 4","fileName": "SB2C6.txt"}, 
-{"sort": 551,"userTarget": "INSTRUCTOR","class": "BC3","letterGroup": "Call Signs","newlineChunking": true,"display": "CALLSIGNS 3-4 CHARACTERS","fileName": "ICR15.txt"}, 
-{"sort": 552,"userTarget": "INSTRUCTOR","class": "BC3","letterGroup": "Call Signs","newlineChunking": true,"display": "CALLSIGNS 3-5 CHARACTERS","fileName": "ICR16.txt"}, 
-{"sort": 553,"userTarget": "INSTRUCTOR","class": "BC3","letterGroup": "QSO Words","newlineChunking": true,"display": "QSO Words","fileName": "SB2C2.txt"}, 
-{"sort": 554,"userTarget": "INSTRUCTOR","class": "BC3","letterGroup": "Protocol","newlineChunking": true,"display": "QSO Protocol 1","fileName": "SB2C3.txt"}, 
-{"sort": 555,"userTarget": "INSTRUCTOR","class": "BC3","letterGroup": "Protocol","newlineChunking": true,"display": "QSO Protocol 2","fileName": "SB2C4.txt"}, 
-{"sort": 556,"userTarget": "INSTRUCTOR","class": "BC3","letterGroup": "Protocol","newlineChunking": true,"display": "QSO Protocol 3","fileName": "SB2C5.txt"}, 
-{"sort": 557,"userTarget": "INSTRUCTOR","class": "BC3","letterGroup": "Protocol","newlineChunking": true,"display": "QSO Protocol 4","fileName": "SB2C6.txt"}, 
+
 {"sort": 168,"userTarget": "STUDENT","class": "INTERMEDIATE","letterGroup": "INT 1 (12)","newlineChunking": false,"display": "B1B2 REVIEW","fileName": "SB2C1.json"}, 
 {"sort": 413,"userTarget": "STUDENT","class": "INTERMEDIATE","letterGroup":
  "INT 1 (12)","newlineChunking": false,"display": "LETTERS","fileName": "INT1.json"}, 
