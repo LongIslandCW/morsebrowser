@@ -206,6 +206,8 @@ export default class MorseLessonPlugin implements ICookieHandler {
           this.selectedSettingsPreset().filename !== this.settingsPresets()[1].filename) {
             this.setPresetSelected(this.settingsPresets()[1])
           }
+        } else {
+          this.setPresetSelected(this.settingsPresets()[0])
         }
       }
     }
@@ -216,6 +218,7 @@ export default class MorseLessonPlugin implements ICookieHandler {
         this.settingsPresets(sps.concat(d.data.options))
       } else {
         this.settingsPresets(sps)
+        this.setPresetSelected(this.settingsPresets()[0])
       }
       handleAutoSelect()
     }
