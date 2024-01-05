@@ -2,19 +2,19 @@
     "options": [
         {
             "display": "Default 35/35",
-            "filename": "ADV1BUF.json"
+            "filename": "ADV3BUF.json"
         },
         {
             "display": "Familiarity Spell",
-            "filename": "ADV1_FAM_Spell.json"
+            "filename": "ADV3_FAM_Spell.json"
         },
         {
             "display": "Familiarity Words",
-            "filename": "ADV1_FAM_WORDS.json"
+            "filename": "ADV3_FAM_WORDS.json"
         }, 
         {
             "display": "Familiarity Phrases",
-            "filename": "ADV1_FAM_Phrases.json"
+            "filename": "ADV3_FAM_Phrases.json"
         },
          {
             "display": "ICR",
@@ -35,7 +35,6 @@
         {
             "display": "Voice after 2",
             "filename": "ADV2WB.json"
-        },
-
+        }
     ]
 }
