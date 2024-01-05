@@ -11,19 +11,19 @@
         {
             "display": "Familiarity Words",
             "filename": "ADV1_FAM_WORDS.json"
-        }, 
+        },
         {
             "display": "Familiarity Phrases",
             "filename": "ADV1_FAM_Phrases.json"
         },
-         {
+        {
             "display": "ICR",
             "filename": "ADVICR.json"
-        }, 
+        },
         {
             "display": "Prefixes",
             "filename": "ADVBUF.json"
-        },        
+        },
         {
             "display": "Sentences",
             "filename": "ADVBUF.json"
@@ -31,11 +31,10 @@
         {
             "display": "Suffixes",
             "filename": "ADVBUF.json"
-        },        
+        },
         {
             "display": "Voice after 2",
             "filename": "ADV2WB.json"
-        },
-
+        }
     ]
 }
