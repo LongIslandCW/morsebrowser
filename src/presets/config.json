@@ -40,7 +40,7 @@
         },
         {
             "className": "ADV 1",
-            "defaultSetFile": "ADV.json",
+            "defaultSetFile": "ADV1.json",
             "letterGroups": []
         }
     ]
