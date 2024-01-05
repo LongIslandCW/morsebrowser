@@ -42,6 +42,11 @@
             "className": "ADV 1",
             "defaultSetFile": "ADV1.json",
             "letterGroups": []
+        },
+        {
+            "className": "ADV 2",
+            "defaultSetFile": "ADV2.json",
+            "letterGroups": []
         }
     ]
 }
