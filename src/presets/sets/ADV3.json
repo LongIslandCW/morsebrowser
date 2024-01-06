@@ -5,6 +5,14 @@
             "filename": "ADV3BUF.json"
         },
         {
+            "display": "Familiarity Phrases",
+            "filename": "ADV3_FAM_Phrases.json"
+        },
+        {
+            "display": "Familiarity Sentences",
+            "filename": "ADV3_FAM_Sentences.json"
+        },
+        {
             "display": "Familiarity Spell",
             "filename": "ADV3_FAM_Spell.json"
         },
@@ -12,10 +20,6 @@
             "display": "Familiarity Words",
             "filename": "ADV3_FAM_WORDS.json"
         }, 
-        {
-            "display": "Familiarity Phrases",
-            "filename": "ADV3_FAM_Phrases.json"
-        },
          {
             "display": "ICR",
             "filename": "ADVICR.json"
