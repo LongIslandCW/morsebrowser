@@ -27,14 +27,6 @@
         {
             "display": "Sending Practice",
             "filename": "BPT_Sending.json"
-        },        
-        {
-            "display": "Voice On & Spell On",
-            "filename": "BPT_Von_Son.json"
-        },
-        {
-            "display": "Voice On & Spell Off",
-            "filename": "BPT_Von_Soff.json"
         }
     ]
 }
