@@ -5,6 +5,10 @@
             "filename": "ADV1BUF.json"
         },
         {
+            "display": "Affixes",
+            "filename": "ADV1BUF.json"
+        },
+        {
             "display": "Familiarity Phrases",
             "filename": "ADV1_FAM_Phrases.json"
         },
