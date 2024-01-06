@@ -464,9 +464,7 @@
 {"sort": 533,"userTarget": "STUDENT","class": "ADVANCED","letterGroup": "SUFFIXES","newlineChunking": true,"display": "3 WORDS","fileName": "SUFFIX.txt"}, 
 
 {"sort": 535,"userTarget": "STUDENT","class": "ADVANCED","letterGroup": "WORDS","newlineChunking": true,"display": "TOP 500 WORDS","fileName": "INT13.txt"}, 
-           
 
-{"sort": 408,"userTarget": "STUDENT","class": "INTERMEDIATE","letterGroup": "INT 1 (12)","newlineChunking": true,"display": "SUDUKO","fileName": "suduko1.txt"}, 
 
 {"sort": 500,"userTarget": "STUDENT","class": "INTERMEDIATE","letterGroup": "INT 2 (12-16)","newlineChunking": true,"display": "SUDUKO","fileName": "suduko1.txt"}, 
 
@@ -534,6 +532,7 @@
 {"sort": 563,"userTarget": "STUDENT","class": "INT 1","letterGroup": "Familiarity","newlineChunking": false,"display": "Punctuation","fileName": "Fam_Punc._PS.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "INT 1","letterGroup": "Familiarity","newlineChunking": false,"display": "Q Codes","fileName": "Fam_Q.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "INT 1","letterGroup": "Familiarity","newlineChunking": true,"display": "QSO Phrase","fileName": "INT1_Fam_Phrases_QSO.txt"},
+{"sort": 408,"userTarget": "STUDENT","class": "INT 1","letterGroup": "Characters","newlineChunking": true,"display": "SUDUKO","fileName": "suduko1.txt"}, 
 {"sort": 563,"userTarget": "STUDENT","class": "INT 1","letterGroup": "Familiarity","newlineChunking": true,"display": "Words-1","fileName": "Fam_Words - 1.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "INT 1","letterGroup": "Familiarity","newlineChunking": true,"display": "Words-2","fileName": "Fam_Words - 2.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "INT 1","letterGroup": "Familiarity","newlineChunking": true,"display": "Words-3","fileName": "Fam_Words - 3.txt"},
