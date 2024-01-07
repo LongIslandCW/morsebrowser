@@ -376,9 +376,12 @@
 {"sort": 545,"userTarget": "STUDENT","class": "BC3","letterGroup": "Call Signs","newlineChunking": true,"display": "CALLSIGNS 3-5 CHARACTERS","fileName": "ICR16.txt"}, 
 {"sort": 563,"userTarget": "STUDENT","class": "BC3","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Abbreviations","fileName": "Fam_Abbrev.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "BC3","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Alphabet","fileName": "Fam_Alph.txt"},
-{"sort": 563,"userTarget": "STUDENT","class": "BC3","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Contest 1","fileName": "BC3_Fam_Contest1.txt"},
-{"sort": 563,"userTarget": "STUDENT","class": "BC3","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Contest 2","fileName": "BC3_Fam_Contest2.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "BC3","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Numbers","fileName": "FAM_Num.txt"},
+{"sort": 563,"userTarget": "STUDENT","class": "BC3","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Phrases - Field Day ","fileName": "BC3_Phrases_Field_Day.txt"},
+{"sort": 563,"userTarget": "STUDENT","class": "BC3","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Phrases - K1USN SST","fileName": "BC3_Phrases_K1USN_SST.txt"},
+{"sort": 563,"userTarget": "STUDENT","class": "BC3","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Phrases - LICW","fileName": "BC3_Phrases_LICW.txt"},       
+{"sort": 563,"userTarget": "STUDENT","class": "BC3","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Phrases - SKCC WES","fileName": "BC3_Phrases_SKCC_WES.txt"},
+{"sort": 563,"userTarget": "STUDENT","class": "BC3","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Phrases - SOTA","fileName": "BC3_Phrases_SOTA.txt"},        
 {"sort": 563,"userTarget": "STUDENT","class": "BC3","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Punctuation","fileName": "Fam_Punc._PS.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "BC3","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Q Codes","fileName": "Fam_Q.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "BC3","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Words-1","fileName": "Fam_Words - 1.txt"},
@@ -390,8 +393,9 @@
 {"sort": 549,"userTarget": "STUDENT","class": "BC3","letterGroup": "QSO Protocol","newlineChunking": true,"display": "Protocol 3","fileName": "SB2C5.txt"}, 
 {"sort": 550,"userTarget": "STUDENT","class": "BC3","letterGroup": "QSO Protocol","newlineChunking": true,"display": "Protocol 4","fileName": "SB2C6.txt"}, 
 {"sort": 546,"userTarget": "STUDENT","class": "BC3","letterGroup": "QSO Words","newlineChunking": true,"display": "QSO Words","fileName": "SB2C2.txt"},
-        
 
+
+        
 {"sort": 424,"userTarget": "STUDENT","class": "INT 1","letterGroup": "CALLSIGNS","newlineChunking": true,"display": "3-4 CHARACTERS","fileName": "ICR15.txt"}, 
 {"sort": 424,"userTarget": "STUDENT","class": "INT 1","letterGroup": "CALLSIGNS","newlineChunking": true,"display": "3-5 CHARACTERS","fileName": "ICR16.txt"},       
 {"sort": 168,"userTarget": "STUDENT","class": "INT 1","letterGroup": "CHARACTERS","newlineChunking": false,"display": "B1B2 REVIEW","fileName": "SB2C1.json"}, 
