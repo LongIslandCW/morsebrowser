@@ -2,11 +2,11 @@
     "options": [
         {
             "display": "Default 16/16",
-            "filename": "INT2_Default_16.json"
+            "filename": "INT3_DEFAULT_16.json"
         },
         {
             "display": "Default 20/20",
-            "filename": "INT2_Default_20.json"
+            "filename": "INT3_DEFAULT_20.json"
         },
         {
             "display": "Familiarity Phrases",
@@ -26,15 +26,15 @@
         },
         {
             "display": "ICR",
-            "filename": "INT2_ICR.json"
+            "filename": "INT3_ICR.json"
         },
         {
             "display": "Phrases",
-            "filename": "INT2_Phrases.json"
+            "filename": "INT3_PHRASES.json"
         },
         {
             "display": "Sending Practice",
-            "filename": "INT2_Sending.json"
+            "filename": "INT3_SENDING.json"
         }
     ]
 }
