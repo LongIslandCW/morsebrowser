@@ -542,7 +542,8 @@
 {"sort": 524,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "WORDS","newlineChunking": true,"display": "1-4 LETTERS","fileName": "ICR20.txt"}, 
 {"sort": 535,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "WORDS","newlineChunking": true,"display": "TOP 500 WORDS","fileName": "INT13.txt"}, 
 
-
+{"sort": 510,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "2 WORD PHRASES","fileName": "ADV2W.txt"}, 
+{"sort": 511,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "3 WORD SENTENCES","fileName": "ADV3W.txt"},
 
         
 {"sort": 532,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "AFFIX","newlineChunking": true,"display": "PREFIXES","fileName": "PREFIX.txt"}, 
