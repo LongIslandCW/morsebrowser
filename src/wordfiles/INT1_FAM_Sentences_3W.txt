@@ -2,7 +2,7 @@ Ill be there.
 {<BT>|} 
 I love you. 
 {<BT>|} 
-Maybe you’re right. 
+Maybe youre right. 
 {<BT>|} 
 I trust you. 
 {<BT>|} 
@@ -90,7 +90,7 @@ Learn from yesterday.
 {<BT>|} 
 Keep it fun. 
 {<BT>|} 
-Don’t drive drunk. 
+Donâ€™t drive drunk. 
 {<BT>|} 
 Celebrate your victories. 
 {<BT>|} 
@@ -104,7 +104,7 @@ Where are you?
 {<BT>|} 
 Wake your dreams. 
 {<BT>|} 
-Life won’t wait. 
+Life wonâ€™t wait. 
 {<BT>|} 
 Believe in yourself. 
 {<BT>|} 
@@ -138,7 +138,7 @@ Make new friends.
 {<BT>|} 
 Make people grin. 
 {<BT>|} 
-Make somebody’s day. 
+Make somebodyâ€™s day. 
 {<BT>|} 
 Make things happy. 
 {<BT>|} 
@@ -176,7 +176,7 @@ Shine your light.
 {<BT>|} 
 Creativity takes courage. 
 {<BT>|} 
-Don’t overthink it. 
+Donâ€™t overthink it. 
 {<BT>|} 
 Try new things. 
 {<BT>|} 
