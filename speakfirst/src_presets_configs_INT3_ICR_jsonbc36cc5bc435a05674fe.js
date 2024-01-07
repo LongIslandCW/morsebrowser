@@ -1,9 +1,9 @@
 "use strict";
-(self["webpackChunk"] = self["webpackChunk"] || []).push([["src_presets_configs_INT2_ICR_json"],{
+(self["webpackChunk"] = self["webpackChunk"] || []).push([["src_presets_configs_INT3_ICR_json"],{
 
-/***/ "./src/presets/configs/INT2_ICR.json":
+/***/ "./src/presets/configs/INT3_ICR.json":
 /*!*******************************************!*\
-  !*** ./src/presets/configs/INT2_ICR.json ***!
+  !*** ./src/presets/configs/INT3_ICR.json ***!
   \*******************************************/
 /***/ ((module) => {
 

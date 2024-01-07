@@ -1,9 +1,9 @@
 "use strict";
-(self["webpackChunk"] = self["webpackChunk"] || []).push([["src_presets_configs_INT2_Sending_json"],{
+(self["webpackChunk"] = self["webpackChunk"] || []).push([["src_presets_configs_INT3_SENDING_json"],{
 
-/***/ "./src/presets/configs/INT2_Sending.json":
+/***/ "./src/presets/configs/INT3_SENDING.json":
 /*!***********************************************!*\
-  !*** ./src/presets/configs/INT2_Sending.json ***!
+  !*** ./src/presets/configs/INT3_SENDING.json ***!
   \***********************************************/
 /***/ ((module) => {
 
