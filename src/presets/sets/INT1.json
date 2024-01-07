@@ -2,11 +2,11 @@
     "options": [
         {
             "display": "Default 12/12",
-            "filename": "BPT_Default_12.json"
+            "filename": "INT1_DEFAULT_12.json"
         },
         {
             "display": "Default 15/12",
-            "filename": "BPT_Default_15.json"
+            "filename": "INT1_DEFAULT_15.json"
         },
         {
             "display": "Familiarity Phrases",
@@ -26,11 +26,11 @@
         },
         {
             "display": "ICR",
-            "filename": "BPT_ICR.json"
+            "filename": "INT1_ICR.json"
         },
         {
             "display": "Sending Practice",
-            "filename": "BPT_Sending.json"
+            "filename": "INT1_SENDING.json"
         }
     ]
 }
