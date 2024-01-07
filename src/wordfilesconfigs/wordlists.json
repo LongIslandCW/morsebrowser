@@ -296,7 +296,7 @@
 {"sort": 234,"userTarget": "INSTRUCTOR","class": "BC2","letterGroup": "59,","newlineChunking": false,"display": "CALLSIGNS","fileName": "IB2598.txt"}, 
 {"sort": 235,"userTarget": "INSTRUCTOR","class": "BC2","letterGroup": "59,","newlineChunking": true,"display": "STATES","fileName": "IB2599.txt"}, 
 {"sort": 236,"userTarget": "INSTRUCTOR","class": "BC2","letterGroup": "59,","newlineChunking": false,"display": "QSO ABBREVIATIONS","fileName": "IB2596.txt"}, 
-{"sort": 237,"userTarget": "INSTRUCTOR","class": "BC2","letterGroup": "59,","newlineChunking": true,"display": "QSO PROTOCOL","fileName": "IB2597.txt"}, 
+{"sort": 237,"userTarget": "INSTRUCTOR","class": "BC2","letterGroup": "59,","newlineChunking": true,"display": "QSO PHRASES","fileName": "IB2597.txt"}, 
 {"sort": 239,"userTarget": "INSTRUCTOR","class": "BC2","letterGroup": "QXV","newlineChunking": false,"display": "Q","fileName": "IB2QXV1.json"}, 
 {"sort": 240,"userTarget": "INSTRUCTOR","class": "BC2","letterGroup": "QXV","newlineChunking": false,"display": "X","fileName": "IB2QXV2.json"}, 
 {"sort": 241,"userTarget": "INSTRUCTOR","class": "BC2","letterGroup": "QXV","newlineChunking": false,"display": "QX","fileName": "IB2QXV3.json"}, 
