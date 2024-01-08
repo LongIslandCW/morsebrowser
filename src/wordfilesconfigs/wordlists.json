@@ -520,7 +520,7 @@
 {"sort": 563,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Abbreviations","fileName": "Fam_Abbrev.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Alphabet","fileName": "Fam_Alph.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Numbers","fileName": "FAM_Num.txt"},
-{"sort": 510,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Phrases 2 Word","fileName": "ADV2W.txt"},         
+{"sort": 510,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Phrases 2 Word","fileName": "ADV1_FAM_Phrases_2W.txt"},         
 {"sort": 563,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Phrases 4 Line","fileName": "ADV1_Fam_Phrases_4L.txt"}, 
 {"sort": 563,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Phrases QSO","fileName": "ADV1_Fam_Phrases_QSO.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Punctuation","fileName": "Fam_Punc._PS.txt"},  
