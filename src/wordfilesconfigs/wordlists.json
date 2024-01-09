@@ -108,11 +108,13 @@
 {"sort": 384,"userTarget": "STUDENT","class": "BC1","letterGroup": "LCD","newlineChunking": false,"display": "LCD PSG TINQSO ABBREVIATIONS","fileName": "LCD9.txt"}, 
 {"sort": 385,"userTarget": "STUDENT","class": "BC1","letterGroup": "LCD","newlineChunking": false,"display": "LCD PSG TIN WORDS","fileName": "LCD10.txt"}, 
 {"sort": 386,"userTarget": "STUDENT","class": "BC1","letterGroup": "LCD","newlineChunking": true,"display": "LCD PSG TIN PHRASES","fileName": "LCD11.txt"}, 
+        
 {"sort": 387,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "LCD","newlineChunking": true,"display": "LCD PSG TIN STATES","fileName": "LCD8.txt"}, 
 {"sort": 388,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "LCD","newlineChunking": false,"display": "LCD PSG TINQSO ABBREVIATIONS","fileName": "LCD9.txt"}, 
 {"sort": 389,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup":
  "LCD","newlineChunking": false,"display": "LCD PSG TIN WORDS","fileName": "LCD10.txt"}, 
 {"sort": 390,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "LCD","newlineChunking": true,"display": "LCD PSG TIN PHRASES","fileName": "LCD11.txt"}, 
+        
 {"sort": 391,"userTarget": "STUDENT","class": "BC1","letterGroup": "HOF","newlineChunking": true,"display": "HOF LCD PSG STATES","fileName": "HOF8.txt"}, 
 {"sort": 392,"userTarget": "STUDENT","class": "BC1","letterGroup": "HOF","newlineChunking": false,"display": "HOF LCD PSGQSO ABBREVIATIONS","fileName": "HOF9.txt"}, 
 {"sort": 393,"userTarget": "STUDENT","class": "BC1","letterGroup": "HOF","newlineChunking": false,"display": "HOF LCD PSG WORDS","fileName": "HOF10.txt"}, 
@@ -365,8 +367,7 @@
 {"sort": 306,"userTarget": "INSTRUCTOR","class": "BC2","letterGroup": "40","newlineChunking": true,"display": "CALLSIGNS","fileName": "IB2406.txt"}, 
 {"sort": 307,"userTarget": "INSTRUCTOR","class": "BC2","letterGroup": "40","newlineChunking": true,"display": "STATES","fileName": "IB2407.txt"}, 
 {"sort": 308,"userTarget": "INSTRUCTOR","class": "BC2","letterGroup": "40","newlineChunking": false,"display": "QSO ABBREVIATIONS ","fileName": "IB2404.txt"}, 
-{"sort": 309,"userTarget": "INSTRUCTOR","class": "BC2","letterGroup": "40","newlineChunking": true,"display": "QSO PHRASES","fileName": "IB2405.txt"}, 
-        
+{"sort": 309,"userTarget": "INSTRUCTOR","class": "BC2","letterGroup": "40","newlineChunking": true,"display": "QSO PHRASES","fileName": "IB2405.txt"},   
 {"sort": 38,"userTarget": "STUDENT","class": "BC2","letterGroup": "PROGRESS EVALUATION","newlineChunking": true,"display": "Words","fileName": "BC2_P_Eval_Words.txt"},
 {"sort": 38,"userTarget": "STUDENT","class": "BC2","letterGroup": "PROGRESS EVALUATION","newlineChunking": true,"display": "Sentences","fileName": "BC2_P_Eval_Sent.txt"},
 {"sort": 38,"userTarget": "STUDENT","class": "BC2","letterGroup": "PROGRESS EVALUATION","newlineChunking": true,"display": "Call Signs","fileName":  "BC2_P-Eval_CS.txt"},    
@@ -538,7 +539,7 @@
 {"sort": 415,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "ICR","newlineChunking": false,"display": "LETTERS PUNCTUATION NUMBERS","fileName": "INT3.json"},        
 {"sort": 414,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "ICR","newlineChunking": false,"display": "NUMBERS","fileName": "INT2.json"}, 
 {"sort": 417,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "ICR","newlineChunking": false,"display": "PUNCTUATION","fileName": "INT4.json"},     
-{"sort": 510,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "SENTENCES","newlineChunking": true,"display": "4 WORD PHRASES","fileName": "ADV1_SEN_4W.txt"}, 
+{"sort": 510,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "SENTENCES","newlineChunking": true,"display": "4 WORD SENTENCES","fileName": "ADV1_SEN_4W.txt"}, 
 {"sort": 511,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "SENTENCES","newlineChunking": true,"display": "5 WORD SENTENCES","fileName": "ADV1_SEN_5W.txt"}, 
 {"sort": 523,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "WORDS","newlineChunking": true,"display": "1-3 LETTERS","fileName": "ICR19.txt"}, 
 {"sort": 524,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "WORDS","newlineChunking": true,"display": "1-4 LETTERS","fileName": "ICR20.txt"}, 
