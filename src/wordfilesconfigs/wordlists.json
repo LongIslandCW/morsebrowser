@@ -36,14 +36,20 @@
 {"sort": 34,"userTarget": "STUDENT","class": "BC1","letterGroup": "UWB","newlineChunking": false,"display": "UWB HOF LCD PSG","fileName": "SB1UWB4.json"}, 
 {"sort": 35,"userTarget": "STUDENT","class": "BC1","letterGroup": "UWB","newlineChunking": false,"display": "UWB HOF LCD PSG TIN","fileName": "SB1UWB5.json"}, 
 {"sort": 36,"userTarget": "STUDENT","class": "BC1","letterGroup": "UWB","newlineChunking": false,"display": "UWB HOF LCD PSG TIN REA","fileName": "SB1UWB6.json"}, 
+        
+{"sort": 360,"userTarget": "STUDENT","class": "BC1","letterGroup": "REA","newlineChunking": false,"display": "REA UWB HOF QSO ABBREVIATIONS","fileName": "REA9.txt"}, 
+{"sort": 362,"userTarget": "STUDENT","class": "BC1","letterGroup": "REA","newlineChunking": true,"display": "REA UWB HOF FAMILIARITY","fileName": "BC1_FAM_REA.txt"},       
+{"sort": 362,"userTarget": "STUDENT","class": "BC1","letterGroup": "REA","newlineChunking": true,"display": "REA UWB HOF PHRASES","fileName": "REA11.txt"},        
 {"sort": 359,"userTarget": "STUDENT","class": "BC1","letterGroup": "REA","newlineChunking": true,"display": "REA UWB HOF STATES","fileName": "REA8.txt"}, 
-{"sort": 360,"userTarget": "STUDENT","class": "BC1","letterGroup": "REA","newlineChunking": false,"display": "REA UWB HOFQSO ABBREVIATIONS","fileName": "REA9.txt"}, 
 {"sort": 361,"userTarget": "STUDENT","class": "BC1","letterGroup": "REA","newlineChunking": false,"display": "REA UWB HOF WORDS","fileName": "REA10.txt"}, 
-{"sort": 362,"userTarget": "STUDENT","class": "BC1","letterGroup": "REA","newlineChunking": true,"display": "REA UWB HOF PHRASES","fileName": "REA11.txt"}, 
+
+        
+        
 {"sort": 367,"userTarget": "STUDENT","class": "BC1","letterGroup": "TIN","newlineChunking": true,"display": "TIN REA UWB STATES","fileName": "TIN8.txt"}, 
-{"sort": 368,"userTarget": "STUDENT","class": "BC1","letterGroup": "TIN","newlineChunking": false,"display": "TIN REA UWBQSO ABBREVIATIONS","fileName": "TIN9.txt"}, 
+{"sort": 368,"userTarget": "STUDENT","class": "BC1","letterGroup": "TIN","newlineChunking": false,"display": "TIN REA UWB QSO ABBREVIATIONS","fileName": "TIN9.txt"}, 
 {"sort": 369,"userTarget": "STUDENT","class": "BC1","letterGroup": "TIN","newlineChunking": false,"display": "TIN REA UWB WORDS","fileName": "TIN10.txt"}, 
 {"sort": 370,"userTarget": "STUDENT","class": "BC1","letterGroup": "TIN","newlineChunking": true,"display": "TIN REA UWB PHRASES","fileName": "TIN11.txt"}, 
+        
 {"sort": 375,"userTarget": "STUDENT","class": "BC1","letterGroup": "PSG","newlineChunking": true,"display": "PSG TIN REA STATES","fileName": "PGS8.txt"}, 
 {"sort": 376,"userTarget": "STUDENT","class": "BC1","letterGroup": "PSG","newlineChunking": false,"display": "PSG TIN REAQSO ABBREVIATIONS","fileName": "PGS9.txt"}, 
 {"sort": 377,"userTarget": "STUDENT","class": "BC1","letterGroup": "PSG","newlineChunking": false,"display": "PSG TIN REA WORDS","fileName": "PGS10.txt"}, 
