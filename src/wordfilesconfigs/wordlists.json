@@ -407,7 +407,6 @@
 {"sort": 416,"userTarget": "STUDENT","class": "INT 1","letterGroup": "CHARACTERS","newlineChunking": false,"display": "PROSIGNS and BK","fileName": "INT8.json"},     
 {"sort": 417,"userTarget": "STUDENT","class": "INT 1","letterGroup": "CHARACTERS","newlineChunking": false,"display": "PUNCTUATION","fileName": "INT4.json"},
 {"sort": 169,"userTarget": "STUDENT","class": "INT 1","letterGroup": "CHARACTERS","newlineChunking": true,"display": "QSO ABBREVIATIONS","fileName": "SB2C2.txt"},  
-{"sort": 425,"userTarget": "STUDENT","class": "INT 1","letterGroup": "CHARACTERS","newlineChunking": true,"display": "Sentences - 3 Words","fileName": "INT1_Sentences_3W.txt"},    
 {"sort": 175,"userTarget": "STUDENT","class": "INT 1","letterGroup": "CHARACTERS","newlineChunking": true,"display": "STATES","fileName": "SB2C8.txt"}, 
 {"sort": 408,"userTarget": "STUDENT","class": "INT 1","letterGroup": "CHARACTERS","newlineChunking": true,"display": "SUDUKO","fileName": "suduko1.txt"},     
 {"sort": 425,"userTarget": "STUDENT","class": "INT 1","letterGroup": "CHARACTERS","newlineChunking": true,"display": "TOP 100 WORDS","fileName": "INT7.txt"}, 
@@ -428,7 +427,7 @@
 {"sort": 171,"userTarget": "STUDENT","class": "INT 1","letterGroup": "QSO PROTOCOL","newlineChunking": true,"display": "PROTOCOL 2","fileName": "SB2C4.txt"}, 
 {"sort": 172,"userTarget": "STUDENT","class": "INT 1","letterGroup": "QSO PROTOCOL","newlineChunking": true,"display": "PROTOCOL 3","fileName": "SB2C5.txt"}, 
 {"sort": 173,"userTarget": "STUDENT","class": "INT 1","letterGroup": "QSO PROTOCOL","newlineChunking": true,"display": "PROTOCOL 4","fileName": "SB2C6.txt"}, 
-
+{"sort": 425,"userTarget": "STUDENT","class": "INT 1","letterGroup": "SENTENCES","newlineChunking": true,"display": "Sentences - 3 Words","fileName": "INT1_Sentences_3W.txt"},  
 
         
 
@@ -443,8 +442,7 @@
 {"sort": 414,"userTarget": "STUDENT","class": "INT 2","letterGroup": "CHARACTERS","newlineChunking": false,"display": "NUMBERS","fileName": "INT2.json"}, 
 {"sort": 416,"userTarget": "STUDENT","class": "INT 2","letterGroup": "CHARACTERS","newlineChunking": false,"display": "PROSIGNS and BK","fileName": "INT8.json"},         
 {"sort": 417,"userTarget": "STUDENT","class": "INT 2","letterGroup": "CHARACTERS","newlineChunking": false,"display": "PUNCTUATION","fileName": "INT4.json"}, 
-{"sort": 419,"userTarget": "STUDENT","class": "INT 2","letterGroup": "CHARACTERS","newlineChunking": true,"display": "QSO ABBREVIATIONS ","fileName": "INT10.txt"}, 
-{"sort": 425,"userTarget": "STUDENT","class": "INT 2","letterGroup": "CHARACTERS","newlineChunking": true,"display": "Sentences 4 Words","fileName": "INT1_SEN_3W.txt"},           
+{"sort": 419,"userTarget": "STUDENT","class": "INT 2","letterGroup": "CHARACTERS","newlineChunking": true,"display": "QSO ABBREVIATIONS ","fileName": "INT10.txt"},        
 {"sort": 418,"userTarget": "STUDENT","class": "INT 2","letterGroup": "CHARACTERS","newlineChunking": true,"display": "STATES","fileName": "INT9.txt"},      
 {"sort": 500,"userTarget": "STUDENT","class": "INT 2","letterGroup": "CHARACTERS","newlineChunking": true,"display": "SUDUKO","fileName": "suduko1.txt"},       
 {"sort": 563,"userTarget": "STUDENT","class": "INT 2","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Abbreviations","fileName": "Fam_Abbrev.txt"},
@@ -467,7 +465,8 @@
 {"sort": 420,"userTarget": "STUDENT","class": "INT 2","letterGroup": "QSO PROTOCOL","newlineChunking": true,"display": "PROTOCOL 1","fileName": "IB2C3.txt"}, 
 {"sort": 421,"userTarget": "STUDENT","class": "INT 2","letterGroup": "QSO PROTOCOL","newlineChunking": true,"display": "PROTOCOL 2","fileName": "IB2C4.txt"}, 
 {"sort": 422,"userTarget": "STUDENT","class": "INT 2","letterGroup": "QSO PROTOCOL","newlineChunking": true,"display": "PROTOCOL 3","fileName": "IB2C5.txt"}, 
-{"sort": 423,"userTarget": "STUDENT","class": "INT 2","letterGroup": "QSO PROTOCOL","newlineChunking": true,"display": "PROTOCOL 4","fileName": "IB2C6.txt"}, 
+{"sort": 423,"userTarget": "STUDENT","class": "INT 2","letterGroup": "QSO PROTOCOL","newlineChunking": true,"display": "PROTOCOL 4","fileName": "IB2C6.txt"},
+{"sort": 425,"userTarget": "STUDENT","class": "INT 2","letterGroup": "SENTENCES","newlineChunking": true,"display": "Sentences 4 Words","fileName": "INT1_SEN_3W.txt"},
 {"sort": 425,"userTarget": "STUDENT","class": "INT 2","letterGroup": "WORDS","newlineChunking": true,"display": "1-3 LETTERS","fileName": "ICR19.txt"}, 
 {"sort": 425,"userTarget": "STUDENT","class": "INT 2","letterGroup": "WORDS","newlineChunking": true,"display": "1-4 LETTERS","fileName": "ICR20.txt"}, 
 {"sort": 425,"userTarget": "STUDENT","class": "INT 2","letterGroup": "WORDS","newlineChunking": true,"display": "1-5 LETTERS","fileName": "ICR21.txt"}, 
@@ -486,10 +485,7 @@
 {"sort": 414,"userTarget": "STUDENT","class": "INT 3","letterGroup": "CHARACTERS","newlineChunking": false,"display": "NUMBERS","fileName": "INT2.json"}, 
 {"sort": 416,"userTarget": "STUDENT","class": "INT 3","letterGroup": "CHARACTERS","newlineChunking": false,"display": "PROSIGNS and BK","fileName": "INT8.json"},         
 {"sort": 417,"userTarget": "STUDENT","class": "INT 3","letterGroup": "CHARACTERS","newlineChunking": false,"display": "PUNCTUATION","fileName": "INT4.json"}, 
-{"sort": 419,"userTarget": "STUDENT","class": "INT 3","letterGroup": "CHARACTERS","newlineChunking": true,"display": "QSO ABBREVIATIONS ","fileName": "INT10.txt"}, 
-
-{"sort": 425,"userTarget": "STUDENT","class": "INT 3","letterGroup": "CHARACTERS","newlineChunking": true,"display": "Sentences 5 Words","fileName": "INT3_SEN_5W.txt"},  
-        
+{"sort": 419,"userTarget": "STUDENT","class": "INT 3","letterGroup": "CHARACTERS","newlineChunking": true,"display": "QSO ABBREVIATIONS ","fileName": "INT10.txt"},   
 {"sort": 418,"userTarget": "STUDENT","class": "INT 3","letterGroup": "CHARACTERS","newlineChunking": true,"display": "STATES","fileName": "INT9.txt"}, 
 {"sort": 502,"userTarget": "STUDENT","class": "INT 3","letterGroup": "CHARACTERS","newlineChunking": true,"display": "SUDUKO","fileName": "suduko1.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "INT 3","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Abbreviations","fileName": "Fam_Abbrev.txt"},
@@ -500,9 +496,7 @@
 {"sort": 563,"userTarget": "STUDENT","class": "INT 3","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Punctuation","fileName": "Fam_Punc._PS.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "INT 3","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Q Codes","fileName": "Fam_Q.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "INT 3","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "QSO Phrases","fileName": "INT3_Fam_Phrases_QSO.txt"},
-
-{"sort": 563,"userTarget": "STUDENT","class": "INT 3","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Sentences 5 Word","fileName": "INT3_FAM_Sentences_5W.txt"}, 
-        
+{"sort": 563,"userTarget": "STUDENT","class": "INT 3","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Sentences 5 Word","fileName": "INT3_FAM_Sentences_5W.txt"},   
 {"sort": 563,"userTarget": "STUDENT","class": "INT 3","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Words-1","fileName": "Fam_Words - 1.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "INT 3","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Words-2","fileName": "Fam_Words - 2.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "INT 3","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Words-3","fileName": "Fam_Words - 3.txt"},
@@ -515,6 +509,7 @@
 {"sort": 421,"userTarget": "STUDENT","class": "INT 3","letterGroup": "QSO PROTOCOL","newlineChunking": true,"display": "PROTOCOL 2","fileName": "IB2C4.txt"}, 
 {"sort": 422,"userTarget": "STUDENT","class": "INT 3","letterGroup": "QSO PROTOCOL","newlineChunking": true,"display": "PROTOCOL 3","fileName": "IB2C5.txt"}, 
 {"sort": 423,"userTarget": "STUDENT","class": "INT 3","letterGroup": "QSO PROTOCOL","newlineChunking": true,"display": "PROTOCOL 4","fileName": "IB2C6.txt"}, 
+{"sort": 425,"userTarget": "STUDENT","class": "INT 3","letterGroup": "SENTENCES","newlineChunking": true,"display": "Sentences 5 Words","fileName": "INT3_SEN_5W.txt"}, 
 {"sort": 425,"userTarget": "STUDENT","class": "INT 3","letterGroup": "WORDS","newlineChunking": true,"display": "1-7 LETTERS","fileName": "ICR23.txt"}, 
 {"sort": 425,"userTarget": "STUDENT","class": "INT 3","letterGroup": "WORDS","newlineChunking": true,"display": "1-8 LETTERS","fileName": "ICR24.txt"}, 
 {"sort": 425,"userTarget": "STUDENT","class": "INT 3","letterGroup": "WORDS","newlineChunking": true,"display": "1-9 LETTERS","fileName": "ICR25.txt"}, 
@@ -532,11 +527,9 @@
 {"sort": 563,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Phrases 4 Line","fileName": "ADV1_Fam_Phrases_4L.txt"}, 
 {"sort": 563,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Phrases QSO","fileName": "ADV1_Fam_Phrases_QSO.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Punctuation","fileName": "Fam_Punc._PS.txt"},  
-{"sort": 563,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Q Codes","fileName": "Fam_Q.txt"}, 
-        
+{"sort": 563,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Q Codes","fileName": "Fam_Q.txt"},       
 {"sort": 511,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Sentences 4 Word","fileName": "ADV1_FAM_Sentences_4W.txt"}, 
-{"sort": 511,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Sentences 5 Word","fileName": "ADV1_FAM_Sentences_5W.txt"}, 
-        
+{"sort": 511,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Sentences 5 Word","fileName": "ADV1_FAM_Sentences_5W.txt"},     
 {"sort": 563,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Words-1","fileName": "Fam_Words - 1.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Words-2","fileName": "Fam_Words - 2.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Words-3","fileName": "Fam_Words - 3.txt"},
@@ -544,16 +537,12 @@
 {"sort": 413,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "ICR","newlineChunking": false,"display": "LETTERS","fileName": "INT1.json"}, 
 {"sort": 415,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "ICR","newlineChunking": false,"display": "LETTERS PUNCTUATION NUMBERS","fileName": "INT3.json"},        
 {"sort": 414,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "ICR","newlineChunking": false,"display": "NUMBERS","fileName": "INT2.json"}, 
-{"sort": 417,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "ICR","newlineChunking": false,"display": "PUNCTUATION","fileName": "INT4.json"},   
-        
+{"sort": 417,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "ICR","newlineChunking": false,"display": "PUNCTUATION","fileName": "INT4.json"},     
 {"sort": 510,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "SENTENCES","newlineChunking": true,"display": "4 WORD PHRASES","fileName": "ADV1_SEN_4W.txt"}, 
 {"sort": 511,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "SENTENCES","newlineChunking": true,"display": "5 WORD SENTENCES","fileName": "ADV1_SEN_5W.txt"}, 
-        
 {"sort": 523,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "WORDS","newlineChunking": true,"display": "1-3 LETTERS","fileName": "ICR19.txt"}, 
 {"sort": 524,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "WORDS","newlineChunking": true,"display": "1-4 LETTERS","fileName": "ICR20.txt"}, 
 {"sort": 535,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "WORDS","newlineChunking": true,"display": "TOP 500 WORDS","fileName": "INT13.txt"}, 
-
-
 
 
         
@@ -565,13 +554,9 @@
 {"sort": 563,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Phrases 4 Line","fileName": "ADV2_Fam_Phrases_4L.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Phrases QSO","fileName": "ADV2_Fam_Phrases_QSO.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Punctuation","fileName": "Fam_Punc._PS.txt"},
-{"sort": 563,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Q Codes","fileName": "Fam_Q.txt"},
-
-        
+{"sort": 563,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Q Codes","fileName": "Fam_Q.txt"},   
 {"sort": 512,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Sentences 5 Word","fileName": "ADV2_FAM_Sentences_5W.txt"}, 
-{"sort": 512,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Sentences 6 Word","fileName": "ADV2_FAM_Sentences_6W.txt"}, 
-        
-{"sort": 513,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Sentences 5 Word","fileName": "ADV5W.txt"},         
+{"sort": 512,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Sentences 6 Word","fileName": "ADV2_FAM_Sentences_6W.txt"},          
 {"sort": 563,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Words-1","fileName": "Fam_Words - 1.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Words-2","fileName": "Fam_Words - 2.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Words-3","fileName": "Fam_Words - 3.txt"},
@@ -579,11 +564,9 @@
 {"sort": 413,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "ICR","newlineChunking": false,"display": "LETTERS","fileName": "INT1.json"}, 
 {"sort": 415,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "ICR","newlineChunking": false,"display": "LETTERS PUNCTUATION NUMBERS","fileName": "INT3.json"}, 
 {"sort": 414,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "ICR","newlineChunking": false,"display": "NUMBERS","fileName": "INT2.json"}, 
-{"sort": 417,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "ICR","newlineChunking": false,"display": "PUNCTUATION","fileName": "INT4.json"},
-        
+{"sort": 417,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "ICR","newlineChunking": false,"display": "PUNCTUATION","fileName": "INT4.json"},  
 {"sort": 512,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "SENTENCES","newlineChunking": true,"display": "5 WORD SENTENCES","fileName": "ADV2_SEN_5W.txt"}, 
 {"sort": 513,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "SENTENCES","newlineChunking": true,"display": "6 WORD SENTENCES","fileName": "ADV2_SEN_6W.txt"}, 
-        
 {"sort": 525,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "WORDS","newlineChunking": true,"display": "1-5 LETTERS","fileName": "ICR21.txt"}, 
 {"sort": 526,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "WORDS","newlineChunking": true,"display": "1-6 LETTERS","fileName": "ICR22.txt"}, 
 {"sort": 535,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "WORDS","newlineChunking": true,"display": "TOP 500 WORDS","fileName": "INT13.txt"}, 
@@ -599,10 +582,8 @@
 {"sort": 563,"userTarget": "STUDENT","class": "ADV 3","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Phrases QSO","fileName": "ADV3_Fam_Phrases_QSO.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "ADV 3","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Punctuation","fileName": "Fam_Punc._PS.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "ADV 3","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Q Codes","fileName": "Fam_Q.txt"},
-        
 {"sort": 514,"userTarget": "STUDENT","class": "ADV 3","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Sentences 6 Word","fileName": "ADV3_FAM_Sentences_6W.txt"}, 
 {"sort": 515,"userTarget": "STUDENT","class": "ADV 3","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Sentences 7 Word","fileName": "ADV3_FAM_Sentences_7W.txt"},  
-        
 {"sort": 563,"userTarget": "STUDENT","class": "ADV 3","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Words-1","fileName": "Fam_Words - 1.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "ADV 3","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Words-2","fileName": "Fam_Words - 2.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "ADV 3","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Words-3","fileName": "Fam_Words - 3.txt"},
@@ -611,13 +592,10 @@
 {"sort": 415,"userTarget": "STUDENT","class": "ADV 3","letterGroup": "ICR","newlineChunking": false,"display": "LETTERS PUNCTUATION NUMBERS","fileName": "INT3.json"},
 {"sort": 414,"userTarget": "STUDENT","class": "ADV 3","letterGroup": "ICR","newlineChunking": false,"display": "NUMBERS","fileName": "INT2.json"}, 
 {"sort": 417,"userTarget": "STUDENT","class": "ADV 3","letterGroup": "ICR","newlineChunking": false,"display": "PUNCTUATION","fileName": "INT4.json"}, 
-        
 {"sort": 514,"userTarget": "STUDENT","class": "ADV 3","letterGroup": "SENTENCES","newlineChunking": true,"display": "6 WORD SENTENCES","fileName": "ADV3_SEN_6W.txt"}, 
 {"sort": 515,"userTarget": "STUDENT","class": "ADV 3","letterGroup": "SENTENCES","newlineChunking": true,"display": "7 WORD SENTENCES","fileName": "ADV3_SEN_7W.txt"}, 
-        
 {"sort": 527,"userTarget": "STUDENT","class": "ADV 3","letterGroup": "WORDS","newlineChunking": true,"display": "1-7 LETTERS","fileName": "ICR23.txt"}, 
 {"sort": 528,"userTarget": "STUDENT","class": "ADV 3","letterGroup": "WORDS","newlineChunking": true,"display": "1-8 LETTERS","fileName": "ICR24.txt"}, 
 {"sort": 529,"userTarget": "STUDENT","class": "ADV 3","letterGroup": "WORDS","newlineChunking": true,"display": "1-9 LETTERS","fileName": "ICR25.txt"}, 
 {"sort": 535,"userTarget": "STUDENT","class": "ADV 3","letterGroup": "WORDS","newlineChunking": true,"display": "TOP 500 WORDS","fileName": "INT13.txt"} 
-      
 ]}
