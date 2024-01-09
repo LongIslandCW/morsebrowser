@@ -1,6 +1,7 @@
 {
     "fileOptions": [ 
 {"sort": 1,"userTarget": "STUDENT","class": "BC1","letterGroup": "REA","newlineChunking": false,"display": "REA","fileName": "SB1REA1.json"}, 
+{"sort": 362,"userTarget": "STUDENT","class": "BC1","letterGroup": "REA","newlineChunking": true,"display": "REA FAMILIARITY","fileName": "BC1_FAM_REA.txt"},          
 {"sort": 2,"userTarget": "STUDENT","class": "BC1","letterGroup": "REA","newlineChunking": false,"display": "REA UWB","fileName": "SB1REA2.json"}, 
 {"sort": 3,"userTarget": "STUDENT","class": "BC1","letterGroup": "REA","newlineChunking": false,"display": "REA UWB HOF","fileName": "SB1REA3.json"}, 
 {"sort": 4,"userTarget": "STUDENT","class": "BC1","letterGroup": "REA","newlineChunking": false,"display": "REA UWB HOF LCD","fileName": "SB1REA4.json"}, 
@@ -38,7 +39,6 @@
 {"sort": 36,"userTarget": "STUDENT","class": "BC1","letterGroup": "UWB","newlineChunking": false,"display": "UWB HOF LCD PSG TIN REA","fileName": "SB1UWB6.json"}, 
         
 {"sort": 360,"userTarget": "STUDENT","class": "BC1","letterGroup": "REA","newlineChunking": false,"display": "REA UWB HOF QSO ABBREVIATIONS","fileName": "REA9.txt"}, 
-{"sort": 362,"userTarget": "STUDENT","class": "BC1","letterGroup": "REA","newlineChunking": true,"display": "REA UWB HOF FAMILIARITY","fileName": "BC1_FAM_REA.txt"},       
 {"sort": 362,"userTarget": "STUDENT","class": "BC1","letterGroup": "REA","newlineChunking": true,"display": "REA UWB HOF PHRASES","fileName": "REA11.txt"},        
 {"sort": 359,"userTarget": "STUDENT","class": "BC1","letterGroup": "REA","newlineChunking": true,"display": "REA UWB HOF STATES","fileName": "REA8.txt"}, 
 {"sort": 361,"userTarget": "STUDENT","class": "BC1","letterGroup": "REA","newlineChunking": false,"display": "REA UWB HOF WORDS","fileName": "REA10.txt"}, 
