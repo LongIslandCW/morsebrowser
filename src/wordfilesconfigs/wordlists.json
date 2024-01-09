@@ -445,6 +445,9 @@
 {"sort": 417,"userTarget": "STUDENT","class": "INT 2","letterGroup": "CHARACTERS","newlineChunking": false,"display": "PUNCTUATION","fileName": "INT4.json"}, 
 {"sort": 419,"userTarget": "STUDENT","class": "INT 2","letterGroup": "CHARACTERS","newlineChunking": true,"display": "QSO ABBREVIATIONS ","fileName": "INT10.txt"},      
 {"sort": 418,"userTarget": "STUDENT","class": "INT 2","letterGroup": "CHARACTERS","newlineChunking": true,"display": "STATES","fileName": "INT9.txt"}, 
+
+{"sort": 425,"userTarget": "STUDENT","class": "INT 2","letterGroup": "CHARACTERS","newlineChunking": true,"display": "Sentences - 4 Words","fileName": "SEN_3W.txt"}, 
+        
 {"sort": 500,"userTarget": "STUDENT","class": "INT 2","letterGroup": "CHARACTERS","newlineChunking": true,"display": "SUDUKO","fileName": "suduko1.txt"},       
 {"sort": 563,"userTarget": "STUDENT","class": "INT 2","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Abbreviations","fileName": "Fam_Abbrev.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "INT 2","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Alphabet","fileName": "Fam_Alph.txt"},
@@ -454,6 +457,7 @@
 {"sort": 563,"userTarget": "STUDENT","class": "INT 2","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Punctuation","fileName": "Fam_Punc._PS.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "INT 2","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Q Codes","fileName": "Fam_Q.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "INT 2","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "QSO Phrases","fileName": "INT2_Fam_Phrases_QSO.txt"}, 
+{"sort": 563,"userTarget": "STUDENT","class": "INT 2","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "4 Word Sentences","fileName": "INT2_FAM_Sentences_4W.txt"},    
 {"sort": 563,"userTarget": "STUDENT","class": "INT 2","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Words-1","fileName": "Fam_Words - 1.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "INT 2","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Words-2","fileName": "Fam_Words - 2.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "INT 2","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Words-3","fileName": "Fam_Words - 3.txt"},
