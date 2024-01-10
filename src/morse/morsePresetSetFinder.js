@@ -9,6 +9,12 @@ export class MorsePresetSetFileFinder {
       case 'ADV.json':
         import('../presets/sets/ADV.json').then(({ default: x }) => afterFound({ found: true, data: x }))
         break
+      case 'ADV1.json':
+        import('../presets/sets/ADV1.json').then(({ default: x }) => afterFound({ found: true, data: x }))
+        break
+      case 'ADV2.json':
+        import('../presets/sets/ADV2.json').then(({ default: x }) => afterFound({ found: true, data: x }))
+        break
       case 'bc1.json':
         import('../presets/sets/bc1.json').then(({ default: x }) => afterFound({ found: true, data: x }))
         break

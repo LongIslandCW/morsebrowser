@@ -1,0 +1,693 @@
+TNX FER 
+{<BT>|} 
+TU FOR 
+{<BT>|} 
+UR RST 
+{<BT>|} 
+NAME IS 
+{<BT>|} 
+OP IS 
+{<BT>|} 
+WX IS 
+{<BT>|} 
+TEMP IS 
+{<BT>|} 
+QTH IS 
+{<BT>|} 
+CU AGN 
+{<BT>|} 
+RIG IS 
+{<BT>|} 
+ANT IS 
+{<BT>|} 
+NICE QSO 
+{<BT>|} 
+MY PROJECT 
+{<BT>|} 
+BEST 73 
+{<BT>|} 
+HI HI 
+{<BT>|} 
+PSE QRS 
+{<BT>|} 
+SIT DOWN 
+{<BT>|} 
+ICE STORM 
+{<BT>|} 
+PSE RPT 
+{<BT>|} 
+LET HIM 
+{<BT>|} 
+FUN QSO 
+{<BT>|} 
+3 EL YAGI 
+{<BT>|} 
+HELLO THERE 
+{<BT>|} 
+CAR SEAT 
+{<BT>|} 
+TALL TALE 
+{<BT>|} 
+SAIL ON 
+{<BT>|} 
+TONE DEAF 
+{<BT>|} 
+TEST RUN 
+{<BT>|} 
+COIN TOSS 
+{<BT>|} 
+ROLL OVER 
+{<BT>|} 
+TEN CENT 
+{<BT>|} 
+EAT NOW 
+{<BT>|} 
+HEAT WAVE 
+{<BT>|} 
+HOT SPELL 
+{<BT>|} 
+COLD SNAP 
+{<BT>|} 
+ATE WELL 
+{<BT>|} 
+OIL CAN 
+{<BT>|} 
+NOT ME 
+{<BT>|} 
+TEE OFF 
+{<BT>|} 
+GOLD COIN 
+{<BT>|} 
+ITS LATE 
+{<BT>|} 
+ITS FINE 
+{<BT>|} 
+IM FINE 
+{<BT>|} 
+RARE MEAT 
+{<BT>|} 
+EARN IT 
+{<BT>|} 
+TEN MORE 
+{<BT>|} 
+ACT HAPPY 
+{<BT>|} 
+WHO ME? 
+{<BT>|} 
+TEST CASE 
+{<BT>|} 
+LOST ITEM 
+{<BT>|} 
+SLOT CAR 
+{<BT>|} 
+TORN PAGE 
+{<BT>|} 
+LETS ROLL 
+{<BT>|} 
+LAST TIME 
+{<BT>|} 
+OR ELSE 
+{<BT>|} 
+NEAT FREAK 
+{<BT>|} 
+SINE WAVE 
+{<BT>|} 
+RISE UP 
+{<BT>|} 
+LETS RACE 
+{<BT>|} 
+NICE CAT 
+{<BT>|} 
+EYE SORE 
+{<BT>|} 
+COAT RACK 
+{<BT>|} 
+ROOM RENT 
+{<BT>|} 
+ALSO RAN 
+{<BT>|} 
+LINE ART 
+{<BT>|} 
+ARC WELD 
+{<BT>|} 
+TOO HARD 
+{<BT>|} 
+TRY ONCE 
+{<BT>|} 
+SORT OUT 
+{<BT>|} 
+COAT RACK 
+{<BT>|} 
+RISE ABOVE 
+{<BT>|} 
+TELL HIM 
+{<BT>|} 
+COOL GUY 
+{<BT>|} 
+NEON LIGHT 
+{<BT>|} 
+AREA 51 
+{<BT>|} 
+LAND HO 
+{<BT>|} 
+BIG TENT 
+{<BT>|} 
+CORN FIELD 
+{<BT>|} 
+SMALL RIOT 
+{<BT>|} 
+RAIN TODAY 
+{<BT>|} 
+NEW PROJECT 
+{<BT>|} 
+TIN CANS 
+{<BT>|} 
+REAL SOON 
+{<BT>|} 
+LIST THEM 
+{<BT>|} 
+TREE ROOT 
+{<BT>|} 
+CARE FOR 
+{<BT>|} 
+BIG TENT 
+{<BT>|} 
+NO ROOM 
+{<BT>|} 
+ACE HIGH 
+{<BT>|} 
+SET DOWN 
+{<BT>|} 
+SEE THAT 
+{<BT>|} 
+TAN DOG 
+{<BT>|} 
+ATE LUNCH 
+{<BT>|} 
+LATE SHOW 
+{<BT>|} 
+EGG ROLL 
+{<BT>|} 
+TOOL RACK 
+{<BT>|} 
+ROOT OUT 
+{<BT>|} 
+CAR RENT 
+{<BT>|} 
+FROM HERE 
+{<BT>|} 
+SCAN IT 
+{<BT>|} 
+LEAN ON 
+{<BT>|} 
+TREE BARK 
+{<BT>|} 
+TART CANDY 
+{<BT>|} 
+HIGH RATES 
+{<BT>|} 
+TENSE UP 
+{<BT>|} 
+SKY CRANE 
+{<BT>|} 
+OCEAN WAVE 
+{<BT>|} 
+RAIL CAR 
+{<BT>|} 
+STAIR STEP 
+{<BT>|} 
+WARM SCONE 
+{<BT>|} 
+ROAST BEEF 
+{<BT>|} 
+GOOD TACOS 
+{<BT>|} 
+ATTIC FAN 
+{<BT>|} 
+SMALL CANOE 
+{<BT>|} 
+TRUST ME 
+{<BT>|} 
+IM TIRED 
+{<BT>|} 
+YOU ARE 
+{<BT>|} 
+YOU WILL 
+{<BT>|} 
+MY TREAT 
+{<BT>|} 
+TOO SOON 
+{<BT>|} 
+TOO LATE 
+{<BT>|} 
+ITS DRY 
+{<BT>|} 
+ITS WET 
+{<BT>|} 
+STREET RIOT 
+{<BT>|} 
+SALE PRICE 
+{<BT>|} 
+REAR UP 
+{<BT>|} 
+HEAVY RAIN 
+{<BT>|} 
+LET IN 
+{<BT>|} 
+TO DO 
+{<BT>|} 
+SEA OTTER 
+{<BT>|} 
+CLOSE BY 
+{<BT>|} 
+SATIN LACE 
+{<BT>|} 
+CLEAR SKY 
+{<BT>|} 
+SNAIL PACE 
+{<BT>|} 
+SOLAR STORM 
+{<BT>|} 
+TOTAL COST 
+{<BT>|} 
+HAM STORE 
+{<BT>|} 
+RADIO SHACK 
+{<BT>|} 
+STILL THERE 
+{<BT>|} 
+BOAT ANCHOR 
+{<BT>|} 
+TOTAL WIN 
+{<BT>|} 
+BLACK SOIL 
+{<BT>|} 
+DIRT POOR 
+{<BT>|} 
+IM RICH 
+{<BT>|} 
+EASE IN 
+{<BT>|} 
+CAR TRUNK 
+{<BT>|} 
+NICE DAY 
+{<BT>|} 
+NICE GUY 
+{<BT>|} 
+NICE CAR 
+{<BT>|} 
+NICE CAT 
+{<BT>|} 
+NICE DOG 
+{<BT>|} 
+BACK YARD 
+{<BT>|} 
+MY RIG 
+{<BT>|} 
+CALL CQ 
+{<BT>|} 
+RST IS 
+{<BT>|} 
+COAX RUN 
+{<BT>|} 
+MY PADDLE 
+{<BT>|} 
+IM SORE 
+{<BT>|} 
+IM HAPPY 
+{<BT>|} 
+MY TOWER 
+{<BT>|} 
+TELL ME 
+{<BT>|} 
+ONE TIME 
+{<BT>|} 
+ALL OVER 
+{<BT>|} 
+ITS EARLY 
+{<BT>|} 
+JUST ATE 
+{<BT>|} 
+NOT NOW 
+{<BT>|} 
+GREAT ANT 
+{<BT>|} 
+LIE DOWN 
+{<BT>|} 
+TORN UP 
+{<BT>|} 
+TEAR UP 
+{<BT>|} 
+TEAR DOWN 
+{<BT>|} 
+ITS RARE 
+{<BT>|} 
+SORT OF 
+{<BT>|} 
+ONE ITEM 
+{<BT>|} 
+NEAT ROOM 
+{<BT>|} 
+SORE FOOT 
+{<BT>|} 
+COOL DAY 
+{<BT>|} 
+SWEET CORN 
+{<BT>|} 
+AT ONCE 
+{<BT>|} 
+YES SIR 
+{<BT>|} 
+GOOD ART 
+{<BT>|} 
+MY SON 
+{<BT>|} 
+BIG TOE 
+{<BT>|} 
+SEE MORE 
+{<BT>|} 
+ACT NICE 
+{<BT>|} 
+GOOD TAN 
+{<BT>|} 
+HER CAT 
+{<BT>|} 
+ALL DONE 
+{<BT>|} 
+ITS NEW 
+{<BT>|} 
+IM LATE 
+{<BT>|} 
+ITS OVER 
+{<BT>|} 
+SILVER COIN 
+{<BT>|} 
+TELL HER 
+{<BT>|} 
+TELL HIM 
+{<BT>|} 
+HIS DOG 
+{<BT>|} 
+HI THERE 
+{<BT>|} 
+BYE NOW 
+{<BT>|} 
+GET REAL 
+{<BT>|} 
+IT WILL 
+{<BT>|} 
+TEN TOES 
+{<BT>|} 
+TELL ALL 
+{<BT>|} 
+CATS TAIL 
+{<BT>|} 
+LOW COST 
+{<BT>|} 
+TALL TREE 
+{<BT>|} 
+COOL CAT 
+{<BT>|} 
+RAT TAIL 
+{<BT>|} 
+RAT RACE 
+{<BT>|} 
+CARE LESS 
+{<BT>|} 
+NO WAY 
+{<BT>|} 
+LATE RISER 
+{<BT>|} 
+NOT REAL 
+{<BT>|} 
+OLD RIG 
+{<BT>|} 
+AN ERROR 
+{<BT>|} 
+NAIL DOWN 
+{<BT>|} 
+LATE START 
+{<BT>|} 
+GREEN GRASS 
+{<BT>|} 
+GREAT QSO 
+{<BT>|} 
+ITS OKAY 
+{<BT>|} 
+FAST CW 
+{<BT>|} 
+SLOW CW 
+{<BT>|} 
+EASY COPY 
+{<BT>|} 
+NICE FIST 
+{<BT>|} 
+GOOGLE IT 
+{<BT>|} 
+HEAD COPY 
+{<BT>|} 
+ZOOM ROOM 
+{<BT>|} 
+ZOOM CLASS 
+{<BT>|} 
+ROOT BEER 
+{<BT>|} 
+SPORTS DRINK 
+{<BT>|} 
+VIDEO CAMERA 
+{<BT>|} 
+TIME CAPSULE 
+{<BT>|} 
+VENDING MACHINE 
+{<BT>|} 
+DIRT BIKE 
+{<BT>|} 
+RING FINGER 
+{<BT>|} 
+SCHOOL YEAR 
+{<BT>|} 
+RADIO WAVE 
+{<BT>|} 
+CELL PHONE 
+{<BT>|} 
+REAL ESTATE 
+{<BT>|} 
+WAITING ROOM 
+{<BT>|} 
+PAPER CLIP 
+{<BT>|} 
+WEB SITE 
+{<BT>|} 
+THEME PARK 
+{<BT>|} 
+VOICE MAIL 
+{<BT>|} 
+COMMON SENSE 
+{<BT>|} 
+CHRISTMAS TREE 
+{<BT>|} 
+PEACE PIPE 
+{<BT>|} 
+WALKING STICK 
+{<BT>|} 
+PLANET KINGDOM 
+{<BT>|} 
+JIGSAW PUZZLE 
+{<BT>|} 
+PAST TENSE 
+{<BT>|} 
+VOICE BOX 
+{<BT>|} 
+PADDLE WHEEL 
+{<BT>|} 
+ROLE PLAY 
+{<BT>|} 
+VANILLA BEAN 
+{<BT>|} 
+ROCKING HORSE 
+{<BT>|} 
+VACUUM CLEANER 
+{<BT>|} 
+ROCKING CHAIR 
+{<BT>|} 
+CHILD CARE 
+{<BT>|} 
+KEY PAL 
+{<BT>|} 
+ROLE MODEL 
+{<BT>|} 
+HOCKEY PUCK 
+{<BT>|} 
+RIB CAGE 
+{<BT>|} 
+DISC JOCKEY 
+{<BT>|} 
+JUMPING JACK 
+{<BT>|} 
+TREE HOUSE 
+{<BT>|} 
+CHAT ROOM 
+{<BT>|} 
+LAND MINE 
+{<BT>|} 
+TENNIS COURT 
+{<BT>|} 
+MEMORY STICK 
+{<BT>|} 
+FACT SHEET 
+{<BT>|} 
+POST OFFICE 
+{<BT>|} 
+SLEEPING BAG 
+{<BT>|} 
+LANCE CORPORAL 
+{<BT>|} 
+HEALTH CARE 
+{<BT>|} 
+HEAT LIGHTNING 
+{<BT>|} 
+COMIC STRIP 
+{<BT>|} 
+REMOTE CONTROL 
+{<BT>|} 
+ENERGY BAR 
+{<BT>|} 
+DUMP TRUCK 
+{<BT>|} 
+RESPIRATORY SYSTEM 
+{<BT>|} 
+WORD WALL 
+{<BT>|} 
+LASER PRINTER 
+{<BT>|} 
+RIGHT ANGLE 
+{<BT>|} 
+PHOTO ID 
+{<BT>|} 
+TIME LINE 
+{<BT>|} 
+LITTLE FINGER 
+{<BT>|} 
+VALENTINES DAY 
+{<BT>|} 
+HOME PAGE 
+{<BT>|} 
+PHYSICAL EDUCATION 
+{<BT>|} 
+PAST PARTICIPLE 
+{<BT>|} 
+ROMAN CATHOLIC 
+{<BT>|} 
+REPORT CARD 
+{<BT>|} 
+PASSENGER PIGEON 
+{<BT>|} 
+HOT DOG 
+{<BT>|} 
+LIFE BUOY 
+{<BT>|} 
+FINE ART 
+{<BT>|} 
+CROSSWORD PUZZLE 
+{<BT>|} 
+LABOR DAY 
+{<BT>|} 
+JUNGLE GYM 
+{<BT>|} 
+CASH FLOW 
+{<BT>|} 
+VAMPIRE BAT 
+{<BT>|} 
+RIGHT TRIANGLE 
+{<BT>|} 
+RADIANT ENERGY 
+{<BT>|} 
+COURSE WORK 
+{<BT>|} 
+LIFE JACKET 
+{<BT>|} 
+ROCK DOVE 
+{<BT>|} 
+LANDING FIELD 
+{<BT>|} 
+LIFE SPAN 
+{<BT>|} 
+PINCH HITTER 
+{<BT>|} 
+LANDING STRIP 
+{<BT>|} 
+LIGHT BULB 
+{<BT>|} 
+ROCK BAND 
+{<BT>|} 
+CIVIL RIGHT 
+{<BT>|} 
+BOTTLED WATER 
+{<BT>|} 
+HIGH SCHOOL 
+{<BT>|} 
+OVEN MITT 
+{<BT>|} 
+SAFETY GLASSES 
+{<BT>|} 
+JUNK FOOD 
+{<BT>|} 
+WORD PROCESSING 
+{<BT>|} 
+PICTURE GRAPH 
+{<BT>|} 
+DISK DRIVE 
+{<BT>|} 
+LITTLE DIPPER 
+{<BT>|} 
+HELP DESK 
+{<BT>|} 
+KILLER WHALE 
+{<BT>|} 
+WORK BOOTS 
+{<BT>|} 
+NEW WORLD 
+{<BT>|} 
+LIFE RAFT 
+{<BT>|} 
+SCHOOL DAY 
+{<BT>|} 
+LABOR UNION 
+{<BT>|} 
+VIDEO RECORDER 
+{<BT>|} 
+CAR POOL 
+{<BT>|} 
+VIDEO GAME 
+{<BT>|} 
+LIFE BELT 
+{<BT>|} 
+SALAD DRESSING 
+{<BT>|} 
+HEART ATTACK 
+{<BT>|} 
+PRIME MINISTER 
+{<BT>|} 
+FRENCH FRY 
+{<BT>|} 
+SQUARE ROOT 
+{<BT>|} 
+VICE PRESIDENT 
+{<BT>|} 
+VIRTUAL REALITY 
+{<BT>|} 
+CELL MEMBRANE 
+{<BT>|} 
+GRASS ROOT 
+{<BT>|} 
+VOCAL CHORDS 
+{<BT>|} 
+ROLLER COASTER 
+{<BT>|} 
+LIFE VEST 
+{<BT>|} 
+REAL TIME 
+{<BT>|} 
+SEARCH ENGINE 
+{<BT>|} 
+ICE CREAM 

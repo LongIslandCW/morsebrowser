@@ -1,0 +1,19 @@
+UR 599 599 
+QTH {TX|texas} {TX|texas} 
+NAME TOM TOM 
+LICW {NR|number} 450I 450I 
+{<BT>|}
+UR {459|4 5 9} {459|4 5 9} 
+QTH AZ AZ 
+NAME MIKE MIKE 
+LICW {NR|number} 250A 250A 
+{<BT>|}
+UR 5NN 5NN 
+QTH {OH|ohio} {OH|ohio} 
+NAME JOE JOE 
+LICW {NR|number} 2241 2241 
+{<BT>|}
+UR {579|5 7 9} {579|5 7 9} 
+QTH KS KS
+NAME Ann Ann
+LICW {NR|number} 1469 1469 

@@ -2,11 +2,11 @@
     "options": [
         {
             "display": "Default 12/12",
-            "filename": "BPT_Default_12.json"
+            "filename": "BC3_DEFAULT_12.json"
         },
         {
             "display": "Default 15/12",
-            "filename": "BPT_Default_15.json"
+            "filename": "BC3_DEFAULT_15.json"
         },
         {
             "display": "Call Signs",
@@ -26,15 +26,7 @@
         },
         {
             "display": "Sending Practice",
-            "filename": "BPT_Sending.json"
-        },        
-        {
-            "display": "Voice On & Spell On",
-            "filename": "BPT_Von_Son.json"
-        },
-        {
-            "display": "Voice On & Spell Off",
-            "filename": "BPT_Von_Soff.json"
+            "filename": "BC3_SENDING.json"
         }
     ]
 }
