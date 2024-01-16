@@ -403,7 +403,7 @@
 {"sort": 563,"userTarget": "STUDENT","class": "BC3","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Phrases - K1USN SST","fileName": "BC3_Phrases_K1USN_SST.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "BC3","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Phrases - LICW","fileName": "BC3_Phrases_LICW.txt"},       
 {"sort": 563,"userTarget": "STUDENT","class": "BC3","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Phrases - SKCC WES","fileName": "BC3_Phrases_SKCC_WES.txt"},
-{"sort": 563,"userTarget": "STUDENT","class": "BC3","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Phrases - SOTA","fileName": "BC3_Phrases_SOTA.txt"},        
+{"sort": 563,"userTarget": "STUDENT","class": "BC3","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Phrases - POTA/SOTA","fileName": "BC3_Phrases_SOTA.txt"},        
 {"sort": 563,"userTarget": "STUDENT","class": "BC3","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Punctuation","fileName": "Fam_Punc._PS.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "BC3","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Q Codes","fileName": "Fam_Q.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "BC3","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Words-1","fileName": "Fam_Words - 1.txt"},
