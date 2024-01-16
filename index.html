@@ -25,7 +25,7 @@
                     'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
         })(window, document, 'script', 'dataLayer', 'GTM-PB8HW3M');</script>
     <!-- End Google Tag Manager -->
-<link rel="icon" href="LongIslandCWClub-favicon-2.jpg"><script defer src="bundlec01880d1e1d6ae990e7c.js"></script><link href="bundle.b790b1369a7194e0d144.css" rel="stylesheet"></head>
+<link rel="icon" href="LongIslandCWClub-favicon-2.jpg"><script defer src="bundle704700c55205fbdd8e6c.js"></script><link href="bundle.b790b1369a7194e0d144.css" rel="stylesheet"></head>
 
 <body>
     <!-- Google Tag Manager (noscript) -->
@@ -63,7 +63,7 @@
                                     href="https://longislandcwclub.org/">https://longislandcwclub.org/</a></span>
                             <span class="warning" data-bind="if: isDev()">WARNING: You are using the BETA (unstable)
                                 version. The <a href="../">latest stable release</a> is recommended.</a></span>
-                            <span id="version-info">Version 1.12</span>
+                            <span id="version-info">Version 1.13</span>
                         </section>
                     </div>
                 </div>
@@ -135,6 +135,7 @@
                                     </div>
 
                                     <!------->
+                                    <!--
                                     <div class="row row-cols-1 gx-0">
 
                                         <div class="col-auto text-end" style="width: 60px;">
@@ -151,6 +152,7 @@
 
                                         </div>
                                     </div>
+                                    -->
                                     <div class="row row-cols-1 gx-0">
                                         <div class="col-auto text-end" style="width: 60px;">
                                             <span id="play-time-label" class="sr-only">Play time</span>
@@ -727,11 +729,56 @@
                                                     data-bind="attr:{ src: morseVoice.manualVoice() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" />
                                             </label>
                                         </div>
+                                        <!-- voice speakfirst-->
+                                        <div class="col-auto"
+                                            data-bind="if: showExpertSettings() && morseVoice.voiceEnabled()">
+
+                                            <input type="checkbox" class="btn-check" autocomplete="off"
+                                                aria-label="Speak First" id="btncheckspeakfirst"
+                                                data-bind="checked: morseVoice.speakFirst">
+                                            <label class=" btn btn-outline-primary" for="btncheckspeakfirst"
+                                                aria-hidden="true">
+                                                <img
+                                                    data-bind="attr:{ src: morseLoadImages().getSrc('chatRightDotsImage')}">&nbsp;Voice
+                                                First&nbsp;
+                                                <img
+                                                    data-bind="attr:{ src: morseVoice.speakFirst() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" />
+                                            </label>
+                                        </div>
+                                        <!-- voice speakfirstrepeats-->
+                                        <div class="col-md-auto"
+                                            data-bind="if: showExpertSettings() && morseVoice.voiceEnabled()">
+                                            <div class="input-group">
+                                                <label for="speakFirstRepeats"
+                                                    class="input-group-text">Repeats&nbsp;<img width=20 height=20
+                                                        data-bind="attr:{ src: morseLoadImages().getSrc('repeatImage')}"
+                                                        alt=""></label>
+                                                <input id="speakFirstRepeats" name="speakFirstRepeats" type="number"
+                                                    style="max-width:75px; min-width: 75px;" class="form-control"
+                                                    min="0" max="10" step="1"
+                                                    data-bind="textInput: morseVoice.speakFirstRepeats">
+                                            </div>
+                                        </div>
+                                        <!-- voice speakfirst additionalwordspaces-->
+                                        <div class="col-md-auto"
+                                            data-bind="if: showExpertSettings() && morseVoice.voiceEnabled()">
+                                            <div class="input-group">
+                                                <label for="speakFirstAdditionalWordspaces"
+                                                    class="input-group-text">Repeat Spacing<img width=20 height=20
+                                                        data-bind="attr:{ src: morseLoadImages().getSrc('stopwatchImage')}"
+                                                        alt=""></label>
+                                                <input id="speakFirstAdditionalWordspaces"
+                                                    name="speakFirstAdditionalWordspaces" type="number"
+                                                    style="max-width:75px; min-width: 75px;" class="form-control"
+                                                    min="0" max="10" step="1"
+                                                    data-bind="textInput: morseVoice.speakFirstAdditionalWordspaces">
+                                            </div>
+                                        </div>
                                         <!-- voice thinktime-->
                                         <div class="col-md-auto"
                                             data-bind="if: showExpertSettings() && morseVoice.voiceEnabled()">
                                             <div class="input-group">
-                                                <label for="voiceThinkingTime" class="input-group-text">Delay<img
+                                                <label for="voiceThinkingTime" class="input-group-text">Delay Before<img
                                                         width=20 height=20
                                                         data-bind="attr:{ src: morseLoadImages().getSrc('stopwatchImage')}"
                                                         alt=""></label>
@@ -745,8 +792,8 @@
                                         <div class="col-md-auto"
                                             data-bind="if: showExpertSettings() && morseVoice.voiceEnabled()">
                                             <div class="input-group">
-                                                <label for="voiceAfterThinkingTime" class="input-group-text">Post
-                                                    Delay<img width=20 height=20
+                                                <label for="voiceAfterThinkingTime" class="input-group-text">Delay
+                                                    After<img width=20 height=20
                                                         data-bind="attr:{ src: morseLoadImages().getSrc('stopwatchImage')}"
                                                         alt=""></label>
                                                 <input id="voiceAfterThinkingTime" name="voiceAfterThinkingTime"
@@ -924,12 +971,13 @@
                                 data-bind="text: playingTime().normedSeconds"></span>
                         </span>
                         <!--estimate-->
+                        <!--
                         <span>
                             <span data-bind="text: timeEstimate().minutes"></span>:<span
                                 data-bind="text: timeEstimate().normedSeconds"></span>
 
                         </span>
-
+                        -->
 
                         &nbsp;
                         <span class="spinner-border spinner-border-sm" role="status" aria-label="Playing"
