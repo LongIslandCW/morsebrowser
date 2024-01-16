@@ -31,6 +31,11 @@ export class MorseVoice implements ICookieHandler {
   currentUtterance:SpeechSynthesisUtterance
   voiceLastOnly:ko.Observable<boolean>
   manualVoice:ko.Observable<boolean>
+  speakFirst:ko.Observable<boolean>
+  speakFirstRepeats:ko.Observable<number>
+  speakFirstRepeatsTracker:number = 0
+  speakFirstLastCardIndex:number = -1
+  speakFirstAdditionalWordspaces:ko.Observable<number>
 
   constructor (context:MorseViewModel) {
     MorseCookies.registerHandler(this)
@@ -51,6 +56,11 @@ export class MorseVoice implements ICookieHandler {
     this.voiceSpelling = ko.observable(true)
     this.voiceLastOnly = ko.observable(false)
     this.manualVoice = ko.observable(false)
+    this.speakFirst = ko.observable(false)
+    this.speakFirstRepeats = ko.observable<number>(0)
+    this.speakFirstLastCardIndex = -1
+    this.speakFirstRepeatsTracker = 0
+    this.speakFirstAdditionalWordspaces = ko.observable<number>(0)
     const speechDetection = EasySpeech.detect()
 
     if (speechDetection.speechSynthesis && speechDetection.speechSynthesisUtterance) {
@@ -261,6 +271,21 @@ export class MorseVoice implements ICookieHandler {
     target = cookies.find(x => x.key === 'voiceBufferMaxLength')
     if (target) {
       this.voiceBufferMaxLength(parseInt(target.val))
+    }
+
+    target = cookies.find(x => x.key === 'speakFirst')
+    if (target) {
+      this.speakFirst(GeneralUtils.booleanize(target.val))
+    }
+
+    target = cookies.find(x => x.key === 'speakFirstRepeats')
+    if (target) {
+      this.speakFirstRepeats(parseInt(target.val))
+    }
+
+    target = cookies.find(x => x.key === 'speakFirstAdditionalWordspaces')
+    if (target) {
+      this.speakFirstAdditionalWordspaces(parseInt(target.val))
     }
   }
 

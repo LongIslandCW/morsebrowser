@@ -1,0 +1,36 @@
+{
+    "options": [
+        {
+            "display": "Default 12/12",
+            "filename": "INT1_DEFAULT_12.json"
+        },
+        {
+            "display": "Default 15/12",
+            "filename": "INT1_DEFAULT_15.json"
+        },
+        {
+            "display": "Familiarity Phrases",
+            "filename": "INT1_FAM_Phrases.json"
+        },
+        {
+            "display": "Familiarity Sentences",
+            "filename": "INT1_FAM_Sentences.json"
+        },
+        {
+            "display": "Familiarity Spelling",
+            "filename": "INT1_FAM_Spell.json"
+        },
+        {
+            "display": "Familiarity Words",
+            "filename": "INT1_FAM_Words.json"
+        },
+        {
+            "display": "ICR",
+            "filename": "INT1_ICR.json"
+        },
+        {
+            "display": "Sending Practice",
+            "filename": "INT1_SENDING.json"
+        }
+    ]
+}

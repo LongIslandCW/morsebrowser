@@ -37,6 +37,36 @@
             "className": "ADVANCED",
             "defaultSetFile": "ADV.json",
             "letterGroups": []
+        },
+         {
+            "className": "INT 1",
+            "defaultSetFile": "INT1.json",
+            "letterGroups": []
+        },
+        {
+            "className": "INT 2",
+            "defaultSetFile": "INT2.json",
+            "letterGroups": []
+        },
+        {
+            "className": "INT 3",
+            "defaultSetFile": "INT3.json",
+            "letterGroups": []
+        },
+        {
+            "className": "ADV 1",
+            "defaultSetFile": "ADV1.json",
+            "letterGroups": []
+        },
+        {
+            "className": "ADV 2",
+            "defaultSetFile": "ADV2.json",
+            "letterGroups": []
+        },
+        {
+            "className": "ADV 3",
+            "defaultSetFile": "ADV3.json",
+            "letterGroups": []
         }
     ]
 }

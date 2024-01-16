@@ -5,6 +5,13 @@
             "filename": "BC2_Default.json"
         },
         {
+            "display": "Familiarity Spelling",
+            "filename": "BC2_FAM_Spell.json"
+        },{
+            "display": "Recognition",
+            "filename": "BC2_Recognition.json"
+        },
+        {
             "display": "Random groups 1-3",
             "filename": "BC2_Random_groups_1_3.json"
         },

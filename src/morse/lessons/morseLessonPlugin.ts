@@ -137,9 +137,11 @@ export default class MorseLessonPlugin implements ICookieHandler {
     }, this)
 
     this.classes = ko.computed(() => {
+      this.selectedClassInitialized = false
+      this.selectedClass('')
       const cls = []
       this.wordLists().forEach((x) => {
-        if (!cls.find((y) => y === x.class)) {
+        if (!cls.find((y) => y === x.class) && x.userTarget === this.userTarget()) {
           cls.push(x.class)
         }
       })
@@ -204,6 +206,8 @@ export default class MorseLessonPlugin implements ICookieHandler {
           this.selectedSettingsPreset().filename !== this.settingsPresets()[1].filename) {
             this.setPresetSelected(this.settingsPresets()[1])
           }
+        } else {
+          this.setPresetSelected(this.settingsPresets()[0])
         }
       }
     }
@@ -214,24 +218,32 @@ export default class MorseLessonPlugin implements ICookieHandler {
         this.settingsPresets(sps.concat(d.data.options))
       } else {
         this.settingsPresets(sps)
+        this.setPresetSelected(this.settingsPresets()[0])
       }
       handleAutoSelect()
     }
 
     if (this.selectedClass() === '') {
       // do nothing
-      if (forceRefresh) {
+      if (forceRefresh || this.selectedClass() === '') {
         this.settingsPresets(sps)
+        this.setPresetSelected(this.settingsPresets()[0])
         handleAutoSelect()
       }
     } else {
       const targetClass = ClassPresets.classes.find(c => c.className === this.selectedClass())
-      const targetLesson = targetClass.letterGroups.find(l => l.letterGroup === this.letterGroup())
+      // check if targetClass has letterGroups property and that lettergroups is an array
+      const letterGroupsGood = typeof targetClass !== 'undefined' &&
+                               typeof targetClass.letterGroups !== 'undefined' &&
+                               Array.isArray(targetClass.letterGroups) &&
+                               targetClass.letterGroups.length > 0
+
+      const targetLesson = letterGroupsGood ? targetClass.letterGroups.find(l => l.letterGroup === this.letterGroup()) : null
       if (targetLesson) {
         // sps.push({ display: targetLesson.setFile })
         MorsePresetSetFileFinder.getMorsePresetSetFile(targetLesson.setFile, (data) => handleData(data))
       } else {
-        if (targetClass.defaultSetFile) {
+        if (targetClass && targetClass.defaultSetFile) {
           // sps.push({ display: targetClass.defaultSetFile })
           MorsePresetSetFileFinder.getMorsePresetSetFile(targetClass.defaultSetFile, (data) => handleData(data))
         } else {
