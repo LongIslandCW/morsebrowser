@@ -417,7 +417,6 @@
 {"sort": 169,"userTarget": "STUDENT","class": "INT 1","letterGroup": "CHARACTERS","newlineChunking": true,"display": "QSO ABBREVIATIONS","fileName": "SB2C2.txt"},  
 {"sort": 175,"userTarget": "STUDENT","class": "INT 1","letterGroup": "CHARACTERS","newlineChunking": true,"display": "STATES","fileName": "SB2C8.txt"}, 
 {"sort": 408,"userTarget": "STUDENT","class": "INT 1","letterGroup": "CHARACTERS","newlineChunking": true,"display": "SUDUKO","fileName": "suduko1.txt"},     
-{"sort": 425,"userTarget": "STUDENT","class": "INT 1","letterGroup": "CHARACTERS","newlineChunking": true,"display": "TOP 100 WORDS","fileName": "INT7.txt"}, 
 {"sort": 563,"userTarget": "STUDENT","class": "INT 1","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Abbreviations","fileName": "Fam_Abbrev.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "INT 1","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Alphabet","fileName": "Fam_Alph.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "INT 1","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Numbers","fileName": "FAM_Num.txt"},
@@ -436,6 +435,7 @@
 {"sort": 172,"userTarget": "STUDENT","class": "INT 1","letterGroup": "QSO PROTOCOL","newlineChunking": true,"display": "PROTOCOL 3","fileName": "SB2C5.txt"}, 
 {"sort": 173,"userTarget": "STUDENT","class": "INT 1","letterGroup": "QSO PROTOCOL","newlineChunking": true,"display": "PROTOCOL 4","fileName": "SB2C6.txt"}, 
 {"sort": 425,"userTarget": "STUDENT","class": "INT 1","letterGroup": "SENTENCES","newlineChunking": true,"display": "Sentences - 3 Words","fileName": "INT1_Sentences_3W.txt"},  
+{"sort": 425,"userTarget": "STUDENT","class": "INT 1","letterGroup": "WORDS","newlineChunking": true,"display": "TOP 100 WORDS","fileName": "INT7.txt"}, 
 
         
 
