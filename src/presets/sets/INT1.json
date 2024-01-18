@@ -29,6 +29,10 @@
             "filename": "INT1_ICR.json"
         },
         {
+            "display": "Recognition",
+            "filename": "INT1_Recognition.json"
+        },
+        {
             "display": "Sending Practice",
             "filename": "INT1_SENDING.json"
         }
