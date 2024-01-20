@@ -480,7 +480,7 @@
 {"sort": 425,"userTarget": "STUDENT","class": "INT 2","letterGroup": "WORDS","newlineChunking": true,"display": "1-4 LETTERS","fileName": "ICR20.txt"}, 
 {"sort": 425,"userTarget": "STUDENT","class": "INT 2","letterGroup": "WORDS","newlineChunking": true,"display": "1-5 LETTERS","fileName": "ICR21.txt"}, 
 {"sort": 529,"userTarget": "STUDENT","class": "INT 2","letterGroup": "WORDS","newlineChunking": true,"display": "4 LETTERS","fileName": "Words_4L.txt"}, 
-{"sort": 529,"userTarget": "STUDENT","class": "INT 2","letterGroup": "WORDS","newlineChunking": true,"display": "5 LETTERS","fileName": "Words_5.txt"}, 
+{"sort": 529,"userTarget": "STUDENT","class": "INT 2","letterGroup": "WORDS","newlineChunking": true,"display": "5 LETTERS","fileName": "Words_5L.txt"}, 
 {"sort": 529,"userTarget": "STUDENT","class": "INT 2","letterGroup": "WORDS","newlineChunking": true,"display": "6 LETTERS","fileName": "Words_6L.txt"},         
 {"sort": 425,"userTarget": "STUDENT","class": "INT 2","letterGroup": "WORDS","newlineChunking": true,"display": "TOP 100 WORDS","fileName": "INT7.txt"}, 
         
@@ -619,6 +619,6 @@
 {"sort": 425,"userTarget": "STUDENT","class": "ADV 3","letterGroup": "WORDS","newlineChunking": true,"display": "10-14 LETTERS","fileName": "ICR26.txt"},         
 {"sort": 527,"userTarget": "STUDENT","class": "ADV 3","letterGroup": "WORDS","newlineChunking": true,"display": "12 LETTERS","fileName": "Words_12L.txt"}, 
 {"sort": 528,"userTarget": "STUDENT","class": "ADV 3","letterGroup": "WORDS","newlineChunking": true,"display": "13 LETTERS","fileName": "Words_13L.txt"}, 
-{"sort": 529,"userTarget": "STUDENT","class": "ADV 3","letterGroup": "WORDS","newlineChunking": true,"display": "14 LETTERS","fileName": "Words_14L.txt"},    
+{"sort": 529,"userTarget": "STUDENT","class": "ADV 3","letterGroup": "WORDS","newlineChunking": true,"display": "14 LETTERS","fileName": "Words_14L .txt"},    
 {"sort": 535,"userTarget": "STUDENT","class": "ADV 3","letterGroup": "WORDS","newlineChunking": true,"display": "TOP 500 WORDS","fileName": "INT13.txt"} 
 ]}
