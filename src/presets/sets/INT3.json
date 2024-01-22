@@ -33,6 +33,10 @@
             "filename": "INT3_PHRASES.json"
         },
         {
+            "display": "Recognition",
+            "filename": "INT3_Recognition.json"
+        },
+        {
             "display": "Sending Practice",
             "filename": "INT3_SENDING.json"
         }

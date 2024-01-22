@@ -27,6 +27,10 @@
          {
             "display": "ICR",
             "filename": "ADVICR.json"
+        },
+        {
+            "display": "Recognition",
+            "filename": "ADV3_Recognition.json"
         }
     ]
 }
