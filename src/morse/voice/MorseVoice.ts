@@ -36,6 +36,8 @@ export class MorseVoice implements ICookieHandler {
   speakFirstRepeatsTracker:number = 0
   speakFirstLastCardIndex:number = -1
   speakFirstAdditionalWordspaces:ko.Observable<number>
+  easyspeechInitCount:number = 0
+  msFound:boolean = false
 
   constructor (context:MorseViewModel) {
     MorseCookies.registerHandler(this)
@@ -61,6 +63,7 @@ export class MorseVoice implements ICookieHandler {
     this.speakFirstLastCardIndex = -1
     this.speakFirstRepeatsTracker = 0
     this.speakFirstAdditionalWordspaces = ko.observable<number>(0)
+
     const speechDetection = EasySpeech.detect()
 
     if (speechDetection.speechSynthesis && speechDetection.speechSynthesisUtterance) {
@@ -70,7 +73,7 @@ export class MorseVoice implements ICookieHandler {
       this.logToFlaggedWords(`Synthesis: ${speechDetection.speechSynthesis} Utterance:${speechDetection.speechSynthesisUtterance}`)
     }
 
-    this.initEasySpeech()
+    // this.initEasySpeech()
 
     this.voiceVoice = ko.computed(() => {
       if (this.voiceVoiceIdx() === -1) {
@@ -82,14 +85,17 @@ export class MorseVoice implements ICookieHandler {
   }
 
   initEasySpeech = async () => {
+    if (this.easyspeechInitCount < 1) {
     // let easySpeechInitStatus
-
-    EasySpeech.init({ maxTimeout: 5000, interval: 250 }).then((e) => {
-      this.logToFlaggedWords(`easyspeechinit: ${e}`)
-      this.populateVoiceList()
-    }).catch((e) => {
-      this.logToFlaggedWords(`error in easyspeechinit: ${e}`)
-    })
+      this.easyspeechInitCount++
+      console.log('initEasySpeech!')
+      EasySpeech.init({ maxTimeout: 5000, interval: 250 }).then((e) => {
+        this.logToFlaggedWords(`easyspeechinit: ${e}`)
+        this.populateVoiceList()
+      }).catch((e) => {
+        this.logToFlaggedWords(`error in easyspeechinit: ${e}`)
+      })
+    }
   }
 
   logToFlaggedWords = (s) => {
@@ -107,6 +113,9 @@ export class MorseVoice implements ICookieHandler {
       this.voices = (easySpeechStatus as any).voices
       this.voices.forEach(v => {
         this.logToFlaggedWords(`voiceAvailable:${v.name}  lang:${v.lang} voiceURI:${v.voiceURI}`)
+        if (v.name.toLowerCase().startsWith('microsoft')) {
+          this.msFound = true
+        }
       })
       this.voices = this.voices.filter(x => x.lang === 'en-US' || x.lang === 'en_US').map((v) => {
         v.idx = idx++
@@ -116,6 +125,13 @@ export class MorseVoice implements ICookieHandler {
       this.logToFlaggedWords(`loaded voices:${this.voices.length}`)
     } else {
       this.logToFlaggedWords('no voices')
+    }
+    if (this.easyspeechInitCount < 1 && !this.msFound) {
+      // this.easyspeechInitCount++
+      /* setTimeout(() => {
+        console.log('trying init again!')
+        this.initEasySpeech()
+      }, 5000) */
     }
   }
 
