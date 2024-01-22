@@ -1,6 +1,6 @@
 import * as ko from 'knockout'
 import { MorseVoiceInfo } from './MorseVoiceInfo'
-import EasySpeech from 'easy-speech'
+import EasySpeech, { Status } from 'easy-speech'
 import { MorseViewModel } from '../morse'
 import { ICookieHandler } from '../cookies/ICookieHandler'
 import { CookieInfo } from '../cookies/CookieInfo'
@@ -84,7 +84,7 @@ export class MorseVoice implements ICookieHandler {
   initEasySpeech = async () => {
     // let easySpeechInitStatus
 
-    EasySpeech.init().then((e) => {
+    EasySpeech.init({ maxTimeout: 5000, interval: 250 }).then((e) => {
       this.logToFlaggedWords(`easyspeechinit: ${e}`)
       this.populateVoiceList()
     }).catch((e) => {
@@ -101,10 +101,10 @@ export class MorseVoice implements ICookieHandler {
       return
     }
 
-    const easySpeechStatus = EasySpeech.status()
+    const easySpeechStatus:Status = EasySpeech.status()
     let idx = 0
-    if (easySpeechStatus.voices && easySpeechStatus.voices.length) {
-      this.voices = easySpeechStatus.voices
+    if ((easySpeechStatus as any).voices && (easySpeechStatus as any).voices.length) {
+      this.voices = (easySpeechStatus as any).voices
       this.voices.forEach(v => {
         this.logToFlaggedWords(`voiceAvailable:${v.name}  lang:${v.lang} voiceURI:${v.voiceURI}`)
       })
