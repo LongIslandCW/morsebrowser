@@ -16,6 +16,7 @@ export class MorseVoice implements ICookieHandler {
   voiceThinkingTime:ko.Observable<number>
   voiceAfterThinkingTime:ko.Observable<number>
   voiceVoice:ko.Computed<any>
+  voiceVoiceName:ko.Observable<string>
   voiceVoiceIdx:ko.Observable<number>
   voiceVolume:ko.Observable<number>
   voiceRate:ko.Observable<number>
@@ -63,6 +64,7 @@ export class MorseVoice implements ICookieHandler {
     this.speakFirstLastCardIndex = -1
     this.speakFirstRepeatsTracker = 0
     this.speakFirstAdditionalWordspaces = ko.observable<number>(0)
+    this.voiceVoiceName = ko.observable<string>(null)
 
     const speechDetection = EasySpeech.detect()
 
@@ -76,12 +78,15 @@ export class MorseVoice implements ICookieHandler {
     // this.initEasySpeech()
 
     this.voiceVoice = ko.computed(() => {
-      if (this.voiceVoiceIdx() === -1) {
+      if (!this.voiceVoiceIdx() || this.voiceVoiceIdx() === -1) {
+        this.voiceVoiceName(null)
         return null
       }
-
+      this.voiceVoiceName(this.voiceVoices()[this.voiceVoiceIdx()].name)
       return this.voiceVoices()[this.voiceVoiceIdx()]
     }, this)
+
+    this.voiceVoiceName.extend({ saveCookie: 'voiceVoiceName' } as ko.ObservableExtenderOptions<boolean>)
   }
 
   initEasySpeech = async () => {
@@ -109,6 +114,7 @@ export class MorseVoice implements ICookieHandler {
 
     const easySpeechStatus:Status = EasySpeech.status()
     let idx = 0
+    let nameIdx = -1
     if ((easySpeechStatus as any).voices && (easySpeechStatus as any).voices.length) {
       this.voices = (easySpeechStatus as any).voices
       this.voices.forEach(v => {
@@ -119,20 +125,27 @@ export class MorseVoice implements ICookieHandler {
       })
       this.voices = this.voices.filter(x => x.lang === 'en-US' || x.lang === 'en_US').map((v) => {
         v.idx = idx++
+
+        if (v.name === this.voiceVoiceName()) {
+          nameIdx = v.idx
+        }
         return v
       })
       this.voiceVoices(this.voices)
+      if (nameIdx > -1) {
+        this.voiceVoiceIdx(nameIdx)
+      }
       this.logToFlaggedWords(`loaded voices:${this.voices.length}`)
     } else {
       this.logToFlaggedWords('no voices')
     }
-    if (this.easyspeechInitCount < 1 && !this.msFound) {
-      // this.easyspeechInitCount++
-      /* setTimeout(() => {
+    // if (this.easyspeechInitCount < 1 && !this.msFound) {
+    // this.easyspeechInitCount++
+    /* setTimeout(() => {
         console.log('trying init again!')
         this.initEasySpeech()
       }, 5000) */
-    }
+    // }
   }
 
   speakInfo = (morseVoiceInfo:MorseVoiceInfo) => {
@@ -302,6 +315,12 @@ export class MorseVoice implements ICookieHandler {
     target = cookies.find(x => x.key === 'speakFirstAdditionalWordspaces')
     if (target) {
       this.speakFirstAdditionalWordspaces(parseInt(target.val))
+    }
+
+    target = cookies.find(x => x.key === 'voiceVoiceName')
+    if (target) {
+      console.log(`found voiceVoiceName cookie:${target.val}`)
+      this.voiceVoiceName(target.val)
     }
   }
 
