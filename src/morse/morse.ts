@@ -135,15 +135,15 @@ export class MorseViewModel {
     this.morseWordPlayer = new MorseWordPlayer()
     this.morseWordPlayer.setSoundMaker(this.smoothing())
 
+    // voice
+    this.morseVoice = new MorseVoice(this)
+
     this.loadDefaultsAndCookieSettings()
 
     // initialize the wordlist
     this.lessons.initializeWordList()
 
     this.flaggedWords = new FlaggedWords()
-
-    // voice
-    this.morseVoice = new MorseVoice(this)
 
     // check for voice feature turned on
     if (this.getParameterByName('voiceEnabled')) {
