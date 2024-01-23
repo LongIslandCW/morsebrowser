@@ -78,7 +78,7 @@ export class MorseVoice implements ICookieHandler {
     // this.initEasySpeech()
 
     this.voiceVoice = ko.computed(() => {
-      if (!this.voiceVoiceIdx() || this.voiceVoiceIdx() === -1) {
+      if (typeof this.voiceVoiceIdx() === 'undefined' || this.voiceVoiceIdx() === null || this.voiceVoiceIdx() === -1) {
         this.voiceVoiceName(null)
         return null
       }
