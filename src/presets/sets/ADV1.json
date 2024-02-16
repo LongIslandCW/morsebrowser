@@ -29,6 +29,10 @@
             "filename": "ADVICR.json"
         },
         {
+            "display": "Recognition - Spell",
+            "filename": "ADV1_REC_Spell.json"
+        },
+        {
             "display": "Recognition - Words",
             "filename": "ADV1_Rec_Words.json"
         }
