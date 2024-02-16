@@ -27,10 +27,13 @@
         {
             "display": "ICR",
             "filename": "INT1_ICR.json"
+        },{
+            "display": "Recognition - Spell",
+            "filename": "INT1_REC_Spell.json"
         },
         {
-            "display": "Recognition",
-            "filename": "INT1_Recognition.json"
+            "display": "Recognition - Words",
+            "filename": "INT1_REC_Words.json"
         },
         {
             "display": "Sending Practice",
