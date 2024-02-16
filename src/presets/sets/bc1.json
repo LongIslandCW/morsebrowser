@@ -39,10 +39,6 @@
         {
             "display": "Reverse VET",
             "filename": "BC1_RVET.json"
-        },
-         {
-            "display": "Familiarity Spelling",
-            "filename": "BC1_FAM_Spell.json"
         }, 
         {
             "display": "Sending Practice",

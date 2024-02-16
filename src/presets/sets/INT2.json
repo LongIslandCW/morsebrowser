@@ -31,10 +31,13 @@
         {
             "display": "Phrases",
             "filename": "INT2_PHRASES.json"
+        },{
+            "display": "Recognition - Spell",
+            "filename": "INT2_REC_Spell.json"
         },
         {
-            "display": "Recognition",
-            "filename": "INT2_Recognition.json"
+            "display": "Recognition - Words",
+            "filename": "INT2_REC_Words.json"
         },
         {
             "display": "Sending Practice",
