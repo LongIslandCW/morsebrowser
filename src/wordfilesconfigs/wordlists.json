@@ -598,6 +598,7 @@
 {"sort": 532,"userTarget": "STUDENT","class": "ADV 3","letterGroup": "AFFIX","newlineChunking": true,"display": "PREFIXES","fileName": "PREFIX.txt"}, 
 {"sort": 533,"userTarget": "STUDENT","class": "ADV 3","letterGroup": "AFFIX","newlineChunking": true,"display": "SUFFIXES","fileName": "SUFFIX.txt"},   
 {"sort": 563,"userTarget": "STUDENT","class": "ADV 3","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Abbreviations","fileName": "Fam_Abbrev.txt"},
+{"sort": 563,"userTarget": "STUDENT","class": "ADV 3","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Abbreviations - Extended","fileName": "Fam_Abbrev_Extended.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "ADV 3","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Alphabet","fileName": "Fam_Alph.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "ADV 3","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Numbers","fileName": "FAM_Num.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "ADV 3","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Phrases 4 Line","fileName": "ADV3_Fam_Phrases_4L.txt"},
