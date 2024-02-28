@@ -294,13 +294,43 @@ export default class MorseLessonPlugin implements ICookieHandler {
     do {
       let word = ''
 
+      const getWordLength = (str:string):number => {
+        let count:number = 0
+        let insideSquareBrackets:boolean = false
+
+        for (let i = 0; i < str.length; i++) {
+          if (str[i] === '<') {
+            insideSquareBrackets = true
+            count++ // prosign counts as 1
+          } else if (str[i] === '>') {
+            insideSquareBrackets = false
+          } else if (!insideSquareBrackets) {
+            count++
+          }
+        }
+
+        return count
+      }
       if (this.randomizeLessons()) {
         // determine word length
         const wordLength = minWordSize === maxWordSize ? minWordSize : randomNumber(minWordSize, maxWordSize)
 
         for (let j = 1; j <= wordLength; j++) { // for each letter
-          // determine the letter
-          word += chars[randomNumber(1, chars.length) - 1]
+          if (getWordLength(word) < wordLength) {
+            const currentWordLength = getWordLength(word)
+            const freeSpaces = wordLength - currentWordLength
+            const usableChars = chars.filter(x => x.length === 1 ||
+              (x.startsWith('<') && x.endsWith('>')) || // prosigns counts as 1
+              x.length <= freeSpaces
+            )
+
+            // determine the letter
+            // console.log(chars)
+            // console.log(usableChars)
+            const selectedChars:string = usableChars[randomNumber(1, usableChars.length) - 1]
+            console.log(`selectedChars=${selectedChars}`)
+            word += selectedChars
+          }
         }
       } else {
         word = data.letters
