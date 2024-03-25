@@ -2,7 +2,6 @@ AR
 {IN|indiana} 
 IA 
 NE 
-{OR|oregon} 
 RI 
 TN 
 UT 
