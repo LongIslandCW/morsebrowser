@@ -123,7 +123,7 @@ export class MorseVoice implements ICookieHandler {
           this.msFound = true
         }
       })
-      this.voices = this.voices.filter(x => x.lang === 'en-US' || x.lang === 'en_US').map((v) => {
+      this.voices = this.voices.filter(x => x.lang === 'en-US' || x.lang === 'en_US' || x.lang === 'en-GB' || x.lang === 'en_GB').map((v) => {
         v.idx = idx++
 
         if (v.name === this.voiceVoiceName()) {
