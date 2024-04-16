@@ -173,7 +173,10 @@ export class MorseVoice implements ICookieHandler {
         pause: e => this.logToFlaggedWords('pause event'),
         force: true
       }
-
+      // fix to force to number
+      esConfig.rate = parseFloat(esConfig.rate)
+      esConfig.pitch = parseFloat(esConfig.pitch)
+      // console.log(`rate:${esConfig.rate} ${typeof esConfig.rate === 'number'}`)
       EasySpeech.speak(esConfig)
     } catch (e) {
       this.logToFlaggedWords(`caught in speakInfo2:${e}`)
