@@ -175,6 +175,7 @@ export class MorseVoice implements ICookieHandler {
       }
       // fix to force to number
       esConfig.rate = parseFloat(esConfig.rate)
+      esConfig.pitch = parseFloat(esConfig.pitch)
       // console.log(`rate:${esConfig.rate} ${typeof esConfig.rate === 'number'}`)
       EasySpeech.speak(esConfig)
     } catch (e) {
