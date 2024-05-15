@@ -566,6 +566,9 @@
 {"sort": 529,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "WORDS","newlineChunking": true,"display": "10 LETTERS","fileName": "Words_10L.txt"},        
 {"sort": 535,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "WORDS","newlineChunking": true,"display": "TOP 500 WORDS","fileName": "INT13.txt"}, 
 
+{"sort": 535,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "WORDS","newlineChunking": true,"display": "2 WORDS","fileName": "2 Words.txt"},
+{"sort": 535,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "WORDS","newlineChunking": true,"display": "FIRST WORD ONLY","fileName": "First Only.txt"},
+        
 
         
 {"sort": 532,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "AFFIX","newlineChunking": true,"display": "PREFIXES","fileName": "PREFIX.txt"}, 
