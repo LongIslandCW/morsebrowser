@@ -176,6 +176,9 @@ export class MorseViewModel {
 
     this.showRaw(false)
 
+	// attempt to load lesson based on current URL path
+    this.lessons.loadLessonFromPath(window.location.pathname)
+
     this.applyEnabled = ko.computed(() => {
       if (this.lessons && this.lessons.customGroup()) {
         return true

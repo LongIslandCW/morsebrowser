@@ -189,8 +189,77 @@ export default class MorseLessonPlugin implements ICookieHandler {
       return dps
     }, this)
   }
-
   // end constructor
+
+  // Check to see if the path is set to a specific lesson plan.
+  // This allows instructors and students to share links to specific exercices.
+  loadLessonFromPath = (path: string) => {
+    var pathTarget: string
+    var pathClass: string
+    var pathLetterGroup: string
+    var pathLesson: string // also known as the display
+
+    var chunks = path.toUpperCase().split('/')
+    var idx = 1 // first item is always empty
+    console.log(chunks)
+
+    // handle /dev if present (must be first portion of URL path)
+    if (chunks[idx].toLowerCase() === 'dev') {
+        idx++
+    }
+
+    // TODO: Check length of path up front.
+
+    // handle type: STUDENT or INSTRUCTOR
+    if (chunks[idx] && ['STUDENT', 'INSTRUCTOR'].indexOf(chunks[idx]) != -1 ) {
+        pathTarget = chunks[idx]
+        idx++
+    } else {
+        return // unknown path component
+    }
+
+    // handle class: BC1, BC2, etc
+    if (chunks[idx] && ['BC1', 'BC2', 'BC3'].indexOf(chunks[idx]) != -1) {
+        pathClass = chunks[idx]
+        idx++
+    } else if (chunks[idx] && ['INT1', 'INT2', 'INT3', 'ADV1', 'ADV2', 'ADV3'].indexOf(chunks[idx]) != -1) {
+        // add space to these specific classes
+        pathClass = `${chunks[idx].substr(0, 3)} ${chunks[idx].substr(3, 1)}`
+        idx++
+    } else {
+        return // unknown path component
+    }
+
+    // handle letter group: REA, TIN, PSG, etc
+    if (chunks[idx]) {
+        pathLetterGroup = decodeURIComponent(chunks[idx].replace(/_/g, ' '))
+        idx++
+    }
+
+    // handle lesson: REA, REW UWB HOF, REA FAMILIARITY, etc
+    if (chunks[idx]) {
+        pathLesson = decodeURIComponent(chunks[idx].replace(/_/g, ' '))
+        idx++
+    }
+
+    // attempt to find lesson matching info gathered from URL path
+    const lessonToLoad = this.wordLists().find(wl => (
+            wl.userTarget === pathTarget &&
+            wl.class === pathClass &&
+            wl.letterGroup.toUpperCase() === pathLetterGroup &&
+            wl.display.toUpperCase() === pathLesson
+            ))
+
+    if (lessonToLoad) {
+        this.userTarget(lessonToLoad.userTarget)
+        this.selectedClass(lessonToLoad.class)
+        this.letterGroup(lessonToLoad.letterGroup)
+        this.setDisplaysInitialized()
+        this.setDisplaySelected(lessonToLoad, true)
+    } else {
+        console.log('Unabled to load lesson from URL path.')
+    }
+  }
 
   getSettingsPresets = (forceRefresh:boolean = false, selectFirstNonYour:boolean = false) => {
     let sps:SettingsOption[] = []
