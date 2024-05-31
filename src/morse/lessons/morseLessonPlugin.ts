@@ -203,6 +203,11 @@ export default class MorseLessonPlugin implements ICookieHandler {
     var idx = 1 // first item is always empty
     console.log(chunks)
 
+    // remove leading /morsebrowser (if present)
+    if (chunks[idx].toLowerCase() === 'morsebrowser') {
+        idx++
+    }
+
     // handle /dev if present (must be first portion of URL path)
     if (chunks[idx].toLowerCase() === 'dev') {
         idx++
