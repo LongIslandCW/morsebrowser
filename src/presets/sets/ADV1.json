@@ -35,10 +35,6 @@
         {
             "display": "Recognition - Words",
             "filename": "ADV1_Rec_Words.json"
-        },
-        {
-            "display": "Multi Words",
-            "filename": "Multi Words.json"
         }
     ]
 }
