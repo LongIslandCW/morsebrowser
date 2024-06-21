@@ -1,0 +1,20 @@
+numeral {summary |} 
+{|numeral summary } 
+pretty {peanut|} 
+{|pretty peanut} 
+stranger {province|} 
+{|stranger province} 
+casual {doctrine|} 
+{|casual doctrine} 
+pickup {otherwise|} 
+{|pickup otherwise} 
+lightly {knowledge|} 
+{|lightly knowledge} 
+encourage {complete|} 
+{|encourage complete} 
+request {punishment|} 
+{|request punishment} 
+convention {factor|} 
+{|convention factor} 
+exceed {against|} 
+{|exceed against} 
