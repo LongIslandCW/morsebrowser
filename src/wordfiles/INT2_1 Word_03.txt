@@ -1,0 +1,20 @@
+lead {battery|} 
+  {|lead battery} 
+refer {emerge|} 
+  {|refer emerge} 
+bond {suit|} 
+  {|bond suit} 
+look {welfare|} 
+  {|look welfare} 
+each {lake|} 
+  {|each lake} 
+drag {sense|} 
+  {|drag sense} 
+child {manual|} 
+  {|child manual} 
+member {prior|} 
+  {|member prior} 
+penalty {towel|} 
+  {|penalty towel} 
+bear {extreme|} 
+  {|bear extreme} 

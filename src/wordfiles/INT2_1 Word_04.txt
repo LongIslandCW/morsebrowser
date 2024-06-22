@@ -1,0 +1,20 @@
+judge {burst|} 
+  {|judge burst} 
+score {lightly|} 
+  {|score lightly} 
+decade {hold|} 
+  {|decade hold} 
+game {porch|} 
+  {|game porch} 
+heavily {senior|} 
+  {|heavily senior} 
+accuse {German|} 
+  {|accuse German} 
+save {vitamin|} 
+  {|save vitamin} 
+earth {sell|} 
+  {|earth sell} 
+lower {execute|} 
+  {|lower execute} 
+such {knee|} 
+  {|such knee} 

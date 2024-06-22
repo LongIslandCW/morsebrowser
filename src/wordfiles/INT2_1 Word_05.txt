@@ -1,0 +1,20 @@
+rest {await|} 
+  {|rest await} 
+occur {hope|} 
+  {|occur hope} 
+ever {welcome|} 
+  {|ever welcome} 
+profit {cloth|} 
+  {|profit cloth} 
+central {excited|} 
+  {|central excited} 
+nurse {cabin|} 
+  {|nurse cabin} 
+well {blue|} 
+  {|well blue} 
+scream {clean|} 
+  {|scream clean} 
+mystery {rapid|} 
+  {|mystery rapid} 
+moon {lawsuit|} 
+  {|moon lawsuit} 

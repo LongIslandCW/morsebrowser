@@ -1,0 +1,20 @@
+entry {exhibit|} 
+  {|entry exhibit} 
+illness {chicken|} 
+  {|illness chicken} 
+spread {shot|} 
+  {|spread shot} 
+date {bell|} 
+  {|date bell} 
+yell {proceed|} 
+  {|yell proceed} 
+frozen {fire|} 
+  {|frozen fire} 
+retain {studio|} 
+  {|retain studio} 
+English {throat|} 
+  {|English throat} 
+fight {doll|} 
+  {|fight doll} 
+dirty {minimal|} 
+  {|dirty minimal} 

@@ -1,0 +1,20 @@
+package {cheek|} 
+  {|package cheek} 
+front {citizen|} 
+  {|front citizen} 
+smile {anger|} 
+  {|smile anger} 
+please {print|} 
+  {|please print} 
+African {subject|} 
+  {|African subject} 
+notice {father|} 
+  {|notice father} 
+scale {medium|} 
+  {|scale medium} 
+lack {slave|} 
+  {|lack slave} 
+sorry {track|} 
+  {|sorry track} 
+vision {similar|} 
+  {|vision similar} 
