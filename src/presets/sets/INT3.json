@@ -29,6 +29,10 @@
             "filename": "INT3_ICR.json"
         },
         {
+            "display": "Multi Words",
+            "filename": "INT3_MW.json"
+        },
+        {
             "display": "Phrases",
             "filename": "INT3_PHRASES.json"
         }, {
