@@ -135,6 +135,6 @@
 	{ "characters": "W", "replacement": "Watts", "onlyAlone" : true},
 	{ "characters": "X", "replacement": "X", "onlyAlone" : false, "overrideSpell" : true},
 	{ "characters": "YRS", "replacement": "Years", "onlyAlone" : true},
-	{ "characters": "2E8", "replacement": "2 e 8", "onlyAlone" : true
+	{ "characters": "2E8", "replacement": "two E eight", "onlyAlone" : true
 	]
 }
