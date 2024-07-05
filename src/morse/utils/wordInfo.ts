@@ -47,8 +47,19 @@ export default class WordInfo {
               })
             }
           }) */
-
-          return base.replace(/>/g, '').replace(/</g, '').split('').map(m => MorseStringUtils.wordifyPunctuation(m, true)).join(' ')
+          let preMathCheck = base.replace(/>/g, '').replace(/</g, '').split('').map(m => MorseStringUtils.wordifyPunctuation(m, true)).join(' ')
+          const replaceSpacesAroundE = (input) => {
+            return input.replace(/(\d) E (\d)/g, '$1,E,$2')
+          }
+          preMathCheck = replaceSpacesAroundE(preMathCheck)
+          /*
+          console.log(`premathcheck:x${preMathCheck}x`)
+          if (preMathCheck === '2 E 3 ') {
+            console.log('changing')
+            preMathCheck = '2,e,3 '
+          }
+          */
+          return preMathCheck
         }
       } else {
         if (!forceSpelling) {
