@@ -1,0 +1,14 @@
+"use strict";
+(self["webpackChunk"] = self["webpackChunk"] || []).push([["src_wordfiles_ADV2_2Words_txt"],{
+
+/***/ "./src/wordfiles/ADV2_2Words.txt":
+/*!***************************************!*\
+  !*** ./src/wordfiles/ADV2_2Words.txt ***!
+  \***************************************/
+/***/ ((module) => {
+
+module.exports = "\r\nreporter  journalism\r\nartistic  pollution\r\noffender  efficiency\r\ncriteria  recession\r\nsupposedly  presidential\r\nawareness  accomplish\r\nconfusion  terribly\r\nchildhood  independent\r\nprecisely  determine\r\nharassment  stimulate\r\natmosphere  experimental\r\nrecipient  somewhat\r\nvaluable  controversy\r\nexperience  practitioner\r\ncurrency  institution\r\nreceiver  optimistic\r\nhelicopter  currently\r\ncharacterize  required\r\ntelephone  facilitate\r\nthoroughly  darkness\r\nrealistic  horrible\r\nsurvival  moderate\r\nliterature  approach\r\nflexibility  background\r\nsensitive  different\r\nconvention  corporate\r\nenvironment  emotionally\r\nprosecutor  Palestinian\r\nfrequency  scenario\r\ndiagnose  multiple\r\nCanadian  policeman\r\nactually  drinking\r\nprescription  impression\r\ncarbohydrate  elevator\r\nrecognition  abortion\r\nmechanic  population\r\nblessing  activist\r\ncelebration  straight\r\nbrilliant  credibility\r\nbiography  actively\r\nalthough  psychologist\r\nimpressive  honestly\r\nselection  domestic\r\narchitect  normally\r\nmagazine  membership\r\ncontinuing  intensity\r\nstructure  equation\r\ndescribe  photographer\r\nweakness  selected\r\nautomobile  academic\r\ninterior  military\r\nhistorical  position\r\nassignment  regulation\r\nincluding  collapse\r\nexercise  politically\r\neveryone  argument\r\nCatholic  corruption\r\nincrease  inventory\r\nexternal  immigrant\r\ngrateful  conclude\r\ntheology  consultant\r\nfundamental  recognize\r\nconviction  essential\r\ninterfere  highlight\r\nprospect  remember\r\nbuilding  occupation\r\nelectronic  interview\r\npromising  partially\r\nprotective  advocate\r\nabsolute  reliable\r\nconstruct  productive\r\nphysical  surround\r\npresumably  particularly\r\ndistinguish  carefully\r\nlegislator  computer\r\nparticipant  subtract\r\nbreakfast  conception\r\nsignificance  engineering\r\naccurately  dependent\r\nextended  alongside\r\nnecessarily  forehead\r\nstriking  resident\r\ncriticize  strategic\r\ninsurance  disappear\r\npublicly  complete\r\nconnection  magnetic\r\nwherever  courtroom\r\ncontainer  publication\r\nsyndrome  withdraw\r\nseriously  immediately\r\nexchange  festival\r\nexecution  worldwide\r\npurchase  complicated\r\nprogramming  initiative\r\npersonnel  specialty\r\ncalendar  conservative\r\nunlikely  relationship\r\nprotection  certainly\r\nbirthday  paragraph\r\npositive  construction\n\r\n\r\n\r\n";
+
+/***/ })
+
+}]);
