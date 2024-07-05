@@ -47,8 +47,20 @@ export default class WordInfo {
               })
             }
           }) */
-
-          return base.replace(/>/g, '').replace(/</g, '').split('').map(m => MorseStringUtils.wordifyPunctuation(m, true)).join(' ')
+          let preMathCheck = base.replace(/>/g, '').replace(/</g, '').split('').map(m => MorseStringUtils.wordifyPunctuation(m, true)).join(' ')
+          // fix for weird issue of voice treating e or E as exponent and spearking "multiply by" or something like that
+          const replaceSpacesAroundE = (input) => {
+            return input.replace(/(\d) e (\d)/gi, '$1,e,$2')
+          }
+          preMathCheck = replaceSpacesAroundE(preMathCheck)
+          /*
+          console.log(`premathcheck:x${preMathCheck}x`)
+          if (preMathCheck === '2 E 3 ') {
+            console.log('changing')
+            preMathCheck = '2,e,3 '
+          }
+          */
+          return preMathCheck
         }
       } else {
         if (!forceSpelling) {

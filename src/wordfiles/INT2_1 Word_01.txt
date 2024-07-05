@@ -1,0 +1,20 @@
+forest {second|} 
+  {|forest second} 
+odds {vaccine|} 
+  {|odds vaccine} 
+sigh {mouse|} 
+  {|sigh mouse} 
+breath {length|} 
+  {|breath length} 
+cool {spouse|} 
+  {|cool spouse} 
+closet {virus|} 
+  {|closet virus} 
+junior {subsidy|} 
+  {|junior subsidy} 
+broken {ring|} 
+  {|broken ring} 
+belief {from|} 
+  {|belief from} 
+outer {recipe |} 
+  {|outer recipe } 

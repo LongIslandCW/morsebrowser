@@ -1,0 +1,20 @@
+after {mass|} 
+  {|after mass} 
+market {seize|} 
+  {|market seize} 
+album {sharp|} 
+  {|album sharp} 
+hang {shelter|} 
+  {|hang shelter} 
+assess {peer|} 
+  {|assess peer} 
+king {weekly|} 
+  {|king weekly} 
+face {sixth|} 
+  {|face sixth} 
+suffer {bottom|} 
+  {|suffer bottom} 
+expose {animal|} 
+  {|expose animal} 
+stop {thick|} 
+  {|stop thick} 

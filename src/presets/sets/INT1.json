@@ -27,7 +27,12 @@
         {
             "display": "ICR",
             "filename": "INT1_ICR.json"
-        },{
+        },
+        {
+            "display": "Multi Words",
+            "filename": "INT1_MW.json"
+        },
+        {
             "display": "Recognition - Spell",
             "filename": "INT1_REC_Spell.json"
         },

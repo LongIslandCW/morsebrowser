@@ -1,0 +1,20 @@
+think {remark|} 
+  {|think remark} 
+sure {dead|} 
+  {|sure dead} 
+same {succeed|} 
+  {|same succeed} 
+door {agenda|} 
+  {|door agenda} 
+team {twelve|} 
+  {|team twelve} 
+admit {measure|} 
+  {|admit measure} 
+tend {exist|} 
+  {|tend exist} 
+should {nose|} 
+  {|should nose} 
+simple {away|} 
+  {|simple away} 
+stuff {acid|} 
+  {|stuff acid} 
