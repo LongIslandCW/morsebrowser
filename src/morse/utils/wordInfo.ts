@@ -48,6 +48,7 @@ export default class WordInfo {
             }
           }) */
           let preMathCheck = base.replace(/>/g, '').replace(/</g, '').split('').map(m => MorseStringUtils.wordifyPunctuation(m, true)).join(' ')
+          // fix for weird issue of voice treating e or E as exponent and spearking "multiply by" or something like that
           const replaceSpacesAroundE = (input) => {
             return input.replace(/(\d) e (\d)/gi, '$1,e,$2')
           }
