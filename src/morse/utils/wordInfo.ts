@@ -49,7 +49,7 @@ export default class WordInfo {
           }) */
           let preMathCheck = base.replace(/>/g, '').replace(/</g, '').split('').map(m => MorseStringUtils.wordifyPunctuation(m, true)).join(' ')
           const replaceSpacesAroundE = (input) => {
-            return input.replace(/(\d) E (\d)/g, '$1,E,$2')
+            return input.replace(/(\d) e (\d)/gi, '$1,e,$2')
           }
           preMathCheck = replaceSpacesAroundE(preMathCheck)
           /*
