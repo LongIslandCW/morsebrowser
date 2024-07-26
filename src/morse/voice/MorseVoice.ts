@@ -14,6 +14,7 @@ export class MorseVoice implements ICookieHandler {
   voiceEnabled:ko.Observable<boolean>
   voiceCapable:ko.Observable<boolean>
   voiceThinkingTime:ko.Observable<number>
+  voiceThinkingTimeWpm:ko.Computed<any>
   voiceAfterThinkingTime:ko.Observable<number>
   voiceVoice:ko.Computed<any>
   voiceVoiceName:ko.Observable<string>
@@ -87,6 +88,27 @@ export class MorseVoice implements ICookieHandler {
     }, this)
 
     this.voiceVoiceName.extend({ saveCookie: 'voiceVoiceName' } as ko.ObservableExtenderOptions<boolean>)
+
+    this.voiceThinkingTimeWpm = ko.computed(() => {
+      let vtt = this.voiceThinkingTime()
+      if (typeof vtt === 'string') {
+        vtt = parseFloat(vtt)
+      }
+      if (vtt) {
+        let wpm = 3.6/vtt
+        // Check if the result is an even number
+        if (wpm % 2 === 0) {
+            return Math.round(wpm);
+        }
+        
+        // Round to one decimal place if not even
+        return Math.round(wpm * 10) / 10;
+        
+      } else {
+        return "--"
+      }
+      
+    }, this)
   }
 
   initEasySpeech = async () => {
