@@ -6,3 +6,6 @@ NE
 PA 
 RI 
 TN 
+NT 
+NS 
+PE 
