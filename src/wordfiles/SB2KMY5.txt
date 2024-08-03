@@ -42,4 +42,14 @@ UT
 WA 
 WI 
 WY 
+BC 
+NB 
+NL 
+NT 
+NS 
+NU 
+ON 
+PE 
+SK 
+YT 
 
