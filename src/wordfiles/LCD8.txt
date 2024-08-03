@@ -7,4 +7,6 @@ ND
 SC 
 SD 
 TN 
-
+NL 
+NT 
+NS 
