@@ -48,3 +48,16 @@ WA
 WV 
 WI 
 WY 
+AB 
+BC 
+MB 
+NB 
+NL 
+NT 
+NS 
+NU 
+ON 
+PE 
+SK 
+QC 
+YT 
