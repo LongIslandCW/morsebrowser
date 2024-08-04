@@ -7,7 +7,7 @@
   \********************************/
 /***/ ((module) => {
 
-module.exports = "CT \n{ID|idaho} \nIL \n{IN|indiana} \nNC \nND \nSC \nSD \nTN \nNL \nNT \nNS \nPE \n";
+module.exports = "CT \n{ID|idaho} \nIL \n{IN|indiana} \nNC \nND \nSC \nSD \nTN \nNL \nNT \nNS \n";
 
 /***/ })
 
