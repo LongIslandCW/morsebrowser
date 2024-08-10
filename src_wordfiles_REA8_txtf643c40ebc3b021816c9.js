@@ -7,7 +7,7 @@
   \********************************/
 /***/ ((module) => {
 
-module.exports = "AR \n{OH|ohio} \n{OR|oregon}\nWA \n";
+module.exports = "AR \n{OH|ohio} \n{OR|oregon}\nWA \nAB \n";
 
 /***/ })
 
