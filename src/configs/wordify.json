@@ -134,6 +134,19 @@
 	{ "characters": "WX", "replacement": "Weather", "onlyAlone" : true},
 	{ "characters": "W", "replacement": "Watts", "onlyAlone" : true},
 	{ "characters": "X", "replacement": "X", "onlyAlone" : false, "overrideSpell" : true},
-	{ "characters": "YRS", "replacement": "Years", "onlyAlone" : true}
+	{ "characters": "YRS", "replacement": "Years", "onlyAlone" : true},
+	{ "characters": "AB", "replacement": "Alberta", "onlyAlone" : true},
+	{ "characters": "BC", "replacement": "British Columbia", "onlyAlone" : true},
+	{ "characters": "MB", "replacement": "Manitoba", "onlyAlone" : true},
+	{ "characters": "NB", "replacement": "New Brunswick", "onlyAlone" : true},
+	{ "characters": "NL", "replacement": "Newfondland and Labrador", "onlyAlone" : true},
+	{ "characters": "NT", "replacement": "Northwest Territories", "onlyAlone" : true},
+	{ "characters": "NS", "replacement": "Nova Scotia", "onlyAlone" : true},
+	{ "characters": "NU", "replacement": "Nunavut", "onlyAlone" : true},
+	{ "characters": "ON", "replacement": "Ontario", "onlyAlone" : true},
+	{ "characters": "PE", "replacement": "Prince Edward Island", "onlyAlone" : true},
+	{ "characters": "QC", "replacement": "Quebec", "onlyAlone" : true},
+	{ "characters": "SK", "replacement": "Saskatchewan", "onlyAlone" : true},
+	{ "characters": "YT", "replacement": "Yukon", "onlyAlone" : true}
 	]
 }
