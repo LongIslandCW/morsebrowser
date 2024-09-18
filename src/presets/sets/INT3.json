@@ -9,6 +9,10 @@
             "filename": "INT3_DEFAULT_20.json"
         },
         {
+            "display": "Affixes",
+            "filename": "INT3BUF.json"
+        },
+        {
             "display": "Familiarity Phrases",
             "filename": "INT3_FAM_Phrases.json"
         },
