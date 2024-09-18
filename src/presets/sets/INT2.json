@@ -9,6 +9,10 @@
             "filename": "INT2_Default_16.json"
         },
         {
+            "display": "Affixes",
+            "filename": "INT2BUF.json"
+        },
+        {
             "display": "Familiarity Phrases",
             "filename": "INT2_FAM_Phrases.json"
         },
