@@ -331,7 +331,7 @@
 {"sort": 263,"userTarget": "INSTRUCTOR","class": "BC2","letterGroup": "<AR><SK><BT>","newlineChunking": false,"display": "<BT>","fileName": "IB2ARSKBT4.json"}, 
 {"sort": 362,"userTarget": "INSTRUCTOR","class": "BC2","letterGroup": "<AR><SK><BT>","newlineChunking": true,"display": "<AR><SK><BT> FAMILIARITY","fileName": "BC2_FAM_Prosigns.txt"},  
 {"sort": 264,"userTarget": "INSTRUCTOR","class": "BC2","letterGroup": "<AR><SK><BT>","newlineChunking": false,"display": "<AR><SK><BT>","fileName": "IB2ARSKBT5.json"}, 
-{"sort": 265,"userTarget": "INSTRUCTOR","class": "BC2","letterGroup": "<AR><SK><BT>","newlineChunking": false,"display": "B1 <AR><SK><BT>","fileName": "SB2ARSKBT6.json"}, 
+{"sort": 265,"userTarget": "INSTRUCTOR","class": "BC2","letterGroup": "<AR><SK><BT>","newlineChunking": false,"display": "B1 REVIEW","fileName": "B1.json"}, 
 {"sort": 105,"userTarget": "INSTRUCTOR","class": "BC2","letterGroup": "<AR><SK><BT>","newlineChunking": true,"display": "Prosign Phrases - 1 Word","fileName": "B2_PRO_1W.txt"}, 
 {"sort": 105,"userTarget": "INSTRUCTOR","class": "BC2","letterGroup": "<AR><SK><BT>","newlineChunking": true,"display": "Prosign Phrases - 2 Word","fileName": "B2_PRO_2W.txt"}, 
 {"sort": 105,"userTarget": "INSTRUCTOR","class": "BC2","letterGroup": "<AR><SK><BT>","newlineChunking": true,"display": "Prosign Phrases - QSO","fileName": "B2_PRO_QSO.txt"}, 
