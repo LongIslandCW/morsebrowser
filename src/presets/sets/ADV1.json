@@ -8,6 +8,10 @@
             "display": "Affixes",
             "filename": "ADV1BUF.json"
         },
+       {
+            "display": "Bug",
+            "filename": "ADV1_Bug.json"
+        },
         {
             "display": "Familiarity Phrases",
             "filename": "ADV1_FAM_Phrases.json"
