@@ -569,10 +569,7 @@
      
 {"sort": 532,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "AFFIX","newlineChunking": true,"display": "PREFIXES","fileName": "PREFIX.txt"}, 
 {"sort": 533,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "AFFIX","newlineChunking": true,"display": "SUFFIXES","fileName": "SUFFIX.txt"}, 
-{"sort": 413,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "CHARACTERS","newlineChunking": false,"display": "LETTERS","fileName": "ADV1_L.json"}, 
-{"sort": 563,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "CHARACTERS","newlineChunking": false,"display": "LETTERS NUMBERS","fileName": "ADV1_LN.json"},
-{"sort": 415,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "CHARACTERS","newlineChunking": false,"display": "LETTERS NUMBERS PUNCTUATION","fileName": "ADV1_LNP.json"},         
-{"sort": 414,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "CHARACTERS","newlineChunking": false,"display": "NUMBERS","fileName": "ADV1_N.json"},              
+            
 {"sort": 563,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Abbreviations","fileName": "Fam_Abbrev.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Abbreviations - Extended","fileName": "Fam_Abbrev_Extended.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Alphabet","fileName": "Fam_Alph.txt"},
