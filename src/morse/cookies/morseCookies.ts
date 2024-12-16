@@ -4,6 +4,7 @@ import { GeneralUtils } from '../utils/general'
 import { CookieInfo } from './CookieInfo'
 import { ICookieHandler } from './ICookieHandler'
 import { SettingsChangeInfo } from '../settings/settingsChangeInfo'
+import MorseSettingsHandler from '../settings/morseSettingsHandler'
 
 export class MorseCookies {
   static registeredHandlers:ICookieHandler[] = []
@@ -18,7 +19,7 @@ export class MorseCookies {
       if (ctxt.allowSaveCookies() && settingsChangeInfo.isYourSettings) {
         // not currently locked out so save serialized settings
         // console.log('setting current serialized')
-        ctxt.currentSerializedSettings = ctxt.getCurrentSerializedSettings()
+        ctxt.currentSerializedSettings = MorseSettingsHandler.getCurrentSerializedSettings(ctxt)
       }
       if (ctxt.lockoutSaveCookiesTimerHandle) {
         clearTimeout(ctxt.lockoutSaveCookiesTimerHandle)

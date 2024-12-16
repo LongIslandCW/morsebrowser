@@ -19,11 +19,11 @@ import RssAccordion from './components/rssAccordion/rssAccordion'
 import FlaggedWordsAccordion from './components/flaggedWordsAccordion/flaggedWordsAccordion'
 import { CardBufferManager } from './utils/cardBufferManager'
 import WordInfo from './utils/wordInfo'
-import SavedSettingsInfo from './settings/savedSettingsInfo'
 import { PlayingTimeInfo } from './utils/playingTimeInfo'
 import { SettingsChangeInfo } from './settings/settingsChangeInfo'
-import { SettingsOption } from './settings/settingsOption'
 import { VoiceBufferInfo } from './voice/VoiceBufferInfo'
+import { GeneralUtils } from './utils/general'
+import MorseSettingsHandler from './settings/morseSettingsHandler'
 
 export class MorseViewModel {
   accessibilityAnnouncement:ko.Observable<string> = ko.observable(undefined)
@@ -115,19 +115,19 @@ export class MorseViewModel {
     this.rss = new MorseRssPlugin(new RssConfig(this.setText, this.fullRewind, this.doPlay, this.lastFullPlayTime, this.playerPlaying))
 
     // check for RSS feature turned on
-    if (this.getParameterByName('rssEnabled')) {
+    if (GeneralUtils.getParameterByName('rssEnabled')) {
       this.rss.rssEnabled(true)
       // this.initializeRss(null)
     }
 
     // check for noise feature turned on
-    if (this.getParameterByName('noiseEnabled')) {
-      this.noiseEnabled(this.getParameterByName('noiseEnabled') === 'true')
+    if (GeneralUtils.getParameterByName('noiseEnabled')) {
+      this.noiseEnabled(GeneralUtils.getParameterByName('noiseEnabled') === 'true')
     }
 
     // check for noise feature turned on
-    if (this.getParameterByName('morseDisabled')) {
-      this.morseDisabled(this.getParameterByName('morseDisabled') === 'true')
+    if (GeneralUtils.getParameterByName('morseDisabled')) {
+      this.morseDisabled(GeneralUtils.getParameterByName('morseDisabled') === 'true')
     }
 
     // seems to need to happen early
@@ -146,13 +146,13 @@ export class MorseViewModel {
     this.flaggedWords = new FlaggedWords()
 
     // check for voice feature turned on
-    if (this.getParameterByName('voiceEnabled')) {
+    if (GeneralUtils.getParameterByName('voiceEnabled')) {
       this.morseVoice.voiceEnabled(true)
     }
 
     // check for voicebuffermax
-    if (this.getParameterByName('voiceBufferMax')) {
-      this.morseVoice.voiceBufferMaxLength(parseInt(this.getParameterByName('voiceBufferMax')))
+    if (GeneralUtils.getParameterByName('voiceBufferMax')) {
+      this.morseVoice.voiceBufferMaxLength(parseInt(GeneralUtils.getParameterByName('voiceBufferMax')))
     }
     // are we on the dev site?
     this.isDev(window.location.href.toLowerCase().indexOf('/dev/') > -1)
@@ -172,7 +172,7 @@ export class MorseViewModel {
     this.shortcutKeys = new MorseShortcutKeys((key, title) => {
       this.allShortcutKeys.push({ key, title })
     })
-    this.registerKeyboardShortcutHandlers()
+    this.shortcutKeys.registerKeyboardShortcutHandlers(this)
 
     this.showRaw(false)
 
@@ -208,18 +208,6 @@ export class MorseViewModel {
     })
     const out = myPieces.filter(s => s).join('\n')
     this.flaggedWords.flaggedWords(out) */
-  }
-
-  // helper
-  // https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
-  getParameterByName = (name, url = window.location.href) => {
-    // eslint-disable-next-line no-useless-escape
-    name = name.replace(/[\[\]]/g, '\\$&')
-    const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)')
-    const results = regex.exec(url)
-    if (!results) return null
-    if (!results[2]) return ''
-    return decodeURIComponent(results[2].replace(/\+/g, ' '))
   }
 
   changeSentance = () => {
@@ -808,68 +796,6 @@ export class MorseViewModel {
     this.setText('')
   }
 
-  getCurrentSerializedSettings = () => {
-    const savedInfos:SavedSettingsInfo[] = []
-    const settings = { morseSettings: savedInfos }
-    savedInfos.push(new SavedSettingsInfo('wpm', this.settings.speed.wpm()))
-    savedInfos.push(new SavedSettingsInfo('fwpm', this.settings.speed.fwpm()))
-    /* savedInfos.push(new SavedSettingsInfo('ditFrequency', this.settings.frequency.ditFrequency()))
-    savedInfos.push(new SavedSettingsInfo('dahFrequency', this.settings.frequency.dahFrequency())) */
-    // savedInfos.push(new SavedSettingsInfo('preSpace', this.preSpace()))
-    savedInfos.push(new SavedSettingsInfo('xtraWordSpaceDits', this.xtraWordSpaceDits()))
-    savedInfos.push(new SavedSettingsInfo('volume', this.volume()))
-    savedInfos.push(new SavedSettingsInfo('stickySets', this.lessons.stickySets()))
-    savedInfos.push(new SavedSettingsInfo('ifStickySets', this.lessons.ifStickySets()))
-    savedInfos.push(new SavedSettingsInfo('syncWpm', this.settings.speed.syncWpm()))
-    /*   savedInfos.push(new SavedSettingsInfo('syncFreq', this.settings.frequency.syncFreq())) */
-    savedInfos.push(new SavedSettingsInfo('hideList', this.hideList()))
-    savedInfos.push(new SavedSettingsInfo('showRaw', this.showRaw()))
-    savedInfos.push(new SavedSettingsInfo('autoCloseLessonAccordian', this.lessons.autoCloseLessonAccordion()))
-    // savedInfos.push(new SavedSettingsInfo('cardFontPx', this.cardFontPx()))
-    savedInfos.push(new SavedSettingsInfo('customGroup', this.lessons.customGroup()))
-    savedInfos.push(new SavedSettingsInfo('showExpertSettings', this.showExpertSettings()))
-    savedInfos.push(new SavedSettingsInfo('voiceEnabled', this.morseVoice.voiceEnabled()))
-    savedInfos.push(new SavedSettingsInfo('voiceSpelling', this.morseVoice.voiceSpelling()))
-    savedInfos.push(new SavedSettingsInfo('voiceThinkingTime', this.morseVoice.voiceThinkingTime()))
-    savedInfos.push(new SavedSettingsInfo('voiceAfterThinkingTime', this.morseVoice.voiceAfterThinkingTime()))
-    savedInfos.push(new SavedSettingsInfo('voiceVolume', this.morseVoice.voiceVolume()))
-    savedInfos.push(new SavedSettingsInfo('voiceLastOnly', this.morseVoice.voiceLastOnly()))
-    savedInfos.push(new SavedSettingsInfo('voiceRecap', this.morseVoice.manualVoice()))
-
-    savedInfos.push(new SavedSettingsInfo('speakFirst', this.morseVoice.speakFirst()))
-    savedInfos.push(new SavedSettingsInfo('speakFirstRepeats', this.morseVoice.speakFirstRepeats()))
-    savedInfos.push(new SavedSettingsInfo('speakFirstAdditionalWordspaces', this.morseVoice.speakFirstAdditionalWordspaces()))
-
-    savedInfos.push(new SavedSettingsInfo('keepLines', this.settings.misc.newlineChunking()))
-    savedInfos.push(new SavedSettingsInfo('syncSize', this.lessons.syncSize()))
-
-    savedInfos.push(new SavedSettingsInfo('overrideSize', this.lessons.ifOverrideMinMax()))
-    savedInfos.push(new SavedSettingsInfo('overrideSizeMin', this.lessons.overrideMin()))
-    savedInfos.push(new SavedSettingsInfo('overrideSizeMax', this.lessons.overrideMax()))
-    savedInfos.push(new SavedSettingsInfo('cardSpace', this.cardSpace(), 'AKA cardWait'))
-
-    savedInfos.push(new SavedSettingsInfo('miscSettingsAccordionOpen', this.settings.misc.isMoreSettingsAccordionOpen))
-
-    savedInfos.push(new SavedSettingsInfo('speedInterval', this.settings.speed.speedInterval()))
-    savedInfos.push(new SavedSettingsInfo('intervalTimingsText', this.settings.speed.intervalTimingsText()))
-    savedInfos.push(new SavedSettingsInfo('intervalWpmText', this.settings.speed.intervalWpmText()))
-    savedInfos.push(new SavedSettingsInfo('intervalFwpmText', this.settings.speed.intervalFwpmText()))
-    savedInfos.push(new SavedSettingsInfo('voiceBufferMaxLength', this.morseVoice.voiceBufferMaxLength()))
-
-    return settings
-  }
-
-  saveSettings = () => {
-    const settings = this.getCurrentSerializedSettings()
-    const elemx = document.createElement('a')
-    elemx.href = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(settings, null, '\t')) // ! encodeURIComponent
-    elemx.download = 'LICWSettings.json'
-    elemx.style.display = 'none'
-    document.body.appendChild(elemx)
-    elemx.click()
-    document.body.removeChild(elemx)
-  }
-
   doApply = (fromUserClick:boolean = false) => {
     if (this.lessons.customGroup()) {
       this.lessons.doCustomGroup()
@@ -879,135 +805,12 @@ export class MorseViewModel {
     }
   }
 
-  settingsFileChange = (element) => {
-    // thanks to https://newbedev.com/how-to-access-file-input-with-knockout-binding
-    const file = element.files[0]
-    const fr = new FileReader()
-    fr.onload = (data) => {
-      // set to your settings
-      // this.lessons.selectedSettingsPreset(this.lessons.yourSettingsDummy)
-
-      // setTimeout(() => {
-      const settings = JSON.parse(data.target.result as string)
-      // this.setText(data.target.result as string)
-      // need to clear or else won't fire if use clears the text area
-      // and then tries to reload the same again
-      element.value = null
-      // request to undo "apply" after file load
-      // this.lessons.selectedDisplay({})
-      const settingsInfo = new SettingsChangeInfo(this)
-      settingsInfo.ifLoadSettings = true
-      settingsInfo.ignoreCookies = true
-      settingsInfo.custom = settings.morseSettings
-      settingsInfo.afterSettingsChange = () => {
-        // if (this.applyEnabled()) {
-        // this.doApply()
-        // }
-        // trigger a refresh with new settings
-        /* const originalText = this.rawText()
-        this.setText('')
-        this.setText(originalText) */
-      }
-      settingsInfo.keyBlacklist = ['cardFontPx', 'preSpace']
-      const option = new SettingsOption()
-      option.display = file.name.split('.')[0]
-      option.filename = file.name
-      option.isCustom = true
-      option.isDummy = false
-      option.morseSettings = settings.morseSettings
-      this.lessons.customSettingsOptions.push(option)
-      this.lessons.getSettingsPresets(true)
-      this.lessons.setPresetSelected(option)
-      // MorseCookies.loadCookiesOrDefaults(settingsInfo)
-      // }, 1000)
-    }
-    fr.readAsText(file)
+  saveSettings = () => {
+    MorseSettingsHandler.saveSettings(this)
   }
 
-  // Any object that has access to the ShortcutKeys object can register
-  // its own shortcuts, but for now we register them all centrally, which
-  // makes providing accessibility announcements in response to shortcuts
-  // a bit easier.
-  registerKeyboardShortcutHandlers = () => {
-    // Toggle play/pause
-    this.shortcutKeys.registerShortcutKeyHandler('p', 'Play / Toggle pause', () => {
-      this.togglePlayback()
-    })
-
-    // stop
-    this.shortcutKeys.registerShortcutKeyHandler('s', 'Stop playback and rewind', () => {
-      this.doPause(true, false, true)
-    })
-
-    // Back 1
-    this.shortcutKeys.registerShortcutKeyHandler(',', 'Back 1', () => {
-      this.decrementIndex()
-    })
-
-    // Full rewind
-    this.shortcutKeys.registerShortcutKeyHandler('<', 'Full rewind', () => {
-      this.fullRewind()
-    })
-
-    // Forward 1
-    this.shortcutKeys.registerShortcutKeyHandler('.', 'Forward 1', () => {
-      this.incrementIndex()
-    })
-
-    // Flag card
-    this.shortcutKeys.registerShortcutKeyHandler('f', 'Flag current card', () => {
-      const index = this.currentIndex()
-      const word = this.words()[index]
-      this.flaggedWords.addFlaggedWord(word)
-      this.accessibilityAnnouncement('Flagged')
-    })
-
-    // Toggle reveal cards
-    this.shortcutKeys.registerShortcutKeyHandler('c', 'Toggle card visibility', () => {
-      this.hideList(!this.hideList())
-      this.accessibilityAnnouncement(this.hideList() ? 'Cards hidden' : 'Cards revealed')
-    })
-
-    // Toggle shuffle
-    this.shortcutKeys.registerShortcutKeyHandler('/', 'Toggle shuffle', () => {
-      this.shuffleWords(false)
-      this.accessibilityAnnouncement(this.isShuffled() ? 'Shuffled' : 'Unshuffled')
-    })
-
-    // Toggle loop
-    this.shortcutKeys.registerShortcutKeyHandler('l', 'Toggle looping', () => {
-      this.loop(!this.loop())
-      this.accessibilityAnnouncement(this.loop() ? 'Looping' : 'Not looping')
-    })
-
-    const changeFarnsworth = (x) => {
-      const newWpm = parseInt(this.settings.speed.wpm() as any) + x
-      const newFwpm = parseInt(this.settings.speed.fwpm() as any) + x
-      if (newWpm < 1 || newFwpm < 1) {
-        return
-      }
-
-      if (this.settings.speed.syncWpm()) {
-        this.settings.speed.wpm(newWpm)
-        this.accessibilityAnnouncement('' + this.settings.speed.fwpm() + ' FWPM')
-        return
-      }
-
-      if (newFwpm > this.settings.speed.wpm()) {
-        this.settings.speed.wpm(newWpm)
-      }
-      this.settings.speed.fwpm(newFwpm)
-      this.accessibilityAnnouncement('' + this.settings.speed.fwpm() + ' FWPM')
-    }
-
-    // Reduce FWPM
-    this.shortcutKeys.registerShortcutKeyHandler('z', 'Reduce Farnsworth WPM', () => {
-      changeFarnsworth(-1)
-    })
-
-    // Increase FWPM
-    this.shortcutKeys.registerShortcutKeyHandler('x', 'Increase Farnsworth WPM', () => {
-      changeFarnsworth(1)
-    })
+  settingsFileChange = (element) => {
+    // thanks to https://newbedev.com/how-to-access-file-input-with-knockout-binding
+    MorseSettingsHandler.settingsFileChange(element, this)
   }
 }
