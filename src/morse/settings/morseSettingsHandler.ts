@@ -34,7 +34,7 @@ export default class MorseSettingsHandler {
     savedInfos.push(new SavedSettingsInfo('voiceRecap', morseViewModel.morseVoice.manualVoice()))
     savedInfos.push(new SavedSettingsInfo('speakFirst', morseViewModel.morseVoice.speakFirst()))
     savedInfos.push(
-      new SavedSettingsInfo('speakFirstRepeats', morseViewModel.morseVoice.speakFirstRepeats())
+      new SavedSettingsInfo('numberOfRepeats', morseViewModel.numberOfRepeats())
     )
     savedInfos.push(
       new SavedSettingsInfo(

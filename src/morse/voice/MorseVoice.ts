@@ -348,7 +348,8 @@ export class MorseVoice implements ICookieHandler {
 
     target = cookies.find(x => x.key === 'speakFirstRepeats')
     if (target) {
-      this.speakFirstRepeats(parseInt(target.val))
+      // for backwards compatibility with files that have old "speakFirstRepeats"
+      this.ctxt.numberOfRepeats(parseInt(target.val))
     }
 
     target = cookies.find(x => x.key === 'speakFirstAdditionalWordspaces')

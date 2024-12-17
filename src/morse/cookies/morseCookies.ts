@@ -62,6 +62,9 @@ export class MorseCookies {
             case 'dahFrequency':
               xtraspecialHandling.push(<CookieInfo>{ key, val })
               break
+            case 'numberOfRepeats':
+              ctxt[key](parseInt(val))
+              break
             default:
               if (typeof ctxt[key] !== 'undefined') {
                 if (key === 'xtraWordSpaceDits' && parseInt(val) === 0) {
