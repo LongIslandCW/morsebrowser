@@ -89,6 +89,7 @@ export class MorseViewModel {
   currentSerializedSettings:any = null
   allShortcutKeys:ko.ObservableArray
   applyEnabled:ko.Computed<boolean>
+  numberOfRepeats:ko.Observable<number> = ko.observable(0)
 
   // END KO observables declarations
   constructor () {
@@ -409,10 +410,18 @@ export class MorseViewModel {
       this.morseWordPlayer.pause(() => {
       // help trailing reveal, max should always be one behind before we're about to play
         this.maxRevealedTrail(this.currentIndex() - 1)
-        const config = this.getMorseStringToWavBufferConfig(
+        /* const config = this.getMorseStringToWavBufferConfig(
           this.cardBufferManager.getNextMorse(
             !this.morseVoice.speakFirst() ? 0 : parseInt(this.morseVoice.speakFirstRepeats() as any),
             !this.morseVoice.speakFirst() ? 0 : parseInt(this.morseVoice.speakFirstAdditionalWordspaces() as any)
+          )
+        ) */
+        console.log(`this.numberOfRepeats():${this.numberOfRepeats()}`)
+        const repeats = parseInt(this.numberOfRepeats() as any)
+        const config = this.getMorseStringToWavBufferConfig(
+          this.cardBufferManager.getNextMorse(
+            repeats + 1,
+            parseInt(this.morseVoice.speakFirstAdditionalWordspaces() as any)
           )
         )
         this.addToVoiceBuffer()

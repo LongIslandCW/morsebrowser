@@ -681,7 +681,39 @@
                                                 data-bind="attr:{ src: rss.rssEnabled() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
                                     </div> -->
 
-                                    <!--voice toggle-->
+                                    <!--repeats-->
+                                    <div class="input-group">
+                                        <div class="col-md-auto" data-bind="if: showExpertSettings()">
+                                            <div class="input-group">
+                                                <label for="numberOfRepeats" class="input-group-text">Repeats&nbsp;<img
+                                                        width=20 height=20
+                                                        data-bind="attr:{ src: morseLoadImages().getSrc('repeatImage')}"
+                                                        alt=""></label>
+                                                <input id="numberOfRepeats" name="numberOfRepeats" type="number"
+                                                    style="max-width:75px; min-width: 75px;" class="form-control"
+                                                    min="0" max="10" step="1" data-bind="textInput: numberOfRepeats">
+                                                <label for="speakFirstAdditionalWordspaces"
+                                                    class="input-group-text">Repeat
+                                                    Spacing<img width=20 height=20
+                                                        data-bind="attr:{ src: morseLoadImages().getSrc('stopwatchImage')}"
+                                                        alt=""></label>
+                                                <input id="speakFirstAdditionalWordspaces"
+                                                    name="speakFirstAdditionalWordspaces" type="number"
+                                                    style="max-width:75px; min-width: 75px;" class="form-control"
+                                                    min="0" max="10" step="1"
+                                                    data-bind="textInput: morseVoice.speakFirstAdditionalWordspaces">
+                                            </div>
+                                            <!-- repeat delays-->
+
+
+
+
+
+
+                                            <!--voice toggle-->
+                                        </div>
+                                    </div>
+
                                     <div class="input-group">
                                         <div class="col-auto" data-bind="visible: showExpertSettings">
 
@@ -745,7 +777,7 @@
                                             </label>
                                         </div>
                                         <!-- voice speakfirstrepeats-->
-                                        <div class="col-md-auto"
+                                        <!-- <div class="col-md-auto"
                                             data-bind="if: showExpertSettings() && morseVoice.voiceEnabled()">
                                             <div class="input-group">
                                                 <label for="speakFirstRepeats"
@@ -757,9 +789,9 @@
                                                     min="0" max="10" step="1"
                                                     data-bind="textInput: morseVoice.speakFirstRepeats">
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <!-- voice speakfirst additionalwordspaces-->
-                                        <div class="col-md-auto"
+                                        <!-- <div class="col-md-auto"
                                             data-bind="if: showExpertSettings() && morseVoice.voiceEnabled()">
                                             <div class="input-group">
                                                 <label for="speakFirstAdditionalWordspaces"
@@ -772,7 +804,7 @@
                                                     min="0" max="10" step="1"
                                                     data-bind="textInput: morseVoice.speakFirstAdditionalWordspaces">
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <!-- voice thinktime-->
                                         <div class="col-md-auto"
                                             data-bind="if: showExpertSettings() && morseVoice.voiceEnabled()">
