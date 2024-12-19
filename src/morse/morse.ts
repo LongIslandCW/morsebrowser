@@ -90,6 +90,7 @@ export class MorseViewModel {
   allShortcutKeys:ko.ObservableArray
   applyEnabled:ko.Computed<boolean>
   numberOfRepeats:ko.Observable<number> = ko.observable(0)
+  testTonePlaying:boolean = false
 
   // END KO observables declarations
   constructor () {
@@ -344,12 +345,20 @@ export class MorseViewModel {
   }
 
   testTone = () => {
-    const config = this.getMorseStringToWavBufferConfig('T')
-    config.isToneTest = true
-    this.morseWordPlayer.play(config, (fromVoiceOrTrail) => {
-      // this.charsPlayed(this.charsPlayed() + config.word.replace(' ', '').length)
-      // this.playEnded(fromVoiceOrTrail)
-    })
+    if (!this.testTonePlaying) {
+      const config = this.getMorseStringToWavBufferConfig('T')
+      config.isToneTest = true
+      this.testTonePlaying = true
+      setTimeout(() => {
+        this.morseWordPlayer.play(config, (fromVoiceOrTrail) => {
+          this.testTonePlaying = false
+        })
+      }, 0)
+    } else {
+      this.morseWordPlayer.pause(() => {
+        this.testTonePlaying = false
+      }, false)
+    }
   }
 
   // Convenience method for toggling playback
