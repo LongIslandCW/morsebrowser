@@ -199,7 +199,11 @@ export default class SmoothedSoundsPlayer implements ISoundMaker {
     const wordSpaceTime = wavInfo.timingUnits.wordSpaceMultiplier * wavInfo.timingUnits.calculatedFWUnitsMs
     const xtraWordSpaceDits = this.config.xtraWordSpaceDits * wavInfo.timingUnits.calculatedFWUnitsMs * wavInfo.timingUnits.ditUnitMultiPlier
     const endTime = config.trimLastWordSpace ? 0 : wordSpaceTime + xtraWordSpaceDits
-    return wavInfo.timeLine[l - 1].time + endTime
+    let ret = wavInfo.timeLine[l - 1].time + endTime
+    if (config.isToneTest) {
+      ret += config.testToneDuration
+    }
+    return ret
   }
 
   forceStop = (pauseCallBack, killNoise) => {
@@ -212,7 +216,13 @@ export default class SmoothedSoundsPlayer implements ISoundMaker {
       if (this.ssContext) {
         if (!this.sourceEnded) {
           this.sourceEndedCallBack = pauseCallBack
-          this.ssContext.stopAndCloseContext()
+          /* not sure why pauseCallBack is not passed for everything, but is
+          needed for tone tests */
+          if (!this.config.isToneTest) {
+            this.ssContext.stopAndCloseContext()
+          } else {
+            this.ssContext.stopAndCloseContext(pauseCallBack)
+          }
         } else {
           pauseCallBack()
         }

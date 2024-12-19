@@ -24,6 +24,7 @@ import { SettingsChangeInfo } from './settings/settingsChangeInfo'
 import { VoiceBufferInfo } from './voice/VoiceBufferInfo'
 import { GeneralUtils } from './utils/general'
 import MorseSettingsHandler from './settings/morseSettingsHandler'
+import { clear } from 'console'
 
 export class MorseViewModel {
   accessibilityAnnouncement:ko.Observable<string> = ko.observable(undefined)
@@ -91,6 +92,8 @@ export class MorseViewModel {
   applyEnabled:ko.Computed<boolean>
   numberOfRepeats:ko.Observable<number> = ko.observable(0)
   testTonePlaying:boolean = false
+  testToneCount:number = 0
+  testToneFlagHandle:any = 0
 
   // END KO observables declarations
   constructor () {
@@ -314,7 +317,7 @@ export class MorseViewModel {
     }
   }
 
-  getMorseStringToWavBufferConfig = (text) => {
+  getMorseStringToWavBufferConfig = (text, isToneTest:boolean = false) => {
     const config = new SoundMakerConfig()
     config.word = MorseStringUtils.doReplacements(text)
     const speeds = this.settings.speed.getApplicableSpeed(this.playingTime())
@@ -322,7 +325,11 @@ export class MorseViewModel {
     config.fwpm = parseInt(speeds.fwpm as any)
     config.ditFrequency = parseInt(this.settings.frequency.ditFrequency() as any)
     config.dahFrequency = parseInt(this.settings.frequency.dahFrequency() as any)
-    config.prePaddingMs = this.preSpaceUsed() ? 0 : this.preSpace() * 1000
+    if (!isToneTest) {
+      config.prePaddingMs = this.preSpaceUsed() ? 0 : this.preSpace() * 1000
+    } else {
+      config.prePaddingMs = 0
+    }
     // note this was changed so UI is min 1 meaning 0, 1=>7, 2=>14 etc
     config.xtraWordSpaceDits = (parseInt(this.xtraWordSpaceDits() as any) - 1) * 7
     config.volume = parseInt(this.volume() as any)
@@ -340,21 +347,31 @@ export class MorseViewModel {
       config.voiceEnabled = this.morseVoice.voiceEnabled()
     }
     config.morseDisabled = this.morseDisabled()
+    if (isToneTest) {
+      config.trimLastWordSpace = true
+    }
+    config.isToneTest = isToneTest
 
     return config
   }
 
   testTone = () => {
+    console.log(`testTone clidked playing status ${this.testTonePlaying}`)
     if (!this.testTonePlaying) {
-      const config = this.getMorseStringToWavBufferConfig('T')
+      const config = this.getMorseStringToWavBufferConfig('T', true)
       config.isToneTest = true
       this.testTonePlaying = true
-      setTimeout(() => {
-        this.morseWordPlayer.play(config, (fromVoiceOrTrail) => {
-          this.testTonePlaying = false
-        })
-      }, 0)
+      // console.log(`testTone clidked playing status now ${this.testTonePlaying}`)
+      this.morseWordPlayer.play(config, (fromVoiceOrTrail) => {})
+      // TODO: avoid hardcoding the 10 seconds, this seemed to be the easiset way
+      // to flip the flag, passing in callbacks was buggy for some reason
+      this.testToneFlagHandle = setTimeout(() => {
+        this.testTonePlaying = false
+        // console.log('testtone ended')
+      }, 10000)
     } else {
+      clearTimeout(this.testToneFlagHandle)
+      // console.log('stopping test tone')
       this.morseWordPlayer.pause(() => {
         this.testTonePlaying = false
       }, false)
