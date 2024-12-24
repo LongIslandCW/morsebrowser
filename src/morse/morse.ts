@@ -25,6 +25,7 @@ import { VoiceBufferInfo } from './voice/VoiceBufferInfo'
 import { GeneralUtils } from './utils/general'
 import MorseSettingsHandler from './settings/morseSettingsHandler'
 import { clear } from 'console'
+import ScreenWakeLock from './utils/screenWakeLock'
 
 export class MorseViewModel {
   accessibilityAnnouncement:ko.Observable<string> = ko.observable(undefined)
@@ -94,6 +95,7 @@ export class MorseViewModel {
   testTonePlaying:boolean = false
   testToneCount:number = 0
   testToneFlagHandle:any = 0
+  screenWakeLock:ScreenWakeLock
 
   // END KO observables declarations
   constructor () {
@@ -187,6 +189,8 @@ export class MorseViewModel {
       }
       return this.lessons.selectedDisplay().display && !this.lessons.selectedDisplay().isDummy
     }, this)
+
+    this.screenWakeLock = new ScreenWakeLock()
   }
   // END CONSTRUCTOR
 
