@@ -534,7 +534,7 @@
 {"sort": 563,"userTarget": "STUDENT","class": "INT 3","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Abbreviations - Extended","fileName": "Fam_Abbrev_Extended.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "INT 3","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Letters","fileName": "Fam_L.json"},
                 {"sort": 563,"userTarget": "STUDENT","class": "INT 3","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Letter numbers","fileName": "Fam_LN.json"},
-        {"sort": 415,"userTarget": "STUDENT","class": "INT 3","letterGroup": "CHARACTERS","newlineChunking": false,"display": "Letters Punctuation Numbers","fileName": "Fam_LNP.json"},
+        {"sort": 415,"userTarget": "STUDENT","class": "INT 3","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Letters Punctuation Numbers","fileName": "Fam_LNP.json"},
 {"sort": 563,"userTarget": "STUDENT","class": "INT 3","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Numbers","fileName": "Fam_N.json"},
 {"sort": 563,"userTarget": "STUDENT","class": "INT 3","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Phrases 3 Line","fileName": "INT3_Fam_Phrases_3L.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "INT 3","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Phrases 4 Line","fileName": "INT3_Fam_Phrases_4L.txt"},  
