@@ -410,7 +410,7 @@
 {"sort": 415,"userTarget": "STUDENT","class": "INT 1","letterGroup": "CHARACTERS","newlineChunking": true,"display": "CHALLENGE 2 LETTERS-NUMBERS","fileName": "ICR38.txt"}, 
 {"sort": 415,"userTarget": "STUDENT","class": "INT 1","letterGroup": "CHARACTERS","newlineChunking": true,"display": "CHALLENGE 3 LETTERS-NUMBERS","fileName": "ICR35.txt"},        
 {"sort": 413,"userTarget": "STUDENT","class": "INT 1","letterGroup": "CHARACTERS","newlineChunking": false,"display": "LETTERS","fileName": "INT1.json"}, 
-            {"sort": 413,"userTarget": "STUDENT","class": "INT 1","letterGroup": "CHARACTERS","newlineChunking": true,"display": "LETTERS NUMBERS","fileName": "Fam_LN.txt"}, 
+            {"sort": 413,"userTarget": "STUDENT","class": "INT 1","letterGroup": "CHARACTERS","newlineChunking": false,"display": "LETTERS NUMBERS","fileName": "Fam_LN.txt"}, 
 {"sort": 415,"userTarget": "STUDENT","class": "INT 1","letterGroup": "CHARACTERS","newlineChunking": false,"display": "LETTERS PUNCTUATION NUMBERS","fileName": "INT3.json"}, 
 {"sort": 414,"userTarget": "STUDENT","class": "INT 1","letterGroup": "CHARACTERS","newlineChunking": false,"display": "NUMBERS","fileName": "INT2.json"},    
 {"sort": 416,"userTarget": "STUDENT","class": "INT 1","letterGroup": "CHARACTERS","newlineChunking": false,"display": "PROSIGNS and BK","fileName": "INT8.json"},     
