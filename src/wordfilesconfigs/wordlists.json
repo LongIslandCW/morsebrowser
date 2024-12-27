@@ -629,23 +629,16 @@
         
 {"sort": 532,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "AFFIX","newlineChunking": true,"display": "PREFIXES","fileName": "PREFIX.txt"}, 
 {"sort": 533,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "AFFIX","newlineChunking": true,"display": "SUFFIXES","fileName": "SUFFIX.txt"},  
-
-    {"sort": 413,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "CHARACTERS","newlineChunking": false,"display": "LETTERS","fileName": "INT1.json"}, 
-
-            {"sort": 413,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "CHARACTERS","newlineChunking": false,"display": "LETTERS NUMBERS","fileName": "INT5.json"}, 
-
+{"sort": 413,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "CHARACTERS","newlineChunking": false,"display": "LETTERS","fileName": "INT1.json"}, 
+{"sort": 413,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "CHARACTERS","newlineChunking": false,"display": "LETTERS NUMBERS","fileName": "INT5.json"}, 
 {"sort": 415,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "CHARACTERS","newlineChunking": false,"display": "LETTERS PUNCTUATION NUMBERS","fileName": "INT3.json"}, 
-
 {"sort": 414,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "CHARACTERS","newlineChunking": false,"display": "NUMBERS","fileName": "INT2.json"}, 
-
-
-        
 {"sort": 563,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Abbreviations","fileName": "Fam_Abbrev.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Abbreviations - Extended","fileName": "Fam_Abbrev_Extended.txt"},
-    {"sort": 563,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Letters","fileName": "Fam_L.json"},
-                {"sort": 563,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Letter numbers","fileName": "Fam_LN.json"},
-                {"sort": 415,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Letters Punctuation Numbers","fileName": "Fam_LNP.json"}, 
-    {"sort": 563,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Numbers","fileName": "Fam_N.json"},
+{"sort": 563,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Letters","fileName": "Fam_L.json"},
+{"sort": 563,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Letter numbers","fileName": "Fam_LN.json"},
+{"sort": 415,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Letters Punctuation Numbers","fileName": "Fam_LNP.json"}, 
+{"sort": 563,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Numbers","fileName": "Fam_N.json"},
 {"sort": 563,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Phrases 4 Line","fileName": "ADV2_Fam_Phrases_4L.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Phrases QSO","fileName": "ADV2_Fam_Phrases_QSO.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Punctuation","fileName": "Fam_Punc._PS.txt"},
@@ -657,7 +650,7 @@
 {"sort": 563,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Words-3","fileName": "Fam_Words - 3.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Words-4","fileName": "Fam_Words - 4.txt"},
 {"sort": 413,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "ICR","newlineChunking": false,"display": "LETTERS","fileName": "INT1.json"},
-         {"sort": 413,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "ICR","newlineChunking": false,"display": "LETTERS NUMBERS","fileName": "Fam_LN.txt"}, 
+{"sort": 413,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "ICR","newlineChunking": false,"display": "LETTERS NUMBERS","fileName": "Fam_LN.txt"}, 
 {"sort": 415,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "ICR","newlineChunking": false,"display": "LETTERS PUNCTUATION NUMBERS","fileName": "INT3.json"}, 
 {"sort": 414,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "ICR","newlineChunking": false,"display": "NUMBERS","fileName": "INT2.json"}, 
 {"sort": 417,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "ICR","newlineChunking": false,"display": "PUNCTUATION","fileName": "INT4.json"},  
