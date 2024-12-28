@@ -449,13 +449,13 @@ export class MorseViewModel {
 
         /*
         0: play 1 time (i.e. don't repeat)
-        1: play 1 times (i.e. don't repeat)
-        2: play 2 times  (i.e. once + one repeat)
+        1: play 2 times
+        2: play 3 times
         */
         const repeats = parseInt(this.numberOfRepeats() as any) === 0 ? 0 : parseInt(this.numberOfRepeats() as any) - 1
         const config = this.getMorseStringToWavBufferConfig(
           this.cardBufferManager.getNextMorse(
-            repeats + 1,
+            repeats,
             parseInt(this.morseVoice.speakFirstAdditionalWordspaces() as any)
           )
         )
