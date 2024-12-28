@@ -1,7 +1,7 @@
 {
      "letters": "1234567890",
-     "minWordSize": 2,
-     "maxWordSize": 2,
+     "minWordSize": 1,
+     "maxWordSize": 1,
      "practiceSeconds" : 120
 
  }
