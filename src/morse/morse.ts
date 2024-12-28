@@ -452,7 +452,7 @@ export class MorseViewModel {
         1: play 2 times
         2: play 3 times etc.
         */
-        const repeats = parseInt(this.numberOfRepeats() as any) === 0 ? 0 : parseInt(this.numberOfRepeats() as any) - 1
+        const repeats = parseInt(this.numberOfRepeats() as any) === 0 ? 0 : parseInt(this.numberOfRepeats() as any) + 1
         const config = this.getMorseStringToWavBufferConfig(
           this.cardBufferManager.getNextMorse(
             repeats,
