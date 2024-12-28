@@ -406,7 +406,8 @@
 
         
 {"sort": 424,"userTarget": "STUDENT","class": "INT 1","letterGroup": "CALLSIGNS","newlineChunking": true,"display": "3-4 CHARACTERS","fileName": "ICR15.txt"}, 
-{"sort": 424,"userTarget": "STUDENT","class": "INT 1","letterGroup": "CALLSIGNS","newlineChunking": true,"display": "3-5 CHARACTERS","fileName": "ICR16.txt"},       
+{"sort": 424,"userTarget": "STUDENT","class": "INT 1","letterGroup": "CALLSIGNS","newlineChunking": true,"display": "3-5 CHARACTERS","fileName": "ICR16.txt"},   
+                {"sort": 545,"userTarget": "STUDENT","class": "INT 1","letterGroup": "Call Signs","newlineChunking": true,"display": "US CALLSIGNS","fileName": "US_CS.txt"},
 {"sort": 168,"userTarget": "STUDENT","class": "INT 1","letterGroup": "CHARACTERS","newlineChunking": false,"display": "B1B2 REVIEW","fileName": "SB2C1.json"}, 
 {"sort": 415,"userTarget": "STUDENT","class": "INT 1","letterGroup": "CHARACTERS","newlineChunking": true,"display": "CHALLENGE 2 LETTERS-NUMBERS","fileName": "ICR38.txt"}, 
 {"sort": 415,"userTarget": "STUDENT","class": "INT 1","letterGroup": "CHARACTERS","newlineChunking": true,"display": "CHALLENGE 3 LETTERS-NUMBERS","fileName": "ICR35.txt"},        
@@ -460,6 +461,7 @@
 {"sort": 424,"userTarget": "STUDENT","class": "INT 2","letterGroup": "AFFIX","newlineChunking": true,"display": "SUFFIX","fileName": "SUFFIX.txt"},
 {"sort": 424,"userTarget": "STUDENT","class": "INT 2","letterGroup": "CALLSIGNS","newlineChunking": true,"display": "CALLSIGNS 3-4 CHARACTERS","fileName": "ICR15.txt"}, 
 {"sort": 424,"userTarget": "STUDENT","class": "INT 2","letterGroup": "CALLSIGNS","newlineChunking": true,"display": "CALLSIGNS 3-5 CHARACTERS","fileName": "ICR16.txt"},
+        {"sort": 545,"userTarget": "STUDENT","class": "INT 2","letterGroup": "Call Signs","newlineChunking": true,"display": "US CALLSIGNS","fileName": "US_CS.txt"},
 {"sort": 415,"userTarget": "STUDENT","class": "INT 2","letterGroup": "CHARACTERS","newlineChunking": true,"display": "CHALLENGE 3 LETTERS-NUMBERS","fileName": "ICR35.txt"}, 
 {"sort": 415,"userTarget": "STUDENT","class": "INT 2","letterGroup": "CHARACTERS","newlineChunking": true,"display": "CHALLENGE 4 LETTERS-NUMBERS","fileName": "ICR36.txt"}, 
 {"sort": 413,"userTarget": "STUDENT","class": "INT 2","letterGroup": "CHARACTERS","newlineChunking": false,"display": "LETTERS","fileName": "INT1.json"}, 
@@ -519,8 +521,9 @@
 {"sort": 423,"userTarget": "STUDENT","class": "INT 3","letterGroup": "AFFIX","newlineChunking": true,"display": "PREFIX","fileName": "PREFIX.txt"}, 
 {"sort": 424,"userTarget": "STUDENT","class": "INT 3","letterGroup": "AFFIX","newlineChunking": true,"display": "SUFFIX","fileName": "SUFFIX.txt"}, 
 {"sort": 424,"userTarget": "STUDENT","class": "INT 3","letterGroup": "CALLSIGNS","newlineChunking": true,"display": "3-6 CHARACTERS","fileName": "ICR17.txt"}, 
-{"sort": 424,"userTarget": "STUDENT","class": "INT 3","letterGroup": "CALLSIGNS","newlineChunking": true,"display": "7-8 CHARACTERS","fileName": "ICR18.txt"},  
-{"sort": 415,"userTarget": "STUDENT","class": "INT 3","letterGroup": "CHARACTERS","newlineChunking": true,"display": "CHALLENGE 4 LETTERS-NUMBERS","fileName": "ICR36.txt"}, 
+{"sort": 424,"userTarget": "STUDENT","class": "INT 3","letterGroup": "CALLSIGNS","newlineChunking": true,"display": "7-8 CHARACTERS","fileName": "ICR18.txt"},
+         {"sort": 545,"userTarget": "STUDENT","class": "INT 3","letterGroup": "Call Signs","newlineChunking": true,"display": "US CALLSIGNS","fileName": "US_CS.txt"},
+{"sort": 415,"userTarget": "STUDENT","class": "INT 3","letterGroup": "CHARACTERS","newlineChunking": true,"display": "CHALLENGE 4 LETTERS-NUMBERS","fileName": "ICR36.txt"},  
 {"sort": 415,"userTarget": "STUDENT","class": "INT 3","letterGroup": "CHARACTERS","newlineChunking": true,"display": "CHALLENGE 5 LETTERS-NUMBERS","fileName": "ICR37.txt"},         
 {"sort": 413,"userTarget": "STUDENT","class": "INT 3","letterGroup": "CHARACTERS","newlineChunking": false,"display": "LETTERS","fileName": "INT1.json"}, 
 {"sort": 413,"userTarget": "STUDENT","class": "INT 3","letterGroup": "CHARACTERS","newlineChunking": false,"display": "LETTERS NUMBERS","fileName": "INT5.json"}, 
@@ -579,6 +582,9 @@
      
 {"sort": 532,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "AFFIX","newlineChunking": true,"display": "PREFIXES","fileName": "PREFIX.txt"}, 
 {"sort": 533,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "AFFIX","newlineChunking": true,"display": "SUFFIXES","fileName": "SUFFIX.txt"},
+        {"sort": 424,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "CALLSIGNS","newlineChunking": true,"display": "3-6 CHARACTERS","fileName": "ICR17.txt"}, 
+        {"sort": 424,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "CALLSIGNS","newlineChunking": true,"display": "7-8 CHARACTERS","fileName": "ICR18.txt"},
+        {"sort": 545,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "Call Signs","newlineChunking": true,"display": "US CALLSIGNS","fileName": "US_CS.txt"},
 {"sort": 413,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "CHARACTERS","newlineChunking": false,"display": "LETTERS","fileName": "INT1.json"}, 
 {"sort": 413,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "CHARACTERS","newlineChunking": false,"display": "LETTERS NUMBERS","fileName": "INT5.json"}, 
 {"sort": 415,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "CHARACTERS","newlineChunking": false,"display": "LETTERS PUNCTUATION NUMBERS","fileName": "INT3.json"}, 
@@ -629,7 +635,10 @@
 
         
 {"sort": 532,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "AFFIX","newlineChunking": true,"display": "PREFIXES","fileName": "PREFIX.txt"}, 
-{"sort": 533,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "AFFIX","newlineChunking": true,"display": "SUFFIXES","fileName": "SUFFIX.txt"},  
+{"sort": 533,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "AFFIX","newlineChunking": true,"display": "SUFFIXES","fileName": "SUFFIX.txt"},
+                {"sort": 424,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "CALLSIGNS","newlineChunking": true,"display": "3-6 CHARACTERS","fileName": "ICR17.txt"}, 
+        {"sort": 424,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "CALLSIGNS","newlineChunking": true,"display": "7-8 CHARACTERS","fileName": "ICR18.txt"},
+        {"sort": 545,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "Call Signs","newlineChunking": true,"display": "US CALLSIGNS","fileName": "US_CS.txt"},
 {"sort": 413,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "CHARACTERS","newlineChunking": false,"display": "LETTERS","fileName": "INT1.json"}, 
 {"sort": 413,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "CHARACTERS","newlineChunking": false,"display": "LETTERS NUMBERS","fileName": "INT5.json"}, 
 {"sort": 415,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "CHARACTERS","newlineChunking": false,"display": "LETTERS PUNCTUATION NUMBERS","fileName": "INT3.json"}, 
@@ -679,7 +688,10 @@
        
         
 {"sort": 532,"userTarget": "STUDENT","class": "ADV 3","letterGroup": "AFFIX","newlineChunking": true,"display": "PREFIXES","fileName": "PREFIX.txt"}, 
-{"sort": 533,"userTarget": "STUDENT","class": "ADV 3","letterGroup": "AFFIX","newlineChunking": true,"display": "SUFFIXES","fileName": "SUFFIX.txt"},  
+{"sort": 533,"userTarget": "STUDENT","class": "ADV 3","letterGroup": "AFFIX","newlineChunking": true,"display": "SUFFIXES","fileName": "SUFFIX.txt"},
+                {"sort": 424,"userTarget": "STUDENT","class": "ADV 3","letterGroup": "CALLSIGNS","newlineChunking": true,"display": "3-6 CHARACTERS","fileName": "ICR17.txt"}, 
+        {"sort": 424,"userTarget": "STUDENT","class": "ADV 3","letterGroup": "CALLSIGNS","newlineChunking": true,"display": "7-8 CHARACTERS","fileName": "ICR18.txt"},
+        {"sort": 545,"userTarget": "STUDENT","class": "ADV 3","letterGroup": "Call Signs","newlineChunking": true,"display": "US CALLSIGNS","fileName": "US_CS.txt"},
 {"sort": 413,"userTarget": "STUDENT","class": "ADV 3","letterGroup": "CHARACTERS","newlineChunking": false,"display": "LETTERS","fileName": "INT1.json"}, 
 {"sort": 413,"userTarget": "STUDENT","class": "ADV 3","letterGroup": "CHARACTERS","newlineChunking": false,"display": "LETTERS NUMBERS","fileName": "INT5.json"}, 
 {"sort": 415,"userTarget": "STUDENT","class": "ADV 3","letterGroup": "CHARACTERS","newlineChunking": false,"display": "LETTERS PUNCTUATION NUMBERS","fileName": "INT3.json"}, 
