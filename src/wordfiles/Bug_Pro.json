@@ -2,5 +2,6 @@
      "letters": "<AR><SK><BT>BK",
      "minWordSize": 2,
      "maxWordSize": 2,
+     "stickySets": "BK",
      "practiceSeconds" : 120
  }
