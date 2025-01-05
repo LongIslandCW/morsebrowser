@@ -723,5 +723,6 @@
 {"sort": 527,"userTarget": "STUDENT","class": "ADV 3","letterGroup": "WORDS","newlineChunking": true,"display": "12 LETTERS","fileName": "Words_12L.txt"}, 
 {"sort": 528,"userTarget": "STUDENT","class": "ADV 3","letterGroup": "WORDS","newlineChunking": true,"display": "13 LETTERS","fileName": "Words_13L.txt"}, 
 {"sort": 529,"userTarget": "STUDENT","class": "ADV 3","letterGroup": "WORDS","newlineChunking": true,"display": "14 LETTERS","fileName": "Words_14L.txt"},    
-{"sort": 535,"userTarget": "STUDENT","class": "ADV 3","letterGroup": "WORDS","newlineChunking": true,"display": "TOP 500 WORDS","fileName": "INT13.txt"} 
+{"sort": 535,"userTarget": "STUDENT","class": "ADV 3","letterGroup": "WORDS","newlineChunking": true,"display": "TOP 500 WORDS","fileName": "INT13.txt"},
+        {"sort": 424,"userTarget": "STUDENT","class": "BUG SENDING","letterGroup": "CALLSIGNS","newlineChunking": true,"display": "CALLSIGNS 3-4 CHARACTERS","fileName": "ICR15.txt"}
 ]}
