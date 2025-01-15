@@ -9,6 +9,10 @@
             "filename": "INT1_DEFAULT_15.json"
         },
         {
+            "display": "Call Signs",
+            "filename": "INT1_CS.json"
+        },
+        {
             "display": "Familiarity Phrases",
             "filename": "INT1_FAM_Phrases.json"
         },

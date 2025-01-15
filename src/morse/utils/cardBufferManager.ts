@@ -32,6 +32,7 @@ export class CardBufferManager {
   }
 
   populateBuffer = (repeats:number = 0, additionalWordSpaces:number = 0) => {
+    console.log(`populateBuffer repeats${repeats}`)
     this._buffer = []
     this._buffer.push(new CardWord(this._getWords()[this._getCurrentIndex()].displayWord))
     // debugger

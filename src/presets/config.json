@@ -67,6 +67,11 @@
             "className": "ADV 3",
             "defaultSetFile": "ADV3.json",
             "letterGroups": []
+        },
+        {
+            "className": "ICR+",
+            "defaultSetFile": "ICR+.json",
+            "letterGroups": []
         }
     ]
 }

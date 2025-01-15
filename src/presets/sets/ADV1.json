@@ -9,6 +9,10 @@
             "filename": "ADV1BUF.json"
         },
         {
+            "display": "Call Signs",
+            "filename": "ADV1_CS.json"
+        },
+        {
             "display": "Familiarity Phrases",
             "filename": "ADV1_FAM_Phrases.json"
         },

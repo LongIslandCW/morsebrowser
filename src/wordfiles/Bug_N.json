@@ -1,0 +1,6 @@
+{
+     "letters": "1234567890",
+     "minWordSize": 2,
+     "maxWordSize": 2,
+     "practiceSeconds" : 120
+ }

@@ -13,6 +13,10 @@
             "filename": "INT2BUF.json"
         },
         {
+            "display": "Call Signs",
+            "filename": "INT2_CS.json"
+        },
+        {
             "display": "Familiarity Phrases",
             "filename": "INT2_FAM_Phrases.json"
         },

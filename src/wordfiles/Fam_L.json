@@ -1,0 +1,7 @@
+{
+     "letters": "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+     "minWordSize": 1,
+     "maxWordSize": 1,
+     "practiceSeconds" : 120
+
+ }

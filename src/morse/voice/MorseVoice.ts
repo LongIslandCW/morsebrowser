@@ -89,25 +89,34 @@ export class MorseVoice implements ICookieHandler {
 
     this.voiceVoiceName.extend({ saveCookie: 'voiceVoiceName' } as ko.ObservableExtenderOptions<boolean>)
 
+    ko.extenders.turnOffSpeakFirstWithVoiceOff = (target, option) => {
+      target.subscribe((newValue) => {
+        if (!newValue) {
+          this.speakFirst(false)
+        }
+      })
+      return target
+    }
+
+    this.voiceEnabled.extend(({ turnOffSpeakFirstWithVoiceOff: 'voiceEnabled'}) as ko.ObservableExtenderOptions<boolean>)
+
     this.voiceThinkingTimeWpm = ko.computed(() => {
       let vtt = this.voiceThinkingTime()
       if (typeof vtt === 'string') {
         vtt = parseFloat(vtt)
       }
       if (vtt) {
-        let wpm = 3.6/vtt
+        const wpm = 3.6 / vtt
         // Check if the result is an even number
         if (wpm % 2 === 0) {
-            return Math.round(wpm);
+          return Math.round(wpm)
         }
-        
+
         // Round to one decimal place if not even
-        return Math.round(wpm * 10) / 10;
-        
+        return Math.round(wpm * 10) / 10
       } else {
-        return "--"
+        return '--'
       }
-      
     }, this)
   }
 
@@ -339,7 +348,8 @@ export class MorseVoice implements ICookieHandler {
 
     target = cookies.find(x => x.key === 'speakFirstRepeats')
     if (target) {
-      this.speakFirstRepeats(parseInt(target.val))
+      // for backwards compatibility with files that have old "speakFirstRepeats"
+      this.ctxt.numberOfRepeats(parseInt(target.val))
     }
 
     target = cookies.find(x => x.key === 'speakFirstAdditionalWordspaces')

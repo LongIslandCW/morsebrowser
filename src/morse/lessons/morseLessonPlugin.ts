@@ -14,6 +14,7 @@ import { MorseViewModel } from '../morse'
 import { SettingsChangeInfo } from '../settings/settingsChangeInfo'
 import SettingsOverridesJson from '../../presets/overrides/presetoverrides.json'
 import { SettingsOption } from '../settings/settingsOption'
+import MorseSettingsHandler from '../settings/morseSettingsHandler'
 export default class MorseLessonPlugin implements ICookieHandler {
   autoCloseLessonAccordion:ko.Observable<boolean>
   userTarget:ko.Observable<string>
@@ -440,7 +441,7 @@ export default class MorseLessonPlugin implements ICookieHandler {
 
       const last = this.lastSelectedSettingsPreset()
       if (typeof last.isDummy !== 'undefined' && last.isDummy && !this.settingsOverridden()) {
-        this.morseViewModel.currentSerializedSettings = this.morseViewModel.getCurrentSerializedSettings()
+        this.morseViewModel.currentSerializedSettings = MorseSettingsHandler.getCurrentSerializedSettings(this.morseViewModel)
       }
 
       this.selectedSettingsPreset(preset)
@@ -496,7 +497,7 @@ export default class MorseLessonPlugin implements ICookieHandler {
           MorseCookies.loadCookiesOrDefaults(settingsInfo)
         } else {
           // console.log('no serialized originals')
-          this.morseViewModel.currentSerializedSettings = this.morseViewModel.getCurrentSerializedSettings()
+          this.morseViewModel.currentSerializedSettings = MorseSettingsHandler.getCurrentSerializedSettings(this.morseViewModel)
         }
       } else {
         // console.log(`presetfilename:${preset.filename}`)

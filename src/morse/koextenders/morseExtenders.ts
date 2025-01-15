@@ -75,6 +75,17 @@ export class MorseExtenders {
       })
       return target
     }
+
+    ko.extenders.sWakeLock = (target, option) => {
+      target.subscribe((newValue) => {
+        if (newValue) {
+          ctxt.screenWakeLock.activate()
+        } else {
+          ctxt.screenWakeLock.deactivate()
+        }
+      })
+      return target
+    }
   }
 
   static apply = (ctxt:MorseViewModel) => {
@@ -92,5 +103,6 @@ export class MorseExtenders {
     ctxt.cardFontPx.extend({ saveCookie: 'cardFontPx' } as ko.ObservableExtenderOptions<boolean>)
 
     ctxt.rawText.extend({ undoIsShuffled: 'rawText' } as ko.ObservableExtenderOptions<boolean>)
+    ctxt.playerPlaying.extend({ sWakeLock: 'playerPlaying' } as ko.ObservableExtenderOptions<boolean>)
   }
 }
