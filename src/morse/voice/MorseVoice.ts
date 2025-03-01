@@ -154,10 +154,15 @@ export class MorseVoice implements ICookieHandler {
           this.msFound = true
         }
       })
-      const allowedLangs = ['en-US', 'en_US',
+      const allowedLangs = [
+        'en-US', 'en_US',
         'en-GB', 'en_GB',
         'es-ES', 'es_ES',
-        'es-US', 'es_US']
+        'es-US', 'es_US',
+        'pt-BR', 'pt_BR',
+        'pt-PT', 'pt_PT'
+      ];
+    
 
       this.voices = this.voices.filter(x => allowedLangs.includes(x.lang)).map((v) => {
         v.idx = idx++
