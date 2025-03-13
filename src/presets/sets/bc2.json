@@ -12,6 +12,18 @@
             "filename": "BC2_Recognition.json"
         },
         {
+            "display": "ICR",
+            "filename": "BC2_ICR.json"
+        },
+        {
+            "display": "VET",
+            "filename": "BC2_VET.json"
+        },
+        {
+            "display": "Groups of 5",
+            "filename": "BC2_Groups_of_5.json"
+        },
+        {
             "display": "Random groups 1-3",
             "filename": "BC2_Random_groups_1_3.json"
         },
@@ -23,21 +35,10 @@
             "display": "Reverse VST",
             "filename": "BC2_RVST.json"
         },
-        {
-            "display": "Groups of 5",
-            "filename": "BC2_Groups_of_5.json"
-        },
+
          {
             "display": "Random groups 1-4",
             "filename": "BC2_Random_groups_1_4.json"
-        },
-        {
-            "display": "ICR",
-            "filename": "BC2_ICR.json"
-        },
-        {
-            "display": "VET",
-            "filename": "BC2_VET.json"
         },
         {
             "display": "Reverse VET",
