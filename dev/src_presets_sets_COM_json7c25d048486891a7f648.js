@@ -1,9 +1,9 @@
 "use strict";
-(self["webpackChunk"] = self["webpackChunk"] || []).push([["src_presets_sets_Com_json"],{
+(self["webpackChunk"] = self["webpackChunk"] || []).push([["src_presets_sets_COM_json"],{
 
-/***/ "./src/presets/sets/Com.json":
+/***/ "./src/presets/sets/COM.json":
 /*!***********************************!*\
-  !*** ./src/presets/sets/Com.json ***!
+  !*** ./src/presets/sets/COM.json ***!
   \***********************************/
 /***/ ((module) => {
 
