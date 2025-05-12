@@ -7,7 +7,7 @@
   \*************************************/
 /***/ ((module) => {
 
-module.exports = JSON.parse('{"letters":"abcdefghijklmnopqrstuvwxyz1234567890 <sk> <bt> / , . ? <ar> <bk> ","minWordSize":5,"maxWordSize":5,"practiceSeconds":120}');
+module.exports = JSON.parse('{"letters":"abcdefghijklmnopqrstuvwxyz1234567890<sk><bt>/,.?<ar><bk>","minWordSize":5,"maxWordSize":5,"practiceSeconds":120}');
 
 /***/ })
 
