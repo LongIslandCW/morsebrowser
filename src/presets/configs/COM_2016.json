@@ -67,7 +67,7 @@
 		},
 		{
 			"key": "voiceSpelling",
-			"value": false,
+			"value": true,
 			"comment": null
 		},
 		{
