@@ -97,7 +97,7 @@
     },
     {
       "key": "keepLines",
-      "value": true,
+      "value": false,
       "comment": null
     },
     {
