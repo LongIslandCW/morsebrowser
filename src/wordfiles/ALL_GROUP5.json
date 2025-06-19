@@ -3,5 +3,5 @@
      "minWordSize": 5,
      "maxWordSize": 5,
      "practiceSeconds" : 120
-
+     "keepLines": "false"
  }
