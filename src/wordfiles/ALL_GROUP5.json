@@ -1,7 +1,7 @@
 {
      "letters": "abcdefghijklmnopqrstuvwxyz1234567890<sk><bt>/,.?<ar><bk>",
-     "minWordSize": 5,
-     "maxWordSize": 5,
+     "minWordSize": 3,
+     "maxWordSize": 3,
      "practiceSeconds" : 120
      
  }
