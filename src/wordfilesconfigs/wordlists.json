@@ -595,7 +595,7 @@
 {"sort": 424,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "CALLSIGNS","newlineChunking": true,"display": "7-8 CHARACTERS","fileName": "ICR18.txt"},
 {"sort": 545,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "CALLSIGNS","newlineChunking": true,"display": "US CALLSIGNS","fileName": "US_CS.txt"},
         
-{"sort": 168,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "CHARACTERS","newlineChunking": true,"display": "ALL Group of 5","fileName": "ALL_GROUP5.json"},
+{"sort": 168,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "CHARACTERS","newlineChunking": false,"display": "ALL Group of 5","fileName": "ALL_GROUP5.json"},
      
 {"sort": 413,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "CHARACTERS","newlineChunking": false,"display": "LETTERS","fileName": "INT1.json"}, 
 {"sort": 413,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "CHARACTERS","newlineChunking": false,"display": "LETTERS NUMBERS","fileName": "INT5.json"}, 
