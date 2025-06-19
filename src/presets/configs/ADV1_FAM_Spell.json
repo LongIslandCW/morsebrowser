@@ -117,7 +117,7 @@
 		},
 		{
 			"key": "syncSize",
-			"value": false,
+			"value": true,
 			"comment": null
 		},
 		{
