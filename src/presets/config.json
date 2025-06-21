@@ -72,6 +72,11 @@
             "className": "ICR+",
             "defaultSetFile": "ICR+.json",
             "letterGroups": []
-        }
+        },
+              {
+            "className": "COM",
+            "defaultSetFile": "COM.json",
+            "letterGroups": []
+        }  
     ]
 }
