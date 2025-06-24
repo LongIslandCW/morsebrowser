@@ -755,5 +755,7 @@
 {"sort": 529,"userTarget": "STUDENT","class": "ICR+","letterGroup": "WORDS","newlineChunking": true,"display": "5 LETTERS","fileName": "Words_5L.txt"}, 
 {"sort": 529,"userTarget": "STUDENT","class": "ICR+","letterGroup": "WORDS","newlineChunking": true,"display": "6 LETTERS","fileName": "Words_6L.txt"},
 
-{"sort": 529,"userTarget": "STUDENT","class": "ICR+","letterGroup": "CHARACTERS","newlineChunking": true,"display": "OVER LEARN","fileName": "P0L_WordS.txt"}
+{"sort": 529,"userTarget": "STUDENT","class": "ICR+","letterGroup": "CHARACTERS","newlineChunking": true,"display": "OVER LEARN LETTERS","fileName": "POL_Letters.txt"},
+{"sort": 529,"userTarget": "STUDENT","class": "ICR+","letterGroup": "CHARACTERS","newlineChunking": true,"display": "OVER LEARN NUMBERS","fileName": "POL_Numbers.txt"},
+{"sort": 529,"userTarget": "STUDENT","class": "ICR+","letterGroup": "CHARACTERS","newlineChunking": true,"display": "OVER LEARN WORDS","fileName": "P0L_WordS.txt"}
 ]}
