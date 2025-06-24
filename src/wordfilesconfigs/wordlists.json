@@ -753,7 +753,7 @@
 {"sort": 425,"userTarget": "STUDENT","class": "ICR+","letterGroup": "WORDS","newlineChunking": true,"display": "1-5 LETTERS","fileName": "ICR21.txt"}, 
 {"sort": 529,"userTarget": "STUDENT","class": "ICR+","letterGroup": "WORDS","newlineChunking": true,"display": "4 LETTERS","fileName": "Words_4L.txt"}, 
 {"sort": 529,"userTarget": "STUDENT","class": "ICR+","letterGroup": "WORDS","newlineChunking": true,"display": "5 LETTERS","fileName": "Words_5L.txt"}, 
-{"sort": 529,"userTarget": "STUDENT","class": "ICR+","letterGroup": "WORDS","newlineChunking": true,"display": "6 LETTERS","fileName": "Words_6L.txt"}
+{"sort": 529,"userTarget": "STUDENT","class": "ICR+","letterGroup": "WORDS","newlineChunking": true,"display": "6 LETTERS","fileName": "Words_6L.txt"},
 
-
+{"sort": 529,"userTarget": "STUDENT","class": "ICR+","letterGroup": "CHARACTERS","newlineChunking": true,"display": "OverLearn","fileName": "P0L_WordS.txt"}
 ]}
