@@ -1,9 +1,9 @@
 "use strict";
-(self["webpackChunk"] = self["webpackChunk"] || []).push([["src_wordfiles_P0L_WordS_txt"],{
+(self["webpackChunk"] = self["webpackChunk"] || []).push([["src_wordfiles_P0L_Words_txt"],{
 
-/***/ "./src/wordfiles/P0L_WordS.txt":
+/***/ "./src/wordfiles/P0L_Words.txt":
 /*!*************************************!*\
-  !*** ./src/wordfiles/P0L_WordS.txt ***!
+  !*** ./src/wordfiles/P0L_Words.txt ***!
   \*************************************/
 /***/ ((module) => {
 
