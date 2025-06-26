@@ -37,12 +37,12 @@
 		},
 		{
 			"key": "hideList",
-			"value": false,
+			"value": true,
 			"comment": null
 		},
 		{
 			"key": "showRaw",
-			"value": true,
+			"value": false,
 			"comment": null
 		},
 		{
