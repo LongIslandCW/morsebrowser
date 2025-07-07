@@ -759,7 +759,7 @@
 {"sort": 529,"userTarget": "STUDENT","class": "ICR+","letterGroup": "CHARACTERS","newlineChunking": true,"display": "OVER LEARN LETTERS","fileName": "POL_Letters.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "ICR+","letterGroup": "CHARACTERS","newlineChunking": true,"display": "OVER LEARN NUMBERS","fileName": "POL_Numbers.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "ICR+","letterGroup": "CHARACTERS","newlineChunking": true,"display": "OVER LEARN WORDS 2-3","fileName": "POL_Words.txt"},
-{"sort": 529,"userTarget": "STUDENT","class": "ICR+","letterGroup": "CHARACTERS","newlineChunking": true,"display": "OVER LEARN WORDS 3-4","fileName": "POL_Words_34.txt"},
-{"sort": 529,"userTarget": "STUDENT","class": "ICR+","letterGroup": "CHARACTERS","newlineChunking": true,"display": "OVER LEARN WORDS 4-5","fileName": "POL_Words_45.txt"}
+{"sort": 529,"userTarget": "STUDENT","class": "ICR+","letterGroup": "CHARACTERS","newlineChunking": true,"display": "OVER LEARN WORDS 4","fileName": "POL_Words_34.txt"},
+{"sort": 529,"userTarget": "STUDENT","class": "ICR+","letterGroup": "CHARACTERS","newlineChunking": true,"display": "OVER LEARN WORDS 5","fileName": "POL_Words_45.txt"}
 
 ]}
