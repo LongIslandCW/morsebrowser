@@ -7,7 +7,7 @@
   \****************************************/
 /***/ ((module) => {
 
-module.exports = "AAA \r\nANT \r\nARCH \r\nAPT \r\nABLE \r\n\r\nBBB \r\nBAT \r\nBOAT \r\nBEND \r\nBUN \r\n\r\n\r\n";
+module.exports = "AAA \r\nALSO \r\nARCH \r\nACID \r\nABLE \r\n\r\nBBB \r\nBRAG \r\nBOAT \r\nBEND \r\nBELT \r\n\r\n\r\n";
 
 /***/ })
 
