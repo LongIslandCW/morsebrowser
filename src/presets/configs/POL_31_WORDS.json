@@ -97,7 +97,7 @@
 		},
 		{
 			"key": "speakFirst",
-			"value": false,
+			"value": true,
 			"comment": null
 		},
 		{
