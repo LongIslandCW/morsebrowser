@@ -149,6 +149,6 @@
 	{ "characters": "SK", "replacement": "Saskatchewan", "onlyAlone" : true},
 	{ "characters": "YT", "replacement": "Yukon", "onlyAlone" : true},
 	{ "characters": "AAA", "replacement": "A A A", "onlyAlone" : true},
-	{ "characters": "III", "replacement": "I I I", "onlyAlone" : true
+	{ "characters": "III", "replacement": "I I I", "onlyAlone" : true}
 	]
 }
