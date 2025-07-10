@@ -47,11 +47,8 @@
         {
             "display": "Words 30 wpm",
             "filename": "ICR+_30_Words.json"
-        },
-        {
-            "display": "Over Learn 27",
-            "filename": "POL_27.json"
         }
+
        
     ]
 }
