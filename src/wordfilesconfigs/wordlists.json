@@ -760,8 +760,14 @@
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "CHARACTERS","newlineChunking": true,"display": "NUMBERS","fileName": "POL_Numbers.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORDS","newlineChunking": true,"display": "BINOMIALS ALL","fileName": "POL_Bi_ALL.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORDS","newlineChunking": true,"display": "BINOMIALS 1","fileName": "POL_Bi_Pt1.txt"},
-{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORDS","newlineChunking": true,"display": "BINOMIALS 2","fileName": "POL_Bi_Pt2.txt"}
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORDS","newlineChunking": true,"display": "BINOMIALS 2","fileName": "POL_Bi_Pt2.txt"},
 
+
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORDS","newlineChunking": true,"display": "2-3 LETTER WORDS ALL","fileName": "POL_2-3W_ALL.txt"},
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORDS","newlineChunking": true,"display": "2-3 LETTER WORDS 1","fileName": "POL_2-3W_Pt1.txt"},
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORDS","newlineChunking": true,"display": "2-3 LETTER WORDS 2","fileName": "POL_2-3W_Pt2.txt"},
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORDS","newlineChunking": true,"display": "2-3 LETTER WORDS 3","fileName": "POL_2-3W_Pt3.txt"},
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORDS","newlineChunking": true,"display": "2-3 LETTER WORDS 4","fileName": "POL_2-3W_Pt4.txt"}
 
         
 ]}
