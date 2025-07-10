@@ -77,6 +77,11 @@
             "className": "COM",
             "defaultSetFile": "COM.json",
             "letterGroups": []
+        },
+        {
+            "className": "POL",
+            "defaultSetFile": "POL.json",
+            "letterGroups": []
         }  
     ]
 }
