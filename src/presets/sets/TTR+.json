@@ -52,25 +52,6 @@
             "display": "Over Learn 27",
             "filename": "POL_27.json"
         },
-        {
-            "display": "Over Learn 27 Spell",
-            "filename": "POL_27_SPELL.json"
-        },
-                {
-            "display": "Over Learn 27 Words",
-            "filename": "POL_27_WORDS.json"
-        },
-                {
-            "display": "Over Learn 31",
-            "filename": "POL_31.json"
-        },
-                {
-            "display": "Over Learn 31 Spell",
-            "filename": "POL_31_SPELL.json"
-        },
-                {
-            "display": "Over Learn 31 Words",
-            "filename": "POL_31_WORDS.json"
-        }
+       
     ]
 }
