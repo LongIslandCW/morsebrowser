@@ -1,0 +1,14 @@
+"use strict";
+(self["webpackChunk"] = self["webpackChunk"] || []).push([["src_presets_sets_POL_json"],{
+
+/***/ "./src/presets/sets/POL.json":
+/*!***********************************!*\
+  !*** ./src/presets/sets/POL.json ***!
+  \***********************************/
+/***/ ((module) => {
+
+module.exports = JSON.parse('{"options":[{"display":"CHARACTERS 27","filename":"POL_27.json"},{"display":"WORDS 27 Words","filename":"POL_27_WORDS.json"},{"display":"CHARACTERS 31","filename":"POL_31.json"},{"display":"WORDS 31 Words","filename":"POL_31_WORDS.json"}]}');
+
+/***/ })
+
+}]);
