@@ -62,7 +62,7 @@
 		},
 		{
 			"key": "voiceEnabled",
-			"value": true,
+			"value": false,
 			"comment": null
 		},
 		{
