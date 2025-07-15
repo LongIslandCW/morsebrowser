@@ -29,10 +29,6 @@
             "filename": "INT1_FAM_Words.json"
         },
         {
-            "display": "ICR",
-            "filename": "INT1_ICR.json"
-        },
-        {
             "display": "Multi Words",
             "filename": "INT1_MW.json"
         },
@@ -47,6 +43,10 @@
         {
             "display": "Sending Practice",
             "filename": "INT1_SENDING.json"
+        },
+        {
+            "display": "TTR",
+            "filename": "INT1_ICR.json"
         }
     ]
 }
