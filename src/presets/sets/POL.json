@@ -12,14 +12,30 @@
             "display": "CHARACTERS 27 wpm",
             "filename": "POL_27.json"
         },
-        {
-            "display": "WORDS 27 wpm",
-            "filename": "POL_27_WORDS.json"
-        },
-        {
+         {
             "display": "CHARACTERS 31 wpm",
             "filename": "POL_31.json"
         },
+        {
+            "display": "SENDING ALPHABET 27 wpm",
+            "filename": "POL_27_SA.json"
+        },
+        {
+            "display": "SENDING ALPHABET 31 wpm",
+            "filename": "POL_31_SA.json"
+        },
+        {
+            "display": "SENDING NUMBERS 27 wpm",
+            "filename": "POL_27_SN.json"
+        },
+        {
+            "display": "SENDING NUMBERS 31 wpm",
+            "filename": "POL_31_SN.json"
+        },
+        {
+            "display": "WORDS 27 wpm",
+            "filename": "POL_27_WORDS.json"
+        },      
          {
             "display": "WORDS 31 wpm",
             "filename": "POL_31_WORDS.json"
