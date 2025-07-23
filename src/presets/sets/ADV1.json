@@ -29,10 +29,6 @@
             "filename": "ADV1_FAM_WORDS.json"
         },
         {
-            "display": "ICR",
-            "filename": "ADVICR.json"
-        },
-        {
             "display": "Multi Words",
             "filename": "ADV1_MW.json"
         },
@@ -43,6 +39,10 @@
         {
             "display": "Recognition - Words",
             "filename": "ADV1_Rec_Words.json"
+        },
+        {
+            "display": "TTR",
+            "filename": "ADVICR.json"
         }
     ]
 }

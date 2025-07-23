@@ -33,10 +33,6 @@
             "filename": "INT3_FAM_Words.json"
         },
         {
-            "display": "ICR",
-            "filename": "INT3_ICR.json"
-        },
-        {
             "display": "Multi Words",
             "filename": "INT3_MW.json"
         },
@@ -54,6 +50,10 @@
         {
             "display": "Sending Practice",
             "filename": "INT3_SENDING.json"
+        },
+        {
+            "display": "TTR",
+            "filename": "INT3_ICR.json"
         }
     ]
 }

@@ -32,10 +32,7 @@
             "display": "Familiarity Words",
             "filename": "INT2_FAM_Words.json"
         },
-        {
-            "display": "ICR",
-            "filename": "INT2_ICR.json"
-        },
+
         {
             "display": "Multi Words",
             "filename": "INT2_MW.json"
@@ -54,6 +51,10 @@
         {
             "display": "Sending Practice",
             "filename": "INT2_SENDING.json"
+        },
+        {
+            "display": "TTR",
+            "filename": "INT2_ICR.json"
         }
     ]
 }

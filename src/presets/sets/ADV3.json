@@ -40,24 +40,28 @@
             "display": "Recognition - Words",
             "filename": "ADV3_REC_Words.json"
         },
+        {
+            "display": "TTR",
+            "filename": "ADVICR.json"
+        },
            {
-            "display": "COM 18/16 wpm",
+            "display": "Com 18/16 wpm",
             "filename": "COM_1816.json"
         },
                    {
-            "display": "COM 20/16 wpm",
+            "display": "Com 20/16 wpm",
             "filename": "COM_2016.json"
         },
                    {
-            "display": "COM 22/16 wpm",
+            "display": "Com 22/16 wpm",
             "filename": "COM_2216.json"
         },
                    {
-            "display": "COM 25/16 wpm",
+            "display": "Com 25/16 wpm",
             "filename": "COM_2516.json"
         },
                    {
-            "display": "COM 30/16 wpm",
+            "display": "Com 30/16 wpm",
             "filename": "COM_3016.json"
         }
     ]

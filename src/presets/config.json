@@ -69,13 +69,18 @@
             "letterGroups": []
         },
         {
-            "className": "ICR+",
-            "defaultSetFile": "ICR+.json",
+            "className": "TTR+",
+            "defaultSetFile": "TTR+.json",
             "letterGroups": []
         },
               {
             "className": "COM",
             "defaultSetFile": "COM.json",
+            "letterGroups": []
+        },
+        {
+            "className": "OVERLEARN",
+            "defaultSetFile": "POL.json",
             "letterGroups": []
         }  
     ]
