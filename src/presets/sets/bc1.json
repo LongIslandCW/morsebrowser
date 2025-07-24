@@ -41,23 +41,6 @@
             "filename": "BC1_RVET.json"
         }, 
         {
-            "display": "OverLearn Letters 17",
-            "filename": "POL_17_L.json"
-        },
-        {
-            "display": "OverLearn Words 17",
-            "filename": "POL_17_W.json"
-        },
-        {
-            "display": "OverLearn Letters 21",
-            "filename": "POL_21_L.json"
-        },
-        {
-            "display": "OverLearn Words 21",
-            "filename": "POL_21_W.json"
-        },
-        
-        {
             "display": "Sending Practice",
             "filename": "BC2_Sending.json"
         },
@@ -80,6 +63,22 @@
         {
             "display": "Voice On & Spell On",
             "filename": "BC1_Von_Son.json"
+        },
+                {
+            "display": "OverLearn Letters 17",
+            "filename": "POL_17_L.json"
+        },
+        {
+            "display": "OverLearn Words 17",
+            "filename": "POL_17_W.json"
+        },
+        {
+            "display": "OverLearn Letters 21",
+            "filename": "POL_21_L.json"
+        },
+        {
+            "display": "OverLearn Words 21",
+            "filename": "POL_21_W.json"
         }
 
     ]
