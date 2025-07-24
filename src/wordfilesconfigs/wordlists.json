@@ -12,8 +12,8 @@
 {"sort": 359,"userTarget": "STUDENT","class": "BC1","letterGroup": "REA","newlineChunking": true,"display": "REA UWB HOF STATES/PROVINCES","fileName": "REA8.txt"}, 
 {"sort": 361,"userTarget": "STUDENT","class": "BC1","letterGroup": "REA","newlineChunking": false,"display": "REA UWB HOF WORDS","fileName": "REA10.txt"},  
 
-{"sort": 361,"userTarget": "STUDENT","class": "BC1","letterGroup": "REA","newlineChunking": false,"display": "OVERLEARN LETTERS","fileName": "POL_REA_L.txt"},  
-{"sort": 361,"userTarget": "STUDENT","class": "BC1","letterGroup": "REA","newlineChunking": false,"display": "OVERLEARN WORDS","fileName": "POL_REA_W.txt"},  
+{"sort": 361,"userTarget": "STUDENT","class": "BC1","letterGroup": "REA","newlineChunking": true,"display": "OVERLEARN LETTERS","fileName": "POL_REA_L.txt"},  
+{"sort": 361,"userTarget": "STUDENT","class": "BC1","letterGroup": "REA","newlineChunking": true,"display": "OVERLEARN WORDS","fileName": "POL_REA_W.txt"},  
         
 {"sort": 7,"userTarget": "STUDENT","class": "BC1","letterGroup": "TIN","newlineChunking": false,"display": "TIN","fileName": "SB1TIN1.json"}, 
 {"sort": 362,"userTarget": "STUDENT","class": "BC1","letterGroup": "TIN","newlineChunking": true,"display": "TIN FAMILIARITY","fileName": "BC1_FAM_TIN.txt"},    
