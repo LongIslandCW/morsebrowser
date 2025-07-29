@@ -21,6 +21,22 @@
             "filename": "BC1_VET.json"
         },
         {
+            "display": "OverLearn Letters 17",
+            "filename": "POL_17_L.json"
+        },
+        {
+            "display": "OverLearn Words 17",
+            "filename": "POL_17_W.json"
+        },
+        {
+            "display": "OverLearn Letters 21",
+            "filename": "POL_21_L.json"
+        },
+        {
+            "display": "OverLearn Words 21",
+            "filename": "POL_21_W.json"
+        },
+        {
             "display": "Groups of 5",
             "filename": "BC1_Groups_of_5.json"
         },
@@ -63,23 +79,7 @@
         {
             "display": "Voice On & Spell On",
             "filename": "BC1_Von_Son.json"
-        },
-                {
-            "display": "OverLearn Letters 17",
-            "filename": "POL_17_L.json"
-        },
-        {
-            "display": "OverLearn Words 17",
-            "filename": "POL_17_W.json"
-        },
-        {
-            "display": "OverLearn Letters 21",
-            "filename": "POL_21_L.json"
-        },
-        {
-            "display": "OverLearn Words 21",
-            "filename": "POL_21_W.json"
         }
-
+    
     ]
 }
