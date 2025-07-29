@@ -240,13 +240,15 @@
 {"sort": 45,"userTarget": "STUDENT","class": "BC2","letterGroup": "KMY","newlineChunking": false,"display": "B1 KMY 40 28BKZJ/ 16. <AR><SK><BT> 73?","fileName": "SB2KMY12.json"}, 
 {"sort": 46,"userTarget": "STUDENT","class": "BC2","letterGroup": "KMY","newlineChunking": false,"display": "B1 KMY 40 28BKZJ/ 16. <AR><SK><BT> 73? QXV","fileName": "SB2KMY13.json"}, 
 {"sort": 47,"userTarget": "STUDENT","class": "BC2","letterGroup": "KMY","newlineChunking": false,"display": "B1 KMY 40 28BKZJ/ 16. <AR><SK><BT> 73? QXV 59,","fileName": "B1B2.json"}, 
+
+ {"sort": 50,"userTarget": "STUDENT","class": "BC2","letterGroup": "KMY","newlineChunking": true,"display": "WORDS","fileName": "BC2_KMY_W.txt"},        
+{"sort": 50,"userTarget": "STUDENT","class": "BC2","letterGroup": "KMY","newlineChunking": true,"display": "OVERLEARN LETTERS","fileName": "POL_KMY_L.txt"},         
+{"sort": 50,"userTarget": "STUDENT","class": "BC2","letterGroup": "KMY","newlineChunking": true,"display": "OVERLEARN WORDS","fileName": "POL_KMY_W.txt"}, 
+        
 {"sort": 48,"userTarget": "STUDENT","class": "BC2","letterGroup": "KMY","newlineChunking": true,"display": "STATES/PROVINCES","fileName": "SB2KMY5.txt"}, 
 {"sort": 49,"userTarget": "STUDENT","class": "BC2","letterGroup": "KMY","newlineChunking": false,"display": "QSO ABBREVIATIONS","fileName": "SB2KMY3.txt"}, 
 {"sort": 50,"userTarget": "STUDENT","class": "BC2","letterGroup": "KMY","newlineChunking": true,"display": "QSO PHRASES","fileName": "SB2KMY4.txt"}, 
-        
-{"sort": 50,"userTarget": "STUDENT","class": "BC2","letterGroup": "KMY","newlineChunking": true,"display": "WORDS","fileName": "BC2_KMY_W.txt"}, 
-{"sort": 50,"userTarget": "STUDENT","class": "BC2","letterGroup": "KMY","newlineChunking": true,"display": "OVERLEARN LETTERS","fileName": "POL_KMY_L.txt"}, 
-{"sort": 50,"userTarget": "STUDENT","class": "BC2","letterGroup": "KMY","newlineChunking": true,"display": "OVERLEARN WORDS","fileName": "POL_KMY_W.txt"}, 
+
         
 {"sort": 51,"userTarget": "STUDENT","class": "BC2","letterGroup": "59,","newlineChunking": false,"display": "59,","fileName": "SB2592.json"}, 
 {"sort": 362,"userTarget": "STUDENT","class": "BC2","letterGroup": "59,","newlineChunking": true,"display": "59, FAMILIARITY","fileName": "BC2_FAM_59.txt"},   
