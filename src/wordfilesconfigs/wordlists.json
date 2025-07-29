@@ -7,13 +7,16 @@
 {"sort": 4,"userTarget": "STUDENT","class": "BC1","letterGroup": "REA","newlineChunking": false,"display": "REA UWB HOF LCD","fileName": "SB1REA4.json"}, 
 {"sort": 5,"userTarget": "STUDENT","class": "BC1","letterGroup": "REA","newlineChunking": false,"display": "REA UWB HOF LCD PSG","fileName": "SB1REA5.json"}, 
 {"sort": 6,"userTarget": "STUDENT","class": "BC1","letterGroup": "REA","newlineChunking": false,"display": "REA UWB HOF LCD PSG TIN","fileName": "SB1REA6.json"}, 
+
+{"sort": 361,"userTarget": "STUDENT","class": "BC1","letterGroup": "REA","newlineChunking": true,"display": "OVERLEARN LETTERS","fileName": "POL_REA_L.txt"},  
+{"sort": 361,"userTarget": "STUDENT","class": "BC1","letterGroup": "REA","newlineChunking": true,"display": "OVERLEARN WORDS","fileName": "POL_REA_W.txt"},  
+        
 {"sort": 360,"userTarget": "STUDENT","class": "BC1","letterGroup": "REA","newlineChunking": false,"display": "REA UWB HOF QSO ABBREVIATIONS","fileName": "REA9.txt"}, 
 {"sort": 362,"userTarget": "STUDENT","class": "BC1","letterGroup": "REA","newlineChunking": true,"display": "REA UWB HOF PHRASES","fileName": "REA11.txt"},        
 {"sort": 359,"userTarget": "STUDENT","class": "BC1","letterGroup": "REA","newlineChunking": true,"display": "REA UWB HOF STATES/PROVINCES","fileName": "REA8.txt"}, 
 {"sort": 361,"userTarget": "STUDENT","class": "BC1","letterGroup": "REA","newlineChunking": false,"display": "REA UWB HOF WORDS","fileName": "REA10.txt"},  
 
-{"sort": 361,"userTarget": "STUDENT","class": "BC1","letterGroup": "REA","newlineChunking": true,"display": "OVERLEARN LETTERS","fileName": "POL_REA_L.txt"},  
-{"sort": 361,"userTarget": "STUDENT","class": "BC1","letterGroup": "REA","newlineChunking": true,"display": "OVERLEARN WORDS","fileName": "POL_REA_W.txt"},  
+
         
 {"sort": 7,"userTarget": "STUDENT","class": "BC1","letterGroup": "TIN","newlineChunking": false,"display": "TIN","fileName": "SB1TIN1.json"}, 
 {"sort": 362,"userTarget": "STUDENT","class": "BC1","letterGroup": "TIN","newlineChunking": true,"display": "TIN FAMILIARITY","fileName": "BC1_FAM_TIN.txt"},    
@@ -22,13 +25,16 @@
 {"sort": 10,"userTarget": "STUDENT","class": "BC1","letterGroup": "TIN","newlineChunking": false,"display": "TIN REA UWB HOF","fileName": "SB1TIN4.json"}, 
 {"sort": 11,"userTarget": "STUDENT","class": "BC1","letterGroup": "TIN","newlineChunking": false,"display": "TIN REA UWB HOF LCD","fileName": "SB1TIN5.json"}, 
 {"sort": 12,"userTarget": "STUDENT","class": "BC1","letterGroup": "TIN","newlineChunking": false,"display": "TIN REA UWB HOF LCD PSG","fileName": "SB1TIN6.json"}, 
+
+{"sort": 361,"userTarget": "STUDENT","class": "BC1","letterGroup": "TIN","newlineChunking": true,"display": "OVERLEARN LETTERS","fileName": "POL_TIN_L.txt"},  
+{"sort": 361,"userTarget": "STUDENT","class": "BC1","letterGroup": "TIN","newlineChunking": true,"display": "OVERLEARN WORDS","fileName": "POL_TIN_W.txt"},   
+        
 {"sort": 368,"userTarget": "STUDENT","class": "BC1","letterGroup": "TIN","newlineChunking": false,"display": "TIN REA UWB QSO ABBREVIATIONS","fileName": "TIN9.txt"},  
 {"sort": 370,"userTarget": "STUDENT","class": "BC1","letterGroup": "TIN","newlineChunking": true,"display": "TIN REA UWB PHRASES","fileName": "TIN11.txt"},         
 {"sort": 367,"userTarget": "STUDENT","class": "BC1","letterGroup": "TIN","newlineChunking": true,"display": "TIN REA UWB STATES/PROVINCES","fileName": "TIN8.txt"}, 
 {"sort": 369,"userTarget": "STUDENT","class": "BC1","letterGroup": "TIN","newlineChunking": false,"display": "TIN REA UWB WORDS","fileName": "TIN10.txt"}, 
 
-{"sort": 361,"userTarget": "STUDENT","class": "BC1","letterGroup": "TIN","newlineChunking": true,"display": "OVERLEARN LETTERS","fileName": "POL_TIN_L.txt"},  
-{"sort": 361,"userTarget": "STUDENT","class": "BC1","letterGroup": "TIN","newlineChunking": true,"display": "OVERLEARN WORDS","fileName": "POL_TIN_W.txt"},        
+     
         
 {"sort": 13,"userTarget": "STUDENT","class": "BC1","letterGroup": "PSG","newlineChunking": false,"display": "PSG","fileName": "SB1PGS1.json"}, 
 {"sort": 362,"userTarget": "STUDENT","class": "BC1","letterGroup": "PSG","newlineChunking": true,"display": "PSG FAMILIARITY","fileName": "BC1_FAM_PSG.txt"},          
@@ -37,13 +43,16 @@
 {"sort": 16,"userTarget": "STUDENT","class": "BC1","letterGroup": "PSG","newlineChunking": false,"display": "PSG TIN REA UWB","fileName": "SB1PGS4.json"}, 
 {"sort": 17,"userTarget": "STUDENT","class": "BC1","letterGroup": "PSG","newlineChunking": false,"display": "PSG TIN REA UWB HOF","fileName": "SB1PGS5.json"}, 
 {"sort": 18,"userTarget": "STUDENT","class": "BC1","letterGroup": "PSG","newlineChunking": false,"display": "PSG TIN REA UWB HOF LCD","fileName": "SB1PGS6.json"}, 
+
+{"sort": 361,"userTarget": "STUDENT","class": "BC1","letterGroup": "PSG","newlineChunking": true,"display": "OVERLEARN LETTERS","fileName": "POL_PSG_L.txt"},  
+{"sort": 361,"userTarget": "STUDENT","class": "BC1","letterGroup": "PSG","newlineChunking": true,"display": "OVERLEARN WORDS","fileName": "POL_PSG_W.txt"},    
+        
 {"sort": 376,"userTarget": "STUDENT","class": "BC1","letterGroup": "PSG","newlineChunking": false,"display": "PSG TIN REA QSO ABBREVIATIONS","fileName": "PGS9.txt"}, 
 {"sort": 378,"userTarget": "STUDENT","class": "BC1","letterGroup": "PSG","newlineChunking": true,"display": "PSG TIN REA PHRASES","fileName": "PGS11.txt"},         
 {"sort": 375,"userTarget": "STUDENT","class": "BC1","letterGroup": "PSG","newlineChunking": true,"display": "PSG TIN REA STATES/PROVINCES","fileName": "PGS8.txt"}, 
 {"sort": 377,"userTarget": "STUDENT","class": "BC1","letterGroup": "PSG","newlineChunking": false,"display": "PSG TIN REA WORDS","fileName": "PGS10.txt"}, 
 
-{"sort": 361,"userTarget": "STUDENT","class": "BC1","letterGroup": "PSG","newlineChunking": true,"display": "OVERLEARN LETTERS","fileName": "POL_PSG_L.txt"},  
-{"sort": 361,"userTarget": "STUDENT","class": "BC1","letterGroup": "PSG","newlineChunking": true,"display": "OVERLEARN WORDS","fileName": "POL_PSG_W.txt"},     
+ 
         
 {"sort": 19,"userTarget": "STUDENT","class": "BC1","letterGroup": "LCD","newlineChunking": false,"display": "LCD","fileName": "SB1LCD1.json"}, 
 {"sort": 362,"userTarget": "STUDENT","class": "BC1","letterGroup": "LCD","newlineChunking": true,"display": "LCD FAMILIARITY","fileName": "BC1_FAM_LCD.txt"},  
@@ -52,13 +61,16 @@
 {"sort": 22,"userTarget": "STUDENT","class": "BC1","letterGroup": "LCD","newlineChunking": false,"display": "LCD PSG TIN REA","fileName": "SB1LCD4.json"}, 
 {"sort": 23,"userTarget": "STUDENT","class": "BC1","letterGroup": "LCD","newlineChunking": false,"display": "LCD PSG TIN REA UWB","fileName": "SB1LCD5.json"}, 
 {"sort": 24,"userTarget": "STUDENT","class": "BC1","letterGroup": "LCD","newlineChunking": false,"display": "LCD PSG TIN REA UWB HOF","fileName": "SB1LCD6.json"}, 
+
+{"sort": 361,"userTarget": "STUDENT","class": "BC1","letterGroup": "LCD","newlineChunking": true,"display": "OVERLEARN LETTERS","fileName": "POL_LCD_L.txt"},  
+{"sort": 361,"userTarget": "STUDENT","class": "BC1","letterGroup": "LCD","newlineChunking": true,"display": "OVERLEARN WORDS","fileName": "POL_LCD_W.txt"}, 
+        
 {"sort": 384,"userTarget": "STUDENT","class": "BC1","letterGroup": "LCD","newlineChunking": false,"display": "LCD PSG TIN QSO ABBREVIATIONS","fileName": "LCD9.txt"}, 
 {"sort": 386,"userTarget": "STUDENT","class": "BC1","letterGroup": "LCD","newlineChunking": true,"display": "LCD PSG TIN PHRASES","fileName": "LCD11.txt"},         
 {"sort": 383,"userTarget": "STUDENT","class": "BC1","letterGroup": "LCD","newlineChunking": true,"display": "LCD PSG TIN STATES/PROVINCES","fileName": "LCD8.txt"}, 
 {"sort": 385,"userTarget": "STUDENT","class": "BC1","letterGroup": "LCD","newlineChunking": false,"display": "LCD PSG TIN WORDS","fileName": "LCD10.txt"}, 
 
-{"sort": 361,"userTarget": "STUDENT","class": "BC1","letterGroup": "LCD","newlineChunking": true,"display": "OVERLEARN LETTERS","fileName": "POL_LCD_L.txt"},  
-{"sort": 361,"userTarget": "STUDENT","class": "BC1","letterGroup": "LCD","newlineChunking": true,"display": "OVERLEARN WORDS","fileName": "POL_LCD_W.txt"}, 
+
         
 {"sort": 25,"userTarget": "STUDENT","class": "BC1","letterGroup": "HOF","newlineChunking": false,"display": "HOF","fileName": "SB1HOF1.json"}, 
 {"sort": 362,"userTarget": "STUDENT","class": "BC1","letterGroup": "HOF","newlineChunking": true,"display": "HOF FAMILIARITY","fileName": "BC1_FAM_HOF.txt"},                 
@@ -67,13 +79,16 @@
 {"sort": 28,"userTarget": "STUDENT","class": "BC1","letterGroup": "HOF","newlineChunking": false,"display": "HOF LCD PSG TIN","fileName": "SB1HOF4.json"}, 
 {"sort": 29,"userTarget": "STUDENT","class": "BC1","letterGroup": "HOF","newlineChunking": false,"display": "HOF LCD PSG TIN REA","fileName": "SB1HOF5.json"}, 
 {"sort": 30,"userTarget": "STUDENT","class": "BC1","letterGroup": "HOF","newlineChunking": false,"display": "HOF LCD PSG TIN REA UWB","fileName": "SB1HOF6.json"}, 
+
+{"sort": 361,"userTarget": "STUDENT","class": "BC1","letterGroup": "HOF","newlineChunking": true,"display": "OVERLEARN LETTERS","fileName": "POL_HOF_L.txt"},  
+{"sort": 361,"userTarget": "STUDENT","class": "BC1","letterGroup": "HOF","newlineChunking": true,"display": "OVERLEARN WORDS","fileName": "POL_HOF_W.txt"}, 
+        
 {"sort": 392,"userTarget": "STUDENT","class": "BC1","letterGroup": "HOF","newlineChunking": false,"display": "HOF LCD PSG QSO ABBREVIATIONS","fileName": "HOF9.txt"}, 
 {"sort": 394,"userTarget": "STUDENT","class": "BC1","letterGroup": "HOF","newlineChunking": true,"display": "HOF LCD PSG PHRASES","fileName": "HOF11.txt"},         
 {"sort": 391,"userTarget": "STUDENT","class": "BC1","letterGroup": "HOF","newlineChunking": true,"display": "HOF LCD PSG STATES","fileName": "HOF8.txt"}, 
 {"sort": 393,"userTarget": "STUDENT","class": "BC1","letterGroup": "HOF","newlineChunking": false,"display": "HOF LCD PSG WORDS","fileName": "HOF10.txt"}, 
 
-{"sort": 361,"userTarget": "STUDENT","class": "BC1","letterGroup": "HOF","newlineChunking": true,"display": "OVERLEARN LETTERS","fileName": "POL_HOF_L.txt"},  
-{"sort": 361,"userTarget": "STUDENT","class": "BC1","letterGroup": "HOF","newlineChunking": true,"display": "OVERLEARN WORDS","fileName": "POL_HOF_W.txt"}, 
+
         
 {"sort": 31,"userTarget": "STUDENT","class": "BC1","letterGroup": "UWB","newlineChunking": false,"display": "UWB","fileName": "SB1UWB1.json"}, 
 {"sort": 362,"userTarget": "STUDENT","class": "BC1","letterGroup": "UWB","newlineChunking": true,"display": "UWB FAMILIARITY","fileName": "BC1_FAM_UWB.txt"},           
@@ -81,14 +96,17 @@
 {"sort": 33,"userTarget": "STUDENT","class": "BC1","letterGroup": "UWB","newlineChunking": false,"display": "UWB HOF LCD","fileName": "SB1UWB3.json"}, 
 {"sort": 34,"userTarget": "STUDENT","class": "BC1","letterGroup": "UWB","newlineChunking": false,"display": "UWB HOF LCD PSG","fileName": "SB1UWB4.json"}, 
 {"sort": 35,"userTarget": "STUDENT","class": "BC1","letterGroup": "UWB","newlineChunking": false,"display": "UWB HOF LCD PSG TIN","fileName": "SB1UWB5.json"}, 
-{"sort": 36,"userTarget": "STUDENT","class": "BC1","letterGroup": "UWB","newlineChunking": false,"display": "UWB HOF LCD PSG TIN REA","fileName": "SB1UWB6.json"},         
+{"sort": 36,"userTarget": "STUDENT","class": "BC1","letterGroup": "UWB","newlineChunking": false,"display": "UWB HOF LCD PSG TIN REA","fileName": "SB1UWB6.json"}, 
+
+{"sort": 361,"userTarget": "STUDENT","class": "BC1","letterGroup": "UWB","newlineChunking": true,"display": "OVERLEARN LETTERS","fileName": "POL_UWB_L.txt"},  
+{"sort": 361,"userTarget": "STUDENT","class": "BC1","letterGroup": "UWB","newlineChunking": true,"display": "OVERLEARN WORDS","fileName": "POL_UWB_W.txt"}, 
+        
 {"sort": 400,"userTarget": "STUDENT","class": "BC1","letterGroup": "UWB","newlineChunking": false,"display": "UWB HOF LCD QSO ABBREVIATIONS","fileName": "UWB9.txt"}, 
 {"sort": 402,"userTarget": "STUDENT","class": "BC1","letterGroup": "UWB","newlineChunking": true,"display": "UWB HOF LCD PHRASES","fileName": "UWB11.txt"},         
 {"sort": 399,"userTarget": "STUDENT","class": "BC1","letterGroup": "UWB","newlineChunking": true,"display": "UWB HOF LCD STATES/PROVINCES","fileName": "UWB8.txt"}, 
 {"sort": 401,"userTarget": "STUDENT","class": "BC1","letterGroup": "UWB","newlineChunking": false,"display": "UWB HOF LCD WORDS","fileName": "UWB10.txt"},    
 
-{"sort": 361,"userTarget": "STUDENT","class": "BC1","letterGroup": "UWB","newlineChunking": true,"display": "OVERLEARN LETTERS","fileName": "POL_UWB_L.txt"},  
-{"sort": 361,"userTarget": "STUDENT","class": "BC1","letterGroup": "UWB","newlineChunking": true,"display": "OVERLEARN WORDS","fileName": "POL_UWB_W.txt"}, 
+
         
 {"sort": 38,"userTarget": "STUDENT","class": "BC1","letterGroup": "PROGRESS EVALUATION","newlineChunking": true,"display": "Groups of 3","fileName": "BC1_P_Eval_G3.txt"},
 {"sort": 38,"userTarget": "STUDENT","class": "BC1","letterGroup": "PROGRESS EVALUATION","newlineChunking": true,"display": "Sentences","fileName": "BC1_P_Eval_S.txt"},        
@@ -103,14 +121,17 @@
 {"sort": 180,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "REA","newlineChunking": false,"display": "REA","fileName": "IB1REA5.json"}, 
 {"sort": 181,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "REA","newlineChunking": false,"display": "UWB HOF ","fileName": "IB1REA6.json"}, 
 {"sort": 182,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "REA","newlineChunking": false,"display": "REA UWB HOF","fileName": "IB1REA7.json"}, 
+
+{"sort": 361,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "REA","newlineChunking": true,"display": "OVERLEARN LETTERS","fileName": "POL_REA_L.txt"},  
+{"sort": 361,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "REA","newlineChunking": true,"display": "OVERLEARN WORDS","fileName": "POL_REA_W.txt"}, 
+        
 {"sort": 364,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "REA","newlineChunking": false,"display": "REA UWB HOF QSO ABBREVIATIONS","fileName": "REA9.txt"},
 {"sort": 366,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "REA","newlineChunking": true,"display": "REA UWB HOF PHRASES","fileName": "REA11.txt"},         
 {"sort": 363,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "REA","newlineChunking": true,"display": "REA UWB HOF STATES/PROVINCES","fileName": "REA8.txt"}, 
 {"sort": 365,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "REA","newlineChunking": false,"display": "REA UWB HOF WORDS","fileName": "REA10.txt"}, 
         
 
-{"sort": 361,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "REA","newlineChunking": true,"display": "OVERLEARN LETTERS","fileName": "POL_REA_L.txt"},  
-{"sort": 361,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "REA","newlineChunking": true,"display": "OVERLEARN WORDS","fileName": "POL_REA_W.txt"},  
+ 
         
 {"sort": 183,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "TIN","newlineChunking": false,"display": "T","fileName": "IB1TIN1.json"}, 
 {"sort": 184,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "TIN","newlineChunking": false,"display": "I","fileName": "IB1TIN2.json"},  
@@ -119,13 +140,16 @@
 {"sort": 187,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "TIN","newlineChunking": false,"display": "TIN","fileName": "IB1TIN5.json"}, 
 {"sort": 188,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "TIN","newlineChunking": false,"display": "REA UWB","fileName": "IB1TIN6.json"}, 
 {"sort": 189,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "TIN","newlineChunking": false,"display": "TIN REA UWB","fileName": "IB1TIN7.json"}, 
+
+{"sort": 361,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "TIN","newlineChunking": true,"display": "OVERLEARN LETTERS","fileName": "POL_TIN_L.txt"},  
+{"sort": 361,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "TIN","newlineChunking": true,"display": "OVERLEARN WORDS","fileName": "POL_TIN_W.txt"},  
+        
 {"sort": 372,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "TIN","newlineChunking": false,"display": "TIN REA UWB QSO ABBREVIATIONS","fileName": "TIN9.txt"}, 
 {"sort": 374,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "TIN","newlineChunking": true,"display": "TIN REA UWB PHRASES","fileName": "TIN11.txt"},         
 {"sort": 371,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "TIN","newlineChunking": true,"display": "TIN REA UWB STATES/PROVINCES","fileName": "TIN8.txt"}, 
 {"sort": 373,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "TIN","newlineChunking": false,"display": "TIN REA UWB WORDS","fileName": "TIN10.txt"}, 
         
-{"sort": 361,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "TIN","newlineChunking": true,"display": "OVERLEARN LETTERS","fileName": "POL_TIN_L.txt"},  
-{"sort": 361,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "TIN","newlineChunking": true,"display": "OVERLEARN WORDS","fileName": "POL_TIN_W.txt"},  
+
         
 {"sort": 190,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "PSG","newlineChunking": false,"display": "P","fileName": "IB1PGS1.json"}, 
 {"sort": 191,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "PSG","newlineChunking": false,"display": "S","fileName": "IB1PGS2.json"}, 
@@ -134,13 +158,16 @@
 {"sort": 194,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "PSG","newlineChunking": false,"display": "PSG","fileName": "IB1PGS5.json"}, 
 {"sort": 195,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "PSG","newlineChunking": false,"display": "TIN REA","fileName": "IB1PGS6.json"}, 
 {"sort": 196,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "PSG","newlineChunking": false,"display": "PSG TIN REA","fileName": "IB1PGS7.json"}, 
+
+{"sort": 361,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "PSG","newlineChunking": true,"display": "OVERLEARN LETTERS","fileName": "POL_PSG_L.txt"},  
+{"sort": 361,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "PSG","newlineChunking": true,"display": "OVERLEARN WORDS","fileName": "POL_PSG_W.txt"},  
+        
 {"sort": 380,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "PSG","newlineChunking": false,"display": "PSG TIN REA QSO ABBREVIATIONS","fileName": "PGS9.txt"}, 
 {"sort": 382,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "PSG","newlineChunking": true,"display": "PSG TIN REA PHRASES","fileName": "PGS11.txt"},         
 {"sort": 379,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "PSG","newlineChunking": true,"display": "PSG TIN REA STATES/PROVINCES","fileName": "PGS8.txt"}, 
 {"sort": 381,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "PSG","newlineChunking": false,"display": "PSG TIN REA WORDS","fileName": "PGS10.txt"}, 
         
-{"sort": 361,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "PSG","newlineChunking": true,"display": "OVERLEARN LETTERS","fileName": "POL_PSG_L.txt"},  
-{"sort": 361,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "PSG","newlineChunking": true,"display": "OVERLEARN WORDS","fileName": "POL_PSG_W.txt"},   
+ 
         
 {"sort": 197,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "LCD","newlineChunking": false,"display": "L","fileName": "IB1LCD1.json"}, 
 {"sort": 198,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "LCD","newlineChunking": false,"display": "C","fileName": "IB1LCD2.json"}, 
@@ -149,13 +176,16 @@
 {"sort": 201,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "LCD","newlineChunking": false,"display": "LCD","fileName": "IB1LCD5.json"}, 
 {"sort": 202,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "LCD","newlineChunking": false,"display": "PSG TIN","fileName": "IB1LCD6.json"}, 
 {"sort": 203,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "LCD","newlineChunking": false,"display": "LCD PSG TIN","fileName": "IB1LCD7.json"}, 
+
+{"sort": 361,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "LCD","newlineChunking": true,"display": "OVERLEARN LETTERS","fileName": "POL_LCD_L.txt"},  
+{"sort": 361,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "LCD","newlineChunking": true,"display": "OVERLEARN WORDS","fileName": "POL_LCD_W.txt"}, 
+        
 {"sort": 388,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "LCD","newlineChunking": false,"display": "LCD PSG TIN QSO ABBREVIATIONS","fileName": "LCD9.txt"}, 
 {"sort": 390,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "LCD","newlineChunking": true,"display": "LCD PSG TIN PHRASES","fileName": "LCD11.txt"},         
 {"sort": 387,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "LCD","newlineChunking": true,"display": "LCD PSG TIN STATES/PROVINCES","fileName": "LCD8.txt"}, 
 {"sort": 389,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "LCD","newlineChunking": false,"display": "LCD PSG TIN WORDS","fileName": "LCD10.txt"}, 
 
-{"sort": 361,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "LCD","newlineChunking": true,"display": "OVERLEARN LETTERS","fileName": "POL_LCD_L.txt"},  
-{"sort": 361,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "LCD","newlineChunking": true,"display": "OVERLEARN WORDS","fileName": "POL_LCD_W.txt"}, 
+
 
 {"sort": 204,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "HOF","newlineChunking": false,"display": "H","fileName": "IB1HOF1.json"}, 
 {"sort": 205,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "HOF","newlineChunking": false,"display": "O","fileName": "IB1HOF2.json"},  
@@ -164,13 +194,16 @@
 {"sort": 208,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "HOF","newlineChunking": false,"display": "HOF","fileName": "IB1HOF5.json"}, 
 {"sort": 209,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "HOF","newlineChunking": false,"display": "LCD PSG","fileName": "IB1HOF6.json"}, 
 {"sort": 210,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "HOF","newlineChunking": false,"display": "HOF LCD PSG","fileName": "IB1HOF7.json"}, 
+
+{"sort": 361,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "HOF","newlineChunking": true,"display": "OVERLEARN LETTERS","fileName": "POL_HOF_L.txt"},  
+{"sort": 361,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "HOF","newlineChunking": true,"display": "OVERLEARN WORDS","fileName": "POL_HOF_W.txt"}, 
+        
 {"sort": 396,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "HOF","newlineChunking": false,"display": "HOF LCD PSG QSO ABBREVIATIONS","fileName": "HOF9.txt"}, 
 {"sort": 398,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "HOF","newlineChunking": true,"display": "HOF LCD PSG PHRASES","fileName": "HOF11.txt"},         
 {"sort": 395,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "HOF","newlineChunking": true,"display": "HOF LCD PSG STATES","fileName": "HOF8.txt"}, 
 {"sort": 397,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "HOF","newlineChunking": false,"display": "HOF LCD PSG WORDS","fileName": "HOF10.txt"}, 
         
-{"sort": 361,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "HOF","newlineChunking": true,"display": "OVERLEARN LETTERS","fileName": "POL_HOF_L.txt"},  
-{"sort": 361,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "HOF","newlineChunking": true,"display": "OVERLEARN WORDS","fileName": "POL_HOF_W.txt"}, 
+
         
 {"sort": 211,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "UWB","newlineChunking": false,"display": "U ","fileName": "IB1UWB1.json"}, 
 {"sort": 212,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "UWB","newlineChunking": false,"display": "W","fileName": "IB1UWB2.json"}, 
@@ -179,14 +212,17 @@
 {"sort": 215,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "UWB","newlineChunking": false,"display": "UWB","fileName": "IB1UWB5.json"}, 
 {"sort": 216,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "UWB","newlineChunking": false,"display": "HOF LCD","fileName": "IB1UWB6.json"}, 
 {"sort": 217,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "UWB","newlineChunking": false,"display": "UWB HOF LCD","fileName": "IB1UWB7.json"}, 
+
+{"sort": 361,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "UWB","newlineChunking": true,"display": "OVERLEARN LETTERS","fileName": "POL_UWB_L.txt"},  
+{"sort": 361,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "UWB","newlineChunking": true,"display": "OVERLEARN WORDS","fileName": "POL_UWB_W.txt"}, 
+        
 {"sort": 404,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "UWB","newlineChunking": false,"display": "UWB HOF LCD QSO ABBREVIATIONS","fileName": "UWB9.txt"}, 
 {"sort": 503,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "UWB","newlineChunking": true,"display": "UWB HOF LCD PHRASES","fileName": "UWB11.txt"},        
 {"sort": 403,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "UWB","newlineChunking": true,"display": "UWB HOF LCD STATES/PROVINCES","fileName": "UWB8.txt"}, 
 {"sort": 405,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "UWB","newlineChunking": false,"display": "UWB HOF LCD WORDS","fileName": "UWB10.txt"}, 
 
 
-{"sort": 361,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "UWB","newlineChunking": true,"display": "OVERLEARN LETTERS","fileName": "POL_UWB_L.txt"},  
-{"sort": 361,"userTarget": "INSTRUCTOR","class": "BC1","letterGroup": "UWB","newlineChunking": true,"display": "OVERLEARN WORDS","fileName": "POL_UWB_W.txt"}, 
+
 
         
 
