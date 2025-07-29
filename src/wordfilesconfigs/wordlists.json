@@ -376,13 +376,14 @@
 {"sort": 132,"userTarget": "STUDENT","class": "BC2","letterGroup": "ZJ/","newlineChunking": false,"display": "B1 ZJ/ 16. <AR><SK><BT> 73? QXV 59, KMY","fileName": "SB2ZJ12.json"}, 
 {"sort": 133,"userTarget": "STUDENT","class": "BC2","letterGroup": "ZJ/","newlineChunking": false,"display": "B1 ZJ/ 16. <AR><SK><BT> 73? QXV 59, KMY 40","fileName": "SB2ZJ13.json"}, 
 {"sort": 134,"userTarget": "STUDENT","class": "BC2","letterGroup": "ZJ/","newlineChunking": false,"display": "B1 ZJ/ 16. <AR><SK><BT> 73? QXV 59, KMY 40 28BK","fileName": "B1B2.json"}, 
+
+{"sort": 137,"userTarget": "STUDENT","class": "BC2","letterGroup": "ZJ/","newlineChunking": true,"display": "WORDS","fileName": "BC2_ZJ_W.txt"}, 
+{"sort": 50,"userTarget": "STUDENT","class": "BC2","letterGroup": "ZJ/","newlineChunking": true,"display": "OVERLEARN LETTERS","fileName": "POL_ZJ_L.txt"},         
+{"sort": 50,"userTarget": "STUDENT","class": "BC2","letterGroup": "ZJ/","newlineChunking": true,"display": "OVERLEARN WORDS","fileName": "POL_ZJ_W.txt"}, 
+        
 {"sort": 135,"userTarget": "STUDENT","class": "BC2","letterGroup": "ZJ/","newlineChunking": true,"display": "STATES/PROVINCES","fileName": "SB2ZJ5.txt"}, 
 {"sort": 136,"userTarget": "STUDENT","class": "BC2","letterGroup": "ZJ/","newlineChunking": false,"display": "QSO ABBREVIATIONS","fileName": "SB2ZJ3.txt"}, 
 {"sort": 137,"userTarget": "STUDENT","class": "BC2","letterGroup": "ZJ/","newlineChunking": true,"display": "QSO PHRASES","fileName": "SB2ZJ4.txt"}, 
-
-{"sort": 137,"userTarget": "STUDENT","class": "BC2","letterGroup": "ZJ/","newlineChunking": true,"display": "WORDS","fileName": "BC2_ZJ_W.txt"}, 
-{"sort": 50,"userTarget": "STUDENT","class": "BC2","letterGroup": "ZJ/","newlineChunking": true,"display": "OVERLEARN LETTERS","fileName": "POL_ZJ_L.txt"}, 
-{"sort": 50,"userTarget": "STUDENT","class": "BC2","letterGroup": "ZJ/","newlineChunking": true,"display": "OVERLEARN WORDS","fileName": "POL_ZJ_W.txt"}, 
         
 
 {"sort": 138,"userTarget": "STUDENT","class": "BC2","letterGroup": "28BK","newlineChunking": false,"display": "28BK","fileName": "SB228BK2.json"}, 
@@ -397,12 +398,15 @@
 {"sort": 146,"userTarget": "STUDENT","class": "BC2","letterGroup": "28BK","newlineChunking": false,"display": "B1 28BK ZJ/ 16. <AR><SK><BT> 73? QXV 59,","fileName": "SB228BK13.json"}, 
 {"sort": 147,"userTarget": "STUDENT","class": "BC2","letterGroup": "28BK","newlineChunking": false,"display": "B1 28BK ZJ/ 16. <AR><SK><BT> 73? QXV 59, KMY","fileName": "SB228BK14.json"}, 
 {"sort": 148,"userTarget": "STUDENT","class": "BC2","letterGroup": "28BK","newlineChunking": false,"display": "B1 28BK ZJ/ 16. <AR><SK><BT> 73? QXV 59, KMY 40","fileName": "B1B2.json"}, 
+
+{"sort": 152,"userTarget": "STUDENT","class": "BC2","letterGroup": "28BK","newlineChunking": true,"display": "WORDS","fileName": "BC2_28_W.txt"}, 
+        
 {"sort": 149,"userTarget": "STUDENT","class": "BC2","letterGroup": "28BK","newlineChunking": false,"display": "CALLSIGNS","fileName": "SB228BK5.txt"}, 
 {"sort": 150,"userTarget": "STUDENT","class": "BC2","letterGroup": "28BK","newlineChunking": true,"display": "STATES/PROVINCES","fileName": "SB228BK6.txt"}, 
 {"sort": 151,"userTarget": "STUDENT","class": "BC2","letterGroup": "28BK","newlineChunking": false,"display": "QSO ABBREVIATIONS","fileName": "SB228BK3.txt"}, 
 {"sort": 152,"userTarget": "STUDENT","class": "BC2","letterGroup": "28BK","newlineChunking": true,"display": "QSO PHRASES","fileName": "SB228BK4.txt"}, 
 
-{"sort": 152,"userTarget": "STUDENT","class": "BC2","letterGroup": "28BK","newlineChunking": true,"display": "WORDS","fileName": "BC2_28_W.txt"}, 
+
         
 {"sort": 153,"userTarget": "STUDENT","class": "BC2","letterGroup": "40","newlineChunking": false,"display": "40","fileName": "SB2402.json"}, 
 {"sort": 362,"userTarget": "STUDENT","class": "BC2","letterGroup": "40","newlineChunking": true,"display": "40 FAMILIARITY","fileName": "BC2_FAM_40.txt"},  
@@ -416,12 +420,15 @@
 {"sort": 161,"userTarget": "STUDENT","class": "BC2","letterGroup": "40","newlineChunking": false,"display": "B1 40 28BK ZJ/ 16. <AR><SK><BT> 73? QXV","fileName": "SB24013.json"}, 
 {"sort": 162,"userTarget": "STUDENT","class": "BC2","letterGroup": "40","newlineChunking": false,"display": "B1 40 28BK ZJ/ 16. <AR><SK><BT> 73? QXV 59,","fileName": "SB24014.json"}, 
 {"sort": 163,"userTarget": "STUDENT","class": "BC2","letterGroup": "40","newlineChunking": false,"display": "B1 40 28BK ZJ/ 16. <AR><SK><BT> 73? QXV 59, KMY","fileName": "B1B2.json"}, 
+
+{"sort": 167,"userTarget": "STUDENT","class": "BC2","letterGroup": "40","newlineChunking": true,"display": "WORDS","fileName": "BC2_40_W.txt"},  
+        
 {"sort": 164,"userTarget": "STUDENT","class": "BC2","letterGroup": "40","newlineChunking": false,"display": "CALLSIGNS","fileName": "SB2405.txt"}, 
 {"sort": 165,"userTarget": "STUDENT","class": "BC2","letterGroup": "40","newlineChunking": true,"display": "STATES/PROVINCES","fileName": "SB2406.txt"}, 
 {"sort": 166,"userTarget": "STUDENT","class": "BC2","letterGroup": "40","newlineChunking": false,"display": "QSO ABBREVIATIONS","fileName": "SB2403.txt"}, 
 {"sort": 167,"userTarget": "STUDENT","class": "BC2","letterGroup": "40","newlineChunking": true,"display": "QSO PHRASES","fileName": "SB2404.txt"},  
 
-{"sort": 167,"userTarget": "STUDENT","class": "BC2","letterGroup": "40","newlineChunking": true,"display": "WORDS","fileName": "BC2_40_W.txt"},  
+
 
 {"sort": 38,"userTarget": "STUDENT","class": "BC2","letterGroup": "PROGRESS EVALUATION","newlineChunking": true,"display": "Call Signs","fileName":  "BC2_P-Eval_CS.txt"},
 {"sort": 38,"userTarget": "STUDENT","class": "BC2","letterGroup": "PROGRESS EVALUATION","newlineChunking": true,"display": "Sentences","fileName": "BC2_P_Eval_Sent.txt"},
