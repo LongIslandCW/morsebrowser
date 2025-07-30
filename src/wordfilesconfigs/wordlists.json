@@ -1004,8 +1004,8 @@
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SUFFIXES","newlineChunking": true,"display": "ED","fileName": "POL_ED.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SUFFIXES","newlineChunking": true,"display": "ING","fileName": "POL_ING.txt"},
         
-{"sort": 529,"userTarget": "INSTRUCTOR","class": "-","letterGroup": "-","newlineChunking": true,"display": "1","fileName": "POL_ASS1.txt"},
-{"sort": 529,"userTarget": "INSTRUCTOR","class": "-","letterGroup": "-","newlineChunking": true,"display": "2","fileName": "POL_ASS2.txt"},
-{"sort": 529,"userTarget": "INSTRUCTOR","class": "-","letterGroup": "-","newlineChunking": true,"display": "3","fileName": "POL_ASS3.txt"}
+{"sort": 529,"userTarget": "INSTRUCTOR","class": "A","letterGroup": "-","newlineChunking": true,"display": "1","fileName": "POL_ASS1.txt"},
+{"sort": 529,"userTarget": "INSTRUCTOR","class": "A","letterGroup": "-","newlineChunking": true,"display": "2","fileName": "POL_ASS2.txt"},
+{"sort": 529,"userTarget": "INSTRUCTOR","class": "A","letterGroup": "-","newlineChunking": true,"display": "3","fileName": "POL_ASS3.txt"}
         
 ]}
