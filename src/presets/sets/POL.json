@@ -1,43 +1,43 @@
 {
     "options": [
          {
-            "display": "CHARACTERS 27 wpm",
+            "display": "CHARACTERS Flow Rate 1",
             "filename": "POL_27.json"
         },
         {
-            "display": "WORDS 27 wpm",
+            "display": "WORDS Flow Rate 1",
             "filename": "POL_27_WORDS.json"
         },  
        {
-            "display": "BINOMIALS 27 wpm",
+            "display": "BINOMIALS Flow Rate 1",
             "filename": "POL_27_BI.json"
         },  
          {
-            "display": "CHARACTERS 31 wpm",
+            "display": "CHARACTERS Flow Rate 2",
             "filename": "POL_31.json"
         },
          {
-            "display": "WORDS 31 wpm",
+            "display": "WORDS Flow Rate 2",
             "filename": "POL_31_WORDS.json"
         },
          {
-            "display": "BINOMIALS 31 wpm",
+            "display": "BINOMIALS Flow Rate 2",
             "filename": "POL_31_BI.json"
         },
         {
-            "display": "SENDING ALPHABET 27 wpm",
+            "display": "SENDING ALPHABET Flow Rate 1",
             "filename": "POL_27_SA.json"
         },
         {
-            "display": "SENDING NUMBERS 27 wpm",
+            "display": "SENDING NUMBERS Flow Rate 1",
             "filename": "POL_27_SN.json"
         },
         {
-            "display": "SENDING ALPHABET 31 wpm",
+            "display": "SENDING ALPHABET Flow Rate 2",
             "filename": "POL_31_SA.json"
         },
         {
-            "display": "SENDING NUMBERS 31 wpm",
+            "display": "SENDING NUMBERS Flow Rate 2",
             "filename": "POL_31_SN.json"
         }
  
