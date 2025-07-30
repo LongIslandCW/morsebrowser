@@ -1002,7 +1002,7 @@
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORDS","newlineChunking": true,"display": "WORD BUILDING ADVANCED","fileName": "POL_WB_Pt3.txt"},
 
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SUFFIXES","newlineChunking": true,"display": "ED","fileName": "POL_ED.txt"},
-{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SUFFIXES","newlineChunking": true,"display": "ING","fileName": "POL_ING.txt"},
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SUFFIXES","newlineChunking": true,"display": "ING","fileName": "POL_ING.txt"}
         
 
         
