@@ -20,6 +20,22 @@
             "filename": "BC2_VET.json"
         },
         {
+            "display": "OverLearn Letters Flow Rate 1",
+            "filename": "POL_17_L.json"
+        },
+        {
+            "display": "OverLearn Words Flow Rate 1",
+            "filename": "POL_17_W.json"
+        },
+        {
+            "display": "OverLearn Letters Flow Rate 2",
+            "filename": "POL_21_L.json"
+        },
+        {
+            "display": "OverLearn Words Flow Rate 2",
+            "filename": "POL_21_W.json"
+        },      
+        {
             "display": "Groups of 5",
             "filename": "BC2_Groups_of_5.json"
         },
@@ -63,6 +79,7 @@
         {
         "display": "Progress Evaluation",
             "filename": "BC2_P_Eval.json"
-        }     
+        }   
+
     ]
 }

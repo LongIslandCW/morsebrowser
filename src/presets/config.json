@@ -82,6 +82,11 @@
             "className": "OVERLEARN",
             "defaultSetFile": "POL.json",
             "letterGroups": []
-        }  
+        }, 
+                {
+            "className": "A",
+            "defaultSetFile": "A.json",
+            "letterGroups": []
+        } 
     ]
 }
