@@ -967,8 +967,8 @@
 {"sort": 529,"userTarget": "STUDENT","class": "TTR+","letterGroup": "WORDS","newlineChunking": true,"display": "6 LETTERS","fileName": "Words_6L.txt"},
         
 
-{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "CHARACTERS","newlineChunking": true,"display": "ALPHABET","fileName": "POL_Letters.txt"},
-{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "CHARACTERS","newlineChunking": true,"display": "ALPHABET ALT","fileName": "POL_Letters_ALT.txt"},
+
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "CHARACTERS","newlineChunking": true,"display": "ALPHABET","fileName": "POL_Letters_ALT.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "CHARACTERS","newlineChunking": true,"display": "NUMBERS","fileName": "POL_Numbers.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "CHARACTERS","newlineChunking": true,"display": "NUMBERS ALT","fileName": "POL_Numbers_ALT.txt"},
 

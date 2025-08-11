@@ -54,6 +54,7 @@ export default class MorseLessonPlugin implements ICookieHandler {
   morseViewModel:MorseViewModel
   yourSettingsDummy:SettingsOption
   customSettingsOptions:SettingsOption[] = []
+  queryStringSettingsOn:boolean = false
 
   constructor (morseSettings:MorseSettings, setTextCallBack:any, timeEstimateCallback:any, morseViewModel:MorseViewModel) {
     MorseCookies.registerHandler(this)
@@ -192,6 +193,65 @@ export default class MorseLessonPlugin implements ICookieHandler {
   }
 
   // end constructor
+
+  // toggle queryStringSettingsOn
+  toggleQueryStringSettingsOn = () => {
+    console.log("toggling queryStringSettingsOn")
+    this.queryStringSettingsOn = !this.queryStringSettingsOn    
+  }
+
+  // helper function that takes a query string variable and its value and upserts into the query string with proper url encoding
+  upsertQueryStringVariable = (variable:string, value:string):string => {  
+    const queryString = window.location.search
+    const urlParams = new URLSearchParams(queryString)
+    const priority = ['selectedClass', 'selectedGroup', 'selectedLesson', 'selectedPreset']
+    // if not toggleQueryStringSettingsOn, then do nothing
+    if (!this.queryStringSettingsOn) {
+      return urlParams.toString()
+    }
+
+
+    // if the variable and value are already set in the query string, do nothing
+    if (urlParams.has(variable) && urlParams.get(variable) === value) { 
+      return urlParams.toString()
+    }
+
+
+    // if the variable is in the priority list, remove all other variables of lower priority, with "lower priority" being later in the order of the priority array
+    const idx = priority.indexOf(variable as typeof priority[number]);
+    if (idx !== -1) {
+      // remove only lower-priority params (those that come later)
+      for (let i = idx + 1; i < priority.length; i++) {
+        urlParams.delete(priority[i]);
+      }
+    }
+
+    if (urlParams.has(variable)) {
+      urlParams.set(variable, value)
+    } else {
+      urlParams.append(variable, value)
+    }
+    // update the URL without reloading the page
+    window.history.replaceState({}, '', `${window.location.pathname}?${urlParams.toString()}`)
+    return urlParams.toString()
+  }
+
+  // given a querty string variable, remove it from the querystring immediately in the window
+  removeQueryStringVariable = (variable:string):string => {
+    // log the current window query string to the console
+    // console.log(`removing query string variable ${variable} from ${window.location.search}`)
+    const queryString = window.location.search
+    const urlParams = new URLSearchParams(queryString)
+    if (urlParams.has(variable)) {
+      urlParams.delete(variable)
+      // update the URL without reloading the page
+      window.history.replaceState({}, '', `${window.location.pathname}?${urlParams.toString()}`)
+    }
+    // console.log(`new query string is ${window.location.search}`)
+    return urlParams.toString()
+    
+
+  }
 
   getSettingsPresets = (forceRefresh:boolean = false, selectFirstNonYour:boolean = false) => {
     let sps:SettingsOption[] = []
@@ -372,43 +432,124 @@ export default class MorseLessonPlugin implements ICookieHandler {
 
   setSelectedClassInitialized = () => {
     this.selectedClassInitialized = true
+    // check for class preset
+    if (GeneralUtils.getParameterByName('selectedClass')) {
+      const paramClass = GeneralUtils.getParameterByName('selectedClass').toUpperCase()
+      const targetClass = this.classes().find(c => c.toUpperCase() === paramClass)
+      if (targetClass) {
+        this.changeSelectedClass(targetClass)
+        if (!this.queryStringSettingsOn) {
+          // remove selectedClass from the Querystring now that we're done
+          this.removeQueryStringVariable('selectedClass')
+        }
+      }
+    }
+    
   }
 
   setLetterGroupInitialized = () => {
     // console.log('setlettergroupinitialized')
     this.letterGroupInitialized = true
+    // check for class preset
+    if (GeneralUtils.getParameterByName('selectedGroup')) {
+      const paramClass = GeneralUtils.getParameterByName('selectedGroup').toUpperCase()
+      const targetClass = this.letterGroups().find(c => c.toUpperCase() === paramClass)
+      if (targetClass) {
+        this.setLetterGroup(targetClass)
+        if (!this.queryStringSettingsOn) {
+          // remove selectedGroup from the Querystring now that we're done
+          this.removeQueryStringVariable('selectedGroup')
+        }
+      }
+    }
   }
 
   setDisplaysInitialized = () => {
     this.displaysInitialized = true
+    // check for 'displays' lsson preset
+    if (GeneralUtils.getParameterByName('selectedLesson')) {
+      const paramClass = GeneralUtils.getParameterByName('selectedLesson').toUpperCase()
+      const targetClass = this.displays().find(c => c.display.toUpperCase() === paramClass)
+      // get a boolean whether the query string value selectedPreset is present
+      var skipPresets = false
+      if (GeneralUtils.getParameterByName('selectedPreset')) {
+        skipPresets = true
+      } 
+    
+        
+      
+      if (targetClass) {
+        this.setDisplaySelected(targetClass, skipPresets)
+        if (!this.queryStringSettingsOn) {
+          // remove selectedLesson from the Querystring now that we're done
+          this.removeQueryStringVariable('selectedLesson')
+        }
+      }
+    }
   }
 
   setSettingsPresetsInitialized = () => {
     this.settingsPresetsInitialized = true
+    if (GeneralUtils.getParameterByName('selectedPreset')) {
+      const paramClass = GeneralUtils.getParameterByName('selectedPreset').toUpperCase()
+      const targetClass = this.settingsPresets().find(c => c.display.toUpperCase() === paramClass)
+      if (targetClass) {
+        //console.log(`setting preset to ${targetClass.display}`)
+        // console.log(targetClass)
+        this.setPresetSelected(targetClass)
+        if (!this.queryStringSettingsOn) {
+          // not sure why delay here is needed but something is causing it to go to default if we don't.
+          // after a delay of 1 second remove selectedPreset from the Querystring now that we're done
+          setTimeout(() => {
+            this.removeQueryStringVariable('selectedPreset')
+          }, 1000)
+        }
+      } else {
+        console.log('no preset found')
+        
+      }
+    }
   }
 
   changeUserTarget = (userTarget) => {
     if (this.userTargetInitialized) {
       this.userTarget(userTarget)
       // console.log('usertarget')
+      // console.log(`calling setPresetSelection from changeUserTarget:${userTarget}`)
       this.setPresetSelected(this.selectedSettingsPreset(), true)
     }
   }
 
-  changeSelectedClass = (selectedClass) => {
+  changeSelectedClass = (selectedClass, fromClick = "") => {
+    /* console.log(`class fromClick=${fromClick}`)
+    if (fromClick=== 'click') {
+      console.log("CLASS WAS CLICKED")
+      this.removeQueryStringVariable('selectedPreset')
+      this.removeQueryStringVariable('selectedGroup')
+      this.removeQueryStringVariable('selectedLesson')
+    } */
     if (this.selectedClassInitialized) {
       this.selectedClass(selectedClass)
       // console.log(selectedClass)
       // console.log(ClassPresets)
+      //console.log('calling setPresetSelection from changeSelectedClass')
       this.setPresetSelected(this.selectedSettingsPreset(), true)
+      this.upsertQueryStringVariable('selectedClass', selectedClass)
     }
   }
 
-  setLetterGroup = (letterGroup) => {
+  setLetterGroup = (letterGroup, fromClick="") => {
+    /* if (fromClick === 'click') {
+      this.removeQueryStringVariable('selectedPreset')
+      this.removeQueryStringVariable('selectedGroup')
+      this.removeQueryStringVariable('selectedLesson')
+    } */
     if (this.letterGroupInitialized) {
       // console.log('setlettergroup')
       this.letterGroup(letterGroup)
+      //console.log('calling setPresetSelected from setLetterGroup')
       this.setPresetSelected(this.selectedSettingsPreset(), true)
+      this.upsertQueryStringVariable('selectedGroup', letterGroup)
     }
   }
 
@@ -419,22 +560,39 @@ export default class MorseLessonPlugin implements ICookieHandler {
     }
   }
 
-  setDisplaySelected = (display, skipPresets = false) => {
+  setDisplaySelected = (display, skipPresets = false, fromClick="") => {
+    /* if (fromClick=== 'click') {
+      console.log('display clicked so removing selectedPreset')
+      this.removeQueryStringVariable('selectedPreset')
+      this.removeQueryStringVariable('selectedLesson')
+    } */
     if (!display.isDummy) {
       if (this.displaysInitialized) {
         this.selectedDisplay(display)
+        //console.log(display)
+        this.upsertQueryStringVariable('selectedLesson', display.display)
         this.morseSettings.misc.newlineChunking(display.newlineChunking)
         // setText(`when we have lesson files, load ${selectedDisplay().fileName}`)
         this.getWordList(this.selectedDisplay().fileName)
         this.closeLessonAccordianIfAutoClosing()
         if (!skipPresets) {
+          //console.log('calling setPresetSelected from setDisplaySelected')
           this.setPresetSelected(this.selectedSettingsPreset(), true)
         }
       }
     }
   }
 
-  setPresetSelected = (preset:SettingsOption, skipReinit = false) => {
+  setPresetSelected = (preset:SettingsOption, skipReinit = false, fromClick="") => {
+    // if the query string has selectedPreset, only proceed if that value equals preset.display
+    if (!(fromClick==='click') && GeneralUtils.getParameterByName('selectedPreset') && GeneralUtils.getParameterByName('selectedPreset').toUpperCase() !== preset.display.toUpperCase()) {
+      console.log(`skipping preset selection as query string preset is ${GeneralUtils.getParameterByName('selectedPreset')}`)
+      return
+    } 
+    if (fromClick==='click') {
+      this.removeQueryStringVariable('selectedPreset')
+    }
+    console.log(`setPresetSelected:${preset.display}`)
     if (this.settingsPresetsInitialized) {
       // before we do anything, if the prior was Your Settings, then
       // make those the saved serialized, unless they've been overridden
@@ -532,6 +690,8 @@ export default class MorseLessonPlugin implements ICookieHandler {
       }
 
       this.lastSelectedSettingsPreset(preset)
+      // console.log(`leaving the selected preset is ${this.selectedSettingsPreset().display}`)
+      this.upsertQueryStringVariable('selectedPreset', preset.display)
     }
   }
 

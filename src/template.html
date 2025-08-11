@@ -38,7 +38,7 @@
             <header class="col">
                 <div class="row row-cols-2 justify-content-md-center">
                     <div class="col col-md-auto">
-                        <img id="logoImage" height="200px" width="200px"
+                        <img data-bind="click: logoClick" id="logoImage" height="200px" width="200px"
                             alt="Long Island CW Club Logo depicting a hand on a straight key and the club call sign W2LCW" />
 
                     </div>
@@ -268,7 +268,7 @@
                                             <input type="radio" class="btn-check" name="btnradioClasses"
                                                 data-bind="checkedValue: $data, checked: $root.lessons.selectedClass, attr: { 'aria-label': $data }">
                                             <label class="btn btn-outline-primary" aria-hidden="true"
-                                                data-bind="text: $data, click: $root.lessons.changeSelectedClass($data)"></label>
+                                                data-bind="text: $data, click: $root.lessons.changeSelectedClass($data,'click')"></label>
                                         </fieldset>
                                     </div>
                                     <!--letter groups-->
@@ -279,7 +279,7 @@
                                             style="overflow-y:auto; height:290px; width: 225px;">
                                             <button role="radio" type="button"
                                                 class="list-group-item list-group-item-action"
-                                                data-bind="text: $data, attr:{ 'aria-checked': $root.lessons.letterGroup()==$data }, click: ()=>$root.lessons.setLetterGroup($data), css: { active: $data==$parent.lessons.letterGroup()}"></button>
+                                                data-bind="text: $data, attr:{ 'aria-checked': $root.lessons.letterGroup()==$data }, click: ()=>$root.lessons.setLetterGroup($data,'click'), css: { active: $data==$parent.lessons.letterGroup()}"></button>
                                         </div>
                                     </div>
                                     <!--lessons-->
@@ -290,7 +290,7 @@
                                             style="overflow-y:auto; height:250px; width: 200px;">
                                             <button role="radio" type="button"
                                                 class="list-group-item list-group-item-action"
-                                                data-bind="text: $data.display, attr:{ 'aria-checked': $data.display==$parent.lessons.selectedDisplay().display }, click: ()=>$root.lessons.setDisplaySelected($data), css: { active: $data.display==$parent.lessons.selectedDisplay().display}"></button>
+                                                data-bind="text: $data.display, attr:{ 'aria-checked': $data.display==$parent.lessons.selectedDisplay().display }, click: ()=>$root.lessons.setDisplaySelected($data,false,'click'), css: { active: $data.display==$parent.lessons.selectedDisplay().display}"></button>
                                         </div>
                                     </div>
 
@@ -302,7 +302,7 @@
                                             style="overflow-y:auto; height:250px; width: 200px;">
                                             <button role="radio" id="btnLessonSettingsPresets" type="button"
                                                 class="list-group-item list-group-item-action"
-                                                data-bind="enable: $root.allowSaveCookies, text: $data.display, attr:{ 'aria-checked': $data.display==$parent.lessons.selectedSettingsPreset().display }, click: ()=>$root.lessons.setPresetSelected($data), css: { active: $data.display==$parent.lessons.selectedSettingsPreset().display}"></button>
+                                                data-bind="enable: $root.allowSaveCookies, text: $data.display, attr:{ 'aria-checked': $data.display==$parent.lessons.selectedSettingsPreset().display }, click: ()=>$root.lessons.setPresetSelected($data,false,'click'), css: { active: $data.display==$parent.lessons.selectedSettingsPreset().display}"></button>
                                         </div>
 
                                         <!-- save settings button -->
