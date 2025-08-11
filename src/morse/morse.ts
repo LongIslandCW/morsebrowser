@@ -24,7 +24,7 @@ import { SettingsChangeInfo } from './settings/settingsChangeInfo'
 import { VoiceBufferInfo } from './voice/VoiceBufferInfo'
 import { GeneralUtils } from './utils/general'
 import MorseSettingsHandler from './settings/morseSettingsHandler'
-import { clear } from 'console'
+import { clear, log } from 'console'
 import ScreenWakeLock from './utils/screenWakeLock'
 
 export class MorseViewModel {
@@ -96,6 +96,7 @@ export class MorseViewModel {
   testToneCount:number = 0
   testToneFlagHandle:any = 0
   screenWakeLock:ScreenWakeLock
+  logoClickCount:number =0
 
   // END KO observables declarations
   constructor () {
@@ -144,6 +145,8 @@ export class MorseViewModel {
 
     // voice
     this.morseVoice = new MorseVoice(this)
+    // after 5 seconds, run this.morseVoice.initEasySpeech()
+    setTimeout(() => { this.morseVoice.initEasySpeech() }, 5000)
 
     this.loadDefaultsAndCookieSettings()
 
@@ -856,5 +859,13 @@ export class MorseViewModel {
   settingsFileChange = (element) => {
     // thanks to https://newbedev.com/how-to-access-file-input-with-knockout-binding
     MorseSettingsHandler.settingsFileChange(element, this)
+  }
+
+  logoClick = () => { 
+    console.log('logo clicked')
+    this.logoClickCount++;
+    if (this.logoClickCount % 4 === 0) {
+      this.lessons.toggleQueryStringSettingsOn()    
+    }
   }
 }

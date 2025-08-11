@@ -54,6 +54,7 @@ export default class MorseLessonPlugin implements ICookieHandler {
   morseViewModel:MorseViewModel
   yourSettingsDummy:SettingsOption
   customSettingsOptions:SettingsOption[] = []
+  queryStringSettingsOn:boolean = false
 
   constructor (morseSettings:MorseSettings, setTextCallBack:any, timeEstimateCallback:any, morseViewModel:MorseViewModel) {
     MorseCookies.registerHandler(this)
@@ -193,11 +194,23 @@ export default class MorseLessonPlugin implements ICookieHandler {
 
   // end constructor
 
+  // toggle queryStringSettingsOn
+  toggleQueryStringSettingsOn = () => {
+    console.log("toggling queryStringSettingsOn")
+    this.queryStringSettingsOn = !this.queryStringSettingsOn    
+  }
+
   // helper function that takes a query string variable and its value and upserts into the query string with proper url encoding
   upsertQueryStringVariable = (variable:string, value:string):string => {  
     const queryString = window.location.search
     const urlParams = new URLSearchParams(queryString)
     const priority = ['selectedClass', 'selectedGroup', 'selectedLesson', 'selectedPreset']
+    // if not toggleQueryStringSettingsOn, then do nothing
+    if (!this.queryStringSettingsOn) {
+      return urlParams.toString()
+    }
+
+
     // if the variable and value are already set in the query string, do nothing
     if (urlParams.has(variable) && urlParams.get(variable) === value) { 
       return urlParams.toString()
@@ -425,6 +438,10 @@ export default class MorseLessonPlugin implements ICookieHandler {
       const targetClass = this.classes().find(c => c.toUpperCase() === paramClass)
       if (targetClass) {
         this.changeSelectedClass(targetClass)
+        if (!this.queryStringSettingsOn) {
+          // remove selectedClass from the Querystring now that we're done
+          this.removeQueryStringVariable('selectedClass')
+        }
       }
     }
     
@@ -439,6 +456,10 @@ export default class MorseLessonPlugin implements ICookieHandler {
       const targetClass = this.letterGroups().find(c => c.toUpperCase() === paramClass)
       if (targetClass) {
         this.setLetterGroup(targetClass)
+        if (!this.queryStringSettingsOn) {
+          // remove selectedGroup from the Querystring now that we're done
+          this.removeQueryStringVariable('selectedGroup')
+        }
       }
     }
   }
@@ -459,6 +480,10 @@ export default class MorseLessonPlugin implements ICookieHandler {
       
       if (targetClass) {
         this.setDisplaySelected(targetClass, skipPresets)
+        if (!this.queryStringSettingsOn) {
+          // remove selectedLesson from the Querystring now that we're done
+          this.removeQueryStringVariable('selectedLesson')
+        }
       }
     }
   }
@@ -472,6 +497,13 @@ export default class MorseLessonPlugin implements ICookieHandler {
         //console.log(`setting preset to ${targetClass.display}`)
         // console.log(targetClass)
         this.setPresetSelected(targetClass)
+        if (!this.queryStringSettingsOn) {
+          // not sure why delay here is needed but something is causing it to go to default if we don't.
+          // after a delay of 1 second remove selectedPreset from the Querystring now that we're done
+          setTimeout(() => {
+            this.removeQueryStringVariable('selectedPreset')
+          }, 1000)
+        }
       } else {
         console.log('no preset found')
         
