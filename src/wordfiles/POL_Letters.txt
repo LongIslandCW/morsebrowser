@@ -1,7 +1,3 @@
-Change CHARACTER FLOW 1 and 2 PRESET with 0 repeats 
-
-Address the files for Sending numbers and letters.  Need to use the ones that are there now.
-
 [ ]A[ ]B[ ]C[ ]D[ ]E[ ]F[ ]G[ ]H[ ]I[ ]J[ ]K[ ]L[ ]M[ ]N[ ]O[ ]P[ ]Q[ ]R[ ]S[ ]T[ ]U[ ]V[ ]W[ ]X[ ]Y[ ]Z 
 AAA AAA AAA 
 BBB BBB BBB 
@@ -40,4 +36,5 @@ ZZZ ZZZ ZZZ
 XYZ XYZ XYZ 
 [   ]ABC[   ]DEF[   ]GHI[   ]JKL[   ]MNO[   ]PQR[   ]STU[   ]VWX[   ]XYZ 
 [   ]ABC[  ]DEF[  ]GHI[  ]JKL[  ]MNO[  ]PQR[  ]STU[  ]VWX[  ]XYZ 
+
 [   ]ABC[ ]DEF[ ]GHI[ ]JKL[ ]MNO[ ]PQR[ ]STU[ ]VWX[ ]XYZ 
