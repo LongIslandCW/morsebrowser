@@ -1,78 +1,43 @@
-A 
-B 
-C 
-D 
-E 
-F 
-G 
-H 
-I 
-J 
-K 
-L 
-M 
-N 
-O 
-P 
-Q 
-R 
-S 
-T 
-U 
-V 
-W 
-X 
-Y 
-Z  
-AAA 
-BBB 
-CCC 
-DDD 
-EEE 
-FFF 
-GGG 
-HHH 
-III 
-JJJ 
-KKK 
-LLL 
-MMM 
-NNN 
-OOO 
-PPP 
-QQQ 
-RRR 
-SSS 
-TTT 
-UUU 
-VVV 
-WWW 
-XXX 
-YYY 
-ZZZ 
-A 
-B 
-C 
-D 
-E 
-F 
-G 
-H 
-I 
-J 
-K 
-L 
-M 
-N 
-O 
-P 
-Q 
-R 
-S 
-T 
-U 
-V 
-W 
-X 
-Y 
-Z 
+Change CHARACTER FLOW 1 and 2 PRESET with 0 repeats 
+
+Address the files for Sending numbers and letters.  Need to use the ones that are there now.
+
+[ ]A[ ]B[ ]C[ ]D[ ]E[ ]F[ ]G[ ]H[ ]I[ ]J[ ]K[ ]L[ ]M[ ]N[ ]O[ ]P[ ]Q[ ]R[ ]S[ ]T[ ]U[ ]V[ ]W[ ]X[ ]Y[ ]Z 
+AAA AAA AAA 
+BBB BBB BBB 
+CCC CCC CCC 
+ABC ABC ABC 
+DDD DDD DDD 
+EEE EEE EEE 
+FFF FFF FFF 
+DEF DEF DEF 
+GGG GGG GGG 
+HHH HHH HHH 
+III III III 
+GHI GHI GHI 
+JJJ JJJ JJJ 
+KKK KKK KKK 
+LLL LLL LLL 
+JKL JKL JKL 
+MMM MMM MMM 
+NNN NNN NNN 
+OOO OOO OOO 
+MNO MNO MNO 
+PPP PPP PPP 
+QQQ QQQ QQQ 
+RRR RRR RRR 
+PQR PQR PQR 
+SSS SSS SSS 
+TTT TTT TTT 
+UUU UUU UUU 
+STU STU STU 
+VVV VVV VVV 
+WWW WWW WWW 
+XXX XXX XXX 
+VWX VWX VWX 
+YYY YYY YYY 
+ZZZ ZZZ ZZZ 
+XYZ XYZ XYZ 
+[   ]ABC[   ]DEF[   ]GHI[   ]JKL[   ]MNO[   ]PQR[   ]STU[   ]VWX[   ]XYZ 
+[   ]ABC[  ]DEF[  ]GHI[  ]JKL[  ]MNO[  ]PQR[  ]STU[  ]VWX[  ]XYZ 
+[   ]ABC[ ]DEF[ ]GHI[ ]JKL[ ]MNO[ ]PQR[ ]STU[ ]VWX[ ]XYZ 
