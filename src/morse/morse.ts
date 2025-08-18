@@ -57,6 +57,7 @@ export class MorseViewModel {
   showExpertSettings:ko.Observable<boolean> = ko.observable(false)
   cardFontPx = ko.observable()
   loop:ko.Observable<boolean> = ko.observable(false)
+  loopnoshuffle:ko.Observable<boolean> = ko.observable(false)
   morseVoice:MorseVoice
   shortcutKeys:MorseShortcutKeys
   // note this is whether you see any cards at all,
@@ -758,7 +759,9 @@ export class MorseViewModel {
       if (this.loop() && !fromStopButton && !fromPauseButton) {
         // as if user pressed play again
         // shuffle before we loop again
-        this.shuffleWords(true)
+        if (!this.loopnoshuffle()) {
+          this.shuffleWords(true)
+        }
         this.doPlay(false, true)
       }
     }, true)
@@ -866,6 +869,17 @@ export class MorseViewModel {
     this.logoClickCount++;
     if (this.logoClickCount % 4 === 0) {
       this.lessons.toggleQueryStringSettingsOn()    
+    }
+  }
+
+  toggleLoop = () => {
+    if (!this.loop()) {
+      this.loop(true)
+    } else if (this.loopnoshuffle()) {
+      this.loop(false)
+      this.loopnoshuffle(false)
+    } else {
+      this.loopnoshuffle(true)
     }
   }
 }
