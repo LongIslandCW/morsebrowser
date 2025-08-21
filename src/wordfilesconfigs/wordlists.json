@@ -950,10 +950,23 @@
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "BINOMIALS","newlineChunking": true,"display": "BINOMIALS ALL","fileName": "POL_Bi_ALL.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "BINOMIALS","newlineChunking": true,"display": "BINOMIALS PART 1","fileName": "POL_Bi_Pt1.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "BINOMIALS","newlineChunking": true,"display": "BINOMIALS PART 2","fileName": "POL_Bi_Pt2.txt"},  
-
+                
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SUFFIXES","newlineChunking": true,"display": "ABLE","fileName": "POL_ABLE.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SUFFIXES","newlineChunking": true,"display": "ED","fileName": "POL_ED.txt"},
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SUFFIXES","newlineChunking": true,"display": "ER","fileName": "POL_ER.txt"},
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SUFFIXES","newlineChunking": true,"display": "ES","fileName": "POL_ES.txt"},
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SUFFIXES","newlineChunking": true,"display": "EST","fileName": "POL_EST.txt"},
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SUFFIXES","newlineChunking": true,"display": "FUL","fileName": "POL_FUL.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SUFFIXES","newlineChunking": true,"display": "ING","fileName": "POL_ING.txt"},
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SUFFIXES","newlineChunking": true,"display": "IVE","fileName": "POL_IVE.txt"},
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SUFFIXES","newlineChunking": true,"display": "LESS","fileName": "POL_LESS.txt"},
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SUFFIXES","newlineChunking": true,"display": "LY","fileName": "POL_LY.txt"},
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SUFFIXES","newlineChunking": true,"display": "MENT","fileName": "POL_MENT.txt"},        
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SUFFIXES","newlineChunking": true,"display": "NESS","fileName": "POL_NESS.txt"},        
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SUFFIXES","newlineChunking": true,"display": "OUS","fileName": "POL_OUS.txt"},
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SUFFIXES","newlineChunking": true,"display": "TION","fileName": "POL_TION.txt"},
 
+        
 {"sort": 529,"userTarget": "INSTRUCTOR","class": "A","letterGroup": "A","newlineChunking": true,"display": "1","fileName": "POL_ASS1.txt"},
 {"sort": 529,"userTarget": "INSTRUCTOR","class": "A","letterGroup": "A","newlineChunking": true,"display": "2","fileName": "POL_ASS2.txt"},
 {"sort": 529,"userTarget": "INSTRUCTOR","class": "A","letterGroup": "A","newlineChunking": true,"display": "3","fileName": "POL_ASS3.txt"}
