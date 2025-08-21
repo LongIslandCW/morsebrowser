@@ -28,10 +28,6 @@
             "display": "Familiarity Words",
             "filename": "ADV3_FAM_WORDS.json"
         }, 
-         {
-            "display": "ICR",
-            "filename": "ADVICR.json"
-        },
         {
             "display": "Recognition - Spell",
             "filename": "ADV3_REC_Spell.json"
@@ -66,3 +62,4 @@
         }
     ]
 }
+

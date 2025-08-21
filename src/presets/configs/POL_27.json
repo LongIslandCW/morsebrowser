@@ -102,12 +102,12 @@
 		},
 		{
 			"key": "numberOfRepeats",
-			"value": 2,
+			"value": 0,
 			"comment": null
 		},
 		{
 			"key": "speakFirstAdditionalWordspaces",
-			"value": 2,
+			"value": 0,
 			"comment": null
 		},
 		{
