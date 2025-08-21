@@ -16,6 +16,14 @@
             "display": "WORDS Flow Rate 2",
             "filename": "POL_31_WORDS.json"
         },
+        {
+            "display": "VOICE AFTER WORDS Flow Rate 1",
+            "filename": "POL_27_VA.json"
+        }, 
+         {
+            "display": "VOICE AFTER WORDS Flow Rate 2",
+            "filename": "POL_31_VA.json"
+        },      
        {
             "display": "BINOMIALS Flow Rate 1",
             "filename": "POL_27_BI.json"
@@ -43,3 +51,4 @@
  
     ]
 }
+
