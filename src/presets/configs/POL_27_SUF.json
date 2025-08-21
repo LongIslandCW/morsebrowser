@@ -42,7 +42,7 @@
 		},
 		{
 			"key": "showRaw",
-			"value": false,
+			"value": true,
 			"comment": null
 		},
 		{
@@ -67,7 +67,7 @@
 		},
 		{
 			"key": "voiceSpelling",
-			"value": true,
+			"value": false,
 			"comment": null
 		},
 		{
@@ -102,12 +102,12 @@
 		},
 		{
 			"key": "numberOfRepeats",
-			"value": 0,
+			"value": 2,
 			"comment": null
 		},
 		{
 			"key": "speakFirstAdditionalWordspaces",
-			"value": 0,
+			"value": 2,
 			"comment": null
 		},
 		{
