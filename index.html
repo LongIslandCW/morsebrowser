@@ -25,7 +25,7 @@
                     'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
         })(window, document, 'script', 'dataLayer', 'GTM-PB8HW3M');</script>
     <!-- End Google Tag Manager -->
-<link rel="icon" href="LongIslandCWClub-favicon-2.jpg"><script defer src="bundle3dc211d679cbe1715758.js"></script><link href="bundle.b790b1369a7194e0d144.css" rel="stylesheet"></head>
+<link rel="icon" href="LongIslandCWClub-favicon-2.jpg"><script defer src="bundle3509b940e646815134d1.js"></script><link href="bundle.b790b1369a7194e0d144.css" rel="stylesheet"></head>
 
 <body>
     <!-- Google Tag Manager (noscript) -->
@@ -1066,13 +1066,19 @@
 
                 <!-- loop -->
                 <div class="input-group me-2">
+                    <button id="btnLoop" type="button" class="btn btn-secondary"
+                        data-bind="click: () => toggleLoop()"><span
+                            data-bind="text: !loop() ? 'Loop Off' : !loopnoshuffle() ? 'Loop Shuffle' : 'Loop On'"></span>&nbsp;<img alt=""
+                             data-bind="attr:{ src: morseLoadImages().getSrc('arrowrepeatImage')}" height="20" width="20"></button>
 
-
+                    <!--          
                     <input aria-label="Loop" type="checkbox" class="btn-check" autocomplete="off" id="btncheckloop"
                         data-bind="checked: loop">
                     <label aria-hidden="true" class=" btn btn-outline-primary" for="btncheckloop"><img
                             data-bind="attr:{ src: morseLoadImages().getSrc('arrowrepeatImage')}">&nbsp;Loop&nbsp;<img
                             data-bind="attr:{ src: loop() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
+
+                    -->
                 </div>
 
                 <!-- manual voice -->
