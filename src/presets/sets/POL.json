@@ -24,7 +24,14 @@
             "display": "BINOMIALS Flow Rate 2",
             "filename": "POL_31_BI.json"
         },
-        
+         {
+            "display": "SUFFIXES Flow Rate 1",
+            "filename": "POL_27_SUF.json"
+        },  
+         {
+            "display": "SUFFIXES Flow Rate 2",
+            "filename": "POL_31_SUF.json"
+        },
         {
             "display": "VOICE AFTER WORDS Flow Rate 1",
             "filename": "POL_27_VA.json"
@@ -52,5 +59,6 @@
  
     ]
 }
+
 
 
