@@ -950,7 +950,8 @@
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "BINOMIALS","newlineChunking": true,"display": "BINOMIALS ALL","fileName": "POL_Bi_ALL.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "BINOMIALS","newlineChunking": true,"display": "BINOMIALS PART 1","fileName": "POL_Bi_Pt1.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "BINOMIALS","newlineChunking": true,"display": "BINOMIALS PART 2","fileName": "POL_Bi_Pt2.txt"},  
-                
+        
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SUFFIXES","newlineChunking": true,"display": "SUFFIXES BY LETTER","fileName": "POL_SUFFIXES.txt"},                
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SUFFIXES","newlineChunking": true,"display": "ABLE","fileName": "POL_ABLE.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SUFFIXES","newlineChunking": true,"display": "ED","fileName": "POL_ED.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SUFFIXES","newlineChunking": true,"display": "ER","fileName": "POL_ER.txt"},
