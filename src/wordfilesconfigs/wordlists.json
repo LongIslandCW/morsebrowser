@@ -536,7 +536,15 @@
 {"sort": 549,"userTarget": "STUDENT","class": "BC3","letterGroup": "QSO Protocol","newlineChunking": true,"display": "Protocol 3","fileName": "SB2C5.txt"}, 
 {"sort": 550,"userTarget": "STUDENT","class": "BC3","letterGroup": "QSO Protocol","newlineChunking": true,"display": "Protocol 4","fileName": "SB2C6.txt"}, 
 {"sort": 546,"userTarget": "STUDENT","class": "BC3","letterGroup": "QSO Words","newlineChunking": true,"display": "QSO Words","fileName": "SB2C2.txt"},
+        
 
+{"sort": 424,"userTarget": "STUDENT","class": "INT 1","letterGroup": "BINOMIALS","newlineChunking": true,"display": "BINOMIALS Pt 1","fileName": "INT1_Bi_1.txt"}, 
+{"sort": 424,"userTarget": "STUDENT","class": "INT 1","letterGroup": "BINOMIALS","newlineChunking": true,"display": "BINOMIALS Pt 2","fileName": "INT1_Bi_2.txt"}, 
+{"sort": 424,"userTarget": "STUDENT","class": "INT 1","letterGroup": "BINOMIALS","newlineChunking": true,"display": "BINOMIALS Pt 3","fileName": "INT1_Bi_3.txt"}, 
+{"sort": 424,"userTarget": "STUDENT","class": "INT 1","letterGroup": "BINOMIALS","newlineChunking": true,"display": "BINOMIALS Pt 4","fileName": "INT1_Bi_4.txt"}, 
+{"sort": 424,"userTarget": "STUDENT","class": "INT 1","letterGroup": "BINOMIALS","newlineChunking": true,"display": "BINOMIALS Pt 5","fileName": "INT1_Bi_5.txt"}, 
+{"sort": 424,"userTarget": "STUDENT","class": "INT 1","letterGroup": "BINOMIALS","newlineChunking": true,"display": "BINOMIALS Pt 6","fileName": "INT1_Bi_6.txt"}, 
+{"sort": 424,"userTarget": "STUDENT","class": "INT 1","letterGroup": "BINOMIALS","newlineChunking": true,"display": "BINOMIALS Pt 7","fileName": "INT1_Bi_7.txt"}, 
 
         
 {"sort": 424,"userTarget": "STUDENT","class": "INT 1","letterGroup": "CALLSIGNS","newlineChunking": true,"display": "3-4 CHARACTERS","fileName": "ICR15.txt"}, 
