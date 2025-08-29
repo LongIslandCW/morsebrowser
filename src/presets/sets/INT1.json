@@ -8,6 +8,10 @@
             "display": "Default 15/12",
             "filename": "INT1_DEFAULT_15.json"
         },
+                {
+            "display": "Binomials",
+            "filename": "INT1_Bi.json"
+        },
         {
             "display": "Call Signs",
             "filename": "INT1_CS.json"
@@ -50,3 +54,4 @@
         }
     ]
 }
+
