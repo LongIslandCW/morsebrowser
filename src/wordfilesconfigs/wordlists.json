@@ -993,7 +993,11 @@
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SUFFIXES","newlineChunking": true,"display": "OUS","fileName": "POL_OUS.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SUFFIXES","newlineChunking": true,"display": "TION","fileName": "POL_TION.txt"},
 
-        
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "HEAD SENDING","newlineChunking": true,"display": "3-4 WORDS","fileName": "POL_3-4W_Head_Sending.txt"},
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "HEAD SENDING","newlineChunking": true,"display": "5-6 WORDS","fileName": "POL_5-6W_Head_Sending.txt"},
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "HEAD SENDING","newlineChunking": true,"display": "7-8 WORDS","fileName": "POL_7-8W_Head_Sending.txt"},
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "HEAD SENDING","newlineChunking": true,"display": "3 WORD PHRASES","fileName": "POL_3W_Head_Sending_Phrases.txt"},
+
 {"sort": 529,"userTarget": "INSTRUCTOR","class": "A","letterGroup": "A","newlineChunking": true,"display": "1","fileName": "POL_ASS1.txt"},
 {"sort": 529,"userTarget": "INSTRUCTOR","class": "A","letterGroup": "A","newlineChunking": true,"display": "2","fileName": "POL_ASS2.txt"},
 {"sort": 529,"userTarget": "INSTRUCTOR","class": "A","letterGroup": "A","newlineChunking": true,"display": "3","fileName": "POL_ASS3.txt"}
