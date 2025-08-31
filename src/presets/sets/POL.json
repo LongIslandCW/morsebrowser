@@ -55,10 +55,19 @@
         {
             "display": "SENDING NUMBERS Flow Rate 2",
             "filename": "POL_31_SN.json"
+        },
+        {
+            "display": "HEAD SENDING Flow Rate 1",
+            "filename": "POL_27_HS.json"
+        },
+        {
+            "display": "HEAD SENDING Flow Rate 2",
+            "filename": "POL_31_HS.json"
         }
  
     ]
 }
+
 
 
 
