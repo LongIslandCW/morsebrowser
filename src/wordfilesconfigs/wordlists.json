@@ -931,10 +931,15 @@
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "BINOMIALS","newlineChunking": true,"display": "BINOMIALS PART 1","fileName": "POL_Bi_Pt1.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "BINOMIALS","newlineChunking": true,"display": "BINOMIALS PART 2","fileName": "POL_Bi_Pt2.txt"},  
 
-{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "PHRASES","newlineChunking": true,"display": "PHRASES - 2 WORD PART 1","fileName": "POL_2WPhrases.txt"},
-{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "PHRASES","newlineChunking": true,"display": "PHRASES - 2 WORD PART 2","fileName": "POL_2WPhrases_Pt2.txt"},
-{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "PHRASES","newlineChunking": true,"display": "PHRASES - SHORT PART 1","fileName": "POL_S_Phrases_Pt1.txt"},
-{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "PHRASES","newlineChunking": true,"display": "PHRASES - SHORT PART 2","fileName": "POL_S_Phrases_Pt2.txt"},
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "PHRASES","newlineChunking": true,"display": "2 WORD PART 1","fileName": "POL_2WPhrases.txt"},
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "PHRASES","newlineChunking": true,"display": "2 WORD PART 2","fileName": "POL_2WPhrases_Pt2.txt"},
+
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "PHRASES","newlineChunking": true,"display": "3 WORD PART 1","fileName": "POL_3W_Phrases_Pt1.txt"},
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "PHRASES","newlineChunking": true,"display": "3 WORD PART 2","fileName": "POL_3W_Phrases_Pt2.txt"},
+
+        
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "PHRASES","newlineChunking": true,"display": "3 WORD PART 3","fileName": "POL_S_Phrases_Pt1.txt"},
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "PHRASES","newlineChunking": true,"display": "3 WORD PART 4","fileName": "POL_S_Phrases_Pt2.txt"},
 
 
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SENDING","newlineChunking": true,"display": "SENDING ALPHABET 1","fileName": "POL_SENDING_L2.txt"},  
