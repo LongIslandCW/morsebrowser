@@ -940,8 +940,12 @@
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SENDING","newlineChunking": true,"display": "SENDING ALPHABET 1","fileName": "POL_SENDING_L2.txt"},  
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SENDING","newlineChunking": true,"display": "SENDING ALPHABET 2","fileName": "POL_SENDING_L.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SENDING","newlineChunking": true,"display": "SENDING NUMBERS 1","fileName": "POL_SENDING_N2.txt"},       
-{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SENDING","newlineChunking": true,"display": "SENDING NUMBERS 2","fileName": "POL_SENDING_N.txt"},        
-{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SENDING","newlineChunking": true,"display": "3-4 WORDS - No Code","fileName": "POL_3-4W_Head_Sending.txt"},
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SENDING","newlineChunking": true,"display": "SENDING NUMBERS 2","fileName": "POL_SENDING_N.txt"},    
+
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SENDING","newlineChunking": true,"display": "3-5 WORDS","fileName": "POL_Send_3-5_L_Words.txt"},
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SENDING","newlineChunking": true,"display": "5-7 WORDS","fileName": "POL_Send_5-7_L_Words.txt"},
+        
+
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SENDING","newlineChunking": true,"display": "5-6 WORDS - No Code","fileName": "POL_5-6W_Head_Sending.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SENDING","newlineChunking": true,"display": "7-8 WORDS - No Code","fileName": "POL_7-8W_Head_Sending.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SENDING","newlineChunking": true,"display": "3 WORD PHRASES - No Code","fileName": "POL_3W_Head_Sending_Phrases.txt"},
