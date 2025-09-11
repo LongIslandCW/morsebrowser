@@ -1,0 +1,14 @@
+"use strict";
+(self["webpackChunk"] = self["webpackChunk"] || []).push([["src_wordfiles_POL_Send_5-7_L_Words_txt"],{
+
+/***/ "./src/wordfiles/POL_Send_5-7_L_Words.txt":
+/*!************************************************!*\
+  !*** ./src/wordfiles/POL_Send_5-7_L_Words.txt ***!
+  \************************************************/
+/***/ ((module) => {
+
+module.exports = "{AAA|}[   ] \r\nABOUT [       ] \r\nANALOG [          ] \r\nADAPTOR [              ] \r\n{BBB|}[   ] \r\nBEING[       ] \r\nBOOMER[          ] \r\nBANDAID[              ] \r\n{CCC|}[   ] \r\nCLASS[       ] \r\nCHILLY[          ] \r\nCLICKED[              ] \r\n{DDD|}[   ] \r\nDINER[       ] \r\nDOCTOR[          ] \r\nDONATED[              ] \r\n{EEE|}[   ] \r\nEARLY[       ] \r\nENDING[          ] \r\nELEGANT[              ] \r\n{FFF|}[   ] \r\nFOUND[       ] \r\nFUTURE[          ] \r\nFARSIDE[              ] \r\n{GGG|][   ] \r\nGUSTO[       ] \r\nGOLFER[          ] \r\nGRATIFY[              ] \r\n{HHH|}[   ] \r\nHUMAN[       ] \r\nHAMMER[          ] \r\nHORNETS[              ] \r\n{III|}[   ] \r\nIVORY[       ] \r\nINVEST[          ] \r\nITEMIZE[              ] \r\n{JJJ|}[   ] \r\nJUICE[       ] \r\nJUNIOR[          ] \r\nJACKPOT[              ] \r\n{KKK|}[   ] \r\nKNOCK[       ] \r\nKEYING[          ] \r\nKLEENEX[              ] \r\n{LLL|}[   ] \r\nLEAVE[       ] \r\nLENGTH[          ] \r\nLOTTERY[              ] \r\n{MMM|}[   ] \r\nMIGHT[       ] \r\nMETHOD[          ] \r\nMINDFUL[              ] \r\n{NNN|}[   ] \r\nNOISE[       ] \r\nNEBULA[          ] \r\nNURTURE[              ] \r\n{OOO|}[   ] \r\nOWNER[       ] \r\nOFFICE[          ] \r\nORBITAL[              ] \r\n{PPP|}[   ] \r\nPARKS[       ] \r\nPLANET[          ] \r\nPERCENT[              ] \r\n{QQQ|}[   ] \r\nQUART[       ] \r\nQWERTY[          ] \r\nQUICKLY[              ] \r\n{RRR|}[   ] \r\nRAINY[       ] \r\nROCKET[          ] \r\nREFEREE[              ] \r\n{SSS|}[   ] \r\nSKILL[       ] \r\nSETTLE[          ] \r\nSHARPEN[              ] \r\n{TTT|}[   ] \r\nTWINS[       ] \r\nTICKET[          ] \r\nTESTING[              ] \r\n{UUU|}[   ] \r\nURBAN[       ] \r\nUMPIRE[          ] \r\nUNDERGO[              ] \r\n{VVV|}[   ] \r\nVOICE[       ] \r\nVOLUME[          ] \r\nVICTORY[              ] \r\n{WWW|}[   ] \r\nWHICH[       ] \r\nWIDGET[          ] \r\nWITHOUT[              ] \r\n{XXX|}[   ] \r\nXENON[       ] \r\nXENIAS[          ] \r\nXEROXED[              ] \r\n{YYY|}[   ] \r\nYIELD[       ] \r\nYOGURT[          ] \r\nYOUNGER[              ] \r\n{ZZZ|}[   ] \r\nZEBRA[       ] \r\nZODIAC[          ] \r\nZIPLOCK[              ] ";
+
+/***/ })
+
+}]);
