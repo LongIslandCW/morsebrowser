@@ -1,0 +1,14 @@
+"use strict";
+(self["webpackChunk"] = self["webpackChunk"] || []).push([["src_wordfiles_POL_5-6W_Head_Sending_txt"],{
+
+/***/ "./src/wordfiles/POL_5-6W_Head_Sending.txt":
+/*!*************************************************!*\
+  !*** ./src/wordfiles/POL_5-6W_Head_Sending.txt ***!
+  \*************************************************/
+/***/ ((module) => {
+
+module.exports = "{|apple} [         ] \r\n{|bread} [         ] \r\n{|chair} [         ] \r\n{|table} [         ] \r\n{|house} [         ] \r\n{|light} [         ] \r\n{|water} [         ] \r\n{|earth} [         ] \r\n{|stone} [         ] \r\n{|plant} [         ] \r\n{|green} [         ] \r\n{|black} [         ] \r\n{|white} [         ] \r\n{|brown} [         ] \r\n{|happy} [         ] \r\n{|smile} [         ] \r\n{|laugh} [         ] \r\n{|quick} [         ] \r\n{|quiet} [         ] \r\n{|music} [         ] \r\n{|dance} [         ] \r\n{|story} [         ] \r\n{|dream} [         ] \r\n{|heart} [         ] \r\n{|brain} [         ] \r\n{|hands} [         ] \r\n{|shoes} [         ] \r\n{|dress} [         ] \r\n{|shirt} [         ] \r\n{|clock} [         ] \r\n{|watch} [         ] \r\n{|beach} [         ] \r\n{|river} [         ] \r\n{|ocean} [         ] \r\n{|world} [         ] \r\n{|space} [         ] \r\n{|stars} [         ] \r\n{|clouds} [         ] \r\n{|train} [         ] \r\n{|truck} [         ] \r\n{|horse} [         ] \r\n{|sheep} [         ] \r\n{|bread} [         ] \r\n{|sugar} [         ] \r\n{|honey} [         ] \r\n{|fruit} [         ] \r\n{|grape} [         ] \r\n{|lemon} [         ] \r\n{|peach} [         ] \r\n{|mango} [         ] \r\n{|around} [         ] \r\n{|better} [         ] \r\n{|number} [         ] \r\n{|little} [         ] \r\n{|people} [         ] \r\n{|should} [         ] \r\n{|before} [         ] \r\n{|always} [         ] \r\n{|school} [         ] \r\n{|family} [         ] \r\n{|mother} [         ] \r\n{|father} [         ] \r\n{|inside} [         ] \r\n{|friend} [         ] \r\n{|moment} [         ] \r\n{|strong} [         ] \r\n{|system} [         ] \r\n{|window} [         ] \r\n{|memory} [         ] \r\n{|letter} [         ] \r\n{|nature} [         ] \r\n{|circle} [         ] \r\n{|market} [         ] \r\n{|summer} [         ] \r\n{|change} [         ] \r\n{|figure} [         ] \r\n{|player} [         ] \r\n{|travel} [         ] \r\n{|future} [         ] \r\n{|reason} [         ] \r\n{|choice} [         ] \r\n{|wonder} [         ] \r\n{|animal} [         ] \r\n{|answer} [         ] \r\n{|beauty} [         ] \r\n{|garden} [         ] \r\n{|mother} [         ] \r\n{|yellow} [         ] \r\n{|little} [         ] \r\n{|dinner} [         ] \r\n{|summer} [         ] \r\n{|bottom} [         ] \r\n{|planet} [         ] \r\n{|bright} [         ] \r\n{|desert} [         ] \r\n{|flight} [         ] \r\n{|camera} [         ] \r\n{|pretty} [         ] \r\n{|silver} [         ] \r\n{|orange} [         ] \r\n\r\n";
+
+/***/ })
+
+}]);
