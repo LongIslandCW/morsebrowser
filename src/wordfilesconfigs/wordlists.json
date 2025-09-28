@@ -998,7 +998,7 @@
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORD BUILDING","newlineChunking": true,"display": "WORD BUILDING ALL","fileName": "POL_WB_ALL.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORD BUILDING","newlineChunking": true,"display": "WORD BUILDING BASIC","fileName": "POL_WB_Pt1.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORD BUILDING","newlineChunking": true,"display": "WORD BUILDING INTERMEDIAT ","fileName": "POL_WB_Pt2.txt"},
-{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORD BUILDING","newlineChunking": true,"display": "WORD BUILDING ADVANCED","fileName": "POL_WB_Pt3.txt"},
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORD BUILDING","newlineChunking": true,"display": "WORD BUILDING ADVANCED","fileName": "POL_WB_Pt3.txt"}
 
         
 ]}
