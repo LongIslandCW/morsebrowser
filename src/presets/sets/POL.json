@@ -17,6 +17,29 @@
             "filename": "POL_31_WORDS.json"
         },   
         {
+            "display": "MANY 3 LETTER WORDS Flow Rate 1",
+            "filename": "POL_3L_Words_Long_27.json"
+        }, 
+         {
+            "display": "MANY 3 LETTER WORDS Flow Rate 2",
+            "filename": "POL_3L_Words_Long_31.json"
+        },         {
+            "display": "MANY 4 LETTER WORDS Flow Rate 1",
+            "filename": "POL_4L_Words_Long_27.json"
+        }, 
+         {
+            "display": "MANY 4 LETTER WORDS Flow Rate 2",
+            "filename": "POL_4L_Words_Long_31.json"
+        },         
+        {
+            "display": "MANY 3-4 WORD PHRASES Flow Rate 1",
+            "filename": "POL_3-4W_Phrases_Long_27.json"
+        }, 
+         {
+            "display": "MANY 3-4 WORD PHRASES Flow Rate 2",
+            "filename": "POL_3-4W_Phrases_Long_31.json"
+        }, 
+        {
             "display": "BINOMIALS Flow Rate 1",
             "filename": "POL_27_BI.json"
         }, 
@@ -67,6 +90,7 @@
 
     ]
 }
+
 
 
 
