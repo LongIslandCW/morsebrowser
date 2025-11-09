@@ -1,0 +1,14 @@
+"use strict";
+(self["webpackChunk"] = self["webpackChunk"] || []).push([["src_presets_sets_POL_json"],{
+
+/***/ "./src/presets/sets/POL.json":
+/*!***********************************!*\
+  !*** ./src/presets/sets/POL.json ***!
+  \***********************************/
+/***/ ((module) => {
+
+module.exports = JSON.parse('{"options":[{"display":"CHARACTERS Flow Rate 1","filename":"POL_27.json"},{"display":"CHARACTERS Flow Rate 2","filename":"POL_31.json"},{"display":"WORDS/PHRASES Flow Rate 1","filename":"POL_27_WORDS.json"},{"display":"WORDS/PHRASES Flow Rate 2","filename":"POL_31_WORDS.json"},{"display":"MANY 3 LETTER WORDS Flow Rate 1","filename":"POL_3L_Words_Long_27.json"},{"display":"MANY 3 LETTER WORDS Flow Rate 2","filename":"POL_3L_Words_Long_31.json"},{"display":"MANY 4 LETTER WORDS Flow Rate 1","filename":"POL_4L_Words_Long_27.json"},{"display":"MANY 4 LETTER WORDS Flow Rate 2","filename":"POL_4L_Words_Long_31.json"},{"display":"MANY 2 or 3 WORD PHRASES Flow Rate 1","filename":"POL_3-4W_Phrases_Long_27.json"},{"display":"MANY 2 or 3 WORD PHRASES Flow Rate 2","filename":"POL_3-4W_Phrases_Long_31.json"},{"display":"BINOMIALS Flow Rate 1","filename":"POL_27_BI.json"},{"display":"BINOMIALS Flow Rate 2","filename":"POL_31_BI.json"},{"display":"SENDING ALPHABET Flow Rate 1","filename":"POL_27_SA.json"},{"display":"SENDING ALPHABET Flow Rate 2","filename":"POL_31_SA.json"},{"display":"SENDING NUMBERS Flow Rate 1","filename":"POL_27_SN.json"},{"display":"SENDING NUMBERS Flow Rate 2","filename":"POL_31_SN.json"},{"display":"SENDING WORDS/PHRASES Flow Rate 1","filename":"POL_27_HS.json"},{"display":"SENDING WORDS/PHRASES Flow Rate 2","filename":"POL_31_HS.json"},{"display":"SUFFIXES Flow Rate 1","filename":"POL_27_SUF.json"},{"display":"SUFFIXES Flow Rate 2","filename":"POL_31_SUF.json"},{"display":"VOICE AFTER WORDS Flow Rate 1","filename":"POL_27_VA.json"},{"display":"VOICE AFTER WORDS Flow Rate 2","filename":"POL_31_VA.json"}]}');
+
+/***/ })
+
+}]);
