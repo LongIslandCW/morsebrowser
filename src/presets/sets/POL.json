@@ -32,11 +32,11 @@
             "filename": "POL_4L_Words_Long_31.json"
         },         
         {
-            "display": "MANY 3-4 WORD PHRASES Flow Rate 1",
+            "display": "MANY 2 or 3 WORD PHRASES Flow Rate 1",
             "filename": "POL_3-4W_Phrases_Long_27.json"
         }, 
          {
-            "display": "MANY 3-4 WORD PHRASES Flow Rate 2",
+            "display": "MANY 2 or 3 WORD PHRASES Flow Rate 2",
             "filename": "POL_3-4W_Phrases_Long_31.json"
         }, 
         {
@@ -90,6 +90,7 @@
 
     ]
 }
+
 
 
 
