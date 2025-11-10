@@ -15,29 +15,22 @@
          {
             "display": "WORDS/PHRASES Flow Rate 2",
             "filename": "POL_31_WORDS.json"
-        },   
-        {
-            "display": "MANY 3 LETTER WORDS Flow Rate 1",
-            "filename": "POL_3L_Words_Long_27.json"
-        }, 
-         {
-            "display": "MANY 3 LETTER WORDS Flow Rate 2",
-            "filename": "POL_3L_Words_Long_31.json"
-        },         {
-            "display": "MANY 4 LETTER WORDS Flow Rate 1",
-            "filename": "POL_4L_Words_Long_27.json"
-        }, 
-         {
-            "display": "MANY 4 LETTER WORDS Flow Rate 2",
-            "filename": "POL_4L_Words_Long_31.json"
         },         
         {
-            "display": "MANY 2 or 3 WORD PHRASES Flow Rate 1",
-            "filename": "POL_3-4W_Phrases_Long_27.json"
+            "display": "MANY 2 WORD PHRASES Flow Rate 1",
+            "filename": "POL_2W_Phrases_Long_27.json"
         }, 
          {
-            "display": "MANY 2 or 3 WORD PHRASES Flow Rate 2",
-            "filename": "POL_3-4W_Phrases_Long_31.json"
+            "display": "MANY 2 WORD PHRASES Flow Rate 2",
+            "filename": "POL_2W_Phrases_Long_31.json"
+        },         
+        {
+            "display": "MANY 3 WORD PHRASES Flow Rate 1",
+            "filename": "POL_3W_Phrases_Long_27.json"
+        }, 
+         {
+            "display": "MANY 3 WORD PHRASES Flow Rate 2",
+            "filename": "POL_3W_Phrases_Long_31.json"
         }, 
         {
             "display": "BINOMIALS Flow Rate 1",
@@ -90,6 +83,7 @@
 
     ]
 }
+
 
 
 
