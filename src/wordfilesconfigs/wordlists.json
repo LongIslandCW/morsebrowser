@@ -952,6 +952,9 @@
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SENDING","newlineChunking": true,"display": "7-8 WORDS - No Code","fileName": "POL_7-8W_Head_Sending.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SENDING","newlineChunking": true,"display": "3 WORD PHRASES - No Code","fileName": "POL_3W_Head_Sending_Phrases.txt"},
 
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SENTENCES","newlineChunking": true,"display": "MANY SENTENCES","fileName": "POL_Sentences.txt"},
+
+        
         
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SUFFIXES","newlineChunking": true,"display": "SUFFIXES ALL","fileName": "POL_SUFFIXES.txt"},                
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SUFFIXES","newlineChunking": true,"display": "ABLE","fileName": "POL_ABLE.txt"},
