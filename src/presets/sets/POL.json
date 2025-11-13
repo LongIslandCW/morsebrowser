@@ -65,6 +65,14 @@
             "filename": "POL_31_HS.json"
         },
         {
+            "display": "SENTENCES Flow Rate 1",
+            "filename": "POL_SENT_27.json"
+        },  
+         {
+            "display": "SENTENCES Flow Rate 2",
+            "filename": "POL_SENT_31.json"
+        },
+        {
             "display": "SUFFIXES Flow Rate 1",
             "filename": "POL_27_SUF.json"
         },  
@@ -83,6 +91,7 @@
 
     ]
 }
+
 
 
 
