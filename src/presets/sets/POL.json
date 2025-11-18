@@ -65,11 +65,11 @@
             "filename": "POL_31_HS.json"
         },
         {
-            "display": "SENTENCES Flow Rate 1",
+            "display": "SENTENCES CW-VOICE-CW Flow Rate 1",
             "filename": "POL_SENT_27.json"
         },  
          {
-            "display": "SENTENCES Flow Rate 2",
+            "display": "SENTENCES CW-VOICE-CW Flow Rate 2",
             "filename": "POL_SENT_31.json"
         },
         {
@@ -91,6 +91,7 @@
 
     ]
 }
+
 
 
 
