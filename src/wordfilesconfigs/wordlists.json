@@ -929,7 +929,7 @@
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "PHRASES","newlineChunking": true,"display": "2 WORD PART 2","fileName": "POL_2WPhrases_Pt2.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "PHRASES","newlineChunking": true,"display": "2 WORD PART 3","fileName": "POL_2WPhrases_Pt3.txt"}, 
 
-{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "PHRASES","newlineChunking": true,"display": "MANY 2 WORD PHRASES","fileName": "POL_2W_Phrases_Long.txt"}, 
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "PHRASES","newlineChunking": true,"display": "2 WORD LONG","fileName": "POL_2W_Phrases_Long.txt"}, 
         
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "PHRASES","newlineChunking": true,"display": "3 WORD PART 1","fileName": "POL_3W_Phrases_Pt1.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "PHRASES","newlineChunking": true,"display": "3 WORD PART 2","fileName": "POL_3W_Phrases_Pt2.txt"},   
