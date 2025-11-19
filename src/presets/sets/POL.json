@@ -26,11 +26,11 @@
         },               
         {
             "display": "3 WORD PHRASES CW-VOICE-CW Flow Rate 1",
-            "filename": "POL_3W_Phrases_Long_27.json"
+            "filename": "POL_3W_Phrases_CVC_27.json"
         }, 
          {
             "display": "3 WORD PHRASES CW-VOICE-CW Flow Rate 2",
-            "filename": "POL_SENT_31.json"
+            "filename": "POL_3W_Phrases_CVC_31.json"
         }, 
         {
             "display": "BINOMIALS Flow Rate 1",
@@ -91,6 +91,7 @@
 
     ]
 }
+
 
 
 
