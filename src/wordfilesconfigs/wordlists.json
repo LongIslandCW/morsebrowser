@@ -983,7 +983,7 @@
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORDS","newlineChunking": true,"display": "2-3 LETTER WORDS PART 3","fileName": "POL_2-3W_Pt3.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORDS","newlineChunking": true,"display": "2-3 LETTER WORDS PART 4","fileName": "POL_2-3W_Pt4.txt"},
 
-{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORDS","newlineChunking": true,"display": "MANY 3 LETTER WORDS","fileName": "POL_3L_Words_Long.txt"},
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORDS","newlineChunking": true,"display": "3 LETTER WORDS LONG","fileName": "POL_3L_Words_Long.txt"},
         
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORDS","newlineChunking": true,"display": "3-4 LETTER WORDS PART 1","fileName": "POL_3-4W_Pt1.txt"},       
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORDS","newlineChunking": true,"display": "3-4 LETTER WORDS PART 2","fileName": "POL_3-4W_Pt2.txt"},       
@@ -992,7 +992,7 @@
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORDS","newlineChunking": true,"display": "4 LETTER WORDS PART 2","fileName": "POL_4W_Pt2.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORDS","newlineChunking": true,"display": "4 LETTER WORDS PART 3","fileName": "POL_4W_Pt3.txt"},
 
-{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORDS","newlineChunking": true,"display": "MANY 4 LETTER WORDS","fileName": "POL_4L_Words_Long.txt"},
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORDS","newlineChunking": true,"display": "4 LETTER WORDS LONG","fileName": "POL_4L_Words_Long.txt"},
         
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORDS","newlineChunking": true,"display": "4-5  LETTER WORDS PART 1","fileName": "POL_4-5W_Pt1.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORDS","newlineChunking": true,"display": "4-5 LETTER WORDS PART 2","fileName": "POL_4-5W_Pt2.txt"},       
