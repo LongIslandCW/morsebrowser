@@ -1,5 +1,4 @@
-{ |} 
-A A 
+{ |} A A 
 act 
 ace 
 act 
