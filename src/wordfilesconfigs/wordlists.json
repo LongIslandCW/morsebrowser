@@ -934,8 +934,8 @@
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "PHRASES","newlineChunking": true,"display": "3 WORD PART 1","fileName": "POL_3W_Phrases_Pt1.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "PHRASES","newlineChunking": true,"display": "3 WORD PART 2","fileName": "POL_3W_Phrases_Pt2.txt"},   
 
-{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "PHRASES","newlineChunking": true,"display": "3 WORD CW-VOICE-CW PART 1","fileName": "POL_3W_Phrases_Long_A-I.txt"},
-{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "PHRASES","newlineChunking": true,"display": "3 WORD CW-VOICE-CW PART 2","fileName": "POL_3W_Phrases_Long_J-Z.txt"},
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "PHRASES","newlineChunking": true,"display": "3 WORD CW-VOICE-CW A-I","fileName": "POL_3W_Phrases_Long_A-I.txt"},
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "PHRASES","newlineChunking": true,"display": "3 WORD CW-VOICE-CW J-Z","fileName": "POL_3W_Phrases_Long_J-Z.txt"},
         
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "PHRASES","newlineChunking": true,"display": "SHORT PART 1","fileName": "POL_S_Phrases_Pt1.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "PHRASES","newlineChunking": true,"display": "SHORT PART 2","fileName": "POL_S_Phrases_Pt2.txt"},
