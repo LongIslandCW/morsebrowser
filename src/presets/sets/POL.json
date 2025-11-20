@@ -1,6 +1,14 @@
 {
     "options": [
-         {
+        {
+            "display": "BINOMIALS Flow Rate 1",
+            "filename": "POL_27_BI.json"
+        }, 
+        {
+            "display": "BINOMIALS Flow Rate 2",
+            "filename": "POL_31_BI.json"
+        }, 
+        {
             "display": "CHARACTERS Flow Rate 1",
             "filename": "POL_27.json"
         },
@@ -9,37 +17,29 @@
             "filename": "POL_31.json"
         },
         {
-            "display": "WORDS/PHRASES 2X Flow Rate 1",
+            "display": "PHRASES/WORDS 2X Flow Rate 1",
             "filename": "POL_3-4L_Words_Long_27.json"
         }, 
          {
-            "display": "WORDS/PHRASES 2X Flow Rate 2",
+            "display": "PHRASES/WORDS 2X Flow Rate 2",
             "filename": "POL_3-4L_Words_Long_31.json"
         }, 
         {
-            "display": "WORDS/PHRASES 3X Flow Rate 1",
+            "display": "PHRASES/WORDS 3X Flow Rate 1",
             "filename": "POL_27_WORDS.json"
         }, 
          {
-            "display": "WORDS/PHRASES 3X Flow Rate 2",
+            "display": "PHRASES/WORDS 3X Flow Rate 2",
             "filename": "POL_31_WORDS.json"
         },               
         {
-            "display": "3 WORD PHRASES CW-VOICE-CW Flow Rate 1",
+            "display": "PHRASES CW-VOICE-CW Flow Rate 1",
             "filename": "POL_3W_Phrases_CVC_27.json"
         }, 
          {
-            "display": "3 WORD PHRASES CW-VOICE-CW Flow Rate 2",
+            "display": "PHRASES CW-VOICE-CW Flow Rate 2",
             "filename": "POL_3W_Phrases_CVC_31.json"
         }, 
-        {
-            "display": "BINOMIALS Flow Rate 1",
-            "filename": "POL_27_BI.json"
-        }, 
-        {
-            "display": "BINOMIALS Flow Rate 2",
-            "filename": "POL_31_BI.json"
-        },         
         {
             "display": "SENDING ALPHABET Flow Rate 1",
             "filename": "POL_27_SA.json"
@@ -91,6 +91,7 @@
 
     ]
 }
+
 
 
 
