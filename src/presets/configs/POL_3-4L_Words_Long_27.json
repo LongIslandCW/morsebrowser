@@ -2,12 +2,12 @@
 	"morseSettings": [
 		{
 			"key": "wpm",
-			"value": 31,
+			"value": 27,
 			"comment": null
 		},
 		{
 			"key": "fwpm",
-			"value": 31,
+			"value": 27,
 			"comment": null
 		},
 		{
@@ -42,7 +42,7 @@
 		},
 		{
 			"key": "showRaw",
-			"value": true,
+			"value": false,
 			"comment": null
 		},
 		{
@@ -102,12 +102,12 @@
 		},
 		{
 			"key": "numberOfRepeats",
-			"value": 2,
+			"value": 1,
 			"comment": null
 		},
 		{
 			"key": "speakFirstAdditionalWordspaces",
-			"value": 2,
+			"value": 1,
 			"comment": null
 		},
 		{
