@@ -5,6 +5,20 @@ simpleimage {
 noiseaccordion {
     display: contents;
 }
+/* Here is new CSS to support a grid view: */
+.morse-card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* label takes full line */
+.morse-card-grid .row-label {
+  flex: 0 0 100%;
+  font-weight: bold;
+  margin-top: 0.25rem;
+}
+
 
 /*
  * The sr-only class indicates content that is meant only for screen readers

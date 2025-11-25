@@ -98,7 +98,8 @@ export class MorseViewModel {
   testToneFlagHandle:any = 0
   screenWakeLock:ScreenWakeLock
   logoClickCount:number =0
-
+  showGrid = ko.observable(false) // Add support for grid toggle
+  
   // END KO observables declarations
   constructor () {
     // initialize the images/icons

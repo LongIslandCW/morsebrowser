@@ -1098,107 +1098,21 @@
 
 
         <!-- the word list/card area-->
+
         <section aria-label="Cards" class="col" data-bind="if: cardsVisible">
 
-            <!-- show this when we're basically in the default state -->
-            <!-- ko if: words().length === 2
-                    && words()[0] && words()[0].displayWord
-                    && words()[1] && words()[1].displayWord
-                    && words()[0].displayWord.toUpperCase() === 'CQ'
-                    && words()[1].displayWord.toUpperCase() === 'LICW' -->
-            <em>No lesson loaded — showing default cards.</em>
-            <!-- /ko -->
-
-            <!-- toggle button -->
-            <div class="mb-2">
-                <button class="btn btn-sm btn-secondary"
-                    data-bind="text: showGrid() ? 'Show horizontal list' : 'Show grid',
-                            click: function () { showGrid(!showGrid()) }">
-                </button>
-            </div>
-
-            <!-- ORIGINAL horizontal layout -->
-            <div data-bind="ifnot: showGrid">
-                <div class="row gx-2 gy-2" data-bind="foreach: words">
-                    <div class="col-auto">
-                        <button class="btn" title="Adds this text to the Flagged Cards text area"
-                            data-bind="attr: { 'aria-selected': $index()==$parent.currentIndex() ? 'true' : 'false'},
-                                    class: $index()==$parent.currentIndex()
-                                        ? ($index()==$parent.words().length-1 ? 'btn-danger' : 'btn-primary')
-                                        : ($index()==$parent.words().length-1 ? 'btn-outline-danger' : 'btn-outline-primary'),
-                                    click: () => $parent.flaggedWords.addFlaggedWord($data),
-                                    event: { dblclick: () => { $parent.setWordIndex($index()) } }">
-                            <span
-                                data-bind="style: {fontSize: $parent.cardFontPx },
-                                        text: (
-                                            !$parent.hideList()
-                                            || ($parent.trailReveal() && $index() <= $parent.maxRevealedTrail())
-                                        )
-                                            ? $data.displayWord
-                                            : 'X'.repeat(
-                                                $data.displayWord.replace('\r','').replace('\n','').trim().length
-                                                )">
-                            </span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- NEW grid layout -->
-            <div data-bind="if: showGrid">
-                <div class="morse-card-grid"
-                    data-bind="foreach: words"
-                    style="display:flex; flex-wrap:wrap; gap:8px;">
-
-                    <!-- show row labels only for “normal-sized” lessons -->
-                    <!-- ko if: $parent.words().length >= 16
-                            && $parent.words().length <= 40
-                            && $index() % 4 === 0 -->
-                    <div class="row-label"
-                        style="flex:0 0 100%; font-weight:bold; margin-top:4px;">
-                        <span data-bind="text: 'Row ' + (Math.floor($index() / 4) + 1) + ':'"></span>
-                    </div>
-                    <!-- /ko -->
-
-                    <!-- CARD CELL -->
-                    <div style="flex:0 0 24%; max-width:24%;">
-                        <button class="btn"
-                            style="width:100%; text-align:center; white-space:nowrap;"
-                            title="Adds this text to the Flagged Cards text area"
-                            data-bind="
-                                attr: { 'aria-selected': $index()===$parent.currentIndex() ? 'true' : 'false' },
-                                class: $index()===$parent.currentIndex()
-                                    ? ($index()===$parent.words().length-1 ? 'btn-danger' : 'btn-primary')
-                                    : ($index()===$parent.words().length-1 ? 'btn-outline-danger' : 'btn-outline-primary'),
-                                click: () => $parent.flaggedWords.addFlaggedWord($data),
-                                event: { dblclick: () => { $parent.setWordIndex($index()) } }
-                            ">
-                            <span
-                                data-bind="style: { fontSize: $parent.cardFontPx },
-                                        text: (
-                                            !$parent.hideList()
-                                            || ($parent.trailReveal() && $index() <= $parent.maxRevealedTrail())
-                                        )
-                                            ? $data.displayWord
-                                            : 'X'.repeat(
-                                                $data.displayWord.replace('\r','').replace('\n','').trim().length
-                                                )">
-                            </span>
-                        </button>
-                    </div>
-
+            <div class="row gx-2 gy-2" data-bind="foreach: words">
+                <div class="col-auto">
+                    <button class="btn" title="Adds this text to the Flagged Cards text area"
+                        data-bind="attr: { 'aria-selected': $index()==$parent.currentIndex() ? 'true' : 'false'}, class: $index()==$parent.currentIndex() ? ($index()==$parent.words().length-1 ? 'btn-danger' : 'btn-primary'): ($index()==$parent.words().length-1 ? 'btn-outline-danger' : 'btn-outline-primary' ) ,click:()=>$parent.flaggedWords.addFlaggedWord($data), event:{dblclick: ()=>{$parent.setWordIndex($index())}}">
+                        <span
+                            data-bind="style: {fontSize: $parent.cardFontPx } ,text: (!$parent.hideList() || ($parent.trailReveal() && $index() &lt;= $parent.maxRevealedTrail() )) ? $data.displayWord : 'X'.repeat($data.displayWord.replace('\r','').replace('\n','').trim().length)">
+                        </span>
+                    </button>
                 </div>
             </div>
 
         </section>
-
-
-
-
-        </section>
-
-
-
 
         <details id="keyboard-shortcuts">
             <summary>Keyboard Shortcuts</summary>
