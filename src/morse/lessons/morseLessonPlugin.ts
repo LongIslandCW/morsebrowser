@@ -737,7 +737,7 @@ export default class MorseLessonPlugin implements ICookieHandler {
       this.syncSize(GeneralUtils.booleanize(target.val))
     }
 
-    target = cookies.find(x => x.key === 'isShuffled')
+    target = cookies.find(x => x.key === 'isShuffledSet')
     if (target) {
       console.log(`found isShuffled cookie:${target.val}`)
       if (GeneralUtils.booleanize(target.val)) {
