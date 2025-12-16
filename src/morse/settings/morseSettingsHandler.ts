@@ -67,7 +67,7 @@ export default class MorseSettingsHandler {
       new SavedSettingsInfo('voiceBufferMaxLength', morseViewModel.morseVoice.voiceBufferMaxLength())
     )
     savedInfos.push(
-      new SavedSettingsInfo('isShuffled', morseViewModel.isShuffled())
+      new SavedSettingsInfo('isShuffledSet', morseViewModel.isShuffled())
     )
     return settings
   }
