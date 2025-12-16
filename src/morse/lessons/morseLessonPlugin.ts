@@ -417,6 +417,10 @@ export default class MorseLessonPlugin implements ICookieHandler {
           } else {
             this.randomWordList(result.data, false)
           }
+          if (this.morseViewModel.cachedShuffle) {
+            this.morseViewModel.shuffleWords()
+            this.morseViewModel.cachedShuffle = false
+          }
         } else {
           this.setText(`ERROR: Couldn't find ${filename} or it lacks .txt or .json extension.`)
         }
@@ -741,7 +745,7 @@ export default class MorseLessonPlugin implements ICookieHandler {
     if (target) {
       console.log(`found isShuffled cookie:${target.val}`)
       if (GeneralUtils.booleanize(target.val)) {
-        this.morseViewModel.shuffleWords()
+        this.morseViewModel.cachedShuffle = true
       }
     }
   }

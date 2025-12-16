@@ -98,6 +98,7 @@ export class MorseViewModel {
   testToneFlagHandle:any = 0
   screenWakeLock:ScreenWakeLock
   logoClickCount:number =0
+  cachedShuffle:boolean = false
 
   // END KO observables declarations
   constructor () {
