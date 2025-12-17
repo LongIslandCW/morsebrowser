@@ -258,11 +258,50 @@ export class MorseViewModel {
     // if it's not currently shuffled, or we're in a loop, re-shuffle
     if (!this.isShuffled() || fromLoopRestart) {
       const hasPhrases = this.rawText().indexOf('\n') !== -1 && this.settings.misc.newlineChunking()
-      // if we're in a loop or otherwise already shuffled, we don't want to loose the preShuffled
+      // if we're in a loop or otherwise already shuffled, we don't want to lose the preShuffled
       if (!this.isShuffled()) {
         this.preShuffled = this.rawText()
       }
-      const shuffledWords = this.words().sort(() => { return 0.5 - Math.random() })
+
+      const words = [...this.words()]
+
+      // Build "shuffle units" where a unit is either:
+      // - a single ungrouped word
+      // - a grouped block containing all words sharing a groupId (in original relative order)
+      const groupMap = new Map<number, { firstIndex:number, words:WordInfo[] }>()
+      const ungroupedUnits:WordInfo[][] = []
+
+      for (let i = 0; i < words.length; i++) {
+        const word = words[i]
+        const groupId = word.getGroupId()
+        if (groupId == null) {
+          ungroupedUnits.push([word])
+          continue
+        }
+
+        const existing = groupMap.get(groupId)
+        if (existing) {
+          existing.words.push(word)
+        } else {
+          groupMap.set(groupId, { firstIndex: i, words: [word] })
+        }
+      }
+
+      const groupedUnits = [...groupMap.entries()]
+        .sort((a, b) => a[1].firstIndex - b[1].firstIndex)
+        .map(([, info]) => info.words)
+
+      const shuffleUnits:WordInfo[][] = [...groupedUnits, ...ungroupedUnits]
+
+      // Fisher–Yates shuffle on the units (not individual words) so grouped blocks stay intact.
+      for (let i = shuffleUnits.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1))
+        const tmp = shuffleUnits[i]
+        shuffleUnits[i] = shuffleUnits[j]
+        shuffleUnits[j] = tmp
+      }
+
+      const shuffledWords = shuffleUnits.flat()
       this.lastShuffled = shuffledWords.map(w => w.rawWord).join(hasPhrases ? '\n' : ' ')
       // this.lastShuffled = this.rawText().split(hasPhrases ? '\n' : ' ').sort(() => { return 0.5 - Math.random() }).join(hasPhrases ? '\n' : ' ')
       this.setText(this.lastShuffled)
