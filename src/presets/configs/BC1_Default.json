@@ -184,6 +184,11 @@
       "key": "speakFirstAdditionalWordspaces",
       "value": 0,
       "comment": null
+    },
+   {
+            "key": "isShuffledSet",
+            "value": "true",
+            "comment": null
     }
   ]
 }
