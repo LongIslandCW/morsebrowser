@@ -99,6 +99,7 @@ export class MorseViewModel {
   screenWakeLock:ScreenWakeLock
   logoClickCount:number =0
   cachedShuffle:boolean = false
+  shuffleIntraGroup:ko.Observable<boolean> = ko.observable(false)
 
   // END KO observables declarations
   constructor () {
@@ -263,6 +264,17 @@ export class MorseViewModel {
         this.preShuffled = this.rawText()
       }
 
+      const shuffleArray = <T>(arr:T[]):T[] => {
+        const copy = [...arr]
+        for (let i = copy.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1))
+          const tmp = copy[i]
+          copy[i] = copy[j]
+          copy[j] = tmp
+        }
+        return copy
+      }
+
       const words = [...this.words()]
 
       // Build "shuffle units" where a unit is either:
@@ -289,19 +301,19 @@ export class MorseViewModel {
 
       const groupedUnits = [...groupMap.entries()]
         .sort((a, b) => a[1].firstIndex - b[1].firstIndex)
-        .map(([, info]) => info.words)
+        .map(([, info]) => {
+          if (this.shuffleIntraGroup && this.shuffleIntraGroup()) {
+            return shuffleArray(info.words)
+          }
+          return [...info.words]
+        })
 
       const shuffleUnits:WordInfo[][] = [...groupedUnits, ...ungroupedUnits]
 
-      // Fisher–Yates shuffle on the units (not individual words) so grouped blocks stay intact.
-      for (let i = shuffleUnits.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1))
-        const tmp = shuffleUnits[i]
-        shuffleUnits[i] = shuffleUnits[j]
-        shuffleUnits[j] = tmp
-      }
+      // Fisher-Yates shuffle on the units (not individual words) so grouped blocks stay intact.
+      const shuffledUnits = shuffleArray(shuffleUnits)
 
-      const shuffledWords = shuffleUnits.flat()
+      const shuffledWords = shuffledUnits.flat()
       this.lastShuffled = shuffledWords.map(w => w.rawWord).join(hasPhrases ? '\n' : ' ')
       // this.lastShuffled = this.rawText().split(hasPhrases ? '\n' : ' ').sort(() => { return 0.5 - Math.random() }).join(hasPhrases ? '\n' : ' ')
       this.setText(this.lastShuffled)
