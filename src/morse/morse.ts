@@ -98,6 +98,7 @@ export class MorseViewModel {
   testToneFlagHandle:any = 0
   screenWakeLock:ScreenWakeLock
   logoClickCount:number =0
+  cachedShuffle:boolean = false
 
   // END KO observables declarations
   constructor () {
@@ -253,6 +254,7 @@ export class MorseViewModel {
   }, this)
 
   shuffleWords = (fromLoopRestart:boolean = false) => {
+    console.log(`shuffleWords called, isShuffled:${this.isShuffled()}, fromLoopRestart:${fromLoopRestart}`)
     // if it's not currently shuffled, or we're in a loop, re-shuffle
     if (!this.isShuffled() || fromLoopRestart) {
       const hasPhrases = this.rawText().indexOf('\n') !== -1 && this.settings.misc.newlineChunking()
