@@ -929,6 +929,19 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="input-group">
+                                        <div class="col-auto" data-bind="visible: showExpertSettings">
+                                            <input type="checkbox" class="btn-check" autocomplete="off"
+                                                aria-label="Shuffle Intra-group" id="btnshuffleintragroup"
+                                                data-bind="checked: morseVoice.shuffleIntraGroup">
+                                            <label class=" btn btn-outline-primary" for="btnshuffleintragroup"
+                                                aria-hidden="true">
+                                                &nbsp;Shuffle Intra-group&nbsp;
+                                                <img
+                                                    data-bind="attr:{ src: morseVoice.shuffleIntraGroup() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" />
+                                            </label>
+                                        </div>
+                                    </div>
 
                                     <!--sound slope -->
                                     <!-- <div class="input-group"> -->

@@ -99,6 +99,7 @@ export class MorseViewModel {
   screenWakeLock:ScreenWakeLock
   logoClickCount:number =0
   cachedShuffle:boolean = false
+  shuffleIntraGroup:ko.Observable<boolean> = ko.observable(false)
 
   // END KO observables declarations
   constructor () {
