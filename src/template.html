@@ -704,6 +704,15 @@
                                                     style="max-width:75px; min-width: 75px;" class="form-control"
                                                     min="0" max="10" step="1"
                                                     data-bind="textInput: morseVoice.speakFirstAdditionalWordspaces">
+                                                <input type="checkbox" class="btn-check" autocomplete="off"
+                                                    aria-label="Shuffle Intra-group" id="btnshuffleintragroup"
+                                                    data-bind="checked: shuffleIntraGroup">
+                                                <label class=" btn btn-outline-primary" for="btnshuffleintragroup"
+                                                    aria-hidden="true">
+                                                    &nbsp;Shuffle Intra-group&nbsp;
+                                                    <img
+                                                        data-bind="attr:{ src: shuffleIntraGroup() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" />
+                                                </label>
                                             </div>
                                             <!-- repeat delays-->
 
