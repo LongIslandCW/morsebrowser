@@ -128,6 +128,7 @@ export class MorseViewModel {
 
     // check for admin mode turned on 
     if (GeneralUtils.getParameterByName('adminMode')) {
+      console.log('admin mode enabled')
       this.adminMode(true)
     }
 
