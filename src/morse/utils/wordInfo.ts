@@ -23,6 +23,7 @@ export default class WordInfo {
     if (!this.hasOverride(p)) return null
 
     const trimmed = p.trim()
+    // If wrapped in { }, strip them; otherwise remove any stray braces.
     const inner = (trimmed.startsWith('{') && trimmed.endsWith('}'))
       ? trimmed.slice(1, -1)
       : trimmed.replace(/[{}]/g, '')
@@ -32,6 +33,7 @@ export default class WordInfo {
     const speech = parts[1] != null ? MorseStringUtils.doReplacements(parts[1]) : null
 
     const rawGroupId = parts[2]?.trim()
+    // GroupId: accept optional leading minus and digits only.
     const groupId = (rawGroupId != null && /^-?\d+$/.test(rawGroupId))
       ? Number.parseInt(rawGroupId, 10)
       : null
@@ -63,8 +65,9 @@ export default class WordInfo {
         if (!forceSpelling) {
           return MorseStringUtils.wordifyPunctuation(base)
         } else {
+          // Strip angled brackets then spell character-by-character (including punctuation wordify).
           let preMathCheck = base.replace(/>/g, '').replace(/</g, '').split('').map(m => MorseStringUtils.wordifyPunctuation(m, true)).join(' ')
-          // fix for weird issue of voice treating e or E as exponent and spearking "multiply by" or something like that
+          // Fix: prevent TTS from treating "1 e 2" like scientific notation (force a comma instead of spaces around e).
           const replaceSpacesAroundE = (input) => {
             return input.replace(/(\d) e (\d)/gi, '$1,e,$2')
           }
@@ -92,6 +95,7 @@ export default class WordInfo {
 
   constructor (s:string) {
     this.rawWord = s
+    // Split on spaces that are NOT inside braces, so "{A B|X Y}" stays whole.
     this.pieces = this.rawWord.split(/ (?![^{]*})/)
   }
 }

@@ -13,17 +13,20 @@ export default class MorseStringUtils {
       .replace(/'/g, '')
     // turn percent sign into pct abbreviation
       .replace(/%/g, 'pct')
-    // in the square brackets we add all symbols supported by morse-pro (see more-pro.js), otherwise replace with space
-    // note we will preserve \r and \n for voice which uses these are phrase delimiters
+    // Supported symbols (kept as-is): | { } . , : ? \ - / ( ) " @ = & + ! < > plus \r and \n for voice phrase breaks. Everything else (\W) becomes a space.
     // eslint-disable-next-line no-useless-escape
       .replace(/(?![\|\{\}\.\,\:\?\\\-\/\(\)\"\@\=\&\+\!\<\>\r\n])\W/g, ' ')
     return afterReplaced
   }
 
   static getWords = (s:string, newlineChunking:boolean) => {
+    // Split on newlines or spaces that are NOT inside braces:
+    // - newlineChunking: /\n(?![^{]*})/ splits on \n unless the \n is inside {...}
+    // - otherwise: / (?![^{]*})/ splits on spaces unless the space is inside {...}
     const words = newlineChunking
       ? this.doReplacements(s).split(/\n(?![^{]*})/)
       : this.doReplacements(s).split(/ (?![^{]*})/)
+    // Filter out empties: remove all whitespace (\s) and keep only non-blank strings.
     const wordInfos = words
       .filter(w => w.replace(/\s/g, '').length > 0)
       .map(w => {
@@ -52,6 +55,13 @@ export default class MorseStringUtils {
   }
 
   static wordifyPunctuation = (s:string, spellOverridesOnly:boolean = false):string => {
+    // Turns symbols/prosigns/abbreviations into speakable words for TTS using configs/wordify.json:
+    // - Basic punctuation (`,` `.` `?` `/` `:` `!` `-` `X`) → words; these are included when spelling (overrideSpell).
+    // - CW prosigns: <AR>/<BT>/<SK> → “end of message” / “pause” / “end of contact”.
+    // - State/Canadian abbreviations only when they appear as-is (onlyAlone): e.g., AL→Alabama, BC→British Columbia, etc.
+    // - Common ham abbreviations (onlyAlone): e.g., 599/5NN→“five nine nine”; CQ→“C Q”; K→“invitation to transmit”; QRM/QRN/QRZ/QTH/etc.; WX→weather; TNX/TKS→thanks; TU→thank you.
+    // - Units/other tokens (onlyAlone): C→celsius, F→Fahrenheit, T→zero, W→Watts, WPM→words per minute, RST→“R S T”, Temp→Temperature, AM→A M.
+    // Replacements are wrapped with “|” to mark word boundaries for downstream processing.
     let wordifiersApplicable
     if (!spellOverridesOnly) {
       wordifiersApplicable = wordifiers.wordifications
@@ -65,27 +75,11 @@ export default class MorseStringUtils {
       myChars = myChars.replace(/\?/g, '\\?')
         .replace(/\./g, '\\.')
         .replace(/\//g, '\\/')
-      /*  if (before === 'HW?') {
-        console.log(myChars)
-      } */
       const fakeSpace = '|'
       if (!w.onlyAlone) {
-        /* if (myChars === '<AR>') {
-          console.log(`mychars:${myChars}`)
-          console.log(`fixed:${fixed}`)
-        } */
         const myRegex = new RegExp(`${myChars}`, 'gi')
         fixed = fixed.replace(myRegex, `${fakeSpace}${w.replacement}${fakeSpace}`)
       } else {
-        // console.log(`mychars:${myChars}`)
-        // guard state abbreviations from being part of a prosign
-        // not all browsers suppor this
-        // const myRegex = new RegExp(`\\b(?<!<)${myChars}\\b`, 'gi')
-        // fixed = fixed.replace(myRegex, ` ${w.replacement} `)
-        // if (before === 'HW?') {
-        //   console.log(`fixed:${fixed}`)
-        // }
-
         // TODO: for now we ignore multiline/spaces
         if (before.length === fixed.length) {
           const myRegex = new RegExp(`${myChars}`, 'gi')
