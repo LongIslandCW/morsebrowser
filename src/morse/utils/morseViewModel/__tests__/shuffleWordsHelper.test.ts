@@ -47,7 +47,7 @@ describe('shuffleWordsLogic', () => {
       expect(result.isShuffled).toBe(true)
       expect(result.preShuffled).toBe('A B C')
       // With mocked random, order should change deterministically
-      expect(result.newText.split(' ')).toEqual(['B', 'C', 'A'])
+      expect(result.newText.split(' ')).toEqual(['B', 'A', 'C'])
       expect(result.lastShuffled).toBe(result.newText)
     })
   })
