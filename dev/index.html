@@ -26,7 +26,7 @@
                     'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
         })(window, document, 'script', 'dataLayer', 'GTM-PB8HW3M');</script>
     <!-- End Google Tag Manager -->
-<link rel="icon" href="LongIslandCWClub-favicon-2.jpg"><script defer src="bundle4b3f67ee8303bf9e9023.js"></script><link href="bundle.b790b1369a7194e0d144.css" rel="stylesheet"></head>
+<link rel="icon" href="LongIslandCWClub-favicon-2.jpg"><script defer src="bundle4394ec021e8d8e136d62.js"></script><link href="bundle.b790b1369a7194e0d144.css" rel="stylesheet"></head>
 <!--test8 test6 -->
 
 <body>
@@ -704,6 +704,7 @@
                                                     style="max-width:75px; min-width: 75px;" class="form-control"
                                                     min="0" max="10" step="1"
                                                     data-bind="textInput: morseVoice.speakFirstAdditionalWordspaces">
+                                                <!-- ko if: adminMode() -->
                                                 <input type="checkbox" class="btn-check" autocomplete="off"
                                                     aria-label="Shuffle Intra-group" id="btnshuffleintragroup"
                                                     data-bind="checked: shuffleIntraGroup">
@@ -713,6 +714,7 @@
                                                     <img
                                                         data-bind="attr:{ src: shuffleIntraGroup() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" />
                                                 </label>
+                                                <!-- /ko -->
                                             </div>
                                             <!-- repeat delays-->
 
