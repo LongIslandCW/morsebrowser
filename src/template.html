@@ -706,9 +706,9 @@
                                                     data-bind="textInput: morseVoice.speakFirstAdditionalWordspaces">
                                                 <input type="checkbox" class="btn-check" autocomplete="off"
                                                     aria-label="Shuffle Intra-group" id="btnshuffleintragroup"
-                                                    data-bind="checked: shuffleIntraGroup">
+                                                    data-bind="checked: shuffleIntraGroup, if: adminMode()">
                                                 <label class=" btn btn-outline-primary" for="btnshuffleintragroup"
-                                                    aria-hidden="true">
+                                                    aria-hidden="true" data-bind="if: adminMode()">
                                                     &nbsp;Shuffle Intra-group&nbsp;
                                                     <img
                                                         data-bind="attr:{ src: shuffleIntraGroup() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" />
