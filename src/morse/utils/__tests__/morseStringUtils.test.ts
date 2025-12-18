@@ -63,3 +63,22 @@ describe('MorseStringUtils.wordifyPunctuation', () => {
     expect(output).toContain('FUN')
   })
 })
+
+describe('MorseStringUtils.getWords', () => {
+  it('splits on spaces outside braces', () => {
+    const result = MorseStringUtils.getWords('A B {C D|X Y} E', false)
+    const rawWords = result.map(w => w.rawWord)
+    expect(rawWords).toEqual(['A', 'B', '{C D|X Y}', 'E'])
+  })
+
+  it('splits on newlines outside braces when newlineChunking is true', () => {
+    const result = MorseStringUtils.getWords('A\nB\n{C D|X Y}', true)
+    const rawWords = result.map(w => w.rawWord)
+    expect(rawWords).toEqual(['A', 'B', '{C D|X Y}'])
+  })
+
+  it('filters out empties after cleaning', () => {
+    const result = MorseStringUtils.getWords('  A   \n\n  B  ', false)
+    expect(result.map(w => w.rawWord)).toEqual(['A', 'B'])
+  })
+})
