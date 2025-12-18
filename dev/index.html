@@ -26,7 +26,7 @@
                     'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
         })(window, document, 'script', 'dataLayer', 'GTM-PB8HW3M');</script>
     <!-- End Google Tag Manager -->
-<link rel="icon" href="LongIslandCWClub-favicon-2.jpg"><script defer src="bundleee94433e91bb7469a735.js"></script><link href="bundle.b790b1369a7194e0d144.css" rel="stylesheet"></head>
+<link rel="icon" href="LongIslandCWClub-favicon-2.jpg"><script defer src="bundle4b3f67ee8303bf9e9023.js"></script><link href="bundle.b790b1369a7194e0d144.css" rel="stylesheet"></head>
 <!--test8 test6 -->
 
 <body>
@@ -704,6 +704,15 @@
                                                     style="max-width:75px; min-width: 75px;" class="form-control"
                                                     min="0" max="10" step="1"
                                                     data-bind="textInput: morseVoice.speakFirstAdditionalWordspaces">
+                                                <input type="checkbox" class="btn-check" autocomplete="off"
+                                                    aria-label="Shuffle Intra-group" id="btnshuffleintragroup"
+                                                    data-bind="checked: shuffleIntraGroup">
+                                                <label class=" btn btn-outline-primary" for="btnshuffleintragroup"
+                                                    aria-hidden="true">
+                                                    &nbsp;Shuffle Intra-group&nbsp;
+                                                    <img
+                                                        data-bind="attr:{ src: shuffleIntraGroup() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" />
+                                                </label>
                                             </div>
                                             <!-- repeat delays-->
 
@@ -929,19 +938,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="input-group">
-                                        <div class="col-auto" data-bind="visible: showExpertSettings">
-                                            <input type="checkbox" class="btn-check" autocomplete="off"
-                                                aria-label="Shuffle Intra-group" id="btnshuffleintragroup"
-                                                data-bind="checked: shuffleIntraGroup">
-                                            <label class=" btn btn-outline-primary" for="btnshuffleintragroup"
-                                                aria-hidden="true">
-                                                &nbsp;Shuffle Intra-group&nbsp;
-                                                <img
-                                                    data-bind="attr:{ src: shuffleIntraGroup() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" />
-                                            </label>
-                                        </div>
-                                    </div>
+
 
                                     <!--sound slope -->
                                     <!-- <div class="input-group"> -->
