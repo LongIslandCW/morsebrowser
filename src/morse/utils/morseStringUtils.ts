@@ -63,10 +63,11 @@ export default class MorseStringUtils {
     // - Units/other tokens (onlyAlone): C→celsius, F→Fahrenheit, T→zero, W→Watts, WPM→words per minute, RST→“R S T”, Temp→Temperature, AM→A M.
     // Replacements are wrapped with “|” to mark word boundaries for downstream processing.
     let wordifiersApplicable
+    const wordifiersList = wordifiers?.wordifications ?? []
     if (!spellOverridesOnly) {
-      wordifiersApplicable = wordifiers.wordifications
+      wordifiersApplicable = wordifiersList
     } else {
-      wordifiersApplicable = wordifiers.wordifications.filter(f => f.overrideSpell)
+      wordifiersApplicable = wordifiersList.filter(f => f.overrideSpell)
     }
     let fixed = s.replace(/\r/g, '').replace(/\n/g, '')
     wordifiersApplicable.forEach(w => {
