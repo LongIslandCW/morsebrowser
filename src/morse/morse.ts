@@ -100,6 +100,7 @@ export class MorseViewModel {
   logoClickCount:number =0
   cachedShuffle:boolean = false
   shuffleIntraGroup:ko.Observable<boolean> = ko.observable(false)
+  adminMode:ko.Observable<boolean> = ko.observable(false)
 
   // END KO observables declarations
   constructor () {
@@ -124,6 +125,12 @@ export class MorseViewModel {
     }, this)
 
     this.rss = new MorseRssPlugin(new RssConfig(this.setText, this.fullRewind, this.doPlay, this.lastFullPlayTime, this.playerPlaying))
+
+    // check for admin mode turned on 
+    if (GeneralUtils.getParameterByName('adminMode')) {
+      console.log('admin mode enabled')
+      this.adminMode(true)
+    }
 
     // check for RSS feature turned on
     if (GeneralUtils.getParameterByName('rssEnabled')) {
