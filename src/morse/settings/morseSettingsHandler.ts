@@ -69,6 +69,9 @@ export default class MorseSettingsHandler {
     savedInfos.push(
       new SavedSettingsInfo('isShuffledSet', morseViewModel.isShuffled())
     )
+    savedInfos.push(
+      new SavedSettingsInfo('shuffleIntraGroup', morseViewModel.shuffleIntraGroup())
+    )
     return settings
   }
 
