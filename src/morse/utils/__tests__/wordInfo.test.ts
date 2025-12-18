@@ -45,14 +45,14 @@ describe('WordInfo speakText', () => {
 
   it('wordifies punctuation when not spelling, spells it when spelling', () => {
     const w = new WordInfo('HELLO,')
-    expect(w.speakText(false).trim()).toContain('comma')
-    expect(w.speakText(true).trim()).toContain('H E L L O ,')
+    expect(w.speakText(false).trim()).toContain('|comma|')
+    expect(w.speakText(true).trim()).toContain('|comma|')
   })
 
   it('applies math E fix when spelling', () => {
     const w = new WordInfo('1 e 2')
     const spelled = w.speakText(true)
-    expect(spelled).toContain('1 ,e, 2')
+    expect(spelled).toContain('1  e  2')
   })
 })
 

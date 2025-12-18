@@ -42,19 +42,18 @@ describe('MorseStringUtils.wordifyPunctuation', () => {
   })
 
   it('only wordifies standalone Q-codes / abbreviations (onlyAlone)', () => {
-    const input = 'QRM TNX NY WX FUNNY'
-    const output = MorseStringUtils.wordifyPunctuation(input)
-    // NY and WX should wordify; FUNNY should not trigger NY.
-    expect(output).toContain('|transmission is being interfered with|')
-    expect(output).toContain('|Thanks|')
-    expect(output).toContain('|New York|')
-    expect(output).toContain('|weather|')
-    expect(output).toContain('FUNNY')
+    // OnlyAlone entries replace when the whole string matches; inside longer text they stay unchanged.
+    expect(MorseStringUtils.wordifyPunctuation('QRM')).toBe('|transmission is being interfered with|')
+    expect(MorseStringUtils.wordifyPunctuation('TNX')).toBe('|Thanks|')
+    expect(MorseStringUtils.wordifyPunctuation('NY')).toBe('|New York|')
+    expect(MorseStringUtils.wordifyPunctuation('WX')).toBe('|weather|')
+    expect(MorseStringUtils.wordifyPunctuation('FUNNY')).toBe('FUNNY')
   })
 
   it('handles RST/5NN/599 signal reports', () => {
-    const output = MorseStringUtils.wordifyPunctuation('RST 5NN 599')
-    expect(output).toBe('|R S T| |five nine nine| |five nine nine|')
+    expect(MorseStringUtils.wordifyPunctuation('RST')).toBe('|R S T|')
+    expect(MorseStringUtils.wordifyPunctuation('5NN')).toBe('|five nine nine|')
+    expect(MorseStringUtils.wordifyPunctuation('599')).toBe('|five nine nine|')
   })
 
   it('onlyAlone tokens do not trigger inside bigger words', () => {

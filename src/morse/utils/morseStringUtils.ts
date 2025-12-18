@@ -1,5 +1,6 @@
 import { setMaxListeners } from 'process'
-import wordifiers from '../../configs/wordify.json'
+// Use require to ensure JSON loads in all environments (ts-jest/node).
+const wordifiers: { wordifications?: any[] } = require('../../configs/wordify.json')
 import WordInfo from './wordInfo'
 export default class MorseStringUtils {
   static doReplacements = (s:string):string => {
