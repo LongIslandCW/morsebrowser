@@ -35,12 +35,16 @@
     "prebuild": "node ./prebuildLessons.js && node ./prebuildPresetSets.js && node ./prebuildPresets.js",
     "build": "webpack",
     "postbuild": "node ./zipdist.js && node ./checklessons.js",
-    "dev": "webpack serve"
+    "dev": "webpack serve",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:ci": "jest --runInBand --ci"
   },
   "devDependencies": {
     "@babel/core": "^7.17.9",
     "@babel/eslint-parser": "^7.17.0",
     "@babel/preset-env": "^7.16.11",
+    "@types/jest": "^30.0.0",
     "@types/knockout": "^3.4.71",
     "@typescript-eslint/eslint-plugin": "^5.26.0",
     "@typescript-eslint/parser": "^5.26.0",
@@ -53,7 +57,10 @@
     "eslint-plugin-promise": "^6.0.0",
     "eslint-webpack-plugin": "^3.1.1",
     "html-loader": "^3.1.0",
+    "jest": "^30.2.0",
+    "jest-environment-jsdom": "^30.2.0",
     "mini-css-extract-plugin": "^2.6.0",
+    "ts-jest": "^29.4.6",
     "ts-loader": "^9.3.0",
     "typescript": "^4.7.2",
     "webpack-dev-server": "^4.7.4"
