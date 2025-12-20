@@ -16,6 +16,14 @@
             "display": "CHARACTERS Flow Rate 2",
             "filename": "POL_31.json"
         },
+         {
+            "display": "RANDOM PHRASES/WORDS 2X Flow Rate 1",
+            "filename": "POL_3-4L_Words_Shuffle_27.json"
+        }, 
+         {
+            "display": "RANDOM PHRASES/WORDS 2X Flow Rate 2",
+            "filename": "POL_3-4L_Words_Shuffle_31.json"
+        },
         {
             "display": "PHRASES/WORDS 2X Flow Rate 1",
             "filename": "POL_3-4L_Words_Long_27.json"
@@ -91,6 +99,7 @@
 
     ]
 }
+
 
 
 
