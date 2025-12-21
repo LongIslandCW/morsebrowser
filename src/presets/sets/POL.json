@@ -1,6 +1,10 @@
 {
     "options": [
         {
+            "display": "TEST Flow Rate 1",
+            "filename": "POL_test.json"
+        }, 
+                {
             "display": "BINOMIALS Flow Rate 1",
             "filename": "POL_27_BI.json"
         }, 
@@ -99,6 +103,7 @@
 
     ]
 }
+
 
 
 
