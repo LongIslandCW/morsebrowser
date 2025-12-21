@@ -2,12 +2,12 @@
 	"morseSettings": [
 		{
 			"key": "wpm",
-			"value": "31",
+			"value": 31,
 			"comment": null
 		},
 		{
 			"key": "fwpm",
-			"value": "31",
+			"value": 31,
 			"comment": null
 		},
 		{
@@ -17,7 +17,7 @@
 		},
 		{
 			"key": "volume",
-			"value": "5",
+			"value": "10",
 			"comment": null
 		},
 		{
@@ -102,17 +102,17 @@
 		},
 		{
 			"key": "numberOfRepeats",
-			"value": "0",
+			"value": 0,
 			"comment": null
 		},
 		{
 			"key": "speakFirstAdditionalWordspaces",
-			"value": "0",
+			"value": 0,
 			"comment": null
 		},
 		{
 			"key": "keepLines",
-			"value": true,
+			"value": false,
 			"comment": null
 		},
 		{
@@ -137,7 +137,7 @@
 		},
 		{
 			"key": "cardSpace",
-			"value": 2,
+			"value": "1",
 			"comment": "AKA cardWait"
 		},
 		{
@@ -168,6 +168,16 @@
 		{
 			"key": "voiceBufferMaxLength",
 			"value": 1,
+			"comment": null
+		},
+		{
+			"key": "isShuffledSet",
+			"value": true,
+			"comment": null
+		},
+		{
+			"key": "shuffleIntraGroup",
+			"value": false,
 			"comment": null
 		}
 	]
