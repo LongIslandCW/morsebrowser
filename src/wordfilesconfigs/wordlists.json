@@ -919,6 +919,9 @@
 {"sort": 529,"userTarget": "STUDENT","class": "TTR+","letterGroup": "WORDS","newlineChunking": true,"display": "4 LETTERS","fileName": "Words_4L.txt"}, 
 {"sort": 529,"userTarget": "STUDENT","class": "TTR+","letterGroup": "WORDS","newlineChunking": true,"display": "5 LETTERS","fileName": "Words_5L.txt"}, 
 {"sort": 529,"userTarget": "STUDENT","class": "TTR+","letterGroup": "WORDS","newlineChunking": true,"display": "6 LETTERS","fileName": "Words_6L.txt"},
+
+
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "TEST","newlineChunking": false,"display": "TEST","fileName": "POL_Test.txt"},
         
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "CHARACTERS","newlineChunking": true,"display": "ALPHABET","fileName": "POL_Letters.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "CHARACTERS","newlineChunking": true,"display": "NUMBERS","fileName": "POL_Numbers.txt"},
