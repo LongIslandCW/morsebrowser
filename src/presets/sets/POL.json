@@ -16,14 +16,6 @@
             "display": "CHARACTERS Flow Rate 2",
             "filename": "POL_31.json"
         },
-         {
-            "display": "RANDOM PHRASES/WORDS 2X Flow Rate 1",
-            "filename": "POL_3-4L_Words_Shuffle_27.json"
-        }, 
-         {
-            "display": "RANDOM PHRASES/WORDS 2X Flow Rate 2",
-            "filename": "POL_3-4L_Words_Shuffle_31.json"
-        },
         {
             "display": "PHRASES/WORDS 2X Flow Rate 1",
             "filename": "POL_3-4L_Words_Long_27.json"
@@ -39,7 +31,15 @@
          {
             "display": "PHRASES/WORDS 3X Flow Rate 2",
             "filename": "POL_31_WORDS.json"
-        },               
+        }, 
+        {
+            "display": "PHRASES/WORDS RANDOM 2X Flow Rate 1",
+            "filename": "POL_3-4L_Words_Shuffle_27.json"
+        }, 
+         {
+            "display": "PHRASES/WORDS RANDOM 2X Flow Rate 2",
+            "filename": "POL_3-4L_Words_Shuffle_31.json"
+        },
         {
             "display": "PHRASES CW-VOICE-CW Flow Rate 1",
             "filename": "POL_3W_Phrases_CVC_27.json"
@@ -99,6 +99,7 @@
 
     ]
 }
+
 
 
 
