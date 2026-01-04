@@ -1,0 +1,14 @@
+"use strict";
+(self["webpackChunk"] = self["webpackChunk"] || []).push([["src_wordfiles_POL_4-5W_Pt1_txt"],{
+
+/***/ "./src/wordfiles/POL_4-5W_Pt1.txt":
+/*!****************************************!*\
+  !*** ./src/wordfiles/POL_4-5W_Pt1.txt ***!
+  \****************************************/
+/***/ ((module) => {
+
+module.exports = "{AAA |AAA |1}  {ALSO |ALSO |1}  {ABLE |ABLE |1}  {AFTER |AFTER |1}  {BBB |BBB |2}  {BACK |BACK |2}  {BELT |BELT |2}  {BREAD |BREAD |2}  {CCC |CCC |3}  {CART |CART |3}  {COME |COME |3}  {CLEAR |CLEAR |3}  {DDD |DDD |4}  {DROP |DROP |4}  {DONE |DONE |4}  {DELAY |DELAY |4}  {EEE |EEE |5}  {EVEN |EVEN |5}  {ECHO |ECHO |5}  {EARTH |EARTH |5}  {FFF |FFF |6}  {FROM |FROM |6}  {FOUR |FOUR |6}  {FIRST |FIRST |6}  {GGG |GGG |7}  {GOOD |GOOD |7}  {GIVE |GIVE |7}  {GRASS  |GRASS  |7}  {HHH |HHH |8}  {HELP |HELP |8}  {HAVE |HAVE |8}  {HOUSE |HOUSE |8}  {III |III |9}  {INTO |INTO |9}  {IDLE |IDLE |9}  {INPUT |INPUT |9}  {JJJ |JJJ |10}  {JUMP |JUMP |10}  {JUST |JUST |10}  {JELLY |JELLY |10}  {KKK |KKK |11}  {KNOW |KNOW |11}  {KICK |KICK |11}  {KNOCK |KNOCK |11}  {LLL |LLL |12}  {LIKE |LIKE |12}  {LIST |LIST |12}  {LIGHT |LIGHT |12}  {MMM |MMM |13}  {MOON |MOON |13}  {MAKE |MAKE |13}  {MACRO |MACRO |13}  {NNN |NNN |14}  {NEST |NEST |14}  {NONE |NONE |14}  {NOTCH |NOTCH |14}  {OOO |OOO |15}  {OVER |OVER |15}  {OATH |OATH |15}  {OTHER |OTHER |15}  {PPP |PPP |16}  {PARK |PARK |16}  {PAID |PAID |16}  {PLACE |PLACE |16}  {QQQ |QQQ |17}  {QSO |QSO |17}  {QRS |QRS |17}  {QUEEN |QUEEN |17}  {RRR |RRR |18}  {ROCK |ROCK |18}  {RENT |RENT |18}  {RELAY |RELAY |18}  {SSS |SSS |19}  {SOME |SOME |19}  {SEEM |SEEM |19}  {STILL |STILL |19}  {TTT |TTT |20}  {THEY |THEY |20}  {THAT |THAT |20}  {THERE |THERE |20}  {UUU |UUU |21}  {USED |USED |21}  {UNIT |UNIT |21}  {UNITY |UNITY |21}  {VVV |VVV |22}  {VERY |VERY |22}  {VAIN |VAIN |22}  {VIVID |VIVID |22}  {WWW |WWW |23}  {WITH |WITH |23}  {WORD |WORD |23}  {WOULD |WOULD |23}  {XXX |XXX |24}  {XYL |XYL |24}  {XRAY |XRAY |24}  {XENON |XENON |24}  {YYY |YYY |25}  {YAGI |YAGI |25}  {YEAR |YEAR |25}  {YOUTH |YOUTH |25}  {ZZZ |ZZZ |26}  {ZONE |ZONE |26}  {ZEAL |ZEAL |26}  {ZEBRA |ZEBRA |26}   \r\n";
+
+/***/ })
+
+}]);
