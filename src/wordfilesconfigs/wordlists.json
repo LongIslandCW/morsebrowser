@@ -988,7 +988,7 @@
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORDS","newlineChunking": true,"display": "2-3 LETTER WORDS PART 4","fileName": "POL_2-3W_Pt4.txt"},
 
 
-  {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORDS","newlineChunking": true,"display": "TEST 2-3 LETTER WORDS PART 1","fileName": "POL_2-3W_Pt1_A.txt"},      
+  {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORDS","newlineChunking": false,"display": "TEST 2-3 LETTER WORDS PART 1","fileName": "POL_2-3W_Pt1_A.txt"},      
 
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORDS","newlineChunking": true,"display": "3 LETTER WORDS RANDOM","fileName": "POL_3L_Words_Long.txt"},
         
