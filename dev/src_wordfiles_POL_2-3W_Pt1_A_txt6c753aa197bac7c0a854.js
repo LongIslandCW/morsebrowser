@@ -1,0 +1,14 @@
+"use strict";
+(self["webpackChunk"] = self["webpackChunk"] || []).push([["src_wordfiles_POL_2-3W_Pt1_A_txt"],{
+
+/***/ "./src/wordfiles/POL_2-3W_Pt1_A.txt":
+/*!******************************************!*\
+  !*** ./src/wordfiles/POL_2-3W_Pt1_A.txt ***!
+  \******************************************/
+/***/ ((module) => {
+
+module.exports = "{AAA |AAA |1}  {AN |AN |1}  {AT |AT |1}  {AS |AS |1}  {BBB |BBB |2}  {BE |BE |2}  {BY |BY |2}  {BUT |BUT |2}  {CCC |CCC |3}  {CAN |CAN |3}  {CAR |CAR |3}  {CAP |CAP |3}  {DDD |DDD |4}  {DO |DO |4}  {DAY |DAY |4}  {DID |DID |4}  {EEE |EEE |5}  {ES |ES |5}  {EX |EX |5}  {EAR |EAR |5}  {FFF |FFF |6}  {FOR |FOR |6}  {FER |FER |6}  {FIT |FIT |6}  {GGG |GGG |7}  {GO |GO |7}  {GET |GET |7}  {GIN |GIN |7}  {HHH |HHH |8}  {HE |HE |8}  {HER |HER |8}  {HIM |HIM |8}  {III |III |9}  {IF |IF |9}  {IT |IT |9}  {IN |IN |9}  {JJJ |JJJ |10}  {JET |JET |10}  {JAR |JAR |10}  {JAB |JAB |10}  {KKK |KKK |11}  {KIT |KIT |11}  {KEG |KEG |11}  {KEY |KEY |11}  {LLL |LLL |12}  {LET |LET |12}  {LAB |LAB |12}  {LAW |LAW |12}  {MMM |MMM |13}  {ME |ME |13}  {MY |MY |13}  {MAN |MAN |13}  {NNN |NNN |14}  {NO |NO |14}  {NOW |NOW |14}  {NEW |NEW |14}  {OOO |OOO |15}  {OR |OR |15}  {ON |ON |15}  {OF |OF |15}  {PPP |PPP |16}  {PAT |PAT |16}  {PET |PET |16}  {PAD |PAD |16}  {QQQ |QQQ |17}  {QSO |QSO |17}  {QRL |QRL |17}  {QRS |QRS |17}  {RRR |RRR |18}  {RUN |RUN |18}  {RAN |RAN |18}  {RAG |RAG |18}  {SSS |SSS |19}  {SO |SO |19}  {SON |SON |19}  {SKI |SKI |19}  {TTT |TTT |20}  {THE |THE |20}  {TO |TO |20}  {TWO |TWO |20}  {UUU |UUU |21}  {US |US |21}  {UP |UP |21}  {UMP |UMP |21}  {VVV |VVV |22}  {VAN |VAN |22}  {VAT |VAT |22}  {VET |VET |22}  {WWW |WWW |23}  {WE |WE |23}  {WHO |WHO |23}  {WEB |WEB |23}  {XXX |XXX |24}  {XYL |XYL |24}  {YYY |YYY |25}  {YES |YES |25}  {YET |YET |25}  {YOU |YOU |25}  {ZZZ |ZZZ |26}  {ZIG |ZIG |26}  {ZAG |ZAG |26}  {ZEN |ZEN |26}   \r\n";
+
+/***/ })
+
+}]);
