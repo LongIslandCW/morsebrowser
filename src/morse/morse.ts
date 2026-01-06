@@ -27,6 +27,7 @@ import MorseSettingsHandler from './settings/morseSettingsHandler'
 import { clear, log } from 'console'
 import ScreenWakeLock from './utils/screenWakeLock'
 import { shuffleWordsLogic } from './utils/morseViewModel/shuffleWordsHelper'
+type ActionLogEvent = { seq:number, type:string, [key:string]:any }
 
 export class MorseViewModel {
   accessibilityAnnouncement:ko.Observable<string> = ko.observable(undefined)
@@ -102,6 +103,8 @@ export class MorseViewModel {
   cachedShuffle:boolean = false
   shuffleIntraGroup:ko.Observable<boolean> = ko.observable(false)
   adminMode:ko.Observable<boolean> = ko.observable(false)
+  actionLogSeq:number = 0
+  actionLog?:(event:ActionLogEvent) => void
 
   // END KO observables declarations
   constructor () {
@@ -404,10 +407,16 @@ export class MorseViewModel {
     }
   }
 
+  private logAction (event:{ type:string, [key:string]:any }) {
+    if (!this.actionLog) return
+    this.actionLog({ seq: ++this.actionLogSeq, ...event })
+  }
+
   doPlay = (playJustEnded:boolean, fromPlayButton:boolean) => {
     if (!this.rawText().trim()) {
       return
     }
+    this.logAction({ type: 'play', playJustEnded, fromPlayButton, index: this.currentIndex() })
     // we get here several ways:
     // 1. user presses play for the first time
     // 1a. set prespaceused to false, so it will get used.
@@ -475,6 +484,7 @@ export class MorseViewModel {
         this.addToVoiceBuffer()
         const playerCmd = () => {
           if (!this.morseVoice.speakFirst() || this.playerPlaying()) {
+            this.logAction({ type: 'morse', index: this.currentIndex(), word: config.word })
             this.morseWordPlayer.play(config, (fromVoiceOrTrail) => {
               this.charsPlayed(this.charsPlayed() + config.word.replace(' ', '').length)
               this.playEnded(fromVoiceOrTrail)
@@ -490,6 +500,7 @@ export class MorseViewModel {
           const phraseToSpeak = this.getPhraseToSpeakFromBuffer()
           setTimeout(() => {
             const finalPhraseToSpeak = this.prepPhraseToSpeakForFinal(phraseToSpeak)
+            this.logAction({ type: 'speak', index: this.currentIndex(), text: finalPhraseToSpeak })
             this.morseVoice.speakPhrase(finalPhraseToSpeak, () => {
               // what gets called after speaking
               this.morseVoice.speakFirstLastCardIndex = this.currentIndex()
@@ -743,6 +754,8 @@ export class MorseViewModel {
 
   doPause = (fullRewind, fromPauseButton, fromStopButton) => {
     console.log(`doPause called fullRewid:${fullRewind} fromPauseButton:${fromPauseButton} fromStopButton:${fromStopButton}`)
+    const reason = fromStopButton ? 'stop' : (fromPauseButton ? 'pause-button' : 'auto')
+    this.logAction({ type: 'pause', reason, index: this.currentIndex(), fullRewind })
     if (fromStopButton) {
       if (this.doPlayTimeout) {
         clearTimeout(this.doPlayTimeout)
