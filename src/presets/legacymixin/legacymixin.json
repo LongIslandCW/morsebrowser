@@ -1,0 +1,14 @@
+{
+    "morseSettings": [
+        {
+            "key": "isShuffledSet",
+            "value": false,
+            "comment": null
+        },
+        {
+            "key": "shuffleIntraGroup",
+            "value": false,
+            "comment": null
+        }
+    ]
+}
