@@ -37,7 +37,7 @@
 		},
 		{
 			"key": "hideList",
-			"value": false,
+			"value": true,
 			"comment": null
 		},
 		{
@@ -168,16 +168,6 @@
 		{
 			"key": "voiceBufferMaxLength",
 			"value": 1,
-			"comment": null
-		},
-		{
-			"key": "isShuffledSet",
-			"value": true,
-			"comment": null
-		},
-		{
-			"key": "shuffleIntraGroup",
-			"value": false,
 			"comment": null
 		},
 		{
