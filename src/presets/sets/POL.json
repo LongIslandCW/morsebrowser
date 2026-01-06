@@ -67,11 +67,11 @@
         },
         {
             "display": "SENTENCES CW-VOICE-CW Flow Rate 1",
-            "filename": "POL_Random_1x_VCS_27.json"
+            "filename": "POL_Random_1x_CVC_27.json"
         },  
          {
             "display": "SENTENCES CW-VOICE-CW Flow Rate 2",
-            "filename": "POL_Random_1x_VCS_31.json"
+            "filename": "POL_Random_1x_CVC_31.json"
         },
         {
             "display": "SUFFIXES Flow Rate 1",
@@ -92,6 +92,7 @@
 
     ]
 }
+
 
 
 
