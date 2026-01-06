@@ -955,12 +955,10 @@
         
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORDS","newlineChunking": false,"display": "2 LETTER WORDS","fileName": "POL_2W_ALL.txt"},      
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORDS","newlineChunking": true,"display": "STATE AND PROVINCES","fileName": "INT9.txt"},  
-{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORDS","newlineChunking": false,"display": "2-3 LETTER WORDS ALL","fileName": "POL_2-3W_ALL.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORDS","newlineChunking": false,"display": "2-3 LETTER WORDS PART 1","fileName": "POL_2-3W_Pt1.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORDS","newlineChunking": false,"display": "2-3 LETTER WORDS PART 2","fileName": "POL_2-3W_Pt2.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORDS","newlineChunking": false,"display": "2-3 LETTER WORDS PART 3","fileName": "POL_2-3W_Pt3.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORDS","newlineChunking": false,"display": "2-3 LETTER WORDS PART 4","fileName": "POL_2-3W_Pt4.txt"},
-    
 
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORDS","newlineChunking": false,"display": "3 LETTER WORDS LONG","fileName": "POL_3L_Words_Long.txt"},
         
