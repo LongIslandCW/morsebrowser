@@ -11,11 +11,11 @@
         }, 
         {
             "display": "CHARACTERS Flow Rate 1",
-            "filename": "POL_Random_3x_Inner_Shuffle_27.json"
+            "filename": "POL__27.json"
         },
          {
             "display": "CHARACTERS Flow Rate 2",
-            "filename": "POL_Random_3x_Inner_Shuffle_31.json"
+            "filename": "POL_31.json"
         },
         {
             "display": "PHRASES/WORDS 2X Flow Rate 1",
@@ -92,6 +92,7 @@
 
     ]
 }
+
 
 
 
