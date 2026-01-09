@@ -98,6 +98,9 @@ export class MorseViewModel {
   testToneFlagHandle:any = 0
   screenWakeLock:ScreenWakeLock
   logoClickCount:number =0
+  cachedShuffle:boolean = false
+  shuffleIntraGroup:ko.Observable<boolean> = ko.observable(false)
+  adminMode:ko.Observable<boolean> = ko.observable(false)
 
   // END KO observables declarations
   constructor () {
@@ -122,6 +125,12 @@ export class MorseViewModel {
     }, this)
 
     this.rss = new MorseRssPlugin(new RssConfig(this.setText, this.fullRewind, this.doPlay, this.lastFullPlayTime, this.playerPlaying))
+
+    // check for admin mode turned on 
+    if (GeneralUtils.getParameterByName('adminMode')) {
+      console.log('admin mode enabled')
+      this.adminMode(true)
+    }
 
     // check for RSS feature turned on
     if (GeneralUtils.getParameterByName('rssEnabled')) {
@@ -253,14 +262,65 @@ export class MorseViewModel {
   }, this)
 
   shuffleWords = (fromLoopRestart:boolean = false) => {
+    console.log(`shuffleWords called, isShuffled:${this.isShuffled()}, fromLoopRestart:${fromLoopRestart}`)
     // if it's not currently shuffled, or we're in a loop, re-shuffle
     if (!this.isShuffled() || fromLoopRestart) {
       const hasPhrases = this.rawText().indexOf('\n') !== -1 && this.settings.misc.newlineChunking()
-      // if we're in a loop or otherwise already shuffled, we don't want to loose the preShuffled
+      // if we're in a loop or otherwise already shuffled, we don't want to lose the preShuffled
       if (!this.isShuffled()) {
         this.preShuffled = this.rawText()
       }
-      const shuffledWords = this.words().sort(() => { return 0.5 - Math.random() })
+
+      const shuffleArray = <T>(arr:T[]):T[] => {
+        const copy = [...arr]
+        for (let i = copy.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1))
+          const tmp = copy[i]
+          copy[i] = copy[j]
+          copy[j] = tmp
+        }
+        return copy
+      }
+
+      const words = [...this.words()]
+
+      // Build "shuffle units" where a unit is either:
+      // - a single ungrouped word
+      // - a grouped block containing all words sharing a groupId (in original relative order)
+      const groupMap = new Map<number, { firstIndex:number, words:WordInfo[] }>()
+      const ungroupedUnits:WordInfo[][] = []
+
+      for (let i = 0; i < words.length; i++) {
+        const word = words[i]
+        const groupId = word.getGroupId()
+        if (groupId == null) {
+          ungroupedUnits.push([word])
+          continue
+        }
+
+        const existing = groupMap.get(groupId)
+        if (existing) {
+          existing.words.push(word)
+        } else {
+          groupMap.set(groupId, { firstIndex: i, words: [word] })
+        }
+      }
+
+      const groupedUnits = [...groupMap.entries()]
+        .sort((a, b) => a[1].firstIndex - b[1].firstIndex)
+        .map(([, info]) => {
+          if (this.shuffleIntraGroup && this.shuffleIntraGroup()) {
+            return shuffleArray(info.words)
+          }
+          return [...info.words]
+        })
+
+      const shuffleUnits:WordInfo[][] = [...groupedUnits, ...ungroupedUnits]
+
+      // Fisher-Yates shuffle on the units (not individual words) so grouped blocks stay intact.
+      const shuffledUnits = shuffleArray(shuffleUnits)
+
+      const shuffledWords = shuffledUnits.flat()
       this.lastShuffled = shuffledWords.map(w => w.rawWord).join(hasPhrases ? '\n' : ' ')
       // this.lastShuffled = this.rawText().split(hasPhrases ? '\n' : ' ').sort(() => { return 0.5 - Math.random() }).join(hasPhrases ? '\n' : ' ')
       this.setText(this.lastShuffled)

@@ -15,6 +15,7 @@ import { SettingsChangeInfo } from '../settings/settingsChangeInfo'
 import SettingsOverridesJson from '../../presets/overrides/presetoverrides.json'
 import { SettingsOption } from '../settings/settingsOption'
 import MorseSettingsHandler from '../settings/morseSettingsHandler'
+import LegacyMixinJson from '../../presets/legacymixin/legacymixin.json'
 export default class MorseLessonPlugin implements ICookieHandler {
   autoCloseLessonAccordion:ko.Observable<boolean>
   userTarget:ko.Observable<string>
@@ -417,6 +418,10 @@ export default class MorseLessonPlugin implements ICookieHandler {
           } else {
             this.randomWordList(result.data, false)
           }
+          if (this.morseViewModel.cachedShuffle) {
+            this.morseViewModel.shuffleWords()
+            this.morseViewModel.cachedShuffle = false
+          }
         } else {
           this.setText(`ERROR: Couldn't find ${filename} or it lacks .txt or .json extension.`)
         }
@@ -609,6 +614,16 @@ export default class MorseLessonPlugin implements ICookieHandler {
       settingsInfo.lockoutCookieChanges = true
       settingsInfo.keyBlacklist = ['ditFrequency', 'dahFrequency', 'syncFreq', 'cardFontPx', 'preSpace', 'volume', 'voiceVolume']
 
+      const applyLegacyMixin = () => {
+        if (!LegacyMixinJson || !LegacyMixinJson.morseSettings) return
+        const existingKeys = new Set(settingsInfo.custom.map(s => s.key))
+        LegacyMixinJson.morseSettings.forEach(s => {
+          if (!existingKeys.has(s.key)) {
+            settingsInfo.custom.push({ key: s.key, value: s.value })
+          }
+        })
+      }
+
       const applyOverrides = () => {
         /* make a copy as it seems some caching may be happening */
         const customCopy = []
@@ -651,6 +666,7 @@ export default class MorseLessonPlugin implements ICookieHandler {
               return { key: m.key, value: m.value }
             })
 
+          applyLegacyMixin()
           applyOverrides()
           MorseCookies.loadCookiesOrDefaults(settingsInfo)
         } else {
@@ -666,6 +682,7 @@ export default class MorseLessonPlugin implements ICookieHandler {
             /* did this filter before keyBlacklist feature was added... */
               settingsInfo.custom = d.data.morseSettings.filter(f => f.key !== 'showRaw')
 
+              applyLegacyMixin()
               applyOverrides()
               // console.log(settingsInfo.custom)
               MorseCookies.loadCookiesOrDefaults(settingsInfo)
@@ -675,6 +692,7 @@ export default class MorseLessonPlugin implements ICookieHandler {
           // the settings are just attached to the option
           settingsInfo.custom = preset.morseSettings.filter(f => f.key !== 'showRaw')
 
+          applyLegacyMixin()
           applyOverrides()
           // console.log(settingsInfo.custom)
           MorseCookies.loadCookiesOrDefaults(settingsInfo)
@@ -735,6 +753,19 @@ export default class MorseLessonPlugin implements ICookieHandler {
     target = cookies.find(x => x.key === 'syncSize')
     if (target) {
       this.syncSize(GeneralUtils.booleanize(target.val))
+    }
+
+    target = cookies.find(x => x.key === 'shuffleIntraGroup')
+    if (target) {
+      this.morseViewModel.shuffleIntraGroup(GeneralUtils.booleanize(target.val))
+    }
+
+    target = cookies.find(x => x.key === 'isShuffledSet')
+    if (target) {
+      console.log(`found isShuffled cookie:${target.val}`)
+      if (GeneralUtils.booleanize(target.val)) {
+        this.morseViewModel.cachedShuffle = true
+      }
     }
   }
 
