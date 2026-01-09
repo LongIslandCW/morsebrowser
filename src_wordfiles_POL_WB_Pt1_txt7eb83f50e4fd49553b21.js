@@ -1,0 +1,14 @@
+"use strict";
+(self["webpackChunk"] = self["webpackChunk"] || []).push([["src_wordfiles_POL_WB_Pt1_txt"],{
+
+/***/ "./src/wordfiles/POL_WB_Pt1.txt":
+/*!**************************************!*\
+  !*** ./src/wordfiles/POL_WB_Pt1.txt ***!
+  \**************************************/
+/***/ ((module) => {
+
+module.exports = "{AAA |AAA |1}  {AT |AT |1}  {AN |AN |1}  {ANY |ANY |1}  {ALL |ALL |1}  {BBB |BBB |2}  {BE |BE |2}  {BY |BY |2}  {BAD |BAD |2}  {BIG |BIG |2}  {CCC |CCC |3}  {CQ |CQ |3}  {CAN |CAN |3}  {COME |COME |3}  {DDD |DDD |4}  {DO |DO |4}  {DAY |DAY |4}  {DESK |DESK |4}  {EEE |EEE |5}  {ES |ES |5}  {EAT |EAT |5}  {EVEN |EVEN |5}  {FFF |FFF |6}  {FB |FB |6}  {FOR |FOR |6}  {FER |FER |6}  {GGG |GGG |7}  {GO |GO |7}  {GET |GET |7}  {GIVE |GIVE |7}  {HHH |HHH |8}  {HE |HE |8}  {HER |HER |8}  {HIM |HIM |8}  {III |III |9}  {IF |IF |9}  {IN |IN |9}  {IT |IT |9}  {JJJ |JJJ |10}  {JOB |JOB |10}  {JUST |JUST |10}  {JOKES |JOKES |10}  {KKK |KKK |11}  {KEY |KEY |11}  {KNOW |KNOW |11}  {KNOCK |KNOCK |11}  {LLL |LLL |12}  {LET |LET |12}  {LOOK |LOOK |12}  {LIKE |LIKE |12}  {MMM |MMM |13}  {ME |ME |13}  {MY |MY |13}  {MAY |MAY |13}  {NNN |NNN |14}  {NO |NO |14}  {NEW |NEW |14}  {NOT |NOT |14}  {OOO |OOO |15}  {OF |OF |15}  {ON |ON |15}  {OR |OR |15}  {PPP |PPP |16}  {POP |POP |16}  {PICK |PICK |16}  {PAPER |PAPER |16}  {QQQ |QQQ |17}  {QUE |QUE |17}  {QUAD |QUAD |17}  {QUICK |QUICK |17}  {RRR |RRR |18}  {RIG |RIG |18}  {RAIN |RAIN |18}  {RADIO |RADIO |18}  {SSS |SSS |19}  {SO |SO |19}  {SAY |SAY |19}  {SEE |SEE |19}  {TTT |TTT |20}  {TO |TO |20}  {THE |THE |20}  {TWO |TWO |20}  {THAT |THAT |20}  {THIS |THIS |20}  {UUU |UUU |21}  {UP |UP |21}  {US |US |21}  {USE |USE |21}  {VVV |VVV |22}  {VAN |VAN |22}  {VOLT |VOLT |22}  {VOICE |VOICE |22}  {WWW |WWW |23}  {WE |WE |23}  {WAY |WAY |23}  {WHO |WHO |23}  {WANT |WANT |23}  {WORKING |WORKING |23}  {XXX |XXX |24}  {XYL |XYL |24}  {XMAS |XMAS |24}  {XCVR |XCVR |24}  {YYY |YYY |25}  {YOU |YOU |25}  {YES |YES |25}  {YEAR |YEAR |25}  {YOUR |YOUR |25}  {ZZZ |ZZZ |26}  {ZIP |ZIP |26}  {ZOO |ZOO |26}  {ZOOM |ZOOM |26}  {ZONE |ZONE |26}   \r\n";
+
+/***/ })
+
+}]);

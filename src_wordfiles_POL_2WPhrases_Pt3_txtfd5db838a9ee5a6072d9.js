@@ -1,0 +1,14 @@
+"use strict";
+(self["webpackChunk"] = self["webpackChunk"] || []).push([["src_wordfiles_POL_2WPhrases_Pt3_txt"],{
+
+/***/ "./src/wordfiles/POL_2WPhrases_Pt3.txt":
+/*!*********************************************!*\
+  !*** ./src/wordfiles/POL_2WPhrases_Pt3.txt ***!
+  \*********************************************/
+/***/ ((module) => {
+
+module.exports = "{AAA  |AAA  |1}  {AS IS |AS IS |1}  {AM OK |AM OK |1}  {ADD IT |ADD IT |1}  {BBB  |BBB  |2}  {BY ME |BY ME |2}  {BE ON |BE ON |2}  {BE OK |BE OK |2}  {CCC  |CCC  |3}  {CAP ON |CAP ON |3}  {CUT UP |CUT UP |3}  {CAN DO |CAN DO |3}  {DDD  |DDD  |4}  {DO OK |DO OK |4}  {DO IT |DO IT |4}  {DID OK |DID OK |4}  {EEE  |EEE  |5}  {EAT IT |EAT IT |5}  {END ON |END ON |5}  {EVE OF  |EVE OF  |5}  {FFF  |FFF  |6}  {FIT IN |FIT IN |6}  {FIX IT |FIX IT |6}  {FAX IT |FAX IT |6}  {GGG  |GGG  |7}  {GO TO |GO TO |7}  {GET ON |GET ON |7}  {GOT IT |GOT IT |7}  {HHH |HHH |8}  {HE IS |HE IS |8}  {HIS ID |HIS ID |8}  {HER OX |HER OX |8}  {III  |III  |9}  {IS TOO |IS TOO |9}  {IF NOT |IF NOT |9}  {IT WAS |IT WAS |9}  {JJJ  |JJJ  |10}  {JAR OF |JAR OF |10}  {JET UP |JET UP |10}  {JOG TO |JOG TO |10}  {KKK  |KKK  |11}  {KIT OF |KIT OF |11}  {KEG ON |KEG ON |11}  {KEY  IS |KEY  IS |11}  {LLL  |LLL  |12}  {LET IT |LET IT |12}  {LEG UP |LEG UP |12}  {LUG NUT |LUG NUT |12}  {MMM  |MMM  |13}  {MY MOP |MY MOP |13}  {MAD MAX |MAD MAX |13}  {MY PA |MY PA |13}  {NNN  |NNN  |14}  {NEW AX |NEW AX |14}  {NOT ME |NOT ME |14}  {NO GO |NO GO |14}  {OOO  |OOO  |15}  {ON IT |ON IT |15}  {OH NO |OH NO |15}  {OH MY |OH MY |15}  {PPP  |PPP  |16}  {PIN IT |PIN IT |16}  {POP IN |POP IN |16}  {PUT UP |PUT UP |16}  {QQQ  |QQQ  |17}  {QUIT IT |QUIT IT |17}  {QUIZ ME |QUIZ ME |17}  {QUIT ON |QUIT ON |17}  {RRR  |RRR  |18}  {RIG IT |RIG IT |18}  {RUN TO |RUN TO |18}  {ROB ME |ROB ME |18}  {SSS  |SSS  |19}  {SHE IS |SHE IS |19}  {SPA OK |SPA OK |19}  {SET UP |SET UP |19}  {TTT  |TTT  |20}  {TO GO |TO GO |20}  {TAP IT |TAP IT |20}  {TIP ME |TIP ME |20}  {UUU  |UUU  |21}  {US TOO |US TOO |21}  {USE IT |USE IT |21}  {UP TO |UP TO |21}  {VVV  |VVV  |22}  {VAT OF |VAT OF |22}  {VET ME |VET ME |22}  {VOW TO |VOW TO |22}  {WWW  |WWW  |23}  {WE DO |WE DO |23}  {WON IT |WON IT |23}  {WHY ME |WHY ME |23}  {XXX  |XXX  |24}  {XYL IS |XYL IS |24}  {XRAY ME |XRAY ME |24}  {XYL OK |XYL OK |24}  {YYY  |YYY  |25}  {YOU TOO |YOU TOO |25}  {YES IF |YES IF |25}  {YOU GO |YOU GO |25}  {ZZZ  |ZZZ  |26}  {ZIP IT |ZIP IT |26}  {ZAP ME |ZAP ME |26}  {ZOO OX |ZOO OX |26}   \r\n";
+
+/***/ })
+
+}]);

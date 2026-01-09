@@ -3,6 +3,7 @@
 
 <head>
     <!-- Required meta tags -->
+    <!--longwordsadded-->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>LICW Morse Practice Page</title>
@@ -25,7 +26,7 @@
                     'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
         })(window, document, 'script', 'dataLayer', 'GTM-PB8HW3M');</script>
     <!-- End Google Tag Manager -->
-<link rel="icon" href="LongIslandCWClub-favicon-2.jpg"><script defer src="bundle0701230d121671119f93.js"></script><link href="bundle.b790b1369a7194e0d144.css" rel="stylesheet"></head>
+<link rel="icon" href="LongIslandCWClub-favicon-2.jpg"><script defer src="bundle026e7cda4fcfce9b6bb8.js"></script><link href="bundle.b790b1369a7194e0d144.css" rel="stylesheet"></head>
 <!--test8 test6 -->
 
 <body>
@@ -703,6 +704,17 @@
                                                     style="max-width:75px; min-width: 75px;" class="form-control"
                                                     min="0" max="10" step="1"
                                                     data-bind="textInput: morseVoice.speakFirstAdditionalWordspaces">
+                                                <!-- ko if: adminMode() -->
+                                                <input type="checkbox" class="btn-check" autocomplete="off"
+                                                    aria-label="Shuffle Intra-group" id="btnshuffleintragroup"
+                                                    data-bind="checked: shuffleIntraGroup">
+                                                <label class=" btn btn-outline-primary" for="btnshuffleintragroup"
+                                                    aria-hidden="true">
+                                                    &nbsp;Shuffle Intra-group&nbsp;
+                                                    <img
+                                                        data-bind="attr:{ src: shuffleIntraGroup() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" />
+                                                </label>
+                                                <!-- /ko -->
                                             </div>
                                             <!-- repeat delays-->
 
@@ -928,6 +940,7 @@
                                             </div>
                                         </div>
                                     </div>
+
 
                                     <!--sound slope -->
                                     <!-- <div class="input-group"> -->

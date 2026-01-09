@@ -1,0 +1,14 @@
+"use strict";
+(self["webpackChunk"] = self["webpackChunk"] || []).push([["src_wordfiles_POL_5W_Pt1_txt"],{
+
+/***/ "./src/wordfiles/POL_5W_Pt1.txt":
+/*!**************************************!*\
+  !*** ./src/wordfiles/POL_5W_Pt1.txt ***!
+  \**************************************/
+/***/ ((module) => {
+
+module.exports = "{AAA |AAA |1}  {AFTER |AFTER |1}  {ABOUT |ABOUT |1}  {AGAIN |AGAIN |1}  {BBB |BBB |2}  {BREAD |BREAD |2}  {BLAZE |BLAZE |2}  {BEING |BEING |2}  {CCC |CCC |3}  {CLEAR |CLEAR |3}  {COULD |COULD |3}  {CLOUD |CLOUD |3}  {DDD |DDD |4}  {DELAY |DELAY |4}  {DRIFT |DRIFT |4}  {DAILY |DAILY |4}  {EEE |EEE |5}  {EARTH |EARTH |5}  {EVERY |EVERY |5}  {ENTRY |ENTRY |5}  {FFF |FFF |6}  {FIRST |FIRST |6}  {FIELD |FIELD |6}  {FACTS |FACTS |6}  {GGG |GGG |7}  {GRASS |GRASS |7}  {GREAT |GREAT |7}  {GAUGE |GAUGE |7}  {HHH |HHH |8}  {HOUSE |HOUSE |8}  {HAPPY |HAPPY |8}  {HERTZ |HERTZ |8}  {III |III |9}  {INPUT |INPUT |9}  {IDEAL |IDEAL |9}  {INDEX |INDEX |9}  {ICONS |ICONS |9}  {JJJ |JJJ |10}  {JELLY |JELLY |10}  {JOINT |JOINT |10}  {JUDGE |JUDGE |10}  {KKK |KKK |11}  {KNOCK |KNOCK |11}  {KNIFE |KNIFE |11}  {KEYER |KEYER |11}  {LLL |LLL |12}  {LIGHT |LIGHT |12}  {LARGE |LARGE |12}  {LAYER |LAYER |12}  {MMM |MMM |13}  {MACRO |MACRO |13}  {MEANS |MEANS |13}  {MORSE |MORSE |13}  {NNN |NNN |14}  {NOTCH |NOTCH |14}  {NOISE |NOISE |14}  {NEVER |NEVER |14}  {OOO |OOO |15}  {OTHER |OTHER |15}  {OZONE |OZONE |15}  {OCCUR |OCCUR |15}  {PPP |PPP |16}  {PLACE |PLACE |16}  {POWER |POWER |16}  {POINT |POINT |16}  {QQQ |QQQ |17}  {QUEEN |QUEEN |17}  {QUICK |QUICK |17}  {QUIET |QUIET |17}  {RRR |RRR |18}  {RELAY |RELAY |18}  {RIGHT |RIGHT |18}  {RADIO |RADIO |18}  {SSS |SSS |19}  {STILL |STILL |19}  {SMALL |SMALL |19}  {STATE |STATE |19}  {SOLAR |SOLAR |19}  {TTT |TTT |20}  {THERE |THERE |20}  {THEIR |THEIR |20}  {THESE |THESE |20}  {UUU |UUU |21}  {UNITY |UNITY |21}  {UNDER |UNDER |21}  {UPPER |UPPER |21}  {VVV |VVV |22}  {VIVID |VIVID |22}  {VOICE |VOICE |22}  {VOWEL |VOWEL |22}  {WWW |WWW |23}  {WOULD |WOULD |23}  {WHERE |WHERE |23}  {WORLD |WORLD |23}  {XXX |XXX |24}  {XYL |XYL |24}  {XENON |XENON |24}  {XEROX |XEROX |24}  {YYY |YYY |25}  {YOUTH |YOUTH |25}  {YIELD |YIELD |25}  {YAGIS |YAGIS |25}  {ZZZ |ZZZ |26}  {ZEBRA |ZEBRA |26}  {ZONES |ZONES |26}  {ZIPPY |ZIPPY |26}   \r\n";
+
+/***/ })
+
+}]);

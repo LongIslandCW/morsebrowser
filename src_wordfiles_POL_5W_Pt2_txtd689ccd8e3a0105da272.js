@@ -1,0 +1,14 @@
+"use strict";
+(self["webpackChunk"] = self["webpackChunk"] || []).push([["src_wordfiles_POL_5W_Pt2_txt"],{
+
+/***/ "./src/wordfiles/POL_5W_Pt2.txt":
+/*!**************************************!*\
+  !*** ./src/wordfiles/POL_5W_Pt2.txt ***!
+  \**************************************/
+/***/ ((module) => {
+
+module.exports = "{AAA |AAA |1}  {ABOVE |ABOVE |1}  {ABORT |ABORT |1}  {AHEAD |AHEAD |1}  {BBB |BBB |2}  {BEGAN |BEGAN |2}  {BAKED |BAKED |2}  {BALLS |BALLS |2}  {CCC |CCC |3}  {CABLE |CABLE |3}  {CABIN |CABIN |3}  {CARGO |CARGO |3}  {CATCH |CATCH |3}  {DDD |DDD |4}  {DAZED |DAZED |4}  {DECOY |DECOY |4}  {DENSE |DENSE |4}  {EEE |EEE |5}  {EAGER |EAGER |5}  {ENTER |ENTER |5}  {EJECT |EJECT |5}  {FFF |FFF |6}  {FALSE|FALSE|6}  {FANCY |FANCY |6}  {FAULT |FAULT |6}  {GGG |GGG |7}  {GAUZE |GAUZE |7}  {GEARS |GEARS |7}  {GLOOM |GLOOM |7}  {HHH |HHH |8}  {HEAVY |HEAVY |8}  {HEDGE |HEDGE |8}  {HOBBY |HOBBY |8}  {III |III |9}  {INLAY |INLAY |9}  {INERT |INERT |9}  {INNER |INNER |9}  {JJJ |JJJ |10}  {JEWEL |JEWEL |10}  {JUMPY |JUMPY |10}  {JUICY |JUICY |10}  {KKK |KKK |11}  {KNOWN |KNOWN |11}  {KEYED |KEYED |11}  {KIOSK |KIOSK |11}  {LLL |LLL |12}  {LAPEL |LAPEL |12}  {LEAFY |LEAFY |12}  {LEARN |LEARN |12}  {MMM |MMM |13}  {MAJOR |MAJOR |13}  {MUGGY |MUGGY |13}  {MOVIE |MOVIE |13}  {NNN |NNN |14}  {NIGHT |NIGHT |14}  {NERVE |NERVE |14}  {NAMED |NAMED |14}  {OOO |OOO |15}  {OFFER |OFFER |15}  {OFTEN |OFTEN |15}  {OLDER |OLDER |15}  {PPP |PPP |16}  {PAUSE |PAUSE |16}  {PEOPLE |PEOPLE |16}  {PEERS |PEERS |16}  {QQQ |QQQ |17}  {QUITE |QUITE |17}  {QUAKE |QUAKE |17}  {QUILT |QUILT |17}  {RRR |RRR |18}  {ROAST |ROAST |18}  {ROBIN |ROBIN |18}  {ROOMY |ROOMY |18}  {SSS |SSS |19}  {SHIRT |SHIRT |19}  {SNIFF |SNIFF |19}  {SNAKE |SNAKE |19}  {TTT |TTT |20}  {THING |THING |20}  {THINK |THINK |20}  {THOSE |THOSE |20}  {UUU |UUU |21}  {USUAL |USUAL |21}  {USING |USING |21}  {UNFIT |UNFIT |21}  {VVV |VVV |22}  {VOLTS |VOLTS |22}  {VOTES |VOTES |22}  {VOTER |VOTER |22}  {WWW |WWW |23}  {WHICH |WHICH |23}  {WRONG |WRONG |23}  {WHILE |WHILE |23}  {XXX |XXX |24}  {XEROX |XEROX |24}  {XENIA |XENIA |24}  {XYL |XYL |24}  {YYY |YYY |25}  {YOUNG |YOUNG |25}  {YEAST |YEAST |25}  {YACHT |YACHT |25}  {ZZZ |ZZZ |26}  {ZINGY |ZINGY |26}  {ZESTY |ZESTY |26}  {ZEROS |ZEROS |26}   \r\n";
+
+/***/ })
+
+}]);

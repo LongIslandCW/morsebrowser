@@ -1,0 +1,14 @@
+"use strict";
+(self["webpackChunk"] = self["webpackChunk"] || []).push([["src_wordfiles_POL_SUFFIXES_txt"],{
+
+/***/ "./src/wordfiles/POL_SUFFIXES.txt":
+/*!****************************************!*\
+  !*** ./src/wordfiles/POL_SUFFIXES.txt ***!
+  \****************************************/
+/***/ ((module) => {
+
+module.exports = "{ED |ED |1}  {ACTED |ACTED |1}  {DATED |DATED |1}  {RATED |RATED |1}  {ASKED |ASKED |1}  {ING |ING |2}  {LIVING |LIVING |2}  {FLYING |FLYING |2}  {FITTING |FITTING |2}  {GETTING |GETTING |2}  {LY |LY |3}  {SADLY |SADLY |3}  {BADLY |BADLY |3}  {FIRMLY |FIRMLY |3}  {DAILY |DAILY |3}  {ER |ER |4}  {UNDER |UNDER |4}  {RIDER |RIDER |4}  {BAKER |BAKER |4}  {SAFER  |SAFER  |4}  {LESS |LESS |5}  {UNLESS |UNLESS |5}  {HELPLESS |HELPLESS |5}  {CARELESS |CARELESS |5}  {CORDLESS  |CORDLESS  |5}  {NESS |NESS |6}  {WITNESS |WITNESS |6}  {FITNESS |FITNESS |6}  {KINDNESS |KINDNESS |6}  {DARKNESS  |DARKNESS  |6}  {FUL |FUL |7}  {USEFUL |USEFUL |7}  {HELPFUL |HELPFUL |7}  {CAREFUL |CAREFUL |7}  {JOYFUL  |JOYFUL  |7}  {MENT |MENT |8}  {MOMENT |MOMENT |8}  {PAYMENT |PAYMENT |8}  {AILMENT |AILMENT |8}  {BASEMENT  |BASEMENT  |8}  {TION |TION |9}  {ACTION |ACTION |9}  {NATION |NATION |9}  {MOTION |MOTION |9}  {MENTION  |MENTION  |9}  {OUS |OUS |10}  {JOYOUS |JOYOUS |10}  {FAMOUS |FAMOUS |10}  {POROUS |POROUS |10}  {NERVOUS |NERVOUS |10}  {IOUS |IOUS |11}  {CURIOUS |CURIOUS |11}  {OBVIOUS |OBVIOUS |11}  {SERIOUS |SERIOUS |11}  {VARIOUS |VARIOUS |11}  \r\n";
+
+/***/ })
+
+}]);
