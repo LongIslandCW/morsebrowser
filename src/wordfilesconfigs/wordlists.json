@@ -928,19 +928,15 @@
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "PHRASES","newlineChunking": false,"display": "2 WORD PART 1","fileName": "POL_2WPhrases.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "PHRASES","newlineChunking": false,"display": "2 WORD PART 2","fileName": "POL_2WPhrases_Pt2.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "PHRASES","newlineChunking": false,"display": "2 WORD PART 3","fileName": "POL_2WPhrases_Pt3.txt"}, 
-
-{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "PHRASES","newlineChunking": false,"display": "2 WORD LONG","fileName": "POL_2W_Phrases_Long.txt"}, 
-        
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "PHRASES","newlineChunking": false,"display": "MANY 2 WORD","fileName": "POL_2W_Phrases_Long.txt"},         
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "PHRASES","newlineChunking": false,"display": "3 WORD PART 1","fileName": "POL_3W_Phrases_Pt1.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "PHRASES","newlineChunking": false,"display": "3 WORD PART 2","fileName": "POL_3W_Phrases_Pt2.txt"},   
 
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "PHRASES","newlineChunking": false,"display": "3 WORD CW-VOICE-CW","fileName": "POL_3W_Phrases_CVC.txt"},
-
-        
+    
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "PHRASES","newlineChunking": false,"display": "SHORT PART 1","fileName": "POL_S_Phrases_Pt1.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "PHRASES","newlineChunking": false,"display": "SHORT PART 2","fileName": "POL_S_Phrases_Pt2.txt"},
-
-        
+  
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SENDING","newlineChunking": true,"display": "SENDING ALPHABET 1","fileName": "POL_SENDING_L2.txt"},  
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SENDING","newlineChunking": true,"display": "SENDING ALPHABET 2","fileName": "POL_SENDING_L.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SENDING","newlineChunking": true,"display": "SENDING NUMBERS 1","fileName": "POL_SENDING_N2.txt"},       
@@ -959,17 +955,13 @@
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORDS","newlineChunking": false,"display": "2-3 LETTER WORDS PART 2","fileName": "POL_2-3W_Pt2.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORDS","newlineChunking": false,"display": "2-3 LETTER WORDS PART 3","fileName": "POL_2-3W_Pt3.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORDS","newlineChunking": false,"display": "2-3 LETTER WORDS PART 4","fileName": "POL_2-3W_Pt4.txt"},
-
-{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORDS","newlineChunking": false,"display": "3 LETTER WORDS LONG","fileName": "POL_3L_Words_Long.txt"},
-        
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORDS","newlineChunking": false,"display": "MANY 3 LETTER WORDS","fileName": "POL_3L_Words_Long.txt"},       
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORDS","newlineChunking": false,"display": "3-4 LETTER WORDS PART 1","fileName": "POL_3-4W_Pt1.txt"},       
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORDS","newlineChunking": false,"display": "3-4 LETTER WORDS PART 2","fileName": "POL_3-4W_Pt2.txt"},       
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORDS","newlineChunking": false,"display": "4 LETTER WORDS PART 1","fileName": "POL_4W_Pt1.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORDS","newlineChunking": false,"display": "4 LETTER WORDS PART 2","fileName": "POL_4W_Pt2.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORDS","newlineChunking": false,"display": "4 LETTER WORDS PART 3","fileName": "POL_4W_Pt3.txt"},
-
-{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORDS","newlineChunking": false,"display": "4 LETTER WORDS LONG","fileName": "POL_4L_Words_Long.txt"},
-        
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORDS","newlineChunking": false,"display": "MANY 4 LETTER WORDS","fileName": "POL_4L_Words_Long.txt"},   
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORDS","newlineChunking": false,"display": "4-5  LETTER WORDS PART 1","fileName": "POL_4-5W_Pt1.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORDS","newlineChunking": false,"display": "4-5 LETTER WORDS PART 2","fileName": "POL_4-5W_Pt2.txt"},       
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORDS","newlineChunking": false,"display": "5 LETTER WORDS PART 1","fileName": "POL_5W_Pt1.txt"},
