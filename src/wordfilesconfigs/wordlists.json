@@ -943,7 +943,8 @@
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SENDING","newlineChunking": true,"display": "SENDING NUMBERS 2","fileName": "POL_SENDING_N.txt"},    
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SENDING","newlineChunking": false,"display": "3-5 WORDS","fileName": "POL_Send_3-5_L_Words.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SENDING","newlineChunking": false,"display": "5-7 WORDS","fileName": "POL_Send_5-7_L_Words.txt"},
-
+        
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SENTENCES","newlineChunking": false,"display": "JOKES CW-VOICE-CW","fileName": "POL_Jokes.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SENTENCES","newlineChunking": false,"display": "SENTENCES CW-VOICE-CW","fileName": "POL_Sentences.txt"},
       
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SUFFIXES","newlineChunking": false,"display": "SUFFIXES ALL","fileName": "POL_SUFFIXES.txt"},                
