@@ -793,7 +793,7 @@ export class MorseViewModel {
   }
 
   doPause = (fullRewind, fromPauseButton, fromStopButton) => {
-    console.log(`doPause called fullRewid:${fullRewind} fromPauseButton:${fromPauseButton} fromStopButton:${fromStopButton}`)
+    console.log(`doPause called fullRewind:${fullRewind} fromPauseButton:${fromPauseButton} fromStopButton:${fromStopButton}`)
     if (fromStopButton) {
       if (this.doPlayTimeout) {
         clearTimeout(this.doPlayTimeout)
