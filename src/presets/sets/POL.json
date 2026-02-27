@@ -1,7 +1,11 @@
 {
     "options": [
 
-                {
+       {
+            "display": "BINOMIALS Flow Rate 1",
+            "filename": "POL_Random_3x_23.json"
+        }, 
+       {
             "display": "BINOMIALS Flow Rate 2",
             "filename": "POL_Random_3x_27.json"
         }, 
@@ -9,6 +13,10 @@
             "display": "BINOMIALS Flow Rate 3",
             "filename": "POL_Random_3x_31.json"
         }, 
+        {
+            "display": "CHARACTERS Flow Rate 1",
+            "filename": "POL_Random_23.json"
+        },
         {
             "display": "CHARACTERS Flow Rate 2",
             "filename": "POL_Random_27.json"
@@ -18,12 +26,20 @@
             "filename": "POL_Random_31.json"
         },
         {
+            "display": "PHRASES/WORDS 2X Flow Rate 1",
+            "filename": "POL_Random_2x_23.json"
+        }, 
+        {
             "display": "PHRASES/WORDS 2X Flow Rate 2",
             "filename": "POL_Random_2x_27.json"
         }, 
          {
             "display": "PHRASES/WORDS 2X Flow Rate 3",
             "filename": "POL_Random_2x_31.json"
+        }, 
+        {
+            "display": "PHRASES/WORDS 3X Flow Rate 1",
+            "filename": "POL_Random_3x_23.json"
         }, 
         {
             "display": "PHRASES/WORDS 3X Flow Rate 2",
@@ -34,6 +50,10 @@
             "filename": "POL_Random_3x_31.json"
         }, 
         {
+            "display": "PHRASES CW-VOICE-CW Flow Rate 1",
+            "filename": "POL_Random_1x_CVC_23.json"
+        }, 
+        {
             "display": "PHRASES CW-VOICE-CW Flow Rate 2",
             "filename": "POL_Random_1x_CVC_27.json"
         }, 
@@ -42,12 +62,20 @@
             "filename": "POL_Random_1x_CVC_31.json"
         }, 
         {
+            "display": "SENDING ALPHABET Flow Rate 1",
+            "filename": "POL_23_SA.json"
+        },
+        {
             "display": "SENDING ALPHABET Flow Rate 2",
             "filename": "POL_27_SA.json"
         },
         {
             "display": "SENDING ALPHABET Flow Rate 3",
             "filename": "POL_31_SA.json"
+        },
+        {
+            "display": "SENDING NUMBERS Flow Rate 1",
+            "filename": "POL_23_SN.json"
         },
         {
             "display": "SENDING NUMBERS Flow Rate 2",
@@ -58,6 +86,10 @@
             "filename": "POL_31_SN.json"
         },
         {
+            "display": "SENDING WORDS/PHRASES Flow Rate 1",
+            "filename": "POL_Random_1x_VCS_23.json"
+        },
+        {
             "display": "SENDING WORDS/PHRASES Flow Rate 2",
             "filename": "POL_Random_1x_VCS_27.json"
         },
@@ -65,6 +97,10 @@
             "display": "SENDING WORDS/PHRASES Flow Rate 3",
             "filename": "POL_Random_1x_VCS_31.json"
         },
+       {
+            "display": "SENTENCES CW-VOICE-CW Flow Rate 1",
+            "filename": "POL_Random_Sen_1x_CVC_23.json"
+        },  
         {
             "display": "SENTENCES CW-VOICE-CW Flow Rate 2",
             "filename": "POL_Random_Sen_1x_CVC_27.json"
@@ -74,6 +110,10 @@
             "filename": "POL_Random_Sen_1x_CVC_31.json"
         },
         {
+            "display": "SUFFIXES Flow Rate 1",
+            "filename": "POL_Random_3x_23.json"
+        },  
+        {
             "display": "SUFFIXES Flow Rate 2",
             "filename": "POL_Random_3x_27.json"
         },  
@@ -81,6 +121,10 @@
             "display": "SUFFIXES Flow Rate 3",
             "filename": "POL_Random_3x_31.json"
         },
+        {
+            "display": "VOICE AFTER WORDS Flow Rate 1",
+            "filename": "POL_VA_Random_3x_23.json"
+        }, 
         {
             "display": "VOICE AFTER WORDS Flow Rate 2",
             "filename": "POL_VA_Random_3x_27.json"
@@ -92,7 +136,6 @@
 
     ]
 }
-
 
 
 
