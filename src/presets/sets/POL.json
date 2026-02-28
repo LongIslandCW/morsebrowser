@@ -134,15 +134,15 @@
             "filename": "POL_Random_108x_CV_31.json"
         },
        {
-            "display": "SENTENCES CW-VOICE-VOICE Ext. Word Space FR 1",
+            "display": "SENTENCES CW-VOICE-CW Ext. Word Space FR 1",
             "filename": "POL_Random_108x_CVC_23.json"
         },
        {
-            "display": "SENTENCES CW-VOICE-VOICE Ext. Word Space FR 2",
+            "display": "SENTENCES CW-VOICE-CW Ext. Word Space FR 2",
             "filename": "POL_Random_108x_CVC_27.json"
         },
        {
-            "display": "SENTENCES CW-VOICE-VOICE Ext. Word Space FR 3",
+            "display": "SENTENCES CW-VOICE-CW Ext. Word Space FR 3",
             "filename": "POL_Random_108x_CVC_31.json"
         },
          {
@@ -172,6 +172,7 @@
 
     ]
 }
+
 
 
 
