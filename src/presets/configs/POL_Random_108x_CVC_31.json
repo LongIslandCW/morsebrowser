@@ -172,7 +172,7 @@
 		},
 		{
 			"key": "isShuffledSet",
-			"value": false,
+			"value": true,
 			"comment": null
 		},
 		{
