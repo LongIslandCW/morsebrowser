@@ -86,6 +86,10 @@
             "filename": "POL_31_SN.json"
         },
         {
+            "display": "SENDING Tri-Letters",
+            "filename": "POL_Send_TrI_27.json"
+        },
+        {
             "display": "SENDING WORDS/PHRASES Flow Rate 1",
             "filename": "POL_Random_1x_VCS_23.json"
         },
@@ -160,6 +164,7 @@
 
     ]
 }
+
 
 
 
