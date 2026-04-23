@@ -1,0 +1,500 @@
+{AB4UY 1A ONE |A B 4 U Y  1 "A"  Ontario East }
+{AC8SM 14C OH |A C 8 S M  1 4 C  Ohio }
+{K6XT 4E CO |K 6 X T  4 E  Colorado }
+{N5ZX 3A AB |N 5 Z X  3 "A"  Alberta }
+{AA7YT 5C DX |A A 7 Y T  5 C  D X}
+{W1XQ 15C MI |W 1 X Q  1 5 C  Michigan }
+{N3LZ 15C UT |N 3 L Z  1 5 C  Utah }
+{N9LK 6D NTX |N 9 L K  6 D  North Texas }
+{K7OM 2F WNY |K 7 O M  2 F  Western New York }
+{AB9JN 5D NL |A B 9 J N  5 D  Newfoundland and Labrador }
+{W3ER 2A EWA |W 3 E R  2 "A"  Eastern Washington }
+{K8YG 11C SK |K 8 Y G  1 1 C  Saskatchewan }
+{AC3XK 15F EB |A C 3 X K  1 5 F  East Bay }
+{AB9FI 11A WI |A B 9 F I  1 1 "A"  Wisconsin }
+{N1XO 3C MO |N 1 X O  3 C  Missouri }
+{AA9WZ 15E WPA |A A 9 W Z  1 5 E  Western Pennsylvania }
+{AB8RM 11C NE |A B 8 R M  1 1 C  Nebraska }
+{N7GK 13A DX |N 7 G K  1 3 "A"  D X}
+{W6ZB 5D IA |W 6 Z B  5 D  Iowa }
+{AA9LA 2F ONE |A A 9 L A  2 F  Ontario East }
+{AB2SV 4A MI |A B 2 S V  4 "A"  Michigan }
+{AB2WN 10B OH |A B 2 W N  1 0 B  Ohio }
+{AA6AZ 9B SF |A A 6 A Z  9 B  San Francisco }
+{AB2KY 10D NNY |A B 2 K Y  1 0 D  Northern New York }
+{N8OE 13B NNY |N 8 O E  1 3 B  Northern New York }
+{K9VJ 12B IL |K 9 V J  1 2 B  Illinois }
+{AA4RQ 12F WNY |A A 4 R Q  1 2 F  Western New York }
+{W7HP 5C GA |W 7 H P  5 C  Georgia }
+{AA5JC 4C AK |A A 5 J C  4 C  Alaska }
+{AA1HX 7F ID |A A 1 H X  7 F  Idaho }
+{AA8XS 15F SB |A A 8 X S  1 5 F  Santa Barbara }
+{AB1PR 15C OK |A B 1 P R  1 5 C  Oklahoma }
+{AA5ZS 14A WMA |A A 5 Z S  1 4 "A"  Western Massachusetts }
+{AA1QJ 12C ENY |A A 1 Q J  1 2 C  Eastern New York }
+{N4XN 1C NNY |N 4 X N  1 C  Northern New York }
+{AA5WR 12D MDC |A A 5 W R  1 2 D  Maryland-DC }
+{N1FA 6C AR |N 1 F A  6 C  Arkansas }
+{AC9GU 13D NL |A C 9 G U  1 3 D  Newfoundland and Labrador }
+{AC6DG 10A ME |A C 6 D G  1 0 "A"  Maine }
+{K8ID 4F LAX |K 8 I D  4 F  Los Angeles }
+{AC5AQ 11D WPA |A C 5 A Q  1 1 D  Western Pennsylvania }
+{W4UF 13E ONN |W 4 U F  1 3 E  Ontario North }
+{AB3VN 10D GA |A B 3 V N  1 0 D  Georgia }
+{N3MK 1D OH |N 3 M K  1 D  Ohio }
+{AC7OA 4B IN |A C 7 O A  4 B  Indiana }
+{AC5XX 5A VA |A C 5 X X  5 "A"  Virginia }
+{N6GV 6A OK |N 6 G V  6 "A"  Oklahoma }
+{N4ZE 3A NLI |N 4 Z E  3 "A"  New York City-Long Island }
+{AC8VD 4D NS |A C 8 V D  4 D  Nova Scotia }
+{W3FK 4E DX |W 3 F K  4 E  D X}
+{AA1UQ 4C ORG |A A 1 U Q  4 C  Orange }
+{W6JC 15E IN |W 6 J C  1 5 E  Indiana }
+{AB2UC 10E AZ |A B 2 U C  1 0 E  Arizona }
+{N3QR 3F MO |N 3 Q R  3 F  Missouri }
+{W6IJ 8A WCF |W 6 I J  8 "A"  West Central Florida }
+{N2KX 12F SV |N 2 K X  1 2 F  Sacramento Valley }
+{AA5KA 14D WCF |A A 5 K A  1 4 D  West Central Florida }
+{AC1SZ 9C LA |A C 1 S Z  9 C  Louisiana }
+{K1DQ 15C TER |K 1 D Q  1 5 C  Territories }
+{AA8BM 4C VA |A A 8 B M  4 C  Virginia }
+{AA3RH 4D MS |A A 3 R H  4 D  Mississippi }
+{W3AH 13F MO |W 3 A H  1 3 F  Missouri }
+{AA3NE 14A EB |A A 3 N E  1 4 "A"  East Bay }
+{K9YS 9E SCV |K 9 Y S  9 E  Santa Clara Valley }
+{AB2XY 12E SD |A B 2 X Y  1 2 E  South Dakota }
+{K5XK 4F SFL |K 5 X K  4 F  Southern Florida }
+{K8ZU 15C NS |K 8 Z U  1 5 C  Nova Scotia }
+{AB1MT 13C SJV |A B 1 M T  1 3 C  San Joaquin Valley }
+{AA4WX 1C NNY |A A 4 W X  1 C  Northern New York }
+{AB3HN 5C BC |A B 3 H N  5 C  British Columbia }
+{W9YI 13D PE |W 9 Y I  1 3 D  Prince Edward Island }
+{K3JF 13A ONN |K 3 J F  1 3 "A"  Ontario North }
+{AB2FS 8B CT |A B 2 F S  8 B  Connecticut }
+{W4NL 5F AK |W 4 N L  5 F  Alaska }
+{AA1HE 15C OR |A A 1 H E  1 5 C  Oregon }
+{AC9ID 6D NNY |A C 9 I D  6 D  Northern New York }
+{AC2XA 6B NV |A C 2 X A  6 B  Nevada }
+{AC6RV 12C AL |A C 6 R V  1 2 C  Alabama }
+{W4UV 9F VA |W 4 U V  9 F  Virginia }
+{K6FB 14C WPA |K 6 F B  1 4 C  Western Pennsylvania }
+{K4AM 1F IA |K 4 A M  1 F  Iowa }
+{W3KQ 1D IN |W 3 K Q  1 D  Indiana }
+{K2MM 2E NL |K 2 M M  2 E  Newfoundland and Labrador }
+{AB9WH 3C ME |A B 9 W H  3 C  Maine }
+{K7DS 3B NNY |K 7 D S  3 B  Northern New York }
+{W2GX 9A ENY |W 2 G X  9 "A"  Eastern New York }
+{N5WA 2A NTX |N 5 W A  2 "A"  North Texas }
+{AA3UF 3E OR |A A 3 U F  3 E  Oregon }
+{K6LC 10E NE |K 6 L C  1 0 E  Nebraska }
+{K7AK 10D WMA |K 7 A K  1 0 D  Western Massachusetts }
+{W5XU 14F ONS |W 5 X U  1 4 F  Ontario South }
+{N6AJ 9D SF |N 6 A J  9 D  San Francisco }
+{AC9OT 13A TN |A C 9 O T  1 3 "A"  Tennessee }
+{N8YC 1B MDC |N 8 Y C  1 B  Maryland-DC }
+{AB9LZ 11D NFL |A B 9 L Z  1 1 D  Northern Florida }
+{N7YV 11C SF |N 7 Y V  1 1 C  San Francisco }
+{N8PS 10F CT |N 8 P S  1 0 F  Connecticut }
+{W9AV 4E EMA |W 9 A V  4 E  Eastern Massachusetts }
+{AC5BB 7E MO |A C 5 B B  7 E  Missouri }
+{N7VU 3A NB |N 7 V U  3 "A"  New Brunswick }
+{AA8WZ 9E SDG |A A 8 W Z  9 E  San Diego }
+{N4LU 13E IA |N 4 L U  1 3 E  Iowa }
+{AA5LZ 7B SF |A A 5 L Z  7 B  San Francisco }
+{AB3ZC 13E UT |A B 3 Z C  1 3 E  Utah }
+{N1IR 9F AK |N 1 I R  9 F  Alaska }
+{W5JG 14D EWA |W 5 J G  1 4 D  Eastern Washington }
+{AC9YI 12C NL |A C 9 Y I  1 2 C  Newfoundland and Labrador }
+{K5XD 3B GH |K 5 X D  3 B  Ontario Golden Horseshoe }
+{K7MF 10F IL |K 7 M F  1 0 F  Illinois }
+{W9WX 8F VI |W 9 W X  8 F  US Virgin Islands }
+{AB6XA 11C EB |A B 6 X A  1 1 C  East Bay }
+{AB1DO 14B AR |A B 1 D O  1 4 B  Arkansas }
+{K3EO 9F MI |K 3 E O  9 F  Michigan }
+{AC1QB 12F EWA |A C 1 Q B  1 2 F  Eastern Washington }
+{AB2DL 7A OK |A B 2 D L  7 "A"  Oklahoma }
+{AA2PS 3A WNY |A A 2 P S  3 "A"  Western New York }
+{W4IK 8D ME |W 4 I K  8 D  Maine }
+{W9RC 1A MB |W 9 R C  1 "A"  Manitoba }
+{W5VK 8A DX |W 5 V K  8 "A"  D X}
+{N5WG 4F OH |N 5 W G  4 F  Ohio }
+{AC3LK 9C ORG |A C 3 L K  9 C  Orange }
+{AB4PH 8A NB |A B 4 P H  8 "A"  New Brunswick }
+{K1SG 5F NB |K 1 S G  5 F  New Brunswick }
+{AC8YL 7F LA |A C 8 Y L  7 F  Louisiana }
+{AA1CK 8A PAC |A A 1 C K  8 "A"  Pacific }
+{AC2TK 15A WTX |A C 2 T K  1 5 "A"  West Texas }
+{AA3QL 11D VT |A A 3 Q L  1 1 D  Vermont }
+{AA5SB 5A DE |A A 5 S B  5 "A"  Delaware }
+{W3HN 2C NNJ |W 3 H N  2 C  Northern New Jersey }
+{AB8GA 8B KY |A B 8 G A  8 B  Kentucky }
+{AB3FT 2B WCF |A B 3 F T  2 B  West Central Florida }
+{W3JM 3E UT |W 3 J M  3 E  Utah }
+{N5OX 9B AK |N 5 O X  9 B  Alaska }
+{AC9GM 5A WV |A C 9 G M  5 "A"  West Virginia }
+{AA4HI 15A VT |A A 4 H I  1 5 "A"  Vermont }
+{K8RC 2D NLI |K 8 R C  2 D  New York City-Long Island }
+{W1PO 1D NNY |W 1 P O  1 D  Northern New York }
+{W4JV 11C VA |W 4 J V  1 1 C  Virginia }
+{AB3LR 12E OK |A B 3 L R  1 2 E  Oklahoma }
+{N6ZP 2A WY |N 6 Z P  2 "A"  Wyoming }
+{AB6VV 12A GA |A B 6 V V  1 2 "A"  Georgia }
+{AB1CI 11B MO |A B 1 C I  1 1 B  Missouri }
+{W3BY 10F EPA |W 3 B Y  1 0 F  Eastern Pennsylvania }
+{AC1JJ 8F SDG |A C 1 J J  8 F  San Diego }
+{AB3RY 8E WWA |A B 3 R Y  8 E  Western Washington }
+{AB3BW 2A WI |A B 3 B W  2 "A"  Wisconsin }
+{W6ZM 15B SDG |W 6 Z M  1 5 B  San Diego }
+{AB7YQ 2B SC |A B 7 Y Q  2 B  South Carolina }
+{N6GB 1C NM |N 6 G B  1 C  New Mexico }
+{AA3TI 12C EB |A A 3 T I  1 2 C  East Bay }
+{AB9SA 5A LA |A B 9 S A  5 "A"  Louisiana }
+{K4XD 13C MB |K 4 X D  1 3 C  Manitoba }
+{AB8OD 3E AZ |A B 8 O D  3 E  Arizona }
+{W2SV 5A ONE |W 2 S V  5 "A"  Ontario East }
+{K4PK 14F GA |K 4 P K  1 4 F  Georgia }
+{AC2VI 8F WMA |A C 2 V I  8 F  Western Massachusetts }
+{N5QB 13C IN |N 5 Q B  1 3 C  Indiana }
+{N8VQ 1C EMA |N 8 V Q  1 C  Eastern Massachusetts }
+{N6QD 12B SV |N 6 Q D  1 2 B  Sacramento Valley }
+{AB5NW 12E KS |A B 5 N W  1 2 E  Kansas }
+{K6AT 2B SJV |K 6 A T  2 B  San Joaquin Valley }
+{AC9AZ 10C AL |A C 9 A Z  1 0 C  Alabama }
+{W7TK 13D KS |W 7 T K  1 3 D  Kansas }
+{K6WZ 9A OH |K 6 W Z  9 "A"  Ohio }
+{AB1QS 5C WPA |A B 1 Q S  5 C  Western Pennsylvania }
+{N8WH 11F NNJ |N 8 W H  1 1 F  Northern New Jersey }
+{N6ZN 15A LAX |N 6 Z N  1 5 "A"  Los Angeles }
+{W2NI 4E VI |W 2 N I  4 E  US Virgin Islands }
+{AA5TR 15A WNY |A A 5 T R  1 5 "A"  Western New York }
+{K7QP 9F SF |K 7 Q P  9 F  San Francisco }
+{AA2EC 2D PAC |A A 2 E C  2 D  Pacific }
+{AA3BE 7D WCF |A A 3 B E  7 D  West Central Florida }
+{W1QC 4E WV |W 1 Q C  4 E  West Virginia }
+{AB6AC 10F MN |A B 6 A C  1 0 F  Minnesota }
+{K1IN 3D SB |K 1 I N  3 D  Santa Barbara }
+{AB6LS 1B OK |A B 6 L S  1 B  Oklahoma }
+{K5AN 13A EPA |K 5 A N  1 3 "A"  Eastern Pennsylvania }
+{W5LU 1E SCV |W 5 L U  1 E  Santa Clara Valley }
+{W9CQ 1E MS |W 9 C Q  1 E  Mississippi }
+{N1OK 1A IN |N 1 O K  1 "A"  Indiana }
+{K8IX 3A OK |K 8 I X  3 "A"  Oklahoma }
+{N7UM 14C WPA |N 7 U M  1 4 C  Western Pennsylvania }
+{AB2TG 5E EWA |A B 2 T G  5 E  Eastern Washington }
+{K1EP 7C MN |K 1 E P  7 C  Minnesota }
+{AA2UF 12C OH |A A 2 U F  1 2 C  Ohio }
+{AB8QT 9B TER |A B 8 Q T  9 B  Territories }
+{K4DY 4C AB |K 4 D Y  4 C  Alberta }
+{W5SH 6A WTX |W 5 S H  6 "A"  West Texas }
+{W4DL 3B PE |W 4 D L  3 B  Prince Edward Island }
+{W9VI 14C NL |W 9 V I  1 4 C  Newfoundland and Labrador }
+{AC4MX 13E ONS |A C 4 M X  1 3 E  Ontario South }
+{W5AQ 1D MDC |W 5 A Q  1 D  Maryland-DC }
+{AB2NO 3D SNJ |A B 2 N O  3 D  Southern New Jersey }
+{AA1AP 2D AL |A A 1 A P  2 D  Alabama }
+{AC4ID 13C ONN |A C 4 I D  1 3 C  Ontario North }
+{AC1BK 15B AZ |A C 1 B K  1 5 B  Arizona }
+{AA9HJ 9C EWA |A A 9 H J  9 C  Eastern Washington }
+{N3DW 11B MDC |N 3 D W  1 1 B  Maryland-DC }
+{N8YS 13E QC |N 8 Y S  1 3 E  Quebec }
+{AC5SR 1A SD |A C 5 S R  1 "A"  South Dakota }
+{W1HI 14F CT |W 1 H I  1 4 F  Connecticut }
+{W9MY 4B WTX |W 9 M Y  4 B  West Texas }
+{N1NX 5A NE |N 1 N X  5 "A"  Nebraska }
+{W5DV 13E SB |W 5 D V  1 3 E  Santa Barbara }
+{AA3UZ 5E MB |A A 3 U Z  5 E  Manitoba }
+{K8KO 10B WPA |K 8 K O  1 0 B  Western Pennsylvania }
+{N4OZ 13E NS |N 4 O Z  1 3 E  Nova Scotia }
+{AC9XG 15B OR |A C 9 X G  1 5 B  Oregon }
+{N4ZM 1C EPA |N 4 Z M  1 C  Eastern Pennsylvania }
+{K8GX 12F NFL |K 8 G X  1 2 F  Northern Florida }
+{AA1WC 15D MB |A A 1 W C  1 5 D  Manitoba }
+{K4DI 8C MB |K 4 D I  8 C  Manitoba }
+{N5FD 14E NNY |N 5 F D  1 4 E  Northern New York }
+{N8FA 11B NV |N 8 F A  1 1 B  Nevada }
+{AC6BY 2F CT |A C 6 B Y  2 F  Connecticut }
+{AC1OI 7A MDC |A C 1 O I  7 "A"  Maryland-DC }
+{K9JR 2D TN |K 9 J R  2 D  Tennessee }
+{W7ED 6F ID |W 7 E D  6 F  Idaho }
+{N4QT 8B KS |N 4 Q T  8 B  Kansas }
+{K1CN 15C ID |K 1 C N  1 5 C  Idaho }
+{AB4WV 4D IA |A B 4 W V  4 D  Iowa }
+{AC5DK 10F NNJ |A C 5 D K  1 0 F  Northern New Jersey }
+{K4DZ 2D WNY |K 4 D Z  2 D  Western New York }
+{AC7KD 3C SFL |A C 7 K D  3 C  Southern Florida }
+{K6DL 4F MS |K 6 D L  4 F  Mississippi }
+{AB1PK 14B NS |A B 1 P K  1 4 B  Nova Scotia }
+{N5VK 4A ND |N 5 V K  4 "A"  North Dakota }
+{N5EG 7F DX |N 5 E G  7 F  D X}
+{W9SK 11D ID |W 9 S K  1 1 D  Idaho }
+{W6TF 1A UT |W 6 T F  1 "A"  Utah }
+{K4GK 14B NE |K 4 G K  1 4 B  Nebraska }
+{N6XJ 4E ONE |N 6 X J  4 E  Ontario East }
+{W3BT 8C VI |W 3 B T  8 C  US Virgin Islands }
+{AB8MN 2B SDG |A B 8 M N  2 B  San Diego }
+{K3FR 4F EMA |K 3 F R  4 F  Eastern Massachusetts }
+{AB4LU 2D VA |A B 4 L U  2 D  Virginia }
+{N2XM 8C SDG |N 2 X M  8 C  San Diego }
+{AA6UV 10C SD |A A 6 U V  1 0 C  South Dakota }
+{AA9XS 7F OH |A A 9 X S  7 F  Ohio }
+{AB5PW 11D GH |A B 5 P W  1 1 D  Ontario Golden Horseshoe }
+{AC3XW 7E EPA |A C 3 X W  7 E  Eastern Pennsylvania }
+{AB2HP 5C ONN |A B 2 H P  5 C  Ontario North }
+{AA6LQ 9E WTX |A A 6 L Q  9 E  West Texas }
+{K7SQ 12F NL |K 7 S Q  1 2 F  Newfoundland and Labrador }
+{N9UX 5C SDG |N 9 U X  5 C  San Diego }
+{AC4DY 9E NNY |A C 4 D Y  9 E  Northern New York }
+{AB3DX 12E WV |A B 3 D X  1 2 E  West Virginia }
+{AA7PN 1E VT |A A 7 P N  1 E  Vermont }
+{AC6MG 10C ID |A C 6 M G  1 0 C  Idaho }
+{K1TW 4C AB |K 1 T W  4 C  Alberta }
+{AA9GC 1A WTX |A A 9 G C  1 "A"  West Texas }
+{AB4BZ 15D ID |A B 4 B Z  1 5 D  Idaho }
+{K4VK 8F GH |K 4 V K  8 F  Ontario Golden Horseshoe }
+{W6IN 15A ONE |W 6 I N  1 5 "A"  Ontario East }
+{AC2RB 12E NLI |A C 2 R B  1 2 E  New York City-Long Island }
+{W9KG 7A NS |W 9 K G  7 "A"  Nova Scotia }
+{AA3UR 11E LAX |A A 3 U R  1 1 E  Los Angeles }
+{AB4JV 4E WV |A B 4 J V  4 E  West Virginia }
+{AB4XP 10A SC |A B 4 X P  1 0 "A"  South Carolina }
+{K5HT 3A VT |K 5 H T  3 "A"  Vermont }
+{AA9RG 15F AB |A A 9 R G  1 5 F  Alberta }
+{N1RR 9D WMA |N 1 R R  9 D  Western Massachusetts }
+{K2DF 4C ND |K 2 D F  4 C  North Dakota }
+{W9DA 12E AR |W 9 D A  1 2 E  Arkansas }
+{AC6UT 11B LA |A C 6 U T  1 1 B  Louisiana }
+{W2NI 8F BC |W 2 N I  8 F  British Columbia }
+{W6SN 5C PAC |W 6 S N  5 C  Pacific }
+{N5XT 8D SB |N 5 X T  8 D  Santa Barbara }
+{AC7FQ 4B NTX |A C 7 F Q  4 B  North Texas }
+{AB2YT 2C AB |A B 2 Y T  2 C  Alberta }
+{AB7HE 15B TER |A B 7 H E  1 5 B  Territories }
+{N4NR 5F DX |N 4 N R  5 F  D X}
+{N1LQ 9D MN |N 1 L Q  9 D  Minnesota }
+{AB7QK 4F DE |A B 7 Q K  4 F  Delaware }
+{AB4KY 10B EWA |A B 4 K Y  1 0 B  Eastern Washington }
+{AC1AK 7F MN |A C 1 A K  7 F  Minnesota }
+{AB6TL 7B SC |A B 6 T L  7 B  South Carolina }
+{K8QM 1A ENY |K 8 Q M  1 "A"  Eastern New York }
+{K2XQ 4E MI |K 2 X Q  4 E  Michigan }
+{AC2FX 4E OK |A C 2 F X  4 E  Oklahoma }
+{N2OG 5A SC |N 2 O G  5 "A"  South Carolina }
+{AC6QV 9E WPA |A C 6 Q V  9 E  Western Pennsylvania }
+{AA6ZV 11E EWA |A A 6 Z V  1 1 E  Eastern Washington }
+{W6QW 10D WPA |W 6 Q W  1 0 D  Western Pennsylvania }
+{N8DP 10E LAX |N 8 D P  1 0 E  Los Angeles }
+{AC8ZP 9E MDC |A C 8 Z P  9 E  Maryland-DC }
+{AA4IM 4E WI |A A 4 I M  4 E  Wisconsin }
+{N2OG 3D ND |N 2 O G  3 D  North Dakota }
+{AA3UN 1D AZ |A A 3 U N  1 D  Arizona }
+{AA4RI 9C NTX |A A 4 R I  9 C  North Texas }
+{AB2DA 9D SF |A B 2 D A  9 D  San Francisco }
+{W9XG 12B NM |W 9 X G  1 2 B  New Mexico }
+{K1ED 7D LAX |K 1 E D  7 D  Los Angeles }
+{AA5LM 15B TER |A A 5 L M  1 5 B  Territories }
+{K4IM 7A SC |K 4 I M  7 "A"  South Carolina }
+{K8HM 4D WPA |K 8 H M  4 D  Western Pennsylvania }
+{W5WQ 1D CO |W 5 W Q  1 D  Colorado }
+{K1YW 8C PAC |K 1 Y W  8 C  Pacific }
+{N6NX 5B WV |N 6 N X  5 B  West Virginia }
+{AB8SX 1C RI |A B 8 S X  1 C  Rhode Island }
+{AA9RN 13E MI |A A 9 R N  1 3 E  Michigan }
+{AA2TJ 10D EWA |A A 2 T J  1 0 D  Eastern Washington }
+{AC2UX 5A SFL |A C 2 U X  5 "A"  Southern Florida }
+{AC1DS 14D BC |A C 1 D S  1 4 D  British Columbia }
+{AC7XU 14C SNJ |A C 7 X U  1 4 C  Southern New Jersey }
+{AB8NQ 12B WCF |A B 8 N Q  1 2 B  West Central Florida }
+{W3YU 11A GA |W 3 Y U  1 1 "A"  Georgia }
+{N2GQ 1C NLI |N 2 G Q  1 C  New York City-Long Island }
+{AC6GS 9D SF |A C 6 G S  9 D  San Francisco }
+{AC1YV 1D SK |A C 1 Y V  1 D  Saskatchewan }
+{K2IF 2D SNJ |K 2 I F  2 D  Southern New Jersey }
+{AB2OL 2A WV |A B 2 O L  2 "A"  West Virginia }
+{W7KX 9E NE |W 7 K X  9 E  Nebraska }
+{N1TV 11B ONN |N 1 T V  1 1 B  Ontario North }
+{AC3EO 1A ENY |A C 3 E O  1 "A"  Eastern New York }
+{K3OA 5B OH |K 3 O A  5 B  Ohio }
+{AC8FS 9D NH |A C 8 F S  9 D  New Hampshire }
+{AC8IG 1B ND |A C 8 I G  1 B  North Dakota }
+{N5KV 11D GH |N 5 K V  1 1 D  Ontario Golden Horseshoe }
+{N3ZQ 14D AR |N 3 Z Q  1 4 D  Arkansas }
+{AB6NJ 8B BC |A B 6 N J  8 B  British Columbia }
+{N1AF 2A UT |N 1 A F  2 "A"  Utah }
+{AC7YI 11D MI |A C 7 Y I  1 1 D  Michigan }
+{N9RN 8D OR |N 9 R N  8 D  Oregon }
+{W3CD 2D NH |W 3 C D  2 D  New Hampshire }
+{W8BI 3B AZ |W 8 B I  3 B  Arizona }
+{AA3NS 9B QC |A A 3 N S  9 B  Quebec }
+{N1PG 12D SK |N 1 P G  1 2 D  Saskatchewan }
+{K5BE 1A ONS |K 5 B E  1 "A"  Ontario South }
+{W9BE 9F DX |W 9 B E  9 F  D X}
+{W9JV 8E VI |W 9 J V  8 E  US Virgin Islands }
+{W6DZ 10A NNJ |W 6 D Z  1 0 "A"  Northern New Jersey }
+{AA1SZ 2C KS |A A 1 S Z  2 C  Kansas }
+{AC7IQ 8C SB |A C 7 I Q  8 C  Santa Barbara }
+{K9IO 2A WMA |K 9 I O  2 "A"  Western Massachusetts }
+{N5VT 12F VA |N 5 V T  1 2 F  Virginia }
+{AA8DP 9D BC |A A 8 D P  9 D  British Columbia }
+{K3HP 15C PE |K 3 H P  1 5 C  Prince Edward Island }
+{W4KU 3F NNY |W 4 K U  3 F  Northern New York }
+{N2PL 8D NM |N 2 P L  8 D  New Mexico }
+{AA4JE 5A KY |A A 4 J E  5 "A"  Kentucky }
+{N2XQ 12F TN |N 2 X Q  1 2 F  Tennessee }
+{AA3AV 5E WY |A A 3 A V  5 E  Wyoming }
+{W9HU 1F VA |W 9 H U  1 F  Virginia }
+{N9EM 2F NS |N 9 E M  2 F  Nova Scotia }
+{W1VX 9A BC |W 1 V X  9 "A"  British Columbia }
+{AB5RB 2A NTX |A B 5 R B  2 "A"  North Texas }
+{W5BL 13F VI |W 5 B L  1 3 F  US Virgin Islands }
+{K4IK 14C PR |K 4 I K  1 4 C  Puerto Rico }
+{N8EJ 11D SJV |N 8 E J  1 1 D  San Joaquin Valley }
+{AB6SM 1E NH |A B 6 S M  1 E  New Hampshire }
+{N7VN 13B MI |N 7 V N  1 3 B  Michigan }
+{W9ZS 12D SV |W 9 Z S  1 2 D  Sacramento Valley }
+{N6SQ 4F ORG |N 6 S Q  4 F  Orange }
+{AB5ZH 3B LAX |A B 5 Z H  3 B  Los Angeles }
+{W3DA 15B CO |W 3 D A  1 5 B  Colorado }
+{K7HE 11C KS |K 7 H E  1 1 C  Kansas }
+{K8HS 14A NNJ |K 8 H S  1 4 "A"  Northern New Jersey }
+{K1MP 11B ME |K 1 M P  1 1 B  Maine }
+{K1TE 5E WPA |K 1 T E  5 E  Western Pennsylvania }
+{N7SX 2F SB |N 7 S X  2 F  Santa Barbara }
+{AC2YQ 12F NTX |A C 2 Y Q  1 2 F  North Texas }
+{AB1LI 8D MDC |A B 1 L I  8 D  Maryland-DC }
+{W8CP 14A ORG |W 8 C P  1 4 "A"  Orange }
+{K4BK 15D BC |K 4 B K  1 5 D  British Columbia }
+{K3XJ 2B NFL |K 3 X J  2 B  Northern Florida }
+{AC4KC 12A NL |A C 4 K C  1 2 "A"  Newfoundland and Labrador }
+{W1XA 4B SNJ |W 1 X A  4 B  Southern New Jersey }
+{AA8NG 13E BC |A A 8 N G  1 3 E  British Columbia }
+{AA6XL 2A LA |A A 6 X L  2 "A"  Louisiana }
+{N1AR 11A EMA |N 1 A R  1 1 "A"  Eastern Massachusetts }
+{N7WL 11C RI |N 7 W L  1 1 C  Rhode Island }
+{AB1QR 12C WWA |A B 1 Q R  1 2 C  Western Washington }
+{AC2RE 15E NL |A C 2 R E  1 5 E  Newfoundland and Labrador }
+{AC5PN 6C MDC |A C 5 P N  6 C  Maryland-DC }
+{AA7OB 14C WI |A A 7 O B  1 4 C  Wisconsin }
+{AB3JY 1B ONN |A B 3 J Y  1 B  Ontario North }
+{AB6SK 11D OH |A B 6 S K  1 1 D  Ohio }
+{AC4PR 9F EB |A C 4 P R  9 F  East Bay }
+{AB1XJ 2C SNJ |A B 1 X J  2 C  Southern New Jersey }
+{AC5XQ 9D IA |A C 5 X Q  9 D  Iowa }
+{AA5IM 3D SB |A A 5 I M  3 D  Santa Barbara }
+{W1RQ 10F VA |W 1 R Q  1 0 F  Virginia }
+{AB5ZY 13C NFL |A B 5 Z Y  1 3 C  Northern Florida }
+{K4VV 7B NV |K 4 V V  7 B  Nevada }
+{AB7MX 10C AL |A B 7 M X  1 0 C  Alabama }
+{W2UC 7B MI |W 2 U C  7 B  Michigan }
+{W7HA 5D ONE |W 7 H A  5 D  Ontario East }
+{AC5PP 2A WWA |A C 5 P P  2 "A"  Western Washington }
+{AC8AR 2E AR |A C 8 A R  2 E  Arkansas }
+{W1VO 14E NNJ |W 1 V O  1 4 E  Northern New Jersey }
+{AB3QX 10C EB |A B 3 Q X  1 0 C  East Bay }
+{K7EU 1A VA |K 7 E U  1 "A"  Virginia }
+{N2AD 6A KS |N 2 A D  6 "A"  Kansas }
+{W5QH 15D PE |W 5 Q H  1 5 D  Prince Edward Island }
+{AC2UV 11C NV |A C 2 U V  1 1 C  Nevada }
+{AC8QA 15B NB |A C 8 Q A  1 5 B  New Brunswick }
+{W6MN 3D NLI |W 6 M N  3 D  New York City-Long Island }
+{AB2HG 10C IL |A B 2 H G  1 0 C  Illinois }
+{N5LM 15B KY |N 5 L M  1 5 B  Kentucky }
+{N8ZT 12C SF |N 8 Z T  1 2 C  San Francisco }
+{AC8YR 5F VT |A C 8 Y R  5 F  Vermont }
+{AA4QZ 4D VA |A A 4 Q Z  4 D  Virginia }
+{K5QK 6C SNJ |K 5 Q K  6 C  Southern New Jersey }
+{K9XF 6F WTX |K 9 X F  6 F  West Texas }
+{W4DY 3C CO |W 4 D Y  3 C  Colorado }
+{N3ZS 13A MT |N 3 Z S  1 3 "A"  Montana }
+{K9VU 11A NS |K 9 V U  1 1 "A"  Nova Scotia }
+{N8HJ 3A QC |N 8 H J  3 "A"  Quebec }
+{N5UM 13C TN |N 5 U M  1 3 C  Tennessee }
+{K2DC 12E PR |K 2 D C  1 2 E  Puerto Rico }
+{AA6LK 5E UT |A A 6 L K  5 E  Utah }
+{AA4WY 7E PR |A A 4 W Y  7 E  Puerto Rico }
+{AA2SN 5F NC |A A 2 S N  5 F  North Carolina }
+{AC6VY 3D WV |A C 6 V Y  3 D  West Virginia }
+{AB6UI 1B ONE |A B 6 U I  1 B  Ontario East }
+{N4RA 12E NL |N 4 R A  1 2 E  Newfoundland and Labrador }
+{AB9VQ 6D MS |A B 9 V Q  6 D  Mississippi }
+{AC8QK 13C WCF |A C 8 Q K  1 3 C  West Central Florida }
+{K5ZB 15A LAX |K 5 Z B  1 5 "A"  Los Angeles }
+{AB4WN 5A NNY |A B 4 W N  5 "A"  Northern New York }
+{N5SU 11E MS |N 5 S U  1 1 E  Mississippi }
+{K8TD 2B NNJ |K 8 T D  2 B  Northern New Jersey }
+{AA4CH 3C NLI |A A 4 C H  3 C  New York City-Long Island }
+{AC6HE 6B WV |A C 6 H E  6 B  West Virginia }
+{W9WK 14B NFL |W 9 W K  1 4 B  Northern Florida }
+{AB8DL 5C SDG |A B 8 D L  5 C  San Diego }
+{K9YK 13C EB |K 9 Y K  1 3 C  East Bay }
+{K3ZE 9D GH |K 3 Z E  9 D  Ontario Golden Horseshoe }
+{AA2XU 7F IN |A A 2 X U  7 F  Indiana }
+{AA5MT 15B KS |A A 5 M T  1 5 B  Kansas }
+{AB3XX 9B GH |A B 3 X X  9 B  Ontario Golden Horseshoe }
+{W1ND 10B STX |W 1 N D  1 0 B  South Texas }
+{K4KP 5E BC |K 4 K P  5 E  British Columbia }
+{AA6HY 1B BC |A A 6 H Y  1 B  British Columbia }
+{K2KO 15C ND |K 2 K O  1 5 C  North Dakota }
+{AA1YH 15D SFL |A A 1 Y H  1 5 D  Southern Florida }
+{K5OS 5E NB |K 5 O S  5 E  New Brunswick }
+{K7TH 15F NNJ |K 7 T H  1 5 F  Northern New Jersey }
+{W5PI 10E VA |W 5 P I  1 0 E  Virginia }
+{K5PP 14F SJV |K 5 P P  1 4 F  San Joaquin Valley }
+{W1LJ 2B SFL |W 1 L J  2 B  Southern Florida }
+{K1VN 6E SJV |K 1 V N  6 E  San Joaquin Valley }
+{W5SM 2D NH |W 5 S M  2 D  New Hampshire }
+{AB9QJ 4B ONS |A B 9 Q J  4 B  Ontario South }
+{W8BT 1B NB |W 8 B T  1 B  New Brunswick }
+{K9LL 5C NTX |K 9 L L  5 C  North Texas }
+{K2NQ 13F AR |K 2 N Q  1 3 F  Arkansas }
+{AC1SF 15E AK |A C 1 S F  1 5 E  Alaska }
+{AA2MM 6B ONN |A A 2 M M  6 B  Ontario North }
+{W9OD 1C AB |W 9 O D  1 C  Alberta }
+{AA2FH 8D NTX |A A 2 F H  8 D  North Texas }
+{AA9VY 4F ORG |A A 9 V Y  4 F  Orange }
+{W6ZV 8D MT |W 6 Z V  8 D  Montana }
+{AB2ES 6A NB |A B 2 E S  6 "A"  New Brunswick }
+{AB6FZ 8D EMA |A B 6 F Z  8 D  Eastern Massachusetts }
+{AC3FF 3A LAX |A C 3 F F  3 "A"  Los Angeles }
+{AB2PM 9D DE |A B 2 P M  9 D  Delaware }
+{AA1EU 6A KS |A A 1 E U  6 "A"  Kansas }
+{K3MG 8A NV |K 3 M G  8 "A"  Nevada }
+{AA6SD 1A AL |A A 6 S D  1 "A"  Alabama }
+{AC2NE 11C CT |A C 2 N E  1 1 C  Connecticut }
+{W2QQ 7A PE |W 2 Q Q  7 "A"  Prince Edward Island }
+{AC2HQ 10F PR |A C 2 H Q  1 0 F  Puerto Rico }
+{W5PT 11E ME |W 5 P T  1 1 E  Maine }
+{AB5OQ 6E PR |A B 5 O Q  6 E  Puerto Rico }
+{N6DG 4D GH |N 6 D G  4 D  Ontario Golden Horseshoe }
+{AA2DH 5E NE |A A 2 D H  5 E  Nebraska }
+{N4BD 2B WCF |N 4 B D  2 B  West Central Florida }
+{AB8YA 8D CT |A B 8 Y A  8 D  Connecticut }
+{K1TU 9F MN |K 1 T U  9 F  Minnesota }
+{N5TT 5E PAC |N 5 T T  5 E  Pacific }
+{AA9AZ 7B VI |A A 9 A Z  7 B  US Virgin Islands }
+{W3ZI 12C SV |W 3 Z I  1 2 C  Sacramento Valley }
+{AA3JI 5D SB |A A 3 J I  5 D  Santa Barbara }
+{W8GR 15B ONE |W 8 G R  1 5 B  Ontario East }
+{K9FT 9D NL |K 9 F T  9 D  Newfoundland and Labrador }
+{K8TG 15D KS |K 8 T G  1 5 D  Kansas }
+{AC3PQ 10C CO |A C 3 P Q  1 0 C  Colorado }
+{K3HZ 3D ND |K 3 H Z  3 D  North Dakota }
+{W2QY 2F SF |W 2 Q Y  2 F  San Francisco }
+{K9CI 1F WV |K 9 C I  1 F  West Virginia }
+{AB3IS 2D MB |A B 3 I S  2 D  Manitoba }
+{N3RV 5D WCF |N 3 R V  5 D  West Central Florida }
+{N4QP 12A WI |N 4 Q P  1 2 "A"  Wisconsin }
+{N9ZX 15D QC |N 9 Z X  1 5 D  Quebec }
+{W1ZV 7A NNJ |W 1 Z V  7 "A"  Northern New Jersey }
+{AA6UR 1E PR |A A 6 U R  1 E  Puerto Rico }
+{AA4MU 4B NFL |A A 4 M U  4 B  Northern Florida }
+{W5YA 9F NE |W 5 Y A  9 F  Nebraska }
+{K4WC 12E SF |K 4 W C  1 2 E  San Francisco }
+{N1JC 2E PE |N 1 J C  2 E  Prince Edward Island }
+{AC5HU 14D OR |A C 5 H U  1 4 D  Oregon }
+{AB8US 1E TN |A B 8 U S  1 E  Tennessee }
+{AB9SG 4A TN |A B 9 S G  4 "A"  Tennessee }
+{N5WA 3E DX |N 5 W A  3 E  D X}
+{K2NW 15A KY |K 2 N W  1 5 "A"  Kentucky }
+{AB5GG 4F SK |A B 5 G G  4 F  Saskatchewan }
+{AB8IV 11F DE |A B 8 I V  1 1 F  Delaware }
+{AA6CE 6C CT |A A 6 C E  6 C  Connecticut }
