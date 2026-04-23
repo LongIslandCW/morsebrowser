@@ -12,6 +12,14 @@
             "display": "Call Signs",
             "filename": "BC3_CS.json"
         },
+                {
+            "display": "Contests Spell",
+            "filename": "BC3_Contest_Spell.json"
+        },
+                {
+            "display": "Contests Words",
+            "filename": "BC3_Contest_Words.json"
+        },
         {
             "display": "Familiarity Phrases",
             "filename": "BC3_FAM_Phrases.json"
