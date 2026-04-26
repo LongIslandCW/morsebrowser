@@ -519,8 +519,8 @@
 {"sort": 545,"userTarget": "STUDENT","class": "BC3","letterGroup": "CALLSIGNS","newlineChunking": true,"display": "US CALLSIGNS","fileName": "US_CS.txt"}, 
 
 {"sort": 545,"userTarget": "STUDENT","class": "BC3","letterGroup": "CONTESTS","newlineChunking": true,"display": "ARRL SECTIONS","fileName": "BC3_ARRL_Sections.txt"}, 
-{"sort": 545,"userTarget": "STUDENT","class": "BC3","letterGroup": "CONTESTS","newlineChunking": true,"display": "FD EXCHANGES SPELL","fileName": "BC3_FD_Exch.txt"}, 
-{"sort": 545,"userTarget": "STUDENT","class": "BC3","letterGroup": "CONTESTS","newlineChunking": true,"display": "FD EXCHANGES NAMES","fileName": "BC3_FD_Exch_Full_Name.txt"}, 
+{"sort": 545,"userTarget": "STUDENT","class": "BC3","letterGroup": "CONTESTS","newlineChunking": true,"display": "FD EXCHANGES","fileName": "BC3_FD_Exch.txt"}, 
+
         
 {"sort": 563,"userTarget": "STUDENT","class": "BC3","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Abbreviations","fileName": "Fam_Abbrev.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "BC3","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Alphabet","fileName": "Fam_L.json"},
