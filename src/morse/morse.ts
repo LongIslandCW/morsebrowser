@@ -483,7 +483,10 @@ export class MorseViewModel {
       // clear the voice cache
       this.morseVoice.voiceBuffer = []
       // prime the pump for safari
-      this.morseVoice.primeThePump()
+      if (this.morseVoice.voiceEnabled() && navigator.userAgent.indexOf('CrOS') === -1) {
+        // prime the pump for safari
+        this.morseVoice.primeThePump()
+      }
       // clear the card buffer
       this.cardBufferManager.clear()
       this.charsPlayed(0)
