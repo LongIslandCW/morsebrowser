@@ -19,6 +19,7 @@ import graphdownarrowSvg from 'bootstrap-icons/icons/graph-down-arrow.svg'
 import volumemuteSvg from 'bootstrap-icons/icons/volume-mute.svg'
 import uploadSvg from 'bootstrap-icons/icons/upload.svg'
 import gearSvg from 'bootstrap-icons/icons/gear.svg'
+import slidersSvg from 'bootstrap-icons/icons/sliders.svg'
 import skipstartSvg from 'bootstrap-icons/icons/skip-start-circle.svg'
 import skipbackSvg from 'bootstrap-icons/icons/skip-backward-circle.svg'
 import skipforwardSvg from 'bootstrap-icons/icons/skip-forward-circle.svg'
@@ -74,6 +75,8 @@ export class MorseLoadImages {
     this.info.push({ key: 'skipforwardImage', src: skipforwardSvg })
     this.info.push({ key: 'skipstartImage', src: skipstartSvg })
     this.info.push({ key: 'gearImage', src: gearSvg })
+    this.info.push({ key: 'slidersImage', src: slidersSvg })
+    this.info.push({ key: 'musicnoteImageAccordion', src: musicnoteSvg })
     this.info.push({ key: 'volumeImage', src: volumeSvg })
     this.info.push({ key: 'graphuparrowImage', src: graphuparrowSvg })
     this.info.push({ key: 'graphdownarrowImage', src: graphdownarrowSvg })
