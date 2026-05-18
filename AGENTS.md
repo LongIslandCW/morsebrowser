@@ -216,3 +216,19 @@ When club-ready changes should reach the main project:
 - Branch from `origin/develop`
 - PR target: `develop` on `rdreed21/morsebrowser_dev`
 - Exclude generated/noise files from commits unless the task requires them
+
+---
+
+## Learned User Preferences
+
+- Keep **AGENTS.md** updated after major fork features so agents do not re-explore the repo each session.
+- Use **develop** as the default branch and PR base on rdreed21/morsebrowser_dev unless the user explicitly names another base (e.g. `main`).
+- When committing, exclude `.cursor/` and hook state even if those paths appear in a staged file list.
+- Prefer committing the shared agent map in **AGENTS.md** over local Cursor hook/index files under `.cursor/hooks/state/`.
+
+## Learned Workspace Facts
+
+- Primary work targets club contributions via the rdreed21 fork; upstream is LongIslandCW/morsebrowser.
+- In `src/template.html`, do not use `min`/`max` on `type="text"` inputs bound to string observables (e.g. `lessons.stickySets`, `lessons.customGroup`); reserve those attributes for numeric or date/time inputs.
+- `.cursor/` is local Cursor IDE state (hooks, continual-learning counters); it should be gitignored and must not be committed—`AGENTS.md` is the shared map on GitHub.
+- Settings panel reorg on branch `reorganize-settings-panels` follows instructor feedback (Tom’s email): **Settings** vs **Audio & Timing** accordions; playback toolbar no longer shows Back 1 / Full RW / Fwd 1 (shortcuts may remain).
