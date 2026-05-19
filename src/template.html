@@ -424,7 +424,7 @@
                                                     for="btncheck2stickysetstoggle">Sticky Sets&nbsp;<img
                                                         data-bind="attr:{ src: lessons.ifStickySets() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
                                                 <input type="text" class="form-control"
-                                                    aria-label="Sticky set text" min="0"
+                                                    aria-label="Sticky set text"
                                                     data-bind="textInput: lessons.stickySets, enable: lessons.ifStickySets">
                                             </div>
                                         </fieldset>
@@ -1059,7 +1059,7 @@
 
                 </div>
 
-                <div class="button-group">
+                <div class="btn-group">
 
                     <button id="btnShuffle" type="button" class="btn btn-secondary"
                         data-bind="click: () => shuffleWords(false)"><span
