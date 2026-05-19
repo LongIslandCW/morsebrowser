@@ -21,9 +21,10 @@ module.exports = {
       directory: path.resolve(__dirname, 'dist')
     },
     watchFiles: {
-      paths: ['dist/index.html', 'src/template.html'],
+      paths: ['src/template.html', 'src/css/**/*.css'],
       options: {
-        usePolling: false
+        usePolling: true,
+        interval: 1000
       }
     },
     port: 3000,
