@@ -115,8 +115,83 @@
                                 data-bind="textInput: volume">
                         </div>
                     </div>
-
-
+                </div>
+                <div class="row gx-2 gy-2 mt-1">
+                    <div class="col-auto">
+                        <div class="btn-group" role="group">
+                            <input aria-label="Randomize" type="checkbox" class="btn-check" autocomplete="off"
+                                id="btncheck1" data-bind="checked: lessons.randomizeLessons">
+                            <label aria-hidden="true" class="btn btn-outline-primary" for="btncheck1">Randomize&nbsp;<img
+                                    data-bind="attr:{ src: lessons.randomizeLessons() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
+                            <input aria-label="Auto close" type="checkbox" class="btn-check" autocomplete="off"
+                                id="btncheckautoclose" data-bind="checked: lessons.autoCloseLessonAccordion">
+                            <label aria-hidden="true" class="btn btn-outline-primary" for="btncheckautoclose">Auto
+                                Close&nbsp;<img
+                                    data-bind="attr:{ src: lessons.autoCloseLessonAccordion() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
+                            <input aria-label="Sticky sets" type="checkbox" class="btn-check"
+                                id="btncheck2stickysetstoggle" autocomplete="off"
+                                data-bind="checked: lessons.ifStickySets">
+                            <label aria-hidden="true" class="btn btn-outline-primary" for="btncheck2stickysetstoggle">Sticky
+                                Sets&nbsp;<img
+                                    data-bind="attr:{ src: lessons.ifStickySets() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <input type="text" class="form-control" style="max-width:125px;" aria-label="Sticky set text"
+                            min="0" data-bind="textInput: lessons.stickySets, enable: lessons.ifStickySets">
+                    </div>
+                    <div class="col-auto" title="Automatic card revealing">
+                        <div class="input-group">
+                            <input type="checkbox" data-bind="checked: trailReveal" class="btn-check" id="btntrailReveal"
+                                autocomplete="off" title="Reveals hidden cards after they have been played" />
+                            <label class="btn btn-outline-secondary" for="btntrailReveal">
+                                <span>Trail&nbsp;</span>
+                                <img height=20 width=20
+                                    data-bind="attr:{ src: trailReveal() ? morseLoadImages().getSrc('eyeImage') : morseLoadImages().getSrc('eyeslashImage')}"
+                                    alt="" />
+                            </label>
+                            <label for="trailPreDelay" class="input-group-text">Pre Delay&nbsp;
+                                <img data-bind="attr:{ src: morseLoadImages().getSrc('stopwatchImage')}" height="20"
+                                    width="20" alt="" />
+                            </label>
+                            <input id="trailPreDelay" name="trailPreDelay" type="number"
+                                style="max-width:75px; min-width: 50px;" class="form-control" min="0" step=".25"
+                                data-bind="textInput: trailPreDelay, enable: trailReveal()"
+                                title="The amount to delay prior to revealing a card upon playback">
+                            <label for="trailPostDelay" class="input-group-text">Post Delay&nbsp;
+                                <img data-bind="attr:{ src: morseLoadImages().getSrc('stopwatchImage')}" height="20"
+                                    width="20" alt="" />
+                            </label>
+                            <input id="trailPostDelay" name="trailPostDelay" type="number"
+                                style="max-width:75px; min-width: 50px;" class="form-control" min="0" step=".25"
+                                data-bind="textInput: trailPostDelay, enable: trailReveal()"
+                                title="The amount to delay after revealing a card upon playback">
+                            <label for="trailFinal" class="input-group-text">Final&nbsp;
+                                <img data-bind="attr:{ src: morseLoadImages().getSrc('stopwatchImage')}" alt="" />
+                            </label>
+                            <input id="trailFinal" name="trailFinal" type="number"
+                                style="max-width:75px; min-width: 50px;" class="form-control" min="0" step=".25"
+                                data-bind="textInput: trailFinal, enable: trailReveal()"
+                                title="The amount to delay after revealing the final card upon playback">
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <input type="checkbox" class="btn-check" autocomplete="off" id="btncheckcardsvisible"
+                            data-bind="checked: cardsVisible" title="Toggles card visibility" aria-label="Cards">
+                        <label class="btn btn-outline-primary" for="btncheckcardsvisible" aria-hidden="true">
+                            <img data-bind="attr:{ src: morseLoadImages().getSrc('grid3x3gapImage')}" alt="">&nbsp;Cards&nbsp;
+                            <img data-bind="attr:{ src: cardsVisible() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}"
+                                alt="" />
+                        </label>
+                    </div>
+                    <div class="col-auto">
+                        <button type="button" class="btn btn-success" data-bind="click: doDownload"
+                            title="Downloads an audio file using the current settings">
+                            <img id="downloadImage" alt="">
+                            Audio File
+                        </button>
+                        <a id="downloadLink"></a>
+                    </div>
                 </div>
             </section>
 
@@ -327,36 +402,6 @@
 
                                     <!--buttons for overrides and such-->
                                     <div class="col-auto">
-                                        <div class="btn-group-vertical" role="group">
-                                            <!--randomize toggle-->
-                                            <input aria-label="Randomize" type="checkbox" class="btn-check"
-                                                autocomplete="off" id="btncheck1"
-                                                data-bind="checked: lessons.randomizeLessons">
-                                            <label aria-hidden="true" class="btn btn-outline-primary"
-                                                for="btncheck1">Randomize&nbsp;<img
-                                                    data-bind="attr:{ src: lessons.randomizeLessons() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
-                                            <!--autoclose toggle-->
-                                            <input aria-label="Auto close" type="checkbox" class="btn-check"
-                                                autocomplete="off" id="btncheckautoclose"
-                                                data-bind="checked: lessons.autoCloseLessonAccordion">
-                                            <label aria-hidden="true" class="btn btn-outline-primary"
-                                                for="btncheckautoclose">Auto
-                                                Close&nbsp;<img
-                                                    data-bind="attr:{ src: lessons.autoCloseLessonAccordion() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
-                                            <!--sticky sets toggle-->
-                                            <input aria-label="Sticky sets" type="checkbox" class="btn-check"
-                                                id="btncheck2stickysetstoggle" autocomplete="off"
-                                                data-bind="checked: lessons.ifStickySets">
-                                            <label aria-hidden="true" class="btn btn-outline-primary"
-                                                for="btncheck2stickysetstoggle" style="width: 125px;">Sticky
-                                                Sets&nbsp;<img
-                                                    data-bind="attr:{ src: lessons.ifStickySets() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
-                                            <!--sticky set text -->
-                                            <input type="text" class="form-control" style="max-width:125px;"
-                                                aria-label="Sticky set text" min="0"
-                                                data-bind="textInput: lessons.stickySets, enable: lessons.ifStickySets">
-                                        </div>
-
                                         <div class="input-group">
                                             <div aria-label="Custom group generation" class="btn-group-vertical"
                                                 role="group">
@@ -452,27 +497,26 @@
                             </div>
                         </div>
                     </div>
-                    <!-- more settings-->
+                    <!-- advanced settings (settings 2) -->
                     <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingmoresettings">
-                            <button id="moreSettingsAccordionButton" class="accordion-button collapsed" type="button"
-                                data-bs-toggle="collapse" data-bs-target="#collapsemoresettings" aria-expanded="false"
-                                aria-controls="collapsemoresettings" data-bind="click: morseVoice.initEasySpeech">
-                                <img id='gearImage' height=20 width=20 alt="" /><span>&nbsp;</span>
-                                More Settings<span>&nbsp;</span>
+                        <h2 class="accordion-header" id="headingadvancedsettings">
+                            <button id="advancedSettingsAccordionButton" class="accordion-button collapsed" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#collapseadvancedsettings" aria-expanded="false"
+                                aria-controls="collapseadvancedsettings">
+                                <img height=20 width=20 alt=""
+                                    data-bind="attr:{src: morseLoadImages().getSrc('gearImage')}" /><span>&nbsp;</span>
+                                Advanced Settings<span>&nbsp;</span>
                             </button>
                         </h2>
-                        <div id="collapsemoresettings" class="accordion-collapse collapse"
-                            aria-labelledby="headingmoresettings">
+                        <div id="collapseadvancedsettings" class="accordion-collapse collapse"
+                            aria-labelledby="headingadvancedsettings">
                             <div class="accordion-body">
-
                                 <div class="row row-cols-5 gx-2 gy-2">
-
                                     <!--tone-->
                                     <div class="col-auto">
                                         <div class="input-group">
                                             <label for="ditFrequency" class="input-group-text">DIT&nbsp;<img
-                                                    id="musicnoteImage" height=20 width=20 alt="" /></label>
+                                                    id="musicnoteImageAdvanced" height=20 width=20 alt="" /></label>
                                             <input id="ditFrequency" name="ditFrequency" type="number"
                                                 style="max-width:75px; min-width: 75px;" class="form-control" min="100"
                                                 max="1200" step="10"
@@ -489,7 +533,6 @@
                                                 max="1200" step="10"
                                                 data-bind="textInput: settings.frequency.dahFrequency, enable: !settings.frequency.syncFreq()"
                                                 title="Dah frequency in hertz">
-                                            <!-- zero beat button -->
                                             <button id="zeroBeatButton" type="button" class="btn btn-light"
                                                 data-bind="click: () => testTone()" title="Plays a sustained test tone">
                                                 <span>Zero Beat</span>
@@ -500,18 +543,17 @@
                                     <div class="col-auto">
                                         <div class="input-group">
                                             <label for="preSpace" class="input-group-text">PRE&nbsp;<img
-                                                    id="volumemuteImage" height="20" width="20" alt=""></label>
+                                                    id="volumemuteImageAdvanced" height="20" width="20" alt=""></label>
                                             <input id="preSpace" name="preSpace" type="number"
                                                 style="max-width:75px; min-width: 75px;" class="form-control" min="0"
                                                 max="1200" step=".5" data-bind="textInput: preSpace"
                                                 title="The amount of silence in seconds to include at the start of playback">
                                             <label for="xtraWordSpaceDits" class="input-group-text">WORD SPACE&nbsp;<img
-                                                    id="graphuparrowImage" height=20 width=20 alt="" /></label>
+                                                    id="graphuparrowImageAdvanced" height=20 width=20 alt="" /></label>
                                             <input id="xtraWordSpaceDits" name="xtraWordSpaceDits" type="number"
                                                 style="max-width:75px; min-width: 75px;" class="form-control" min="1"
                                                 max="10" step="1" data-bind="textInput: xtraWordSpaceDits"
                                                 title="Extra word space in dits">
-
                                             <label for="cardSpace" class="input-group-text">CARD WAIT&nbsp;
                                                 <img height=20 width=20
                                                     data-bind="attr: {src: morseLoadImages().getSrc('graphuparrowImage')}"
@@ -521,7 +563,6 @@
                                                 style="max-width:75px; min-width: 75px;" class="form-control" min="0"
                                                 max="10" step="1" data-bind="textInput: cardSpace"
                                                 title="The amount of extra silence to include between cards">
-
                                         </div>
                                     </div>
                                     <!-- card size -->
@@ -538,44 +579,26 @@
                                                 title="The text size to use when displaying cards">
                                         </div>
                                     </div>
-                                    <!--trail reveal-->
-                                    <div class="col-auto" title="Automatic card revealing">
-                                        <div class="input-group">
-                                            <input type="checkbox" data-bind="checked: trailReveal" class="btn-check"
-                                                id="btntrailReveal" autocomplete="off"
-                                                title="Reveals hidden cards after they have been played" />
-                                            <label class="btn btn-outline-secondary" for="btntrailReveal">
-                                                <span>Trail&nbsp;</span>
-                                                <img height=20 width=20
-                                                    data-bind="attr:{ src: trailReveal() ? morseLoadImages().getSrc('eyeImage') : morseLoadImages().getSrc('eyeslashImage')}"
-                                                    alt="" />
-                                            </label>
-                                            <label for="trailPreDelay" class="input-group-text">Pre Delay&nbsp;
-                                                <img data-bind="attr:{ src: morseLoadImages().getSrc('stopwatchImage')}"
-                                                    height="20" width="20" alt="" />
-                                            </label>
-                                            <input id="trailPreDelay" name="trailPreDelay" type="number"
-                                                style="max-width:75px; min-width: 50px;" class="form-control" min="0"
-                                                step=".25" data-bind="textInput: trailPreDelay, enable: trailReveal()"
-                                                title="The amount to delay prior to revealing a card upon playback">
-                                            <label for="trailPostDelay" class="input-group-text">Post Delay&nbsp;
-                                                <img data-bind="attr:{ src: morseLoadImages().getSrc('stopwatchImage')}"
-                                                    height="20" width="20" alt="" />
-                                            </label>
-                                            <input id="trailPostDelay" name="trailPostDelay" type="number"
-                                                style="max-width:75px; min-width: 50px;" class="form-control" min="0"
-                                                step=".25" data-bind="textInput: trailPostDelay, enable: trailReveal()"
-                                                title="The amount to delay after revealing a card upon playback">
-                                            <label for="trailFinal" class="input-group-text">Final&nbsp;
-                                                <img data-bind="attr:{ src: morseLoadImages().getSrc('stopwatchImage')}"
-                                                    alt="" />
-                                            </label>
-                                            <input id="trailFinal" name="trailFinal" type="number"
-                                                style="max-width:75px; min-width: 50px;" class="form-control" min="0"
-                                                step=".25" data-bind="textInput: trailFinal, enable: trailReveal()"
-                                                title="The amount to delay after revealing the final card upon playback">
-                                        </div>
-                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- more settings-->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingmoresettings">
+                            <button id="moreSettingsAccordionButton" class="accordion-button collapsed" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#collapsemoresettings" aria-expanded="false"
+                                aria-controls="collapsemoresettings" data-bind="click: morseVoice.initEasySpeech">
+                                <img id='gearImage' height=20 width=20 alt="" /><span>&nbsp;</span>
+                                More Settings<span>&nbsp;</span>
+                            </button>
+                        </h2>
+                        <div id="collapsemoresettings" class="accordion-collapse collapse"
+                            aria-labelledby="headingmoresettings">
+                            <div class="accordion-body">
+
+                                <div class="row row-cols-5 gx-2 gy-2">
 
                                     <!--speed intervals-->
                                     <div class="input-group">
@@ -620,29 +643,6 @@
 
                                     </div>
 
-                                    <!-- cards visibile -->
-                                    <div class="col-auto">
-
-                                        <input type="checkbox" class="btn-check" autocomplete="off"
-                                            id="btncheckcardsvisible" data-bind="checked: cardsVisible"
-                                            title="Toggles card visibility" aria-label="Cards">
-                                        <label class="btn btn-outline-primary" for="btncheckcardsvisible"
-                                            aria-hidden="true">
-                                            <img data-bind="attr:{ src: morseLoadImages().getSrc('grid3x3gapImage')}"
-                                                alt="">&nbsp;Cards&nbsp;
-                                            <img data-bind="attr:{ src: cardsVisible() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}"
-                                                alt="" />
-                                        </label>
-                                    </div>
-                                    <!--download audio-->
-                                    <div class="col-auto">
-                                        <button type="button" class="btn btn-success" data-bind="click: doDownload"
-                                            title="Downloads an audio file using the current settings">
-                                            <img id="downloadImage" alt="">
-                                            Audio File
-                                        </button>
-                                        <a id="downloadLink"></a>
-                                    </div>
                                     <!--expert settings toggle-->
                                     <div class="col-auto">
                                         <input type="checkbox" class="btn-check" autocomplete="off"
