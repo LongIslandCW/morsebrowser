@@ -4,6 +4,7 @@ morse.zip
 dist
 morseLessonFinder.js
 morsePresetFinder.js
+.cursor
 
 # wrangler files
 .wrangler
