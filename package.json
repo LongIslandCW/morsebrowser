@@ -35,7 +35,9 @@
     "prebuild": "node ./prebuildLessons.js && node ./prebuildPresetSets.js && node ./prebuildPresets.js",
     "build": "webpack",
     "postbuild": "node ./zipdist.js && node ./checklessons.js",
-    "dev": "webpack serve"
+    "dev": "webpack serve",
+    "deploy": "wrangler deploy",
+    "preview": "wrangler dev"
   },
   "devDependencies": {
     "@babel/core": "^7.17.9",
@@ -56,6 +58,7 @@
     "mini-css-extract-plugin": "^2.6.0",
     "ts-loader": "^9.3.0",
     "typescript": "^4.7.2",
-    "webpack-dev-server": "^4.7.4"
+    "webpack-dev-server": "^4.7.4",
+    "wrangler": "^4.92.0"
   }
 }
