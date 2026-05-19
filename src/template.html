@@ -338,59 +338,6 @@
                                 <div class="morse-settings-grid">
                                     <div class="morse-settings-cell">
                                         <fieldset class="morse-settings-fieldset h-100">
-                                            <legend class="morse-settings-legend">Lesson options</legend>
-                                            <div class="btn-group-vertical w-100" role="group">
-                                                <input aria-label="Randomize" type="checkbox" class="btn-check"
-                                                    autocomplete="off" id="btncheck1"
-                                                    data-bind="checked: lessons.randomizeLessons">
-                                                <label aria-hidden="true" class="btn btn-outline-primary"
-                                                    for="btncheck1">Randomize&nbsp;<img
-                                                        data-bind="attr:{ src: lessons.randomizeLessons() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
-                                                <input aria-label="Auto close" type="checkbox" class="btn-check"
-                                                    autocomplete="off" id="btncheckautoclose"
-                                                    data-bind="checked: lessons.autoCloseLessonAccordion">
-                                                <label aria-hidden="true" class="btn btn-outline-primary"
-                                                    for="btncheckautoclose">Auto Close&nbsp;<img
-                                                        data-bind="attr:{ src: lessons.autoCloseLessonAccordion() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
-                                                <input aria-label="Sticky sets" type="checkbox" class="btn-check"
-                                                    id="btncheck2stickysetstoggle" autocomplete="off"
-                                                    data-bind="checked: lessons.ifStickySets">
-                                                <label aria-hidden="true" class="btn btn-outline-primary"
-                                                    for="btncheck2stickysetstoggle">Sticky Sets&nbsp;<img
-                                                        data-bind="attr:{ src: lessons.ifStickySets() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
-                                                <input type="text" class="form-control"
-                                                    aria-label="Sticky set text" min="0"
-                                                    data-bind="textInput: lessons.stickySets, enable: lessons.ifStickySets">
-                                            </div>
-                                        </fieldset>
-                                    </div>
-                                    <div class="morse-settings-cell">
-                                        <fieldset class="morse-settings-fieldset h-100">
-                                            <legend class="morse-settings-legend">Display</legend>
-                                            <div class="d-flex flex-column gap-2">
-                                                <input type="checkbox" class="btn-check" autocomplete="off"
-                                                    id="btncheckcardsvisible" data-bind="checked: cardsVisible"
-                                                    title="Toggles card visibility" aria-label="Cards">
-                                                <label class="btn btn-outline-primary w-100"
-                                                    for="btncheckcardsvisible" aria-hidden="true">
-                                                    <img data-bind="attr:{ src: morseLoadImages().getSrc('grid3x3gapImage')}"
-                                                        alt="">&nbsp;Cards&nbsp;
-                                                    <img data-bind="attr:{ src: cardsVisible() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}"
-                                                        alt="" />
-                                                </label>
-                                                <button type="button" class="btn btn-success w-100"
-                                                    data-bind="click: doDownload"
-                                                    title="Downloads an audio file using the current settings">
-                                                    <img id="downloadImage" alt="">
-                                                    Audio File
-                                                </button>
-                                                <a id="downloadLink"></a>
-                                            </div>
-                                        </fieldset>
-                                    </div>
-
-                                    <div class="morse-settings-cell">
-                                        <fieldset class="morse-settings-fieldset h-100">
                                             <legend class="morse-settings-legend">Tone &amp; spacing</legend>
                                             <div class="d-flex flex-column gap-2">
                                                 <div class="input-group flex-wrap">
@@ -454,6 +401,59 @@
                                             </div>
                                         </fieldset>
                                     </div>
+                                    <div class="morse-settings-cell">
+                                        <fieldset class="morse-settings-fieldset h-100">
+                                            <legend class="morse-settings-legend">Lesson options</legend>
+                                            <div class="btn-group-vertical w-100" role="group">
+                                                <input aria-label="Randomize" type="checkbox" class="btn-check"
+                                                    autocomplete="off" id="btncheck1"
+                                                    data-bind="checked: lessons.randomizeLessons">
+                                                <label aria-hidden="true" class="btn btn-outline-primary"
+                                                    for="btncheck1">Randomize&nbsp;<img
+                                                        data-bind="attr:{ src: lessons.randomizeLessons() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
+                                                <input aria-label="Auto close" type="checkbox" class="btn-check"
+                                                    autocomplete="off" id="btncheckautoclose"
+                                                    data-bind="checked: lessons.autoCloseLessonAccordion">
+                                                <label aria-hidden="true" class="btn btn-outline-primary"
+                                                    for="btncheckautoclose">Auto Close&nbsp;<img
+                                                        data-bind="attr:{ src: lessons.autoCloseLessonAccordion() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
+                                                <input aria-label="Sticky sets" type="checkbox" class="btn-check"
+                                                    id="btncheck2stickysetstoggle" autocomplete="off"
+                                                    data-bind="checked: lessons.ifStickySets">
+                                                <label aria-hidden="true" class="btn btn-outline-primary"
+                                                    for="btncheck2stickysetstoggle">Sticky Sets&nbsp;<img
+                                                        data-bind="attr:{ src: lessons.ifStickySets() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
+                                                <input type="text" class="form-control"
+                                                    aria-label="Sticky set text" min="0"
+                                                    data-bind="textInput: lessons.stickySets, enable: lessons.ifStickySets">
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                    <div class="morse-settings-cell">
+                                        <fieldset class="morse-settings-fieldset h-100">
+                                            <legend class="morse-settings-legend">Display</legend>
+                                            <div class="d-flex flex-column gap-2">
+                                                <input type="checkbox" class="btn-check" autocomplete="off"
+                                                    id="btncheckcardsvisible" data-bind="checked: cardsVisible"
+                                                    title="Toggles card visibility" aria-label="Cards">
+                                                <label class="btn btn-outline-primary w-100"
+                                                    for="btncheckcardsvisible" aria-hidden="true">
+                                                    <img data-bind="attr:{ src: morseLoadImages().getSrc('grid3x3gapImage')}"
+                                                        alt="">&nbsp;Cards&nbsp;
+                                                    <img data-bind="attr:{ src: cardsVisible() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}"
+                                                        alt="" />
+                                                </label>
+                                                <button type="button" class="btn btn-success w-100"
+                                                    data-bind="click: doDownload"
+                                                    title="Downloads an audio file using the current settings">
+                                                    <img id="downloadImage" alt="">
+                                                    Audio File
+                                                </button>
+                                                <a id="downloadLink"></a>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+
                                     <div class="morse-settings-cell morse-settings-cell-wide">
                                         <fieldset class="morse-settings-fieldset h-100">
                                             <legend class="morse-settings-legend">Trail</legend>
