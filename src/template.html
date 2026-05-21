@@ -131,7 +131,7 @@
                                 <span class="badge bg-success lesson-selection-badge" data-bind="if: lessons.selectedDisplay().display">
                                     <span>Type: </span><span data-bind="text: lessons.userTarget"></span>
                                     <span>&nbsp; Class: </span><span data-bind="text: lessons.selectedClass"></span>
-                                    <span>&nbsp; Letter Group: </span><span
+                                    <span>&nbsp; Content: </span><span
                                         data-bind="text: lessons.letterGroup"></span>
                                     <span>&nbsp; Lesson: </span><span
                                         data-bind="text: lessons.selectedDisplay().display"></span>
@@ -173,8 +173,8 @@
                                     </div>
                                     <!--letter groups-->
                                     <div class="col-6 col-md-4 col-lg-auto lessons-picker-col">
-                                        <div class="row"><span>LETTER GROUP</span></div>
-                                        <div role="radiogroup" aria-label="Wordlist"
+                                        <div class="row"><span>CONTENT</span></div>
+                                        <div role="radiogroup" aria-label="Content"
                                             class="list-group lesson-scroll-panel"
                                             data-bind="foreach: lessons.letterGroups, childrenComplete: () => lessons.setLetterGroupInitialized()">
                                             <button role="radio" type="button"
@@ -319,22 +319,287 @@
                             </div>
                         </div>
                     </div>
-                    <!-- more settings-->
+                    <!-- voice options -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingvoiceoptions">
+                            <button id="voiceOptionsAccordionButton" class="accordion-button collapsed" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#collapsevoiceoptions" aria-expanded="false"
+                                aria-controls="collapsevoiceoptions" data-bind="click: morseVoice.initEasySpeech">
+                                <img height=20 width=20 alt=""
+                                    data-bind="attr:{src: morseLoadImages().getSrc('chatquoteImage')}" />
+                                <span>&nbsp;Voice Options</span>
+                            </button>
+                        </h2>
+                        <div id="collapsevoiceoptions" class="accordion-collapse collapse"
+                            aria-labelledby="headingvoiceoptions">
+                            <div class="accordion-body">
+                                <div class="row row-cols-5 gx-2 gy-2">
+                                    <div class="input-group">
+                                        <div class="col-auto">
+
+                                            <input type="checkbox" class="btn-check" autocomplete="off"
+                                                id="btncheckvoice" aria-label="Voice"
+                                                title="Enable or disable voice"
+                                                data-bind="checked: morseVoice.voiceEnabled, enable: morseVoice.voiceCapable() && !morseVoice.manualVoice()">
+                                            <label class=" btn btn-outline-primary" for="btncheckvoice"
+                                                aria-hidden="true">
+                                                <img
+                                                    data-bind="attr:{ src: morseLoadImages().getSrc('chatquoteImage')}">&nbsp;Voice&nbsp;
+                                                <img
+                                                    data-bind="attr:{ src: morseVoice.voiceEnabled() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" />
+                                            </label>
+                                        </div>
+                                        <!-- voice spell out-->
+                                        <div class="col-auto">
+
+                                            <input type="checkbox" class="btn-check" autocomplete="off"
+                                                aria-label="Spell" id="btncheckvoicespell"
+                                                data-bind="checked: morseVoice.voiceSpelling, enable: morseVoice.voiceEnabled()">
+                                            <label class=" btn btn-outline-primary" for="btncheckvoicespell"
+                                                aria-hidden="true">
+                                                <img
+                                                    data-bind="attr:{ src: morseLoadImages().getSrc('spellcheckImage')}">&nbsp;Spell&nbsp;
+                                                <img
+                                                    data-bind="attr:{ src: morseVoice.voiceSpelling() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" />
+                                            </label>
+                                        </div>
+                                        <!-- voice manual-->
+                                        <div class="col-auto">
+
+                                            <input type="checkbox" class="btn-check" autocomplete="off"
+                                                aria-label="Arm Recap" id="btncheckmanualVoice"
+                                                data-bind="checked: morseVoice.manualVoice, enable: morseVoice.voiceEnabled()">
+                                            <label class=" btn btn-outline-primary" for="btncheckmanualVoice"
+                                                aria-hidden="true">
+                                                <img
+                                                    data-bind="attr:{ src: morseLoadImages().getSrc('bootstrapRebootImage')}">&nbsp;Arm
+                                                Recap&nbsp;
+                                                <img
+                                                    data-bind="attr:{ src: morseVoice.manualVoice() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" />
+                                            </label>
+                                        </div>
+                                        <!-- voice speakfirst-->
+                                        <div class="col-auto">
+
+                                            <input type="checkbox" class="btn-check" autocomplete="off"
+                                                aria-label="Speak First" id="btncheckspeakfirst"
+                                                data-bind="checked: morseVoice.speakFirst, enable: morseVoice.voiceEnabled()">
+                                            <label class=" btn btn-outline-primary" for="btncheckspeakfirst"
+                                                aria-hidden="true">
+                                                <img
+                                                    data-bind="attr:{ src: morseLoadImages().getSrc('chatRightDotsImage')}">&nbsp;Voice
+                                                First&nbsp;
+                                                <img
+                                                    data-bind="attr:{ src: morseVoice.speakFirst() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" />
+                                            </label>
+                                        </div>
+                                        <!-- voice speakfirstrepeats-->
+                                        <!-- <div class="col-md-auto">
+                                            <div class="input-group">
+                                                <label for="speakFirstRepeats"
+                                                    class="input-group-text">Repeats&nbsp;<img width=20 height=20
+                                                        data-bind="attr:{ src: morseLoadImages().getSrc('repeatImage')}"
+                                                        alt=""></label>
+                                                <input id="speakFirstRepeats" name="speakFirstRepeats" type="number"
+                                                    style="max-width:75px; min-width: 75px;" class="form-control"
+                                                    min="0" max="10" step="1"
+                                                    data-bind="textInput: morseVoice.speakFirstRepeats, enable: morseVoice.voiceEnabled()">
+                                            </div>
+                                        </div> -->
+                                        <!-- voice speakfirst additionalwordspaces-->
+                                        <!-- <div class="col-md-auto">
+                                            <div class="input-group">
+                                                <label for="speakFirstAdditionalWordspaces"
+                                                    class="input-group-text">Repeat Spacing<img width=20 height=20
+                                                        data-bind="attr:{ src: morseLoadImages().getSrc('stopwatchImage')}"
+                                                        alt=""></label>
+                                                <input id="speakFirstAdditionalWordspaces"
+                                                    name="speakFirstAdditionalWordspaces" type="number"
+                                                    style="max-width:75px; min-width: 75px;" class="form-control"
+                                                    min="0" max="10" step="1"
+                                                    data-bind="textInput: morseVoice.speakFirstAdditionalWordspaces, enable: morseVoice.voiceEnabled()">
+                                            </div>
+                                        </div> -->
+                                        <!-- voice thinktime-->
+                                        <div class="col-md-auto">
+                                            <div class="input-group">
+                                                <label for="voiceThinkingTime" class="input-group-text">Delay Before<img
+                                                        width=20 height=20
+                                                        data-bind="attr:{ src: morseLoadImages().getSrc('stopwatchImage')}"
+                                                        alt=""></label>
+                                                <input id="voiceThinkingTime" name="voiceThinkingTime" type="number"
+                                                    style="max-width:75px; min-width: 75px;" class="form-control"
+                                                    min="0" max="10" step=".25"
+                                                    data-bind="textInput: morseVoice.voiceThinkingTime, enable: morseVoice.voiceEnabled()">
+                                                <label class="input-group-text"><span
+                                                        data-bind="text:
+                                                        morseVoice.voiceThinkingTimeWpm"></span><span>&nbsp;wpm</span></label>
+                                            </div>
+                                        </div>
+                                        <!-- voice after thinktime-->
+                                        <div class="col-md-auto">
+                                            <div class="input-group">
+                                                <label for="voiceAfterThinkingTime" class="input-group-text">Delay
+                                                    After<img width=20 height=20
+                                                        data-bind="attr:{ src: morseLoadImages().getSrc('stopwatchImage')}"
+                                                        alt=""></label>
+                                                <input id="voiceAfterThinkingTime" name="voiceAfterThinkingTime"
+                                                    type="number" style="max-width:75px; min-width: 75px;"
+                                                    class="form-control" min="0" max="10" step=".25"
+                                                    data-bind="textInput: morseVoice.voiceAfterThinkingTime, enable: morseVoice.voiceEnabled()">
+                                            </div>
+                                        </div>
+                                        <!--  test 
+                                        <div class="col-auto">
+                                            <span data-bind="click: morseVoice.initEasySpeech">test!</span>
+                                        </div> -->
+
+                                        <!-- voice speaker-->
+                                        <div class="col-auto">
+                                            <select aria-label="Choose speaker" id='selectVoiceDropdown'
+                                                class="form-select" data-bind="options: morseVoice.voiceVoices,
+                                        optionsText: 'name',
+                                        optionsValue: 'idx',
+                                        value: morseVoice.voiceVoiceIdx,
+                                        optionsCaption: 'Choose speaker...', enable: morseVoice.voiceEnabled() && morseVoice.voiceVoices().length">
+                                            </select>
+                                        </div>
+                                        <!-- voice volume-->
+                                        <div class="col-md-auto">
+                                            <div class="input-group">
+                                                <label for="voiceVolume" class="input-group-text"><img role="text"
+                                                        width=20 height=20
+                                                        data-bind="attr:{ src: morseLoadImages().getSrc('volumeImage')}"
+                                                        alt="Voice Volume"></label>
+                                                <input id="voiceVolume" name="voiceVolume" type="number"
+                                                    style="max-width:75px; min-width: 75px;" class="form-control"
+                                                    min="0" max="10" step="1"
+                                                    data-bind="textInput: morseVoice.voiceVolume, enable: morseVoice.voiceEnabled()">
+                                            </div>
+                                        </div>
+                                        <!-- voice last only-->
+                                        <div class="col-auto">
+
+                                            <input type="checkbox" class="btn-check" autocomplete="off"
+                                                aria-label="Last Only" id="btnvoicelastonly"
+                                                data-bind="checked: morseVoice.voiceLastOnly, enable: morseVoice.voiceEnabled()">
+                                            <label class=" btn btn-outline-primary" for="btnvoicelastonly"
+                                                aria-hidden="true">
+                                                <img
+                                                    data-bind="attr:{ src: morseLoadImages().getSrc('alignendImage')}">&nbsp;Last
+                                                Only&nbsp;
+                                                <img
+                                                    data-bind="attr:{ src: morseVoice.voiceLastOnly() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" />
+                                            </label>
+                                        </div>
+                                        <!-- voice pitch-->
+                                        <div class="col-md-auto">
+                                            <div class="input-group">
+                                                <label for="voicePitch" class="input-group-text">Pitch<img width=20
+                                                        height=20
+                                                        data-bind="attr:{ src: morseLoadImages().getSrc('musicnoteImage')}"
+                                                        alt=""></label>
+                                                <input id="voicePitch" name="voicePitch" type="number"
+                                                    style="max-width:75px; min-width: 75px;" class="form-control"
+                                                    min="0" max="2" step=".25"
+                                                    data-bind="textInput: morseVoice.voicePitch, enable: morseVoice.voiceEnabled()">
+                                            </div>
+                                        </div>
+                                        <!-- voice rate-->
+                                        <div class="col-md-auto">
+                                            <div class="input-group">
+                                                <label for="voiceRate" class="input-group-text">Rate<img width=20
+                                                        height=20
+                                                        data-bind="attr:{ src: morseLoadImages().getSrc('speedometerImage')}"
+                                                        alt=""></label>
+                                                <input id="voiceRate" name="voiceRate" type="number"
+                                                    style="max-width:75px; min-width: 75px;" class="form-control"
+                                                    min=".1" max="10" step=".1"
+                                                    data-bind="textInput: morseVoice.voiceRate, enable: morseVoice.voiceEnabled()">
+                                            </div>
+                                        </div>
+
+                                        <!-- voice buffermax-->
+                                        <div class="col-md-auto">
+                                            <div class="input-group">
+                                                <label for="voiceBufferMaxLength" class="input-group-text">Voice
+                                                    After<img width=20 height=20
+                                                        data-bind="attr:{ src: morseLoadImages().getSrc('bookshelfImage')}"
+                                                        alt=""></label>
+                                                <input id="voiceBufferMaxLength" name="voiceBufferMaxLength"
+                                                    type="number" style="max-width:75px; min-width: 75px;"
+                                                    class="form-control" min="1" max="999" step="1"
+                                                    data-bind="textInput: morseVoice.voiceBufferMaxLength, enable: morseVoice.voiceEnabled()">
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <!--sound slope -->
+                                    <!-- <div class="input-group"> -->
+                                    <!-- <div class="col-auto">
+
+                                            <input type="checkbox" class="btn-check" autocomplete="off"
+                                                id="btncheckmoothing"
+                                                data-bind="checked: smoothing, enable: !playerPlaying(), event: {change: changeSoundMaker}">
+                                            <label class=" btn btn-outline-primary" for="btncheckmoothing"><img
+                                                    data-bind="attr:{ src: morseLoadImages().getSrc('soundwaveImage')}">&nbsp;Smoothing&nbsp;<img
+                                                    data-bind="attr:{ src: smoothing() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
+                                        </div> -->
+
+                                    <!-- risetimeconstant-->
+                                    <!-- <div class="col-md-auto" data-bind="if: smoothing()">
+                                            <div class="input-group">
+                                                <span class="input-group-text">RiseK&nbsp;<img width=20 height=20
+                                                        data-bind="attr:{ src: morseLoadImages().getSrc('graphuparrowImage')}"></span>
+                                                data-bind=" type="number" style="max-width:100px; min-width: 75px;"
+                                                    class="form-control" min="0" max="10" step=".001"
+                                                    , enable: morseVoice.voiceEnabled()">
+                                            </div>
+                                        </div> -->
+                                    <!-- decaytimeconstant-->
+                                    <!-- <div class="col-md-auto" data-bind="if: smoothing()">
+                                            <div class="input-group">
+                                                <span class="input-group-text">DecayK&nbsp;<img width=20 height=20
+                                                        data-bind="attr:{ src: morseLoadImages().getSrc('graphdownarrowImage')}"></span>
+                                                data-bind=" type="number" style="max-width:100px; min-width: 75px;"
+                                                    class="form-control" min="0" max="10" step=".001"
+                                                    , enable: morseVoice.voiceEnabled()">
+                                            </div>
+                                        </div> -->
+                                    <!-- decaystart-->
+                                    <!-- <div class="col-md-auto" data-bind="if: smoothing()">
+                                            <div class="input-group">
+                                                <span class="input-group-text">Decay Start<img width=20 height=20
+                                                        data-bind="attr:{ src: morseLoadImages().getSrc('stopwatchImage')}"></span>
+                                                data-bind=" type="number" style="max-width:75px; min-width: 75px;"
+                                                    class="form-control" min=".1" max="5" step=".1"
+                                                    , enable: morseVoice.voiceEnabled()">
+                                            </div>
+                                        </div> -->
+                                    <!-- </div> -->
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- additional settings -->
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="headingmoresettings">
                             <button id="moreSettingsAccordionButton" class="accordion-button collapsed" type="button"
                                 data-bs-toggle="collapse" data-bs-target="#collapsemoresettings" aria-expanded="false"
-                                aria-controls="collapsemoresettings" data-bind="click: morseVoice.initEasySpeech">
+                                aria-controls="collapsemoresettings">
                                 <img height=20 width=20 alt=""
                                     data-bind="attr:{src: morseLoadImages().getSrc('speedometerImage')}" />
                                 <span>&nbsp;</span>
                                 <img id="gearImage" height=20 width=20 alt="" />
-                                <span>&nbsp;Settings</span>
+                                <span>&nbsp;Additional Settings</span>
                             </button>
                         </h2>
                         <div id="collapsemoresettings" class="accordion-collapse collapse"
                             aria-labelledby="headingmoresettings">
                             <div class="accordion-body">
+
                                 <div class="morse-settings-grid">
                                     <div class="morse-settings-cell">
                                         <fieldset class="morse-settings-fieldset h-100">
@@ -431,7 +696,7 @@
                                     </div>
                                     <div class="morse-settings-cell">
                                         <fieldset class="morse-settings-fieldset h-100">
-                                            <legend class="morse-settings-legend">Display</legend>
+                                            <legend class="morse-settings-legend">Output</legend>
                                             <div class="d-flex flex-column gap-2">
                                                 <input type="checkbox" class="btn-check" autocomplete="off"
                                                     id="btncheckcardsvisible" data-bind="checked: cardsVisible"
@@ -545,25 +810,8 @@
 
                                     </div>
 
-                                    <!--expert settings toggle-->
-                                    <div class="col-auto">
-                                        <input type="checkbox" class="btn-check" autocomplete="off"
-                                            id="btncheckexpertsettings" data-bind="checked: showExpertSettings"
-                                            aria-label="Expert Settings">
-                                        <label class="btn btn-outline-danger" for="btncheckexpertsettings"
-                                            aria-hidden="true">
-                                            <img height="20" width="20"
-                                                data-bind="attr:{ src: morseLoadImages().getSrc('exclamationoctagonImage')}"
-                                                alt="">&nbsp;Expert
-                                            Settings&nbsp;
-                                            <img data-bind="attr:{ src: showExpertSettings() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}"
-                                                alt="" />
-                                        </label>
-                                    </div>
-
-
                                     <!--noise toggle-->
-                                    <div class="col-auto" data-bind="visible: showExpertSettings && !noiseHidden">
+                                    <div class="col-auto" data-bind="visible: !noiseHidden">
 
                                         <input type="checkbox" class="btn-check" autocomplete="off" id="btnchecknoise"
                                             data-bind="checked: noiseEnabled" aria-label="Noise"
@@ -575,19 +823,9 @@
                                                 alt="" /></label>
                                     </div>
 
-                                    <!--rss toggle-->
-                                    <!--  <div class="col-auto" data-bind="visible: showExpertSettings">
-
-                                        <input type="checkbox" class="btn-check" autocomplete="off" id="btncheckrss"
-                                            data-bind="checked: rss.rssEnabled">
-                                        <label class=" btn btn-outline-primary" for="btncheckrss"><img
-                                                data-bind="attr:{ src: morseLoadImages().getSrc('rssImage')}">&nbsp;RSS&nbsp;<img
-                                                data-bind="attr:{ src: rss.rssEnabled() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
-                                    </div> -->
-
                                     <!--repeats-->
                                     <div class="input-group">
-                                        <div class="col-md-auto" data-bind="if: showExpertSettings()">
+                                        <div class="col-md-auto">
                                             <div class="input-group">
                                                 <label for="numberOfRepeats" class="input-group-text">Repeats&nbsp;<img
                                                         width=20 height=20
@@ -618,275 +856,9 @@
                                                 </label>
                                                 <!-- /ko -->
                                             </div>
-                                            <!-- repeat delays-->
-
-
-
-
-
-
-                                            <!--voice toggle-->
                                         </div>
                                     </div>
 
-                                    <div class="input-group">
-                                        <div class="col-auto" data-bind="visible: showExpertSettings">
-
-                                            <input type="checkbox" class="btn-check" autocomplete="off"
-                                                id="btncheckvoice" aria-label="Voice"
-                                                title="Toggles display of voice-related settings"
-                                                data-bind="checked: morseVoice.voiceEnabled, enable: morseVoice.voiceCapable() && !morseVoice.manualVoice()">
-                                            <label class=" btn btn-outline-primary" for="btncheckvoice"
-                                                aria-hidden="true">
-                                                <img
-                                                    data-bind="attr:{ src: morseLoadImages().getSrc('chatquoteImage')}">&nbsp;Voice&nbsp;
-                                                <img
-                                                    data-bind="attr:{ src: morseVoice.voiceEnabled() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" />
-                                            </label>
-                                        </div>
-                                        <!-- voice spell out-->
-                                        <div class="col-auto"
-                                            data-bind="if: showExpertSettings() && morseVoice.voiceEnabled()">
-
-                                            <input type="checkbox" class="btn-check" autocomplete="off"
-                                                aria-label="Spell" id="btncheckvoicespell"
-                                                data-bind="checked: morseVoice.voiceSpelling">
-                                            <label class=" btn btn-outline-primary" for="btncheckvoicespell"
-                                                aria-hidden="true">
-                                                <img
-                                                    data-bind="attr:{ src: morseLoadImages().getSrc('spellcheckImage')}">&nbsp;Spell&nbsp;
-                                                <img
-                                                    data-bind="attr:{ src: morseVoice.voiceSpelling() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" />
-                                            </label>
-                                        </div>
-                                        <!-- voice manual-->
-                                        <div class="col-auto"
-                                            data-bind="if: showExpertSettings() && morseVoice.voiceEnabled()">
-
-                                            <input type="checkbox" class="btn-check" autocomplete="off"
-                                                aria-label="Arm Recap" id="btncheckmanualVoice"
-                                                data-bind="checked: morseVoice.manualVoice">
-                                            <label class=" btn btn-outline-primary" for="btncheckmanualVoice"
-                                                aria-hidden="true">
-                                                <img
-                                                    data-bind="attr:{ src: morseLoadImages().getSrc('bootstrapRebootImage')}">&nbsp;Arm
-                                                Recap&nbsp;
-                                                <img
-                                                    data-bind="attr:{ src: morseVoice.manualVoice() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" />
-                                            </label>
-                                        </div>
-                                        <!-- voice speakfirst-->
-                                        <div class="col-auto"
-                                            data-bind="if: showExpertSettings() && morseVoice.voiceEnabled()">
-
-                                            <input type="checkbox" class="btn-check" autocomplete="off"
-                                                aria-label="Speak First" id="btncheckspeakfirst"
-                                                data-bind="checked: morseVoice.speakFirst">
-                                            <label class=" btn btn-outline-primary" for="btncheckspeakfirst"
-                                                aria-hidden="true">
-                                                <img
-                                                    data-bind="attr:{ src: morseLoadImages().getSrc('chatRightDotsImage')}">&nbsp;Voice
-                                                First&nbsp;
-                                                <img
-                                                    data-bind="attr:{ src: morseVoice.speakFirst() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" />
-                                            </label>
-                                        </div>
-                                        <!-- voice speakfirstrepeats-->
-                                        <!-- <div class="col-md-auto"
-                                            data-bind="if: showExpertSettings() && morseVoice.voiceEnabled()">
-                                            <div class="input-group">
-                                                <label for="speakFirstRepeats"
-                                                    class="input-group-text">Repeats&nbsp;<img width=20 height=20
-                                                        data-bind="attr:{ src: morseLoadImages().getSrc('repeatImage')}"
-                                                        alt=""></label>
-                                                <input id="speakFirstRepeats" name="speakFirstRepeats" type="number"
-                                                    style="max-width:75px; min-width: 75px;" class="form-control"
-                                                    min="0" max="10" step="1"
-                                                    data-bind="textInput: morseVoice.speakFirstRepeats">
-                                            </div>
-                                        </div> -->
-                                        <!-- voice speakfirst additionalwordspaces-->
-                                        <!-- <div class="col-md-auto"
-                                            data-bind="if: showExpertSettings() && morseVoice.voiceEnabled()">
-                                            <div class="input-group">
-                                                <label for="speakFirstAdditionalWordspaces"
-                                                    class="input-group-text">Repeat Spacing<img width=20 height=20
-                                                        data-bind="attr:{ src: morseLoadImages().getSrc('stopwatchImage')}"
-                                                        alt=""></label>
-                                                <input id="speakFirstAdditionalWordspaces"
-                                                    name="speakFirstAdditionalWordspaces" type="number"
-                                                    style="max-width:75px; min-width: 75px;" class="form-control"
-                                                    min="0" max="10" step="1"
-                                                    data-bind="textInput: morseVoice.speakFirstAdditionalWordspaces">
-                                            </div>
-                                        </div> -->
-                                        <!-- voice thinktime-->
-                                        <div class="col-md-auto"
-                                            data-bind="if: showExpertSettings() && morseVoice.voiceEnabled()">
-                                            <div class="input-group">
-                                                <label for="voiceThinkingTime" class="input-group-text">Delay Before<img
-                                                        width=20 height=20
-                                                        data-bind="attr:{ src: morseLoadImages().getSrc('stopwatchImage')}"
-                                                        alt=""></label>
-                                                <input id="voiceThinkingTime" name="voiceThinkingTime" type="number"
-                                                    style="max-width:75px; min-width: 75px;" class="form-control"
-                                                    min="0" max="10" step=".25"
-                                                    data-bind="textInput: morseVoice.voiceThinkingTime">
-                                                <label class="input-group-text"><span
-                                                        data-bind="text:
-                                                        morseVoice.voiceThinkingTimeWpm"></span><span>&nbsp;wpm</span></label>
-                                            </div>
-                                        </div>
-                                        <!-- voice after thinktime-->
-                                        <div class="col-md-auto"
-                                            data-bind="if: showExpertSettings() && morseVoice.voiceEnabled()">
-                                            <div class="input-group">
-                                                <label for="voiceAfterThinkingTime" class="input-group-text">Delay
-                                                    After<img width=20 height=20
-                                                        data-bind="attr:{ src: morseLoadImages().getSrc('stopwatchImage')}"
-                                                        alt=""></label>
-                                                <input id="voiceAfterThinkingTime" name="voiceAfterThinkingTime"
-                                                    type="number" style="max-width:75px; min-width: 75px;"
-                                                    class="form-control" min="0" max="10" step=".25"
-                                                    data-bind="textInput: morseVoice.voiceAfterThinkingTime">
-                                            </div>
-                                        </div>
-                                        <!--  test 
-                                        <div class="col-auto"
-                                            data-bind="if: showExpertSettings() && morseVoice.voiceEnabled() && morseVoice.voiceVoices().length">
-                                            <span data-bind="click: morseVoice.initEasySpeech">test!</span>
-                                        </div> -->
-
-                                        <!-- voice speaker-->
-                                        <div class="col-auto"
-                                            data-bind="if: showExpertSettings() && morseVoice.voiceEnabled() && morseVoice.voiceVoices().length">
-                                            <select aria-label="Choose speaker" id='selectVoiceDropdown'
-                                                class="form-select" data-bind="options: morseVoice.voiceVoices,
-                                        optionsText: 'name',
-                                        optionsValue: 'idx',
-                                        value: morseVoice.voiceVoiceIdx,
-                                        optionsCaption: 'Choose speaker...'">
-                                            </select>
-                                        </div>
-                                        <!-- voice volume-->
-                                        <div class="col-md-auto"
-                                            data-bind="if: showExpertSettings() && morseVoice.voiceEnabled()">
-                                            <div class="input-group">
-                                                <label for="voiceVolume" class="input-group-text"><img role="text"
-                                                        width=20 height=20
-                                                        data-bind="attr:{ src: morseLoadImages().getSrc('volumeImage')}"
-                                                        alt="Voice Volume"></label>
-                                                <input id="voiceVolume" name="voiceVolume" type="number"
-                                                    style="max-width:75px; min-width: 75px;" class="form-control"
-                                                    min="0" max="10" step="1"
-                                                    data-bind="textInput: morseVoice.voiceVolume">
-                                            </div>
-                                        </div>
-                                        <!-- voice last only-->
-                                        <div class="col-auto"
-                                            data-bind="if: showExpertSettings() && morseVoice.voiceEnabled()">
-
-                                            <input type="checkbox" class="btn-check" autocomplete="off"
-                                                aria-label="Last Only" id="btnvoicelastonly"
-                                                data-bind="checked: morseVoice.voiceLastOnly">
-                                            <label class=" btn btn-outline-primary" for="btnvoicelastonly"
-                                                aria-hidden="true">
-                                                <img
-                                                    data-bind="attr:{ src: morseLoadImages().getSrc('alignendImage')}">&nbsp;Last
-                                                Only&nbsp;
-                                                <img
-                                                    data-bind="attr:{ src: morseVoice.voiceLastOnly() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" />
-                                            </label>
-                                        </div>
-                                        <!-- voice pitch-->
-                                        <div class="col-md-auto"
-                                            data-bind="if: showExpertSettings() && morseVoice.voiceEnabled()">
-                                            <div class="input-group">
-                                                <label for="voicePitch" class="input-group-text">Pitch<img width=20
-                                                        height=20
-                                                        data-bind="attr:{ src: morseLoadImages().getSrc('musicnoteImage')}"
-                                                        alt=""></label>
-                                                <input id="voicePitch" name="voicePitch" type="number"
-                                                    style="max-width:75px; min-width: 75px;" class="form-control"
-                                                    min="0" max="2" step=".25"
-                                                    data-bind="textInput: morseVoice.voicePitch">
-                                            </div>
-                                        </div>
-                                        <!-- voice rate-->
-                                        <div class="col-md-auto"
-                                            data-bind="if: showExpertSettings() && morseVoice.voiceEnabled()">
-                                            <div class="input-group">
-                                                <label for="voiceRate" class="input-group-text">Rate<img width=20
-                                                        height=20
-                                                        data-bind="attr:{ src: morseLoadImages().getSrc('speedometerImage')}"
-                                                        alt=""></label>
-                                                <input id="voiceRate" name="voiceRate" type="number"
-                                                    style="max-width:75px; min-width: 75px;" class="form-control"
-                                                    min=".1" max="10" step=".1"
-                                                    data-bind="textInput: morseVoice.voiceRate">
-                                            </div>
-                                        </div>
-
-                                        <!-- voice buffermax-->
-                                        <div class="col-md-auto"
-                                            data-bind="if: showExpertSettings() && morseVoice.voiceEnabled()">
-                                            <div class="input-group">
-                                                <label for="voiceBufferMaxLength" class="input-group-text">Voice
-                                                    After<img width=20 height=20
-                                                        data-bind="attr:{ src: morseLoadImages().getSrc('bookshelfImage')}"
-                                                        alt=""></label>
-                                                <input id="voiceBufferMaxLength" name="voiceBufferMaxLength"
-                                                    type="number" style="max-width:75px; min-width: 75px;"
-                                                    class="form-control" min="1" max="999" step="1"
-                                                    data-bind="textInput: morseVoice.voiceBufferMaxLength">
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <!--sound slope -->
-                                    <!-- <div class="input-group"> -->
-                                    <!-- <div class="col-auto" data-bind="visible: showExpertSettings">
-
-                                            <input type="checkbox" class="btn-check" autocomplete="off"
-                                                id="btncheckmoothing"
-                                                data-bind="checked: smoothing, enable: !playerPlaying(), event: {change: changeSoundMaker}">
-                                            <label class=" btn btn-outline-primary" for="btncheckmoothing"><img
-                                                    data-bind="attr:{ src: morseLoadImages().getSrc('soundwaveImage')}">&nbsp;Smoothing&nbsp;<img
-                                                    data-bind="attr:{ src: smoothing() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
-                                        </div> -->
-
-                                    <!-- risetimeconstant-->
-                                    <!-- <div class="col-md-auto" data-bind="if: showExpertSettings() && smoothing()">
-                                            <div class="input-group">
-                                                <span class="input-group-text">RiseK&nbsp;<img width=20 height=20
-                                                        data-bind="attr:{ src: morseLoadImages().getSrc('graphuparrowImage')}"></span>
-                                                <input type="number" style="max-width:100px; min-width: 75px;"
-                                                    class="form-control" min="0" max="10" step=".001"
-                                                    data-bind="textInput: riseTimeConstant">
-                                            </div>
-                                        </div> -->
-                                    <!-- decaytimeconstant-->
-                                    <!-- <div class="col-md-auto" data-bind="if: showExpertSettings() && smoothing()">
-                                            <div class="input-group">
-                                                <span class="input-group-text">DecayK&nbsp;<img width=20 height=20
-                                                        data-bind="attr:{ src: morseLoadImages().getSrc('graphdownarrowImage')}"></span>
-                                                <input type="number" style="max-width:100px; min-width: 75px;"
-                                                    class="form-control" min="0" max="10" step=".001"
-                                                    data-bind="textInput: decayTimeConstant">
-                                            </div>
-                                        </div> -->
-                                    <!-- decaystart-->
-                                    <!-- <div class="col-md-auto" data-bind="if: showExpertSettings() && smoothing()">
-                                            <div class="input-group">
-                                                <span class="input-group-text">Decay Start<img width=20 height=20
-                                                        data-bind="attr:{ src: morseLoadImages().getSrc('stopwatchImage')}"></span>
-                                                <input type="number" style="max-width:75px; min-width: 75px;"
-                                                    class="form-control" min=".1" max="5" step=".1"
-                                                    data-bind="textInput: decayMsOffset">
-                                            </div>
-                                        </div> -->
-                                    <!-- </div> -->
                                 </div>
 
                             </div>
@@ -894,13 +866,13 @@
                     </div>
 
                     <!-- RSS -->
-                    <!-- ko if: rss.rssEnabled() && showExpertSettings() -->
+                    <!-- ko if: rss.rssEnabled() -->
                     <div class="accordion-item" data-bind="component: {name: 'rssaccordion', params: {root: $root}}">
                     </div>
                     <!-- /ko -->
 
                     <!-- NOISE -->
-                    <!-- ko if: noiseEnabled() && showExpertSettings() -->
+                    <!-- ko if: noiseEnabled() -->
                     <div class="accordion-item" data-bind="component: {name: 'noiseaccordion', params: {root: $root}}">
                     </div>
                     <!-- /ko -->
@@ -1066,33 +1038,17 @@
                             data-bind="text: isShuffled()?'UnShuffle':'Shuffle'"></span>&nbsp;<img alt=""
                             id="shuffleImage" height="20" width="20"></button>
 
-                </div>
-
-                <!-- loop -->
-                <div class="input-group">
                     <button id="btnLoop" type="button" class="btn btn-secondary"
                         data-bind="click: () => toggleLoop()"><span
                             data-bind="text: !loop() ? 'Loop Off' : !loopnoshuffle() ? 'Loop Shuffle' : 'Loop On'"></span>&nbsp;<img
                             alt="" data-bind="attr:{ src: morseLoadImages().getSrc('arrowrepeatImage')}" height="20"
                             width="20"></button>
 
-                    <!--          
-                    <input aria-label="Loop" type="checkbox" class="btn-check" autocomplete="off" id="btncheckloop"
-                        data-bind="checked: loop">
-                    <label aria-hidden="true" class=" btn btn-outline-primary" for="btncheckloop"><img
-                            data-bind="attr:{ src: morseLoadImages().getSrc('arrowrepeatImage')}">&nbsp;Loop&nbsp;<img
-                            data-bind="attr:{ src: loop() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
-
-                    -->
-                </div>
-
-                <!-- manual voice -->
-                <div class="input-group">
                     <button id="btnmanualvoice" type="button" class="btn btn-info"
                         data-bind="click: () => {speakVoiceBuffer()}, visible: morseVoice.manualVoice() && morseVoice.voiceEnabled()">Voice
                         Recap&nbsp;<img data-bind="attr:{ src: morseLoadImages().getSrc('bootstrapRebootImage')}">
-
                     </button>
+
                 </div>
 
                 </div>

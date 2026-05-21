@@ -179,7 +179,7 @@ export default class MorseLessonPlugin implements ICookieHandler {
       this.selectedDisplay({})
       const dps = []
       if (this.selectedClass() === '' || this.userTarget() === '' || this.letterGroup() === '') {
-        return [{ display: 'Select wordlist', fileName: 'dummy.txt', isDummy: true }]
+        return [{ display: 'Select Content', fileName: 'dummy.txt', isDummy: true }]
       }
       this.wordLists().filter((list) => list.class === this.selectedClass() &&
              list.userTarget === this.userTarget() &&
