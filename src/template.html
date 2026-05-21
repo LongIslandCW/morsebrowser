@@ -26,6 +26,14 @@
                     'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
         })(window, document, 'script', 'dataLayer', 'GTM-PB8HW3M');</script>
     <!-- End Google Tag Manager -->
+    <script>
+        (function () {
+            var match = document.cookie.match(/(?:^|; )darkMode=([^;]*)/);
+            if (match && (decodeURIComponent(match[1]) === 'true' || decodeURIComponent(match[1]) === '1')) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
 </head>
 <!--test8 test6 -->
 
@@ -43,28 +51,17 @@
                         <img data-bind="click: logoClick" id="logoImage" class="site-logo"
                             alt="Long Island CW Club Logo depicting a hand on a straight key and the club call sign W2LCW" />
                     </div>
-                    <div class="col">
-                        <h1 class="page-title text-center text-md-start mb-2">Morse Practice Page</h1>
-                        <section id="credits-and-info" title="Credits and additional information"
-                            aria-label="Credits and additional information">
-                            <span title="Contributor info" id="contributor-info">by KN4YRM with assistance from AB5TN,
-                                KN6WKV, N1CC, VE3QBZ, VK5PL, and WO6W</span>
-                            <span>Inspired by and adapted from the <a href="https://morsecode.world/">SC Phillips</a> <a
-                                    href="https://github.com/scp93ch/morse-pro">morse-pro library</a>. To view source,
-                                please go to <a href="https://github.com/LongIslandCW/morsebrowser/">our github<img
-                                        id="githubImage" aria-hidden="true"> repository.</a></span>
-                            <span>To ask user questions, report bugs, request features and more <a
-                                    href="mailto:AB5TN48@gmail.com">email us</a>.</span>
-                            <span><a href="https://www.youtube.com/playlist?list=PLt-EzlLx2AKFY8NVxxPVBbPzR6s-Kz7tJ">Videos
-                                    to help you use this site</a> are found on YouTube</span>
-                            <span>Click <a href="https://longislandcwclub.org/academic-downloads/">"here"</a> for a User
-                                Guide to help you use this site or it can be
-                                found on the LICW website at <a
-                                    href="https://longislandcwclub.org/">https://longislandcwclub.org/</a></span>
-                            <span class="warning" data-bind="if: isDev()">WARNING: You are using the BETA (unstable)
-                                version. The <a href="../">latest stable release</a> is recommended.</a></span>
-                            <span id="version-info">Version 1.13</span>
-                        </section>
+                    <div class="col d-flex flex-column gap-2">
+                        <h1 class="page-title text-center text-md-start mb-0">Morse Practice Page</h1>
+                        <div class="d-flex flex-wrap gap-2 justify-content-center justify-content-md-start align-items-center">
+                            <a href="#page-help-footer" class="btn btn-outline-primary btn-sm">Click here for help</a>
+                            <button type="button" class="btn btn-outline-secondary btn-sm theme-toggle-btn"
+                                data-bind="click: () => darkMode(!darkMode()), attr: { 'aria-pressed': darkMode(), title: darkMode() ? 'Switch to light mode' : 'Switch to dark mode' }">
+                                <img class="theme-icon" height="18" width="18" alt=""
+                                    data-bind="attr:{ src: darkMode() ? morseLoadImages().getSrc('sunImage') : morseLoadImages().getSrc('moonImage')}" />
+                                <span data-bind="text: darkMode() ? 'Light mode' : 'Dark mode'"></span>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </header>
@@ -118,7 +115,7 @@
             <section title="Settings" aria-label="Settings" class="col">
                 <div class="accordion" id="accordionArea">
                     <!-- lessons -->
-                    <div class="accordion-item">
+                    <div class="accordion-item settings-group-accordion">
                         <h2 class="accordion-header" id="headingLessonControls">
                             <!-- accordian button text-->
                             <button class="accordion-button flex-wrap gap-1" type="button" data-bs-toggle="collapse"
@@ -148,170 +145,99 @@
                             aria-labelledby="headingLessonControls">
                             <div class="accordion-body">
 
-                                <div class="row g-3 lessons-picker-row">
-                                    <!--user type-->
-                                    <div class="col-6 col-md-4 col-lg-auto lessons-picker-col">
-                                        <div class="row"><span>TYPE</span></div>
-                                        <fieldset aria-label="Curriculum kind" class="btn-group-vertical"
-                                            data-bind="foreach: lessons.userTargets, childrenComplete: () => lessons.setUserTargetInitialized()">
-                                            <input type="radio" class="btn-check" name="btnradioUserTargets"
-                                                data-bind="checkedValue: $data, checked: $root.lessons.userTarget, attr: { 'aria-label': $data }">
-                                            <label class="btn btn-outline-primary" aria-hidden="true"
-                                                data-bind="text: $data, click: $root.lessons.changeUserTarget($data)"></label>
-                                        </fieldset>
-                                    </div>
-                                    <!--classes-->
-                                    <div class="col-6 col-md-4 col-lg-auto lessons-picker-col">
-                                        <div class="row"><span>CLASS</span></div>
-                                        <fieldset aria-label="Class" class="btn-group-vertical"
-                                            data-bind="foreach: lessons.classes, childrenComplete: () => lessons.setSelectedClassInitialized()">
-                                            <input type="radio" class="btn-check" name="btnradioClasses"
-                                                data-bind="checkedValue: $data, checked: $root.lessons.selectedClass, attr: { 'aria-label': $data }">
-                                            <label class="btn btn-outline-primary" aria-hidden="true"
-                                                data-bind="text: $data, click: $root.lessons.changeSelectedClass($data,'click')"></label>
-                                        </fieldset>
-                                    </div>
-                                    <!--letter groups-->
-                                    <div class="col-6 col-md-4 col-lg-auto lessons-picker-col">
-                                        <div class="row"><span>CONTENT</span></div>
-                                        <div role="radiogroup" aria-label="Content"
-                                            class="list-group lesson-scroll-panel"
-                                            data-bind="foreach: lessons.letterGroups, childrenComplete: () => lessons.setLetterGroupInitialized()">
-                                            <button role="radio" type="button"
-                                                class="list-group-item list-group-item-action"
-                                                data-bind="text: $data, attr:{ 'aria-checked': $root.lessons.letterGroup()==$data }, click: ()=>$root.lessons.setLetterGroup($data,'click'), css: { active: $data==$parent.lessons.letterGroup()}"></button>
+                                <div class="row g-2 lessons-picker-row">
+                                    <div class="col-6 col-md-4 col-lg lessons-picker-col">
+                                        <span class="lessons-picker-label" id="lessonsPickerTypeLabel">TYPE</span>
+                                        <div class="dropdown lessons-picker-dropdown">
+                                            <button type="button" class="btn btn-outline-primary dropdown-toggle w-100"
+                                                data-bs-toggle="dropdown" aria-expanded="false"
+                                                aria-labelledby="lessonsPickerTypeLabel"
+                                                data-bind="text: lessons.userTarget() || 'Select type'"></button>
+                                            <ul class="dropdown-menu w-100" role="listbox" aria-label="Curriculum kind"
+                                                data-bind="foreach: lessons.userTargets">
+                                                <li role="presentation">
+                                                    <button type="button" role="option" class="dropdown-item"
+                                                        data-bind="text: $data, click: () => $root.lessons.changeUserTarget($data), css: { active: $data === $root.lessons.userTarget() }"></button>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </div>
-                                    <!--lessons-->
-                                    <div class="col-6 col-md-4 col-lg-auto lessons-picker-col">
-                                        <div class="row"><span>LESSON</span></div>
-                                        <div role="radiogroup" aria-label="Lesson" class="list-group lesson-scroll-panel"
-                                            data-bind="foreach: lessons.displays, childrenComplete: () => lessons.setDisplaysInitialized()">
-                                            <button role="radio" type="button"
-                                                class="list-group-item list-group-item-action"
-                                                data-bind="text: $data.display, attr:{ 'aria-checked': $data.display==$parent.lessons.selectedDisplay().display }, click: ()=>$root.lessons.setDisplaySelected($data,false,'click'), css: { active: $data.display==$parent.lessons.selectedDisplay().display}"></button>
+                                    <div class="col-6 col-md-4 col-lg lessons-picker-col">
+                                        <span class="lessons-picker-label" id="lessonsPickerClassLabel">CLASS</span>
+                                        <div class="dropdown lessons-picker-dropdown">
+                                            <button type="button" class="btn btn-outline-primary dropdown-toggle w-100"
+                                                data-bs-toggle="dropdown" aria-expanded="false"
+                                                aria-labelledby="lessonsPickerClassLabel"
+                                                data-bind="text: lessons.selectedClass() || 'Select class', enable: lessons.classes().length > 0"></button>
+                                            <ul class="dropdown-menu w-100" role="listbox" aria-label="Class"
+                                                data-bind="foreach: lessons.classes">
+                                                <li role="presentation">
+                                                    <button type="button" role="option" class="dropdown-item"
+                                                        data-bind="text: $data, click: () => $root.lessons.changeSelectedClass($data, 'click'), css: { active: $data === $root.lessons.selectedClass() }"></button>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </div>
-
-                                    <!--setting presets-->
-                                    <div class="col-6 col-md-4 col-lg-auto lessons-picker-col">
-                                        <div class="row"><span>PRESETS</span></div>
-                                        <div role="radiogroup" aria-label="Settings preset" class="list-group lesson-scroll-panel"
-                                            data-bind="foreach: lessons.settingsPresets, childrenComplete: () => lessons.setSettingsPresetsInitialized()">
-                                            <button role="radio" id="btnLessonSettingsPresets" type="button"
-                                                class="list-group-item list-group-item-action"
-                                                data-bind="enable: $root.allowSaveCookies, text: $data.display, attr:{ 'aria-checked': $data.display==$parent.lessons.selectedSettingsPreset().display }, click: ()=>$root.lessons.setPresetSelected($data,false,'click'), css: { active: $data.display==$parent.lessons.selectedSettingsPreset().display}"></button>
+                                    <div class="col-6 col-md-4 col-lg lessons-picker-col">
+                                        <span class="lessons-picker-label" id="lessonsPickerContentLabel">CONTENT</span>
+                                        <div class="dropdown lessons-picker-dropdown">
+                                            <button type="button" class="btn btn-outline-primary dropdown-toggle w-100"
+                                                data-bs-toggle="dropdown" aria-expanded="false"
+                                                aria-labelledby="lessonsPickerContentLabel"
+                                                data-bind="text: lessons.letterGroup() || 'Select content', enable: lessons.letterGroups().length > 0"></button>
+                                            <ul class="dropdown-menu w-100" role="listbox" aria-label="Content"
+                                                data-bind="foreach: lessons.letterGroups">
+                                                <li role="presentation">
+                                                    <button type="button" role="option" class="dropdown-item"
+                                                        data-bind="text: $data, click: () => $root.lessons.setLetterGroup($data, 'click'), css: { active: $data === $root.lessons.letterGroup() }"></button>
+                                                </li>
+                                            </ul>
                                         </div>
-
-                                        <!-- save settings button -->
-                                        <button id="saveSettingsButton" type="button" class="btn btn-outline-dark"
-                                            data-bind="click: () => saveSettings()" style="width: 98px;">
-                                            <span>Save</span>
-
-                                        </button>
-
-                                        <!-- load settings button -->
-                                        <button id="loadSettingsButton" type="button" class="btn btn-outline-dark"
-                                            onclick="getElementById('settingsfiletoread').click()" style="width: 98px;">
-                                            <span>Load</span>
-
-                                        </button>
+                                    </div>
+                                    <div class="col-6 col-md-4 col-lg lessons-picker-col">
+                                        <span class="lessons-picker-label" id="lessonsPickerLessonLabel">LESSON</span>
+                                        <div class="dropdown lessons-picker-dropdown">
+                                            <button type="button" class="btn btn-outline-primary dropdown-toggle w-100"
+                                                data-bs-toggle="dropdown" aria-expanded="false"
+                                                aria-labelledby="lessonsPickerLessonLabel"
+                                                data-bind="text: lessons.selectedDisplay().display || 'Select lesson', enable: lessons.displays().length > 0 ? !lessons.displays()[0].isDummy : false"></button>
+                                            <ul class="dropdown-menu w-100" role="listbox" aria-label="Lesson"
+                                                data-bind="foreach: lessons.displays">
+                                                <li role="presentation" data-bind="if: !$data.isDummy">
+                                                    <button type="button" role="option" class="dropdown-item"
+                                                        data-bind="text: $data.display, click: () => $root.lessons.setDisplaySelected($data, false, 'click'), css: { active: $data.display === $root.lessons.selectedDisplay().display }"></button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-md-4 col-lg lessons-picker-col">
+                                        <span class="lessons-picker-label" id="lessonsPickerPresetsLabel">PRESETS</span>
+                                        <div class="dropdown lessons-picker-dropdown">
+                                            <button type="button" class="btn btn-outline-primary dropdown-toggle w-100"
+                                                data-bs-toggle="dropdown" aria-expanded="false"
+                                                aria-labelledby="lessonsPickerPresetsLabel"
+                                                data-bind="text: lessons.selectedSettingsPreset().display || 'Select preset', enable: allowSaveCookies && lessons.settingsPresets().length > 0"></button>
+                                            <ul class="dropdown-menu w-100" role="listbox" aria-label="Settings preset"
+                                                data-bind="foreach: lessons.settingsPresets">
+                                                <li role="presentation">
+                                                    <button type="button" role="option" id="btnLessonSettingsPresets" class="dropdown-item"
+                                                        data-bind="text: $data.display, enable: $root.allowSaveCookies, click: () => $root.lessons.setPresetSelected($data, false, 'click'), css: { active: $data.display === $root.lessons.selectedSettingsPreset().display }"></button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="lessons-preset-actions">
+                                            <button id="saveSettingsButton" type="button" class="btn btn-outline-primary"
+                                                data-bind="click: () => saveSettings()">
+                                                <span>Save</span>
+                                            </button>
+                                            <button id="loadSettingsButton" type="button" class="btn btn-outline-primary"
+                                                onclick="getElementById('settingsfiletoread').click()">
+                                                <span>Load</span>
+                                            </button>
+                                        </div>
                                         <input type="file" accept=".json" id="settingsfiletoread" class="form-control"
                                             data-bind="event: {change: function() { settingsFileChange($element) } }"
                                             hidden>
-                                    </div>
-
-                                    <!--buttons for overrides and such-->
-                                    <div class="col-6 col-md-4 col-lg-auto lessons-picker-col">
-                                        <div class="input-group">
-                                            <div aria-label="Custom group generation" class="btn-group-vertical"
-                                                role="group">
-                                                <p role="note" class="sr-only">
-                                                    When pressed, the "Custom group" button generates working text using
-                                                    the text entered in the "Custom group text" text input instead of
-                                                    from
-                                                    a lesson.
-                                                </p>
-                                                <!--custom group run button-->
-                                                <button type="button" class="btn btn-success"
-                                                    data-bind="click: lessons.doCustomGroup"
-                                                    style="max-width:125px; padding-left: 2px; padding-right: 2px;">Custom
-                                                    Group</button>
-                                                <!--custom group text -->
-                                                <input type="text" class="form-control" style="max-width:125px;"
-                                                    aria-label="Custom group text" min="0"
-                                                    data-bind="textInput: lessons.customGroup">
-                                            </div>
-                                        </div>
-                                        <!--newline chunking toggle-->
-                                        <input type="checkbox" class="btn-check" autocomplete="off"
-                                            aria-label="Keep lines" id="btnchecknewlinechunking"
-                                            data-bind="checked: settings.misc.newlineChunking">
-                                        <label aria-hidden="true" class="btn btn-outline-primary"
-                                            for="btnchecknewlinechunking"
-                                            style="width: 125px; max-width:125px;"><span>Keep
-                                                Lines&nbsp;<img
-                                                    data-bind="attr:{ src: settings.misc.newlineChunking() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></span></label>
-
-                                    </div>
-
-                                    <!---->
-                                    <div class="col-auto">
-                                        <!--override time toggle-->
-                                        <input aria-label="Override time" type="checkbox" class="btn-check"
-                                            id="btncheck2" autocomplete="off"
-                                            data-bind="checked: lessons.ifOverrideTime">
-                                        <label aria-hidden="true" class="btn btn-outline-primary"
-                                            for="btncheck2">Override
-                                            Time&nbsp;<img
-                                                data-bind="attr:{ src: lessons.ifOverrideTime() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
-
-                                        <div class="input-group">
-                                            <!--override minutes-->
-                                            <span aria-hidden="true" style="width: 76px;"
-                                                class="input-group-text">Mins</span>
-                                            <input type="number" class="form-control" style="max-width:70px;"
-                                                aria-label="minutes" min="0"
-                                                data-bind="textInput: lessons.overrideMins, enable: lessons.ifOverrideTime">
-                                        </div>
-
-                                        <div class="btn-group" role="group">
-                                            <!--override size toggle-->
-                                            <input aria-label="Override size" type="checkbox" class="btn-check"
-                                                id="btncheck2overridesize" autocomplete="off"
-                                                data-bind="checked: lessons.ifOverrideMinMax">
-                                            <label aria-hidden="true" style="width: 146px;"
-                                                class="btn btn-outline-primary" for="btncheck2overridesize">Override
-                                                Size&nbsp;<img
-                                                    data-bind="attr:{ src: lessons.ifOverrideMinMax() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
-
-                                        </div>
-
-                                        <div class="input-group">
-                                            <!--min override-->
-                                            <span aria-hidden="true" style="width: 76px;"
-                                                class="input-group-text">Min</span>
-                                            <input aria-label="Minimum" style="width: 70px;" type="number"
-                                                class="form-control" style="max-width:75px;" min="1"
-                                                data-bind="textInput: lessons.overrideMin, enable: lessons.ifOverrideMinMax">
-
-                                        </div>
-
-                                        <div class="input-group">
-                                            <!--max override-->
-                                            <span role="checkbox" aria-label="Sync minimum and maximum size"
-                                                class="input-group-text"
-                                                data-bind="click: ()=>lessons.syncSize(!lessons.syncSize()), attr: {'aria-checked': lessons.syncSize() ? 'true' : 'false'}">Max&nbsp;<img
-                                                    aria-hidden="true"
-                                                    data-bind="attr:{ src: lessons.syncSize() ? morseLoadImages().getSrc('lockImage') : morseLoadImages().getSrc('unlockImage')}" /></span>
-                                            <input aria-label="Maximum" type="number" class="form-control"
-                                                style="max-width:70px;" min="1"
-                                                data-bind="textInput: lessons.overrideMax, enable: lessons.ifOverrideMinMax() && !lessons.syncSize(), attr: { min: lessons.trueOverrideMin}">
-                                        </div>
-                                        <!--custom group run button-->
-                                        <button type="button" class="btn btn-success" id="btnApply"
-                                            data-bind="click: ()=>doApply(true), enable: applyEnabled"
-                                            style="width: 146px; padding-left: 2px; padding-right: 2px;">Apply</button>
                                     </div>
                                 </div>
 
@@ -319,8 +245,279 @@
                             </div>
                         </div>
                     </div>
+                    <div class="accordion-item settings-group-accordion">
+                        <h2 class="accordion-header" id="headinglessonoptions">
+                            <button id="moreSettingsAccordionButton" class="accordion-button collapsed" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#collapselessonoptions" aria-expanded="false"
+                                aria-controls="collapselessonoptions">
+                                <img height=20 width=20 alt="" data-bind="attr:{src: morseLoadImages().getSrc('bookImage')}" />
+                                <span>&nbsp;Lesson Options</span>
+                            </button>
+                        </h2>
+                        <div id="collapselessonoptions" class="accordion-collapse collapse"
+                            aria-labelledby="headinglessonoptions">
+                            <div class="accordion-body">
+                                <div class="settings-group-panel settings-lesson-options-panel d-flex flex-column gap-3">
+                                    <div class="row g-3 align-items-stretch lesson-options-practice-row">
+                                    <div class="col-12 col-lg-auto">
+                                    <fieldset class="morse-settings-fieldset h-100">
+                                        <legend class="morse-settings-legend">Practice</legend>
+                                        <div class="settings-lesson-control-strip">
+                                            <div class="settings-lesson-control">
+                                                <input aria-label="Randomize" type="checkbox" class="btn-check"
+                                                    autocomplete="off" id="btncheck1"
+                                                    data-bind="checked: lessons.randomizeLessons">
+                                                <label aria-hidden="true" class="btn btn-outline-primary"
+                                                    for="btncheck1">Randomize&nbsp;<img
+                                                        data-bind="attr:{ src: lessons.randomizeLessons() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
+                                            </div>
+                                            <div class="settings-lesson-control">
+                                                <input aria-label="Auto close" type="checkbox" class="btn-check"
+                                                    autocomplete="off" id="btncheckautoclose"
+                                                    data-bind="checked: lessons.autoCloseLessonAccordion">
+                                                <label aria-hidden="true" class="btn btn-outline-primary"
+                                                    for="btncheckautoclose">Auto Close&nbsp;<img
+                                                        data-bind="attr:{ src: lessons.autoCloseLessonAccordion() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
+                                            </div>
+                                            <div class="settings-lesson-control">
+                                                <input aria-label="Sticky sets" type="checkbox" class="btn-check"
+                                                    id="btncheck2stickysetstoggle" autocomplete="off"
+                                                    data-bind="checked: lessons.ifStickySets">
+                                                <label aria-hidden="true" class="btn btn-outline-primary"
+                                                    for="btncheck2stickysetstoggle">Sticky Sets&nbsp;<img
+                                                        data-bind="attr:{ src: lessons.ifStickySets() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
+                                                <input type="text" class="form-control"
+                                                    aria-label="Sticky set text"
+                                                    data-bind="textInput: lessons.stickySets, visible: lessons.ifStickySets">
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                    </div>
+
+                                    <div class="col-12 col-lg">
+                                    <fieldset class="morse-settings-fieldset h-100">
+                                        <legend class="morse-settings-legend">Group &amp; override</legend>
+                                        <div class="settings-lesson-control-strip" aria-label="Custom group generation">
+                                            <p role="note" class="sr-only">
+                                                When Custom Group is selected and Apply is pressed, working text is
+                                                generated from the custom group text instead of from a lesson.
+                                            </p>
+                                            <div class="settings-lesson-control">
+                                                <input aria-label="Custom group" type="checkbox" class="btn-check"
+                                                    id="btncheckcustomgroup" autocomplete="off"
+                                                    data-bind="checked: lessons.ifCustomGroup">
+                                                <label aria-hidden="true" class="btn btn-outline-primary"
+                                                    for="btncheckcustomgroup">Custom
+                                                    Group&nbsp;<img
+                                                        data-bind="attr:{ src: lessons.ifCustomGroup() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
+                                                <input type="text" class="form-control"
+                                                    aria-label="Custom group text" min="0"
+                                                    data-bind="textInput: lessons.customGroup, visible: lessons.ifCustomGroup">
+                                            </div>
+                                            <div class="settings-lesson-control">
+                                                <input type="checkbox" class="btn-check" autocomplete="off"
+                                                    aria-label="Keep lines" id="btnchecknewlinechunking"
+                                                    data-bind="checked: settings.misc.newlineChunking">
+                                                <label aria-hidden="true" class="btn btn-outline-primary"
+                                                    for="btnchecknewlinechunking">Keep
+                                                    Lines&nbsp;<img
+                                                        data-bind="attr:{ src: settings.misc.newlineChunking() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
+                                            </div>
+                                            <div class="settings-lesson-control">
+                                                <input aria-label="Override time" type="checkbox" class="btn-check"
+                                                    id="btncheck2" autocomplete="off"
+                                                    data-bind="checked: lessons.ifOverrideTime">
+                                                <label aria-hidden="true" class="btn btn-outline-primary"
+                                                    for="btncheck2">Override
+                                                    Time&nbsp;<img
+                                                        data-bind="attr:{ src: lessons.ifOverrideTime() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
+                                                <div class="input-group" data-bind="visible: lessons.ifOverrideTime">
+                                                    <span aria-hidden="true" class="input-group-text">Mins</span>
+                                                    <input type="number" class="form-control morse-settings-num"
+                                                        aria-label="minutes" min="0"
+                                                        data-bind="textInput: lessons.overrideMins">
+                                                </div>
+                                            </div>
+                                            <div class="settings-lesson-control">
+                                                <input aria-label="Override size" type="checkbox" class="btn-check"
+                                                    id="btncheck2overridesize" autocomplete="off"
+                                                    data-bind="checked: lessons.ifOverrideMinMax">
+                                                <label aria-hidden="true" class="btn btn-outline-primary"
+                                                    for="btncheck2overridesize">Override
+                                                    Size&nbsp;<img
+                                                        data-bind="attr:{ src: lessons.ifOverrideMinMax() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
+                                                <div class="input-group" data-bind="visible: lessons.ifOverrideMinMax">
+                                                    <span aria-hidden="true" class="input-group-text">Min</span>
+                                                    <input aria-label="Minimum" type="number"
+                                                        class="form-control morse-settings-num" min="1"
+                                                        data-bind="textInput: lessons.overrideMin">
+                                                </div>
+                                                <div class="input-group" data-bind="visible: lessons.ifOverrideMinMax">
+                                                    <span role="checkbox" aria-label="Sync minimum and maximum size"
+                                                        class="input-group-text"
+                                                        data-bind="click: ()=>lessons.syncSize(!lessons.syncSize()), attr: {'aria-checked': lessons.syncSize() ? 'true' : 'false'}">Max&nbsp;<img
+                                                            aria-hidden="true"
+                                                            data-bind="attr:{ src: lessons.syncSize() ? morseLoadImages().getSrc('lockImage') : morseLoadImages().getSrc('unlockImage')}" /></span>
+                                                    <input aria-label="Maximum" type="number"
+                                                        class="form-control morse-settings-num" min="1"
+                                                        data-bind="textInput: lessons.overrideMax, enable: !lessons.syncSize(), attr: { min: lessons.trueOverrideMin}">
+                                                </div>
+                                            </div>
+                                            <div class="settings-lesson-control">
+                                                <button type="button" class="btn btn-primary" id="btnApply"
+                                                    data-bind="click: ()=>doApply(true), enable: applyEnabled">Apply</button>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                    </div>
+                                    </div>
+
+                                    <fieldset class="morse-settings-fieldset">
+                                        <legend class="morse-settings-legend">Trail</legend>
+                                        <div class="input-group flex-wrap trail-settings-row"
+                                                title="Automatic card revealing">
+                                                <input type="checkbox" data-bind="checked: trailReveal"
+                                                    class="btn-check" id="btntrailReveal" autocomplete="off"
+                                                    title="Reveals hidden cards after they have been played" />
+                                                <label class="btn btn-outline-primary" for="btntrailReveal">
+                                                    <span>Trail&nbsp;</span>
+                                                    <img height=20 width=20
+                                                        data-bind="attr:{ src: trailReveal() ? morseLoadImages().getSrc('eyeImage') : morseLoadImages().getSrc('eyeslashImage')}"
+                                                        alt="" />
+                                                </label>
+                                                <label for="trailPreDelay" class="input-group-text">Pre&nbsp;
+                                                    <img data-bind="attr:{ src: morseLoadImages().getSrc('stopwatchImage')}"
+                                                        height="20" width="20" alt="" />
+                                                </label>
+                                                <input id="trailPreDelay" name="trailPreDelay" type="number"
+                                                    class="form-control morse-settings-num"
+                                                    min="0" step=".25"
+                                                    data-bind="textInput: trailPreDelay, enable: trailReveal()"
+                                                    title="Delay before revealing a card upon playback">
+                                                <label for="trailPostDelay" class="input-group-text">Post&nbsp;
+                                                    <img data-bind="attr:{ src: morseLoadImages().getSrc('stopwatchImage')}"
+                                                        height="20" width="20" alt="" />
+                                                </label>
+                                                <input id="trailPostDelay" name="trailPostDelay" type="number"
+                                                    class="form-control morse-settings-num"
+                                                    min="0" step=".25"
+                                                    data-bind="textInput: trailPostDelay, enable: trailReveal()"
+                                                    title="Delay after revealing a card upon playback">
+                                                <label for="trailFinal" class="input-group-text">Final&nbsp;
+                                                    <img data-bind="attr:{ src: morseLoadImages().getSrc('stopwatchImage')}"
+                                                        alt="" />
+                                                </label>
+                                                <input id="trailFinal" name="trailFinal" type="number"
+                                                    class="form-control morse-settings-num"
+                                                    min="0" step=".25"
+                                                    data-bind="textInput: trailFinal, enable: trailReveal()"
+                                                    title="Delay after revealing the final card upon playback">
+                                            </div>
+                                    </fieldset>
+
+                                    <fieldset class="morse-settings-fieldset">
+                                        <legend class="morse-settings-legend">Timing &amp; playback</legend>
+                                    <div class="settings-inline-row d-flex flex-wrap gap-2 align-items-start">
+                                        <!--speed intervals-->
+                                    <div class="input-group">
+                                        <div class="col-auto">
+
+                                            <input type="checkbox" class="btn-check" autocomplete="off"
+                                                id="btncheckspeedinterval" name="btncheckspeedinterval"
+                                                aria-label="Speed Intervals"
+                                                data-bind="checked: settings.speed.speedInterval"
+                                                title="Enables variable speeds in time intervals you define">
+                                            <label class="btn btn-outline-primary" for="btncheckspeedinterval"
+                                                aria-hidden="true">
+                                                <img data-bind="attr:{ src: morseLoadImages().getSrc('rocketTakeoffImage')}"
+                                                    alt="">&nbsp;Speed Intervals&nbsp;
+                                                <img data-bind="attr:{ src: settings.speed.speedInterval() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}"
+                                                    alt="" />
+                                            </label>
+
+                                        </div>
+
+                                        <label for="intervalTimingsText" class="input-group-text"
+                                            data-bind="visible: settings.speed.speedInterval()">Timings&nbsp;
+                                            <img data-bind="attr:{ src: morseLoadImages().getSrc('stopwatchImage')}"
+                                                height="20" width="20" alt="" />
+                                        </label>
+                                        <input id="intervalTimingsText" name="intervalTimingsText" type="text"
+                                            style="max-width:200px; min-width: 200px;" class="form-control"
+                                            data-bind="textInput: settings.speed.intervalTimingsText, enable: settings.speed.speedInterval(), visible: settings.speed.speedInterval()"
+                                            title="Comma-separated interval durations">
+                                        <label for="intervalWpmText" class="input-group-text"
+                                            data-bind="visible: settings.speed.speedInterval()">WPM&nbsp;</label>
+                                        <input id="intervalWpmText" name="intervalWpmText" type="text"
+                                            style="max-width:200px; min-width: 200px;" class="form-control"
+                                            data-bind="textInput: settings.speed.intervalWpmText, enable: settings.speed.speedInterval(), visible: settings.speed.speedInterval()"
+                                            title="Comma-separated character WPM speeds for each interval">
+                                        <label for="intervalFwpmText" class="input-group-text"
+                                            data-bind="visible: settings.speed.speedInterval()">FWPM&nbsp;</label>
+                                        <input id="intervalFwpmText" name="intervalFwpmText" type="text"
+                                            style="max-width:200px; min-width: 200px;" class="form-control"
+                                            data-bind="textInput: settings.speed.intervalFwpmText, enable: settings.speed.speedInterval(), visible: settings.speed.speedInterval()"
+                                            title="Comma-separated FWPM speeds for each interval">
+
+                                    </div>
+
+                                    <!--repeats-->
+                                    <div class="input-group">
+                                        <div class="col-md-auto">
+                                            <div class="input-group">
+                                                <label for="numberOfRepeats" class="input-group-text">Repeats&nbsp;<img
+                                                        width=20 height=20
+                                                        data-bind="attr:{ src: morseLoadImages().getSrc('repeatImage')}"
+                                                        alt=""></label>
+                                                <input id="numberOfRepeats" name="numberOfRepeats" type="number"
+                                                    style="max-width:75px; min-width: 75px;" class="form-control"
+                                                    min="0" max="10" step="1" data-bind="textInput: numberOfRepeats">
+                                                <label for="speakFirstAdditionalWordspaces"
+                                                    class="input-group-text">Repeat
+                                                    Spacing<img width=20 height=20
+                                                        data-bind="attr:{ src: morseLoadImages().getSrc('stopwatchImage')}"
+                                                        alt=""></label>
+                                                <input id="speakFirstAdditionalWordspaces"
+                                                    name="speakFirstAdditionalWordspaces" type="number"
+                                                    style="max-width:75px; min-width: 75px;" class="form-control"
+                                                    min="0" max="10" step="1"
+                                                    data-bind="textInput: morseVoice.speakFirstAdditionalWordspaces">
+                                                <!-- ko if: adminMode() -->
+                                                <input type="checkbox" class="btn-check" autocomplete="off"
+                                                    aria-label="Shuffle Intra-group" id="btnshuffleintragroup"
+                                                    data-bind="checked: shuffleIntraGroup">
+                                                <label class=" btn btn-outline-primary" for="btnshuffleintragroup"
+                                                    aria-hidden="true">
+                                                    &nbsp;Shuffle Intra-group&nbsp;
+                                                    <img
+                                                        data-bind="attr:{ src: shuffleIntraGroup() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" />
+                                                </label>
+                                                <!-- /ko -->
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                
+                                    <!--noise toggle-->
+                                    <div class="col-auto" data-bind="visible: !noiseHidden">
+
+                                        <input type="checkbox" class="btn-check" autocomplete="off" id="btnchecknoise"
+                                            data-bind="checked: noiseEnabled" aria-label="Noise"
+                                            title="Toggles display of the experimental Noise settings accordion">
+                                        <label class=" btn btn-outline-primary" for="btnchecknoise"
+                                            aria-hidden="true"><img
+                                                data-bind="attr:{ src: morseLoadImages().getSrc('soundwaveImage')}">&nbsp;Noise&nbsp;<img
+                                                data-bind="attr:{ src: noiseEnabled() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}"
+                                                alt="" /></label>
+                                    </div>
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- voice options -->
-                    <div class="accordion-item">
+                    <div class="accordion-item settings-group-accordion">
                         <h2 class="accordion-header" id="headingvoiceoptions">
                             <button id="voiceOptionsAccordionButton" class="accordion-button collapsed" type="button"
                                 data-bs-toggle="collapse" data-bs-target="#collapsevoiceoptions" aria-expanded="false"
@@ -583,25 +780,21 @@
                             </div>
                         </div>
                     </div>
-                    <!-- additional settings -->
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingmoresettings">
-                            <button id="moreSettingsAccordionButton" class="accordion-button collapsed" type="button"
-                                data-bs-toggle="collapse" data-bs-target="#collapsemoresettings" aria-expanded="false"
-                                aria-controls="collapsemoresettings">
-                                <img id="gearImage" height=20 width=20 alt="" />
-                                <span>&nbsp;Additional Settings</span>
+                    <div class="accordion-item settings-group-accordion">
+                        <h2 class="accordion-header" id="headingtonespacing">
+                            <button id="toneSettingsAccordionButton" class="accordion-button collapsed" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#collapsetonespacing" aria-expanded="false"
+                                aria-controls="collapsetonespacing">
+                                <img height=20 width=20 alt="" data-bind="attr:{src: morseLoadImages().getSrc('musicnoteImage')}" />
+                                <span>&nbsp;Tone &amp; spacing Settings</span>
                             </button>
                         </h2>
-                        <div id="collapsemoresettings" class="accordion-collapse collapse"
-                            aria-labelledby="headingmoresettings">
+                        <div id="collapsetonespacing" class="accordion-collapse collapse"
+                            aria-labelledby="headingtonespacing">
                             <div class="accordion-body">
-
-                                <div class="morse-settings-grid">
-                                    <div class="morse-settings-cell">
-                                        <fieldset class="morse-settings-fieldset h-100">
-                                            <legend class="morse-settings-legend">Tone &amp; spacing</legend>
-                                            <div class="d-flex flex-column gap-2">
+                                <fieldset class="morse-settings-fieldset">
+                                    <legend class="morse-settings-legend">Tone &amp; spacing</legend>
+                                    <div class="d-flex flex-column gap-2">
                                                 <div class="input-group flex-wrap">
                                                     <label for="ditFrequency" class="input-group-text">DIT&nbsp;<img
                                                             id="musicnoteImage" height=20 width=20 alt="" /></label>
@@ -661,51 +854,93 @@
                                                         title="Text size when displaying cards">
                                                 </div>
                                             </div>
-                                        </fieldset>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item settings-group-accordion">
+                        <h2 class="accordion-header" id="headingcustominput">
+                            <button id="customInputAccordionButton" class="accordion-button collapsed" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#collapsecustominput" aria-expanded="false"
+                                aria-controls="collapsecustominput">
+                                <img height=20 width=20 alt="" data-bind="attr:{src: morseLoadImages().getSrc('uploadImage')}" />
+                                <span>&nbsp;Custom Input</span>
+                            </button>
+                        </h2>
+                        <div id="collapsecustominput" class="accordion-collapse collapse"
+                            aria-labelledby="headingcustominput">
+                            <div class="accordion-body">
+                                <fieldset class="morse-settings-fieldset">
+                                    <legend class="morse-settings-legend">Practice text</legend>
+                                    <div class="settings-lesson-control-strip custom-input-actions">
+                                        <div class="settings-lesson-control">
+                                            <input type="checkbox" class="btn-check" id="btncheckshowraw" autocomplete="off"
+                                                data-bind="checked: showRaw" aria-label="Show working text">
+                                            <label class="btn btn-outline-primary" for="btncheckshowraw"
+                                                aria-hidden="true" title="Show or hide practice text">
+                                                <img alt="" height="20" width="20"
+                                                    data-bind="attr:{ src: showRaw() ? morseLoadImages().getSrc('eyeImage') : morseLoadImages().getSrc('eyeslashImage')}" />
+                                                <span data-bind="text: showRaw() ? 'Hide text' : 'View text'"></span>
+                                            </label>
+                                        </div>
+                                        <div class="settings-lesson-control">
+                                            <button id="btnClearText" type="button" class="btn btn-outline-primary"
+                                                data-bind="click: doClear">
+                                                <img height="20" width="20" alt=""
+                                                    data-bind="attr:{ src: morseLoadImages().getSrc('trashImage')}" />&nbsp;Clear
+                                            </button>
+                                        </div>
+                                        <div class="settings-lesson-control">
+                                            <label id="lblLoadTextFile" class="mb-0" for="txtfiletoread">
+                                                <button id="btnLoadTextFile" type="button" class="btn btn-outline-primary"
+                                                    onclick="getElementById('txtfiletoread').click()">
+                                                    <img height="20" width="20" alt=""
+                                                        data-bind="attr:{ src: morseLoadImages().getSrc('arrowleftImage')}" />&nbsp;Insert File
+                                                </button>
+                                            </label>
+                                            <input type="file" accept=".txt" id="txtfiletoread" class="form-control"
+                                                data-bind="event: {change: function() { inputFileChange($element) } }" hidden>
+                                        </div>
                                     </div>
-                                    <div class="morse-settings-cell">
-                                        <fieldset class="morse-settings-fieldset h-100">
-                                            <legend class="morse-settings-legend">Lesson options</legend>
-                                            <div class="btn-group-vertical w-100" role="group">
-                                                <input aria-label="Randomize" type="checkbox" class="btn-check"
-                                                    autocomplete="off" id="btncheck1"
-                                                    data-bind="checked: lessons.randomizeLessons">
-                                                <label aria-hidden="true" class="btn btn-outline-primary"
-                                                    for="btncheck1">Randomize&nbsp;<img
-                                                        data-bind="attr:{ src: lessons.randomizeLessons() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
-                                                <input aria-label="Auto close" type="checkbox" class="btn-check"
-                                                    autocomplete="off" id="btncheckautoclose"
-                                                    data-bind="checked: lessons.autoCloseLessonAccordion">
-                                                <label aria-hidden="true" class="btn btn-outline-primary"
-                                                    for="btncheckautoclose">Auto Close&nbsp;<img
-                                                        data-bind="attr:{ src: lessons.autoCloseLessonAccordion() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
-                                                <input aria-label="Sticky sets" type="checkbox" class="btn-check"
-                                                    id="btncheck2stickysetstoggle" autocomplete="off"
-                                                    data-bind="checked: lessons.ifStickySets">
-                                                <label aria-hidden="true" class="btn btn-outline-primary"
-                                                    for="btncheck2stickysetstoggle">Sticky Sets&nbsp;<img
-                                                        data-bind="attr:{ src: lessons.ifStickySets() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
-                                                <input type="text" class="form-control"
-                                                    aria-label="Sticky set text"
-                                                    data-bind="textInput: lessons.stickySets, enable: lessons.ifStickySets">
-                                            </div>
-                                        </fieldset>
+                                    <div class="custom-input-editor" data-bind="visible: showRaw">
+                                        <p role="note" class="sr-only">The following textarea contains the text that will be used
+                                            for practice. This can be set manually or selected using the options found in the LICW
+                                            Lessons section.</p>
+                                        <textarea data-bind="textInput: showingText" class="form-control working-text-area"
+                                            aria-label="Working text" rows="4"></textarea>
                                     </div>
-                                    <div class="morse-settings-cell">
-                                        <fieldset class="morse-settings-fieldset h-100">
-                                            <legend class="morse-settings-legend">Output</legend>
-                                            <div class="d-flex flex-column gap-2">
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item settings-group-accordion">
+                        <h2 class="accordion-header" id="headingoutputsettings">
+                            <button id="outputSettingsAccordionButton" class="accordion-button collapsed" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#collapseoutputsettings" aria-expanded="false"
+                                aria-controls="collapseoutputsettings">
+                                <img height=20 width=20 alt="" data-bind="attr:{src: morseLoadImages().getSrc('grid3x3gapImage')}" />
+                                <span>&nbsp;Output Settings</span>
+                            </button>
+                        </h2>
+                        <div id="collapseoutputsettings" class="accordion-collapse collapse"
+                            aria-labelledby="headingoutputsettings">
+                            <div class="accordion-body">
+                                <fieldset class="morse-settings-fieldset">
+                                    <legend class="morse-settings-legend">Output</legend>
+                                    <div class="d-flex flex-wrap gap-2 align-items-center output-settings-actions">
                                                 <input type="checkbox" class="btn-check" autocomplete="off"
                                                     id="btncheckcardsvisible" data-bind="checked: cardsVisible"
                                                     title="Toggles card visibility" aria-label="Cards">
-                                                <label class="btn btn-outline-primary w-100"
+                                                <label class="btn btn-outline-primary"
                                                     for="btncheckcardsvisible" aria-hidden="true">
                                                     <img data-bind="attr:{ src: morseLoadImages().getSrc('grid3x3gapImage')}"
                                                         alt="">&nbsp;Cards&nbsp;
                                                     <img data-bind="attr:{ src: cardsVisible() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}"
                                                         alt="" />
                                                 </label>
-                                                <button type="button" class="btn btn-success w-100"
+                                                <button type="button" class="btn btn-success"
                                                     data-bind="click: doDownload"
                                                     title="Downloads an audio file using the current settings">
                                                     <img id="downloadImage" alt="">
@@ -713,151 +948,7 @@
                                                 </button>
                                                 <a id="downloadLink"></a>
                                             </div>
-                                        </fieldset>
-                                    </div>
-
-                                    <div class="morse-settings-cell morse-settings-cell-wide">
-                                        <fieldset class="morse-settings-fieldset h-100">
-                                            <legend class="morse-settings-legend">Trail</legend>
-                                            <div class="input-group flex-wrap trail-settings-row"
-                                                title="Automatic card revealing">
-                                                <input type="checkbox" data-bind="checked: trailReveal"
-                                                    class="btn-check" id="btntrailReveal" autocomplete="off"
-                                                    title="Reveals hidden cards after they have been played" />
-                                                <label class="btn btn-outline-secondary" for="btntrailReveal">
-                                                    <span>Trail&nbsp;</span>
-                                                    <img height=20 width=20
-                                                        data-bind="attr:{ src: trailReveal() ? morseLoadImages().getSrc('eyeImage') : morseLoadImages().getSrc('eyeslashImage')}"
-                                                        alt="" />
-                                                </label>
-                                                <label for="trailPreDelay" class="input-group-text">Pre&nbsp;
-                                                    <img data-bind="attr:{ src: morseLoadImages().getSrc('stopwatchImage')}"
-                                                        height="20" width="20" alt="" />
-                                                </label>
-                                                <input id="trailPreDelay" name="trailPreDelay" type="number"
-                                                    class="form-control morse-settings-num"
-                                                    min="0" step=".25"
-                                                    data-bind="textInput: trailPreDelay, enable: trailReveal()"
-                                                    title="Delay before revealing a card upon playback">
-                                                <label for="trailPostDelay" class="input-group-text">Post&nbsp;
-                                                    <img data-bind="attr:{ src: morseLoadImages().getSrc('stopwatchImage')}"
-                                                        height="20" width="20" alt="" />
-                                                </label>
-                                                <input id="trailPostDelay" name="trailPostDelay" type="number"
-                                                    class="form-control morse-settings-num"
-                                                    min="0" step=".25"
-                                                    data-bind="textInput: trailPostDelay, enable: trailReveal()"
-                                                    title="Delay after revealing a card upon playback">
-                                                <label for="trailFinal" class="input-group-text">Final&nbsp;
-                                                    <img data-bind="attr:{ src: morseLoadImages().getSrc('stopwatchImage')}"
-                                                        alt="" />
-                                                </label>
-                                                <input id="trailFinal" name="trailFinal" type="number"
-                                                    class="form-control morse-settings-num"
-                                                    min="0" step=".25"
-                                                    data-bind="textInput: trailFinal, enable: trailReveal()"
-                                                    title="Delay after revealing the final card upon playback">
-                                            </div>
-                                        </fieldset>
-                                    </div>
-                                </div>
-                                <hr class="settings-section-divider my-3" />
-                                <div class="row row-cols-5 gx-2 gy-2">
-
-                                    <!--speed intervals-->
-                                    <div class="input-group">
-                                        <div class="col-auto">
-
-                                            <input type="checkbox" class="btn-check" autocomplete="off"
-                                                id="btncheckspeedinterval" name="btncheckspeedinterval"
-                                                aria-label="Speed Intervals"
-                                                data-bind="checked: settings.speed.speedInterval"
-                                                title="Enables variable speeds in time intervals you define">
-                                            <label class="btn btn-outline-primary" for="btncheckspeedinterval"
-                                                aria-hidden="true">
-                                                <img data-bind="attr:{ src: morseLoadImages().getSrc('rocketTakeoffImage')}"
-                                                    alt="">&nbsp;Speed Intervals&nbsp;
-                                                <img data-bind="attr:{ src: settings.speed.speedInterval() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}"
-                                                    alt="" />
-                                            </label>
-
-                                        </div>
-
-                                        <label for="intervalTimingsText" class="input-group-text"
-                                            data-bind="visible: settings.speed.speedInterval()">Timings&nbsp;
-                                            <img data-bind="attr:{ src: morseLoadImages().getSrc('stopwatchImage')}"
-                                                height="20" width="20" alt="" />
-                                        </label>
-                                        <input id="intervalTimingsText" name="intervalTimingsText" type="text"
-                                            style="max-width:200px; min-width: 200px;" class="form-control"
-                                            data-bind="textInput: settings.speed.intervalTimingsText, enable: settings.speed.speedInterval(), visible: settings.speed.speedInterval()"
-                                            title="Comma-separated interval durations">
-                                        <label for="intervalWpmText" class="input-group-text"
-                                            data-bind="visible: settings.speed.speedInterval()">WPM&nbsp;</label>
-                                        <input id="intervalWpmText" name="intervalWpmText" type="text"
-                                            style="max-width:200px; min-width: 200px;" class="form-control"
-                                            data-bind="textInput: settings.speed.intervalWpmText, enable: settings.speed.speedInterval(), visible: settings.speed.speedInterval()"
-                                            title="Comma-separated character WPM speeds for each interval">
-                                        <label for="intervalFwpmText" class="input-group-text"
-                                            data-bind="visible: settings.speed.speedInterval()">FWPM&nbsp;</label>
-                                        <input id="intervalFwpmText" name="intervalFwpmText" type="text"
-                                            style="max-width:200px; min-width: 200px;" class="form-control"
-                                            data-bind="textInput: settings.speed.intervalFwpmText, enable: settings.speed.speedInterval(), visible: settings.speed.speedInterval()"
-                                            title="Comma-separated FWPM speeds for each interval">
-
-                                    </div>
-
-                                    <!--noise toggle-->
-                                    <div class="col-auto" data-bind="visible: !noiseHidden">
-
-                                        <input type="checkbox" class="btn-check" autocomplete="off" id="btnchecknoise"
-                                            data-bind="checked: noiseEnabled" aria-label="Noise"
-                                            title="Toggles display of the experimental Noise settings accordion">
-                                        <label class=" btn btn-outline-primary" for="btnchecknoise"
-                                            aria-hidden="true"><img
-                                                data-bind="attr:{ src: morseLoadImages().getSrc('soundwaveImage')}">&nbsp;Noise&nbsp;<img
-                                                data-bind="attr:{ src: noiseEnabled() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}"
-                                                alt="" /></label>
-                                    </div>
-
-                                    <!--repeats-->
-                                    <div class="input-group">
-                                        <div class="col-md-auto">
-                                            <div class="input-group">
-                                                <label for="numberOfRepeats" class="input-group-text">Repeats&nbsp;<img
-                                                        width=20 height=20
-                                                        data-bind="attr:{ src: morseLoadImages().getSrc('repeatImage')}"
-                                                        alt=""></label>
-                                                <input id="numberOfRepeats" name="numberOfRepeats" type="number"
-                                                    style="max-width:75px; min-width: 75px;" class="form-control"
-                                                    min="0" max="10" step="1" data-bind="textInput: numberOfRepeats">
-                                                <label for="speakFirstAdditionalWordspaces"
-                                                    class="input-group-text">Repeat
-                                                    Spacing<img width=20 height=20
-                                                        data-bind="attr:{ src: morseLoadImages().getSrc('stopwatchImage')}"
-                                                        alt=""></label>
-                                                <input id="speakFirstAdditionalWordspaces"
-                                                    name="speakFirstAdditionalWordspaces" type="number"
-                                                    style="max-width:75px; min-width: 75px;" class="form-control"
-                                                    min="0" max="10" step="1"
-                                                    data-bind="textInput: morseVoice.speakFirstAdditionalWordspaces">
-                                                <!-- ko if: adminMode() -->
-                                                <input type="checkbox" class="btn-check" autocomplete="off"
-                                                    aria-label="Shuffle Intra-group" id="btnshuffleintragroup"
-                                                    data-bind="checked: shuffleIntraGroup">
-                                                <label class=" btn btn-outline-primary" for="btnshuffleintragroup"
-                                                    aria-hidden="true">
-                                                    &nbsp;Shuffle Intra-group&nbsp;
-                                                    <img
-                                                        data-bind="attr:{ src: shuffleIntraGroup() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" />
-                                                </label>
-                                                <!-- /ko -->
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-
+                                </fieldset>
                             </div>
                         </div>
                     </div>
@@ -885,97 +976,25 @@
 
             <!-- working text area-->
             <section class="col working-text-section" title="Working text" aria-label="Working text">
-                <div class="row g-2 flex-column flex-lg-row">
-                    <div class="col">
-                        <div class="input-group">
-                            <span class="input-group-text" data-bind="click: ()=>showRaw(!showRaw())">
-                                <div class="container gx-0 px-0">
-                                    <div class="row row-cols-1 justify-content-center">
-                                        <div class="col-md-auto">
-                                            <input type="image" alt="Show raw text" role="checkbox" height=32 width=32
-                                                data-bind="attr:{ 'aria-checked': showRaw(), src: showRaw() ? morseLoadImages().getSrc('eyeImage') : morseLoadImages().getSrc('eyeslashImage')}" />
-                                        </div>
-
-                                    </div>
-
-                                    <!------->
-                                    <!--
-                                    <div class="row row-cols-1 gx-0">
-
-                                        <div class="col-auto text-end" style="width: 60px;">
-                                            <span id="estimated-time-label" class="sr-only">Estimated time</span>
-                                            <span aria-hidden="true">Est <img alt="" height="15" width="15"
-                                                    data-bind="attr:{src: morseLoadImages().getSrc('stopwatchImage')}">:&nbsp;</span>
-                                        </div>
-                                        <div class="col-auto">
-                                            <span aria-describedby="estimated-time-label" class="sr-only"
-                                                data-bind="text: '' + timeEstimate().minutes + ':' + timeEstimate().normedSeconds"></span>
-                                            <span aria-hidden="true"><span
-                                                    data-bind="text: timeEstimate().minutes"></span>:<span
-                                                    data-bind="text: timeEstimate().normedSeconds"></span></span>
-
-                                        </div>
-                                    </div>
-                                    -->
-                                    <div class="row row-cols-1 gx-0">
-                                        <div class="col-auto text-end" style="width: 60px;">
-                                            <span id="play-time-label" class="sr-only">Play time</span>
-                                            <span aria-hidden="true">Play <img alt="" height="15" width="15"
-                                                    data-bind="attr:{src: morseLoadImages().getSrc('stopwatchImage')}">:&nbsp;</span>
-                                        </div>
-                                        <div class="col-auto">
-                                            <span aria-describedby="play-time-label" class="sr-only"
-                                                data-bind="text: '' + playingTime().minutes + ':' + playingTime().normedSeconds"></span>
-                                            <span aria-hidden="true"><span
-                                                    data-bind="text: playingTime().minutes"></span>:<span
-                                                    data-bind="text: playingTime().normedSeconds"></span></span>
-                                        </div>
-                                    </div>
-
-                                    <div class="row row-cols-1 gx-0">
-                                        <div class="col-auto text-end" style="width: 60px;">
-                                            <span id="characters-played-label" class="sr-only">Characters played</span>
-                                            <span aria-hidden="true">Chars
-                                                <!-- <img height="15" width="15"
-                                                    data-bind="attr:{src: morseLoadImages().getSrc('stopwatchImage')}"> -->:&nbsp;
-                                            </span>
-                                        </div>
-                                        <div class="col-auto">
-                                            <span aria-describedby="characters-played-label" class="sr-only"
-                                                data-bind="text: charsPlayed() + ' of ' + rawTextCharCount()"></span>
-                                            <span aria-hidden="true"><span data-bind="text: charsPlayed()"></span>/<span
-                                                    data-bind="text: rawTextCharCount()"></span></span>
-                                        </div>
-                                    </div>
-                                    <!------->
-
-                                </div>
+                <div class="working-text-layout">
+                    <div class="working-text-stats" aria-live="polite">
+                        <div class="working-text-stat-row">
+                            <span id="play-time-label" class="working-text-stat-label">Play</span>
+                            <span class="working-text-stat-value" aria-describedby="play-time-label">
+                                <img alt="" height="15" width="15"
+                                    data-bind="attr:{src: morseLoadImages().getSrc('stopwatchImage')}" />
+                                <span data-bind="text: playingTime().minutes"></span>:<span
+                                    data-bind="text: playingTime().normedSeconds"></span>
                             </span>
-
-
-
-                            <p role="note" class="sr-only">The following textarea contains the text that will be used
-                                for practice. This can be set manually or selected using the options found in the LICW
-                                Lessons section.</p>
-                            <textarea data-bind="textInput: showingText, enable: showRaw" class="form-control working-text-area"
-                                aria-label="Text" rows="6"></textarea>
                         </div>
-
-                    </div>
-                    <div class="col-md-auto">
-                        <div class="btn-group-vertical">
-                            <button id="btnClearText" class="btn btn-light" data-bind="click: doClear"><img
-                                    id="trashImage" height="20" width="20" />&nbsp;Clear</button>
-                            <label id="lblLoadTextFile" for="txtfiletoread"><button id="btnLoadTextFile"
-                                    class="btn btn-light" onclick="getElementById('txtfiletoread').click()"><img
-                                        id="arrowleftImage" height="20" width="20" />&nbsp;Insert File</button></label>
-
-                            <input type="file" accept=".txt" id="txtfiletoread" class="form-control"
-                                data-bind="event: {change: function() { inputFileChange($element) } }" hidden>
-
+                        <div class="working-text-stat-row">
+                            <span id="characters-played-label" class="working-text-stat-label">Chars</span>
+                            <span class="working-text-stat-value" aria-describedby="characters-played-label">
+                                <span data-bind="text: charsPlayed()"></span>/<span
+                                    data-bind="text: rawTextCharCount()"></span>
+                            </span>
                         </div>
                     </div>
-
                 </div>
             </section>
 
@@ -1069,28 +1088,57 @@
 
         </section>
 
-        <details id="keyboard-shortcuts">
-            <summary>Keyboard Shortcuts</summary>
-            <p>
-                The following keyboard shortcuts are available to help access commonly used features.
-            </p>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Keyboard shortcut</th>
-                        <th>Function</th>
-                    </tr>
-                </thead>
-                <tbody data-bind="foreach: allShortcutKeys">
-                    <tr>
-                        <td class="key"><span data-bind="text: $data.key"></td>
-                        <td class="function" data-bind="text: $data.title"></td>
-                    </tr>
-                </tbody>
-            </table>
-        </details>
-        <br>
-        <br>
+            <footer id="page-help-footer" class="col page-help-footer" aria-label="Help, credits, and keyboard shortcuts">
+                <h2 class="h5 mb-3">Help &amp; information</h2>
+
+                <details id="keyboard-shortcuts" class="page-help-shortcuts mb-4">
+                    <summary class="h6">Keyboard shortcuts</summary>
+                    <p class="page-help-shortcuts-intro">
+                        Use these keys while practicing (focus is not in a text field).
+                    </p>
+                    <table class="table table-sm table-striped page-help-shortcuts-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Key</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody data-bind="foreach: allShortcutKeys">
+                            <tr>
+                                <td class="key"><span data-bind="text: $data.key"></span></td>
+                                <td class="function" data-bind="text: $data.title"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </details>
+
+                <section id="credits-and-info" class="page-help-links" title="Credits and help links"
+                    aria-label="Credits and help links">
+                    <h3 class="h6">Credits &amp; help</h3>
+                    <p id="contributor-info" class="page-help-contributors">
+                        Morse Practice Page by KN4YRM, with assistance from AB5TN, KN6WKV, N1CC, VE3QBZ, VK5PL, WO6W, and W4EMB.
+                    </p>
+                    <ul class="page-help-link-list">
+                        <li>Audio engine adapted from <a href="https://morsecode.world/">SC Phillips</a>
+                            <a href="https://github.com/scp93ch/morse-pro">morse-pro</a>.</li>
+                        <li>Source code: <a href="https://github.com/LongIslandCW/morsebrowser/">Long Island CW Club GitHub<img
+                                id="githubImage" aria-hidden="true"></a>.</li>
+                        <li>Questions, bugs, or feature requests: <a href="mailto:AB5TN48@gmail.com">email the team</a>.</li>
+                        <li>Video walkthroughs: <a href="https://www.youtube.com/playlist?list=PLt-EzlLx2AKFY8NVxxPVBbPzR6s-Kz7tJ">YouTube playlist</a>.</li>
+                        <li>User guide: <a href="https://longislandcwclub.org/academic-downloads/">LICW academic downloads</a>
+                            or <a href="https://longislandcwclub.org/">longislandcwclub.org</a>.</li>
+                    </ul>
+                    <p class="warning mb-2" data-bind="if: isDev()">You are using the <strong>BETA</strong> build.
+                        Prefer the <a href="../">stable release</a>.</p>
+                    <p id="version-info" class="page-help-version mb-0">Version 1.13</p>
+                </section>
+
+                <section class="page-legal-notice" aria-label="Legal notice">
+                    <p class="mb-2">LICW™ is a trademark of the Long Island CW Club Inc.</p>
+                    <p class="mb-2">&copy; 2022-2026 Long Island CW Club Inc. All rights reserved.</p>
+                    <p class="mb-0">This work is the sole property of the Long Island CW Club Inc. (LICW). It may be downloaded and printed for the use of Long Island CW Club Inc. instructors and students. It may not be reproduced on paper or digitally for other purposes without the express consent of the Long Island CW Club Inc.</p>
+                </section>
+            </footer>
     </div>
 
     <status class="sr-only" aria-live="polite" aria-label="Latest status announcement">

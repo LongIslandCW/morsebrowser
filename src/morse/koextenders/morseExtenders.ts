@@ -101,6 +101,7 @@ export class MorseExtenders {
     // ctxt.rssEnabled.extend({ initRss: 'rssEnabled' })
     ctxt.showExpertSettings.extend({ saveCookie: 'showExpertSettings' } as ko.ObservableExtenderOptions<boolean>)
     ctxt.cardFontPx.extend({ saveCookie: 'cardFontPx' } as ko.ObservableExtenderOptions<boolean>)
+    ctxt.darkMode.extend({ saveCookie: 'darkMode' } as ko.ObservableExtenderOptions<boolean>)
 
     ctxt.rawText.extend({ undoIsShuffled: 'rawText' } as ko.ObservableExtenderOptions<boolean>)
     ctxt.playerPlaying.extend({ sWakeLock: 'playerPlaying' } as ko.ObservableExtenderOptions<boolean>)

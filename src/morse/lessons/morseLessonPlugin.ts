@@ -35,6 +35,7 @@ export default class MorseLessonPlugin implements ICookieHandler {
   randomizeLessons:ko.Observable<boolean>
   ifOverrideTime:ko.Observable<boolean>
   overrideMins:ko.Observable<number>
+  ifCustomGroup:ko.Observable<boolean>
   customGroup:ko.Observable<string>
   ifOverrideMinMax:ko.Observable<boolean>
   trueOverrideMin:ko.Observable<number>
@@ -56,6 +57,7 @@ export default class MorseLessonPlugin implements ICookieHandler {
   yourSettingsDummy:SettingsOption
   customSettingsOptions:SettingsOption[] = []
   queryStringSettingsOn:boolean = false
+  lessonPickerDomInitialized:boolean = false
 
   constructor (morseSettings:MorseSettings, setTextCallBack:any, timeEstimateCallback:any, morseViewModel:MorseViewModel) {
     MorseCookies.registerHandler(this)
@@ -92,6 +94,7 @@ export default class MorseLessonPlugin implements ICookieHandler {
     this.randomizeLessons = ko.observable(true)
     this.ifOverrideTime = ko.observable(false)
     this.overrideMins = ko.observable(2)
+    this.ifCustomGroup = ko.observable(false)
     this.customGroup = ko.observable('')
     this.ifOverrideMinMax = ko.observable(false)
     this.trueOverrideMin = ko.observable(3)
@@ -140,8 +143,6 @@ export default class MorseLessonPlugin implements ICookieHandler {
     }, this)
 
     this.classes = ko.computed(() => {
-      this.selectedClassInitialized = false
-      this.selectedClass('')
       const cls = []
       this.wordLists().forEach((x) => {
         if (!cls.find((y) => y === x.class) && x.userTarget === this.userTarget()) {
@@ -152,18 +153,9 @@ export default class MorseLessonPlugin implements ICookieHandler {
     }, this)
 
     this.letterGroups = ko.computed(() => {
-      this.letterGroupInitialized = false
-      this.letterGroup('')
       const lgs = []
       if (this.selectedClass() === '' || this.userTarget() === '') {
-        const missing = []
-        if (this.selectedClass() === '') {
-          missing.push('class')
-        }
-        if (this.userTarget() === '') {
-          missing.push('user')
-        }
-        return [`Select ${missing.join(', ')}`]
+        return lgs
       }
       this.wordLists().filter((list) => list.class === this.selectedClass() && list.userTarget === this.userTarget())
         .forEach((x) => {
@@ -175,8 +167,6 @@ export default class MorseLessonPlugin implements ICookieHandler {
     }, this)
 
     this.displays = ko.computed(() => {
-      this.displaysInitialized = false
-      this.selectedDisplay({})
       const dps = []
       if (this.selectedClass() === '' || this.userTarget() === '' || this.letterGroup() === '') {
         return [{ display: 'Select Content', fileName: 'dummy.txt', isDummy: true }]
@@ -191,6 +181,34 @@ export default class MorseLessonPlugin implements ICookieHandler {
         })
       return dps
     }, this)
+
+    this.setupLessonPickerCascade()
+  }
+
+  setupLessonPickerCascade = () => {
+    this.userTarget.subscribe(() => {
+      if (!this.userTargetInitialized) {
+        return
+      }
+      this.selectedClass('')
+      this.letterGroup('')
+      this.selectedDisplay({})
+    })
+
+    this.selectedClass.subscribe(() => {
+      if (!this.selectedClassInitialized) {
+        return
+      }
+      this.letterGroup('')
+      this.selectedDisplay({})
+    })
+
+    this.letterGroup.subscribe(() => {
+      if (!this.letterGroupInitialized) {
+        return
+      }
+      this.selectedDisplay({})
+    })
   }
 
   // end constructor
@@ -283,6 +301,7 @@ export default class MorseLessonPlugin implements ICookieHandler {
         this.setPresetSelected(this.settingsPresets()[0])
       }
       handleAutoSelect()
+      this.ensureSettingsPresetsInitialized()
     }
 
     if (this.selectedClass() === '') {
@@ -291,6 +310,7 @@ export default class MorseLessonPlugin implements ICookieHandler {
         this.settingsPresets(sps)
         this.setPresetSelected(this.settingsPresets()[0])
         handleAutoSelect()
+        this.ensureSettingsPresetsInitialized()
       }
     } else {
       const targetClass = ClassPresets.classes.find(c => c.className === this.selectedClass())
@@ -312,13 +332,14 @@ export default class MorseLessonPlugin implements ICookieHandler {
           // no matches so use default
           this.settingsPresets(sps)
           handleAutoSelect()
+          this.ensureSettingsPresetsInitialized()
         }
       }
     }
   }
 
   doCustomGroup = () => {
-    if (this.customGroup()) {
+    if (this.ifCustomGroup() && this.customGroup()) {
       const data = { letters: this.customGroup().trim().replace(/ /g, '') }
       this.randomWordList(data, true)
       this.closeLessonAccordianIfAutoClosing()
@@ -549,7 +570,10 @@ export default class MorseLessonPlugin implements ICookieHandler {
       this.removeQueryStringVariable('selectedGroup')
       this.removeQueryStringVariable('selectedLesson')
     } */
-    if (this.letterGroupInitialized) {
+    if (!letterGroup || letterGroup.startsWith('Select ')) {
+      return
+    }
+    if (this.letterGroupInitialized || fromClick === 'click') {
       // console.log('setlettergroup')
       this.letterGroup(letterGroup)
       //console.log('calling setPresetSelected from setLetterGroup')
@@ -713,8 +737,29 @@ export default class MorseLessonPlugin implements ICookieHandler {
     }
   }
 
+  ensureSettingsPresetsInitialized = () => {
+    if (!this.settingsPresetsInitialized) {
+      this.setSettingsPresetsInitialized()
+    }
+  }
+
+  initializeLessonPickers = () => {
+    if (this.lessonPickerDomInitialized) {
+      return
+    }
+    this.lessonPickerDomInitialized = true
+    this.setUserTargetInitialized()
+    this.setSelectedClassInitialized()
+    this.setLetterGroupInitialized()
+    this.setDisplaysInitialized()
+    this.ensureSettingsPresetsInitialized()
+  }
+
   initializeWordList = () => {
     this.wordLists(WordListsJson.fileOptions)
+    ko.tasks.schedule(() => {
+      this.initializeLessonPickers()
+    })
   }
 
   // cookie handling
@@ -737,6 +782,12 @@ export default class MorseLessonPlugin implements ICookieHandler {
     target = cookies.find(x => x.key === 'customGroup')
     if (target) {
       this.customGroup(target.val)
+    }
+    target = cookies.find(x => x.key === 'ifCustomGroup')
+    if (target) {
+      this.ifCustomGroup(GeneralUtils.booleanize(target.val))
+    } else if (this.customGroup()?.trim()) {
+      this.ifCustomGroup(true)
     }
     target = cookies.find(x => x.key === 'overrideSize')
     if (target) {
