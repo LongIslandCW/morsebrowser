@@ -252,6 +252,7 @@
     --bs-table-active-bg: #2f3642;
     --bs-table-hover-color: var(--bs-body-color);
     --bs-table-hover-bg: #2a3140;
+
     color: var(--bs-body-color);
     border-color: var(--bs-border-color);
 }
@@ -270,6 +271,7 @@
 
 [data-theme="dark"] #keyboard-shortcuts .table-striped > tbody > tr:nth-of-type(odd) > * {
     --bs-table-accent-bg: var(--bs-table-striped-bg);
+
     color: var(--bs-table-striped-color);
 }
 

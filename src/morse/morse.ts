@@ -478,9 +478,6 @@ export class MorseViewModel {
     if (!this.rawText().trim()) {
       return
     }
-    if (fromPlayButton) {
-      this.collapseSettingsAccordions()
-    }
     // we get here several ways:
     // 1. user presses play for the first time
     // 1a. set prespaceused to false, so it will get used.
@@ -491,6 +488,9 @@ export class MorseViewModel {
     // 4. user might press play to re-play a word
     const wasPlayerPlaying = this.playerPlaying()
     const freshStart = fromPlayButton && !wasPlayerPlaying
+    if (freshStart) {
+      this.collapseSettingsAccordions()
+    }
     if (!this.lastPlayFullStart || (this.lastFullPlayTime() > this.lastPlayFullStart)) {
       this.lastPlayFullStart = Date.now()
     }
@@ -844,7 +844,7 @@ export class MorseViewModel {
         if (!this.loopnoshuffle()) {
           this.shuffleWords(true)
         }
-        this.doPlay(false, true)
+        this.doPlay(false, false)
       }
     }, true)
     if (fullRewind) {
