@@ -1,0 +1,73 @@
+import * as ko from 'knockout'
+import { describe, expect, it } from 'vitest'
+import MorseSettingsHandler from '../../../src/morse/settings/morseSettingsHandler'
+import MorseLessonPlugin from '../../../src/morse/lessons/morseLessonPlugin'
+
+function createMockMorseViewModel () {
+  const yourSettingsDummy = { display: 'Your Settings', filename: 'dummy.json', isDummy: true }
+  const lessons = {
+    stickySets: ko.observable(''),
+    ifStickySets: ko.observable(false),
+    autoCloseLessonAccordion: ko.observable(false),
+    ifCustomGroup: ko.observable(true),
+    customGroup: ko.observable('ABC'),
+    syncSize: ko.observable(true),
+    ifOverrideMinMax: ko.observable(false),
+    overrideMin: ko.observable(3),
+    overrideMax: ko.observable(3)
+  } as unknown as MorseLessonPlugin
+
+  return {
+    settings: {
+      speed: {
+        wpm: ko.observable(20),
+        fwpm: ko.observable(15),
+        syncWpm: ko.observable(true),
+        speedInterval: ko.observable(false),
+        intervalTimingsText: ko.observable(''),
+        intervalWpmText: ko.observable(''),
+        intervalFwpmText: ko.observable('')
+      },
+      misc: {
+        newlineChunking: ko.observable(false),
+        isMoreSettingsAccordionOpen: false
+      }
+    },
+    xtraWordSpaceDits: ko.observable(0),
+    volume: ko.observable(5),
+    hideList: ko.observable(false),
+    showRaw: ko.observable(false),
+    darkMode: ko.observable(true),
+    showExpertSettings: ko.observable(false),
+    numberOfRepeats: ko.observable(0),
+    cardSpace: ko.observable(1),
+    isShuffled: ko.observable(false),
+    shuffleIntraGroup: ko.observable(false),
+    lessons,
+    morseVoice: {
+      voiceEnabled: ko.observable(false),
+      voiceSpelling: ko.observable(false),
+      voiceThinkingTime: ko.observable(0),
+      voiceAfterThinkingTime: ko.observable(0),
+      voiceVolume: ko.observable(5),
+      voiceLastOnly: ko.observable(false),
+      manualVoice: ko.observable(false),
+      speakFirst: ko.observable(false),
+      speakFirstAdditionalWordspaces: ko.observable(0),
+      voiceBufferMaxLength: ko.observable(10)
+    }
+  }
+}
+
+describe('MorseSettingsHandler', () => {
+  it('serializes darkMode and ifCustomGroup', () => {
+    const vm = createMockMorseViewModel()
+    const settings = MorseSettingsHandler.getCurrentSerializedSettings(vm as never)
+    const keys = settings.morseSettings.map((s) => s.key)
+    expect(keys).toContain('darkMode')
+    expect(keys).toContain('ifCustomGroup')
+    expect(keys).toContain('customGroup')
+    const dark = settings.morseSettings.find((s) => s.key === 'darkMode')
+    expect(dark?.value).toBe(true)
+  })
+})

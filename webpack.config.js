@@ -87,7 +87,7 @@ module.exports = {
       {
         test: /\.tsx?$/,
         use: 'ts-loader',
-        exclude: /node_modules/
+        exclude: [/node_modules/, /tests/, /e2e/, /vitest\.config\.ts/]
       },
       {
         test: /\.html$/, // All Knockout.js component HTML templates

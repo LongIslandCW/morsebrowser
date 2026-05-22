@@ -5,6 +5,8 @@ dist
 morseLessonFinder.js
 morsePresetFinder.js
 .cursor
+test-results/
+playwright-report/
 
 # wrangler files
 .wrangler
