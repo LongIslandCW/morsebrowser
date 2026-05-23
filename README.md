@@ -1,6 +1,11 @@
 # Long Island CW Morse Practice Page Source Code Repository
 
-![logo](src/assets/CW-Club-logo-clear400-300x300.png)
+<!-- Logo swaps for GitHub light/dark theme (standard prefers-color-scheme) -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="src/assets/CW-Club-logo-dark-300x300.png">
+  <source media="(prefers-color-scheme: light)" srcset="src/assets/CW-Club-logo-clear400-300x300.png">
+  <img alt="Long Island CW Club logo" src="src/assets/CW-Club-logo-clear400-300x300.png" width="300" height="300">
+</picture>
 
 What is this?
 
