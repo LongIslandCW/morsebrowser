@@ -4,7 +4,6 @@ import MorseSettingsHandler from '../../../src/morse/settings/morseSettingsHandl
 import MorseLessonPlugin from '../../../src/morse/lessons/morseLessonPlugin'
 
 function createMockMorseViewModel () {
-  const yourSettingsDummy = { display: 'Your Settings', filename: 'dummy.json', isDummy: true }
   const lessons = {
     stickySets: ko.observable(''),
     ifStickySets: ko.observable(false),

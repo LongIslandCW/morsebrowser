@@ -22,7 +22,7 @@ export default defineConfig({
     }
   ],
   webServer: {
-    command: `npx --yes serve dist -l ${port}`,
+    command: `npx serve dist -l ${port}`,
     url: baseURL,
     reuseExistingServer: !process.env.CI,
     timeout: 120_000
