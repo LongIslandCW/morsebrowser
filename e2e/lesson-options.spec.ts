@@ -33,7 +33,8 @@ test('group override has apply and playback subgroups', async ({ page }) => {
 })
 
 test('shuffle intra-group is visible without admin mode query', async ({ page }) => {
-  await page.goto('/?adminMode=1')
+  await page.goto('/')
+  expect(page.url()).not.toMatch(/adminMode/i)
   await page.locator('#moreSettingsAccordionButton').click()
   await expect(page.getByLabel('Shuffle Intra-group')).toBeVisible()
 })
