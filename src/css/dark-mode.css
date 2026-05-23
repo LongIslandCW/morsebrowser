@@ -230,7 +230,13 @@
     border-color: var(--bs-border-color);
 }
 
+[data-theme="dark"] .morse-settings-fieldset .morse-settings-subfieldset {
+    background-color: var(--bs-body-bg);
+    border-color: var(--bs-border-color);
+}
+
 [data-theme="dark"] .morse-settings-legend,
+[data-theme="dark"] .morse-settings-sublegend,
 [data-theme="dark"] .page-help-version,
 [data-theme="dark"] .page-legal-notice,
 [data-theme="dark"] .page-help-shortcuts-intro {

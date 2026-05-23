@@ -36,4 +36,27 @@ describe('MorseLessonPlugin', () => {
     const displays = plugin.displays()
     expect(displays.some((d) => d.display === 'Lesson A')).toBe(true)
   })
+
+  it('doCustomGroup generates practice text using override size', () => {
+    let practiceText = ''
+    const { plugin } = createLessonPluginForTest()
+    plugin.setText = (s: string) => {
+      practiceText = s
+    }
+    plugin.getTimeEstimate = () => ({ timeCalcs: { totalTime: 60_000 } })
+    plugin.ifCustomGroup(true)
+    plugin.customGroup('AB')
+    plugin.overrideMins(0)
+    plugin.randomizeLessons(true)
+    plugin.ifOverrideMinMax(true)
+    plugin.overrideMin(2)
+    plugin.overrideMax(2)
+
+    plugin.doCustomGroup()
+
+    expect(practiceText.length).toBeGreaterThan(0)
+    for (const word of practiceText.split(/\s+/)) {
+      expect(word.length).toBe(2)
+    }
+  })
 })

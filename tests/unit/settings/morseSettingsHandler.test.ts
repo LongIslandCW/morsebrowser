@@ -59,14 +59,18 @@ function createMockMorseViewModel () {
 }
 
 describe('MorseSettingsHandler', () => {
-  it('serializes darkMode and ifCustomGroup', () => {
+  it('serializes darkMode, custom group, and shuffle intra-group', () => {
     const vm = createMockMorseViewModel()
+    vm.shuffleIntraGroup(true)
     const settings = MorseSettingsHandler.getCurrentSerializedSettings(vm as never)
     const keys = settings.morseSettings.map((s) => s.key)
     expect(keys).toContain('darkMode')
     expect(keys).toContain('ifCustomGroup')
     expect(keys).toContain('customGroup')
+    expect(keys).toContain('shuffleIntraGroup')
     const dark = settings.morseSettings.find((s) => s.key === 'darkMode')
     expect(dark?.value).toBe(true)
+    const shuffle = settings.morseSettings.find((s) => s.key === 'shuffleIntraGroup')
+    expect(shuffle?.value).toBe(true)
   })
 })

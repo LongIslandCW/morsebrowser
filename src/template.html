@@ -297,76 +297,100 @@
                                     <div class="col-12 col-lg">
                                     <fieldset class="morse-settings-fieldset h-100">
                                         <legend class="morse-settings-legend">Group &amp; override</legend>
-                                        <div class="settings-lesson-control-strip" aria-label="Custom group generation">
-                                            <p role="note" class="sr-only">
-                                                When Custom Group is selected and Apply is pressed, working text is
-                                                generated from the custom group text instead of from a lesson.
-                                            </p>
-                                            <div class="settings-lesson-control">
-                                                <input aria-label="Custom group" type="checkbox" class="btn-check"
-                                                    id="btncheckcustomgroup" autocomplete="off"
-                                                    data-bind="checked: lessons.ifCustomGroup">
-                                                <label aria-hidden="true" class="btn btn-outline-primary"
-                                                    for="btncheckcustomgroup">Custom
-                                                    Group&nbsp;<img
-                                                        data-bind="attr:{ src: lessons.ifCustomGroup() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
-                                                <input type="text" class="form-control"
-                                                    aria-label="Custom group text" min="0"
-                                                    data-bind="textInput: lessons.customGroup, visible: lessons.ifCustomGroup">
-                                            </div>
-                                            <div class="settings-lesson-control">
-                                                <input type="checkbox" class="btn-check" autocomplete="off"
-                                                    aria-label="Keep lines" id="btnchecknewlinechunking"
-                                                    data-bind="checked: settings.misc.newlineChunking">
-                                                <label aria-hidden="true" class="btn btn-outline-primary"
-                                                    for="btnchecknewlinechunking">Keep
-                                                    Lines&nbsp;<img
-                                                        data-bind="attr:{ src: settings.misc.newlineChunking() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
-                                            </div>
-                                            <div class="settings-lesson-control">
-                                                <input aria-label="Override time" type="checkbox" class="btn-check"
-                                                    id="btncheck2" autocomplete="off"
-                                                    data-bind="checked: lessons.ifOverrideTime">
-                                                <label aria-hidden="true" class="btn btn-outline-primary"
-                                                    for="btncheck2">Override
-                                                    Time&nbsp;<img
-                                                        data-bind="attr:{ src: lessons.ifOverrideTime() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
-                                                <div class="input-group" data-bind="visible: lessons.ifOverrideTime">
-                                                    <span aria-hidden="true" class="input-group-text">Mins</span>
-                                                    <input type="number" class="form-control morse-settings-num"
-                                                        aria-label="minutes" min="0"
-                                                        data-bind="textInput: lessons.overrideMins">
+                                        <div class="group-override-subgroups d-flex flex-column gap-3">
+                                            <fieldset class="morse-settings-subfieldset">
+                                                <legend class="morse-settings-sublegend">Apply to update text</legend>
+                                                <div class="settings-lesson-control-strip"
+                                                    aria-label="Lesson generation; press Apply to reload practice text">
+                                                    <p role="note" class="sr-only">
+                                                        Custom Group, Override Time, and Override Size take effect when
+                                                        Apply is pressed. With Custom Group on, text is generated from
+                                                        your custom group instead of the selected lesson.
+                                                    </p>
+                                                    <div class="settings-lesson-control">
+                                                        <input aria-label="Custom group" type="checkbox" class="btn-check"
+                                                            id="btncheckcustomgroup" autocomplete="off"
+                                                            data-bind="checked: lessons.ifCustomGroup">
+                                                        <label aria-hidden="true" class="btn btn-outline-primary"
+                                                            for="btncheckcustomgroup">Custom
+                                                            Group&nbsp;<img
+                                                                data-bind="attr:{ src: lessons.ifCustomGroup() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
+                                                        <input type="text" class="form-control"
+                                                            aria-label="Custom group text" min="0"
+                                                            data-bind="textInput: lessons.customGroup, visible: lessons.ifCustomGroup">
+                                                    </div>
+                                                    <div class="settings-lesson-control">
+                                                        <input aria-label="Override time" type="checkbox" class="btn-check"
+                                                            id="btncheck2" autocomplete="off"
+                                                            data-bind="checked: lessons.ifOverrideTime">
+                                                        <label aria-hidden="true" class="btn btn-outline-primary"
+                                                            for="btncheck2">Override
+                                                            Time&nbsp;<img
+                                                                data-bind="attr:{ src: lessons.ifOverrideTime() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
+                                                        <div class="input-group" data-bind="visible: lessons.ifOverrideTime">
+                                                            <span aria-hidden="true" class="input-group-text">Mins</span>
+                                                            <input type="number" class="form-control morse-settings-num"
+                                                                aria-label="minutes" min="0"
+                                                                data-bind="textInput: lessons.overrideMins">
+                                                        </div>
+                                                    </div>
+                                                    <div class="settings-lesson-control">
+                                                        <input aria-label="Override size" type="checkbox" class="btn-check"
+                                                            id="btncheck2overridesize" autocomplete="off"
+                                                            data-bind="checked: lessons.ifOverrideMinMax">
+                                                        <label aria-hidden="true" class="btn btn-outline-primary"
+                                                            for="btncheck2overridesize">Override
+                                                            Size&nbsp;<img
+                                                                data-bind="attr:{ src: lessons.ifOverrideMinMax() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
+                                                        <div class="input-group" data-bind="visible: lessons.ifOverrideMinMax">
+                                                            <span aria-hidden="true" class="input-group-text">Min</span>
+                                                            <input aria-label="Minimum" type="number"
+                                                                class="form-control morse-settings-num" min="1"
+                                                                data-bind="textInput: lessons.overrideMin">
+                                                        </div>
+                                                        <div class="input-group" data-bind="visible: lessons.ifOverrideMinMax">
+                                                            <span role="checkbox" aria-label="Sync minimum and maximum size"
+                                                                class="input-group-text"
+                                                                data-bind="click: ()=>lessons.syncSize(!lessons.syncSize()), attr: {'aria-checked': lessons.syncSize() ? 'true' : 'false'}">Max&nbsp;<img
+                                                                    aria-hidden="true"
+                                                                    data-bind="attr:{ src: lessons.syncSize() ? morseLoadImages().getSrc('lockImage') : morseLoadImages().getSrc('unlockImage')}" /></span>
+                                                            <input aria-label="Maximum" type="number"
+                                                                class="form-control morse-settings-num" min="1"
+                                                                data-bind="textInput: lessons.overrideMax, enable: !lessons.syncSize(), attr: { min: lessons.trueOverrideMin}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="settings-lesson-control">
+                                                        <button type="button" class="btn btn-primary" id="btnApply"
+                                                            data-bind="click: ()=>doApply(true), enable: applyEnabled">Apply</button>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="settings-lesson-control">
-                                                <input aria-label="Override size" type="checkbox" class="btn-check"
-                                                    id="btncheck2overridesize" autocomplete="off"
-                                                    data-bind="checked: lessons.ifOverrideMinMax">
-                                                <label aria-hidden="true" class="btn btn-outline-primary"
-                                                    for="btncheck2overridesize">Override
-                                                    Size&nbsp;<img
-                                                        data-bind="attr:{ src: lessons.ifOverrideMinMax() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
-                                                <div class="input-group" data-bind="visible: lessons.ifOverrideMinMax">
-                                                    <span aria-hidden="true" class="input-group-text">Min</span>
-                                                    <input aria-label="Minimum" type="number"
-                                                        class="form-control morse-settings-num" min="1"
-                                                        data-bind="textInput: lessons.overrideMin">
+                                            </fieldset>
+                                            <fieldset class="morse-settings-subfieldset">
+                                                <legend class="morse-settings-sublegend">During playback</legend>
+                                                <div class="settings-lesson-control-strip"
+                                                    aria-label="Playback options; effective immediately">
+                                                    <div class="settings-lesson-control">
+                                                        <input type="checkbox" class="btn-check" autocomplete="off"
+                                                            aria-label="Keep lines" id="btnchecknewlinechunking"
+                                                            data-bind="checked: settings.misc.newlineChunking">
+                                                        <label aria-hidden="true" class="btn btn-outline-primary"
+                                                            for="btnchecknewlinechunking">Keep
+                                                            Lines&nbsp;<img
+                                                                data-bind="attr:{ src: settings.misc.newlineChunking() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
+                                                    </div>
+                                                    <div class="settings-lesson-control">
+                                                        <input type="checkbox" class="btn-check" autocomplete="off"
+                                                            aria-label="Shuffle Intra-group" id="btnshuffleintragroup"
+                                                            data-bind="checked: shuffleIntraGroup">
+                                                        <label class=" btn btn-outline-primary" for="btnshuffleintragroup"
+                                                            aria-hidden="true">
+                                                            &nbsp;Shuffle Intra-group&nbsp;
+                                                            <img
+                                                                data-bind="attr:{ src: shuffleIntraGroup() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" />
+                                                        </label>
+                                                    </div>
                                                 </div>
-                                                <div class="input-group" data-bind="visible: lessons.ifOverrideMinMax">
-                                                    <span role="checkbox" aria-label="Sync minimum and maximum size"
-                                                        class="input-group-text"
-                                                        data-bind="click: ()=>lessons.syncSize(!lessons.syncSize()), attr: {'aria-checked': lessons.syncSize() ? 'true' : 'false'}">Max&nbsp;<img
-                                                            aria-hidden="true"
-                                                            data-bind="attr:{ src: lessons.syncSize() ? morseLoadImages().getSrc('lockImage') : morseLoadImages().getSrc('unlockImage')}" /></span>
-                                                    <input aria-label="Maximum" type="number"
-                                                        class="form-control morse-settings-num" min="1"
-                                                        data-bind="textInput: lessons.overrideMax, enable: !lessons.syncSize(), attr: { min: lessons.trueOverrideMin}">
-                                                </div>
-                                            </div>
-                                            <div class="settings-lesson-control">
-                                                <button type="button" class="btn btn-primary" id="btnApply"
-                                                    data-bind="click: ()=>doApply(true), enable: applyEnabled">Apply</button>
-                                            </div>
+                                            </fieldset>
                                         </div>
                                     </fieldset>
                                     </div>
@@ -482,17 +506,6 @@
                                                     style="max-width:75px; min-width: 75px;" class="form-control"
                                                     min="0" max="10" step="1"
                                                     data-bind="textInput: morseVoice.speakFirstAdditionalWordspaces">
-                                                <!-- ko if: adminMode() -->
-                                                <input type="checkbox" class="btn-check" autocomplete="off"
-                                                    aria-label="Shuffle Intra-group" id="btnshuffleintragroup"
-                                                    data-bind="checked: shuffleIntraGroup">
-                                                <label class=" btn btn-outline-primary" for="btnshuffleintragroup"
-                                                    aria-hidden="true">
-                                                    &nbsp;Shuffle Intra-group&nbsp;
-                                                    <img
-                                                        data-bind="attr:{ src: shuffleIntraGroup() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" />
-                                                </label>
-                                                <!-- /ko -->
                                             </div>
                                         </div>
                                     </div>
