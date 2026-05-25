@@ -24,12 +24,16 @@ import { SettingsChangeInfo } from './settings/settingsChangeInfo'
 import { VoiceBufferInfo } from './voice/VoiceBufferInfo'
 import { GeneralUtils } from './utils/general'
 import MorseSettingsHandler from './settings/morseSettingsHandler'
-import { clear, log } from 'console'
 import ScreenWakeLock from './utils/screenWakeLock'
 import { applyTheme } from './theme/theme'
 
+export interface ShortcutKeyEntry {
+  key: string
+  title: string
+}
+
 export class MorseViewModel {
-  accessibilityAnnouncement:ko.Observable<string> = ko.observable(undefined)
+  accessibilityAnnouncement:ko.Observable<string> = ko.observable('')
   textBuffer:ko.Observable<string> = ko.observable('')
   hideList:ko.Observable<boolean> = ko.observable(true)
   currentIndex:ko.Observable<number> = ko.observable(0)
@@ -42,16 +46,16 @@ export class MorseViewModel {
   trailReveal:ko.Observable<boolean> = ko.observable(false)
   preShuffled:string = ''
   morseWordPlayer:MorseWordPlayer
-  rawText:ko.Observable<string> = ko.observable()
+  rawText:ko.Observable<string> = ko.observable('')
   showingText:ko.Observable<string> = ko.observable('')
   showRaw:ko.Observable<boolean> = ko.observable(true)
   darkMode:ko.Observable<boolean> = ko.observable(false)
-  volume:ko.Observable<number> = ko.observable()
+  volume:ko.Observable<number> = ko.observable(0)
   noiseHidden:ko.Observable<boolean> = ko.observable(true)
   noiseEnabled:ko.Observable<boolean> = ko.observable(false)
   noiseVolume:ko.Observable<number> = ko.observable(2)
   noiseType:ko.Observable<string> = ko.observable('off')
-  lastPlayFullStart = null
+  lastPlayFullStart: number | null = null
   runningPlayMs:ko.Observable<number> = ko.observable(0)
   lastPartialPlayStart = ko.observable()
   isPaused:ko.Observable<boolean> = ko.observable(false)
@@ -92,14 +96,14 @@ export class MorseViewModel {
   allowSaveCookies:ko.Observable<boolean> = ko.observable(true)
   lockoutSaveCookiesTimerHandle:any = null
   currentSerializedSettings:any = null
-  allShortcutKeys:ko.ObservableArray
+  allShortcutKeys:ko.ObservableArray<ShortcutKeyEntry>
   applyEnabled:ko.Computed<boolean>
   numberOfRepeats:ko.Observable<number> = ko.observable(0)
   testTonePlaying:boolean = false
   testToneCount:number = 0
   testToneFlagHandle:any = 0
   screenWakeLock:ScreenWakeLock
-  logoClickCount:number =0
+  logoClickCount:number = 0
   cachedShuffle:boolean = false
   shuffleIntraGroup:ko.Observable<boolean> = ko.observable(false)
 
@@ -166,8 +170,9 @@ export class MorseViewModel {
     }
 
     // check for voicebuffermax
-    if (GeneralUtils.getParameterByName('voiceBufferMax')) {
-      this.morseVoice.voiceBufferMaxLength(parseInt(GeneralUtils.getParameterByName('voiceBufferMax')))
+    const voiceBufferMax = GeneralUtils.getParameterByName('voiceBufferMax')
+    if (voiceBufferMax) {
+      this.morseVoice.voiceBufferMaxLength(parseInt(voiceBufferMax, 10))
     }
     // are we on the dev site?
     this.isDev(window.location.href.toLowerCase().indexOf('/dev/') > -1)
@@ -183,7 +188,7 @@ export class MorseViewModel {
 
     // Keep track of registered shortcut keys in an observable array
     // so we can display them on the page without having to hard-code them.
-    this.allShortcutKeys = ko.observableArray([])
+    this.allShortcutKeys = ko.observableArray<ShortcutKeyEntry>([])
     this.shortcutKeys = new MorseShortcutKeys((key, title) => {
       this.allShortcutKeys.push({ key, title })
     })
@@ -372,14 +377,14 @@ export class MorseViewModel {
       this.doPause(true, false, false)
       this.setText(this.flaggedWords.flaggedWords())
       this.fullRewind()
-      document.getElementById('btnFlaggedWordsAccordianButton').click()
+      document.getElementById('btnFlaggedWordsAccordianButton')?.click()
     }
   }
 
   clearFlagged = () => {
     if (this.flaggedWords.flaggedWords().trim()) {
       this.flaggedWords.clear()
-      document.getElementById('btnFlaggedWordsAccordianButton').click()
+      document.getElementById('btnFlaggedWordsAccordianButton')?.click()
     }
   }
 
@@ -764,7 +769,11 @@ export class MorseViewModel {
   // used by recap
   speakVoiceBuffer = () => {
     if (this.morseVoice.voiceBuffer.length > 0) {
-      const phrase = this.morseVoice.voiceBuffer.shift().txt
+      const entry = this.morseVoice.voiceBuffer.shift()
+      if (!entry) {
+        return
+      }
+      const phrase = entry.txt
       // for reasons I can't recall, wordifyPunctuation adds pipe character
       // remove it
       const finalPhraseToSpeak = phrase.replace(/\|/g, ' ')
@@ -858,7 +867,11 @@ export class MorseViewModel {
     const file = element.files[0]
     const fr = new FileReader()
     fr.onload = (data) => {
-      this.setText(data.target.result as string)
+      const result = data.target?.result
+      if (typeof result !== 'string') {
+        return
+      }
+      this.setText(result)
       // need to clear or else won't fire if use clears the text area
       // and then tries to reload the same again
       element.value = null
@@ -878,10 +891,13 @@ export class MorseViewModel {
     const config = this.getMorseStringToWavBufferConfig(allWords)
     const wav = await this.morseWordPlayer.getWavAndSample(config)
     const ary = new Uint8Array(wav)
-    const link = document.getElementById('downloadLink')
-    const blob = new Blob([ary], { type: 'audio/wav' });
-    (link as any).href = URL.createObjectURL(blob);
-    (link as any).download = 'morse.wav'
+    const link = document.getElementById('downloadLink') as HTMLAnchorElement | null
+    if (!link) {
+      return
+    }
+    const blob = new Blob([ary], { type: 'audio/wav' })
+    link.href = URL.createObjectURL(blob)
+    link.download = 'morse.wav'
     link.dispatchEvent(new MouseEvent('click'))
   }
 
@@ -939,11 +955,11 @@ export class MorseViewModel {
     MorseSettingsHandler.settingsFileChange(element, this)
   }
 
-  logoClick = () => { 
+  logoClick = () => {
     console.log('logo clicked')
-    this.logoClickCount++;
+    this.logoClickCount++
     if (this.logoClickCount % 4 === 0) {
-      this.lessons.toggleQueryStringSettingsOn()    
+      this.lessons.toggleQueryStringSettingsOn()
     }
   }
 

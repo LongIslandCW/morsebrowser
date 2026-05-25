@@ -86,7 +86,7 @@ export default class MorseLessonPlugin implements ICookieHandler {
     this.selectedSettingsPreset = ko.observable(this.yourSettingsDummy)
     this.lastSelectedSettingsPreset = ko.observable(this.yourSettingsDummy)
     this.settingsOverridden = ko.observable(false)
-    this.wordLists = ko.observableArray([])
+    this.wordLists = ko.observableArray<FileOptionsInfo>([])
     this.setText = setTextCallBack
     this.getTimeEstimate = timeEstimateCallback
     this.ifStickySets = ko.observable(false)

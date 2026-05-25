@@ -54,7 +54,7 @@ export class MorseVoice implements ICookieHandler {
     this.voiceRate = ko.observable(1)
     this.voicePitch = ko.observable(1)
     this.voiceLang = ko.observable('en-us')
-    this.voiceVoices = ko.observableArray([])
+    this.voiceVoices = ko.observableArray<any>([])
     this.voiceBuffer = []
     this.voiceBufferMaxLength = ko.observable(1)
     this.voiceSpelling = ko.observable(true)

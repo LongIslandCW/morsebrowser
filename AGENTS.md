@@ -30,3 +30,4 @@ Roger opens upstream PRs manually with the team. Global rule: `~/.cursor/rules/f
 - Voice Options: sub-controls stay visible and are **disabled** when Voice is off (not hidden).
 - Header **Click here for help** scrolls to `#page-help-footer` (credits, bug/video/guide links, keyboard shortcuts).
 - Run `npm test` before PRs; E2E needs `npm run build` first (or use `npm run test:all`). See `tests/README.md`.
+- Architecture and build flow for humans/agents: `docs/DEVELOPER_GUIDE.md` (Mermaid diagrams in `docs/`).
