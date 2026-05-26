@@ -337,7 +337,7 @@ Tooltip / Toast / Popover are imported in `index.js` because accordions and some
 
 ## 6. TypeScript module map
 
-```
+```text
 src/
 ├── index.js                    # Webpack entry only
 ├── template.html               # Main UI (all data-bind)
@@ -459,7 +459,7 @@ Wordfiles are **bundled** via dynamic `import()` (not copied as loose files to `
 | `postbuild` | `zipdist.js`, `checklessons.js` |
 | `dev` | `webpack serve` :3000, watches template + CSS |
 | `test` | Vitest |
-| `test:e2e` | Playwright (needs built `dist/`) |
+| `test:e2e` | Playwright (needs `dist/` to be built first) |
 | `test:all` | unit + build + e2e |
 
 ### 8.2 Webpack flow
@@ -646,7 +646,7 @@ npm run build && npm run test:e2e
 
 ## Appendix: Repository map (top level)
 
-```
+```text
 morsebrowser_dev/
 ├── docs/                    ← this guide
 ├── src/                     ← application source
