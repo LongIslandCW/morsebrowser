@@ -7,12 +7,12 @@
         <span class="badge bg-success ms-1" data-bind="text: flaggedWords.flaggedWordsCount"></span>
     </p>
     <div class="input-group">
-        <span role="button" id="btnSetFlagged" class="input-group-text" data-bind="click: setFlagged"><img height="20" width="20"
+        <button type="button" id="btnSetFlagged" class="input-group-text" data-bind="click: setFlagged"><img height="20" width="20"
                 data-bind="attr:{src: morseLoadImages().getSrc('uploadImage')}" alt="">&nbsp;Load
             As
-            Text</span>
-        <span role="button" id="btnClearFlagged" class="input-group-text" data-bind="click: clearFlagged"><img height="20" width="20"
-                data-bind="attr:{src: morseLoadImages().getSrc('trashImage')}" alt="">&nbsp;Clear</span>
+            Text</button>
+        <button type="button" id="btnClearFlagged" class="input-group-text" data-bind="click: clearFlagged"><img height="20" width="20"
+                data-bind="attr:{src: morseLoadImages().getSrc('trashImage')}" alt="">&nbsp;Clear</button>
         <textarea data-bind="textInput: flaggedWords.flaggedWords" class="form-control"
             aria-label="Flagged Words"></textarea>
     </div>

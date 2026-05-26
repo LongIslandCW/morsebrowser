@@ -172,7 +172,10 @@ export class MorseViewModel {
     // check for voicebuffermax
     const voiceBufferMax = GeneralUtils.getParameterByName('voiceBufferMax')
     if (voiceBufferMax) {
-      this.morseVoice.voiceBufferMaxLength(parseInt(voiceBufferMax, 10))
+      const parsed = Number.parseInt(voiceBufferMax, 10)
+      if (Number.isInteger(parsed) && parsed > 0) {
+        this.morseVoice.voiceBufferMaxLength(parsed)
+      }
     }
     // are we on the dev site?
     this.isDev(window.location.href.toLowerCase().indexOf('/dev/') > -1)
@@ -894,9 +897,11 @@ export class MorseViewModel {
       return
     }
     const blob = new Blob([ary], { type: 'audio/wav' })
-    link.href = URL.createObjectURL(blob)
+    const objectUrl = URL.createObjectURL(blob)
+    link.href = objectUrl
     link.download = 'morse.wav'
     link.dispatchEvent(new MouseEvent('click'))
+    setTimeout(() => URL.revokeObjectURL(objectUrl), 0)
   }
 
   dummy = () => {
