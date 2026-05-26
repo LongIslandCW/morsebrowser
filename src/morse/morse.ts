@@ -377,14 +377,12 @@ export class MorseViewModel {
       this.doPause(true, false, false)
       this.setText(this.flaggedWords.flaggedWords())
       this.fullRewind()
-      document.getElementById('btnFlaggedWordsAccordianButton')?.click()
     }
   }
 
   clearFlagged = () => {
     if (this.flaggedWords.flaggedWords().trim()) {
       this.flaggedWords.clear()
-      document.getElementById('btnFlaggedWordsAccordianButton')?.click()
     }
   }
 

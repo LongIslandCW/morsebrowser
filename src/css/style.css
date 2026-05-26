@@ -129,18 +129,8 @@ section:last-of-type {
     min-width: 0;
 }
 
-.lesson-options-practice-row {
+.settings-lesson-options-panel > .morse-settings-fieldset {
     min-width: 0;
-}
-
-.lesson-options-practice-row > .col-lg-auto .settings-lesson-control-strip {
-    flex-wrap: nowrap;
-}
-
-@media (max-width: 991.98px) {
-    .lesson-options-practice-row > .col-lg-auto .settings-lesson-control-strip {
-        flex-wrap: wrap;
-    }
 }
 
 .settings-lesson-control-strip {
@@ -281,10 +271,6 @@ html {
     font-size: 0.875rem;
     font-weight: 600;
     color: var(--bs-secondary-color, #6c757d);
-}
-
-.group-override-subgroups {
-    min-width: 0;
 }
 
 .morse-settings-subfieldset {

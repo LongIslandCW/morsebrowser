@@ -185,25 +185,23 @@ flowchart LR
   L1[LICW Lessons - default expanded]
   L2[Lesson Options]
   L3[Voice Options]
-  L4[Tone and spacing]
-  L5[Custom Input]
-  L6[Output Settings]
+  L4[Tone Options]
+  L5[Input Options]
+  L6[Output Options]
   L7[RSS - if rssEnabled]
   L8[Noise - if noiseEnabled]
-  L9[Flagged words - component]
-  L1 --> L2 --> L3 --> L4 --> L5 --> L6 --> L7 --> L8 --> L9
+  L1 --> L2 --> L3 --> L4 --> L5 --> L6 --> L7 --> L8
 ```
 
 | Accordion | Key bindings / behavior |
 |-----------|-------------------------|
 | **LICW Lessons** | `lessons.userTarget`, `selectedClass`, `letterGroup`, `selectedDisplay`, `selectedSettingsPreset`; Bootstrap dropdowns + `foreach` |
-| **Lesson Options** | Trail, speed intervals, repeats, custom group, override time/size, keep lines, shuffle intra-group |
+| **Lesson Options** | Fieldsets: **Overrides**, **Playback**, **Timing**, **Trail** (last) — custom group, overrides, randomize, keep lines, shuffle intra-group, speed intervals, repeats, trail |
 | **Voice Options** | `morseVoice.*` — enabled, spell, speak-first, delays, speaker, pitch, rate |
-| **Tone & spacing** | Frequency, rise/decay, smoothing, dit timing, etc. |
-| **Custom Input** | `showRaw`, `showingText` textarea, clear, file insert |
-| **Output Settings** | `cardsVisible`, `doDownload` WAV |
+| **Tone Options** | `settings.frequency` DIT/DAH, Zero Beat test tone |
+| **Input Options** | `showRaw`, `showingText` textarea, clear, file insert; **Flagged cards** via `flaggedwordsaccordion` component |
+| **Output Options** | `preSpace`, `xtraWordSpaceDits`, `cardSpace`, `cardFontPx`, `cardsVisible`, `doDownload` WAV |
 | **RSS / Noise** | `<!-- ko if: ... -->` + `component: { name: '...' }` |
-| **Flagged words** | Always mounted as KO component |
 
 **Fresh Play** (not resume) collapses open accordion panels via `collapseSettingsAccordions()` in `morse.ts` (DOM class manipulation, not Knockout).
 
@@ -260,7 +258,7 @@ flowchart LR
 
 | Property | Type | Role |
 |----------|------|------|
-| `showingText` | observable | Text shown in Custom Input textarea when “View text” is on |
+| `showingText` | observable | Text shown in Input Options textarea when “View text” is on |
 | `rawText` | observable | Source text for playback and cards |
 | `showRaw` | observable | Toggle view/hide working text |
 | `words` | **computed** | `MorseStringUtils.getWords(rawText, newlineChunking)` |
@@ -570,7 +568,7 @@ flowchart LR
 
 ### 9.5 Download
 
-`doDownload` uses the same wav generation path as playback to offer a file download (see Output Settings in template).
+`doDownload` uses the same wav generation path as playback to offer a file download (see Output Options in template).
 
 ---
 
