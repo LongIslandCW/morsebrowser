@@ -885,7 +885,7 @@
                                 <fieldset class="morse-settings-fieldset">
                                     <legend class="morse-settings-legend">Output Options</legend>
                                     <div class="d-flex flex-column gap-2">
-                                        <div class="input-group flex-wrap">
+                                        <div class="input-group flex-wrap align-items-center">
                                             <label for="preSpace" class="input-group-text">PRE&nbsp;<img
                                                     id="volumemuteImage" height="20" width="20" alt=""></label>
                                             <input id="preSpace" name="preSpace" type="number"
@@ -907,8 +907,6 @@
                                                 class="form-control morse-settings-num" min="0"
                                                 max="10" step="1" data-bind="textInput: cardSpace"
                                                 title="Extra silence between cards">
-                                        </div>
-                                        <div class="input-group">
                                             <label for="cardFontPx" class="input-group-text">CARD&nbsp;SIZE&nbsp;
                                                 <img height=20 width=20
                                                     data-bind="attr: {src: morseLoadImages().getSrc('barchartImage')}"
@@ -918,18 +916,20 @@
                                                 class="form-control morse-settings-num morse-settings-num--wide" min="1"
                                                 max="1200" step="1" data-bind="textInput: cardFontPx"
                                                 title="Text size when displaying cards">
+                                            <div class="col-auto">
+                                                <input type="checkbox" class="btn-check" autocomplete="off"
+                                                    id="btncheckcardsvisible" data-bind="checked: cardsVisible"
+                                                    title="Toggles card visibility" aria-label="Cards">
+                                                <label class="btn btn-outline-primary"
+                                                    for="btncheckcardsvisible" aria-hidden="true">
+                                                    <img data-bind="attr:{ src: morseLoadImages().getSrc('grid3x3gapImage')}"
+                                                        alt="">&nbsp;Cards&nbsp;
+                                                    <img data-bind="attr:{ src: cardsVisible() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}"
+                                                        alt="" />
+                                                </label>
+                                            </div>
                                         </div>
                                         <div class="d-flex flex-wrap gap-2 align-items-center output-settings-actions">
-                                            <input type="checkbox" class="btn-check" autocomplete="off"
-                                                id="btncheckcardsvisible" data-bind="checked: cardsVisible"
-                                                title="Toggles card visibility" aria-label="Cards">
-                                            <label class="btn btn-outline-primary"
-                                                for="btncheckcardsvisible" aria-hidden="true">
-                                                <img data-bind="attr:{ src: morseLoadImages().getSrc('grid3x3gapImage')}"
-                                                    alt="">&nbsp;Cards&nbsp;
-                                                <img data-bind="attr:{ src: cardsVisible() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}"
-                                                    alt="" />
-                                            </label>
                                             <button type="button" class="btn btn-success"
                                                 data-bind="click: doDownload"
                                                 title="Downloads an audio file using the current settings">
