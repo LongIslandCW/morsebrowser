@@ -78,7 +78,6 @@ section:last-of-type {
     flex: 0 0 auto;
 }
 
-.input-group > .morse-settings-num,
 .input-group .morse-settings-num {
     flex: 0 0 auto;
     width: 4.5rem;
@@ -91,7 +90,6 @@ section:last-of-type {
     flex: 0 0 auto;
 }
 
-.input-group > .morse-settings-num--wide,
 .input-group .morse-settings-num--wide {
     flex: 0 0 auto;
     width: 5.5rem;
@@ -199,12 +197,6 @@ section:last-of-type {
     width: auto;
     max-width: 100%;
     min-width: 0;
-}
-
-.settings-lesson-control > .form-control.morse-settings-text-short {
-    width: auto;
-    max-width: min(100%, 10rem);
-    min-width: 6rem;
 }
 
 .settings-lesson-options-panel .trail-settings-row {
@@ -498,8 +490,7 @@ html {
     align-items: stretch;
 }
 
-.flagged-cards-input-group > .input-group-text,
-.flagged-cards-input-group > button.input-group-text {
+.flagged-cards-input-group > .input-group-text {
     flex: 0 0 auto;
 }
 
@@ -565,14 +556,12 @@ section[aria-label="Cards"] .row {
     }
 
     .morse-settings-num:not(.morse-settings-num--wide),
-    .input-group > .morse-settings-num:not(.morse-settings-num--wide),
     .input-group .morse-settings-num:not(.morse-settings-num--wide) {
         width: 3.75rem;
         min-width: 3rem;
     }
 
     .morse-settings-num.morse-settings-num--wide,
-    .input-group > .morse-settings-num.morse-settings-num--wide,
     .input-group .morse-settings-num.morse-settings-num--wide {
         width: min(5.5rem, 22vw);
         min-width: min(4.5rem, 20vw);

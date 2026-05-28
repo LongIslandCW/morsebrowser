@@ -90,7 +90,7 @@
                     <input id="trueWpm" name="trueWpm" type="number" class="form-control morse-settings-num" min="1"
                         data-bind="textInput: settings.speed.fwpm, enable: !settings.speed.syncWpm(), attr:{ max: settings.speed.trueWpm }, hidden: settings.speed.variableSpeedDisplay">
                     <input type="number" class="form-control morse-settings-num"
-                        aria-label="Server"
+                        aria-label="Variable Effective Speed (FWPM)"
                         data-bind="textInput: settings.speed.vFwpm, visible: settings.speed.variableSpeedDisplay, enable: false">
                     <!-- volume (nested group keeps icon + field on one line when parent wraps) -->
                     <div class="input-group speed-volume-segment">
@@ -267,7 +267,7 @@
                                                     Group&nbsp;<img
                                                         data-bind="attr:{ src: lessons.ifCustomGroup() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}" /></label>
                                                 <input type="text" class="form-control morse-settings-text-short"
-                                                    aria-label="Custom group text" min="0"
+                                                    aria-label="Custom group text"
                                                     data-bind="textInput: lessons.customGroup, visible: lessons.ifCustomGroup">
                                             </div>
                                             <div class="settings-lesson-control">

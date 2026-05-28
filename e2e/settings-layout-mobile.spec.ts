@@ -1,6 +1,6 @@
-import { expect, test } from '@playwright/test'
+import { expect, test, type Page } from '@playwright/test'
 
-async function openLessonOptions (page: import('@playwright/test').Page) {
+async function openLessonOptions (page: Page) {
   await page.goto('/')
   await expect(page.locator('#moreSettingsAccordionButton')).toBeVisible()
   await page.locator('#moreSettingsAccordionButton').click()
