@@ -37,4 +37,6 @@ First-time setup: `npx playwright install chromium`
 
 ## CI
 
-`develop2.yml` runs `npm test`, `npm run build`, then `npm run test:e2e` on Node 20.
+`develop2.yml` (on push/PR to `develop`) runs `npm test`, `npm run build`, then `npm run test:e2e` on Node 20.
+
+Fork hosting is **Cloudflare Workers**, not GitHub Pages; the workflow file still contains a legacy Pages deploy step that is not used for fork previews. See [docs/DEVELOPER_GUIDE.md](../docs/DEVELOPER_GUIDE.md#83-deploy-hosting).

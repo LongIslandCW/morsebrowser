@@ -7,6 +7,17 @@
 
 Roger opens upstream PRs manually with the team. Global rule: `~/.cursor/rules/fork-only-git.mdc`.
 
+## Hosting (club vs this fork)
+
+| | **Upstream (club)** `LongIslandCW/morsebrowser` | **This fork** `rdreed21/morsebrowser_dev` |
+|---|------------------------------------------------|---------------------------------------------|
+| Public site | [GitHub Pages](https://longislandcw.github.io/morsebrowser/index.html) | **Cloudflare Workers** (not GitHub Pages) |
+| Deploy | Club `main` → Pages root via upstream workflows | `npm run build` then `npm run deploy` (`wrangler.jsonc`, worker `morsebrowserdev`); PR/push also triggers **Workers Builds** (preview URLs in PR checks) |
+| Dev / preview | Club may use `/dev/` on Pages where applicable | Branch previews e.g. `develop-morsebrowser.rdreed21.workers.dev` (see latest PR deploy comment) |
+| BETA footer | When URL path contains `/dev/` (`isDev()` in `morse.ts`) | Same code path; most Workers URLs have no `/dev/` segment, so BETA banner often **off** on fork previews |
+
+Fork workflows `develop2.yml` / `main2.yml` still contain a **legacy GitHub Pages** deploy step to `gh-pages`; that is **not** how Roger hosts the fork today.
+
 ## Learned User Preferences
 
 - The user's name is **Roger**, not Robert.
@@ -19,11 +30,10 @@ Roger opens upstream PRs manually with the team. Global rule: `~/.cursor/rules/f
 
 ## Learned Workspace Facts
 
-- Fork GitHub Pages (`main2.yml`, `develop2.yml`): **`main`** deploys `dist` to `gh-pages` root; **`develop`** deploys to `gh-pages/dev/` (preview at https://rdreed21.github.io/morsebrowser_dev/dev/). On `/dev/` URLs (`isDev()`), footer shows BETA warning with link to stable root (`../`).
 - Run `npm run prebuild` after adding or removing preset JSON under `src/presets/configs/` (`morsePresetFinder.js` is gitignored and must match configs on disk).
 - `.cursor/` is local IDE state and is listed in `.gitignore`.
 - Settings UI (`src/template.html`): **LICW Lessons** (expanded; TYPE/CLASS/CONTENT/LESSON/PRESETS as dropdown pickers; label **CONTENT**, placeholder **Select Content** in `morseLessonPlugin.ts`), then five collapsed settings accordions — **Lesson Options**, **Voice Options**, **Tone Options**, **Input Options**, **Output Options**. **Lesson Options** fieldsets (in order): **Overrides** (Custom Group, Override time/size, Apply), **Playback** (Randomize, Auto Close, Sticky Sets, Keep Lines, Shuffle Intra-group), **Timing** (Speed Intervals, Repeats, Noise toggle), **Trail** (last). **Tone Options**: DIT, DAH, Zero Beat only. **Output Options**: PRE, WORD SPACE, CARD WAIT, CARD SIZE, Cards, Audio download. **Input Options**: practice text (View/Clear/Insert File/textarea) and **Flagged cards** fieldset (Load As Text). Shuffle Intra-group is always visible (former `?adminMode=1` gate removed). Fresh **Play** (not resume) collapses all open settings accordions (`collapseSettingsAccordions` in `src/morse/morse.ts`).
-- **Tom deep links**: `?selectedClass=&selectedGroup=&selectedLesson=&selectedPreset=` still load lessons/presets on v2 (UI reorg unchanged; `morseLessonPlugin.ts`); same query string on fork preview (`https://rdreed21.github.io/morsebrowser_dev/dev/`). Incoming Tom-style links do not need the logo easter egg. **Logo easter egg**: four header logo clicks toggle `queryStringSettingsOn` (no visible UI); the URL updates only when TYPE/CLASS/CONTENT/LESSON/PRESETS change after sync is on—not on the 4th click.
+- **Tom deep links**: `?selectedClass=&selectedGroup=&selectedLesson=&selectedPreset=` still load lessons/presets on v2 (UI reorg unchanged; `morseLessonPlugin.ts`); same query string works on fork Workers previews and club Pages. Incoming Tom-style links do not need the logo easter egg. **Logo easter egg**: four header logo clicks toggle `queryStringSettingsOn` (no visible UI); the URL updates only when TYPE/CLASS/CONTENT/LESSON/PRESETS change after sync is on—not on the 4th click.
 - App footer shows **Version 2.0** (`#version-info`).
 - **Dark mode**: header toggle; `data-theme` on `documentElement`; persisted as `darkMode` cookie (`src/morse/theme/theme.ts`, `licwdefaults.json`). Club logo and UI images need dark-theme treatment.
 - Credits `#contributor-info`: list contributors by **call sign only** (e.g. KQ4NKF, W6JY).

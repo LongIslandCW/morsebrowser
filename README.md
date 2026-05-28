@@ -11,9 +11,24 @@ What is this?
 
 The **source code repository** for [Long Island CW Club's](https://longislandcwclub.org/) customized version of [SG Phillip's](https://morsecode.world/international/trainer/generator.html) (and by the way, please note that we've made a few tweaks to his [morse-pro js libraries](https://github.com/scp93ch/morse-pro)) It is available for use by anyone who wants to practice morse code and has many useful features, and also includes LICW's lessons that go along with some classes.
 
-**If you are were just looking for the application itself and just want to start using it, go here:** https://longislandcw.github.io/morsebrowser/index.html
+This GitHub repo (`rdreed21/morsebrowser_dev`) is a **development fork**. The club’s **production** site is on the parent repo and **GitHub Pages**; this fork is previewed on **Cloudflare Workers**, not Pages. See [docs/README.md](docs/README.md) and [AGENTS.md](AGENTS.md).
+
+### Use the live app (club — GitHub Pages)
+
+**If you just want to practice Morse, use the club site:** https://longislandcw.github.io/morsebrowser/index.html
 
 Or download https://longislandcw.github.io/morsebrowser/download/morse.zip and unzip somewhere on your device, then open index.html in your browser.
+
+### Develop on this fork (Cloudflare Workers)
+
+```bash
+npm install
+npm run dev          # local webpack dev server — http://localhost:3000
+npm run build
+npm run deploy       # publish dist/ to Cloudflare Workers (wrangler)
+```
+
+PRs to `develop` run tests in GitHub Actions and show **Workers Builds** preview URLs in the PR checks.
 
 # Found a bug, or have a feature suggestion?
 

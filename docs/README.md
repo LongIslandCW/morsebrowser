@@ -13,4 +13,13 @@ Developer documentation for the LICW Morse Practice Page (MPP) source tree.
 - **App entry:** `src/index.js` → `src/morse/morse.ts` (`MorseViewModel`)
 - **Tests:** `npm test` (Vitest), `npm run test:e2e` (Playwright, needs build)
 
-Fork preview: `develop` deploys to GitHub Pages `/dev/` (BETA banner when URL contains `/dev/`).
+## Hosting
+
+| Site | Where it runs |
+|------|----------------|
+| **Club (production)** | [longislandcw.github.io/morsebrowser](https://longislandcw.github.io/morsebrowser/index.html) — GitHub Pages on `LongIslandCW/morsebrowser` |
+| **This fork (Roger dev)** | **Cloudflare Workers** — `npm run build` && `npm run deploy`; PRs show Workers preview URLs. Not GitHub Pages. |
+
+BETA footer (`isDev()`): shown when the page URL contains `/dev/` (common on club Pages dev paths; usually not on `*.workers.dev` previews).
+
+Details: [DEVELOPER_GUIDE.md § Deploy](./DEVELOPER_GUIDE.md#83-deploy-hosting), [AGENTS.md](../AGENTS.md).

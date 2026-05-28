@@ -490,14 +490,33 @@ flowchart LR
 - `ProvidePlugin` for `process` and `Buffer`
 - ESLint during build
 
-### 8.3 Deploy (this fork)
+### 8.3 Deploy / hosting
 
-GitHub Actions workflows `develop2.yml` / `main2.yml`:
+Two different targets matter: the **club’s public site** (upstream) and **this fork** (Roger’s dev copy).
 
-- **`develop`** → Pages under `/dev/` → `isDev()` true → BETA footer link to stable
-- **`main`** → Pages site root (stable)
+#### Club production — GitHub Pages (`LongIslandCW/morsebrowser`)
 
-See [AGENTS.md](../AGENTS.md) for fork-only git rules (`origin` push, no upstream PRs from agents).
+- **Live app:** https://longislandcw.github.io/morsebrowser/index.html  
+- **Zip download:** https://longislandcw.github.io/morsebrowser/download/morse.zip  
+- Upstream uses GitHub Actions to publish `dist/` to the **`gh-pages`** branch; Pages serves the site root (and may use a `/dev/` path for beta builds on the club repo).
+- When the URL path contains **`/dev/`**, `MorseViewModel.isDev()` is true and the footer shows the **BETA** warning with a link to the stable build (`../`).
+
+#### This fork — Cloudflare Workers (`rdreed21/morsebrowser_dev`)
+
+Roger **does not** use GitHub Pages on the fork. Preview and hosting use **Cloudflare Workers**:
+
+| Piece | Location |
+|--------|----------|
+| Config | [`wrangler.jsonc`](../wrangler.jsonc) — worker name `morsebrowserdev`, static assets from `dist/` |
+| Local preview | `npm run build` → `npm run preview` (`wrangler dev`) or `npm run dev` (webpack dev server, port 3000) |
+| Publish | `npm run build` → `npm run deploy` |
+| CI on PR/push | Cloudflare **Workers Builds** (links appear in PR checks; e.g. branch preview `develop-morsebrowser.rdreed21.workers.dev`) |
+
+Fork GitHub Actions (`develop2.yml`, `main2.yml`) still run **tests + build** on `develop` / `main`. They also include a **legacy** “Deploy to GitHub Pages” step (`gh-pages` branch, `target-folder: dev` on `develop2.yml`) that is **not** the live fork hosting path today.
+
+#### Git / contributions
+
+See [AGENTS.md](../AGENTS.md): push and PRs on **`origin`** (fork) only; Roger opens upstream PRs to the club repo manually.
 
 ---
 
@@ -655,7 +674,8 @@ morsebrowser_dev/
 ├── package.json
 ├── tests/                   Vitest
 ├── e2e/                     Playwright
-└── .github/workflows/       CI + GitHub Pages
+├── .github/workflows/       CI (tests/build); legacy Pages steps — fork uses Workers
+└── wrangler.jsonc           Cloudflare Workers (fork deploy)
 ```
 
 ---
