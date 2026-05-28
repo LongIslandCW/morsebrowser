@@ -15,6 +15,7 @@ Roger opens upstream PRs manually with the team. Global rule: `~/.cursor/rules/f
 - Do not commit `.cursor/` or hook/index state; keep durable agent notes in **AGENTS.md**.
 - When Roger asks for an easy rollback of a distinct UI change, use a **separate commit** for that part.
 - Only create git commits when Roger explicitly asks (e.g. commit-and-push action or direct request).
+- For settings UI layout or field sizing, include **small/narrow viewports** (~375–390px), not desktop-only.
 
 ## Learned Workspace Facts
 
@@ -27,6 +28,7 @@ Roger opens upstream PRs manually with the team. Global rule: `~/.cursor/rules/f
 - **Dark mode**: header toggle; `data-theme` on `documentElement`; persisted as `darkMode` cookie (`src/morse/theme/theme.ts`, `licwdefaults.json`). Club logo and UI images need dark-theme treatment.
 - Credits `#contributor-info`: list contributors by **call sign only** (e.g. KQ4NKF, W6JY).
 - Automated tests: **Vitest** for unit/integration (utils, timing, lesson plugin, theme); **Playwright** for browser smoke E2E (accordions, pickers, Play, dark mode). Full Web Audio / Knockout playback is not a first-pass Vitest target. Run `npm test` before PRs; E2E needs `npm run build` first (or `npm run test:all`). See `tests/README.md`.
+- Settings field widths use CSS classes in `src/css/style.css`: `morse-settings-num`, `morse-settings-num--wide`, `morse-settings-text-short`, `morse-settings-text-interval` (avoid inline width on settings inputs). Small-viewport layout: `e2e/settings-layout-mobile.spec.ts` (Playwright `mobile-chrome` / Pixel 5).
 - Voice Options: sub-controls stay visible and are **disabled** when Voice is off (not hidden).
 - Header **Click here for help** scrolls to `#page-help-footer` (credits, bug/video/guide links, keyboard shortcuts).
 - Architecture and build flow for humans/agents: `docs/DEVELOPER_GUIDE.md` (Mermaid diagrams in `docs/`).

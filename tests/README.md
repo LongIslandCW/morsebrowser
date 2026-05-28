@@ -31,7 +31,7 @@ npm run test:e2e
 npm run test:all   # vitest + build + e2e
 ```
 
-E2E specs in `e2e/`: app load, lesson pickers, lesson options layout, playback accordion collapse, dark mode.
+E2E specs in `e2e/`: app load, lesson pickers, lesson options layout, playback accordion collapse, dark mode, settings field layout on a narrow viewport (`settings-layout-mobile.spec.ts`, Playwright `mobile-chrome` project).
 
 First-time setup: `npx playwright install chromium`
 
