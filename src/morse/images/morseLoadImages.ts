@@ -45,6 +45,8 @@ import bootstrapRebootSvg from 'bootstrap-icons/icons/bootstrap-reboot.svg'
 import bookshelfSvg from 'bootstrap-icons/icons/bookshelf.svg'
 import chatRightDots from 'bootstrap-icons/icons/chat-right-dots.svg'
 import repeat from 'bootstrap-icons/icons/repeat.svg'
+import moonSvg from 'bootstrap-icons/icons/moon-stars-fill.svg'
+import sunSvg from 'bootstrap-icons/icons/sun-fill.svg'
 
 export class MorseLoadImages {
   info = []
@@ -96,6 +98,8 @@ export class MorseLoadImages {
     this.info.push({ key: 'bookshelfImage', src: bookshelfSvg })
     this.info.push({ key: 'chatRightDotsImage', src: chatRightDots })
     this.info.push({ key: 'repeatImage', src: repeat })
+    this.info.push({ key: 'moonImage', src: moonSvg })
+    this.info.push({ key: 'sunImage', src: sunSvg })
     const dupes = []
     /* Accomodate where id="xyzImage" This is discouraged because good practice not to duplicate ids */
     /* see below getSrc */

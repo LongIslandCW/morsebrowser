@@ -7,6 +7,10 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 // eslint-disable-next-line no-unused-vars
 import { Tooltip, Toast, Popover } from 'bootstrap'
 import './css/style.css'
+import './css/dark-mode.css'
+import { applyTheme, readDarkModeFromCookie } from './morse/theme/theme.ts'
 import { MorseViewModel } from './morse/morse.ts'
+
+applyTheme(readDarkModeFromCookie())
 
 ko.applyBindings(new MorseViewModel())

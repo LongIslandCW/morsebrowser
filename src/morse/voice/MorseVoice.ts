@@ -8,8 +8,10 @@ import { GeneralUtils } from '../utils/general'
 import { MorseCookies } from '../cookies/morseCookies'
 import { VoiceBufferInfo } from './VoiceBufferInfo'
 
+type SpeechSynthesisVoiceWithIdx = SpeechSynthesisVoice & { idx: number }
+
 export class MorseVoice implements ICookieHandler {
-  voices = []
+  voices: SpeechSynthesisVoiceWithIdx[] = []
   voicesInited:boolean = false
   voiceEnabled:ko.Observable<boolean>
   voiceCapable:ko.Observable<boolean>
@@ -23,7 +25,7 @@ export class MorseVoice implements ICookieHandler {
   voiceRate:ko.Observable<number>
   voicePitch:ko.Observable<number>
   voiceLang:ko.Observable<string>
-  voiceVoices:ko.ObservableArray<any>
+  voiceVoices: ko.ObservableArray<SpeechSynthesisVoiceWithIdx>
   voiceBuffer:Array<VoiceBufferInfo>
   voiceBufferMaxLength:ko.Observable<number>
   ctxt:MorseViewModel
@@ -54,7 +56,7 @@ export class MorseVoice implements ICookieHandler {
     this.voiceRate = ko.observable(1)
     this.voicePitch = ko.observable(1)
     this.voiceLang = ko.observable('en-us')
-    this.voiceVoices = ko.observableArray([])
+    this.voiceVoices = ko.observableArray<SpeechSynthesisVoiceWithIdx>([])
     this.voiceBuffer = []
     this.voiceBufferMaxLength = ko.observable(1)
     this.voiceSpelling = ko.observable(true)
@@ -143,11 +145,12 @@ export class MorseVoice implements ICookieHandler {
       return
     }
 
-    const easySpeechStatus:Status = EasySpeech.status()
+    const easySpeechStatus: Status = EasySpeech.status()
     let idx = 0
     let nameIdx = -1
-    if ((easySpeechStatus as any).voices && (easySpeechStatus as any).voices.length) {
-      this.voices = (easySpeechStatus as any).voices
+    const statusVoices = (easySpeechStatus as Status & { voices?: SpeechSynthesisVoice[] }).voices
+    if (statusVoices?.length) {
+      this.voices = statusVoices as SpeechSynthesisVoiceWithIdx[]
       this.voices.forEach(v => {
         this.logToFlaggedWords(`voiceAvailable:${v.name}  lang:${v.lang} voiceURI:${v.voiceURI}`)
         if (v.name.toLowerCase().startsWith('microsoft')) {
@@ -161,16 +164,15 @@ export class MorseVoice implements ICookieHandler {
         'es-US', 'es_US',
         'pt-BR', 'pt_BR',
         'pt-PT', 'pt_PT'
-      ];
-    
+      ]
 
-      this.voices = this.voices.filter(x => allowedLangs.includes(x.lang)).map((v) => {
-        v.idx = idx++
+      this.voices = this.voices.filter(x => allowedLangs.includes(x.lang)).map((v): SpeechSynthesisVoiceWithIdx => {
+        const voiceWithIdx = Object.assign(v, { idx: idx++ })
 
         if (v.name === this.voiceVoiceName()) {
-          nameIdx = v.idx
+          nameIdx = voiceWithIdx.idx
         }
-        return v
+        return voiceWithIdx
       })
       this.voiceVoices(this.voices)
       if (nameIdx > -1) {
