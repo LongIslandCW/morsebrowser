@@ -500,26 +500,47 @@
                                                 </span>
                                             </div>
 
-                                            <div class="form-check mb-2">
-                                                <input id="speedRacerFinalPlay" name="speedRacerFinalPlay" type="checkbox"
-                                                    class="form-check-input"
-                                                    data-bind="checked: settings.speed.speedRacerFinalPlay">
-                                                <label for="speedRacerFinalPlay" class="form-check-label small"
-                                                    title="When on, after the variation plays the card is replayed once at the base speed (first multiplier). Turn off to end after the last variation. When Voice is on, the word is spoken just before this replay.">
-                                                    Replay Base Speed
-                                                </label>
+                                            <div class="input-group flex-wrap mb-2">
+                                                <div class="col-auto">
+                                                    <input id="speedRacerFinalPlay" name="speedRacerFinalPlay"
+                                                        type="checkbox" class="btn-check" autocomplete="off"
+                                                        aria-label="Replay Base Speed"
+                                                        data-bind="checked: settings.speed.speedRacerFinalPlay"
+                                                        title="When on, after the variation plays the card is replayed once at the base speed (first multiplier). Turn off to end after the last variation.">
+                                                    <label class="btn btn-outline-primary" for="speedRacerFinalPlay"
+                                                        aria-hidden="true">
+                                                        <img data-bind="attr:{ src: morseLoadImages().getSrc('repeatImage')}"
+                                                            height="16" width="16" alt="" />&nbsp;Replay Base Speed&nbsp;
+                                                        <img data-bind="attr:{ src: settings.speed.speedRacerFinalPlay() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}"
+                                                            alt="" />
+                                                    </label>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <input id="speedRacerSpeakBeforeReplay" name="speedRacerSpeakBeforeReplay"
+                                                        type="checkbox" class="btn-check" autocomplete="off"
+                                                        aria-label="Speak Before Replay"
+                                                        data-bind="checked: settings.speed.speedRacerSpeakBeforeReplay, enable: settings.speed.speedRacerFinalPlay()"
+                                                        title="When on (and Replay Base Speed is on), speak the card once before the base-speed replay. Independent of the Voice Options toggle.">
+                                                    <label class="btn btn-outline-primary" for="speedRacerSpeakBeforeReplay"
+                                                        aria-hidden="true">
+                                                        <img data-bind="attr:{ src: morseLoadImages().getSrc('chatquoteImage')}"
+                                                            height="16" width="16" alt="" />&nbsp;Speak Before Replay&nbsp;
+                                                        <img data-bind="attr:{ src: settings.speed.speedRacerSpeakBeforeReplay() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}"
+                                                            alt="" />
+                                                    </label>
+                                                </div>
                                             </div>
 
                                             <div class="mb-2">
                                                 <button type="button" class="btn btn-sm btn-outline-secondary"
                                                     data-bind="click: ()=>settings.speed.resetSpeedRacerDefaults()"
-                                                    title="Restore Multipliers and Replay Base Speed to their defaults (1.5, 1.35, 1.175, 1.0; on).">
+                                                    title="Restore Multipliers, Replay Base Speed, and Speak Before Replay to their defaults (1.5, 1.35, 1.175, 1.0; both on).">
                                                     <img data-bind="attr:{ src: morseLoadImages().getSrc('bootstrapRebootImage')}"
                                                         height="16" width="16" alt="" />&nbsp;Reset to defaults
                                                 </button>
                                                 <button type="button" class="btn btn-sm btn-outline-secondary ms-2"
                                                     data-bind="click: ()=>settings.speed.setOverlearnMultipliers()"
-                                                    title="Set Multipliers to 1.0, 1.174, 1.348 (slow→fast, ratios of 23/27/31 wpm with 23 as base) and turn off Replay Base Speed.">
+                                                    title="Set Multipliers to 1.0, 1.174, 1.348 (slow→fast, ratios of 23/27/31 wpm with 23 as base) and turn off Replay Base Speed and Speak Before Replay.">
                                                     Overlearn
                                                 </button>
                                             </div>

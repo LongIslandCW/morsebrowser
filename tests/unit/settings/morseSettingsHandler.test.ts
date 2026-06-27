@@ -28,7 +28,8 @@ function createMockMorseViewModel () {
         intervalFwpmText: ko.observable(''),
         speedRacerEnabled: ko.observable(false),
         speedRacerMultipliers: ko.observable('1.5, 1.35, 1.175, 1.0'),
-        speedRacerFinalPlay: ko.observable(true)
+        speedRacerFinalPlay: ko.observable(true),
+        speedRacerSpeakBeforeReplay: ko.observable(true)
       },
       misc: {
         newlineChunking: ko.observable(false),
@@ -71,9 +72,21 @@ describe('MorseSettingsHandler', () => {
     expect(keys).toContain('ifCustomGroup')
     expect(keys).toContain('customGroup')
     expect(keys).toContain('shuffleIntraGroup')
+    expect(keys).toContain('speedRacerEnabled')
+    expect(keys).toContain('speedRacerMultipliers')
+    expect(keys).toContain('speedRacerFinalPlay')
+    expect(keys).toContain('speedRacerSpeakBeforeReplay')
     const dark = settings.morseSettings.find((s) => s.key === 'darkMode')
     expect(dark?.value).toBe(true)
     const shuffle = settings.morseSettings.find((s) => s.key === 'shuffleIntraGroup')
     expect(shuffle?.value).toBe(true)
+    const speedRacer = settings.morseSettings.find((s) => s.key === 'speedRacerEnabled')
+    expect(speedRacer?.value).toBe(false)
+    const multipliers = settings.morseSettings.find((s) => s.key === 'speedRacerMultipliers')
+    expect(multipliers?.value).toBe('1.5, 1.35, 1.175, 1.0')
+    const finalPlay = settings.morseSettings.find((s) => s.key === 'speedRacerFinalPlay')
+    expect(finalPlay?.value).toBe(true)
+    const speakBeforeReplay = settings.morseSettings.find((s) => s.key === 'speedRacerSpeakBeforeReplay')
+    expect(speakBeforeReplay?.value).toBe(true)
   })
 })

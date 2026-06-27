@@ -111,10 +111,21 @@ describe('SpeedSettings.applySpeedRacer', () => {
     expect(s.applySpeedRacer(base, 4, 5).wpm).toBe(30) // mults[0] = 1.5
   })
 
-  it('forces Farnsworth off during racing (fwpm === wpm)', () => {
+  it('keeps base FWPM constant during racing', () => {
     const result = s.applySpeedRacer(base, 1, 5)
-    expect(result.fwpm).toBe(result.wpm)
-    expect(result.fwpm).toBe(27)
+    expect(result.wpm).toBe(27)
+    expect(result.fwpm).toBe(12)
+  })
+
+  it('preview shows speak step only when Speak Before Replay is on', () => {
+    s.speedRacerEnabled(true)
+    s.speedRacerMultipliers('1.5, 1.0')
+    s.trueWpm(20)
+    s.speedRacerFinalPlay(true)
+    s.speedRacerSpeakBeforeReplay(false)
+    expect(s.speedRacerPreview()).toBe('30 → 20 → 30 wpm')
+    s.speedRacerSpeakBeforeReplay(true)
+    expect(s.speedRacerPreview()).toBe('30 → 20 → speak → 30 wpm')
   })
 
   it('returns the base speed unchanged when Speed Racer is disabled', () => {

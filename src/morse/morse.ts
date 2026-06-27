@@ -598,18 +598,16 @@ export class MorseViewModel {
           }
         }
 
-        // Speed Racer: speak the word right before the base-speed replay.
-        // Speech is tied to the replay (Replay Base Speed) and gated by the
-        // Voice toggle — it speaks only when both are on. With Voice off the
-        // replay still happens, just silently.
+        // Speed Racer: optional speak step, then base-speed replay when enabled.
         const racerState = this.cardBufferManager.getRepeatState()
-        const isSpeedRacerFinalPlay = racerOn &&
+        const isFinalReplaySlot = racerOn &&
           this.settings.speed.speedRacerFinalPlay() &&
           this.settings.speed.isRacerFinalPlay(racerState.index) &&
-          this.morseVoice.voiceEnabled() &&
           config.word && config.word.trim().length > 0
+        const shouldSpeakBeforeReplay = isFinalReplaySlot &&
+          this.settings.speed.speedRacerSpeakBeforeReplay()
 
-        if (isSpeedRacerFinalPlay) {
+        if (shouldSpeakBeforeReplay) {
           this.speakSpeedRacerRecap(() => {
             if (this.playerPlaying()) {
               playerCmd()

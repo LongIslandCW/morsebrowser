@@ -32,11 +32,11 @@ export default class SpeedSettings implements ICookieHandler {
   // speak final play uses the *first* non-zero multiplier, not the last.
   speedRacerMultipliers: ko.Observable<string>
   // Whether to append a final play (replay) at the base speed (first
-  // multiplier) after the variation plays. When false there is no replay and
-  // the TTS speak step is skipped along with it (speech is tied to the replay).
-  // Whether speech actually happens on that replay is controlled by the Voice
-  // toggle in the Voice section.
+  // multiplier) after the variation plays.
   speedRacerFinalPlay: ko.Observable<boolean>
+  // When Replay Base Speed is on, speak the card once before that replay.
+  // Independent of the Voice Options toggle (voice trail / speak-first).
+  speedRacerSpeakBeforeReplay: ko.Observable<boolean>
   morseViewModel:MorseViewModel
   variableSpeedDisplay: ko.Computed<boolean>
   speedRacerPreview: ko.Computed<string>
@@ -58,6 +58,7 @@ export default class SpeedSettings implements ICookieHandler {
     this.speedRacerEnabled = ko.observable(false)
     this.speedRacerMultipliers = ko.observable('1.5, 1.35, 1.175, 1.0')
     this.speedRacerFinalPlay = ko.observable(true)
+    this.speedRacerSpeakBeforeReplay = ko.observable(true)
     this.vWpm = ko.observable(0)
     this.vFwpm = ko.observable(0)
 
@@ -132,16 +133,9 @@ export default class SpeedSettings implements ICookieHandler {
         return wpms.join(' → ') + ' wpm'
       }
       const finalWpm = wpms[0]
-      // The spoken step only happens when Voice is on; the replay always does.
-      const voiceOn = !!(this.vm && this.vm.morseVoice && this.vm.morseVoice.voiceEnabled())
-      const speakStep = voiceOn ? ' → speak' : ''
+      const speakStep = this.speedRacerSpeakBeforeReplay() ? ' → speak' : ''
       return wpms.join(' → ') + `${speakStep} → ${finalWpm} wpm`
-    // deferEvaluation: morseVoice is assigned after this computed is created, so
-    // an eager first eval would read voiceEnabled() off an undefined morseVoice,
-    // short-circuit, and never subscribe to it — leaving the " → speak" hint
-    // stale when Voice is toggled. Deferring to first bind-time read (after the
-    // VM is fully constructed) lets the voiceEnabled dependency register.
-    }, this, { deferEvaluation: true })
+    }, this)
 
     this.wpm.extend({ saveCookie: 'wpm' } as ko.ObservableExtenderOptions<number>)
     this.fwpm.extend({ saveCookie: 'fwpm' } as ko.ObservableExtenderOptions<number>)
@@ -149,6 +143,7 @@ export default class SpeedSettings implements ICookieHandler {
     this.speedRacerEnabled.extend({ saveCookie: 'speedRacerEnabled' } as ko.ObservableExtenderOptions<boolean>)
     this.speedRacerMultipliers.extend({ saveCookie: 'speedRacerMultipliers' } as ko.ObservableExtenderOptions<string>)
     this.speedRacerFinalPlay.extend({ saveCookie: 'speedRacerFinalPlay' } as ko.ObservableExtenderOptions<boolean>)
+    this.speedRacerSpeakBeforeReplay.extend({ saveCookie: 'speedRacerSpeakBeforeReplay' } as ko.ObservableExtenderOptions<boolean>)
   }
 
   // Restore the configurable Speed Racer fields to their constructor defaults.
@@ -157,6 +152,7 @@ export default class SpeedSettings implements ICookieHandler {
   resetSpeedRacerDefaults = () => {
     this.speedRacerMultipliers('1.5, 1.35, 1.175, 1.0')
     this.speedRacerFinalPlay(true)
+    this.speedRacerSpeakBeforeReplay(true)
   }
 
   // Overlearn preset: ratios of 23 / 27 / 31 wpm with 23 as the base speed,
@@ -167,6 +163,7 @@ export default class SpeedSettings implements ICookieHandler {
   setOverlearnMultipliers = () => {
     this.speedRacerMultipliers('1.0, 1.174, 1.348')
     this.speedRacerFinalPlay(false)
+    this.speedRacerSpeakBeforeReplay(false)
   }
 
   // Parse the multiplier list. Drops non-finite entries; drops zeros (the
@@ -202,9 +199,8 @@ export default class SpeedSettings implements ICookieHandler {
    * Variation play (0..N-1) uses round(base.wpm * multipliers[playIndex]).
    * Final play (N) uses round(base.wpm * multipliers[0]) — the *first* non-
    * zero multiplier, which is the "initial" speed in the user's mental model.
-   * Farnsworth is forced off during Speed Racer (fwpm = wpm) — the drill is
-   * about character speed, and extra inter-character/word spacing defeats it.
-   * The user's saved fwpm is left untouched and resumes when Racer is off.
+   * FWPM stays at the user's saved base (Kurt's model): only character WPM
+   * varies across the sequence. Saved fwpm resumes normally when Racer is off.
    */
   applySpeedRacer = (base:ApplicableSpeed, playIndex:number, _total:number):ApplicableSpeed => {
     if (!this.speedRacerEnabled() || playIndex < 0) {
@@ -217,7 +213,7 @@ export default class SpeedSettings implements ICookieHandler {
     const isFinal = playIndex >= mults.length
     const multiplier = isFinal ? mults[0] : mults[playIndex]
     const variationWpm = Math.max(1, Math.round(base.wpm * multiplier))
-    const variationFwpm = variationWpm
+    const variationFwpm = base.fwpm
     this.vWpm(variationWpm)
     this.vFwpm(variationFwpm)
     return new ApplicableSpeed(variationWpm, variationFwpm)
@@ -308,6 +304,11 @@ export default class SpeedSettings implements ICookieHandler {
     target = cookies.find(x => x.key === 'speedRacerFinalPlay')
     if (target) {
       this.speedRacerFinalPlay(GeneralUtils.booleanize(target.val))
+    }
+
+    target = cookies.find(x => x.key === 'speedRacerSpeakBeforeReplay')
+    if (target) {
+      this.speedRacerSpeakBeforeReplay(GeneralUtils.booleanize(target.val))
     }
   }
 
