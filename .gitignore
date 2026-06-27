@@ -14,3 +14,5 @@ playwright-report/
 !.dev.vars.example
 .env*
 !.env.example
+.worktrees/
+.vercel

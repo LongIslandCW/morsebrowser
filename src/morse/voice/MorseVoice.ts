@@ -361,7 +361,8 @@ export class MorseVoice implements ICookieHandler {
 
     target = cookies.find(x => x.key === 'speakFirstAdditionalWordspaces')
     if (target) {
-      this.speakFirstAdditionalWordspaces(parseInt(target.val))
+      // Repeat Spacing supports 0.25 increments, so keep the fractional part.
+      this.speakFirstAdditionalWordspaces(parseFloat(target.val))
     }
 
     target = cookies.find(x => x.key === 'voiceVoiceName')
