@@ -444,7 +444,7 @@
                                     </div>
 
                                     <!--speed racer-->
-                                    <div class="input-group flex-wrap">
+                                    <div class="input-group flex-wrap speed-racer-input-group">
                                         <div class="col-auto">
                                             <input type="checkbox" class="btn-check" autocomplete="off"
                                                 id="btncheckspeedracer" name="btncheckspeedracer"
@@ -460,8 +460,7 @@
                                             </label>
                                         </div>
 
-                                        <span class="input-group-text"
-                                            style="max-width:600px;"
+                                        <span class="input-group-text speed-racer-sequence-preview"
                                             data-bind="visible: settings.speed.speedRacerEnabled() &amp;&amp; settings.speed.speedRacerPreview()"
                                             title="Per-card sequence derived from main WPM and the multiplier list.">
                                             <strong>Sequence:</strong>&nbsp;<span data-bind="text: settings.speed.speedRacerPreview()"></span>
@@ -493,7 +492,7 @@
                                                     Multipliers
                                                 </label>
                                                 <input id="speedRacerMultipliers" name="speedRacerMultipliers" type="text"
-                                                    style="max-width:280px;" class="form-control"
+                                                    class="form-control morse-settings-text-short speed-racer-multipliers-input"
                                                     data-bind="textInput: settings.speed.speedRacerMultipliers"
                                                     title="Comma-separated multipliers (e.g. 1.5, 1.35, 1.175, 1.0). Each non-zero value plays the card once at round(mainWpm * multiplier). 0 = skip.">
                                                 <span class="input-group-text small text-muted">

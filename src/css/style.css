@@ -71,6 +71,19 @@ section:last-of-type {
     flex-wrap: nowrap;
 }
 
+.speed-racer-sequence-preview {
+    max-width: 600px;
+    flex: 1 1 auto;
+    min-width: 0;
+    white-space: normal;
+}
+
+.speed-racer-multipliers-input {
+    max-width: 280px;
+    flex: 1 1 8rem;
+    min-width: 6rem;
+}
+
 .morse-settings-num {
     width: 4.5rem;
     max-width: 100%;
@@ -235,6 +248,35 @@ section:last-of-type {
         flex: 1 1 100%;
         width: 100%;
         max-width: 100%;
+    }
+
+    .speed-racer-input-group > .col-auto,
+    .speed-racer-input-group > .input-group-text,
+    .speed-racer-input-group > .btn {
+        flex: 1 1 100%;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .speed-racer-sequence-preview {
+        max-width: 100%;
+    }
+
+    #speedRacerAdvanced .input-group {
+        flex-wrap: wrap;
+    }
+
+    #speedRacerAdvanced .input-group > .input-group-text,
+    #speedRacerAdvanced .input-group > .form-control,
+    #speedRacerAdvanced .input-group > .input-group-text.small {
+        flex: 1 1 100%;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .speed-racer-multipliers-input {
+        max-width: 100%;
+        width: 100%;
     }
 }
 
