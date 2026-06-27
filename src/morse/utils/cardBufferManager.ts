@@ -25,6 +25,12 @@ export class CardBufferManager {
   _buffer:CardWord[] = []
   _getCurrentIndex!:()=>number
   _getWords!:()=>WordInfo[]
+  // Total *audible* plays of the card's word (the count Speed Racer steps over).
+  // Empty wordspace subparts that pad between repeats are not counted.
+  _totalWordPlays:number = 1
+  // 0-based index of the most recently shifted audible play. -1 before any
+  // audible play has been emitted for the current card.
+  _lastAudiblePlayIndex:number = -1
   constructor (getCurrentIndex:()=>number, getWords:()=>WordInfo[]) {
     this._getCurrentIndex = getCurrentIndex
     this._getWords = getWords
@@ -42,11 +48,20 @@ export class CardBufferManager {
       }
       this._buffer[0].subparts = this.appendArrayNTimes(this._buffer[0].subparts, repeats)
     }
+    this._totalWordPlays = repeats > 0 ? repeats : 1
+    this._lastAudiblePlayIndex = -1
     // debugger
   }
 
   hasMoreMorse = ():boolean => {
     return this._buffer.length !== 0 && this._buffer[0].subparts.length !== 0
+  }
+
+  // Index of the most recently shifted audible play, plus the total audible-play
+  // count for the card. Used by Speed Racer to pick a per-repeat speed.
+  // Call this AFTER getNextMorse(), and only after an audible (non-empty) play.
+  getRepeatState = ():{ index:number, total:number } => {
+    return { index: this._lastAudiblePlayIndex, total: this._totalWordPlays }
   }
 
   getNextMorse = (repeats:number = 0, additionalWordSpaces:number = 0):string => {
@@ -56,7 +71,13 @@ export class CardBufferManager {
       // return null
       this.populateBuffer(repeats, additionalWordSpaces)
     }
-    return this._buffer[0].subparts.shift().word
+    const next = this._buffer[0].subparts.shift().word
+    // Only the audible (non-empty) plays count toward the Speed Racer step
+    // index. Empty subparts are inter-repeat wordspace padding.
+    if (next && next.length > 0) {
+      this._lastAudiblePlayIndex++
+    }
+    return next
   }
 
   getAllMorse = ():string => {

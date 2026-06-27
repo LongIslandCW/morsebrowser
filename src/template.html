@@ -382,7 +382,7 @@
                                                 id="btncheckspeedinterval" name="btncheckspeedinterval"
                                                 aria-label="Speed Intervals"
                                                 data-bind="checked: settings.speed.speedInterval"
-                                                title="Enables variable speeds in time intervals you define">
+                                                title="Vary speed over time. Mutually exclusive with Speed Racer.">
                                             <label class="btn btn-outline-primary" for="btncheckspeedinterval"
                                                 aria-hidden="true">
                                                 <img data-bind="attr:{ src: morseLoadImages().getSrc('rocketTakeoffImage')}"
@@ -436,8 +436,93 @@
                                                 <input id="speakFirstAdditionalWordspaces"
                                                     name="speakFirstAdditionalWordspaces" type="number"
                                                     class="form-control morse-settings-num"
-                                                    min="0" max="10" step="1"
+                                                    min="0" max="10" step="0.25"
+                                                    title="Extra spacing between repeats, in wordspaces. Adjustable in 0.25 steps. Also controls the gap between Speed Racer repeats; while racing, 0 falls back to a 1-wordspace gap."
                                                     data-bind="textInput: morseVoice.speakFirstAdditionalWordspaces">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!--speed racer-->
+                                    <div class="input-group flex-wrap">
+                                        <div class="col-auto">
+                                            <input type="checkbox" class="btn-check" autocomplete="off"
+                                                id="btncheckspeedracer" name="btncheckspeedracer"
+                                                aria-label="Speed Racer"
+                                                data-bind="checked: settings.speed.speedRacerEnabled"
+                                                title="Vary speed across each card's repeats. Mutually exclusive with Speed Intervals.">
+                                            <label class="btn btn-outline-primary" for="btncheckspeedracer"
+                                                aria-hidden="true">
+                                                <img data-bind="attr:{ src: morseLoadImages().getSrc('speedometerImage')}"
+                                                    alt="">&nbsp;Speed Racer&nbsp;
+                                                <img data-bind="attr:{ src: settings.speed.speedRacerEnabled() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}"
+                                                    alt="" />
+                                            </label>
+                                        </div>
+
+                                        <span class="input-group-text"
+                                            style="max-width:600px;"
+                                            data-bind="visible: settings.speed.speedRacerEnabled() &amp;&amp; settings.speed.speedRacerPreview()"
+                                            title="Per-card sequence derived from main WPM and the multiplier list.">
+                                            <strong>Sequence:</strong>&nbsp;<span data-bind="text: settings.speed.speedRacerPreview()"></span>
+                                        </span>
+
+                                        <button type="button" class="btn btn-outline-secondary"
+                                            data-bs-toggle="collapse" data-bs-target="#speedRacerAdvanced"
+                                            aria-expanded="false" aria-controls="speedRacerAdvanced"
+                                            data-bind="visible: settings.speed.speedRacerEnabled()"
+                                            title="Show advanced multiplier list and timing controls.">
+                                            Advanced
+                                        </button>
+
+                                        <span class="input-group-text text-warning"
+                                            data-bind="visible: settings.speed.speedRacerEnabled() &amp;&amp; settings.speed.speedRacerVariationCount() === 0"
+                                            title="Speed Racer needs at least one non-zero multiplier.">
+                                            <img data-bind="attr:{ src: morseLoadImages().getSrc('exclamationoctagonImage')}"
+                                                width="16" height="16" alt="">&nbsp;Set at least one non-zero multiplier
+                                        </span>
+                                    </div>
+
+                                    <!--speed racer: advanced (collapsed)-->
+                                    <div id="speedRacerAdvanced" class="collapse col-12 mt-2"
+                                        data-bind="visible: settings.speed.speedRacerEnabled()">
+                                        <div class="card card-body morse-settings-subfieldset">
+                                            <div class="input-group input-group-sm mb-2">
+                                                <label for="speedRacerMultipliers" class="input-group-text"
+                                                    title="Comma-separated multipliers applied to your main WPM. Each non-zero entry adds one variation play. Default: 1.5, 1.35, 1.175, 1.0. Use 0 to skip a slot.">
+                                                    Multipliers
+                                                </label>
+                                                <input id="speedRacerMultipliers" name="speedRacerMultipliers" type="text"
+                                                    style="max-width:280px;" class="form-control"
+                                                    data-bind="textInput: settings.speed.speedRacerMultipliers"
+                                                    title="Comma-separated multipliers (e.g. 1.5, 1.35, 1.175, 1.0). Each non-zero value plays the card once at round(mainWpm * multiplier). 0 = skip.">
+                                                <span class="input-group-text small text-muted">
+                                                    Default: 1.5, 1.35, 1.175, 1.0
+                                                </span>
+                                            </div>
+
+                                            <div class="form-check mb-2">
+                                                <input id="speedRacerFinalPlay" name="speedRacerFinalPlay" type="checkbox"
+                                                    class="form-check-input"
+                                                    data-bind="checked: settings.speed.speedRacerFinalPlay">
+                                                <label for="speedRacerFinalPlay" class="form-check-label small"
+                                                    title="When on, after the variation plays the card is replayed once at the base speed (first multiplier). Turn off to end after the last variation. When Voice is on, the word is spoken just before this replay.">
+                                                    Replay Base Speed
+                                                </label>
+                                            </div>
+
+                                            <div class="mb-2">
+                                                <button type="button" class="btn btn-sm btn-outline-secondary"
+                                                    data-bind="click: ()=>settings.speed.resetSpeedRacerDefaults()"
+                                                    title="Restore Multipliers and Replay Base Speed to their defaults (1.5, 1.35, 1.175, 1.0; on).">
+                                                    <img data-bind="attr:{ src: morseLoadImages().getSrc('bootstrapRebootImage')}"
+                                                        height="16" width="16" alt="" />&nbsp;Reset to defaults
+                                                </button>
+                                                <button type="button" class="btn btn-sm btn-outline-secondary ms-2"
+                                                    data-bind="click: ()=>settings.speed.setOverlearnMultipliers()"
+                                                    title="Set Multipliers to 1.0, 1.174, 1.348 (slow→fast, ratios of 23/27/31 wpm with 23 as base) and turn off Replay Base Speed.">
+                                                    Overlearn
+                                                </button>
                                             </div>
                                         </div>
                                     </div>

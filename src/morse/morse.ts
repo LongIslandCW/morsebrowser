@@ -33,6 +33,10 @@ export interface ShortcutKeyEntry {
 }
 
 export class MorseViewModel {
+  // Default gap (in wordspaces) inserted between Speed Racer repeats when the
+  // user hasn't set their own Repeat Spacing. Keeps racing repeats audibly
+  // distinct instead of jammed together.
+  static readonly RACER_DEFAULT_REPEAT_SPACING = 1
   accessibilityAnnouncement:ko.Observable<string> = ko.observable('')
   textBuffer:ko.Observable<string> = ko.observable('')
   hideList:ko.Observable<boolean> = ko.observable(true)
@@ -389,10 +393,19 @@ export class MorseViewModel {
     }
   }
 
-  getMorseStringToWavBufferConfig = (text, isToneTest:boolean = false) => {
+  getMorseStringToWavBufferConfig = (text, isToneTest:boolean = false, applySpeedRacer:boolean = false, interRepeatDits:number = 0) => {
     const config = new SoundMakerConfig()
     config.word = MorseStringUtils.doReplacements(text)
-    const speeds = this.settings.speed.getApplicableSpeed(this.playingTime())
+    let speeds = this.settings.speed.getApplicableSpeed(this.playingTime())
+    // Speed Racer overrides the per-card speed based on which repeat we're
+    // playing. Only apply on the live play path (caller passes true). Time
+    // estimates and wav downloads must use the unmodified target speed.
+    if (applySpeedRacer && this.settings.speed.speedRacerEnabled() && config.word && config.word.trim().length > 0) {
+      const { index, total } = this.cardBufferManager.getRepeatState()
+      if (total >= 1 && index >= 0) {
+        speeds = this.settings.speed.applySpeedRacer(speeds, index, total)
+      }
+    }
     config.wpm = parseInt(speeds.wpm as any)
     config.fwpm = parseInt(speeds.fwpm as any)
     config.ditFrequency = parseInt(this.settings.frequency.ditFrequency() as any)
@@ -404,6 +417,12 @@ export class MorseViewModel {
     }
     // note this was changed so UI is min 1 meaning 0, 1=>7, 2=>14 etc
     config.xtraWordSpaceDits = (parseInt(this.xtraWordSpaceDits() as any) - 1) * 7
+    // Fractional Repeat Spacing (e.g. 0.25 wordspace) is rendered as extra
+    // trailing wordspace dits on audible plays. Empty word-gap plays already
+    // carry the whole-wordspace part, so skip them here.
+    if (interRepeatDits > 0 && config.word && config.word.trim().length > 0) {
+      config.xtraWordSpaceDits += interRepeatDits
+    }
     config.volume = parseInt(this.volume() as any)
     config.noise = new NoiseConfig()
     config.noise.type = this.noiseEnabled() ? this.noiseType() : 'off'
@@ -537,12 +556,35 @@ export class MorseViewModel {
         1: play 2 times
         2: play 3 times etc.
         */
-        const repeats = parseInt(this.numberOfRepeats() as any) === 0 ? 0 : parseInt(this.numberOfRepeats() as any) + 1
+        // Speed Racer owns the per-card play count when enabled. It uses
+        // (variation count + 1) plays — the +1 is the base-speed replay. A
+        // single variation with the replay off still counts as racing (1 play),
+        // so route any positive racer play count through the racer path.
+        const racerOn = this.settings.speed.speedRacerEnabled()
+        const racerTotalPlays = racerOn ? this.settings.speed.getRacerTotalPlays() : 0
+        const repeats = racerTotalPlays >= 1
+          ? racerTotalPlays
+          : (parseInt(this.numberOfRepeats() as any) === 0 ? 0 : parseInt(this.numberOfRepeats() as any) + 1)
+        // The "Repeat Spacing" box (in wordspaces) controls the gap between
+        // repeats for both normal repeats and Speed Racer. It supports 0.25
+        // steps: the whole part is rendered as silent word-gap plays and the
+        // fractional part as extra trailing wordspace dits (1 wordspace = 7
+        // dits) on the audible plays.
+        const userRepeatSpacing = Math.max(0, parseFloat(this.morseVoice.speakFirstAdditionalWordspaces() as any) || 0)
+        // Speed Racer jams its repeats together with no gap by default, which
+        // testers found too fast to follow. When racing and the user hasn't set
+        // their own Repeat Spacing, fall back to a one-wordspace gap so each
+        // repeat is distinct. An explicit non-zero value always wins.
+        const repeatSpacing = (racerOn && userRepeatSpacing === 0)
+          ? MorseViewModel.RACER_DEFAULT_REPEAT_SPACING
+          : userRepeatSpacing
+        const wholeWordSpaces = Math.floor(repeatSpacing)
+        const fractionalWordSpaceDits = repeats > 0 ? (repeatSpacing - wholeWordSpaces) * 7 : 0
         const config = this.getMorseStringToWavBufferConfig(
-          this.cardBufferManager.getNextMorse(
-            repeats,
-            parseInt(this.morseVoice.speakFirstAdditionalWordspaces() as any)
-          )
+          this.cardBufferManager.getNextMorse(repeats, wholeWordSpaces),
+          false,
+          true,
+          fractionalWordSpaceDits
         )
         this.addToVoiceBuffer()
         const playerCmd = () => {
@@ -554,7 +596,35 @@ export class MorseViewModel {
           }
         }
 
-        if (!this.morseVoice.speakFirst() ||
+        // Speed Racer: speak the word right before the base-speed replay.
+        // Speech is tied to the replay (Replay Base Speed) and gated by the
+        // Voice toggle — it speaks only when both are on. With Voice off the
+        // replay still happens, just silently.
+        const racerState = this.cardBufferManager.getRepeatState()
+        const isSpeedRacerFinalPlay = racerOn &&
+          this.settings.speed.speedRacerFinalPlay() &&
+          this.settings.speed.isRacerFinalPlay(racerState.index) &&
+          this.morseVoice.voiceEnabled() &&
+          config.word && config.word.trim().length > 0
+
+        if (isSpeedRacerFinalPlay) {
+          const currentWord = this.words()[this.currentIndex()]
+          const phraseToSpeak = this.prepPhraseToSpeakForFinal(
+            currentWord.speakText(this.morseVoice.voiceSpelling())
+          )
+          setTimeout(() => {
+            this.morseVoice.speakPhrase(phraseToSpeak, () => {
+              if (this.playerPlaying()) {
+                playerCmd()
+              }
+            })
+          }, this.morseVoice.voiceThinkingTime() * 1000)
+        } else if (racerOn) {
+          // Speed Racer manages its own speak step. Bypass speakFirst entirely
+          // so a stale speakFirst toggle can't add a voiceThinkingTime delay
+          // before the *first* variation play.
+          playerCmd()
+        } else if (!this.morseVoice.speakFirst() ||
             (this.morseVoice.speakFirst() && (this.morseVoice.speakFirstLastCardIndex === this.currentIndex()))
         ) {
           playerCmd()
