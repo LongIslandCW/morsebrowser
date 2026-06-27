@@ -466,7 +466,7 @@
                                             <strong>Sequence:</strong>&nbsp;<span data-bind="text: settings.speed.speedRacerPreview()"></span>
                                         </span>
 
-                                        <button type="button" class="btn btn-outline-secondary"
+                                        <button type="button" class="btn btn-outline-primary"
                                             data-bs-toggle="collapse" data-bs-target="#speedRacerAdvanced"
                                             aria-expanded="false" aria-controls="speedRacerAdvanced"
                                             data-bind="visible: settings.speed.speedRacerEnabled()"
@@ -485,8 +485,8 @@
                                     <!--speed racer: advanced (collapsed)-->
                                     <div id="speedRacerAdvanced" class="collapse col-12 mt-2"
                                         data-bind="visible: settings.speed.speedRacerEnabled()">
-                                        <div class="card card-body morse-settings-subfieldset">
-                                            <div class="input-group input-group-sm mb-2">
+                                        <div class="morse-settings-subfieldset speed-racer-advanced-panel">
+                                            <div class="input-group flex-wrap mb-2">
                                                 <label for="speedRacerMultipliers" class="input-group-text"
                                                     title="Comma-separated multipliers applied to your main WPM. Each non-zero entry adds one variation play. Default: 1.5, 1.35, 1.175, 1.0. Use 0 to skip a slot.">
                                                     Multipliers
@@ -500,8 +500,9 @@
                                                 </span>
                                             </div>
 
-                                            <div class="input-group flex-wrap mb-2">
-                                                <div class="col-auto">
+                                            <div class="settings-lesson-control-strip mb-2"
+                                                aria-label="Speed Racer replay and timing options">
+                                                <div class="settings-lesson-control">
                                                     <input id="speedRacerFinalPlay" name="speedRacerFinalPlay"
                                                         type="checkbox" class="btn-check" autocomplete="off"
                                                         aria-label="Replay Base Speed"
@@ -515,7 +516,7 @@
                                                             alt="" />
                                                     </label>
                                                 </div>
-                                                <div class="col-auto">
+                                                <div class="settings-lesson-control">
                                                     <input id="speedRacerSpeakBeforeReplay" name="speedRacerSpeakBeforeReplay"
                                                         type="checkbox" class="btn-check" autocomplete="off"
                                                         aria-label="Speak Before Replay"
@@ -529,20 +530,39 @@
                                                             alt="" />
                                                     </label>
                                                 </div>
+                                                <div class="settings-lesson-control">
+                                                    <input id="speedRacerKeepFwpm" name="speedRacerKeepFwpm"
+                                                        type="checkbox" class="btn-check" autocomplete="off"
+                                                        aria-label="Keep FWPM"
+                                                        data-bind="checked: settings.speed.speedRacerKeepFwpm"
+                                                        title="When on, Effective Speed (FWPM) stays at your saved base during Speed Racer. When off, FWPM scales with each multiplier like WPM.">
+                                                    <label class="btn btn-outline-primary" for="speedRacerKeepFwpm"
+                                                        aria-hidden="true">
+                                                        <img data-bind="attr:{ src: morseLoadImages().getSrc('lockImage')}"
+                                                            height="16" width="16" alt="" />&nbsp;Keep FWPM&nbsp;
+                                                        <img data-bind="attr:{ src: settings.speed.speedRacerKeepFwpm() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}"
+                                                            alt="" />
+                                                    </label>
+                                                </div>
                                             </div>
 
-                                            <div class="mb-2">
-                                                <button type="button" class="btn btn-sm btn-outline-secondary"
-                                                    data-bind="click: ()=>settings.speed.resetSpeedRacerDefaults()"
-                                                    title="Restore Multipliers, Replay Base Speed, and Speak Before Replay to their defaults (1.5, 1.35, 1.175, 1.0; both on).">
-                                                    <img data-bind="attr:{ src: morseLoadImages().getSrc('bootstrapRebootImage')}"
-                                                        height="16" width="16" alt="" />&nbsp;Reset to defaults
-                                                </button>
-                                                <button type="button" class="btn btn-sm btn-outline-secondary ms-2"
-                                                    data-bind="click: ()=>settings.speed.setOverlearnMultipliers()"
-                                                    title="Set Multipliers to 1.0, 1.174, 1.348 (slow→fast, ratios of 23/27/31 wpm with 23 as base) and turn off Replay Base Speed and Speak Before Replay.">
-                                                    Overlearn
-                                                </button>
+                                            <div class="settings-lesson-control-strip"
+                                                aria-label="Speed Racer preset shortcuts">
+                                                <div class="settings-lesson-control">
+                                                    <button type="button" class="btn btn-outline-primary"
+                                                        data-bind="click: ()=>settings.speed.resetSpeedRacerDefaults()"
+                                                        title="Restore Multipliers, Replay Base Speed, Speak Before Replay, and Keep FWPM to their defaults (1.5, 1.35, 1.175, 1.0; all on).">
+                                                        <img data-bind="attr:{ src: morseLoadImages().getSrc('bootstrapRebootImage')}"
+                                                            height="16" width="16" alt="" />&nbsp;Reset to defaults
+                                                    </button>
+                                                </div>
+                                                <div class="settings-lesson-control">
+                                                    <button type="button" class="btn btn-outline-primary"
+                                                        data-bind="click: ()=>settings.speed.setOverlearnMultipliers()"
+                                                        title="Set Multipliers to 1.0, 1.174, 1.348 (slow→fast, ratios of 23/27/31 wpm with 23 as base) and turn off Replay Base Speed and Speak Before Replay.">
+                                                        Overlearn
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

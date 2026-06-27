@@ -37,6 +37,9 @@ export default class SpeedSettings implements ICookieHandler {
   // When Replay Base Speed is on, speak the card once before that replay.
   // Independent of the Voice Options toggle (voice trail / speak-first).
   speedRacerSpeakBeforeReplay: ko.Observable<boolean>
+  // When on, FWPM stays at the saved base during racing (Kurt's model). When off,
+  // FWPM scales with each multiplier like WPM.
+  speedRacerKeepFwpm: ko.Observable<boolean>
   morseViewModel:MorseViewModel
   variableSpeedDisplay: ko.Computed<boolean>
   speedRacerPreview: ko.Computed<string>
@@ -59,6 +62,7 @@ export default class SpeedSettings implements ICookieHandler {
     this.speedRacerMultipliers = ko.observable('1.5, 1.35, 1.175, 1.0')
     this.speedRacerFinalPlay = ko.observable(true)
     this.speedRacerSpeakBeforeReplay = ko.observable(true)
+    this.speedRacerKeepFwpm = ko.observable(true)
     this.vWpm = ko.observable(0)
     this.vFwpm = ko.observable(0)
 
@@ -144,6 +148,7 @@ export default class SpeedSettings implements ICookieHandler {
     this.speedRacerMultipliers.extend({ saveCookie: 'speedRacerMultipliers' } as ko.ObservableExtenderOptions<string>)
     this.speedRacerFinalPlay.extend({ saveCookie: 'speedRacerFinalPlay' } as ko.ObservableExtenderOptions<boolean>)
     this.speedRacerSpeakBeforeReplay.extend({ saveCookie: 'speedRacerSpeakBeforeReplay' } as ko.ObservableExtenderOptions<boolean>)
+    this.speedRacerKeepFwpm.extend({ saveCookie: 'speedRacerKeepFwpm' } as ko.ObservableExtenderOptions<boolean>)
   }
 
   // Restore the configurable Speed Racer fields to their constructor defaults.
@@ -153,6 +158,7 @@ export default class SpeedSettings implements ICookieHandler {
     this.speedRacerMultipliers('1.5, 1.35, 1.175, 1.0')
     this.speedRacerFinalPlay(true)
     this.speedRacerSpeakBeforeReplay(true)
+    this.speedRacerKeepFwpm(true)
   }
 
   // Overlearn preset: ratios of 23 / 27 / 31 wpm with 23 as the base speed,
@@ -199,8 +205,8 @@ export default class SpeedSettings implements ICookieHandler {
    * Variation play (0..N-1) uses round(base.wpm * multipliers[playIndex]).
    * Final play (N) uses round(base.wpm * multipliers[0]) — the *first* non-
    * zero multiplier, which is the "initial" speed in the user's mental model.
-   * FWPM stays at the user's saved base (Kurt's model): only character WPM
-   * varies across the sequence. Saved fwpm resumes normally when Racer is off.
+   * When speedRacerKeepFwpm is on, FWPM stays at the saved base (Kurt's model)
+   * and only character WPM varies. When off, FWPM scales with each multiplier.
    */
   applySpeedRacer = (base:ApplicableSpeed, playIndex:number, _total:number):ApplicableSpeed => {
     if (!this.speedRacerEnabled() || playIndex < 0) {
@@ -213,7 +219,9 @@ export default class SpeedSettings implements ICookieHandler {
     const isFinal = playIndex >= mults.length
     const multiplier = isFinal ? mults[0] : mults[playIndex]
     const variationWpm = Math.max(1, Math.round(base.wpm * multiplier))
-    const variationFwpm = base.fwpm
+    const variationFwpm = this.speedRacerKeepFwpm()
+      ? base.fwpm
+      : Math.max(1, Math.round(base.fwpm * multiplier))
     this.vWpm(variationWpm)
     this.vFwpm(variationFwpm)
     return new ApplicableSpeed(variationWpm, variationFwpm)
@@ -309,6 +317,11 @@ export default class SpeedSettings implements ICookieHandler {
     target = cookies.find(x => x.key === 'speedRacerSpeakBeforeReplay')
     if (target) {
       this.speedRacerSpeakBeforeReplay(GeneralUtils.booleanize(target.val))
+    }
+
+    target = cookies.find(x => x.key === 'speedRacerKeepFwpm')
+    if (target) {
+      this.speedRacerKeepFwpm(GeneralUtils.booleanize(target.val))
     }
   }
 

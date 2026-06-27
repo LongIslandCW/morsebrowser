@@ -5,6 +5,7 @@ Developer documentation for the LICW Morse Practice Page (MPP) source tree.
 | Document | Description |
 |----------|-------------|
 | [DEVELOPER_GUIDE.md](./DEVELOPER_GUIDE.md) | Full guide: HTML layout, Knockout/Bootstrap, TypeScript modules, build pipeline, lessons/presets, playback |
+| [SPEED_RACER.md](./SPEED_RACER.md) | Speed Racer mode: UI toggles, preset JSON keys, Tom-style deep links, Overlearn vs Jay-style |
 
 ## Quick links
 

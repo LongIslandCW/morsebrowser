@@ -444,6 +444,8 @@ npm run prebuild
 npm run build   # runs prebuild automatically
 ```
 
+**Speed Racer** (multiplier ladder, Overlearn presets, deep links): see [SPEED_RACER.md](./SPEED_RACER.md).
+
 Wordfiles are **bundled** via dynamic `import()` (not copied as loose files to `dist/`; see commented `CopyPlugin` in `webpack.config.js`).
 
 ---

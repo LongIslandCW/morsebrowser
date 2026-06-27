@@ -78,6 +78,9 @@ export default class MorseSettingsHandler {
       new SavedSettingsInfo('speedRacerSpeakBeforeReplay', morseViewModel.settings.speed.speedRacerSpeakBeforeReplay())
     )
     savedInfos.push(
+      new SavedSettingsInfo('speedRacerKeepFwpm', morseViewModel.settings.speed.speedRacerKeepFwpm())
+    )
+    savedInfos.push(
       new SavedSettingsInfo('voiceBufferMaxLength', morseViewModel.morseVoice.voiceBufferMaxLength())
     )
     savedInfos.push(

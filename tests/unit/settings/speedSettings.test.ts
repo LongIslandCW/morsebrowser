@@ -111,10 +111,18 @@ describe('SpeedSettings.applySpeedRacer', () => {
     expect(s.applySpeedRacer(base, 4, 5).wpm).toBe(30) // mults[0] = 1.5
   })
 
-  it('keeps base FWPM constant during racing', () => {
+  it('keeps base FWPM constant during racing when Keep FWPM is on', () => {
+    s.speedRacerKeepFwpm(true)
     const result = s.applySpeedRacer(base, 1, 5)
     expect(result.wpm).toBe(27)
     expect(result.fwpm).toBe(12)
+  })
+
+  it('scales FWPM with the multiplier when Keep FWPM is off', () => {
+    s.speedRacerKeepFwpm(false)
+    const result = s.applySpeedRacer(base, 1, 5)
+    expect(result.wpm).toBe(27)
+    expect(result.fwpm).toBe(16) // round(12 * 1.35)
   })
 
   it('preview shows speak step only when Speak Before Replay is on', () => {

@@ -84,6 +84,15 @@ section:last-of-type {
     min-width: 6rem;
 }
 
+.speed-racer-advanced-panel .settings-lesson-control-strip {
+    gap: 0.5rem;
+}
+
+.speed-racer-advanced-panel .settings-lesson-control > label.btn,
+.speed-racer-advanced-panel .settings-lesson-control > .btn {
+    width: 100%;
+}
+
 .morse-settings-num {
     width: 4.5rem;
     max-width: 100%;
@@ -271,6 +280,11 @@ section:last-of-type {
     #speedRacerAdvanced .input-group > .input-group-text.small {
         flex: 1 1 100%;
         width: 100%;
+        max-width: 100%;
+    }
+
+    .speed-racer-advanced-panel .settings-lesson-control {
+        flex: 1 1 100%;
         max-width: 100%;
     }
 

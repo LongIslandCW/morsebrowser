@@ -50,7 +50,8 @@ export function createLessonPluginForTest () {
         speedRacerEnabled: ko.observable(false),
         speedRacerMultipliers: ko.observable('1.5, 1.35, 1.175, 1.0'),
         speedRacerFinalPlay: ko.observable(true),
-        speedRacerSpeakBeforeReplay: ko.observable(true)
+        speedRacerSpeakBeforeReplay: ko.observable(true),
+        speedRacerKeepFwpm: ko.observable(true)
       },
       misc
     },
