@@ -165,7 +165,7 @@ export class MorseViewModel {
 
     this.loadDefaultsAndCookieSettings()
 
-    // initialize the wordlist
+    // images
     this.lessons.initializeWordList()
 
     this.flaggedWords = new FlaggedWords()
@@ -494,6 +494,10 @@ export class MorseViewModel {
     })
   }
 
+  scrollPlaybackIntoView = () => {
+    document.querySelector('.playback-controls')?.scrollIntoView({ block: 'nearest', behavior: 'auto' })
+  }
+
   doPlay = (playJustEnded:boolean, fromPlayButton:boolean) => {
     if (!this.rawText().trim()) {
       return
@@ -510,6 +514,7 @@ export class MorseViewModel {
     const freshStart = fromPlayButton && !wasPlayerPlaying
     if (freshStart) {
       this.collapseSettingsAccordions()
+      this.scrollPlaybackIntoView()
     }
     if (!this.lastPlayFullStart || (this.lastFullPlayTime() > this.lastPlayFullStart)) {
       this.lastPlayFullStart = Date.now()
@@ -589,30 +594,54 @@ export class MorseViewModel {
           fractionalWordSpaceDits
         )
         this.addToVoiceBuffer()
+        const racerState = this.cardBufferManager.getRepeatState()
+        const playIndex = racerState.index
+        const audiblePlay = !!(config.word && config.word.trim().length > 0)
+        const speakOn = racerOn && this.settings.speed.speedRacerSpeakBeforeReplay()
+
         const playerCmd = () => {
           if (!this.morseVoice.speakFirst() || this.playerPlaying()) {
             this.morseWordPlayer.play(config, (fromVoiceOrTrail) => {
               this.charsPlayed(this.charsPlayed() + config.word.replace(' ', '').length)
-              this.playEnded(fromVoiceOrTrail)
+              const speakAfter = speakOn &&
+                audiblePlay &&
+                this.settings.speed.isRacerSpeakAfterLastVariation(playIndex)
+              if (speakAfter) {
+                const padMs = this.settings.speed.getSpeedRacerPreSpeakPadMs()
+                setTimeout(() => {
+                  if (!this.playerPlaying()) {
+                    return
+                  }
+                  this.speakSpeedRacerRecap(() => {
+                    if (this.playerPlaying()) {
+                      this.playEnded(fromVoiceOrTrail)
+                    }
+                  })
+                }, padMs)
+              } else {
+                this.playEnded(fromVoiceOrTrail)
+              }
             })
           }
         }
 
-        // Speed Racer: optional speak step, then base-speed replay when enabled.
-        const racerState = this.cardBufferManager.getRepeatState()
-        const isFinalReplaySlot = racerOn &&
-          this.settings.speed.speedRacerFinalPlay() &&
-          this.settings.speed.isRacerFinalPlay(racerState.index) &&
-          config.word && config.word.trim().length > 0
-        const shouldSpeakBeforeReplay = isFinalReplaySlot &&
-          this.settings.speed.speedRacerSpeakBeforeReplay()
+        // Speed Racer: optional speak before base-speed replay, or speak after last variation.
+        const shouldSpeakBeforeReplay = speakOn &&
+          audiblePlay &&
+          this.settings.speed.isRacerSpeakBeforeFinalReplay(playIndex)
 
         if (shouldSpeakBeforeReplay) {
-          this.speakSpeedRacerRecap(() => {
-            if (this.playerPlaying()) {
-              playerCmd()
+          const padMs = this.settings.speed.getSpeedRacerPreSpeakPadMs()
+          setTimeout(() => {
+            if (!this.playerPlaying()) {
+              return
             }
-          })
+            this.speakSpeedRacerRecap(() => {
+              if (this.playerPlaying()) {
+                playerCmd()
+              }
+            })
+          }, padMs)
         } else if (racerOn) {
           // Speed Racer manages its own speak step. Bypass speakFirst entirely
           // so a stale speakFirst toggle can't add a voiceThinkingTime delay
@@ -642,8 +671,9 @@ export class MorseViewModel {
     playJustEnded || fromPlayButton ? 0 : 1000)
   }
 
-  // Speed Racer voice recap before the base-speed replay. Respects voiceSpelling:
-  // whole word when off, one letter at a time (with enforced gaps) when on.
+  // Speed Racer voice recap. Respects voiceSpelling: whole word when off,
+  // one letter at a time (with enforced gaps) when on. Runs before the
+  // base-speed replay or after the last variation when replay is off.
   speakSpeedRacerRecap = (onComplete:() => void) => {
     const currentWord = this.words()[this.currentIndex()]
     const spelling = this.morseVoice.voiceSpelling()
@@ -751,7 +781,7 @@ export class MorseViewModel {
 
     const noDelays = (!needToSpeak && !needToTrail) || racerOn
 
-    const advanceTrail = () => {
+    const advanceTrail = (forceContinue = false) => {
       // note we eliminate the trail delays if speaking
       if (this.trailReveal()) {
         setTimeout(() => {
@@ -759,7 +789,7 @@ export class MorseViewModel {
           setTimeout(() => {
             // if speak is in the driver's seat it will call this,
             // if not then trail will
-            if (!speakAndTrail) {
+            if (!speakAndTrail || forceContinue) {
               this.playEnded(true)
             }
           }, speakAndTrail ? 0 : this.trailPostDelay() * 1000)
@@ -863,6 +893,8 @@ export class MorseViewModel {
             this.playEnded(true)
           })
         }, this.morseVoice.voiceThinkingTime() * 1000)
+      } else if (needToTrail) {
+        advanceTrail(true)
       } else {
         this.playEnded(true)
       }

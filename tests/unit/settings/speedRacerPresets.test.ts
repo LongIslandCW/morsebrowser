@@ -32,6 +32,7 @@ function expectSpeedRacerPreset (
 
   expect(m.get('speedRacerEnabled'), `${label} speedRacerEnabled`).toBe(true)
   expect(m.get('speedRacerFinalPlay'), `${label} speedRacerFinalPlay`).toBe(false)
+  expect(m.get('speedRacerSpeakBeforeReplay'), `${label} speedRacerSpeakBeforeReplay`).toBe(false)
   expect(m.get('speedInterval'), `${label} speedInterval`).toBe(false)
   expect(m.get('numberOfRepeats'), `${label} numberOfRepeats`).toBe(0)
   expect(m.get('speakFirst'), `${label} speakFirst`).toBe(false)

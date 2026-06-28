@@ -186,6 +186,11 @@
 			"comment": null
 		},
 		{
+			"key": "speedRacerSpeakBeforeReplay",
+			"value": false,
+			"comment": null
+		},
+		{
 			"key": "isShuffledSet",
 			"value": false,
 			"comment": null

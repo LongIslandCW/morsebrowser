@@ -40,17 +40,29 @@ export class CardBufferManager {
   populateBuffer = (repeats:number = 0, additionalWordSpaces:number = 0) => {
     console.log(`populateBuffer repeats${repeats}`)
     this._buffer = []
-    this._buffer.push(new CardWord(this._getWords()[this._getCurrentIndex()].displayWord))
-    // debugger
+    const cardWord = new CardWord(this._getWords()[this._getCurrentIndex()].displayWord)
+    this._buffer.push(cardWord)
     if (repeats > 0) {
-      for (let i = 0; i < additionalWordSpaces; i++) {
-        this._buffer[0].subparts.push(new CardWordSubPart(''))
+      const audibleSubparts = cardWord.subparts.map((sp) => sp.word)
+      cardWord.subparts = []
+      for (let r = 0; r < repeats; r++) {
+        audibleSubparts.forEach((word) => {
+          cardWord.subparts.push(new CardWordSubPart(word))
+        })
+        // Wordspace padding goes between repeats only — never after the last
+        // audible play (a trailing gap caused an extra empty shift that replayed
+        // the final Speed Racer slot at the wrong WPM).
+        if (r < repeats - 1) {
+          for (let i = 0; i < additionalWordSpaces; i++) {
+            cardWord.subparts.push(new CardWordSubPart(''))
+          }
+        }
       }
-      this._buffer[0].subparts = this.appendArrayNTimes(this._buffer[0].subparts, repeats)
+      this._totalWordPlays = repeats
+    } else {
+      this._totalWordPlays = 1
     }
-    this._totalWordPlays = repeats > 0 ? repeats : 1
     this._lastAudiblePlayIndex = -1
-    // debugger
   }
 
   hasMoreMorse = ():boolean => {

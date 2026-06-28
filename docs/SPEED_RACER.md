@@ -32,11 +32,11 @@ For each card:
 2. Optionally **speak** the card once (if **Speak Before Replay** is on).
 3. Optionally **replay** the card once at **base speed** — the speed from the **first** multiplier (if **Replay Base Speed** is on).
 
-**FWPM during racing:** By default **Keep FWPM** is on — only character WPM scales (Kurt’s model). Turn **Keep FWPM** off to scale FWPM with each multiplier. When Speed Racer is off, normal saved WPM/FWPM apply again.
+**FWPM during racing:** When a variation is faster than your saved FWPM, spacing stays at the saved base (Farnsworth). When variation WPM drops below saved FWPM (slow multipliers), spacing scales down with character speed so slow ladder steps stay cohesive.
 
 **Mutual exclusion:** Speed Racer and **Speed Intervals** cannot both be on; enabling one turns the other off.
 
-**Voice independence:** Speed Racer recap speech uses **Speak Before Replay**, not the global **Voice Options** toggle. During Speed Racer sets, the normal voice trail (`addToVoiceBuffer`) is skipped.
+**Voice / Speak Before Replay:** Recap speech uses Voice Options settings (Spell, pre/post delay, speaker, etc.) via `speakSpeedRacerRecap` when **Speak** is on. Turn **Voice** on yourself in Voice Options to configure those settings. During Speed Racer sets, the normal voice trail (`addToVoiceBuffer`) is skipped.
 
 Implementation: `SpeedSettings.applySpeedRacer()` in `speedSettings.ts`; speak/replay gate in `morse.ts` (`speakSpeedRacerRecap`).
 
@@ -59,10 +59,9 @@ Implementation: `SpeedSettings.applySpeedRacer()` in `speedSettings.ts`; speak/r
 |---------|-------------|
 | **Multipliers** | Comma-separated list (e.g. `1.5, 1.35, 1.175, 1.0`). Each non-zero value plays the card once at `round(mainWpm × multiplier)`. `0` skips a slot. |
 | **Replay Base Speed** | After the ladder, replay once at base speed (first multiplier). |
-| **Speak Before Replay** | Speak the card once before the base-speed replay. Disabled when Replay Base Speed is off. |
-| **Keep FWPM** | When on, Effective Speed (FWPM) stays at your saved base during racing. When off, FWPM scales with each multiplier like WPM. |
+| **Speak** / **Speak Before Replay** | Label follows Replay: speak before base-speed replay, or speak after the last variation when replay is off. Always enabled with Speed Racer. |
 | **Sequence preview** | Live text, e.g. `23 → 27 → 31 → speak → 23 wpm`. |
-| **Reset to defaults** | Multipliers `1.5, 1.35, 1.175, 1.0`; **Replay**, **Speak**, and **Keep FWPM** all **on**. |
+| **Reset to defaults** | Multipliers `1.5, 1.35, 1.175, 1.0`; **Replay** and **Speak** both **on**. |
 | **Overlearn** | Multipliers `1.0, 1.174, 1.348`; **Replay** and **Speak** both **off**. |
 
 Markup: `src/template.html` (Speed Racer fieldset under Timing).
@@ -141,8 +140,8 @@ These keys serialize in preset JSON and in saved settings (`morseSettingsHandler
 | `speedRacerEnabled` | boolean | Turn Speed Racer on |
 | `speedRacerMultipliers` | string | Comma-separated multipliers; `0` skips a slot |
 | `speedRacerFinalPlay` | boolean | **Replay Base Speed** after the ladder |
-| `speedRacerSpeakBeforeReplay` | boolean | **Speak Before Replay** (only runs when `speedRacerFinalPlay` is true) |
-| `speedRacerKeepFwpm` | boolean | **Keep FWPM** at saved base during racing (off = scale FWPM with multipliers) |
+| `speedRacerSpeakBeforeReplay` | boolean | **Speak** toggle; recap uses Voice Options when on (enable Voice manually to configure Spell/delays) |
+| `speedRacerKeepFwpm` | boolean | Legacy/preset compat only — FWPM always stays at saved base during racing |
 
 ### App defaults (`legacymixin.json`)
 
@@ -199,12 +198,14 @@ After adding or removing files under `src/presets/configs/`, run **`npm run preb
 
 ## 6. Replay vs speak combinations
 
-| Replay Base Speed | Speak Before Replay | Behavior |
-|-------------------|---------------------|----------|
+| Replay Base Speed | Speak | Behavior |
+|-------------------|-------|----------|
 | On | On | Variations → **speak** → base-speed replay *(Jay-style default)* |
 | On | Off | Variations → base-speed replay, **no speak** |
-| Off | Off | Overlearn ladder only — stop after last (fastest) variation |
-| Off | On | Speak is ignored (speak only runs before a replay) |
+| Off | Off | Variation ladder only — stop after last (fastest) variation |
+| Off | On | Variations → **speak** after the last variation *(no base-speed replay)* |
+
+The speak toggle label is **Speak Before Replay** when replay is on, or **Speak** when replay is off. It is always clickable while Speed Racer is on.
 
 The **Overlearn** button in Advanced sets FR1 multipliers and turns **both** toggles off.
 

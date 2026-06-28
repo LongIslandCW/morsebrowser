@@ -575,6 +575,10 @@ html {
 }
 
 /* Playback */
+.playback-controls {
+    scroll-margin-top: 1rem;
+}
+
 .playback-controls .btn,
 .playback-controls .btn-group {
     flex: 0 1 auto;

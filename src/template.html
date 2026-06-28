@@ -519,28 +519,13 @@
                                                 <div class="settings-lesson-control">
                                                     <input id="speedRacerSpeakBeforeReplay" name="speedRacerSpeakBeforeReplay"
                                                         type="checkbox" class="btn-check" autocomplete="off"
-                                                        aria-label="Speak Before Replay"
-                                                        data-bind="checked: settings.speed.speedRacerSpeakBeforeReplay, enable: settings.speed.speedRacerFinalPlay()"
-                                                        title="When on (and Replay Base Speed is on), speak the card once before the base-speed replay. Independent of the Voice Options toggle.">
+                                                        data-bind="checked: settings.speed.speedRacerSpeakBeforeReplay, attr: { 'aria-label': settings.speed.speedRacerSpeakLabel }"
+                                                        title="Speak the card using Voice Options (Spell, delays, etc.). With Replay Base Speed on, speak runs before the base-speed replay; with replay off, speak runs after the last variation.">
                                                     <label class="btn btn-outline-primary" for="speedRacerSpeakBeforeReplay"
                                                         aria-hidden="true">
                                                         <img data-bind="attr:{ src: morseLoadImages().getSrc('chatquoteImage')}"
-                                                            height="16" width="16" alt="" />&nbsp;Speak Before Replay&nbsp;
+                                                            height="16" width="16" alt="" />&nbsp;<span data-bind="text: settings.speed.speedRacerSpeakLabel"></span>&nbsp;
                                                         <img data-bind="attr:{ src: settings.speed.speedRacerSpeakBeforeReplay() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}"
-                                                            alt="" />
-                                                    </label>
-                                                </div>
-                                                <div class="settings-lesson-control">
-                                                    <input id="speedRacerKeepFwpm" name="speedRacerKeepFwpm"
-                                                        type="checkbox" class="btn-check" autocomplete="off"
-                                                        aria-label="Keep FWPM"
-                                                        data-bind="checked: settings.speed.speedRacerKeepFwpm"
-                                                        title="When on, Effective Speed (FWPM) stays at your saved base during Speed Racer. When off, FWPM scales with each multiplier like WPM.">
-                                                    <label class="btn btn-outline-primary" for="speedRacerKeepFwpm"
-                                                        aria-hidden="true">
-                                                        <img data-bind="attr:{ src: morseLoadImages().getSrc('lockImage')}"
-                                                            height="16" width="16" alt="" />&nbsp;Keep FWPM&nbsp;
-                                                        <img data-bind="attr:{ src: settings.speed.speedRacerKeepFwpm() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}"
                                                             alt="" />
                                                     </label>
                                                 </div>
@@ -551,7 +536,7 @@
                                                 <div class="settings-lesson-control">
                                                     <button type="button" class="btn btn-outline-primary"
                                                         data-bind="click: ()=>settings.speed.resetSpeedRacerDefaults()"
-                                                        title="Restore Multipliers, Replay Base Speed, Speak Before Replay, and Keep FWPM to their defaults (1.5, 1.35, 1.175, 1.0; all on).">
+                                                        title="Restore Multipliers, Replay Base Speed, and Speak Before Replay to their defaults (1.5, 1.35, 1.175, 1.0; all on).">
                                                         <img data-bind="attr:{ src: morseLoadImages().getSrc('bootstrapRebootImage')}"
                                                             height="16" width="16" alt="" />&nbsp;Reset to defaults
                                                     </button>
@@ -586,10 +571,10 @@
                                     <fieldset class="morse-settings-fieldset">
                                         <legend class="morse-settings-legend">Trail</legend>
                                         <div class="input-group flex-wrap trail-settings-row"
-                                                title="Automatic card revealing">
+                                                title="Reveals masked cards progressively after each card plays. Turn off Reveal (playback controls) or leave cards hidden to see the effect. Inactive during Speed Racer.">
                                                 <input type="checkbox" data-bind="checked: trailReveal"
                                                     class="btn-check" id="btntrailReveal" autocomplete="off"
-                                                    title="Reveals hidden cards after they have been played" />
+                                                    title="Reveals hidden (masked) cards after they have been played. No visible effect when Reveal is on." />
                                                 <label class="btn btn-outline-primary" for="btntrailReveal">
                                                     <span>Trail&nbsp;</span>
                                                     <img height=20 width=20
