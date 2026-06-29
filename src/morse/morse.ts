@@ -554,6 +554,28 @@ export class MorseViewModel {
     }
   }
 
+  togglePlaybackFromShortcut = () => {
+    if (this.playerPlaying()) {
+      this.doPause(false, true, false)
+      this.focusPlaybackControl('btnPause')
+      return
+    }
+
+    if (this.isPaused()) {
+      this.doPlay(true, false)
+      this.focusPlaybackControl('btnPlayButton')
+      return
+    }
+
+    this.doPlay(false, true)
+    this.focusPlaybackControl('btnPlayButton')
+  }
+
+  stopPlaybackFromShortcut = () => {
+    this.doPause(true, false, true)
+    this.focusPlaybackControl('btnStop')
+  }
+
   collapseSettingsAccordions = () => {
     const area = document.getElementById('accordionArea')
     if (!area) {
@@ -569,7 +591,14 @@ export class MorseViewModel {
   }
 
   scrollPlaybackIntoView = () => {
-    document.querySelector('.playback-controls')?.scrollIntoView({ block: 'nearest', behavior: 'auto' })
+    document.querySelector('.playback-controls')?.scrollIntoView({ block: 'start', behavior: 'auto' })
+  }
+
+  focusPlaybackControl = (id:string) => {
+    window.setTimeout(() => {
+      this.scrollPlaybackIntoView()
+      document.getElementById(id)?.focus({ preventScroll: true })
+    }, 0)
   }
 
   focusKeyboardShortcuts = () => {

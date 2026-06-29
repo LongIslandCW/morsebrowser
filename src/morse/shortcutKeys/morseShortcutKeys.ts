@@ -63,12 +63,12 @@ export class MorseShortcutKeys {
   registerKeyboardShortcutHandlers = (mv:MorseViewModel) => {
     // Toggle play/pause
     this.registerShortcutKeyHandler('p', 'Play / Toggle pause', () => {
-      mv.togglePlayback()
+      mv.togglePlaybackFromShortcut()
     })
 
     // stop
     this.registerShortcutKeyHandler('s', 'Stop playback and rewind', () => {
-      mv.doPause(true, false, true)
+      mv.stopPlaybackFromShortcut()
     })
 
     // Back 1

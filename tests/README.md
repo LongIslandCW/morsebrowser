@@ -1,42 +1,54 @@
-# Tests (morsebrowser_dev)
+# Tests
 
-## Unit and integration (Vitest)
+The repo uses Vitest for unit/integration coverage and Playwright for browser E2E coverage.
+
+## Vitest
 
 ```bash
-npm test              # run once
-npm run test:watch    # watch mode
-npm run test:coverage # with coverage report
+npm test
+npm run test:watch
+npm run test:coverage
 ```
 
-- **Unit tests** live under `tests/unit/` (utils, timing, theme, lessons plugin, settings, DOM helpers).
-- **Integration** `tests/integration/checklessons.test.ts` checks `wordlists.json` against `src/wordfiles/` (parity with postbuild `checklessons.js`; allows ~15% missing files like the warning script).
+Coverage currently includes utilities, timing, settings serialization, Speed Racer settings, theme behavior, lesson plugin behavior, and selected DOM helpers. Vitest runs in `jsdom` by default; integration tests can opt into Node.
 
-Vitest uses `jsdom` by default. Integration tests use `@vitest-environment node`.
+Vitest is not the first-pass target for full Web Audio playback, browser speech synthesis, or full Knockout rendering.
 
-### Out of scope for Vitest v1
+## Playwright
 
-- Web Audio / `SmoothedSoundsPlayer`
-- Full `MorseViewModel` construction
-- Knockout component HTML partials
-- Webpack bundle smoke
-
-## End-to-end (Playwright)
-
-Requires a production build (served from `dist/`):
+Playwright serves the built app from `dist/`, so build first:
 
 ```bash
 npm run build
 npm run test:e2e
-# or
-npm run test:all   # vitest + build + e2e
 ```
 
-E2E specs in `e2e/`: app load, lesson pickers, lesson options layout, playback accordion collapse, dark mode, settings field layout on a narrow viewport (`settings-layout-mobile.spec.ts`, Playwright `mobile-chrome` project).
+First-time browser install:
 
-First-time setup: `npx playwright install chromium`
+```bash
+npx playwright install chromium
+```
+
+Specs live in `e2e/` and cover app load, lesson pickers, settings layout, playback behavior, dark mode, mobile settings width, and accessibility.
+
+Run the focused accessibility checks:
+
+```bash
+npx playwright test e2e/accessibility.spec.ts
+```
+
+The accessibility spec uses `@axe-core/playwright` and also asserts screen-reader-facing names/descriptions for keyboard shortcuts, Speed Racer, Voice, Tone, Input, Output, Flagged cards, Noise, RSS, and the single polite live region.
 
 ## CI
 
-`develop2.yml` (on push/PR to `develop`) runs `npm test`, `npm run build`, then `npm run test:e2e` on Node 20.
+`develop2.yml` runs on `develop` pushes and PRs with Node 20:
 
-Fork hosting is **Cloudflare Workers**, not GitHub Pages; the workflow file still contains a legacy Pages deploy step that is not used for fork previews. See [docs/DEVELOPER_GUIDE.md](../docs/DEVELOPER_GUIDE.md#83-deploy-hosting).
+```bash
+npm ci
+npm run test
+npm run build --if-present
+npx playwright install --with-deps chromium
+npm run test:e2e
+```
+
+Fork hosting is Cloudflare Workers. Some workflow files still contain legacy GitHub Pages deploy steps; those are not the current fork preview/deploy path.

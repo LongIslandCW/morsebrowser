@@ -24,7 +24,7 @@ This guide explains **Speed Racer** mode: how it plays each card, where the cont
 
 ## 1. What Speed Racer does
 
-When **Speed Racer** is enabled (Lesson Options → Timing), each card can play through a **multiplier ladder** instead of using **Repeats** or **Speed Intervals**.
+When **Speed Racer** is enabled (Lesson Options -> Timing), each card can play through configurable **speed steps** instead of using normal **Repeats** or **Speed Intervals**.
 
 For each card:
 
@@ -46,7 +46,7 @@ Implementation: `SpeedSettings.applySpeedRacer()` in `speedSettings.ts`; speak/r
 
 **LICW Lessons** — pick TYPE, CLASS, CONTENT, LESSON, and PRESETS as usual.
 
-**Lesson Options → Timing:**
+**Lesson Options -> Timing:**
 
 | Control | Description |
 |---------|-------------|
@@ -57,10 +57,10 @@ Implementation: `SpeedSettings.applySpeedRacer()` in `speedSettings.ts`; speak/r
 
 | Control | Description |
 |---------|-------------|
-| **Multipliers** | Comma-separated list (e.g. `1.5, 1.35, 1.175, 1.0`). Each non-zero value plays the card once at `round(mainWpm × multiplier)`. `0` skips a slot. |
+| **Multipliers** | Comma-separated speed-step list (e.g. `1.5, 1.35, 1.175, 1.0`). Each non-zero value plays the card once at `round(mainWpm * multiplier)`. `0` skips a slot. |
 | **Replay Base Speed** | After the ladder, replay once at base speed (first multiplier). |
 | **Speak** / **Speak Before Replay** | Label follows Replay: speak before base-speed replay, or speak after the last variation when replay is off. Always enabled with Speed Racer. |
-| **Sequence preview** | Live text, e.g. `23 → 27 → 31 → speak → 23 wpm`. |
+| **Sequence preview** | Live text, e.g. `23 -> 27 -> 31 -> speak -> 23 wpm`. |
 | **Reset to defaults** | Multipliers `1.5, 1.35, 1.175, 1.0`; **Replay** and **Speak** both **on**. |
 | **Overlearn** | Multipliers `1.0, 1.174, 1.348`; **Replay** and **Speak** both **off**. |
 
@@ -111,9 +111,9 @@ Four **Speed Racer Overlearn** presets sit beside the original **OverLearn … F
 
 | PRESETS display name (`selectedPreset`) | Config file | Base WPM | Multipliers (slow→fast) |
 |----------------------------------------|-------------|----------|-------------------------|
-| Speed Racer Letters Flow Rate 1 | `POL_17_L_SR.json` | 23 | `1.0, 1.174, 1.348` → 23 → 27 → 31 |
+| Speed Racer Letters Flow Rate 1 | `POL_17_L_SR.json` | 23 | `1.0, 1.174, 1.348` -> 23 -> 27 -> 31 |
 | Speed Racer Words Flow Rate 1 | `POL_17_W_SR.json` | 23 | same |
-| Speed Racer Letters Flow Rate 2 | `POL_21_L_SR.json` | 27 | `1.0, 1.148, 1.296` → 27 → 31 → 35 |
+| Speed Racer Letters Flow Rate 2 | `POL_21_L_SR.json` | 27 | `1.0, 1.148, 1.296` -> 27 -> 31 -> 35 |
 | Speed Racer Words Flow Rate 2 | `POL_21_W_SR.json` | 27 | same |
 
 Pair with lessons such as **`OVERLEARN LETTERS`** / **`OVERLEARN WORDS`** under the correct class and letter group (e.g. BC1 + REA). Lesson names come from `src/wordfilesconfigs/wordlists.json` (`display` field).
@@ -166,10 +166,12 @@ These files explicitly set:
 | `speedRacerEnabled` | `true` | |
 | `speedRacerMultipliers` | FR1 or FR2 ladder | See table in §4 |
 | `speedRacerFinalPlay` | `false` | Pure Overlearn — end on fastest variation |
+| `speedRacerSpeakBeforeReplay` | `false` | Explicitly off; avoids legacy mixin defaulting it on |
+| `voiceEnabled` | `false` | Voice stays off for these Overlearn presets |
 | `numberOfRepeats` | `0` | Speed Racer replaces repeats |
 | `speakFirstAdditionalWordspaces` | `2` | Gap between variation plays (Overlearn pacing) |
 
-They do **not** include `speedRacerSpeakBeforeReplay`. With `speedRacerFinalPlay: false`, speak never runs regardless. To make intent explicit in JSON, add the key (see §6).
+Keep `speedRacerSpeakBeforeReplay` explicit in Speed Racer Overlearn presets. The legacy mixin default is `true` when the key is missing.
 
 ### Example: replay on, speak off
 
@@ -200,10 +202,10 @@ After adding or removing files under `src/presets/configs/`, run **`npm run preb
 
 | Replay Base Speed | Speak | Behavior |
 |-------------------|-------|----------|
-| On | On | Variations → **speak** → base-speed replay *(Jay-style default)* |
-| On | Off | Variations → base-speed replay, **no speak** |
+| On | On | Variations -> **speak** -> base-speed replay *(Jay-style default)* |
+| On | Off | Variations -> base-speed replay, **no speak** |
 | Off | Off | Variation ladder only — stop after last (fastest) variation |
-| Off | On | Variations → **speak** after the last variation *(no base-speed replay)* |
+| Off | On | Variations -> **speak** after the last variation *(no base-speed replay)* |
 
 The speak toggle label is **Speak Before Replay** when replay is on, or **Speak** when replay is off. It is always clickable while Speed Racer is on.
 

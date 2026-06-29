@@ -16,7 +16,7 @@ function collapseSettingsAccordions () {
 }
 
 function scrollPlaybackIntoView () {
-  document.querySelector('.playback-controls')?.scrollIntoView({ block: 'nearest', behavior: 'auto' })
+  document.querySelector('.playback-controls')?.scrollIntoView({ block: 'start', behavior: 'auto' })
 }
 
 describe('collapseSettingsAccordions', () => {
@@ -51,6 +51,6 @@ describe('scrollPlaybackIntoView', () => {
 
     scrollPlaybackIntoView()
 
-    expect(el.scrollIntoView).toHaveBeenCalledWith({ block: 'nearest', behavior: 'auto' })
+    expect(el.scrollIntoView).toHaveBeenCalledWith({ block: 'start', behavior: 'auto' })
   })
 })

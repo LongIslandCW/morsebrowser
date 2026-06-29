@@ -1,26 +1,31 @@
-# Morse Practice Page — documentation
+# Morse Practice Page Documentation
 
-Developer documentation for the LICW Morse Practice Page (MPP) source tree.
+Developer and maintainer documentation for the LICW Morse Practice Page source tree.
 
-| Document | Description |
-|----------|-------------|
-| [DEVELOPER_GUIDE.md](./DEVELOPER_GUIDE.md) | Full guide: HTML layout, Knockout/Bootstrap, TypeScript modules, build pipeline, lessons/presets, playback |
-| [SPEED_RACER.md](./SPEED_RACER.md) | Speed Racer mode: UI toggles, preset JSON keys, Tom-style deep links, Overlearn vs Jay-style |
+| Document | Use |
+|----------|-----|
+| [DEVELOPER_GUIDE.md](./DEVELOPER_GUIDE.md) | Architecture, UI layout, build flow, lessons/presets, playback, deployment, tests |
+| [SPEED_RACER.md](./SPEED_RACER.md) | Speed Racer UI, playback behavior, preset keys, Tom-style deep links |
+| [../tests/README.md](../tests/README.md) | Vitest, Playwright, accessibility E2E, CI notes |
+| [../MAINTAINERS.md](../MAINTAINERS.md) | Maintainer checklist and source map |
+| [../AGENTS.md](../AGENTS.md) | Fork-specific agent notes and Roger's workflow preferences |
 
-## Quick links
+## Quick Commands
 
-- **Run locally:** `npm install` → `npm run dev` (http://localhost:3000)
-- **UI markup:** `src/template.html`
-- **App entry:** `src/index.js` → `src/morse/morse.ts` (`MorseViewModel`)
-- **Tests:** `npm test` (Vitest), `npm run test:e2e` (Playwright, needs build)
+```bash
+npm install
+npm run dev          # local dev server, http://localhost:3000
+npm test             # Vitest unit/integration tests
+npm run build        # prebuild + webpack + postbuild checks
+npm run test:e2e     # Playwright, serves dist/
+npm run test:all     # unit + build + E2E
+```
 
 ## Hosting
 
 | Site | Where it runs |
-|------|----------------|
-| **Club (production)** | [longislandcw.github.io/morsebrowser](https://longislandcw.github.io/morsebrowser/index.html) — GitHub Pages on `LongIslandCW/morsebrowser` |
-| **This fork (Roger dev)** | **Cloudflare Workers** — `npm run build` && `npm run deploy`; PRs show Workers preview URLs. Not GitHub Pages. |
+|------|---------------|
+| Club production | GitHub Pages from `LongIslandCW/morsebrowser`: https://longislandcw.github.io/morsebrowser/index.html |
+| This fork | Cloudflare Workers from `rdreed21/morsebrowser_dev`; build with `npm run build`, deploy with `npm run deploy` |
 
-BETA footer (`isDev()`): shown when the page URL contains `/dev/` (common on club Pages dev paths; usually not on `*.workers.dev` previews).
-
-Details: [DEVELOPER_GUIDE.md § Deploy](./DEVELOPER_GUIDE.md#83-deploy-hosting), [AGENTS.md](../AGENTS.md).
+The fork workflows still contain legacy GitHub Pages deploy steps, but fork previews and hosting are handled by Cloudflare Workers. The BETA footer appears when the URL path contains `/dev/`.

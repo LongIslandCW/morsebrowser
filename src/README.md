@@ -1,9 +1,40 @@
-What should go in each folder?
+# `src/` Directory
 
-assets/ Images etc.
+Application source for the Morse Practice Page.
 
-morse-pro/ SG Phillips library. From time-to-time this should probably be merged if he makes updates. Note that some modifications have been made from his code, e.g. dit/dah pitch differences and prepadding, some of which he might include in future versions...
+| Path | Purpose |
+|------|---------|
+| `index.js` | Webpack entry. Imports CSS, applies the saved theme, and binds `MorseViewModel`. |
+| `template.html` | Main HTML template and Knockout bindings. Webpack turns this into `dist/index.html`. |
+| `assets/` | Logo and favicon assets. |
+| `css/` | Bootstrap overrides, settings layout, mobile sizing, and dark-theme styles. |
+| `configs/` | Startup defaults and voice punctuation mapping. |
+| `morse/` | Main TypeScript application modules. |
+| `morse-pro/` | Local LICW-modified copy of SG Phillips' morse-pro code. Keep changes narrow. |
+| `presets/` | Preset sets, preset configs, overrides, and legacy mixins. |
+| `wordfiles/` | Lesson content files (`.json` and `.txt`). |
+| `wordfilesconfigs/` | `wordlists.json`, the lesson catalog that drives LICW Lessons. |
 
-wordfiles/ the .json and .txt files that comprise "lessons"
+## Generated Finder Files
 
-wordfilesconfigs/ the wordlists.json file that drives the lesson navigation to a lesson file in wordfiles/  Currently this is 1 file. If it grows larger might make sense to normalize it into several files...
+The prebuild scripts generate dynamic import maps in `src/morse/`:
+
+- `morseLessonFinder.js`
+- `morsePresetFinder.js`
+- `morsePresetSetFinder.js`
+
+Run `npm run prebuild` after adding or removing lesson, preset config, or preset set files. `npm run build` runs this automatically.
+
+## Main UI Areas
+
+`template.html` renders:
+
+- Header with logo, help link, and dark-mode toggle
+- Basic speed settings
+- LICW Lessons
+- Lesson Options, Voice Options, Tone Options, Input Options, Output Options
+- Optional RSS and Noise accordions
+- Working text stats
+- Playback controls
+- Cards
+- Help, credits, keyboard shortcuts, and screen-reader status
