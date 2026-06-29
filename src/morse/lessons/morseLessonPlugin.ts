@@ -537,12 +537,15 @@ export default class MorseLessonPlugin implements ICookieHandler {
     }
   }
 
-  changeUserTarget = (userTarget) => {
+  changeUserTarget = (userTarget, fromClick = "") => {
     if (this.userTargetInitialized) {
       this.userTarget(userTarget)
       // console.log('usertarget')
       // console.log(`calling setPresetSelection from changeUserTarget:${userTarget}`)
       this.setPresetSelected(this.selectedSettingsPreset(), true)
+      if (fromClick === 'click') {
+        this.morseViewModel.announce?.(`Type selected: ${userTarget}`)
+      }
     }
   }
 
@@ -561,6 +564,9 @@ export default class MorseLessonPlugin implements ICookieHandler {
       //console.log('calling setPresetSelection from changeSelectedClass')
       this.setPresetSelected(this.selectedSettingsPreset(), true)
       this.upsertQueryStringVariable('selectedClass', selectedClass)
+      if (fromClick === 'click') {
+        this.morseViewModel.announce?.(`Class selected: ${selectedClass}`)
+      }
     }
   }
 
@@ -579,6 +585,9 @@ export default class MorseLessonPlugin implements ICookieHandler {
       //console.log('calling setPresetSelected from setLetterGroup')
       this.setPresetSelected(this.selectedSettingsPreset(), true)
       this.upsertQueryStringVariable('selectedGroup', letterGroup)
+      if (fromClick === 'click') {
+        this.morseViewModel.announce?.(`Content selected: ${letterGroup}`)
+      }
     }
   }
 
@@ -608,6 +617,9 @@ export default class MorseLessonPlugin implements ICookieHandler {
           //console.log('calling setPresetSelected from setDisplaySelected')
           this.setPresetSelected(this.selectedSettingsPreset(), true)
         }
+        if (fromClick === 'click') {
+          this.morseViewModel.announce?.(`Lesson selected: ${display.display}`)
+        }
       }
     }
   }
@@ -632,6 +644,9 @@ export default class MorseLessonPlugin implements ICookieHandler {
       }
 
       this.selectedSettingsPreset(preset)
+      if (fromClick === 'click') {
+        this.morseViewModel.announce?.(`Preset selected: ${preset.display}`)
+      }
       const settingsInfo = new SettingsChangeInfo(this.morseViewModel)
       settingsInfo.ifLoadSettings = true
       settingsInfo.ignoreCookies = true

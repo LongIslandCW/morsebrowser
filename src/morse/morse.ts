@@ -101,6 +101,7 @@ export class MorseViewModel {
   lockoutSaveCookiesTimerHandle:any = null
   currentSerializedSettings:any = null
   allShortcutKeys:ko.ObservableArray<ShortcutKeyEntry>
+  keyboardShortcutScript:ko.Computed<string>
   applyEnabled:ko.Computed<boolean>
   numberOfRepeats:ko.Observable<number> = ko.observable(0)
   testTonePlaying:boolean = false
@@ -198,6 +199,44 @@ export class MorseViewModel {
     // Keep track of registered shortcut keys in an observable array
     // so we can display them on the page without having to hard-code them.
     this.allShortcutKeys = ko.observableArray<ShortcutKeyEntry>([])
+    this.keyboardShortcutScript = ko.pureComputed(() => {
+      const keyNames = new Map<string, string>([
+        ['p', 'the letter P'],
+        ['s', 'the letter S'],
+        [',', 'the comma key'],
+        ['<', 'the less than key'],
+        ['.', 'the period key'],
+        ['f', 'the letter F'],
+        ['c', 'the letter C'],
+        ['/', 'the slash key'],
+        ['l', 'the letter L'],
+        ['z', 'the letter Z'],
+        ['x', 'the letter X']
+      ])
+      const actionNames = new Map<string, string>([
+        ['Play / Toggle pause', 'play or pause practice'],
+        ['Stop playback and rewind', 'stop playback and rewind to the first card'],
+        ['Back 1', 'go back one card'],
+        ['Full rewind', 'rewind to the first card'],
+        ['Forward 1', 'go forward one card'],
+        ['Flag current card', 'flag the current card'],
+        ['Toggle card visibility', 'reveal or hide the card text'],
+        ['Toggle shuffle', 'shuffle or unshuffle the practice cards'],
+        ['Toggle looping', 'change the loop mode'],
+        ['Reduce Farnsworth WPM', 'reduce effective speed by one word per minute'],
+        ['Increase Farnsworth WPM', 'increase effective speed by one word per minute']
+      ])
+      const shortcuts = this.allShortcutKeys().map(({ key, title }) => {
+        const spokenKey = keyNames.get(key) || `the ${key} key`
+        const spokenAction = actionNames.get(title) || title.toLowerCase()
+        return `Press ${spokenKey} to ${spokenAction}.`
+      })
+      return [
+        'Keyboard shortcuts help.',
+        'These keys work while you are practicing, as long as focus is not in a text field.',
+        ...shortcuts
+      ].join(' ')
+    }, this)
     this.shortcutKeys = new MorseShortcutKeys((key, title) => {
       this.allShortcutKeys.push({ key, title })
     })
@@ -216,8 +255,37 @@ export class MorseViewModel {
     }, this)
 
     this.screenWakeLock = new ScreenWakeLock()
+    this.registerAccessibilityAnnouncements()
   }
   // END CONSTRUCTOR
+
+  announce = (message:string) => {
+    this.accessibilityAnnouncement('')
+    window.setTimeout(() => this.accessibilityAnnouncement(message), 0)
+  }
+
+  registerAccessibilityAnnouncements = () => {
+    this.hideList.subscribe((hidden) => this.announce(hidden ? 'Cards are hidden' : 'Cards are revealed'))
+    this.cardsVisible.subscribe((visible) => this.announce(visible ? 'Cards section is shown' : 'Cards section is hidden'))
+    this.trailReveal.subscribe((enabled) => this.announce(enabled ? 'Trail is on' : 'Trail is off'))
+    this.isShuffled.subscribe((shuffled) => this.announce(shuffled ? 'Cards are shuffled' : 'Cards are back in order'))
+    this.loop.subscribe((enabled) => {
+      if (!enabled) {
+        this.announce('Loop is off')
+      }
+    })
+    this.loopnoshuffle.subscribe((noShuffle) => {
+      if (this.loop()) {
+        this.announce(noShuffle ? 'Loop is on' : 'Loop shuffle is on')
+      }
+    })
+    this.settings.speed.syncWpm.subscribe((synced) => this.announce(synced ? 'Character and effective speed are linked' : 'Character and effective speed are separate'))
+    this.settings.speed.speedRacerEnabled.subscribe((enabled) => {
+      this.announce(enabled ? 'Speed Racer is on' : 'Speed Racer is off')
+    })
+    this.lessons.syncSize.subscribe((synced) => this.announce(synced ? 'Minimum and maximum size are linked' : 'Minimum and maximum size are separate'))
+    this.settings.frequency.syncFreq.subscribe((synced) => this.announce(synced ? 'Dit and dah pitch are linked' : 'Dit and dah pitch are separate'))
+  }
 
   loadDefaultsAndCookieSettings = () => {
     // load defaults
@@ -386,7 +454,13 @@ export class MorseViewModel {
       this.doPause(true, false, false)
       this.setText(this.flaggedWords.flaggedWords())
       this.fullRewind()
+      this.announce('Flagged cards loaded as text')
     }
+  }
+
+  addFlaggedWord = (word:WordInfo) => {
+    this.flaggedWords.addFlaggedWord(word)
+    this.announce('Flagged card')
   }
 
   clearFlagged = () => {
@@ -498,6 +572,24 @@ export class MorseViewModel {
     document.querySelector('.playback-controls')?.scrollIntoView({ block: 'nearest', behavior: 'auto' })
   }
 
+  focusKeyboardShortcuts = () => {
+    window.setTimeout(() => {
+      const summary = document.getElementById('keyboard-shortcuts-summary')
+      summary?.focus()
+    }, 0)
+    return true
+  }
+
+  keyboardShortcutsToggled = (_data, event) => {
+    const details = event.target as HTMLDetailsElement
+    if (details.open) {
+      window.setTimeout(() => {
+        document.getElementById('keyboard-shortcuts-content')?.focus()
+      }, 0)
+    }
+    return true
+  }
+
   doPlay = (playJustEnded:boolean, fromPlayButton:boolean) => {
     if (!this.rawText().trim()) {
       return
@@ -511,6 +603,7 @@ export class MorseViewModel {
     // 3. we just finished playing a word
     // 4. user might press play to re-play a word
     const wasPlayerPlaying = this.playerPlaying()
+    const wasPaused = this.isPaused()
     const freshStart = fromPlayButton && !wasPlayerPlaying
     if (freshStart) {
       this.collapseSettingsAccordions()
@@ -521,6 +614,9 @@ export class MorseViewModel {
     }
     this.isPaused(false)
     this.playerPlaying(true)
+    if (freshStart || wasPaused) {
+      this.announce('Playing')
+    }
     if (!playJustEnded) {
       this.preSpaceUsed(false)
     }
@@ -842,7 +938,10 @@ export class MorseViewModel {
         }, getCardSpaceTimerHandleDelay())
       } else {
       // nothing more to play
-        const finalToDo = () => this.doPause(true, false, false)
+        const finalToDo = () => {
+          this.announce('Playback complete')
+          this.doPause(true, false, false)
+        }
         // trailing may want a linger
         if (this.trailReveal()) {
           finalizeTrail(finalToDo)
@@ -997,6 +1096,7 @@ export class MorseViewModel {
     if (fromPauseButton) {
       this.runningPlayMs(this.runningPlayMs() + (Date.now() - this.lastPartialPlayStart()))
       this.isPaused(!this.isPaused())
+      this.announce(this.isPaused() ? 'Paused' : 'Playing')
     } else {
       this.isPaused(false)
     }
@@ -1025,6 +1125,7 @@ export class MorseViewModel {
     }
     if (fromStopButton) {
       this.maxRevealedTrail(-1)
+      this.announce('Stopped')
     }
 
     if (this.cardSpaceTimerHandle) {
@@ -1108,6 +1209,7 @@ export class MorseViewModel {
     // stop playing
     this.doPause(true, false, false)
     this.setText('')
+    this.announce('Text cleared')
   }
 
   doApply = (fromUserClick:boolean = false) => {
@@ -1139,6 +1241,7 @@ export class MorseViewModel {
   toggleLoop = () => {
     if (!this.loop()) {
       this.loop(true)
+      this.announce('Loop shuffle is on')
     } else if (this.loopnoshuffle()) {
       this.loop(false)
       this.loopnoshuffle(false)
