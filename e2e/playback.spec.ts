@@ -20,11 +20,12 @@ test('play keeps playback controls in viewport on fresh start', async ({ page })
 
   await page.locator('#btnPlayButton').click()
 
-  const playInView = await page.locator('#btnPlayButton').evaluate((el) => {
-    const rect = el.getBoundingClientRect()
-    return rect.top >= 0 && rect.bottom <= window.innerHeight
-  })
-  expect(playInView).toBe(true)
+  await expect.poll(async () => {
+    return page.locator('#btnPlayButton').evaluate((el) => {
+      const rect = el.getBoundingClientRect()
+      return rect.top >= 0 && rect.bottom <= window.innerHeight
+    })
+  }).toBe(true)
 })
 
 test('P shortcut fresh start matches Play button focus and collapse behavior', async ({ page }) => {
@@ -39,11 +40,12 @@ test('P shortcut fresh start matches Play button focus and collapse behavior', a
   await expect(page.locator('#lessonAccordianButton')).toHaveAttribute('aria-expanded', 'false')
   await expect(page.locator('#btnPlayButton')).toBeFocused()
 
-  const playInView = await page.locator('#btnPlayButton').evaluate((el) => {
-    const rect = el.getBoundingClientRect()
-    return rect.top >= 0 && rect.bottom <= window.innerHeight
-  })
-  expect(playInView).toBe(true)
+  await expect.poll(async () => {
+    return page.locator('#btnPlayButton').evaluate((el) => {
+      const rect = el.getBoundingClientRect()
+      return rect.top >= 0 && rect.bottom <= window.innerHeight
+    })
+  }).toBe(true)
 })
 
 test('play pause stop shortcuts move focus to the matching playback control', async ({ page }) => {
