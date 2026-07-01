@@ -35,8 +35,8 @@ export function computeRacerRecapOn (input: RacerRecapOnInput): boolean {
     input.voiceEnabled
 }
 
-export function computeNoDelays (needToSpeak: boolean, needToTrail: boolean): boolean {
-  return !needToSpeak && !needToTrail
+export function isSpeedRacerActive (racerEnabled: boolean, racerTotalPlays: number): boolean {
+  return racerEnabled && racerTotalPlays >= 1
 }
 
 export function voiceThinkingDelayMs (value: unknown): number {
@@ -66,15 +66,24 @@ export type SpeedRacerRecapInput = {
 export function runSpeedRacerRecap (input: SpeedRacerRecapInput): void {
   const schedule = input.schedule ?? setTimeout
 
-  const canContinue = (): boolean => {
-    return input.getToken() === input.token &&
-      input.isPlaying() &&
-      input.isVoiceEnabled()
+  const playbackActive = (): boolean => {
+    return input.getToken() === input.token && input.isPlaying()
+  }
+
+  const skipSpeechAndComplete = () => {
+    if (playbackActive()) {
+      input.onComplete()
+    }
+  }
+
+  const canSpeak = (): boolean => {
+    return playbackActive() && input.isVoiceEnabled()
   }
 
   const finishRecap = () => {
     schedule(() => {
-      if (!canContinue()) {
+      if (!canSpeak()) {
+        skipSpeechAndComplete()
         return
       }
       input.onComplete()
@@ -82,9 +91,17 @@ export function runSpeedRacerRecap (input: SpeedRacerRecapInput): void {
   }
 
   const speakWholeWord = () => {
+    if (!canSpeak()) {
+      skipSpeechAndComplete()
+      return
+    }
     const phrase = input.prepPhrase(input.speakText)
     input.speakPhrase(phrase, () => {
-      if (!canContinue()) {
+      if (!playbackActive()) {
+        return
+      }
+      if (!input.isVoiceEnabled()) {
+        skipSpeechAndComplete()
         return
       }
       finishRecap()
@@ -92,7 +109,11 @@ export function runSpeedRacerRecap (input: SpeedRacerRecapInput): void {
   }
 
   const speakChar = (idx: number, chars: string[]) => {
-    if (!canContinue()) {
+    if (!playbackActive()) {
+      return
+    }
+    if (!input.isVoiceEnabled()) {
+      skipSpeechAndComplete()
       return
     }
     if (!input.getSpelling()) {
@@ -105,7 +126,11 @@ export function runSpeedRacerRecap (input: SpeedRacerRecapInput): void {
     }
     const letter = input.prepPhrase(chars[idx].toUpperCase() + '\n')
     input.speakPhrase(letter, () => {
-      if (!canContinue()) {
+      if (!playbackActive()) {
+        return
+      }
+      if (!input.isVoiceEnabled()) {
+        skipSpeechAndComplete()
         return
       }
       schedule(() => speakChar(idx + 1, chars), input.interLetterMs)
@@ -113,7 +138,11 @@ export function runSpeedRacerRecap (input: SpeedRacerRecapInput): void {
   }
 
   schedule(() => {
-    if (input.getToken() !== input.token || !input.isVoiceEnabled()) {
+    if (!playbackActive()) {
+      return
+    }
+    if (!input.isVoiceEnabled()) {
+      skipSpeechAndComplete()
       return
     }
     if (!input.getSpelling()) {

@@ -4,8 +4,8 @@ import { CardBufferManager } from '../../../src/morse/utils/cardBufferManager'
 import {
   computeAutoVoiceAllowed,
   computeNeedToSpeak,
-  computeNoDelays,
   computeRacerRecapOn,
+  isSpeedRacerActive,
   runSpeedRacerRecap,
   shouldBypassManualVoiceForToggle,
   shouldShowManualVoiceRecapButton,
@@ -87,21 +87,13 @@ describe('computeRacerRecapOn', () => {
   })
 })
 
-describe('computeNoDelays', () => {
-  it('is false when voice timing should run', () => {
-    expect(computeNoDelays(true, false)).toBe(false)
+describe('isSpeedRacerActive', () => {
+  it('is false when Speed Racer is on but multipliers produce no plays', () => {
+    expect(isSpeedRacerActive(true, 0)).toBe(false)
   })
 
-  it('is false when trail timing should run', () => {
-    expect(computeNoDelays(false, true)).toBe(false)
-  })
-
-  it('is true when neither voice nor trail delays apply', () => {
-    expect(computeNoDelays(false, false)).toBe(true)
-  })
-
-  it('stays false during Speed Racer when voice is due after the card finishes', () => {
-    expect(computeNoDelays(true, false)).toBe(false)
+  it('is true when Speed Racer is on with at least one play', () => {
+    expect(isSpeedRacerActive(true, 3)).toBe(true)
   })
 })
 
@@ -221,7 +213,7 @@ describe('runSpeedRacerRecap', () => {
     expect(onComplete).not.toHaveBeenCalled()
   })
 
-  it('aborts when Voice is toggled off mid-recap', () => {
+  it('continues playback when Voice is toggled off mid-recap', () => {
     let voiceOn = true
     const onComplete = vi.fn()
 
@@ -244,7 +236,7 @@ describe('runSpeedRacerRecap', () => {
     })
 
     vi.runAllTimers()
-    expect(onComplete).not.toHaveBeenCalled()
+    expect(onComplete).toHaveBeenCalledOnce()
   })
 
   it('switches to whole word when Spell is toggled off mid-recap', () => {
