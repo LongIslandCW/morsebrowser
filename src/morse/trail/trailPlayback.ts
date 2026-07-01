@@ -1,15 +1,17 @@
 export type NeedToTrailInput = {
-  racerOn: boolean
   trailReveal: boolean
   fromVoiceOrTrail: boolean
   hasMoreMorse: boolean
 }
 
 export function computeNeedToTrail (input: NeedToTrailInput): boolean {
-  return !input.racerOn &&
-    input.trailReveal &&
+  return input.trailReveal &&
     !input.fromVoiceOrTrail &&
     !input.hasMoreMorse
+}
+
+export function computeNoDelays (needToSpeak: boolean, needToTrail: boolean): boolean {
+  return !needToSpeak && !needToTrail
 }
 
 export function trailDelayMs (value: unknown): number {

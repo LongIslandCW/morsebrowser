@@ -26,7 +26,7 @@ import { GeneralUtils } from './utils/general'
 import MorseSettingsHandler from './settings/morseSettingsHandler'
 import ScreenWakeLock from './utils/screenWakeLock'
 import { applyTheme } from './theme/theme'
-import { computeNeedToTrail, runAdvanceTrail, runFinalizeTrail } from './trail/trailPlayback'
+import { computeNeedToTrail, computeNoDelays, runAdvanceTrail, runFinalizeTrail } from './trail/trailPlayback'
 
 export interface ShortcutKeyEntry {
   key: string
@@ -903,14 +903,13 @@ export class MorseViewModel {
       !this.morseVoice.speakFirst()
 
     const needToTrail = computeNeedToTrail({
-      racerOn,
       trailReveal: this.trailReveal(),
       fromVoiceOrTrail,
       hasMoreMorse: this.cardBufferManager.hasMoreMorse()
     })
     const speakAndTrail = needToSpeak && needToTrail
 
-    const noDelays = (!needToSpeak && !needToTrail) || racerOn
+    const noDelays = computeNoDelays(needToSpeak, needToTrail)
 
     const advanceTrail = (forceContinue = false) => {
       // note we eliminate the trail delays if speaking
@@ -983,8 +982,8 @@ export class MorseViewModel {
           this.announce('Playback complete')
           this.doPause(true, false, false)
         }
-        // trailing may want a linger (inactive during Speed Racer)
-        if (this.trailReveal() && !racerOn) {
+        // trailing may want a linger
+        if (this.trailReveal()) {
           finalizeTrail(finalToDo)
         } else {
           finalToDo()

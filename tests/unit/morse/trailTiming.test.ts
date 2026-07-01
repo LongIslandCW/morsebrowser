@@ -3,6 +3,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { CardBufferManager } from '../../../src/morse/utils/cardBufferManager'
 import {
   computeNeedToTrail,
+  computeNoDelays,
   runAdvanceTrail,
   runFinalizeTrail,
   trailDelayMs
@@ -10,7 +11,6 @@ import {
 
 describe('computeNeedToTrail', () => {
   const base = {
-    racerOn: false,
     trailReveal: true,
     fromVoiceOrTrail: false,
     hasMoreMorse: false
@@ -20,12 +20,12 @@ describe('computeNeedToTrail', () => {
     expect(computeNeedToTrail(base)).toBe(true)
   })
 
-  it('is false while the card still has morse subparts (repeats or multi-word)', () => {
-    expect(computeNeedToTrail({ ...base, hasMoreMorse: true })).toBe(false)
+  it('is true during Speed Racer when the card has finished playing', () => {
+    expect(computeNeedToTrail(base)).toBe(true)
   })
 
-  it('is false during Speed Racer', () => {
-    expect(computeNeedToTrail({ ...base, racerOn: true })).toBe(false)
+  it('is false while the card still has morse subparts (repeats or multi-word)', () => {
+    expect(computeNeedToTrail({ ...base, hasMoreMorse: true })).toBe(false)
   })
 
   it('is false when trail is off', () => {
@@ -34,6 +34,24 @@ describe('computeNeedToTrail', () => {
 
   it('is false when called from voice or trail continuation', () => {
     expect(computeNeedToTrail({ ...base, fromVoiceOrTrail: true })).toBe(false)
+  })
+})
+
+describe('computeNoDelays', () => {
+  it('is false when trail timing should run', () => {
+    expect(computeNoDelays(false, true)).toBe(false)
+  })
+
+  it('is false when voice timing should run', () => {
+    expect(computeNoDelays(true, false)).toBe(false)
+  })
+
+  it('is true when neither voice nor trail delays apply', () => {
+    expect(computeNoDelays(false, false)).toBe(true)
+  })
+
+  it('stays false during Speed Racer when trail is due after the card finishes', () => {
+    expect(computeNoDelays(false, true)).toBe(false)
   })
 })
 
@@ -133,7 +151,6 @@ describe('CardBufferManager trail gating', () => {
     let next = mgr.getNextMorse(0, 0)
     while (next !== undefined) {
       trailFlags.push(computeNeedToTrail({
-        racerOn: false,
         trailReveal: true,
         fromVoiceOrTrail: false,
         hasMoreMorse: mgr.hasMoreMorse()
@@ -154,7 +171,6 @@ describe('CardBufferManager trail gating', () => {
     let next = mgr.getNextMorse(3, 0)
     while (next !== undefined) {
       trailFlags.push(computeNeedToTrail({
-        racerOn: false,
         trailReveal: true,
         fromVoiceOrTrail: false,
         hasMoreMorse: mgr.hasMoreMorse()
