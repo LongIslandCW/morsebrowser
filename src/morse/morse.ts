@@ -879,7 +879,7 @@ export class MorseViewModel {
   }
 
   // Speed Racer voice recap. Respects voiceSpelling: whole word when off,
-  // one letter at a time (with enforced gaps) when on. Runs before the
+  // spaced letters (same as voice trail) when on. Runs before the
   // base-speed replay or after the last variation when replay is off.
   speakSpeedRacerRecap = (onComplete:() => void) => {
     if (!this.morseVoice.voiceEnabled()) {
@@ -893,8 +893,8 @@ export class MorseViewModel {
 
     runSpeedRacerRecap({
       getSpelling: () => this.morseVoice.voiceSpelling(),
-      displayWord: currentWord.displayWord,
-      speakText: currentWord.speakText(false),
+      speakText: currentWord.speakText(this.morseVoice.voiceSpelling()),
+      speakTextSpelled: currentWord.speakText(true),
       interLetterMs,
       preRecapMs,
       token,

@@ -12,6 +12,7 @@ import {
   shouldSkipVoiceBufferForRacer,
   voiceThinkingDelayMs
 } from '../../../src/morse/voice/voicePlayback'
+import WordInfo from '../../../src/morse/utils/wordInfo'
 
 describe('computeNeedToSpeak', () => {
   const base = {
@@ -139,8 +140,8 @@ describe('runSpeedRacerRecap', () => {
 
     runSpeedRacerRecap({
       getSpelling: () => false,
-      displayWord: 'CQ',
       speakText: 'CQ',
+      speakTextSpelled: 'C Q \n',
       interLetterMs: 400,
       preRecapMs: 800,
       token: 1,
@@ -160,14 +161,14 @@ describe('runSpeedRacerRecap', () => {
     expect(onComplete).toHaveBeenCalledOnce()
   })
 
-  it('speaks letter by letter when Spell is on', () => {
+  it('speaks spaced letters when Spell is on (matches voice trail)', () => {
     const spoken: string[] = []
     const onComplete = vi.fn()
 
     runSpeedRacerRecap({
       getSpelling: () => true,
-      displayWord: 'AB',
-      speakText: 'AB',
+      speakText: 'A B \n',
+      speakTextSpelled: 'A B \n',
       interLetterMs: 100,
       preRecapMs: 50,
       token: 1,
@@ -183,8 +184,38 @@ describe('runSpeedRacerRecap', () => {
     })
 
     vi.runAllTimers()
-    expect(spoken).toEqual(['A\n', 'B\n'])
+    expect(spoken).toEqual(['A B \n'])
     expect(onComplete).toHaveBeenCalledOnce()
+  })
+
+  it('spells callsign-style groups like TIN and RAR, not as English words', () => {
+    const spoken: string[] = []
+    const onComplete = vi.fn()
+
+    for (const word of ['TIN', 'RAR']) {
+      const info = new WordInfo(word)
+      runSpeedRacerRecap({
+        getSpelling: () => true,
+        speakText: info.speakText(true),
+        speakTextSpelled: info.speakText(true),
+        interLetterMs: 100,
+        preRecapMs: 50,
+        token: 1,
+        getToken: () => 1,
+        isPlaying: () => true,
+        isVoiceEnabled: () => true,
+        prepPhrase: (p) => p,
+        speakPhrase: (phrase, onDone) => {
+          spoken.push(phrase)
+          onDone()
+        },
+        onComplete
+      })
+      vi.runAllTimers()
+    }
+
+    expect(spoken).toEqual(['T I N \n', 'R A R \n'])
+    expect(onComplete).toHaveBeenCalledTimes(2)
   })
 
   it('aborts when token changes mid-recap', () => {
@@ -193,8 +224,8 @@ describe('runSpeedRacerRecap', () => {
 
     runSpeedRacerRecap({
       getSpelling: () => true,
-      displayWord: 'AB',
-      speakText: 'AB',
+      speakText: 'A B \n',
+      speakTextSpelled: 'A B \n',
       interLetterMs: 100,
       preRecapMs: 50,
       token: 1,
@@ -219,8 +250,8 @@ describe('runSpeedRacerRecap', () => {
 
     runSpeedRacerRecap({
       getSpelling: () => true,
-      displayWord: 'AB',
-      speakText: 'AB',
+      speakText: 'A B \n',
+      speakTextSpelled: 'A B \n',
       interLetterMs: 100,
       preRecapMs: 50,
       token: 1,
@@ -239,15 +270,14 @@ describe('runSpeedRacerRecap', () => {
     expect(onComplete).toHaveBeenCalledOnce()
   })
 
-  it('switches to whole word when Spell is toggled off mid-recap', () => {
-    let spelling = true
+  it('uses speakTextSpelled when Spell is on at recap start', () => {
     const spoken: string[] = []
     const onComplete = vi.fn()
 
     runSpeedRacerRecap({
-      getSpelling: () => spelling,
-      displayWord: 'AB',
+      getSpelling: () => true,
       speakText: 'AB',
+      speakTextSpelled: 'A B \n',
       interLetterMs: 100,
       preRecapMs: 50,
       token: 1,
@@ -257,14 +287,13 @@ describe('runSpeedRacerRecap', () => {
       prepPhrase: (p) => p,
       speakPhrase: (phrase, onDone) => {
         spoken.push(phrase)
-        spelling = false
         onDone()
       },
       onComplete
     })
 
     vi.runAllTimers()
-    expect(spoken).toEqual(['A\n', 'AB'])
+    expect(spoken).toEqual(['A B \n'])
     expect(onComplete).toHaveBeenCalledOnce()
   })
 })

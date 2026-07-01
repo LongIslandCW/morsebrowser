@@ -49,8 +49,9 @@ export function voiceThinkingDelayMs (value: unknown): number {
 
 export type SpeedRacerRecapInput = {
   getSpelling: () => boolean
-  displayWord: string
   speakText: string
+  /** Spaced letter text from WordInfo.speakText(true); used when Spell is on. */
+  speakTextSpelled: string
   interLetterMs: number
   preRecapMs: number
   token: number
@@ -108,24 +109,13 @@ export function runSpeedRacerRecap (input: SpeedRacerRecapInput): void {
     })
   }
 
-  const speakChar = (idx: number, chars: string[]) => {
-    if (!playbackActive()) {
-      return
-    }
-    if (!input.isVoiceEnabled()) {
+  const speakSpelled = () => {
+    if (!canSpeak()) {
       skipSpeechAndComplete()
       return
     }
-    if (!input.getSpelling()) {
-      speakWholeWord()
-      return
-    }
-    if (idx >= chars.length) {
-      finishRecap()
-      return
-    }
-    const letter = input.prepPhrase(chars[idx].toUpperCase() + '\n')
-    input.speakPhrase(letter, () => {
+    const phrase = input.prepPhrase(input.speakTextSpelled)
+    input.speakPhrase(phrase, () => {
       if (!playbackActive()) {
         return
       }
@@ -133,7 +123,7 @@ export function runSpeedRacerRecap (input: SpeedRacerRecapInput): void {
         skipSpeechAndComplete()
         return
       }
-      schedule(() => speakChar(idx + 1, chars), input.interLetterMs)
+      finishRecap()
     })
   }
 
@@ -149,8 +139,9 @@ export function runSpeedRacerRecap (input: SpeedRacerRecapInput): void {
       speakWholeWord()
       return
     }
-    const chars = input.displayWord.replace(/\s+/g, '').split('')
-    speakChar(0, chars)
+    // Match normal voice trail: spaced letters (e.g. "R A R") so TTS does not
+    // read callsigns like TIN/RAR as English words.
+    speakSpelled()
   }, input.interLetterMs)
 }
 
