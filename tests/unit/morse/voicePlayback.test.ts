@@ -10,6 +10,7 @@ import {
   shouldBypassManualVoiceForToggle,
   shouldShowManualVoiceRecapButton,
   shouldSkipVoiceBufferForRacer,
+  spelledTokensFromVoiceText,
   voiceThinkingDelayMs
 } from '../../../src/morse/voice/voicePlayback'
 import WordInfo from '../../../src/morse/utils/wordInfo'
@@ -161,7 +162,7 @@ describe('runSpeedRacerRecap', () => {
     expect(onComplete).toHaveBeenCalledOnce()
   })
 
-  it('speaks spaced letters when Spell is on (matches voice trail)', () => {
+  it('speaks one letter at a time when Spell is on', () => {
     const spoken: string[] = []
     const onComplete = vi.fn()
 
@@ -184,8 +185,13 @@ describe('runSpeedRacerRecap', () => {
     })
 
     vi.runAllTimers()
-    expect(spoken).toEqual(['A B \n'])
+    expect(spoken).toEqual(['A\n', 'B\n'])
     expect(onComplete).toHaveBeenCalledOnce()
+  })
+
+  it('spelledTokensFromVoiceText parses speakText(true) output', () => {
+    expect(spelledTokensFromVoiceText('T I N \n')).toEqual(['T', 'I', 'N'])
+    expect(spelledTokensFromVoiceText('R A R \n')).toEqual(['R', 'A', 'R'])
   })
 
   it('spells callsign-style groups like TIN and RAR, not as English words', () => {
@@ -214,7 +220,7 @@ describe('runSpeedRacerRecap', () => {
       vi.runAllTimers()
     }
 
-    expect(spoken).toEqual(['T I N \n', 'R A R \n'])
+    expect(spoken).toEqual(['T\n', 'I\n', 'N\n', 'R\n', 'A\n', 'R\n'])
     expect(onComplete).toHaveBeenCalledTimes(2)
   })
 
@@ -293,7 +299,7 @@ describe('runSpeedRacerRecap', () => {
     })
 
     vi.runAllTimers()
-    expect(spoken).toEqual(['A B \n'])
+    expect(spoken).toEqual(['A\n', 'B\n'])
     expect(onComplete).toHaveBeenCalledOnce()
   })
 })

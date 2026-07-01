@@ -47,6 +47,16 @@ export function voiceThinkingDelayMs (value: unknown): number {
   return parsed * 1000
 }
 
+/** Letter tokens from WordInfo.speakText(true), e.g. "T I N \\n" → ["T","I","N"]. */
+export function spelledTokensFromVoiceText (spelled: string): string[] {
+  return spelled
+    .replace(/[\r\n]+/g, ' ')
+    .replace(/\|/g, ' ')
+    .trim()
+    .split(/\s+/)
+    .filter(t => t.length > 0)
+}
+
 export type SpeedRacerRecapInput = {
   getSpelling: () => boolean
   speakText: string
@@ -109,13 +119,24 @@ export function runSpeedRacerRecap (input: SpeedRacerRecapInput): void {
     })
   }
 
-  const speakSpelled = () => {
-    if (!canSpeak()) {
+  const speakSpelledLetter = (idx: number, letters: string[]) => {
+    if (!playbackActive()) {
+      return
+    }
+    if (!input.isVoiceEnabled()) {
       skipSpeechAndComplete()
       return
     }
-    const phrase = input.prepPhrase(input.speakTextSpelled)
-    input.speakPhrase(phrase, () => {
+    if (!input.getSpelling()) {
+      speakWholeWord()
+      return
+    }
+    if (idx >= letters.length) {
+      finishRecap()
+      return
+    }
+    const letter = input.prepPhrase(letters[idx] + '\n')
+    input.speakPhrase(letter, () => {
       if (!playbackActive()) {
         return
       }
@@ -123,7 +144,7 @@ export function runSpeedRacerRecap (input: SpeedRacerRecapInput): void {
         skipSpeechAndComplete()
         return
       }
-      finishRecap()
+      schedule(() => speakSpelledLetter(idx + 1, letters), input.interLetterMs)
     })
   }
 
@@ -139,9 +160,8 @@ export function runSpeedRacerRecap (input: SpeedRacerRecapInput): void {
       speakWholeWord()
       return
     }
-    // Match normal voice trail: spaced letters (e.g. "R A R") so TTS does not
-    // read callsigns like TIN/RAR as English words.
-    speakSpelled()
+    const letters = spelledTokensFromVoiceText(input.speakTextSpelled)
+    speakSpelledLetter(0, letters)
   }, input.interLetterMs)
 }
 
