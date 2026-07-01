@@ -28,6 +28,8 @@ import ScreenWakeLock from './utils/screenWakeLock'
 import { applyTheme } from './theme/theme'
 import { computeNeedToTrail, computeNoDelays, runAdvanceTrail, runFinalizeTrail } from './trail/trailPlayback'
 import {
+  applyLessonVoiceBaseline,
+  buildLessonVoiceBaseline,
   computeAutoVoiceAllowed,
   computeNeedToSpeak,
   computeRacerRecapOn,
@@ -37,7 +39,8 @@ import {
   shouldBypassManualVoiceForToggle,
   shouldShowManualVoiceRecapButton,
   shouldSkipVoiceBufferForRacer,
-  voiceThinkingDelayMs
+  voiceThinkingDelayMs,
+  type LessonVoiceBaseline
 } from './voice/voicePlayback'
 
 export interface ShortcutKeyEntry {
@@ -119,6 +122,8 @@ export class MorseViewModel {
   speedRacerOverridesManualVoice:ko.Computed<boolean>
   voiceMasterToggleEnabled:ko.Computed<boolean>
   manualVoiceRecapButtonVisible:ko.Computed<boolean>
+  /** Voice + Arm Recap from the active lesson preset; restored when Speed Racer turns off. */
+  lessonVoiceBaseline:LessonVoiceBaseline | null = null
   numberOfRepeats:ko.Observable<number> = ko.observable(0)
   testTonePlaying:boolean = false
   testToneCount:number = 0
@@ -321,6 +326,9 @@ export class MorseViewModel {
     this.settings.speed.syncWpm.subscribe((synced) => this.announce(synced ? 'Character and effective speed are linked' : 'Character and effective speed are separate'))
     this.settings.speed.speedRacerEnabled.subscribe((enabled) => {
       this.announce(enabled ? 'Speed Racer is on' : 'Speed Racer is off')
+      if (!enabled) {
+        this.restoreLessonVoiceFromLesson()
+      }
     })
     this.lessons.syncSize.subscribe((synced) => this.announce(synced ? 'Minimum and maximum size are linked' : 'Minimum and maximum size are separate'))
     this.settings.frequency.syncFreq.subscribe((synced) => this.announce(synced ? 'Dit and dah pitch are linked' : 'Dit and dah pitch are separate'))
@@ -661,6 +669,24 @@ export class MorseViewModel {
       this.expandVoiceOptionsAccordionIfClosed()
     }
     return true
+  }
+
+  captureLessonVoiceBaseline = () => {
+    this.lessonVoiceBaseline = buildLessonVoiceBaseline(
+      this.morseVoice.voiceEnabled(),
+      this.morseVoice.manualVoice()
+    )
+  }
+
+  restoreLessonVoiceFromLesson = () => {
+    if (!this.lessonVoiceBaseline) {
+      return
+    }
+    applyLessonVoiceBaseline(
+      this.lessonVoiceBaseline,
+      (value) => this.morseVoice.voiceEnabled(value),
+      (value) => this.morseVoice.manualVoice(value)
+    )
   }
 
   onSpeedRacerSpeakBeforeReplayClick = (_data, event:Event) => {

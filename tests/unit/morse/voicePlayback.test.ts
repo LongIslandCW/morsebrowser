@@ -2,6 +2,8 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { CardBufferManager } from '../../../src/morse/utils/cardBufferManager'
 import {
+  applyLessonVoiceBaseline,
+  buildLessonVoiceBaseline,
   computeAutoVoiceAllowed,
   computeNeedToSpeak,
   computeRacerRecapOn,
@@ -327,6 +329,32 @@ describe('runSpeedRacerRecap', () => {
 
   it('uses RECAP_LETTER_GAP_MS default for letter spacing', () => {
     expect(RECAP_LETTER_GAP_MS).toBe(400)
+  })
+})
+
+describe('lesson voice baseline (Speed Racer off restore)', () => {
+  it('buildLessonVoiceBaseline snapshots voice and Arm Recap', () => {
+    expect(buildLessonVoiceBaseline(true, true)).toEqual({
+      voiceEnabled: true,
+      manualVoice: true
+    })
+  })
+
+  it('applyLessonVoiceBaseline restores preset voice state', () => {
+    let voiceEnabled = false
+    let manualVoice = false
+    applyLessonVoiceBaseline(
+      { voiceEnabled: true, manualVoice: true },
+      (v) => { voiceEnabled = v },
+      (v) => { manualVoice = v }
+    )
+    expect(voiceEnabled).toBe(true)
+    expect(manualVoice).toBe(true)
+  })
+
+  it('shouldBypassManualVoiceForToggle locks Voice again after SR + Speak turn off', () => {
+    expect(shouldBypassManualVoiceForToggle(true, false, true)).toBe(false)
+    expect(shouldBypassManualVoiceForToggle(true, true, true)).toBe(true)
   })
 })
 

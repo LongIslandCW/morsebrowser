@@ -652,6 +652,9 @@ export default class MorseLessonPlugin implements ICookieHandler {
       settingsInfo.ignoreCookies = true
       settingsInfo.lockoutCookieChanges = true
       settingsInfo.keyBlacklist = ['ditFrequency', 'dahFrequency', 'syncFreq', 'cardFontPx', 'preSpace', 'volume', 'voiceVolume']
+      settingsInfo.afterSettingsChange = () => {
+        this.morseViewModel.captureLessonVoiceBaseline()
+      }
 
       const applyLegacyMixin = () => {
         if (!LegacyMixinJson || !LegacyMixinJson.morseSettings) return

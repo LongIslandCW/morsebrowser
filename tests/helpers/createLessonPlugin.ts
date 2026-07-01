@@ -65,7 +65,10 @@ export function createLessonPluginForTest () {
     cardSpace: ko.observable(1),
     isShuffled: ko.observable(false),
     shuffleIntraGroup: ko.observable(false),
-    cachedShuffle: false
+    cachedShuffle: false,
+    lessonVoiceBaseline: null,
+    captureLessonVoiceBaseline: vi.fn(),
+    restoreLessonVoiceFromLesson: vi.fn()
   }
 
   const plugin = new MorseLessonPlugin(
