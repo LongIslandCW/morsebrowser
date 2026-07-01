@@ -26,6 +26,7 @@ import { GeneralUtils } from './utils/general'
 import MorseSettingsHandler from './settings/morseSettingsHandler'
 import ScreenWakeLock from './utils/screenWakeLock'
 import { applyTheme } from './theme/theme'
+import { computeNeedToTrail, computeNoDelays, runAdvanceTrail, runFinalizeTrail } from './trail/trailPlayback'
 
 export interface ShortcutKeyEntry {
   key: string
@@ -901,35 +902,56 @@ export class MorseViewModel {
       maxBufferReached &&
       !this.morseVoice.speakFirst()
 
-    const needToTrail = !racerOn && this.trailReveal() && !fromVoiceOrTrail
+    const needToTrail = computeNeedToTrail({
+      trailReveal: this.trailReveal(),
+      fromVoiceOrTrail,
+      hasMoreMorse: this.cardBufferManager.hasMoreMorse()
+    })
     const speakAndTrail = needToSpeak && needToTrail
 
-    const noDelays = (!needToSpeak && !needToTrail) || racerOn
+    const noDelays = computeNoDelays(needToSpeak, needToTrail)
 
     const advanceTrail = (forceContinue = false) => {
       // note we eliminate the trail delays if speaking
       if (this.trailReveal()) {
-        setTimeout(() => {
-          this.maxRevealedTrail(this.maxRevealedTrail() + 1)
-          setTimeout(() => {
+        const token = this.speedRacerToken
+        runAdvanceTrail({
+          preDelaySec: this.trailPreDelay(),
+          postDelaySec: this.trailPostDelay(),
+          speakAndTrail,
+          onReveal: () => {
+            if (token !== this.speedRacerToken || !this.playerPlaying()) {
+              return
+            }
+            this.maxRevealedTrail(this.maxRevealedTrail() + 1)
+          },
+          onContinue: () => {
+            if (token !== this.speedRacerToken || !this.playerPlaying()) {
+              return
+            }
             // if speak is in the driver's seat it will call this,
             // if not then trail will
             if (!speakAndTrail || forceContinue) {
               this.playEnded(true)
             }
-          }, speakAndTrail ? 0 : this.trailPostDelay() * 1000)
-        }
-        , speakAndTrail ? 0 : this.trailPreDelay() * 1000)
+          }
+        })
       }
     }
 
     const finalizeTrail = (finalCallback) => {
       if (this.trailReveal()) {
-        setTimeout(() => {
-          this.maxRevealedTrail(-1)
-          finalCallback()
-        }
-        , this.trailFinal() * 1000)
+        const token = this.speedRacerToken
+        runFinalizeTrail({
+          finalDelaySec: this.trailFinal(),
+          onDone: () => {
+            if (token !== this.speedRacerToken || !this.playerPlaying()) {
+              return
+            }
+            this.maxRevealedTrail(-1)
+            finalCallback()
+          }
+        })
       }
     }
 

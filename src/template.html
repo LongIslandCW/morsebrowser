@@ -597,7 +597,7 @@
                                     <fieldset class="morse-settings-fieldset">
                                         <legend class="morse-settings-legend">Trail</legend>
                                         <div class="input-group flex-wrap trail-settings-row"
-                                                title="Reveals masked cards progressively after each card plays. Turn off Reveal (playback controls) or leave cards hidden to see the effect. Inactive during Speed Racer.">
+                                                title="Reveals masked cards progressively after each card plays. Turn off Reveal (playback controls) or leave cards hidden to see the effect. Works with Speed Racer after all speed variations on a card finish.">
                                                 <input type="checkbox" data-bind="checked: trailReveal"
                                                     class="btn-check" id="btntrailReveal" autocomplete="off"
                                                     aria-label="Trail"
@@ -610,7 +610,7 @@
                                                         alt="" />
                                                 </label>
                                                 <p id="trailHelp" class="sr-only">
-                                                    Trail reveals hidden card text after each card plays. It has no effect when cards are already revealed, and it is off during Speed Racer.
+                                                    Trail reveals hidden card text after each card plays. It has no effect when cards are already revealed. During Speed Racer, Pre and Post apply after all speed variations on a card finish.
                                                 </p>
                                                 <label for="trailPreDelay" class="input-group-text">Pre&nbsp;
                                                     <img alt="" data-bind="attr:{ src: morseLoadImages().getSrc('stopwatchImage')}"
