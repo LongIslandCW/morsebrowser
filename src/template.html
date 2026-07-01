@@ -460,7 +460,7 @@
                                                 id="btncheckspeedracer" name="btncheckspeedracer"
                                                 aria-label="Speed Racer"
                                                 aria-describedby="speedRacerHelp"
-                                                data-bind="checked: settings.speed.speedRacerEnabled"
+                                                data-bind="checked: settings.speed.speedRacerEnabled, click: onSpeedRacerEnabledClick"
                                                 title="Vary speed across each card's repeats. Mutually exclusive with Speed Intervals.">
                                             <label class="btn btn-outline-primary" for="btncheckspeedracer">
                                                 <img alt="" data-bind="attr:{ src: morseLoadImages().getSrc('speedometerImage')}"
@@ -544,7 +544,7 @@
                                                     <input id="speedRacerSpeakBeforeReplay" name="speedRacerSpeakBeforeReplay"
                                                         type="checkbox" class="btn-check" autocomplete="off"
                                                         aria-describedby="speedRacerSpeakHelp"
-                                                        data-bind="checked: settings.speed.speedRacerSpeakBeforeReplay, attr: { 'aria-label': settings.speed.speedRacerSpeakLabel }"
+                                                        data-bind="checked: settings.speed.speedRacerSpeakBeforeReplay, click: onSpeedRacerSpeakBeforeReplayClick, attr: { 'aria-label': settings.speed.speedRacerSpeakLabel }"
                                                         title="Speak the card using Voice Options when Voice is on (Spell, delays, speaker, etc.). With Replay Base Speed on, speak runs before the base-speed replay; with replay off, speak runs after the last variation.">
                                                     <label class="btn btn-outline-primary" for="speedRacerSpeakBeforeReplay">
                                                         <img alt="" data-bind="attr:{ src: morseLoadImages().getSrc('chatquoteImage')}"

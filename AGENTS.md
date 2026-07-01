@@ -28,7 +28,7 @@ Fork workflows `develop2.yml` / `main2.yml` still contain a **legacy GitHub Page
 - Only create git commits when Roger explicitly asks (e.g. commit-and-push action or direct request).
 - For settings UI layout or field sizing, include **small/narrow viewports** (~375–390px), not desktop-only.
 - Upstream (LICW) PRs Roger opens manually target **`develop`**, not `main`.
-- When Speed Racer or **Speak** is toggled, Voice Options accordion expands if it was closed (user still enables Voice manually).
+- When the user clicks **Speed Racer** on or toggles **Speak**, Voice Options accordion expands if it was closed (preset/lesson loads do not).
 
 ## Learned Workspace Facts
 
