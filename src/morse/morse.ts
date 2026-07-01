@@ -290,6 +290,12 @@ export class MorseViewModel {
     this.settings.speed.syncWpm.subscribe((synced) => this.announce(synced ? 'Character and effective speed are linked' : 'Character and effective speed are separate'))
     this.settings.speed.speedRacerEnabled.subscribe((enabled) => {
       this.announce(enabled ? 'Speed Racer is on' : 'Speed Racer is off')
+      if (enabled) {
+        this.expandVoiceOptionsAccordionIfClosed()
+      }
+    })
+    this.settings.speed.speedRacerSpeakBeforeReplay.subscribe(() => {
+      this.expandVoiceOptionsAccordionIfClosed()
     })
     this.lessons.syncSize.subscribe((synced) => this.announce(synced ? 'Minimum and maximum size are linked' : 'Minimum and maximum size are separate'))
     this.settings.frequency.syncFreq.subscribe((synced) => this.announce(synced ? 'Dit and dah pitch are linked' : 'Dit and dah pitch are separate'))
@@ -596,6 +602,24 @@ export class MorseViewModel {
       button.classList.add('collapsed')
       button.setAttribute('aria-expanded', 'false')
     })
+  }
+
+  isVoiceOptionsAccordionOpen = ():boolean => {
+    return document.getElementById('collapsevoiceoptions')?.classList.contains('show') ?? false
+  }
+
+  expandVoiceOptionsAccordionIfClosed = () => {
+    if (this.isVoiceOptionsAccordionOpen()) {
+      return
+    }
+    const panel = document.getElementById('collapsevoiceoptions')
+    const button = document.getElementById('voiceOptionsAccordionButton')
+    if (!panel || !button) {
+      return
+    }
+    panel.classList.add('show')
+    button.classList.remove('collapsed')
+    button.setAttribute('aria-expanded', 'true')
   }
 
   scrollPlaybackIntoView = () => {
