@@ -26,6 +26,7 @@ import { GeneralUtils } from './utils/general'
 import MorseSettingsHandler from './settings/morseSettingsHandler'
 import ScreenWakeLock from './utils/screenWakeLock'
 import { applyTheme } from './theme/theme'
+import { computeNeedToTrail, runAdvanceTrail, runFinalizeTrail } from './trail/trailPlayback'
 
 export interface ShortcutKeyEntry {
   key: string
@@ -901,7 +902,12 @@ export class MorseViewModel {
       maxBufferReached &&
       !this.morseVoice.speakFirst()
 
-    const needToTrail = !racerOn && this.trailReveal() && !fromVoiceOrTrail
+    const needToTrail = computeNeedToTrail({
+      racerOn,
+      trailReveal: this.trailReveal(),
+      fromVoiceOrTrail,
+      hasMoreMorse: this.cardBufferManager.hasMoreMorse()
+    })
     const speakAndTrail = needToSpeak && needToTrail
 
     const noDelays = (!needToSpeak && !needToTrail) || racerOn
@@ -909,27 +915,33 @@ export class MorseViewModel {
     const advanceTrail = (forceContinue = false) => {
       // note we eliminate the trail delays if speaking
       if (this.trailReveal()) {
-        setTimeout(() => {
-          this.maxRevealedTrail(this.maxRevealedTrail() + 1)
-          setTimeout(() => {
+        runAdvanceTrail({
+          preDelaySec: this.trailPreDelay(),
+          postDelaySec: this.trailPostDelay(),
+          speakAndTrail,
+          onReveal: () => {
+            this.maxRevealedTrail(this.maxRevealedTrail() + 1)
+          },
+          onContinue: () => {
             // if speak is in the driver's seat it will call this,
             // if not then trail will
             if (!speakAndTrail || forceContinue) {
               this.playEnded(true)
             }
-          }, speakAndTrail ? 0 : this.trailPostDelay() * 1000)
-        }
-        , speakAndTrail ? 0 : this.trailPreDelay() * 1000)
+          }
+        })
       }
     }
 
     const finalizeTrail = (finalCallback) => {
       if (this.trailReveal()) {
-        setTimeout(() => {
-          this.maxRevealedTrail(-1)
-          finalCallback()
-        }
-        , this.trailFinal() * 1000)
+        runFinalizeTrail({
+          finalDelaySec: this.trailFinal(),
+          onDone: () => {
+            this.maxRevealedTrail(-1)
+            finalCallback()
+          }
+        })
       }
     }
 
@@ -971,8 +983,8 @@ export class MorseViewModel {
           this.announce('Playback complete')
           this.doPause(true, false, false)
         }
-        // trailing may want a linger
-        if (this.trailReveal()) {
+        // trailing may want a linger (inactive during Speed Racer)
+        if (this.trailReveal() && !racerOn) {
           finalizeTrail(finalToDo)
         } else {
           finalToDo()
