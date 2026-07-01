@@ -36,7 +36,7 @@ For each card:
 
 **Mutual exclusion:** Speed Racer and **Speed Intervals** cannot both be on; enabling one turns the other off.
 
-**Voice / Speak Before Replay:** Recap speech uses Voice Options settings (Spell, pre/post delay, speaker, etc.) via `speakSpeedRacerRecap` when **Speak** is on. Turn **Voice** on yourself in Voice Options to configure those settings. During Speed Racer sets, the normal voice trail (`addToVoiceBuffer`) is skipped.
+**Voice / Speak Before Replay:** Recap speech uses Voice Options settings (Spell, pre/post delay, speaker, etc.) via `speakSpeedRacerRecap` when **Speak** and **Voice** are both on. Turn **Voice** on yourself in Voice Options to configure those settings. When **Voice** is on and **Speak** is off, the normal voice trail speaks each card at the end (same as non-SR playback). Recap and voice trail are mutually exclusive per card.
 
 Implementation: `SpeedSettings.applySpeedRacer()` in `speedSettings.ts`; speak/replay gate in `morse.ts` (`speakSpeedRacerRecap`).
 
@@ -140,7 +140,7 @@ These keys serialize in preset JSON and in saved settings (`morseSettingsHandler
 | `speedRacerEnabled` | boolean | Turn Speed Racer on |
 | `speedRacerMultipliers` | string | Comma-separated multipliers; `0` skips a slot |
 | `speedRacerFinalPlay` | boolean | **Replay Base Speed** after the ladder |
-| `speedRacerSpeakBeforeReplay` | boolean | **Speak** toggle; recap uses Voice Options when on (enable Voice manually to configure Spell/delays) |
+| `speedRacerSpeakBeforeReplay` | boolean | **Speak** toggle; recap uses Voice Options when Speak and Voice are both on (enable Voice manually to configure Spell/delays) |
 | `speedRacerKeepFwpm` | boolean | Legacy/preset compat only — FWPM always stays at saved base during racing |
 
 ### App defaults (`legacymixin.json`)
@@ -237,7 +237,7 @@ Use preset **`Speed Racer … Flow Rate N`** or the **Overlearn** button in Adva
 
 | Feature | Relationship to Speed Racer |
 |---------|----------------------------|
-| **Voice Options → Voice** | Normal lesson voice trail; skipped during Speed Racer racing |
+| **Voice Options → Voice** | When on during Speed Racer: recap uses Voice Options if Speak is on; normal voice trail at card end if Speak is off |
 | **`speakFirst` in preset JSON** | Separate “speak before first play” path; Speed Racer bypasses it so it does not delay the first variation |
 | **Speed Intervals** | Mutually exclusive with Speed Racer |
 | **`numberOfRepeats`** | SR Overlearn presets set this to `0`; multipliers replace repeats |
