@@ -914,14 +914,21 @@ export class MorseViewModel {
     const advanceTrail = (forceContinue = false) => {
       // note we eliminate the trail delays if speaking
       if (this.trailReveal()) {
+        const token = this.speedRacerToken
         runAdvanceTrail({
           preDelaySec: this.trailPreDelay(),
           postDelaySec: this.trailPostDelay(),
           speakAndTrail,
           onReveal: () => {
+            if (token !== this.speedRacerToken || !this.playerPlaying()) {
+              return
+            }
             this.maxRevealedTrail(this.maxRevealedTrail() + 1)
           },
           onContinue: () => {
+            if (token !== this.speedRacerToken || !this.playerPlaying()) {
+              return
+            }
             // if speak is in the driver's seat it will call this,
             // if not then trail will
             if (!speakAndTrail || forceContinue) {
@@ -934,9 +941,13 @@ export class MorseViewModel {
 
     const finalizeTrail = (finalCallback) => {
       if (this.trailReveal()) {
+        const token = this.speedRacerToken
         runFinalizeTrail({
           finalDelaySec: this.trailFinal(),
           onDone: () => {
+            if (token !== this.speedRacerToken || !this.playerPlaying()) {
+              return
+            }
             this.maxRevealedTrail(-1)
             finalCallback()
           }
