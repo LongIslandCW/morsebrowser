@@ -667,6 +667,9 @@ export class MorseViewModel {
     const input = event.target as HTMLInputElement
     if (input?.checked) {
       this.expandVoiceOptionsAccordionIfClosed()
+      if (this.settings.speed.speedRacerSpeakBeforeReplay() && this.morseVoice.voiceCapable()) {
+        this.morseVoice.voiceEnabled(true)
+      }
     }
     return true
   }
@@ -690,7 +693,11 @@ export class MorseViewModel {
   }
 
   onSpeedRacerSpeakBeforeReplayClick = (_data, event:Event) => {
+    const input = event.target as HTMLInputElement
     this.expandVoiceOptionsAccordionIfClosed()
+    if (input?.checked && this.morseVoice.voiceCapable()) {
+      this.morseVoice.voiceEnabled(true)
+    }
     return true
   }
 
