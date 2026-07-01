@@ -27,10 +27,13 @@ import MorseSettingsHandler from './settings/morseSettingsHandler'
 import ScreenWakeLock from './utils/screenWakeLock'
 import { applyTheme } from './theme/theme'
 import {
+  computeAutoVoiceAllowed,
   computeNeedToSpeak,
   computeNoDelays,
   computeRacerRecapOn,
   runSpeedRacerRecap,
+  shouldBypassManualVoiceForToggle,
+  shouldShowManualVoiceRecapButton,
   shouldSkipVoiceBufferForRacer,
   voiceThinkingDelayMs
 } from './voice/voicePlayback'
@@ -111,6 +114,9 @@ export class MorseViewModel {
   allShortcutKeys:ko.ObservableArray<ShortcutKeyEntry>
   keyboardShortcutScript:ko.Computed<string>
   applyEnabled:ko.Computed<boolean>
+  speedRacerOverridesManualVoice:ko.Computed<boolean>
+  voiceMasterToggleEnabled:ko.Computed<boolean>
+  manualVoiceRecapButtonVisible:ko.Computed<boolean>
   numberOfRepeats:ko.Observable<number> = ko.observable(0)
   testTonePlaying:boolean = false
   testToneCount:number = 0
@@ -260,6 +266,29 @@ export class MorseViewModel {
         return !!this.lessons.customGroup()?.trim()
       }
       return this.lessons.selectedDisplay().display && !this.lessons.selectedDisplay().isDummy
+    }, this)
+
+    this.speedRacerOverridesManualVoice = ko.computed(() => {
+      return this.settings.speed.speedRacerEnabled() &&
+        this.settings.speed.speedRacerSpeakBeforeReplay()
+    }, this)
+
+    this.voiceMasterToggleEnabled = ko.computed(() => {
+      return shouldBypassManualVoiceForToggle(
+        this.morseVoice.manualVoice(),
+        this.settings.speed.speedRacerEnabled(),
+        this.settings.speed.speedRacerSpeakBeforeReplay(),
+        this.morseVoice.voiceCapable()
+      )
+    }, this)
+
+    this.manualVoiceRecapButtonVisible = ko.computed(() => {
+      return shouldShowManualVoiceRecapButton(
+        this.morseVoice.manualVoice(),
+        this.morseVoice.voiceEnabled(),
+        this.settings.speed.speedRacerEnabled(),
+        this.settings.speed.speedRacerSpeakBeforeReplay()
+      )
     }, this)
 
     this.screenWakeLock = new ScreenWakeLock()
@@ -523,7 +552,9 @@ export class MorseViewModel {
     config.riseMsOffset = parseFloat(this.riseMsOffset() as any)
     config.decayMsOffset = parseFloat(this.decayMsOffset() as any)
     // suppress wordspaces when using speak so "thinking time" will control
-    if (this.morseVoice && !this.morseVoice.manualVoice() && this.ifMaxVoiceBufferReached()) {
+    if (this.morseVoice &&
+        computeAutoVoiceAllowed(this.morseVoice.manualVoice(), this.settings.speed.speedRacerEnabled()) &&
+        this.ifMaxVoiceBufferReached()) {
       config.trimLastWordSpace = this.morseVoice.voiceEnabled() && !this.cardBufferManager.hasMoreMorse()
       config.voiceEnabled = this.morseVoice.voiceEnabled()
     }
@@ -992,7 +1023,7 @@ export class MorseViewModel {
       const speakText = this.morseVoice.voiceBuffer[0].txt
       const hasNewline = speakText.indexOf('\n') !== -1
 
-      const speakCondition = !this.morseVoice.manualVoice() &&
+      const speakCondition = computeAutoVoiceAllowed(this.morseVoice.manualVoice(), racerOn) &&
                 (hasNewline || !isNotLastWord || !anyNewLines || !this.settings.misc.newlineChunking())
       if (speakCondition) {
         let phraseToSpeak = this.getPhraseToSpeakFromBuffer()

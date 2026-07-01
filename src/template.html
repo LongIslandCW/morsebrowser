@@ -670,7 +670,7 @@
                                             <input type="checkbox" class="btn-check" autocomplete="off"
                                                 id="btncheckvoice" aria-label="Voice"
                                                 title="Enable or disable voice"
-                                                data-bind="checked: morseVoice.voiceEnabled, enable: morseVoice.voiceCapable() && !morseVoice.manualVoice()">
+                                                data-bind="checked: morseVoice.voiceEnabled, enable: voiceMasterToggleEnabled">
                                             <label class=" btn btn-outline-primary" for="btncheckvoice">
                                                 <img alt=""
                                                     data-bind="attr:{ src: morseLoadImages().getSrc('chatquoteImage')}">&nbsp;Voice&nbsp;
@@ -1200,7 +1200,7 @@
                             width="20"></button>
 
                     <button id="btnmanualvoice" type="button" class="btn btn-info"
-                        data-bind="click: () => {speakVoiceBuffer()}, visible: morseVoice.manualVoice() && morseVoice.voiceEnabled()">Voice
+                        data-bind="click: () => {speakVoiceBuffer()}, visible: manualVoiceRecapButtonVisible">Voice
                         Recap&nbsp;<img alt="" data-bind="attr:{ src: morseLoadImages().getSrc('bootstrapRebootImage')}">
                     </button>
 

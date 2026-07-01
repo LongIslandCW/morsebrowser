@@ -36,7 +36,7 @@ For each card:
 
 **Mutual exclusion:** Speed Racer and **Speed Intervals** cannot both be on; enabling one turns the other off.
 
-**Voice / Speak Before Replay:** Recap speech uses Voice Options settings (Spell, pre/post delay, speaker, etc.) via `speakSpeedRacerRecap` when **Speak** and **Voice** are both on. Turning **Speed Racer** or **Speak** on opens **Voice Options** if collapsed so you can configure speech; enable **Voice** yourself. When **Voice** is on and **Speak** is off, the normal voice trail speaks each card at the end (same as non-SR playback). Recap and voice trail are mutually exclusive per card.
+**Voice / Speak Before Replay:** Recap speech uses Voice Options settings (Spell, pre/post delay, speaker, etc.) via `speakSpeedRacerRecap` when **Speak** and **Voice** are both on. Turning **Speed Racer** or **Speak** on opens **Voice Options** if collapsed so you can configure speech; enable **Voice** yourself. **Arm Recap** presets (e.g. BC1 Default 12/8) lock the Voice toggle during normal lessons; enabling **Speed Racer + Speak** unlocks Voice and switches to automatic recap. When **Voice** is on and **Speak** is off, the normal voice trail speaks each card at the end (same as non-SR playback). Recap and voice trail are mutually exclusive per card.
 
 Implementation: `SpeedSettings.applySpeedRacer()` in `speedSettings.ts`; speak/replay gate in `morse.ts` (`speakSpeedRacerRecap`).
 

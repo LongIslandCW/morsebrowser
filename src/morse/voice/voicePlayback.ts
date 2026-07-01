@@ -132,3 +132,33 @@ export function shouldSkipVoiceBufferForRacer (
 ): boolean {
   return racerOn && speedRacerSpeakBeforeReplay && voiceEnabled
 }
+
+/** Arm Recap presets lock the Voice toggle; SR + Speak restores user control. */
+export function shouldBypassManualVoiceForToggle (
+  manualVoice: boolean,
+  racerOn: boolean,
+  speedRacerSpeakBeforeReplay: boolean,
+  voiceCapable = true
+): boolean {
+  return voiceCapable &&
+    (!manualVoice || (racerOn && speedRacerSpeakBeforeReplay))
+}
+
+/** Automatic voice trail / trim skips Arm Recap gating while Speed Racer is on. */
+export function computeAutoVoiceAllowed (
+  manualVoice: boolean,
+  racerOn: boolean
+): boolean {
+  return !manualVoice || racerOn
+}
+
+export function shouldShowManualVoiceRecapButton (
+  manualVoice: boolean,
+  voiceEnabled: boolean,
+  racerOn: boolean,
+  speedRacerSpeakBeforeReplay: boolean
+): boolean {
+  return manualVoice &&
+    voiceEnabled &&
+    !(racerOn && speedRacerSpeakBeforeReplay)
+}

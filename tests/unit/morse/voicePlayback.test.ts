@@ -2,10 +2,13 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { CardBufferManager } from '../../../src/morse/utils/cardBufferManager'
 import {
+  computeAutoVoiceAllowed,
   computeNeedToSpeak,
   computeNoDelays,
   computeRacerRecapOn,
   runSpeedRacerRecap,
+  shouldBypassManualVoiceForToggle,
+  shouldShowManualVoiceRecapButton,
   shouldSkipVoiceBufferForRacer,
   voiceThinkingDelayMs
 } from '../../../src/morse/voice/voicePlayback'
@@ -271,6 +274,41 @@ describe('runSpeedRacerRecap', () => {
     vi.runAllTimers()
     expect(spoken).toEqual(['A\n', 'AB'])
     expect(onComplete).toHaveBeenCalledOnce()
+  })
+})
+
+describe('shouldBypassManualVoiceForToggle', () => {
+  it('locks the Voice toggle when Arm Recap is on and SR recap is off', () => {
+    expect(shouldBypassManualVoiceForToggle(true, false, true)).toBe(false)
+    expect(shouldBypassManualVoiceForToggle(true, true, false)).toBe(false)
+  })
+
+  it('unlocks the Voice toggle for BC1 Default + SR + Speak', () => {
+    expect(shouldBypassManualVoiceForToggle(true, true, true)).toBe(true)
+  })
+
+  it('allows the toggle when Arm Recap is off', () => {
+    expect(shouldBypassManualVoiceForToggle(false, false, false)).toBe(true)
+  })
+})
+
+describe('computeAutoVoiceAllowed', () => {
+  it('blocks automatic voice when Arm Recap is on during normal playback', () => {
+    expect(computeAutoVoiceAllowed(true, false)).toBe(false)
+  })
+
+  it('allows automatic voice during Speed Racer even with Arm Recap preset', () => {
+    expect(computeAutoVoiceAllowed(true, true)).toBe(true)
+  })
+})
+
+describe('shouldShowManualVoiceRecapButton', () => {
+  it('shows the manual recap button for Arm Recap presets', () => {
+    expect(shouldShowManualVoiceRecapButton(true, true, false, true)).toBe(true)
+  })
+
+  it('hides the manual recap button when SR + Speak takes over', () => {
+    expect(shouldShowManualVoiceRecapButton(true, true, true, true)).toBe(false)
   })
 })
 
