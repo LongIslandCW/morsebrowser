@@ -57,13 +57,20 @@ export function spelledTokensFromVoiceText (spelled: string): string[] {
     .filter(t => t.length > 0)
 }
 
+/** Minimum gap between spelled recap letters so TTS does not run together. */
+export const RECAP_LETTER_GAP_MS = 400
+
 export type SpeedRacerRecapInput = {
   getSpelling: () => boolean
   speakText: string
   /** Spaced letter text from WordInfo.speakText(true); used when Spell is on. */
   speakTextSpelled: string
-  interLetterMs: number
-  preRecapMs: number
+  /** Voice Delay Before — once before recap speech starts. */
+  preSpeechMs: number
+  /** Short fixed pause between spelled letters (not user pre/post delays). */
+  letterGapMs: number
+  /** Voice Delay After — once after recap speech, before playback continues. */
+  postSpeechMs: number
   token: number
   getToken: () => number
   isPlaying: () => boolean
@@ -98,7 +105,7 @@ export function runSpeedRacerRecap (input: SpeedRacerRecapInput): void {
         return
       }
       input.onComplete()
-    }, input.preRecapMs)
+    }, input.postSpeechMs)
   }
 
   const speakWholeWord = () => {
@@ -144,7 +151,7 @@ export function runSpeedRacerRecap (input: SpeedRacerRecapInput): void {
         skipSpeechAndComplete()
         return
       }
-      schedule(() => speakSpelledLetter(idx + 1, letters), input.interLetterMs)
+      schedule(() => speakSpelledLetter(idx + 1, letters), input.letterGapMs)
     })
   }
 
@@ -162,7 +169,7 @@ export function runSpeedRacerRecap (input: SpeedRacerRecapInput): void {
     }
     const letters = spelledTokensFromVoiceText(input.speakTextSpelled)
     speakSpelledLetter(0, letters)
-  }, input.interLetterMs)
+  }, input.preSpeechMs)
 }
 
 export function shouldSkipVoiceBufferForRacer (

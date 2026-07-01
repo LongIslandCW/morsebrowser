@@ -7,6 +7,7 @@ import {
   computeRacerRecapOn,
   isSpeedRacerActive,
   runSpeedRacerRecap,
+  RECAP_LETTER_GAP_MS,
   shouldBypassManualVoiceForToggle,
   shouldShowManualVoiceRecapButton,
   shouldSkipVoiceBufferForRacer,
@@ -143,8 +144,9 @@ describe('runSpeedRacerRecap', () => {
       getSpelling: () => false,
       speakText: 'CQ',
       speakTextSpelled: 'C Q \n',
-      interLetterMs: 400,
-      preRecapMs: 800,
+      preSpeechMs: 0,
+      letterGapMs: 400,
+      postSpeechMs: 800,
       token: 1,
       getToken: () => 1,
       isPlaying: () => true,
@@ -170,8 +172,9 @@ describe('runSpeedRacerRecap', () => {
       getSpelling: () => true,
       speakText: 'A B \n',
       speakTextSpelled: 'A B \n',
-      interLetterMs: 100,
-      preRecapMs: 50,
+      preSpeechMs: 0,
+      letterGapMs: 100,
+      postSpeechMs: 50,
       token: 1,
       getToken: () => 1,
       isPlaying: () => true,
@@ -204,8 +207,9 @@ describe('runSpeedRacerRecap', () => {
         getSpelling: () => true,
         speakText: info.speakText(true),
         speakTextSpelled: info.speakText(true),
-        interLetterMs: 100,
-        preRecapMs: 50,
+        preSpeechMs: 0,
+        letterGapMs: 100,
+        postSpeechMs: 50,
         token: 1,
         getToken: () => 1,
         isPlaying: () => true,
@@ -232,8 +236,9 @@ describe('runSpeedRacerRecap', () => {
       getSpelling: () => true,
       speakText: 'A B \n',
       speakTextSpelled: 'A B \n',
-      interLetterMs: 100,
-      preRecapMs: 50,
+      preSpeechMs: 0,
+      letterGapMs: 100,
+      postSpeechMs: 50,
       token: 1,
       getToken: () => token,
       isPlaying: () => true,
@@ -258,8 +263,9 @@ describe('runSpeedRacerRecap', () => {
       getSpelling: () => true,
       speakText: 'A B \n',
       speakTextSpelled: 'A B \n',
-      interLetterMs: 100,
-      preRecapMs: 50,
+      preSpeechMs: 0,
+      letterGapMs: 100,
+      postSpeechMs: 50,
       token: 1,
       getToken: () => 1,
       isPlaying: () => true,
@@ -276,31 +282,51 @@ describe('runSpeedRacerRecap', () => {
     expect(onComplete).toHaveBeenCalledOnce()
   })
 
-  it('uses speakTextSpelled when Spell is on at recap start', () => {
-    const spoken: string[] = []
+  it('applies pre/post delays once around spelled recap, not per letter', () => {
     const onComplete = vi.fn()
+    let spoken = 0
 
     runSpeedRacerRecap({
       getSpelling: () => true,
-      speakText: 'AB',
-      speakTextSpelled: 'A B \n',
-      interLetterMs: 100,
-      preRecapMs: 50,
+      speakText: 'A B C \n',
+      speakTextSpelled: 'A B C \n',
+      preSpeechMs: 1000,
+      letterGapMs: 50,
+      postSpeechMs: 2000,
       token: 1,
       getToken: () => 1,
       isPlaying: () => true,
       isVoiceEnabled: () => true,
       prepPhrase: (p) => p,
-      speakPhrase: (phrase, onDone) => {
-        spoken.push(phrase)
+      speakPhrase: (_phrase, onDone) => {
+        spoken += 1
         onDone()
       },
       onComplete
     })
 
-    vi.runAllTimers()
-    expect(spoken).toEqual(['A\n', 'B\n'])
+    expect(spoken).toBe(0)
+    expect(onComplete).not.toHaveBeenCalled()
+
+    vi.advanceTimersByTime(1000)
+    expect(spoken).toBe(1)
+
+    vi.advanceTimersByTime(50)
+    expect(spoken).toBe(2)
+
+    vi.advanceTimersByTime(50)
+    expect(spoken).toBe(3)
+
+    vi.advanceTimersByTime(50)
+    vi.advanceTimersByTime(1999)
+    expect(onComplete).not.toHaveBeenCalled()
+
+    vi.advanceTimersByTime(1)
     expect(onComplete).toHaveBeenCalledOnce()
+  })
+
+  it('uses RECAP_LETTER_GAP_MS default for letter spacing', () => {
+    expect(RECAP_LETTER_GAP_MS).toBe(400)
   })
 })
 

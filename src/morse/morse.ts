@@ -33,6 +33,7 @@ import {
   computeRacerRecapOn,
   isSpeedRacerActive,
   runSpeedRacerRecap,
+  RECAP_LETTER_GAP_MS,
   shouldBypassManualVoiceForToggle,
   shouldShowManualVoiceRecapButton,
   shouldSkipVoiceBufferForRacer,
@@ -879,31 +880,31 @@ export class MorseViewModel {
   }
 
   // Speed Racer voice recap. Respects voiceSpelling: whole word when off,
-  // one letter at a time (Voice Delay Before gaps) when on, using the same
-  // speakText(true) tokens as voice trail. Runs before the base-speed replay
-  // or after the last variation when replay is off.
+  // one letter at a time when on (short fixed gap between letters). Voice
+  // Delay Before/After apply once around the recap, not between letters.
   speakSpeedRacerRecap = (onComplete:() => void) => {
     if (!this.morseVoice.voiceEnabled()) {
       onComplete()
       return
     }
     const currentWord = this.words()[this.currentIndex()]
-    const interLetterMs = Math.max(400, voiceThinkingDelayMs(this.morseVoice.voiceThinkingTime()))
-    const preRecapMs = Math.max(800, voiceThinkingDelayMs(this.morseVoice.voiceAfterThinkingTime()))
+    const preSpeechMs = voiceThinkingDelayMs(this.morseVoice.voiceThinkingTime())
+    const postSpeechMs = voiceThinkingDelayMs(this.morseVoice.voiceAfterThinkingTime())
     const token = this.speedRacerToken
 
     runSpeedRacerRecap({
       getSpelling: () => this.morseVoice.voiceSpelling(),
       speakText: currentWord.speakText(this.morseVoice.voiceSpelling()),
       speakTextSpelled: currentWord.speakText(true),
-      interLetterMs,
-      preRecapMs,
+      preSpeechMs,
+      letterGapMs: RECAP_LETTER_GAP_MS,
+      postSpeechMs,
       token,
       getToken: () => this.speedRacerToken,
       isPlaying: () => this.playerPlaying(),
       isVoiceEnabled: () => this.morseVoice.voiceEnabled(),
       prepPhrase: (phrase) => this.prepPhraseToSpeakForFinal(phrase),
-      speakPhrase: (phrase, onDone) => this.morseVoice.speakPhrase(phrase, onDone),
+      speakPhrase: (phrase, onDone) => this.morseVoice.speakPhraseImmediate(phrase, onDone),
       onComplete
     })
   }
