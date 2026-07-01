@@ -264,9 +264,18 @@ export class MorseVoice implements ICookieHandler {
   }
 
   speakPhrase = (phraseToSpeak:string, onEndCallBack) => {
-    // console.log(this.voiceVoice().name)
+    this.speakPhraseWithAfterDelay(phraseToSpeak, onEndCallBack, true)
+  }
+
+  /** Recap / chained speech: caller owns pre/post delays between phrases. */
+  speakPhraseImmediate = (phraseToSpeak:string, onEndCallBack) => {
+    this.speakPhraseWithAfterDelay(phraseToSpeak, onEndCallBack, false)
+  }
+
+  speakPhraseWithAfterDelay = (phraseToSpeak:string, onEndCallBack, applyAfterDelay:boolean) => {
     const doOnEndCallBack = () => {
-      setTimeout(onEndCallBack, this.voiceAfterThinkingTime() * 1000)
+      const delay = applyAfterDelay ? this.voiceAfterThinkingTime() * 1000 : 0
+      setTimeout(onEndCallBack, delay)
     }
     try {
       const morseVoiceInfo = this.initMorseVoiceInfo(phraseToSpeak)

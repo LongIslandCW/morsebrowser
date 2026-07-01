@@ -27,6 +27,18 @@ import MorseSettingsHandler from './settings/morseSettingsHandler'
 import ScreenWakeLock from './utils/screenWakeLock'
 import { applyTheme } from './theme/theme'
 import { computeNeedToTrail, computeNoDelays, runAdvanceTrail, runFinalizeTrail } from './trail/trailPlayback'
+import {
+  computeAutoVoiceAllowed,
+  computeNeedToSpeak,
+  computeRacerRecapOn,
+  isSpeedRacerActive,
+  runSpeedRacerRecap,
+  RECAP_LETTER_GAP_MS,
+  shouldBypassManualVoiceForToggle,
+  shouldShowManualVoiceRecapButton,
+  shouldSkipVoiceBufferForRacer,
+  voiceThinkingDelayMs
+} from './voice/voicePlayback'
 
 export interface ShortcutKeyEntry {
   key: string
@@ -104,6 +116,9 @@ export class MorseViewModel {
   allShortcutKeys:ko.ObservableArray<ShortcutKeyEntry>
   keyboardShortcutScript:ko.Computed<string>
   applyEnabled:ko.Computed<boolean>
+  speedRacerOverridesManualVoice:ko.Computed<boolean>
+  voiceMasterToggleEnabled:ko.Computed<boolean>
+  manualVoiceRecapButtonVisible:ko.Computed<boolean>
   numberOfRepeats:ko.Observable<number> = ko.observable(0)
   testTonePlaying:boolean = false
   testToneCount:number = 0
@@ -253,6 +268,29 @@ export class MorseViewModel {
         return !!this.lessons.customGroup()?.trim()
       }
       return this.lessons.selectedDisplay().display && !this.lessons.selectedDisplay().isDummy
+    }, this)
+
+    this.speedRacerOverridesManualVoice = ko.computed(() => {
+      return this.settings.speed.speedRacerEnabled() &&
+        this.settings.speed.speedRacerSpeakBeforeReplay()
+    }, this)
+
+    this.voiceMasterToggleEnabled = ko.computed(() => {
+      return shouldBypassManualVoiceForToggle(
+        this.morseVoice.manualVoice(),
+        this.settings.speed.speedRacerEnabled(),
+        this.settings.speed.speedRacerSpeakBeforeReplay(),
+        this.morseVoice.voiceCapable()
+      )
+    }, this)
+
+    this.manualVoiceRecapButtonVisible = ko.computed(() => {
+      return shouldShowManualVoiceRecapButton(
+        this.morseVoice.manualVoice(),
+        this.morseVoice.voiceEnabled(),
+        this.settings.speed.speedRacerEnabled(),
+        this.settings.speed.speedRacerSpeakBeforeReplay()
+      )
     }, this)
 
     this.screenWakeLock = new ScreenWakeLock()
@@ -510,7 +548,15 @@ export class MorseViewModel {
     config.riseMsOffset = parseFloat(this.riseMsOffset() as any)
     config.decayMsOffset = parseFloat(this.decayMsOffset() as any)
     // suppress wordspaces when using speak so "thinking time" will control
-    if (this.morseVoice && !this.morseVoice.manualVoice() && this.ifMaxVoiceBufferReached()) {
+    if (this.morseVoice &&
+        computeAutoVoiceAllowed(
+          this.morseVoice.manualVoice(),
+          isSpeedRacerActive(
+            this.settings.speed.speedRacerEnabled(),
+            this.settings.speed.getRacerTotalPlays()
+          )
+        ) &&
+        this.ifMaxVoiceBufferReached()) {
       config.trimLastWordSpace = this.morseVoice.voiceEnabled() && !this.cardBufferManager.hasMoreMorse()
       config.voiceEnabled = this.morseVoice.voiceEnabled()
     }
@@ -589,6 +635,37 @@ export class MorseViewModel {
       button.classList.add('collapsed')
       button.setAttribute('aria-expanded', 'false')
     })
+  }
+
+  isVoiceOptionsAccordionOpen = ():boolean => {
+    return document.getElementById('collapsevoiceoptions')?.classList.contains('show') ?? false
+  }
+
+  expandVoiceOptionsAccordionIfClosed = () => {
+    if (this.isVoiceOptionsAccordionOpen()) {
+      return
+    }
+    const panel = document.getElementById('collapsevoiceoptions')
+    const button = document.getElementById('voiceOptionsAccordionButton')
+    if (!panel || !button) {
+      return
+    }
+    panel.classList.add('show')
+    button.classList.remove('collapsed')
+    button.setAttribute('aria-expanded', 'true')
+  }
+
+  onSpeedRacerEnabledClick = (_data, event:Event) => {
+    const input = event.target as HTMLInputElement
+    if (input?.checked) {
+      this.expandVoiceOptionsAccordionIfClosed()
+    }
+    return true
+  }
+
+  onSpeedRacerSpeakBeforeReplayClick = (_data, event:Event) => {
+    this.expandVoiceOptionsAccordionIfClosed()
+    return true
   }
 
   scrollPlaybackIntoView = () => {
@@ -695,6 +772,7 @@ export class MorseViewModel {
         // so route any positive racer play count through the racer path.
         const racerOn = this.settings.speed.speedRacerEnabled()
         const racerTotalPlays = racerOn ? this.settings.speed.getRacerTotalPlays() : 0
+        const racerActive = isSpeedRacerActive(racerOn, racerTotalPlays)
         const repeats = racerTotalPlays >= 1
           ? racerTotalPlays
           : (parseInt(this.numberOfRepeats() as any) === 0 ? 0 : parseInt(this.numberOfRepeats() as any) + 1)
@@ -708,7 +786,7 @@ export class MorseViewModel {
         // testers found too fast to follow. When racing and the user hasn't set
         // their own Repeat Spacing, fall back to a one-wordspace gap so each
         // repeat is distinct. An explicit non-zero value always wins.
-        const repeatSpacing = (racerOn && userRepeatSpacing === 0)
+        const repeatSpacing = (racerActive && userRepeatSpacing === 0)
           ? MorseViewModel.RACER_DEFAULT_REPEAT_SPACING
           : userRepeatSpacing
         const wholeWordSpaces = Math.floor(repeatSpacing)
@@ -723,7 +801,11 @@ export class MorseViewModel {
         const racerState = this.cardBufferManager.getRepeatState()
         const playIndex = racerState.index
         const audiblePlay = !!(config.word && config.word.trim().length > 0)
-        const speakOn = racerOn && this.settings.speed.speedRacerSpeakBeforeReplay()
+        const speakOn = computeRacerRecapOn({
+          racerOn: racerActive,
+          speedRacerSpeakBeforeReplay: this.settings.speed.speedRacerSpeakBeforeReplay(),
+          voiceEnabled: this.morseVoice.voiceEnabled()
+        })
 
         const playerCmd = () => {
           if (!this.morseVoice.speakFirst() || this.playerPlaying()) {
@@ -768,7 +850,7 @@ export class MorseViewModel {
               }
             })
           }, padMs)
-        } else if (racerOn) {
+        } else if (racerActive) {
           // Speed Racer manages its own speak step. Bypass speakFirst entirely
           // so a stale speakFirst toggle can't add a voiceThinkingTime delay
           // before the *first* variation play.
@@ -798,64 +880,33 @@ export class MorseViewModel {
   }
 
   // Speed Racer voice recap. Respects voiceSpelling: whole word when off,
-  // one letter at a time (with enforced gaps) when on. Runs before the
-  // base-speed replay or after the last variation when replay is off.
+  // one letter at a time when on (short fixed gap between letters). Voice
+  // Delay Before/After apply once around the recap, not between letters.
   speakSpeedRacerRecap = (onComplete:() => void) => {
-    const currentWord = this.words()[this.currentIndex()]
-    const spelling = this.morseVoice.voiceSpelling()
-    const interLetterMs = Math.max(400, this.morseVoice.voiceThinkingTime() * 1000)
-    const preRecapMs = Math.max(800, this.morseVoice.voiceAfterThinkingTime() * 1000)
-    const token = this.speedRacerToken
-
-    const finishRecap = () => {
-      setTimeout(() => {
-        if (token !== this.speedRacerToken || !this.playerPlaying()) {
-          return
-        }
-        onComplete()
-      }, preRecapMs)
-    }
-
-    if (!spelling) {
-      setTimeout(() => {
-        if (token !== this.speedRacerToken) {
-          return
-        }
-        const phrase = this.prepPhraseToSpeakForFinal(currentWord.speakText(false))
-        this.morseVoice.speakPhrase(phrase, () => {
-          if (token !== this.speedRacerToken || !this.playerPlaying()) {
-            return
-          }
-          finishRecap()
-        })
-      }, interLetterMs)
+    if (!this.morseVoice.voiceEnabled()) {
+      onComplete()
       return
     }
+    const currentWord = this.words()[this.currentIndex()]
+    const preSpeechMs = voiceThinkingDelayMs(this.morseVoice.voiceThinkingTime())
+    const postSpeechMs = voiceThinkingDelayMs(this.morseVoice.voiceAfterThinkingTime())
+    const token = this.speedRacerToken
 
-    const chars = currentWord.displayWord.replace(/\s+/g, '').split('')
-    const speakChar = (idx:number) => {
-      if (token !== this.speedRacerToken || !this.playerPlaying()) {
-        return
-      }
-      if (idx >= chars.length) {
-        finishRecap()
-        return
-      }
-      const letter = this.prepPhraseToSpeakForFinal(chars[idx].toUpperCase() + '\n')
-      this.morseVoice.speakPhrase(letter, () => {
-        if (token !== this.speedRacerToken || !this.playerPlaying()) {
-          return
-        }
-        setTimeout(() => speakChar(idx + 1), interLetterMs)
-      })
-    }
-
-    setTimeout(() => {
-      if (token !== this.speedRacerToken) {
-        return
-      }
-      speakChar(0)
-    }, interLetterMs)
+    runSpeedRacerRecap({
+      getSpelling: () => this.morseVoice.voiceSpelling(),
+      speakText: currentWord.speakText(this.morseVoice.voiceSpelling()),
+      speakTextSpelled: currentWord.speakText(true),
+      preSpeechMs,
+      letterGapMs: RECAP_LETTER_GAP_MS,
+      postSpeechMs,
+      token,
+      getToken: () => this.speedRacerToken,
+      isPlaying: () => this.playerPlaying(),
+      isVoiceEnabled: () => this.morseVoice.voiceEnabled(),
+      prepPhrase: (phrase) => this.prepPhraseToSpeakForFinal(phrase),
+      speakPhrase: (phrase, onDone) => this.morseVoice.speakPhraseImmediate(phrase, onDone),
+      onComplete
+    })
   }
 
   ifMaxVoiceBufferReached = ():boolean => {
@@ -894,13 +945,19 @@ export class MorseViewModel {
     const isNotLastWord = this.currentIndex() < this.words().length - 1
     const anyNewLines = this.rawText().indexOf('\n') !== -1
     const maxBufferReached = this.ifMaxVoiceBufferReached()
-    const racerOn = this.settings.speed.speedRacerEnabled()
-    const needToSpeak = !racerOn &&
-      this.morseVoice.voiceEnabled() &&
-      !fromVoiceOrTrail &&
-      !this.cardBufferManager.hasMoreMorse() &&
-      maxBufferReached &&
-      !this.morseVoice.speakFirst()
+    const racerOn = isSpeedRacerActive(
+      this.settings.speed.speedRacerEnabled(),
+      this.settings.speed.getRacerTotalPlays()
+    )
+    const needToSpeak = computeNeedToSpeak({
+      voiceEnabled: this.morseVoice.voiceEnabled(),
+      fromVoiceOrTrail,
+      hasMoreMorse: this.cardBufferManager.hasMoreMorse(),
+      maxBufferReached,
+      speakFirst: this.morseVoice.speakFirst(),
+      racerOn,
+      speedRacerSpeakBeforeReplay: this.settings.speed.speedRacerSpeakBeforeReplay()
+    })
 
     const needToTrail = computeNeedToTrail({
       trailReveal: this.trailReveal(),
@@ -1007,7 +1064,7 @@ export class MorseViewModel {
       const speakText = this.morseVoice.voiceBuffer[0].txt
       const hasNewline = speakText.indexOf('\n') !== -1
 
-      const speakCondition = !this.morseVoice.manualVoice() &&
+      const speakCondition = computeAutoVoiceAllowed(this.morseVoice.manualVoice(), racerOn) &&
                 (hasNewline || !isNotLastWord || !anyNewLines || !this.settings.misc.newlineChunking())
       if (speakCondition) {
         let phraseToSpeak = this.getPhraseToSpeakFromBuffer()
@@ -1032,17 +1089,35 @@ export class MorseViewModel {
         }
         */
 
+        const token = this.speedRacerToken
+        const continueAfterVoice = () => {
+          if (needToTrail) {
+            advanceTrail()
+          }
+          this.playEnded(true)
+        }
         setTimeout(() => {
+          if (token !== this.speedRacerToken || !this.playerPlaying()) {
+            return
+          }
+          if (!this.morseVoice.voiceEnabled()) {
+            continueAfterVoice()
+            return
+          }
           const finalPhraseToSpeak = this.prepPhraseToSpeakForFinal(phraseToSpeak)
           this.morseVoice.speakPhrase(finalPhraseToSpeak, () => {
+            if (token !== this.speedRacerToken || !this.playerPlaying()) {
+              return
+            }
+            if (!this.morseVoice.voiceEnabled()) {
+              continueAfterVoice()
+              return
+            }
             // what gets called after speaking
 
-            if (needToTrail) {
-              advanceTrail()
-            }
-            this.playEnded(true)
+            continueAfterVoice()
           })
-        }, this.morseVoice.voiceThinkingTime() * 1000)
+        }, voiceThinkingDelayMs(this.morseVoice.voiceThinkingTime()))
       } else if (needToTrail) {
         advanceTrail(true)
       } else {
@@ -1067,9 +1142,16 @@ export class MorseViewModel {
   }
 
   addToVoiceBuffer = () => {
-    // Speed Racer speaks its own recap before the base-speed replay; skip the
-    // trailing voice buffer so words are not spoken twice or rushed together.
-    if (this.settings.speed.speedRacerEnabled()) {
+    // When SR recap will speak this card, skip the voice buffer so words are
+    // not spoken twice or rushed together.
+    if (shouldSkipVoiceBufferForRacer(
+      isSpeedRacerActive(
+        this.settings.speed.speedRacerEnabled(),
+        this.settings.speed.getRacerTotalPlays()
+      ),
+      this.settings.speed.speedRacerSpeakBeforeReplay(),
+      this.morseVoice.voiceEnabled()
+    )) {
       return
     }
     // make sure we don't add the same card twice...someday figure what causes

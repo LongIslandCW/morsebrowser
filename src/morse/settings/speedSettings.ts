@@ -35,7 +35,8 @@ export default class SpeedSettings implements ICookieHandler {
   // multiplier) after the variation plays.
   speedRacerFinalPlay: ko.Observable<boolean>
   // When Replay Base Speed is on, speak the card once before that replay.
-  // Enabling this turns Voice on and opens Voice Options for configuration.
+  // Recap runs when this and Voice are both on; uses Voice Options for
+  // Spell, delays, speaker, etc. User enables Voice manually.
   speedRacerSpeakBeforeReplay: ko.Observable<boolean>
   // Preset/cookie compat only — FWPM always stays at saved base during racing.
   speedRacerKeepFwpm: ko.Observable<boolean>
