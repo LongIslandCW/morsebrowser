@@ -65,4 +65,20 @@ describe('MorseViewModel speedRacerSpeakBeforeReplay subscribe', () => {
     expect(vm.morseVoice.voiceEnabled()).toBe(false)
     expect(vm.morseVoice.manualVoice()).toBe(true)
   })
+
+  it('forces Voice off and clears buffer when baseline had voice on', () => {
+    vm.morseVoice.manualVoice(false)
+    vm.morseVoice.voiceEnabled(true)
+    vm.captureLessonVoiceBaseline()
+
+    vm.morseVoice.voiceBuffer.push({ txt: 'CQ', idx: 0 } as never)
+
+    vm.settings.speed.speedRacerEnabled(true)
+    vm.settings.speed.speedRacerSpeakBeforeReplay(true)
+
+    vm.settings.speed.speedRacerSpeakBeforeReplay(false)
+
+    expect(vm.morseVoice.voiceEnabled()).toBe(false)
+    expect(vm.morseVoice.voiceBuffer).toEqual([])
+  })
 })

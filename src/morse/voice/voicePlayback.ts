@@ -38,7 +38,11 @@ export function computeNeedToSpeak (input: NeedToSpeakInput): boolean {
       input.speakFirst) {
     return false
   }
-  // Speed Racer recap owns speech when Speak is on; normal voice trail otherwise.
+  // Speed Racer without Speak = morse-only; no voice trail.
+  if (input.racerOn && !input.speedRacerSpeakBeforeReplay) {
+    return false
+  }
+  // Speed Racer recap owns speech when Speak is on.
   if (input.racerOn && input.speedRacerSpeakBeforeReplay) {
     return false
   }
@@ -196,10 +200,11 @@ export function runSpeedRacerRecap (input: SpeedRacerRecapInput): void {
 
 export function shouldSkipVoiceBufferForRacer (
   racerOn: boolean,
-  speedRacerSpeakBeforeReplay: boolean,
-  voiceEnabled: boolean
+  _speedRacerSpeakBeforeReplay: boolean,
+  _voiceEnabled: boolean
 ): boolean {
-  return racerOn && speedRacerSpeakBeforeReplay && voiceEnabled
+  // SR recap uses speakSpeedRacerRecap directly, not the voice buffer.
+  return racerOn
 }
 
 /** Arm Recap presets lock the Voice toggle; SR + Speak restores user control. */

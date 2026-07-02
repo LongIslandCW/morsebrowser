@@ -333,6 +333,8 @@ export class MorseViewModel {
     this.settings.speed.speedRacerSpeakBeforeReplay.subscribe((speakOn) => {
       if (!speakOn && this.settings.speed.speedRacerEnabled()) {
         this.restoreLessonVoiceFromLesson()
+        this.morseVoice.voiceEnabled(false)
+        this.morseVoice.voiceBuffer = []
       }
     })
     this.lessons.syncSize.subscribe((synced) => this.announce(synced ? 'Minimum and maximum size are linked' : 'Minimum and maximum size are separate'))

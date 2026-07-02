@@ -36,7 +36,7 @@ For each card:
 
 **Mutual exclusion:** Speed Racer and **Speed Intervals** cannot both be on; enabling one turns the other off.
 
-**Voice / Speak Before Replay:** Recap speech uses Voice Options settings (Spell, pre/post delay, speaker, etc.) via `speakSpeedRacerRecap` when **Speak** and **Voice** are both on. Clicking **Speed Racer** on or toggling **Speak** opens **Voice Options** if collapsed (lesson/preset changes do not). Enable **Voice** yourself. **Arm Recap** presets (e.g. BC1 Default 12/8) lock the Voice toggle during normal lessons; enabling **Speed Racer + Speak** unlocks Voice and switches to automatic recap. When **Voice** is on and **Speak** is off, the normal voice trail speaks each card at the end (same as non-SR playback). Recap and voice trail are mutually exclusive per card.
+**Voice / Speak Before Replay:** **Speak is the sole speech gate during Speed Racer.** Recap speech uses Voice Options settings (Spell, pre/post delay, speaker, etc.) via `speakSpeedRacerRecap` when **Speak** and **Voice** are both on. SR + Speak off = morse-only (no recap, no voice trail). Turning Speak off while SR is on forces Voice off and clears the voice buffer. Clicking **Speed Racer** on or toggling **Speak** opens **Voice Options** if collapsed (lesson/preset changes do not). Enable **Voice** yourself when using Speak. **Arm Recap** presets (e.g. BC1 Default 12/8) lock the Voice toggle during normal lessons; enabling **Speed Racer + Speak** unlocks Voice and switches to automatic recap.
 
 Implementation: `SpeedSettings.applySpeedRacer()` in `speedSettings.ts`; speak/replay gate in `morse.ts` (`speakSpeedRacerRecap`).
 
@@ -207,7 +207,7 @@ After adding or removing files under `src/presets/configs/`, run **`npm run preb
 | Off | Off | Variation ladder only — stop after last (fastest) variation |
 | Off | On | Variations -> **speak** after the last variation *(no base-speed replay)* |
 
-The speak toggle label is **Speak Before Replay** when replay is on, or **Speak** when replay is off. It is always clickable while Speed Racer is on.
+The speak toggle label is **Speak Before Replay** when replay is on, or **Speak** when replay is off. It is always clickable while Speed Racer is on. Turning Speak off while SR is on forces Voice off (morse-only mode).
 
 The **Overlearn** button in Advanced sets FR1 multipliers and turns **both** toggles off.
 
@@ -237,7 +237,7 @@ Use preset **`Speed Racer … Flow Rate N`** or the **Overlearn** button in Adva
 
 | Feature | Relationship to Speed Racer |
 |---------|----------------------------|
-| **Voice Options → Voice** | When on during Speed Racer: recap uses Voice Options if Speak is on; normal voice trail at card end if Speak is off |
+| **Voice Options → Voice** | Recap uses Voice Options only when Speak is on; SR + Speak off is morse-only |
 | **`speakFirst` in preset JSON** | Separate “speak before first play” path; Speed Racer bypasses it so it does not delay the first variation |
 | **Speed Intervals** | Mutually exclusive with Speed Racer |
 | **`numberOfRepeats`** | SR Overlearn presets set this to `0`; multipliers replace repeats |

@@ -33,12 +33,21 @@ describe('computeNeedToSpeak', () => {
     expect(computeNeedToSpeak(base)).toBe(true)
   })
 
-  it('is true during Speed Racer when Voice is on and Speak recap is off', () => {
+  it('is false during Speed Racer when Speak recap is off (morse-only)', () => {
     expect(computeNeedToSpeak({
       ...base,
       racerOn: true,
       speedRacerSpeakBeforeReplay: false
-    })).toBe(true)
+    })).toBe(false)
+  })
+
+  it('is false during Speed Racer when Speak is off even if Voice is on', () => {
+    expect(computeNeedToSpeak({
+      ...base,
+      racerOn: true,
+      speedRacerSpeakBeforeReplay: false,
+      voiceEnabled: true
+    })).toBe(false)
   })
 
   it('is false during Speed Racer when Speak recap is on', () => {
@@ -116,16 +125,15 @@ describe('voiceThinkingDelayMs', () => {
 })
 
 describe('shouldSkipVoiceBufferForRacer', () => {
-  it('skips when SR recap will speak', () => {
+  it('skips during Speed Racer regardless of Speak or Voice', () => {
     expect(shouldSkipVoiceBufferForRacer(true, true, true)).toBe(true)
+    expect(shouldSkipVoiceBufferForRacer(true, true, false)).toBe(true)
+    expect(shouldSkipVoiceBufferForRacer(true, false, true)).toBe(true)
+    expect(shouldSkipVoiceBufferForRacer(true, false, false)).toBe(true)
   })
 
-  it('does not skip when Voice is off during SR', () => {
-    expect(shouldSkipVoiceBufferForRacer(true, true, false)).toBe(false)
-  })
-
-  it('does not skip when Speak is off during SR', () => {
-    expect(shouldSkipVoiceBufferForRacer(true, false, true)).toBe(false)
+  it('does not skip when Speed Racer is off', () => {
+    expect(shouldSkipVoiceBufferForRacer(false, true, true)).toBe(false)
   })
 })
 
@@ -401,7 +409,7 @@ describe('CardBufferManager voice gating during Speed Racer', () => {
     )
   }
 
-  it('keeps needToSpeak false until the last subpart of a multi-word card', () => {
+  it('never triggers needToSpeak during morse-only Speed Racer', () => {
     const mgr = createBufferManager('CQ DE')
     const speakFlags: boolean[] = []
 
@@ -422,6 +430,6 @@ describe('CardBufferManager voice gating during Speed Racer', () => {
       next = mgr.getNextMorse(0, 0)
     }
 
-    expect(speakFlags).toEqual([false, true])
+    expect(speakFlags).toEqual([false, false])
   })
 })
