@@ -330,6 +330,11 @@ export class MorseViewModel {
         this.restoreLessonVoiceFromLesson()
       }
     })
+    this.settings.speed.speedRacerSpeakBeforeReplay.subscribe((speakOn) => {
+      if (!speakOn && this.settings.speed.speedRacerEnabled()) {
+        this.restoreLessonVoiceFromLesson()
+      }
+    })
     this.lessons.syncSize.subscribe((synced) => this.announce(synced ? 'Minimum and maximum size are linked' : 'Minimum and maximum size are separate'))
     this.settings.frequency.syncFreq.subscribe((synced) => this.announce(synced ? 'Dit and dah pitch are linked' : 'Dit and dah pitch are separate'))
   }
