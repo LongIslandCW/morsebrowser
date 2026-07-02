@@ -356,6 +356,14 @@ describe('lesson voice baseline (Speed Racer off restore)', () => {
     expect(shouldBypassManualVoiceForToggle(true, false, true)).toBe(false)
     expect(shouldBypassManualVoiceForToggle(true, true, true)).toBe(true)
   })
+
+  it('restores Arm Recap voice off when Speak turns off while Speed Racer stays on', () => {
+    expect(shouldBypassManualVoiceForToggle(true, true, false)).toBe(false)
+    const baseline = buildLessonVoiceBaseline(false, true)
+    let voiceEnabled = true
+    applyLessonVoiceBaseline(baseline, (v) => { voiceEnabled = v }, () => {})
+    expect(voiceEnabled).toBe(false)
+  })
 })
 
 describe('shouldBypassManualVoiceForToggle', () => {
