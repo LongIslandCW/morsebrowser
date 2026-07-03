@@ -148,4 +148,23 @@ describe('MorseViewModel speedRacerSpeakBeforeReplay subscribe', () => {
     expect(vm.settings.speed.speedRacerSpeakBeforeReplay()).toBe(false)
     expect(vm.morseVoice.voiceEnabled()).toBe(false)
   })
+
+  it('blurs Reset button only for pointer clicks, not keyboard activation', () => {
+    const btn = document.createElement('button')
+    const blurSpy = vi.spyOn(btn, 'blur')
+
+    vm.onResetSpeedRacerDefaultsClick(vm, {
+      currentTarget: btn,
+      detail: 1
+    } as MouseEvent)
+    expect(blurSpy).toHaveBeenCalledOnce()
+
+    blurSpy.mockClear()
+
+    vm.onResetSpeedRacerDefaultsClick(vm, {
+      currentTarget: btn,
+      detail: 0
+    } as MouseEvent)
+    expect(blurSpy).not.toHaveBeenCalled()
+  })
 })

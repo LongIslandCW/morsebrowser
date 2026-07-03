@@ -728,16 +728,23 @@ export class MorseViewModel {
     return true
   }
 
+  blurSpeedRacerActionIfPointerClick = (event: Event) => {
+    const detail = (event as MouseEvent).detail
+    if (typeof detail === 'number' && detail > 0) {
+      (event.currentTarget as HTMLButtonElement | null)?.blur()
+    }
+  }
+
   onResetSpeedRacerDefaultsClick = (_data, event:Event) => {
     this.settings.speed.resetSpeedRacerDefaults()
     this.enableVoiceForSpeedRacerSpeak()
-    ;(event.currentTarget as HTMLButtonElement | null)?.blur()
+    this.blurSpeedRacerActionIfPointerClick(event)
     return true
   }
 
   onOverlearnSpeedRacerClick = (_data, event:Event) => {
     this.settings.speed.setOverlearnMultipliers()
-    ;(event.currentTarget as HTMLButtonElement | null)?.blur()
+    this.blurSpeedRacerActionIfPointerClick(event)
     return true
   }
 
