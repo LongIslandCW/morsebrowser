@@ -335,13 +335,18 @@ export class MorseViewModel {
         return
       }
       if (speakOn) {
-        if (this.morseVoice.voiceCapable()) {
-          this.morseVoice.voiceEnabled(true)
-        }
+        this.enableVoiceForSpeedRacerSpeak()
       } else {
         this.restoreLessonVoiceFromLesson()
         this.morseVoice.voiceEnabled(false)
         this.morseVoice.voiceBuffer = []
+      }
+    })
+    this.morseVoice.voiceEnabled.subscribe((enabled) => {
+      if (!enabled &&
+          this.settings.speed.speedRacerEnabled() &&
+          this.settings.speed.speedRacerSpeakBeforeReplay()) {
+        this.settings.speed.speedRacerSpeakBeforeReplay(false)
       }
     })
     this.lessons.syncSize.subscribe((synced) => this.announce(synced ? 'Minimum and maximum size are linked' : 'Minimum and maximum size are separate'))
@@ -681,9 +686,7 @@ export class MorseViewModel {
     const input = event.target as HTMLInputElement
     if (input?.checked) {
       this.expandVoiceOptionsAccordionIfClosed()
-      if (this.settings.speed.speedRacerSpeakBeforeReplay() && this.morseVoice.voiceCapable()) {
-        this.morseVoice.voiceEnabled(true)
-      }
+      this.enableVoiceForSpeedRacerSpeak()
     }
     return true
   }
@@ -694,6 +697,14 @@ export class MorseViewModel {
       this.morseVoice.manualVoice(),
       this.morseVoice.speakFirst()
     )
+  }
+
+  enableVoiceForSpeedRacerSpeak = () => {
+    if (this.settings.speed.speedRacerEnabled() &&
+        this.settings.speed.speedRacerSpeakBeforeReplay() &&
+        this.morseVoice.voiceCapable()) {
+      this.morseVoice.voiceEnabled(true)
+    }
   }
 
   restoreLessonVoiceFromLesson = () => {
@@ -711,9 +722,22 @@ export class MorseViewModel {
   onSpeedRacerSpeakBeforeReplayClick = (_data, event:Event) => {
     const input = event.target as HTMLInputElement
     this.expandVoiceOptionsAccordionIfClosed()
-    if (input?.checked && this.morseVoice.voiceCapable()) {
-      this.morseVoice.voiceEnabled(true)
+    if (input?.checked) {
+      this.enableVoiceForSpeedRacerSpeak()
     }
+    return true
+  }
+
+  onResetSpeedRacerDefaultsClick = (_data, event:Event) => {
+    this.settings.speed.resetSpeedRacerDefaults()
+    this.enableVoiceForSpeedRacerSpeak()
+    ;(event.currentTarget as HTMLButtonElement | null)?.blur()
+    return true
+  }
+
+  onOverlearnSpeedRacerClick = (_data, event:Event) => {
+    this.settings.speed.setOverlearnMultipliers()
+    ;(event.currentTarget as HTMLButtonElement | null)?.blur()
     return true
   }
 

@@ -562,7 +562,7 @@
                                                 aria-label="Speed Racer preset shortcuts">
                                                 <div class="settings-lesson-control">
                                                     <button type="button" class="btn btn-outline-primary"
-                                                        data-bind="click: ()=>settings.speed.resetSpeedRacerDefaults()"
+                                                        data-bind="click: onResetSpeedRacerDefaultsClick"
                                                         title="Restore Multipliers, Replay Base Speed, and Speak Before Replay to their defaults (1.5, 1.35, 1.175, 1.0; all on).">
                                                         <img alt="" data-bind="attr:{ src: morseLoadImages().getSrc('bootstrapRebootImage')}"
                                                             height="16" width="16" />&nbsp;Reset to defaults
@@ -570,7 +570,7 @@
                                                 </div>
                                                 <div class="settings-lesson-control">
                                                     <button type="button" class="btn btn-outline-primary"
-                                                        data-bind="click: ()=>settings.speed.setOverlearnMultipliers()"
+                                                        data-bind="click: onOverlearnSpeedRacerClick"
                                                         title="Set Multipliers to 1.0, 1.174, 1.348 (slow→fast, ratios of 23/27/31 wpm with 23 as base) and turn off Replay Base Speed and Speak Before Replay.">
                                                         Overlearn
                                                     </button>

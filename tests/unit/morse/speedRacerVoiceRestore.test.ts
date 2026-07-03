@@ -119,9 +119,33 @@ describe('MorseViewModel speedRacerSpeakBeforeReplay subscribe', () => {
     vm.settings.speed.speedRacerEnabled(true)
     vm.settings.speed.speedRacerSpeakBeforeReplay(false)
 
-    vm.settings.speed.resetSpeedRacerDefaults()
+    vm.onResetSpeedRacerDefaultsClick(vm, { currentTarget: document.createElement('button') } as Event)
 
     expect(vm.settings.speed.speedRacerSpeakBeforeReplay()).toBe(true)
     expect(vm.morseVoice.voiceEnabled()).toBe(true)
+  })
+
+  it('enables Voice on Reset when Speak was already on', () => {
+    vm.morseVoice.voiceCapable(true)
+    vm.morseVoice.voiceEnabled(false)
+    vm.settings.speed.speedRacerEnabled(true)
+    vm.settings.speed.speedRacerSpeakBeforeReplay(true)
+
+    vm.onResetSpeedRacerDefaultsClick(vm, { currentTarget: document.createElement('button') } as Event)
+
+    expect(vm.settings.speed.speedRacerSpeakBeforeReplay()).toBe(true)
+    expect(vm.morseVoice.voiceEnabled()).toBe(true)
+  })
+
+  it('turns Speak off when Voice is turned off during Speed Racer', () => {
+    vm.morseVoice.voiceCapable(true)
+    vm.settings.speed.speedRacerEnabled(true)
+    vm.settings.speed.speedRacerSpeakBeforeReplay(true)
+    vm.morseVoice.voiceEnabled(true)
+
+    vm.morseVoice.voiceEnabled(false)
+
+    expect(vm.settings.speed.speedRacerSpeakBeforeReplay()).toBe(false)
+    expect(vm.morseVoice.voiceEnabled()).toBe(false)
   })
 })
