@@ -7,7 +7,7 @@
     "bootstrap-icons": "^1.8.1",
     "brown-noise-node": "^1.0.0",
     "buffer": "^6.0.3",
-    "copy-webpack-plugin": "^10.2.4",
+    "copy-webpack-plugin": "^14.0.0",
     "css-loader": "^6.7.1",
     "easy-speech": "^2.3.1",
     "html-webpack-plugin": "^5.5.0",
