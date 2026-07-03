@@ -48,7 +48,7 @@
     "@axe-core/playwright": "^4.12.1",
     "@babel/core": "^7.17.9",
     "@babel/eslint-parser": "^7.17.0",
-    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-env": "^7.29.7",
     "@playwright/test": "^1.61.1",
     "@types/knockout": "^3.4.71",
     "@typescript-eslint/eslint-plugin": "^5.26.0",
