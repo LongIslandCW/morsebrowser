@@ -81,4 +81,35 @@ describe('MorseViewModel speedRacerSpeakBeforeReplay subscribe', () => {
     expect(vm.morseVoice.voiceEnabled()).toBe(false)
     expect(vm.morseVoice.voiceBuffer).toEqual([])
   })
+
+  it('restores Voice First when Speed Racer turns off after Speak-off morse-only session', () => {
+    vm.morseVoice.voiceEnabled(true)
+    vm.morseVoice.speakFirst(true)
+    vm.morseVoice.manualVoice(false)
+    vm.captureLessonVoiceBaseline()
+
+    vm.settings.speed.speedRacerEnabled(true)
+    vm.settings.speed.speedRacerSpeakBeforeReplay(true)
+    vm.settings.speed.speedRacerSpeakBeforeReplay(false)
+
+    expect(vm.morseVoice.speakFirst()).toBe(false)
+
+    vm.settings.speed.speedRacerEnabled(false)
+
+    expect(vm.morseVoice.voiceEnabled()).toBe(true)
+    expect(vm.morseVoice.speakFirst()).toBe(true)
+  })
+
+  it('forces Voice off and clears buffer even when no baseline was captured', () => {
+    vm.lessonVoiceBaseline = null
+    vm.morseVoice.voiceEnabled(true)
+    vm.morseVoice.voiceBuffer.push({ txt: 'CQ', idx: 0 } as never)
+
+    vm.settings.speed.speedRacerEnabled(true)
+    vm.settings.speed.speedRacerSpeakBeforeReplay(true)
+    vm.settings.speed.speedRacerSpeakBeforeReplay(false)
+
+    expect(vm.morseVoice.voiceEnabled()).toBe(false)
+    expect(vm.morseVoice.voiceBuffer).toEqual([])
+  })
 })

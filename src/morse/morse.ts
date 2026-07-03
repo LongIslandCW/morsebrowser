@@ -684,7 +684,8 @@ export class MorseViewModel {
   captureLessonVoiceBaseline = () => {
     this.lessonVoiceBaseline = buildLessonVoiceBaseline(
       this.morseVoice.voiceEnabled(),
-      this.morseVoice.manualVoice()
+      this.morseVoice.manualVoice(),
+      this.morseVoice.speakFirst()
     )
   }
 
@@ -695,7 +696,8 @@ export class MorseViewModel {
     applyLessonVoiceBaseline(
       this.lessonVoiceBaseline,
       (value) => this.morseVoice.voiceEnabled(value),
-      (value) => this.morseVoice.manualVoice(value)
+      (value) => this.morseVoice.manualVoice(value),
+      (value) => this.morseVoice.speakFirst(value)
     )
   }
 

@@ -341,23 +341,38 @@ describe('runSpeedRacerRecap', () => {
 })
 
 describe('lesson voice baseline (Speed Racer off restore)', () => {
-  it('buildLessonVoiceBaseline snapshots voice and Arm Recap', () => {
-    expect(buildLessonVoiceBaseline(true, true)).toEqual({
+  it('buildLessonVoiceBaseline snapshots voice, Arm Recap, and Voice First', () => {
+    expect(buildLessonVoiceBaseline(true, true, true)).toEqual({
       voiceEnabled: true,
-      manualVoice: true
+      manualVoice: true,
+      speakFirst: true
     })
   })
 
   it('applyLessonVoiceBaseline restores preset voice state', () => {
     let voiceEnabled = false
     let manualVoice = false
+    let speakFirst = false
     applyLessonVoiceBaseline(
-      { voiceEnabled: true, manualVoice: true },
+      { voiceEnabled: true, manualVoice: true, speakFirst: true },
       (v) => { voiceEnabled = v },
-      (v) => { manualVoice = v }
+      (v) => { manualVoice = v },
+      (v) => { speakFirst = v }
     )
     expect(voiceEnabled).toBe(true)
     expect(manualVoice).toBe(true)
+    expect(speakFirst).toBe(true)
+  })
+
+  it('applyLessonVoiceBaseline restores speakFirst after voice was forced off', () => {
+    let speakFirst = false
+    applyLessonVoiceBaseline(
+      { voiceEnabled: true, manualVoice: false, speakFirst: true },
+      () => {},
+      () => {},
+      (v) => { speakFirst = v }
+    )
+    expect(speakFirst).toBe(true)
   })
 
   it('shouldBypassManualVoiceForToggle locks Voice again after SR + Speak turn off', () => {

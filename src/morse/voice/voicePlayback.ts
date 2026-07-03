@@ -1,23 +1,27 @@
 export type LessonVoiceBaseline = {
   voiceEnabled: boolean
   manualVoice: boolean
+  speakFirst: boolean
 }
 
-/** Snapshot voice + Arm Recap from the active lesson preset (after it is applied). */
+/** Snapshot voice + Arm Recap + Voice First from the active lesson preset (after it is applied). */
 export function buildLessonVoiceBaseline (
   voiceEnabled: boolean,
-  manualVoice: boolean
+  manualVoice: boolean,
+  speakFirst: boolean
 ): LessonVoiceBaseline {
-  return { voiceEnabled, manualVoice }
+  return { voiceEnabled, manualVoice, speakFirst }
 }
 
 export function applyLessonVoiceBaseline (
   baseline: LessonVoiceBaseline,
   setVoiceEnabled: (value: boolean) => void,
-  setManualVoice: (value: boolean) => void
+  setManualVoice: (value: boolean) => void,
+  setSpeakFirst: (value: boolean) => void
 ): void {
   setVoiceEnabled(baseline.voiceEnabled)
   setManualVoice(baseline.manualVoice)
+  setSpeakFirst(baseline.speakFirst)
 }
 
 export type NeedToSpeakInput = {
