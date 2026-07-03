@@ -1,23 +1,27 @@
 export type LessonVoiceBaseline = {
   voiceEnabled: boolean
   manualVoice: boolean
+  speakFirst: boolean
 }
 
-/** Snapshot voice + Arm Recap from the active lesson preset (after it is applied). */
+/** Snapshot voice + Arm Recap + Voice First from the active lesson preset (after it is applied). */
 export function buildLessonVoiceBaseline (
   voiceEnabled: boolean,
-  manualVoice: boolean
+  manualVoice: boolean,
+  speakFirst: boolean
 ): LessonVoiceBaseline {
-  return { voiceEnabled, manualVoice }
+  return { voiceEnabled, manualVoice, speakFirst }
 }
 
 export function applyLessonVoiceBaseline (
   baseline: LessonVoiceBaseline,
   setVoiceEnabled: (value: boolean) => void,
-  setManualVoice: (value: boolean) => void
+  setManualVoice: (value: boolean) => void,
+  setSpeakFirst: (value: boolean) => void
 ): void {
   setVoiceEnabled(baseline.voiceEnabled)
   setManualVoice(baseline.manualVoice)
+  setSpeakFirst(baseline.speakFirst)
 }
 
 export type NeedToSpeakInput = {
@@ -38,7 +42,11 @@ export function computeNeedToSpeak (input: NeedToSpeakInput): boolean {
       input.speakFirst) {
     return false
   }
-  // Speed Racer recap owns speech when Speak is on; normal voice trail otherwise.
+  // Speed Racer without Speak = morse-only; no voice trail.
+  if (input.racerOn && !input.speedRacerSpeakBeforeReplay) {
+    return false
+  }
+  // Speed Racer recap owns speech when Speak is on.
   if (input.racerOn && input.speedRacerSpeakBeforeReplay) {
     return false
   }
@@ -196,10 +204,11 @@ export function runSpeedRacerRecap (input: SpeedRacerRecapInput): void {
 
 export function shouldSkipVoiceBufferForRacer (
   racerOn: boolean,
-  speedRacerSpeakBeforeReplay: boolean,
-  voiceEnabled: boolean
+  _speedRacerSpeakBeforeReplay: boolean,
+  _voiceEnabled: boolean
 ): boolean {
-  return racerOn && speedRacerSpeakBeforeReplay && voiceEnabled
+  // SR recap uses speakSpeedRacerRecap directly, not the voice buffer.
+  return racerOn
 }
 
 /** Arm Recap presets lock the Voice toggle; SR + Speak restores user control. */
