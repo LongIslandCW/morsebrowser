@@ -140,6 +140,13 @@
     filter: none;
 }
 
+[data-theme="dark"] .speed-racer-advanced-panel .settings-lesson-control > button.btn:focus:not(:focus-visible) {
+    color: var(--bs-primary);
+    background-color: #1e2229;
+    border-color: var(--bs-primary);
+    box-shadow: none;
+}
+
 [data-theme="dark"] .lessons-preset-actions > .btn-outline-primary {
     color: var(--bs-primary);
     border-color: var(--bs-primary);
