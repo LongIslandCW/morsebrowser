@@ -9,11 +9,9 @@ import {
   computeRacerRecapOn,
   isSpeedRacerActive,
   runSpeedRacerRecap,
-  RECAP_LETTER_GAP_MS,
   shouldBypassManualVoiceForToggle,
   shouldShowManualVoiceRecapButton,
   shouldSkipVoiceBufferForRacer,
-  spelledTokensFromVoiceText,
   voiceThinkingDelayMs
 } from '../../../src/morse/voice/voicePlayback'
 import WordInfo from '../../../src/morse/utils/wordInfo'
@@ -151,11 +149,8 @@ describe('runSpeedRacerRecap', () => {
     const onComplete = vi.fn()
 
     runSpeedRacerRecap({
-      getSpelling: () => false,
       speakText: 'CQ',
-      speakTextSpelled: 'C Q \n',
       preSpeechMs: 0,
-      letterGapMs: 400,
       postSpeechMs: 800,
       token: 1,
       getToken: () => 1,
@@ -174,16 +169,13 @@ describe('runSpeedRacerRecap', () => {
     expect(onComplete).toHaveBeenCalledOnce()
   })
 
-  it('speaks one letter at a time when Spell is on', () => {
+  it('speaks spelled phrase as a single utterance when Spell is on', () => {
     const spoken: string[] = []
     const onComplete = vi.fn()
 
     runSpeedRacerRecap({
-      getSpelling: () => true,
       speakText: 'A B \n',
-      speakTextSpelled: 'A B \n',
       preSpeechMs: 0,
-      letterGapMs: 100,
       postSpeechMs: 50,
       token: 1,
       getToken: () => 1,
@@ -198,13 +190,8 @@ describe('runSpeedRacerRecap', () => {
     })
 
     vi.runAllTimers()
-    expect(spoken).toEqual(['A\n', 'B\n'])
+    expect(spoken).toEqual(['A B \n'])
     expect(onComplete).toHaveBeenCalledOnce()
-  })
-
-  it('spelledTokensFromVoiceText parses speakText(true) output', () => {
-    expect(spelledTokensFromVoiceText('T I N \n')).toEqual(['T', 'I', 'N'])
-    expect(spelledTokensFromVoiceText('R A R \n')).toEqual(['R', 'A', 'R'])
   })
 
   it('spells callsign-style groups like TIN and RAR, not as English words', () => {
@@ -214,11 +201,8 @@ describe('runSpeedRacerRecap', () => {
     for (const word of ['TIN', 'RAR']) {
       const info = new WordInfo(word)
       runSpeedRacerRecap({
-        getSpelling: () => true,
         speakText: info.speakText(true),
-        speakTextSpelled: info.speakText(true),
         preSpeechMs: 0,
-        letterGapMs: 100,
         postSpeechMs: 50,
         token: 1,
         getToken: () => 1,
@@ -234,7 +218,11 @@ describe('runSpeedRacerRecap', () => {
       vi.runAllTimers()
     }
 
-    expect(spoken).toEqual(['T\n', 'I\n', 'N\n', 'R\n', 'A\n', 'R\n'])
+    // Spaced letters in one utterance (same as normal voice trail), not "tin"/"rar".
+    expect(spoken).toEqual([
+      new WordInfo('TIN').speakText(true),
+      new WordInfo('RAR').speakText(true)
+    ])
     expect(onComplete).toHaveBeenCalledTimes(2)
   })
 
@@ -243,11 +231,8 @@ describe('runSpeedRacerRecap', () => {
     const onComplete = vi.fn()
 
     runSpeedRacerRecap({
-      getSpelling: () => true,
       speakText: 'A B \n',
-      speakTextSpelled: 'A B \n',
       preSpeechMs: 0,
-      letterGapMs: 100,
       postSpeechMs: 50,
       token: 1,
       getToken: () => token,
@@ -270,11 +255,8 @@ describe('runSpeedRacerRecap', () => {
     const onComplete = vi.fn()
 
     runSpeedRacerRecap({
-      getSpelling: () => true,
       speakText: 'A B \n',
-      speakTextSpelled: 'A B \n',
       preSpeechMs: 0,
-      letterGapMs: 100,
       postSpeechMs: 50,
       token: 1,
       getToken: () => 1,
@@ -292,16 +274,13 @@ describe('runSpeedRacerRecap', () => {
     expect(onComplete).toHaveBeenCalledOnce()
   })
 
-  it('applies pre/post delays once around spelled recap, not per letter', () => {
+  it('applies pre/post delays once around recap', () => {
     const onComplete = vi.fn()
     let spoken = 0
 
     runSpeedRacerRecap({
-      getSpelling: () => true,
       speakText: 'A B C \n',
-      speakTextSpelled: 'A B C \n',
       preSpeechMs: 1000,
-      letterGapMs: 50,
       postSpeechMs: 2000,
       token: 1,
       getToken: () => 1,
@@ -321,22 +300,11 @@ describe('runSpeedRacerRecap', () => {
     vi.advanceTimersByTime(1000)
     expect(spoken).toBe(1)
 
-    vi.advanceTimersByTime(50)
-    expect(spoken).toBe(2)
-
-    vi.advanceTimersByTime(50)
-    expect(spoken).toBe(3)
-
-    vi.advanceTimersByTime(50)
     vi.advanceTimersByTime(1999)
     expect(onComplete).not.toHaveBeenCalled()
 
     vi.advanceTimersByTime(1)
     expect(onComplete).toHaveBeenCalledOnce()
-  })
-
-  it('uses RECAP_LETTER_GAP_MS default for letter spacing', () => {
-    expect(RECAP_LETTER_GAP_MS).toBe(400)
   })
 })
 

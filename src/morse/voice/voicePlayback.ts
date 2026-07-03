@@ -77,28 +77,11 @@ export function voiceThinkingDelayMs (value: unknown): number {
   return parsed * 1000
 }
 
-/** Letter tokens from WordInfo.speakText(true), e.g. "T I N \\n" → ["T","I","N"]. */
-export function spelledTokensFromVoiceText (spelled: string): string[] {
-  return spelled
-    .replace(/[\r\n]+/g, ' ')
-    .replace(/\|/g, ' ')
-    .trim()
-    .split(/\s+/)
-    .filter(t => t.length > 0)
-}
-
-/** Minimum gap between spelled recap letters so TTS does not run together. */
-export const RECAP_LETTER_GAP_MS = 400
-
 export type SpeedRacerRecapInput = {
-  getSpelling: () => boolean
+  /** Phrase already respects Spell (whole word or spaced letters), same as normal voice trail. */
   speakText: string
-  /** Spaced letter text from WordInfo.speakText(true); used when Spell is on. */
-  speakTextSpelled: string
   /** Voice Delay Before — once before recap speech starts. */
   preSpeechMs: number
-  /** Short fixed pause between spelled letters (not user pre/post delays). */
-  letterGapMs: number
   /** Voice Delay After — once after recap speech, before playback continues. */
   postSpeechMs: number
   token: number
@@ -111,6 +94,7 @@ export type SpeedRacerRecapInput = {
   schedule?: typeof setTimeout
 }
 
+/** One TTS utterance for the card (Spell on or off), matching normal voice trail pacing. */
 export function runSpeedRacerRecap (input: SpeedRacerRecapInput): void {
   const schedule = input.schedule ?? setTimeout
 
@@ -138,8 +122,11 @@ export function runSpeedRacerRecap (input: SpeedRacerRecapInput): void {
     }, input.postSpeechMs)
   }
 
-  const speakWholeWord = () => {
-    if (!canSpeak()) {
+  schedule(() => {
+    if (!playbackActive()) {
+      return
+    }
+    if (!input.isVoiceEnabled()) {
       skipSpeechAndComplete()
       return
     }
@@ -154,51 +141,6 @@ export function runSpeedRacerRecap (input: SpeedRacerRecapInput): void {
       }
       finishRecap()
     })
-  }
-
-  const speakSpelledLetter = (idx: number, letters: string[]) => {
-    if (!playbackActive()) {
-      return
-    }
-    if (!input.isVoiceEnabled()) {
-      skipSpeechAndComplete()
-      return
-    }
-    if (!input.getSpelling()) {
-      speakWholeWord()
-      return
-    }
-    if (idx >= letters.length) {
-      finishRecap()
-      return
-    }
-    const letter = input.prepPhrase(letters[idx] + '\n')
-    input.speakPhrase(letter, () => {
-      if (!playbackActive()) {
-        return
-      }
-      if (!input.isVoiceEnabled()) {
-        skipSpeechAndComplete()
-        return
-      }
-      schedule(() => speakSpelledLetter(idx + 1, letters), input.letterGapMs)
-    })
-  }
-
-  schedule(() => {
-    if (!playbackActive()) {
-      return
-    }
-    if (!input.isVoiceEnabled()) {
-      skipSpeechAndComplete()
-      return
-    }
-    if (!input.getSpelling()) {
-      speakWholeWord()
-      return
-    }
-    const letters = spelledTokensFromVoiceText(input.speakTextSpelled)
-    speakSpelledLetter(0, letters)
   }, input.preSpeechMs)
 }
 

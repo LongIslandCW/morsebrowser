@@ -16,3 +16,5 @@ playwright-report/
 !.env.example
 .worktrees/
 .vercel
+.gstack/
+.understand-anything/
