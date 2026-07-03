@@ -112,4 +112,16 @@ describe('MorseViewModel speedRacerSpeakBeforeReplay subscribe', () => {
     expect(vm.morseVoice.voiceEnabled()).toBe(false)
     expect(vm.morseVoice.voiceBuffer).toEqual([])
   })
+
+  it('enables Voice when Reset to defaults turns Speak on while SR is active', () => {
+    vm.morseVoice.voiceCapable(true)
+    vm.morseVoice.voiceEnabled(false)
+    vm.settings.speed.speedRacerEnabled(true)
+    vm.settings.speed.speedRacerSpeakBeforeReplay(false)
+
+    vm.settings.speed.resetSpeedRacerDefaults()
+
+    expect(vm.settings.speed.speedRacerSpeakBeforeReplay()).toBe(true)
+    expect(vm.morseVoice.voiceEnabled()).toBe(true)
+  })
 })

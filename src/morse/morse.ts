@@ -331,7 +331,14 @@ export class MorseViewModel {
       }
     })
     this.settings.speed.speedRacerSpeakBeforeReplay.subscribe((speakOn) => {
-      if (!speakOn && this.settings.speed.speedRacerEnabled()) {
+      if (!this.settings.speed.speedRacerEnabled()) {
+        return
+      }
+      if (speakOn) {
+        if (this.morseVoice.voiceCapable()) {
+          this.morseVoice.voiceEnabled(true)
+        }
+      } else {
         this.restoreLessonVoiceFromLesson()
         this.morseVoice.voiceEnabled(false)
         this.morseVoice.voiceBuffer = []
