@@ -149,6 +149,29 @@ describe('MorseViewModel speedRacerSpeakBeforeReplay subscribe', () => {
     expect(vm.morseVoice.voiceEnabled()).toBe(false)
   })
 
+  it('cancels in-flight TTS when Voice turns off', () => {
+    const cancelSpy = vi.spyOn(vm.morseVoice, 'cancelSpeech')
+    vm.morseVoice.voiceEnabled(true)
+
+    vm.morseVoice.voiceEnabled(false)
+
+    expect(cancelSpy).toHaveBeenCalled()
+    cancelSpy.mockRestore()
+  })
+
+  it('cancels in-flight TTS and bumps speedRacerToken on pause', () => {
+    const cancelSpy = vi.spyOn(vm.morseVoice, 'cancelSpeech')
+    const tokenBefore = vm.speedRacerToken
+    vm.playerPlaying(true)
+
+    vm.doPause(false, true, false)
+
+    expect(vm.playerPlaying()).toBe(false)
+    expect(vm.speedRacerToken).toBe(tokenBefore + 1)
+    expect(cancelSpy).toHaveBeenCalled()
+    cancelSpy.mockRestore()
+  })
+
   it('blurs Reset button only for pointer clicks, not keyboard activation', () => {
     const btn = document.createElement('button')
     const blurSpy = vi.spyOn(btn, 'blur')

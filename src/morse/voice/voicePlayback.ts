@@ -90,13 +90,21 @@ export type SpeedRacerRecapInput = {
   isVoiceEnabled: () => boolean
   prepPhrase: (phrase: string) => string
   speakPhrase: (phrase: string, onDone: () => void) => void
+  /** Stop browser TTS while recap speech is in flight (pause/stop/Voice-off). */
+  cancelSpeech: () => void
   onComplete: () => void
   schedule?: typeof setTimeout
+  /** How often to re-check token/Voice while speech is pending (ms). */
+  cancelPollMs?: number
 }
 
 /** One TTS utterance for the card (Spell on or off), matching normal voice trail pacing. */
 export function runSpeedRacerRecap (input: SpeedRacerRecapInput): void {
   const schedule = input.schedule ?? setTimeout
+  const cancelPollMs = input.cancelPollMs ?? 50
+  let speechPending = false
+  let cancelled = false
+  let watchScheduled = false
 
   const playbackActive = (): boolean => {
     return input.getToken() === input.token && input.isPlaying()
@@ -110,6 +118,39 @@ export function runSpeedRacerRecap (input: SpeedRacerRecapInput): void {
 
   const canSpeak = (): boolean => {
     return playbackActive() && input.isVoiceEnabled()
+  }
+
+  const cancelInFlightSpeech = () => {
+    if (!speechPending || cancelled) {
+      return
+    }
+    cancelled = true
+    speechPending = false
+    watchScheduled = false
+    input.cancelSpeech()
+    // Voice-off while still playing: advance past recap without waiting for TTS end.
+    // Pause/stop (token/playing inactive): do not call onComplete.
+    if (playbackActive() && !input.isVoiceEnabled()) {
+      skipSpeechAndComplete()
+    }
+  }
+
+  const watchForCancel = () => {
+    if (!speechPending || cancelled || watchScheduled) {
+      return
+    }
+    watchScheduled = true
+    schedule(() => {
+      watchScheduled = false
+      if (!speechPending || cancelled) {
+        return
+      }
+      if (!playbackActive() || !input.isVoiceEnabled()) {
+        cancelInFlightSpeech()
+        return
+      }
+      watchForCancel()
+    }, cancelPollMs)
   }
 
   const finishRecap = () => {
@@ -131,8 +172,13 @@ export function runSpeedRacerRecap (input: SpeedRacerRecapInput): void {
       return
     }
     const phrase = input.prepPhrase(input.speakText)
+    speechPending = true
+    cancelled = false
+    watchForCancel()
     input.speakPhrase(phrase, () => {
-      if (!playbackActive()) {
+      speechPending = false
+      watchScheduled = false
+      if (cancelled || !playbackActive()) {
         return
       }
       if (!input.isVoiceEnabled()) {

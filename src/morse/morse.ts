@@ -342,6 +342,9 @@ export class MorseViewModel {
       }
     })
     this.morseVoice.voiceEnabled.subscribe((enabled) => {
+      if (!enabled) {
+        this.morseVoice.cancelSpeech()
+      }
       if (!enabled &&
           this.settings.speed.speedRacerEnabled() &&
           this.settings.speed.speedRacerSpeakBeforeReplay()) {
@@ -985,6 +988,7 @@ export class MorseViewModel {
       isVoiceEnabled: () => this.morseVoice.voiceEnabled(),
       prepPhrase: (phrase) => this.prepPhraseToSpeakForFinal(phrase),
       speakPhrase: (phrase, onDone) => this.morseVoice.speakPhraseImmediate(phrase, onDone),
+      cancelSpeech: () => this.morseVoice.cancelSpeech(),
       onComplete
     })
   }
@@ -1315,6 +1319,8 @@ export class MorseViewModel {
     }
     this.playerPlaying(false)
     this.speedRacerToken++
+    // Stop in-flight SR recap / voice trail TTS; token alone only gates callbacks.
+    this.morseVoice.cancelSpeech()
     this.morseWordPlayer.pause(() => {
       // we're here if a complete rawtext finished
       this.lastFullPlayTime(Date.now())

@@ -272,6 +272,15 @@ export class MorseVoice implements ICookieHandler {
     this.speakPhraseWithAfterDelay(phraseToSpeak, onEndCallBack, false)
   }
 
+  /** Stop any in-flight TTS (pause/stop, Voice off, or recap abort). */
+  cancelSpeech = () => {
+    try {
+      EasySpeech.cancel()
+    } catch (e) {
+      this.logToFlaggedWords(`cancelSpeech: ${e}`)
+    }
+  }
+
   speakPhraseWithAfterDelay = (phraseToSpeak:string, onEndCallBack, applyAfterDelay:boolean) => {
     const doOnEndCallBack = () => {
       const delay = applyAfterDelay ? this.voiceAfterThinkingTime() * 1000 : 0

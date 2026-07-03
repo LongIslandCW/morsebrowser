@@ -136,6 +136,17 @@ describe('shouldSkipVoiceBufferForRacer', () => {
 })
 
 describe('runSpeedRacerRecap', () => {
+  const recapBase = () => ({
+    preSpeechMs: 0,
+    postSpeechMs: 50,
+    token: 1,
+    getToken: () => 1,
+    isPlaying: () => true,
+    isVoiceEnabled: () => true,
+    prepPhrase: (p: string) => p,
+    cancelSpeech: vi.fn()
+  })
+
   beforeEach(() => {
     vi.useFakeTimers()
   })
@@ -149,14 +160,9 @@ describe('runSpeedRacerRecap', () => {
     const onComplete = vi.fn()
 
     runSpeedRacerRecap({
+      ...recapBase(),
       speakText: 'CQ',
-      preSpeechMs: 0,
       postSpeechMs: 800,
-      token: 1,
-      getToken: () => 1,
-      isPlaying: () => true,
-      isVoiceEnabled: () => true,
-      prepPhrase: (p) => p,
       speakPhrase: (phrase, onDone) => {
         spoken.push(phrase)
         onDone()
@@ -174,14 +180,8 @@ describe('runSpeedRacerRecap', () => {
     const onComplete = vi.fn()
 
     runSpeedRacerRecap({
+      ...recapBase(),
       speakText: 'A B \n',
-      preSpeechMs: 0,
-      postSpeechMs: 50,
-      token: 1,
-      getToken: () => 1,
-      isPlaying: () => true,
-      isVoiceEnabled: () => true,
-      prepPhrase: (p) => p,
       speakPhrase: (phrase, onDone) => {
         spoken.push(phrase)
         onDone()
@@ -201,14 +201,8 @@ describe('runSpeedRacerRecap', () => {
     for (const word of ['TIN', 'RAR']) {
       const info = new WordInfo(word)
       runSpeedRacerRecap({
+        ...recapBase(),
         speakText: info.speakText(true),
-        preSpeechMs: 0,
-        postSpeechMs: 50,
-        token: 1,
-        getToken: () => 1,
-        isPlaying: () => true,
-        isVoiceEnabled: () => true,
-        prepPhrase: (p) => p,
         speakPhrase: (phrase, onDone) => {
           spoken.push(phrase)
           onDone()
@@ -231,14 +225,9 @@ describe('runSpeedRacerRecap', () => {
     const onComplete = vi.fn()
 
     runSpeedRacerRecap({
+      ...recapBase(),
       speakText: 'A B \n',
-      preSpeechMs: 0,
-      postSpeechMs: 50,
-      token: 1,
       getToken: () => token,
-      isPlaying: () => true,
-      isVoiceEnabled: () => true,
-      prepPhrase: (p) => p,
       speakPhrase: (_phrase, onDone) => {
         token = 2
         onDone()
@@ -255,14 +244,9 @@ describe('runSpeedRacerRecap', () => {
     const onComplete = vi.fn()
 
     runSpeedRacerRecap({
+      ...recapBase(),
       speakText: 'A B \n',
-      preSpeechMs: 0,
-      postSpeechMs: 50,
-      token: 1,
-      getToken: () => 1,
-      isPlaying: () => true,
       isVoiceEnabled: () => voiceOn,
-      prepPhrase: (p) => p,
       speakPhrase: (_phrase, onDone) => {
         voiceOn = false
         onDone()
@@ -274,19 +258,81 @@ describe('runSpeedRacerRecap', () => {
     expect(onComplete).toHaveBeenCalledOnce()
   })
 
+  it('cancels in-flight speech when token changes while speakPhrase is pending', () => {
+    let token = 1
+    let pendingOnDone: (() => void) | undefined
+    const cancelSpeech = vi.fn()
+    const onComplete = vi.fn()
+
+    runSpeedRacerRecap({
+      ...recapBase(),
+      speakText: 'R E R',
+      getToken: () => token,
+      cancelSpeech,
+      cancelPollMs: 50,
+      speakPhrase: (_phrase, onDone) => {
+        pendingOnDone = onDone
+      },
+      onComplete
+    })
+
+    vi.advanceTimersByTime(0)
+    expect(pendingOnDone).toBeTypeOf('function')
+    expect(cancelSpeech).not.toHaveBeenCalled()
+
+    token = 2
+    vi.advanceTimersByTime(50)
+    expect(cancelSpeech).toHaveBeenCalledOnce()
+    expect(onComplete).not.toHaveBeenCalled()
+
+    pendingOnDone!()
+    vi.runAllTimers()
+    expect(onComplete).not.toHaveBeenCalled()
+    expect(cancelSpeech).toHaveBeenCalledOnce()
+  })
+
+  it('cancels in-flight speech when Voice turns off while speakPhrase is pending', () => {
+    let voiceOn = true
+    let pendingOnDone: (() => void) | undefined
+    const cancelSpeech = vi.fn()
+    const onComplete = vi.fn()
+
+    runSpeedRacerRecap({
+      ...recapBase(),
+      speakText: 'R E R',
+      isVoiceEnabled: () => voiceOn,
+      cancelSpeech,
+      cancelPollMs: 50,
+      speakPhrase: (_phrase, onDone) => {
+        pendingOnDone = onDone
+      },
+      onComplete
+    })
+
+    vi.advanceTimersByTime(0)
+    expect(pendingOnDone).toBeTypeOf('function')
+
+    voiceOn = false
+    vi.advanceTimersByTime(50)
+    expect(cancelSpeech).toHaveBeenCalledOnce()
+    // Voice-off while still playing advances past recap immediately.
+    expect(onComplete).toHaveBeenCalledOnce()
+
+    // Late TTS end after cancel must not double-complete.
+    pendingOnDone!()
+    vi.runAllTimers()
+    expect(onComplete).toHaveBeenCalledOnce()
+  })
+
   it('applies pre/post delays once around recap', () => {
     const onComplete = vi.fn()
     let spoken = 0
 
     runSpeedRacerRecap({
+      ...recapBase(),
       speakText: 'A B C \n',
       preSpeechMs: 1000,
       postSpeechMs: 2000,
-      token: 1,
-      getToken: () => 1,
-      isPlaying: () => true,
-      isVoiceEnabled: () => true,
-      prepPhrase: (p) => p,
       speakPhrase: (_phrase, onDone) => {
         spoken += 1
         onDone()
