@@ -33,6 +33,7 @@ import {
   computeAutoVoiceAllowed,
   computeNeedToSpeak,
   computeRacerRecapOn,
+  formatSpelledRecapPhrase,
   isSpeedRacerActive,
   runSpeedRacerRecap,
   shouldBypassManualVoiceForToggle,
@@ -961,9 +962,9 @@ export class MorseViewModel {
     playJustEnded || fromPlayButton ? 0 : 1000)
   }
 
-  // Speed Racer voice recap. Same as normal voice trail: one TTS utterance
-  // (whole word or spaced letters when Spell is on). Voice Delay Before/After
-  // apply once around the recap.
+  // Speed Racer voice recap: one TTS utterance (cancellable). Spell uses
+  // period-paced letters ("R. E. R.") so engines do not rush "r e r".
+  // Voice Delay Before/After apply once around the recap.
   speakSpeedRacerRecap = (onComplete:() => void) => {
     if (!this.morseVoice.voiceEnabled()) {
       onComplete()
@@ -973,10 +974,13 @@ export class MorseViewModel {
     const preSpeechMs = voiceThinkingDelayMs(this.morseVoice.voiceThinkingTime())
     const postSpeechMs = voiceThinkingDelayMs(this.morseVoice.voiceAfterThinkingTime())
     const token = this.speedRacerToken
-    // Match normal voice trail: strip newlines before prep (TTS can pause on \n).
-    const speakText = currentWord.speakText(this.morseVoice.voiceSpelling())
+    const spelling = this.morseVoice.voiceSpelling()
+    let speakText = currentWord.speakText(spelling)
       .replace(/\n/g, ' ')
       .trim()
+    if (spelling) {
+      speakText = formatSpelledRecapPhrase(speakText)
+    }
 
     runSpeedRacerRecap({
       speakText,

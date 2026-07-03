@@ -7,6 +7,7 @@ import {
   computeAutoVoiceAllowed,
   computeNeedToSpeak,
   computeRacerRecapOn,
+  formatSpelledRecapPhrase,
   isSpeedRacerActive,
   runSpeedRacerRecap,
   shouldBypassManualVoiceForToggle,
@@ -135,6 +136,22 @@ describe('shouldSkipVoiceBufferForRacer', () => {
   })
 })
 
+describe('formatSpelledRecapPhrase', () => {
+  it('adds period pauses between letters for TTS', () => {
+    expect(formatSpelledRecapPhrase('R E R')).toBe('R. E. R.')
+    expect(formatSpelledRecapPhrase('R E R \n')).toBe('R. E. R.')
+    expect(formatSpelledRecapPhrase(new WordInfo('RER').speakText(true))).toBe('R. E. R.')
+  })
+
+  it('leaves a single letter unchanged', () => {
+    expect(formatSpelledRecapPhrase('A')).toBe('A')
+  })
+
+  it('returns empty for blank input', () => {
+    expect(formatSpelledRecapPhrase('   ')).toBe('')
+  })
+})
+
 describe('runSpeedRacerRecap', () => {
   const recapBase = () => ({
     preSpeechMs: 0,
@@ -202,7 +219,7 @@ describe('runSpeedRacerRecap', () => {
       const info = new WordInfo(word)
       runSpeedRacerRecap({
         ...recapBase(),
-        speakText: info.speakText(true),
+        speakText: formatSpelledRecapPhrase(info.speakText(true)),
         speakPhrase: (phrase, onDone) => {
           spoken.push(phrase)
           onDone()
@@ -212,11 +229,8 @@ describe('runSpeedRacerRecap', () => {
       vi.runAllTimers()
     }
 
-    // Spaced letters in one utterance (same as normal voice trail), not "tin"/"rar".
-    expect(spoken).toEqual([
-      new WordInfo('TIN').speakText(true),
-      new WordInfo('RAR').speakText(true)
-    ])
+    // Period-paced letters in one utterance, not "tin"/"rar" and not rushed "t i n".
+    expect(spoken).toEqual(['T. I. N.', 'R. A. R.'])
     expect(onComplete).toHaveBeenCalledTimes(2)
   })
 

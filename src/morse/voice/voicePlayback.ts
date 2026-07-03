@@ -77,8 +77,28 @@ export function voiceThinkingDelayMs (value: unknown): number {
   return parsed * 1000
 }
 
+/**
+ * Format spaced spell text for a single TTS utterance.
+ * Periods force engines to pause between letters (plain "r e r" is often rushed).
+ * Example: "R E R" → "R. E. R."
+ */
+export function formatSpelledRecapPhrase (speakText: string): string {
+  const letters = speakText
+    .replace(/[\r\n|]+/g, ' ')
+    .trim()
+    .split(/\s+/)
+    .filter(t => t.length > 0)
+  if (letters.length === 0) {
+    return ''
+  }
+  if (letters.length === 1) {
+    return letters[0]
+  }
+  return letters.map(l => `${l.replace(/\.+$/g, '')}.`).join(' ')
+}
+
 export type SpeedRacerRecapInput = {
-  /** Phrase already respects Spell (whole word or spaced letters), same as normal voice trail. */
+  /** Phrase already respects Spell (whole word, or period-paced letters when Spell is on). */
   speakText: string
   /** Voice Delay Before — once before recap speech starts. */
   preSpeechMs: number
