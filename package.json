@@ -52,7 +52,7 @@
     "@playwright/test": "^1.61.1",
     "@types/knockout": "^3.4.71",
     "@typescript-eslint/eslint-plugin": "^5.26.0",
-    "@typescript-eslint/parser": "^5.26.0",
+    "@typescript-eslint/parser": "^5.62.0",
     "@vitest/coverage-v8": "^1.6.1",
     "babel-loader": "^8.2.4",
     "eslint": "^8.16.0",
