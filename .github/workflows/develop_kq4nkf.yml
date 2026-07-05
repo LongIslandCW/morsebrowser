@@ -39,6 +39,13 @@ jobs:
 
       - run: npm run test:e2e
 
+      - name: Build for GitHub Pages
+        run: |
+          npm run build --if-present
+          cp .nojekyll dist/.nojekyll
+        env:
+          GITHUB_PAGES: 'true'
+
       - name: Deploy to GitHub Pages
         if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true)
         uses: JamesIves/github-pages-deploy-action@v4.8.0

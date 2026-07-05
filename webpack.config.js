@@ -5,6 +5,8 @@ const CopyPlugin = require('copy-webpack-plugin')
 const ESLintPlugin = require('eslint-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
+const ghPagesPublicPath = process.env.GITHUB_PAGES === 'true' ? '/morsebrowser_dev/' : 'auto'
+
 module.exports = {
   mode: 'development',
   entry: {
@@ -14,7 +16,8 @@ module.exports = {
     filename: '[name][contenthash].js',
     path: path.resolve(__dirname, 'dist'),
     clean: true,
-    assetModuleFilename: '[name][ext]'
+    assetModuleFilename: '[name][ext]',
+    publicPath: ghPagesPublicPath
   },
   devServer: {
     static: {
