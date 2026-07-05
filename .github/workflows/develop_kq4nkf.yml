@@ -1,5 +1,7 @@
-# Build, test, and deploy develop_kq4nkf to GitHub Pages (gh-pages root).
+# Build, test, and deploy develop_kq4nkf to GitHub Pages via Actions.
 # Cloudflare Workers Builds continues independently via wrangler.jsonc.
+#
+# Repo Settings → Pages → Source must be "GitHub Actions" (not gh-pages branch).
 
 name: CI develop_kq4nkf
 
@@ -11,7 +13,13 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -46,9 +54,21 @@ jobs:
         env:
           GITHUB_PAGES: 'true'
 
-      - name: Deploy to GitHub Pages
+      - name: Upload GitHub Pages artifact
         if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true)
-        uses: JamesIves/github-pages-deploy-action@v4.8.0
+        uses: actions/upload-pages-artifact@v3
         with:
-          branch: gh-pages
-          folder: dist
+          path: dist
+
+  deploy:
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true)
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
