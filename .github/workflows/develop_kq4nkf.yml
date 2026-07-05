@@ -27,6 +27,9 @@ jobs:
 
       - run: npm ci
 
+      - name: Generate lesson and preset manifests
+        run: npm run prebuild
+
       - run: npm run test
 
       - run: npm run build --if-present
