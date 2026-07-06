@@ -38,6 +38,7 @@
     "dev": "webpack serve",
     "deploy": "wrangler deploy",
     "preview": "wrangler dev",
+    "pretest": "npm run prebuild",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
