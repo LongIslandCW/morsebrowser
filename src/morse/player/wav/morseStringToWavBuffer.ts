@@ -9,12 +9,11 @@ export class MorseStringToWavBuffer {
   static getInit = (config:SoundMakerConfig) => {
     const useProsigns = true
     const sampleRate = 8000
-    const timingUnits = MorseTimingCalculator.getTimingUnits(config.wpm, config.fwpm)
+    const effectiveFwpm = Math.min(config.fwpm, config.wpm)
+    const timingUnits = MorseTimingCalculator.getTimingUnits(config.wpm, effectiveFwpm)
     const countUnits = new MorseCountUnits()
     countUnits.extraWordSpacingDitsCount = config.xtraWordSpaceDits
-    // const unit = 1200 / config.fwpm
-    // const wordSpace = (unit * 7) + (unit * config.xtraWordSpaceDits)
-    const morseCWWave = new MorseCWWave(useProsigns, config.wpm, config.fwpm, { dit: config.ditFrequency, dah: config.dahFrequency }, sampleRate)
+    const morseCWWave = new MorseCWWave(useProsigns, config.wpm, effectiveFwpm, { dit: config.ditFrequency, dah: config.dahFrequency }, sampleRate)
     morseCWWave.translate(config.word, false)
     return { morseCWWave, timingUnits, countUnits }
   }

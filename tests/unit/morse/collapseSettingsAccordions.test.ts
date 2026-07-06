@@ -1,0 +1,102 @@
+import { describe, expect, it, beforeEach, vi } from 'vitest'
+
+/** Mirrors MorseViewModel.collapseSettingsAccordions DOM behavior */
+function collapseSettingsAccordions () {
+  const area = document.getElementById('accordionArea')
+  if (!area) {
+    return
+  }
+  area.querySelectorAll('.accordion-collapse.show').forEach((panel) => {
+    panel.classList.remove('show')
+  })
+  area.querySelectorAll('.accordion-button').forEach((button) => {
+    button.classList.add('collapsed')
+    button.setAttribute('aria-expanded', 'false')
+  })
+}
+
+function scrollPlaybackIntoView () {
+  document.querySelector('.playback-controls')?.scrollIntoView({ block: 'start', behavior: 'auto' })
+}
+
+describe('collapseSettingsAccordions', () => {
+  beforeEach(() => {
+    document.body.innerHTML = `
+      <div id="accordionArea">
+        <div class="accordion-collapse collapse show" id="panel1"></div>
+        <button class="accordion-button" aria-expanded="true">One</button>
+        <div class="accordion-collapse collapse" id="panel2"></div>
+        <button class="accordion-button collapsed" aria-expanded="false">Two</button>
+      </div>
+    `
+  })
+
+  it('removes show from open panels and collapses buttons', () => {
+    collapseSettingsAccordions()
+    expect(document.querySelector('#panel1')?.classList.contains('show')).toBe(false)
+    const buttons = document.querySelectorAll('#accordionArea .accordion-button')
+    buttons.forEach((btn) => {
+      expect(btn.classList.contains('collapsed')).toBe(true)
+      expect(btn.getAttribute('aria-expanded')).toBe('false')
+    })
+  })
+})
+
+function expandVoiceOptionsAccordionIfClosed () {
+  const panel = document.getElementById('collapsevoiceoptions')
+  if (panel?.classList.contains('show')) {
+    return
+  }
+  const button = document.getElementById('voiceOptionsAccordionButton')
+  if (!panel || !button) {
+    return
+  }
+  panel.classList.add('show')
+  button.classList.remove('collapsed')
+  button.setAttribute('aria-expanded', 'true')
+}
+
+describe('expandVoiceOptionsAccordionIfClosed', () => {
+  beforeEach(() => {
+    document.body.innerHTML = `
+      <div id="accordionArea">
+        <div class="accordion-collapse collapse" id="collapsevoiceoptions"></div>
+        <button id="voiceOptionsAccordionButton" class="accordion-button collapsed" aria-expanded="false">Voice</button>
+      </div>
+    `
+  })
+
+  it('expands the Voice Options panel and button when collapsed', () => {
+    expandVoiceOptionsAccordionIfClosed()
+    expect(document.querySelector('#collapsevoiceoptions')?.classList.contains('show')).toBe(true)
+    const button = document.getElementById('voiceOptionsAccordionButton')
+    expect(button?.classList.contains('collapsed')).toBe(false)
+    expect(button?.getAttribute('aria-expanded')).toBe('true')
+  })
+
+  it('does not change an already-open Voice Options panel', () => {
+    document.getElementById('collapsevoiceoptions')?.classList.add('show')
+    const button = document.getElementById('voiceOptionsAccordionButton')
+    button?.classList.remove('collapsed')
+    button?.setAttribute('aria-expanded', 'true')
+
+    expandVoiceOptionsAccordionIfClosed()
+
+    expect(document.querySelector('#collapsevoiceoptions')?.classList.contains('show')).toBe(true)
+    expect(button?.classList.contains('collapsed')).toBe(false)
+    expect(button?.getAttribute('aria-expanded')).toBe('true')
+  })
+})
+
+describe('scrollPlaybackIntoView', () => {
+  it('scrolls the playback controls into view', () => {
+    const el = document.createElement('section')
+    el.className = 'playback-controls'
+    el.scrollIntoView = vi.fn()
+    document.body.appendChild(el)
+
+    scrollPlaybackIntoView()
+
+    expect(el.scrollIntoView).toHaveBeenCalledWith({ block: 'start', behavior: 'auto' })
+  })
+})

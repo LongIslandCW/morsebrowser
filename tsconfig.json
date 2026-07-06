@@ -10,5 +10,6 @@
       "moduleResolution": "node",
       "allowSyntheticDefaultImports": true,
       "resolveJsonModule": true
-    }
+    },
+    "exclude": ["node_modules", "tests", "e2e", "vitest.config.ts", "playwright.config.ts"]
   }

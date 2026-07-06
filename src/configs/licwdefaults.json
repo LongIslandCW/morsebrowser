@@ -77,6 +77,11 @@
             "comment": "by default dont hide the main top text area"
         },
         {
+            "key": "darkMode",
+            "value": false,
+            "comment": "dark theme toggle"
+        },
+        {
             "key": "autoCloseLessonAccordian",
             "value": false,
             "comment": ""

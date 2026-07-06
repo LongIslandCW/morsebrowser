@@ -24,11 +24,36 @@ import { SettingsChangeInfo } from './settings/settingsChangeInfo'
 import { VoiceBufferInfo } from './voice/VoiceBufferInfo'
 import { GeneralUtils } from './utils/general'
 import MorseSettingsHandler from './settings/morseSettingsHandler'
-import { clear, log } from 'console'
 import ScreenWakeLock from './utils/screenWakeLock'
+import { applyTheme } from './theme/theme'
+import { computeNeedToTrail, computeNoDelays, runAdvanceTrail, runFinalizeTrail } from './trail/trailPlayback'
+import {
+  applyLessonVoiceBaseline,
+  buildLessonVoiceBaseline,
+  computeAutoVoiceAllowed,
+  computeNeedToSpeak,
+  computeRacerRecapOn,
+  formatSpelledRecapPhrase,
+  isSpeedRacerActive,
+  runSpeedRacerRecap,
+  shouldBypassManualVoiceForToggle,
+  shouldShowManualVoiceRecapButton,
+  shouldSkipVoiceBufferForRacer,
+  voiceThinkingDelayMs,
+  type LessonVoiceBaseline
+} from './voice/voicePlayback'
+
+export interface ShortcutKeyEntry {
+  key: string
+  title: string
+}
 
 export class MorseViewModel {
-  accessibilityAnnouncement:ko.Observable<string> = ko.observable(undefined)
+  // Default gap (in wordspaces) inserted between Speed Racer repeats when the
+  // user hasn't set their own Repeat Spacing. Keeps racing repeats audibly
+  // distinct instead of jammed together.
+  static readonly RACER_DEFAULT_REPEAT_SPACING = 1
+  accessibilityAnnouncement:ko.Observable<string> = ko.observable('')
   textBuffer:ko.Observable<string> = ko.observable('')
   hideList:ko.Observable<boolean> = ko.observable(true)
   currentIndex:ko.Observable<number> = ko.observable(0)
@@ -41,15 +66,16 @@ export class MorseViewModel {
   trailReveal:ko.Observable<boolean> = ko.observable(false)
   preShuffled:string = ''
   morseWordPlayer:MorseWordPlayer
-  rawText:ko.Observable<string> = ko.observable()
+  rawText:ko.Observable<string> = ko.observable('')
   showingText:ko.Observable<string> = ko.observable('')
   showRaw:ko.Observable<boolean> = ko.observable(true)
-  volume:ko.Observable<number> = ko.observable()
+  darkMode:ko.Observable<boolean> = ko.observable(false)
+  volume:ko.Observable<number> = ko.observable(0)
   noiseHidden:ko.Observable<boolean> = ko.observable(true)
   noiseEnabled:ko.Observable<boolean> = ko.observable(false)
   noiseVolume:ko.Observable<number> = ko.observable(2)
   noiseType:ko.Observable<string> = ko.observable('off')
-  lastPlayFullStart = null
+  lastPlayFullStart: number | null = null
   runningPlayMs:ko.Observable<number> = ko.observable(0)
   lastPartialPlayStart = ko.observable()
   isPaused:ko.Observable<boolean> = ko.observable(false)
@@ -90,17 +116,24 @@ export class MorseViewModel {
   allowSaveCookies:ko.Observable<boolean> = ko.observable(true)
   lockoutSaveCookiesTimerHandle:any = null
   currentSerializedSettings:any = null
-  allShortcutKeys:ko.ObservableArray
+  allShortcutKeys:ko.ObservableArray<ShortcutKeyEntry>
+  keyboardShortcutScript:ko.Computed<string>
   applyEnabled:ko.Computed<boolean>
+  speedRacerOverridesManualVoice:ko.Computed<boolean>
+  voiceMasterToggleEnabled:ko.Computed<boolean>
+  manualVoiceRecapButtonVisible:ko.Computed<boolean>
+  /** Voice + Arm Recap from the active lesson preset; restored when Speed Racer turns off. */
+  lessonVoiceBaseline:LessonVoiceBaseline | null = null
   numberOfRepeats:ko.Observable<number> = ko.observable(0)
   testTonePlaying:boolean = false
   testToneCount:number = 0
   testToneFlagHandle:any = 0
   screenWakeLock:ScreenWakeLock
-  logoClickCount:number =0
+  logoClickCount:number = 0
   cachedShuffle:boolean = false
   shuffleIntraGroup:ko.Observable<boolean> = ko.observable(false)
-  adminMode:ko.Observable<boolean> = ko.observable(false)
+  // Bumped on pause/stop so in-flight Speed Racer voice recap chains abort cleanly.
+  speedRacerToken:number = 0
 
   // END KO observables declarations
   constructor () {
@@ -125,12 +158,6 @@ export class MorseViewModel {
     }, this)
 
     this.rss = new MorseRssPlugin(new RssConfig(this.setText, this.fullRewind, this.doPlay, this.lastFullPlayTime, this.playerPlaying))
-
-    // check for admin mode turned on 
-    if (GeneralUtils.getParameterByName('adminMode')) {
-      console.log('admin mode enabled')
-      this.adminMode(true)
-    }
 
     // check for RSS feature turned on
     if (GeneralUtils.getParameterByName('rssEnabled')) {
@@ -160,7 +187,7 @@ export class MorseViewModel {
 
     this.loadDefaultsAndCookieSettings()
 
-    // initialize the wordlist
+    // images
     this.lessons.initializeWordList()
 
     this.flaggedWords = new FlaggedWords()
@@ -171,8 +198,12 @@ export class MorseViewModel {
     }
 
     // check for voicebuffermax
-    if (GeneralUtils.getParameterByName('voiceBufferMax')) {
-      this.morseVoice.voiceBufferMaxLength(parseInt(GeneralUtils.getParameterByName('voiceBufferMax')))
+    const voiceBufferMax = GeneralUtils.getParameterByName('voiceBufferMax')
+    if (voiceBufferMax) {
+      const parsed = Number.parseInt(voiceBufferMax, 10)
+      if (Number.isInteger(parsed) && parsed > 0) {
+        this.morseVoice.voiceBufferMaxLength(parsed)
+      }
     }
     // are we on the dev site?
     this.isDev(window.location.href.toLowerCase().indexOf('/dev/') > -1)
@@ -188,7 +219,45 @@ export class MorseViewModel {
 
     // Keep track of registered shortcut keys in an observable array
     // so we can display them on the page without having to hard-code them.
-    this.allShortcutKeys = ko.observableArray([])
+    this.allShortcutKeys = ko.observableArray<ShortcutKeyEntry>([])
+    this.keyboardShortcutScript = ko.pureComputed(() => {
+      const keyNames = new Map<string, string>([
+        ['p', 'the letter P'],
+        ['s', 'the letter S'],
+        [',', 'the comma key'],
+        ['<', 'the less than key'],
+        ['.', 'the period key'],
+        ['f', 'the letter F'],
+        ['c', 'the letter C'],
+        ['/', 'the slash key'],
+        ['l', 'the letter L'],
+        ['z', 'the letter Z'],
+        ['x', 'the letter X']
+      ])
+      const actionNames = new Map<string, string>([
+        ['Play / Toggle pause', 'play or pause practice'],
+        ['Stop playback and rewind', 'stop playback and rewind to the first card'],
+        ['Back 1', 'go back one card'],
+        ['Full rewind', 'rewind to the first card'],
+        ['Forward 1', 'go forward one card'],
+        ['Flag current card', 'flag the current card'],
+        ['Toggle card visibility', 'reveal or hide the card text'],
+        ['Toggle shuffle', 'shuffle or unshuffle the practice cards'],
+        ['Toggle looping', 'change the loop mode'],
+        ['Reduce Farnsworth WPM', 'reduce effective speed by one word per minute'],
+        ['Increase Farnsworth WPM', 'increase effective speed by one word per minute']
+      ])
+      const shortcuts = this.allShortcutKeys().map(({ key, title }) => {
+        const spokenKey = keyNames.get(key) || `the ${key} key`
+        const spokenAction = actionNames.get(title) || title.toLowerCase()
+        return `Press ${spokenKey} to ${spokenAction}.`
+      })
+      return [
+        'Keyboard shortcuts help.',
+        'These keys work while you are practicing, as long as focus is not in a text field.',
+        ...shortcuts
+      ].join(' ')
+    }, this)
     this.shortcutKeys = new MorseShortcutKeys((key, title) => {
       this.allShortcutKeys.push({ key, title })
     })
@@ -196,16 +265,96 @@ export class MorseViewModel {
 
     this.showRaw(false)
 
+    this.darkMode.subscribe((enabled) => applyTheme(enabled))
+    applyTheme(this.darkMode())
+
     this.applyEnabled = ko.computed(() => {
-      if (this.lessons && this.lessons.customGroup()) {
-        return true
+      if (this.lessons && this.lessons.ifCustomGroup()) {
+        return !!this.lessons.customGroup()?.trim()
       }
       return this.lessons.selectedDisplay().display && !this.lessons.selectedDisplay().isDummy
     }, this)
 
+    this.speedRacerOverridesManualVoice = ko.computed(() => {
+      return this.settings.speed.speedRacerEnabled() &&
+        this.settings.speed.speedRacerSpeakBeforeReplay()
+    }, this)
+
+    this.voiceMasterToggleEnabled = ko.computed(() => {
+      return shouldBypassManualVoiceForToggle(
+        this.morseVoice.manualVoice(),
+        this.settings.speed.speedRacerEnabled(),
+        this.settings.speed.speedRacerSpeakBeforeReplay(),
+        this.morseVoice.voiceCapable()
+      )
+    }, this)
+
+    this.manualVoiceRecapButtonVisible = ko.computed(() => {
+      return shouldShowManualVoiceRecapButton(
+        this.morseVoice.manualVoice(),
+        this.morseVoice.voiceEnabled(),
+        this.settings.speed.speedRacerEnabled(),
+        this.settings.speed.speedRacerSpeakBeforeReplay()
+      )
+    }, this)
+
     this.screenWakeLock = new ScreenWakeLock()
+    this.registerAccessibilityAnnouncements()
   }
   // END CONSTRUCTOR
+
+  announce = (message:string) => {
+    this.accessibilityAnnouncement('')
+    window.setTimeout(() => this.accessibilityAnnouncement(message), 0)
+  }
+
+  registerAccessibilityAnnouncements = () => {
+    this.hideList.subscribe((hidden) => this.announce(hidden ? 'Cards are hidden' : 'Cards are revealed'))
+    this.cardsVisible.subscribe((visible) => this.announce(visible ? 'Cards section is shown' : 'Cards section is hidden'))
+    this.trailReveal.subscribe((enabled) => this.announce(enabled ? 'Trail is on' : 'Trail is off'))
+    this.isShuffled.subscribe((shuffled) => this.announce(shuffled ? 'Cards are shuffled' : 'Cards are back in order'))
+    this.loop.subscribe((enabled) => {
+      if (!enabled) {
+        this.announce('Loop is off')
+      }
+    })
+    this.loopnoshuffle.subscribe((noShuffle) => {
+      if (this.loop()) {
+        this.announce(noShuffle ? 'Loop is on' : 'Loop shuffle is on')
+      }
+    })
+    this.settings.speed.syncWpm.subscribe((synced) => this.announce(synced ? 'Character and effective speed are linked' : 'Character and effective speed are separate'))
+    this.settings.speed.speedRacerEnabled.subscribe((enabled) => {
+      this.announce(enabled ? 'Speed Racer is on' : 'Speed Racer is off')
+      if (!enabled) {
+        this.restoreLessonVoiceFromLesson()
+      }
+    })
+    this.settings.speed.speedRacerSpeakBeforeReplay.subscribe((speakOn) => {
+      if (!this.settings.speed.speedRacerEnabled()) {
+        return
+      }
+      if (speakOn) {
+        this.enableVoiceForSpeedRacerSpeak()
+      } else {
+        this.restoreLessonVoiceFromLesson()
+        this.morseVoice.voiceEnabled(false)
+        this.morseVoice.voiceBuffer = []
+      }
+    })
+    this.morseVoice.voiceEnabled.subscribe((enabled) => {
+      if (!enabled) {
+        this.morseVoice.cancelSpeech()
+      }
+      if (!enabled &&
+          this.settings.speed.speedRacerEnabled() &&
+          this.settings.speed.speedRacerSpeakBeforeReplay()) {
+        this.settings.speed.speedRacerSpeakBeforeReplay(false)
+      }
+    })
+    this.lessons.syncSize.subscribe((synced) => this.announce(synced ? 'Minimum and maximum size are linked' : 'Minimum and maximum size are separate'))
+    this.settings.frequency.syncFreq.subscribe((synced) => this.announce(synced ? 'Dit and dah pitch are linked' : 'Dit and dah pitch are separate'))
+  }
 
   loadDefaultsAndCookieSettings = () => {
     // load defaults
@@ -374,21 +523,34 @@ export class MorseViewModel {
       this.doPause(true, false, false)
       this.setText(this.flaggedWords.flaggedWords())
       this.fullRewind()
-      document.getElementById('btnFlaggedWordsAccordianButton').click()
+      this.announce('Flagged cards loaded as text')
     }
+  }
+
+  addFlaggedWord = (word:WordInfo) => {
+    this.flaggedWords.addFlaggedWord(word)
+    this.announce('Flagged card')
   }
 
   clearFlagged = () => {
     if (this.flaggedWords.flaggedWords().trim()) {
       this.flaggedWords.clear()
-      document.getElementById('btnFlaggedWordsAccordianButton').click()
     }
   }
 
-  getMorseStringToWavBufferConfig = (text, isToneTest:boolean = false) => {
+  getMorseStringToWavBufferConfig = (text, isToneTest:boolean = false, applySpeedRacer:boolean = false, interRepeatDits:number = 0) => {
     const config = new SoundMakerConfig()
     config.word = MorseStringUtils.doReplacements(text)
-    const speeds = this.settings.speed.getApplicableSpeed(this.playingTime())
+    let speeds = this.settings.speed.getApplicableSpeed(this.playingTime())
+    // Speed Racer overrides the per-card speed based on which repeat we're
+    // playing. Only apply on the live play path (caller passes true). Time
+    // estimates and wav downloads must use the unmodified target speed.
+    if (applySpeedRacer && this.settings.speed.speedRacerEnabled() && config.word && config.word.trim().length > 0) {
+      const { index, total } = this.cardBufferManager.getRepeatState()
+      if (total >= 1 && index >= 0) {
+        speeds = this.settings.speed.applySpeedRacer(speeds, index, total)
+      }
+    }
     config.wpm = parseInt(speeds.wpm as any)
     config.fwpm = parseInt(speeds.fwpm as any)
     config.ditFrequency = parseInt(this.settings.frequency.ditFrequency() as any)
@@ -400,6 +562,12 @@ export class MorseViewModel {
     }
     // note this was changed so UI is min 1 meaning 0, 1=>7, 2=>14 etc
     config.xtraWordSpaceDits = (parseInt(this.xtraWordSpaceDits() as any) - 1) * 7
+    // Fractional Repeat Spacing (e.g. 0.25 wordspace) is rendered as extra
+    // trailing wordspace dits on audible plays. Empty word-gap plays already
+    // carry the whole-wordspace part, so skip them here.
+    if (interRepeatDits > 0 && config.word && config.word.trim().length > 0) {
+      config.xtraWordSpaceDits += interRepeatDits
+    }
     config.volume = parseInt(this.volume() as any)
     config.noise = new NoiseConfig()
     config.noise.type = this.noiseEnabled() ? this.noiseType() : 'off'
@@ -410,7 +578,15 @@ export class MorseViewModel {
     config.riseMsOffset = parseFloat(this.riseMsOffset() as any)
     config.decayMsOffset = parseFloat(this.decayMsOffset() as any)
     // suppress wordspaces when using speak so "thinking time" will control
-    if (this.morseVoice && !this.morseVoice.manualVoice() && this.ifMaxVoiceBufferReached()) {
+    if (this.morseVoice &&
+        computeAutoVoiceAllowed(
+          this.morseVoice.manualVoice(),
+          isSpeedRacerActive(
+            this.settings.speed.speedRacerEnabled(),
+            this.settings.speed.getRacerTotalPlays()
+          )
+        ) &&
+        this.ifMaxVoiceBufferReached()) {
       config.trimLastWordSpace = this.morseVoice.voiceEnabled() && !this.cardBufferManager.hasMoreMorse()
       config.voiceEnabled = this.morseVoice.voiceEnabled()
     }
@@ -455,6 +631,155 @@ export class MorseViewModel {
     }
   }
 
+  togglePlaybackFromShortcut = () => {
+    if (this.playerPlaying()) {
+      this.doPause(false, true, false)
+      this.focusPlaybackControl('btnPause')
+      return
+    }
+
+    if (this.isPaused()) {
+      this.doPlay(true, false)
+      this.focusPlaybackControl('btnPlayButton')
+      return
+    }
+
+    this.doPlay(false, true)
+    this.focusPlaybackControl('btnPlayButton')
+  }
+
+  stopPlaybackFromShortcut = () => {
+    this.doPause(true, false, true)
+    this.focusPlaybackControl('btnStop')
+  }
+
+  collapseSettingsAccordions = () => {
+    const area = document.getElementById('accordionArea')
+    if (!area) {
+      return
+    }
+    area.querySelectorAll('.accordion-collapse.show').forEach((panel) => {
+      panel.classList.remove('show')
+    })
+    area.querySelectorAll('.accordion-button').forEach((button) => {
+      button.classList.add('collapsed')
+      button.setAttribute('aria-expanded', 'false')
+    })
+  }
+
+  isVoiceOptionsAccordionOpen = ():boolean => {
+    return document.getElementById('collapsevoiceoptions')?.classList.contains('show') ?? false
+  }
+
+  expandVoiceOptionsAccordionIfClosed = () => {
+    if (this.isVoiceOptionsAccordionOpen()) {
+      return
+    }
+    const panel = document.getElementById('collapsevoiceoptions')
+    const button = document.getElementById('voiceOptionsAccordionButton')
+    if (!panel || !button) {
+      return
+    }
+    panel.classList.add('show')
+    button.classList.remove('collapsed')
+    button.setAttribute('aria-expanded', 'true')
+  }
+
+  onSpeedRacerEnabledClick = (_data, event:Event) => {
+    const input = event.target as HTMLInputElement
+    if (input?.checked) {
+      this.expandVoiceOptionsAccordionIfClosed()
+      this.enableVoiceForSpeedRacerSpeak()
+    }
+    return true
+  }
+
+  captureLessonVoiceBaseline = () => {
+    this.lessonVoiceBaseline = buildLessonVoiceBaseline(
+      this.morseVoice.voiceEnabled(),
+      this.morseVoice.manualVoice(),
+      this.morseVoice.speakFirst()
+    )
+  }
+
+  enableVoiceForSpeedRacerSpeak = () => {
+    if (this.settings.speed.speedRacerEnabled() &&
+        this.settings.speed.speedRacerSpeakBeforeReplay() &&
+        this.morseVoice.voiceCapable()) {
+      this.morseVoice.voiceEnabled(true)
+    }
+  }
+
+  restoreLessonVoiceFromLesson = () => {
+    if (!this.lessonVoiceBaseline) {
+      return
+    }
+    applyLessonVoiceBaseline(
+      this.lessonVoiceBaseline,
+      (value) => this.morseVoice.voiceEnabled(value),
+      (value) => this.morseVoice.manualVoice(value),
+      (value) => this.morseVoice.speakFirst(value)
+    )
+  }
+
+  onSpeedRacerSpeakBeforeReplayClick = (_data, event:Event) => {
+    const input = event.target as HTMLInputElement
+    this.expandVoiceOptionsAccordionIfClosed()
+    if (input?.checked) {
+      this.enableVoiceForSpeedRacerSpeak()
+    }
+    return true
+  }
+
+  blurSpeedRacerActionIfPointerClick = (event: Event) => {
+    const detail = (event as MouseEvent).detail
+    if (typeof detail === 'number' && detail > 0) {
+      (event.currentTarget as HTMLButtonElement | null)?.blur()
+    }
+  }
+
+  onResetSpeedRacerDefaultsClick = (_data, event:Event) => {
+    this.settings.speed.resetSpeedRacerDefaults()
+    this.enableVoiceForSpeedRacerSpeak()
+    this.blurSpeedRacerActionIfPointerClick(event)
+    return true
+  }
+
+  onOverlearnSpeedRacerClick = (_data, event:Event) => {
+    this.settings.speed.setOverlearnMultipliers()
+    this.blurSpeedRacerActionIfPointerClick(event)
+    return true
+  }
+
+  scrollPlaybackIntoView = () => {
+    document.querySelector('.playback-controls')?.scrollIntoView({ block: 'start', behavior: 'auto' })
+  }
+
+  focusPlaybackControl = (id:string) => {
+    window.setTimeout(() => {
+      this.scrollPlaybackIntoView()
+      document.getElementById(id)?.focus({ preventScroll: true })
+    }, 0)
+  }
+
+  focusKeyboardShortcuts = () => {
+    window.setTimeout(() => {
+      const summary = document.getElementById('keyboard-shortcuts-summary')
+      summary?.focus()
+    }, 0)
+    return true
+  }
+
+  keyboardShortcutsToggled = (_data, event) => {
+    const details = event.target as HTMLDetailsElement
+    if (details.open) {
+      window.setTimeout(() => {
+        document.getElementById('keyboard-shortcuts-content')?.focus()
+      }, 0)
+    }
+    return true
+  }
+
   doPlay = (playJustEnded:boolean, fromPlayButton:boolean) => {
     if (!this.rawText().trim()) {
       return
@@ -468,12 +793,20 @@ export class MorseViewModel {
     // 3. we just finished playing a word
     // 4. user might press play to re-play a word
     const wasPlayerPlaying = this.playerPlaying()
+    const wasPaused = this.isPaused()
     const freshStart = fromPlayButton && !wasPlayerPlaying
+    if (freshStart) {
+      this.collapseSettingsAccordions()
+      this.scrollPlaybackIntoView()
+    }
     if (!this.lastPlayFullStart || (this.lastFullPlayTime() > this.lastPlayFullStart)) {
       this.lastPlayFullStart = Date.now()
     }
     this.isPaused(false)
     this.playerPlaying(true)
+    if (freshStart || wasPaused) {
+      this.announce('Playing')
+    }
     if (!playJustEnded) {
       this.preSpaceUsed(false)
     }
@@ -516,24 +849,96 @@ export class MorseViewModel {
         1: play 2 times
         2: play 3 times etc.
         */
-        const repeats = parseInt(this.numberOfRepeats() as any) === 0 ? 0 : parseInt(this.numberOfRepeats() as any) + 1
+        // Speed Racer owns the per-card play count when enabled. It uses
+        // (variation count + 1) plays — the +1 is the base-speed replay. A
+        // single variation with the replay off still counts as racing (1 play),
+        // so route any positive racer play count through the racer path.
+        const racerOn = this.settings.speed.speedRacerEnabled()
+        const racerTotalPlays = racerOn ? this.settings.speed.getRacerTotalPlays() : 0
+        const racerActive = isSpeedRacerActive(racerOn, racerTotalPlays)
+        const repeats = racerTotalPlays >= 1
+          ? racerTotalPlays
+          : (parseInt(this.numberOfRepeats() as any) === 0 ? 0 : parseInt(this.numberOfRepeats() as any) + 1)
+        // The "Repeat Spacing" box (in wordspaces) controls the gap between
+        // repeats for both normal repeats and Speed Racer. It supports 0.25
+        // steps: the whole part is rendered as silent word-gap plays and the
+        // fractional part as extra trailing wordspace dits (1 wordspace = 7
+        // dits) on the audible plays.
+        const userRepeatSpacing = Math.max(0, parseFloat(this.morseVoice.speakFirstAdditionalWordspaces() as any) || 0)
+        // Speed Racer jams its repeats together with no gap by default, which
+        // testers found too fast to follow. When racing and the user hasn't set
+        // their own Repeat Spacing, fall back to a one-wordspace gap so each
+        // repeat is distinct. An explicit non-zero value always wins.
+        const repeatSpacing = (racerActive && userRepeatSpacing === 0)
+          ? MorseViewModel.RACER_DEFAULT_REPEAT_SPACING
+          : userRepeatSpacing
+        const wholeWordSpaces = Math.floor(repeatSpacing)
+        const fractionalWordSpaceDits = repeats > 0 ? (repeatSpacing - wholeWordSpaces) * 7 : 0
         const config = this.getMorseStringToWavBufferConfig(
-          this.cardBufferManager.getNextMorse(
-            repeats,
-            parseInt(this.morseVoice.speakFirstAdditionalWordspaces() as any)
-          )
+          this.cardBufferManager.getNextMorse(repeats, wholeWordSpaces),
+          false,
+          true,
+          fractionalWordSpaceDits
         )
         this.addToVoiceBuffer()
+        const racerState = this.cardBufferManager.getRepeatState()
+        const playIndex = racerState.index
+        const audiblePlay = !!(config.word && config.word.trim().length > 0)
+        const speakOn = computeRacerRecapOn({
+          racerOn: racerActive,
+          speedRacerSpeakBeforeReplay: this.settings.speed.speedRacerSpeakBeforeReplay(),
+          voiceEnabled: this.morseVoice.voiceEnabled()
+        })
+
         const playerCmd = () => {
           if (!this.morseVoice.speakFirst() || this.playerPlaying()) {
             this.morseWordPlayer.play(config, (fromVoiceOrTrail) => {
               this.charsPlayed(this.charsPlayed() + config.word.replace(' ', '').length)
-              this.playEnded(fromVoiceOrTrail)
+              const speakAfter = speakOn &&
+                audiblePlay &&
+                this.settings.speed.isRacerSpeakAfterLastVariation(playIndex)
+              if (speakAfter) {
+                const padMs = this.settings.speed.getSpeedRacerPreSpeakPadMs()
+                setTimeout(() => {
+                  if (!this.playerPlaying()) {
+                    return
+                  }
+                  this.speakSpeedRacerRecap(() => {
+                    if (this.playerPlaying()) {
+                      this.playEnded(fromVoiceOrTrail)
+                    }
+                  })
+                }, padMs)
+              } else {
+                this.playEnded(fromVoiceOrTrail)
+              }
             })
           }
         }
 
-        if (!this.morseVoice.speakFirst() ||
+        // Speed Racer: optional speak before base-speed replay, or speak after last variation.
+        const shouldSpeakBeforeReplay = speakOn &&
+          audiblePlay &&
+          this.settings.speed.isRacerSpeakBeforeFinalReplay(playIndex)
+
+        if (shouldSpeakBeforeReplay) {
+          const padMs = this.settings.speed.getSpeedRacerPreSpeakPadMs()
+          setTimeout(() => {
+            if (!this.playerPlaying()) {
+              return
+            }
+            this.speakSpeedRacerRecap(() => {
+              if (this.playerPlaying()) {
+                playerCmd()
+              }
+            })
+          }, padMs)
+        } else if (racerActive) {
+          // Speed Racer manages its own speak step. Bypass speakFirst entirely
+          // so a stale speakFirst toggle can't add a voiceThinkingTime delay
+          // before the *first* variation play.
+          playerCmd()
+        } else if (!this.morseVoice.speakFirst() ||
             (this.morseVoice.speakFirst() && (this.morseVoice.speakFirstLastCardIndex === this.currentIndex()))
         ) {
           playerCmd()
@@ -555,6 +960,41 @@ export class MorseViewModel {
     },
     // timeout parameters
     playJustEnded || fromPlayButton ? 0 : 1000)
+  }
+
+  // Speed Racer voice recap: one TTS utterance (cancellable). Spell uses
+  // period-paced letters ("R. E. R.") so engines do not rush "r e r".
+  // Voice Delay Before/After apply once around the recap.
+  speakSpeedRacerRecap = (onComplete:() => void) => {
+    if (!this.morseVoice.voiceEnabled()) {
+      onComplete()
+      return
+    }
+    const currentWord = this.words()[this.currentIndex()]
+    const preSpeechMs = voiceThinkingDelayMs(this.morseVoice.voiceThinkingTime())
+    const postSpeechMs = voiceThinkingDelayMs(this.morseVoice.voiceAfterThinkingTime())
+    const token = this.speedRacerToken
+    const spelling = this.morseVoice.voiceSpelling()
+    let speakText = currentWord.speakText(spelling)
+      .replace(/\n/g, ' ')
+      .trim()
+    if (spelling) {
+      speakText = formatSpelledRecapPhrase(speakText)
+    }
+
+    runSpeedRacerRecap({
+      speakText,
+      preSpeechMs,
+      postSpeechMs,
+      token,
+      getToken: () => this.speedRacerToken,
+      isPlaying: () => this.playerPlaying(),
+      isVoiceEnabled: () => this.morseVoice.voiceEnabled(),
+      prepPhrase: (phrase) => this.prepPhraseToSpeakForFinal(phrase),
+      speakPhrase: (phrase, onDone) => this.morseVoice.speakPhraseImmediate(phrase, onDone),
+      cancelSpeech: () => this.morseVoice.cancelSpeech(),
+      onComplete
+    })
   }
 
   ifMaxVoiceBufferReached = ():boolean => {
@@ -593,41 +1033,70 @@ export class MorseViewModel {
     const isNotLastWord = this.currentIndex() < this.words().length - 1
     const anyNewLines = this.rawText().indexOf('\n') !== -1
     const maxBufferReached = this.ifMaxVoiceBufferReached()
-    const needToSpeak = this.morseVoice.voiceEnabled() &&
-      !fromVoiceOrTrail &&
-      !this.cardBufferManager.hasMoreMorse() &&
-      maxBufferReached &&
-      !this.morseVoice.speakFirst()
+    const racerOn = isSpeedRacerActive(
+      this.settings.speed.speedRacerEnabled(),
+      this.settings.speed.getRacerTotalPlays()
+    )
+    const needToSpeak = computeNeedToSpeak({
+      voiceEnabled: this.morseVoice.voiceEnabled(),
+      fromVoiceOrTrail,
+      hasMoreMorse: this.cardBufferManager.hasMoreMorse(),
+      maxBufferReached,
+      speakFirst: this.morseVoice.speakFirst(),
+      racerOn,
+      speedRacerSpeakBeforeReplay: this.settings.speed.speedRacerSpeakBeforeReplay()
+    })
 
-    const needToTrail = this.trailReveal() && !fromVoiceOrTrail
+    const needToTrail = computeNeedToTrail({
+      trailReveal: this.trailReveal(),
+      fromVoiceOrTrail,
+      hasMoreMorse: this.cardBufferManager.hasMoreMorse()
+    })
     const speakAndTrail = needToSpeak && needToTrail
 
-    const noDelays = !needToSpeak && !needToTrail
+    const noDelays = computeNoDelays(needToSpeak, needToTrail)
 
-    const advanceTrail = () => {
+    const advanceTrail = (forceContinue = false) => {
       // note we eliminate the trail delays if speaking
       if (this.trailReveal()) {
-        setTimeout(() => {
-          this.maxRevealedTrail(this.maxRevealedTrail() + 1)
-          setTimeout(() => {
+        const token = this.speedRacerToken
+        runAdvanceTrail({
+          preDelaySec: this.trailPreDelay(),
+          postDelaySec: this.trailPostDelay(),
+          speakAndTrail,
+          onReveal: () => {
+            if (token !== this.speedRacerToken || !this.playerPlaying()) {
+              return
+            }
+            this.maxRevealedTrail(this.maxRevealedTrail() + 1)
+          },
+          onContinue: () => {
+            if (token !== this.speedRacerToken || !this.playerPlaying()) {
+              return
+            }
             // if speak is in the driver's seat it will call this,
             // if not then trail will
-            if (!speakAndTrail) {
+            if (!speakAndTrail || forceContinue) {
               this.playEnded(true)
             }
-          }, speakAndTrail ? 0 : this.trailPostDelay() * 1000)
-        }
-        , speakAndTrail ? 0 : this.trailPreDelay() * 1000)
+          }
+        })
       }
     }
 
     const finalizeTrail = (finalCallback) => {
       if (this.trailReveal()) {
-        setTimeout(() => {
-          this.maxRevealedTrail(-1)
-          finalCallback()
-        }
-        , this.trailFinal() * 1000)
+        const token = this.speedRacerToken
+        runFinalizeTrail({
+          finalDelaySec: this.trailFinal(),
+          onDone: () => {
+            if (token !== this.speedRacerToken || !this.playerPlaying()) {
+              return
+            }
+            this.maxRevealedTrail(-1)
+            finalCallback()
+          }
+        })
       }
     }
 
@@ -647,6 +1116,12 @@ export class MorseViewModel {
         }
 
         const getCardSpaceTimerHandleDelay = () => {
+          if (this.settings.speed.speedRacerEnabled()) {
+            if (!cardChanged && hasMoreMorse) {
+              return 0
+            }
+            return Math.max(this.cardSpace() * 1000, 800)
+          }
           if (!cardChanged && hasMoreMorse) {
             return 0
           } else {
@@ -659,7 +1134,10 @@ export class MorseViewModel {
         }, getCardSpaceTimerHandleDelay())
       } else {
       // nothing more to play
-        const finalToDo = () => this.doPause(true, false, false)
+        const finalToDo = () => {
+          this.announce('Playback complete')
+          this.doPause(true, false, false)
+        }
         // trailing may want a linger
         if (this.trailReveal()) {
           finalizeTrail(finalToDo)
@@ -674,7 +1152,7 @@ export class MorseViewModel {
       const speakText = this.morseVoice.voiceBuffer[0].txt
       const hasNewline = speakText.indexOf('\n') !== -1
 
-      const speakCondition = !this.morseVoice.manualVoice() &&
+      const speakCondition = computeAutoVoiceAllowed(this.morseVoice.manualVoice(), racerOn) &&
                 (hasNewline || !isNotLastWord || !anyNewLines || !this.settings.misc.newlineChunking())
       if (speakCondition) {
         let phraseToSpeak = this.getPhraseToSpeakFromBuffer()
@@ -699,17 +1177,37 @@ export class MorseViewModel {
         }
         */
 
+        const token = this.speedRacerToken
+        const continueAfterVoice = () => {
+          if (needToTrail) {
+            advanceTrail()
+          }
+          this.playEnded(true)
+        }
         setTimeout(() => {
+          if (token !== this.speedRacerToken || !this.playerPlaying()) {
+            return
+          }
+          if (!this.morseVoice.voiceEnabled()) {
+            continueAfterVoice()
+            return
+          }
           const finalPhraseToSpeak = this.prepPhraseToSpeakForFinal(phraseToSpeak)
           this.morseVoice.speakPhrase(finalPhraseToSpeak, () => {
+            if (token !== this.speedRacerToken || !this.playerPlaying()) {
+              return
+            }
+            if (!this.morseVoice.voiceEnabled()) {
+              continueAfterVoice()
+              return
+            }
             // what gets called after speaking
 
-            if (needToTrail) {
-              advanceTrail()
-            }
-            this.playEnded(true)
+            continueAfterVoice()
           })
-        }, this.morseVoice.voiceThinkingTime() * 1000)
+        }, voiceThinkingDelayMs(this.morseVoice.voiceThinkingTime()))
+      } else if (needToTrail) {
+        advanceTrail(true)
       } else {
         this.playEnded(true)
       }
@@ -732,6 +1230,18 @@ export class MorseViewModel {
   }
 
   addToVoiceBuffer = () => {
+    // When SR recap will speak this card, skip the voice buffer so words are
+    // not spoken twice or rushed together.
+    if (shouldSkipVoiceBufferForRacer(
+      isSpeedRacerActive(
+        this.settings.speed.speedRacerEnabled(),
+        this.settings.speed.getRacerTotalPlays()
+      ),
+      this.settings.speed.speedRacerSpeakBeforeReplay(),
+      this.morseVoice.voiceEnabled()
+    )) {
+      return
+    }
     // make sure we don't add the same card twice...someday figure what causes
     const lastBufIndex = this.morseVoice.voiceBuffer.length > 0 ? this.morseVoice.voiceBuffer[this.morseVoice.voiceBuffer.length - 1].idx : -1
     if (this.currentIndex() > lastBufIndex &&
@@ -749,7 +1259,11 @@ export class MorseViewModel {
   // used by recap
   speakVoiceBuffer = () => {
     if (this.morseVoice.voiceBuffer.length > 0) {
-      const phrase = this.morseVoice.voiceBuffer.shift().txt
+      const entry = this.morseVoice.voiceBuffer.shift()
+      if (!entry) {
+        return
+      }
+      const phrase = entry.txt
       // for reasons I can't recall, wordifyPunctuation adds pipe character
       // remove it
       const finalPhraseToSpeak = phrase.replace(/\|/g, ' ')
@@ -803,10 +1317,14 @@ export class MorseViewModel {
     if (fromPauseButton) {
       this.runningPlayMs(this.runningPlayMs() + (Date.now() - this.lastPartialPlayStart()))
       this.isPaused(!this.isPaused())
+      this.announce(this.isPaused() ? 'Paused' : 'Playing')
     } else {
       this.isPaused(false)
     }
     this.playerPlaying(false)
+    this.speedRacerToken++
+    // Stop in-flight SR recap / voice trail TTS; token alone only gates callbacks.
+    this.morseVoice.cancelSpeech()
     this.morseWordPlayer.pause(() => {
       // we're here if a complete rawtext finished
       this.lastFullPlayTime(Date.now())
@@ -822,7 +1340,7 @@ export class MorseViewModel {
         if (!this.loopnoshuffle()) {
           this.shuffleWords(true)
         }
-        this.doPlay(false, true)
+        this.doPlay(false, false)
       }
     }, true)
     if (fullRewind) {
@@ -830,6 +1348,7 @@ export class MorseViewModel {
     }
     if (fromStopButton) {
       this.maxRevealedTrail(-1)
+      this.announce('Stopped')
     }
 
     if (this.cardSpaceTimerHandle) {
@@ -843,7 +1362,11 @@ export class MorseViewModel {
     const file = element.files[0]
     const fr = new FileReader()
     fr.onload = (data) => {
-      this.setText(data.target.result as string)
+      const result = data.target?.result
+      if (typeof result !== 'string') {
+        return
+      }
+      this.setText(result)
       // need to clear or else won't fire if use clears the text area
       // and then tries to reload the same again
       element.value = null
@@ -863,11 +1386,16 @@ export class MorseViewModel {
     const config = this.getMorseStringToWavBufferConfig(allWords)
     const wav = await this.morseWordPlayer.getWavAndSample(config)
     const ary = new Uint8Array(wav)
-    const link = document.getElementById('downloadLink')
-    const blob = new Blob([ary], { type: 'audio/wav' });
-    (link as any).href = URL.createObjectURL(blob);
-    (link as any).download = 'morse.wav'
+    const link = document.getElementById('downloadLink') as HTMLAnchorElement | null
+    if (!link) {
+      return
+    }
+    const blob = new Blob([ary], { type: 'audio/wav' })
+    const objectUrl = URL.createObjectURL(blob)
+    link.href = objectUrl
+    link.download = 'morse.wav'
     link.dispatchEvent(new MouseEvent('click'))
+    setTimeout(() => URL.revokeObjectURL(objectUrl), 0)
   }
 
   dummy = () => {
@@ -904,10 +1432,11 @@ export class MorseViewModel {
     // stop playing
     this.doPause(true, false, false)
     this.setText('')
+    this.announce('Text cleared')
   }
 
   doApply = (fromUserClick:boolean = false) => {
-    if (this.lessons.customGroup()) {
+    if (this.lessons.ifCustomGroup()) {
       this.lessons.doCustomGroup()
     } else {
       // skip presets if user clicked, assume they wanted to change something
@@ -924,17 +1453,18 @@ export class MorseViewModel {
     MorseSettingsHandler.settingsFileChange(element, this)
   }
 
-  logoClick = () => { 
+  logoClick = () => {
     console.log('logo clicked')
-    this.logoClickCount++;
+    this.logoClickCount++
     if (this.logoClickCount % 4 === 0) {
-      this.lessons.toggleQueryStringSettingsOn()    
+      this.lessons.toggleQueryStringSettingsOn()
     }
   }
 
   toggleLoop = () => {
     if (!this.loop()) {
       this.loop(true)
+      this.announce('Loop shuffle is on')
     } else if (this.loopnoshuffle()) {
       this.loop(false)
       this.loopnoshuffle(false)

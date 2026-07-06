@@ -24,16 +24,32 @@
             "filename": "POL_17_L.json"
         },
         {
+            "display": "Speed Racer Letters Flow Rate 1",
+            "filename": "POL_17_L_SR.json"
+        },
+        {
             "display": "OverLearn Words Flow Rate 1",
             "filename": "POL_17_W.json"
+        },
+        {
+            "display": "Speed Racer Words Flow Rate 1",
+            "filename": "POL_17_W_SR.json"
         },
         {
             "display": "OverLearn Letters Flow Rate 2",
             "filename": "POL_21_L.json"
         },
         {
+            "display": "Speed Racer Letters Flow Rate 2",
+            "filename": "POL_21_L_SR.json"
+        },
+        {
             "display": "OverLearn Words Flow Rate 2",
             "filename": "POL_21_W.json"
+        },
+        {
+            "display": "Speed Racer Words Flow Rate 2",
+            "filename": "POL_21_W_SR.json"
         },      
         {
             "display": "Groups of 5",
