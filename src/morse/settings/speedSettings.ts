@@ -29,14 +29,15 @@ export default class SpeedSettings implements ICookieHandler {
   // Comma-separated list of multipliers applied to the user's main WPM
   // (top of page). Each non-zero entry produces one variation play whose
   // WPM = round(mainWpm * multiplier). Zero entries are skipped. The post-
-  // speak final play uses the *first* non-zero multiplier, not the last.
+  // speak final play uses the *first* non-zero multiplier, not the last
+  // and not necessarily main WPM (and not "highest" — order may ascend).
   speedRacerMultipliers: ko.Observable<string>
-  // Whether to append a final play (replay) at the base speed (first
-  // multiplier) after the variation plays.
+  // Whether to append a final play (replay) at the *first* multiplier
+  // after the variation plays ("Replay at First Multiplier").
   speedRacerFinalPlay: ko.Observable<boolean>
-  // When Replay Base Speed is on, speak the card once before that replay.
-  // Recap runs when this and Voice are both on; uses Voice Options for
-  // Spell, delays, speaker, etc. User enables Voice manually.
+  // When Replay at First Multiplier is on, speak the card once before that
+  // replay. Recap runs when this and Voice are both on; uses Voice Options
+  // for Spell, delays, speaker, etc. User enables Voice manually.
   speedRacerSpeakBeforeReplay: ko.Observable<boolean>
   // Preset/cookie compat only — FWPM always stays at saved base during racing.
   speedRacerKeepFwpm: ko.Observable<boolean>
@@ -167,9 +168,9 @@ export default class SpeedSettings implements ICookieHandler {
 
   // Overlearn preset: ratios of 23 / 27 / 31 wpm with 23 as the base speed,
   // ordered slow→fast so each repeat pushes the student a step faster.
-  // 23/23 = 1.0, 27/23 ≈ 1.174, 31/23 ≈ 1.348. The final base-speed replay is
-  // turned off — overlearn is a pure copy drill that should end at the fastest
-  // variation (turning the replay off also skips the spoken step).
+  // 23/23 = 1.0, 27/23 ≈ 1.174, 31/23 ≈ 1.348. The final first-multiplier
+  // replay is turned off — overlearn is a pure copy drill that should end at
+  // the fastest variation (turning the replay off also skips the spoken step).
   setOverlearnMultipliers = () => {
     this.speedRacerMultipliers('1.0, 1.174, 1.348')
     this.speedRacerFinalPlay(false)
@@ -187,7 +188,7 @@ export default class SpeedSettings implements ICookieHandler {
 
   // Total audible morse plays per card when Speed Racer is on:
   // one play per non-zero multiplier, plus (if enabled) one final play at the
-  // base speed after the TTS step. The TTS step itself is not counted.
+  // first multiplier after the TTS step. The TTS step itself is not counted.
   getRacerTotalPlays = ():number => {
     const n = SpeedSettings.parseMultipliers(this.speedRacerMultipliers()).length
     if (n <= 0) return 0
@@ -204,12 +205,12 @@ export default class SpeedSettings implements ICookieHandler {
     return total > 1 && playIndex === total - 1
   }
 
-  // Speak before the base-speed replay (Replay Base Speed on).
+  // Speak before the first-multiplier replay (Replay at First Multiplier on).
   isRacerSpeakBeforeFinalReplay = (playIndex:number):boolean => {
     return this.speedRacerFinalPlay() && this.isRacerFinalPlay(playIndex)
   }
 
-  // Speak after the last variation when Replay Base Speed is off.
+  // Speak after the last variation when Replay at First Multiplier is off.
   isRacerSpeakAfterLastVariation = (playIndex:number):boolean => {
     if (this.speedRacerFinalPlay()) {
       return false
@@ -224,8 +225,9 @@ export default class SpeedSettings implements ICookieHandler {
   /**
    * Apply Speed Racer to a base ApplicableSpeed for the given play slot.
    * Variation play (0..N-1) uses round(base.wpm * multipliers[playIndex]).
-   * Final play (N) uses round(base.wpm * multipliers[0]) — the *first* non-
-   * zero multiplier, which is the "initial" speed in the user's mental model.
+   * Final play (N) uses round(base.wpm * multipliers[0]) — always the *first*
+   * non-zero multiplier (not main/base WPM unless that multiplier is 1.0, and
+   * not "highest" — ascending ladders may start slower than they end).
    * FWPM stays at the saved base when the variation is faster (Farnsworth);
    * when variation WPM drops below base FWPM, spacing scales down with it so
    * slow ladder steps stay cohesive (same rule morse-pro uses internally).

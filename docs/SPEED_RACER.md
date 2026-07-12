@@ -30,7 +30,7 @@ For each card:
 
 1. Play once at each **non-zero** multiplier, in list order.
 2. Optionally **speak** the card once (if **Speak Before Replay** is on).
-3. Optionally **replay** the card once at **base speed** — the speed from the **first** multiplier (if **Replay Base Speed** is on).
+3. Optionally **replay** the card once at the **first multiplier** speed (if **Replay at First Multiplier** is on). This is not "highest speed" and not necessarily your main character WPM — ascending ladders may start slower than they end.
 
 **FWPM during racing:** When a variation is faster than your saved FWPM, spacing stays at the saved base (Farnsworth). When variation WPM drops below saved FWPM (slow multipliers), spacing scales down with character speed so slow ladder steps stay cohesive.
 
@@ -58,8 +58,8 @@ Implementation: `SpeedSettings.applySpeedRacer()` in `speedSettings.ts`; speak/r
 | Control | Description |
 |---------|-------------|
 | **Multipliers** | Comma-separated speed-step list (e.g. `1.5, 1.35, 1.175, 1.0`). Each non-zero value plays the card once at `round(mainWpm * multiplier)`. `0` skips a slot. |
-| **Replay Base Speed** | After the ladder, replay once at base speed (first multiplier). |
-| **Speak** / **Speak Before Replay** | Label follows Replay: speak before base-speed replay, or speak after the last variation when replay is off. Always enabled with Speed Racer. |
+| **Replay at First Multiplier** | After the ladder, replay once at the first multiplier speed. |
+| **Speak** / **Speak Before Replay** | Label follows Replay: speak before the first-multiplier replay, or speak after the last variation when replay is off. Always enabled with Speed Racer. |
 | **Sequence preview** | Live text, e.g. `23 -> 27 -> 31 -> speak -> 23 wpm`. |
 | **Reset to defaults** | Multipliers `1.5, 1.35, 1.175, 1.0`; **Replay** and **Speak** both **on**. |
 | **Overlearn** | Multipliers `1.0, 1.174, 1.348`; **Replay** and **Speak** both **off**. |
@@ -139,7 +139,7 @@ These keys serialize in preset JSON and in saved settings (`morseSettingsHandler
 |-----|------|---------|
 | `speedRacerEnabled` | boolean | Turn Speed Racer on |
 | `speedRacerMultipliers` | string | Comma-separated multipliers; `0` skips a slot |
-| `speedRacerFinalPlay` | boolean | **Replay Base Speed** after the ladder |
+| `speedRacerFinalPlay` | boolean | **Replay at First Multiplier** after the ladder |
 | `speedRacerSpeakBeforeReplay` | boolean | **Speak** toggle; recap uses Voice Options when Speak and Voice are both on (enable Voice manually to configure Spell/delays) |
 | `speedRacerKeepFwpm` | boolean | Legacy/preset compat only — FWPM always stays at saved base during racing |
 
@@ -200,12 +200,12 @@ After adding or removing files under `src/presets/configs/`, run **`npm run preb
 
 ## 6. Replay vs speak combinations
 
-| Replay Base Speed | Speak | Behavior |
-|-------------------|-------|----------|
-| On | On | Variations -> **speak** -> base-speed replay *(Jay-style default)* |
-| On | Off | Variations -> base-speed replay, **no speak** |
+| Replay at First Multiplier | Speak | Behavior |
+|----------------------------|-------|----------|
+| On | On | Variations -> **speak** -> first-multiplier replay *(Jay-style default)* |
+| On | Off | Variations -> first-multiplier replay, **no speak** |
 | Off | Off | Variation ladder only — stop after last (fastest) variation |
-| Off | On | Variations -> **speak** after the last variation *(no base-speed replay)* |
+| Off | On | Variations -> **speak** after the last variation *(no first-multiplier replay)* |
 
 The speak toggle label is **Speak Before Replay** when replay is on, or **Speak** when replay is off. It is always clickable while Speed Racer is on. Turning Speak off while SR is on forces Voice off (morse-only mode).
 
@@ -219,15 +219,15 @@ The **Overlearn** button in Advanced sets FR1 multipliers and turns **both** tog
 
 Default multipliers: **`1.5, 1.35, 1.175, 1.0`**.
 
-Typical defaults: **Replay Base Speed** on, **Speak Before Replay** on (**Reset to defaults** restores this).
+Typical defaults: **Replay at First Multiplier** on, **Speak Before Replay** on (**Reset to defaults** restores this).
 
-Sequence idea: faster variations, then speak, then one play at base speed (speed from the **first** multiplier in the list).
+Sequence idea: faster variations, then speak, then one play at the **first** multiplier in the list (for Jay defaults that is the highest step; for ascending ladders it is the first/slowest step).
 
 ### Overlearn (Speed Racer engine)
 
 Multipliers slow→fast, e.g. FR1: **`1.0, 1.174, 1.348`** at base 23 WPM.
 
-**Replay Base Speed** and **Speak Before Replay** both **off** — drill ends at the fastest variation.
+**Replay at First Multiplier** and **Speak Before Replay** both **off** — drill ends at the fastest variation.
 
 Use preset **`Speed Racer … Flow Rate N`** or the **Overlearn** button in Advanced.
 

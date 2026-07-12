@@ -850,8 +850,8 @@ export class MorseViewModel {
         2: play 3 times etc.
         */
         // Speed Racer owns the per-card play count when enabled. It uses
-        // (variation count + 1) plays — the +1 is the base-speed replay. A
-        // single variation with the replay off still counts as racing (1 play),
+        // (variation count + 1) plays — the +1 is the first-multiplier replay.
+        // A single variation with the replay off still counts as racing (1 play),
         // so route any positive racer play count through the racer path.
         const racerOn = this.settings.speed.speedRacerEnabled()
         const racerTotalPlays = racerOn ? this.settings.speed.getRacerTotalPlays() : 0
@@ -916,7 +916,7 @@ export class MorseViewModel {
           }
         }
 
-        // Speed Racer: optional speak before base-speed replay, or speak after last variation.
+        // Speed Racer: optional speak before first-multiplier replay, or speak after last variation.
         const shouldSpeakBeforeReplay = speakOn &&
           audiblePlay &&
           this.settings.speed.isRacerSpeakBeforeFinalReplay(playIndex)
