@@ -166,13 +166,13 @@ export default class SpeedSettings implements ICookieHandler {
     this.speedRacerSpeakBeforeReplay(true)
   }
 
-  // Overlearn preset: ratios of 23 / 27 / 31 wpm with 23 as the base speed,
-  // ordered slow→fast so each repeat pushes the student a step faster.
-  // 23/23 = 1.0, 27/23 ≈ 1.174, 31/23 ≈ 1.348. The final first-multiplier
+  // Overlearn preset: ratios of 31 / 27 / 23 wpm with 23 as the base speed,
+  // ordered fast→slow so each repeat settles a step slower.
+  // 31/23 ≈ 1.348, 27/23 ≈ 1.174, 23/23 = 1.0. The final first-multiplier
   // replay is turned off — overlearn is a pure copy drill that should end at
-  // the fastest variation (turning the replay off also skips the spoken step).
+  // the slowest (base) variation (turning the replay off also skips the spoken step).
   setOverlearnMultipliers = () => {
-    this.speedRacerMultipliers('1.0, 1.174, 1.348')
+    this.speedRacerMultipliers('1.348, 1.174, 1.0')
     this.speedRacerFinalPlay(false)
     this.speedRacerSpeakBeforeReplay(false)
   }

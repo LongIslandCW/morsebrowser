@@ -48,39 +48,39 @@ function expectSpeedRacerPreset (
 }
 
 describe('Speed Racer OverLearn preset JSON', () => {
-  it('Flow Rate 1 letters: 23 → 27 → 31, letters spelling on', () => {
+  it('Flow Rate 1 letters: 31 → 27 → 23, letters spelling on', () => {
     expectSpeedRacerPreset('POL_17_L_SR', pol17Lsr.morseSettings, {
       baseWpm: 23,
-      multipliers: '1.0, 1.174, 1.348',
+      multipliers: '1.348, 1.174, 1.0',
       voiceSpelling: true,
-      expectedWpms: [23, 27, 31]
+      expectedWpms: [31, 27, 23]
     })
   })
 
   it('Flow Rate 1 words: same speed ladder, spelling off', () => {
     expectSpeedRacerPreset('POL_17_W_SR', pol17Wsr.morseSettings, {
       baseWpm: 23,
-      multipliers: '1.0, 1.174, 1.348',
+      multipliers: '1.348, 1.174, 1.0',
       voiceSpelling: false,
-      expectedWpms: [23, 27, 31]
+      expectedWpms: [31, 27, 23]
     })
   })
 
-  it('Flow Rate 2 letters: 27 → 31 → 35', () => {
+  it('Flow Rate 2 letters: 35 → 31 → 27', () => {
     expectSpeedRacerPreset('POL_21_L_SR', pol21Lsr.morseSettings, {
       baseWpm: 27,
-      multipliers: '1.0, 1.148, 1.296',
+      multipliers: '1.296, 1.148, 1.0',
       voiceSpelling: true,
-      expectedWpms: [27, 31, 35]
+      expectedWpms: [35, 31, 27]
     })
   })
 
   it('Flow Rate 2 words: same speed ladder, spelling off', () => {
     expectSpeedRacerPreset('POL_21_W_SR', pol21Wsr.morseSettings, {
       baseWpm: 27,
-      multipliers: '1.0, 1.148, 1.296',
+      multipliers: '1.296, 1.148, 1.0',
       voiceSpelling: false,
-      expectedWpms: [27, 31, 35]
+      expectedWpms: [35, 31, 27]
     })
   })
 })
