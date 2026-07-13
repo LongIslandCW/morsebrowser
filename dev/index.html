@@ -34,7 +34,7 @@
             }
         })();
     </script>
-<link rel="icon" href="LongIslandCWClub-favicon-2.jpg"><script defer src="bundle80295c1660c829373ea4.js"></script><link href="bundle.90ebcdee9aa09157c432.css" rel="stylesheet"></head>
+<link rel="icon" href="LongIslandCWClub-favicon-2.jpg"><script defer src="bundle4dc2cfee4bdbc26f9289.js"></script><link href="bundle.90ebcdee9aa09157c432.css" rel="stylesheet"></head>
 <!--test8 test6 -->
 
 <body>
@@ -526,18 +526,18 @@
                                                 <div class="settings-lesson-control">
                                                     <input id="speedRacerFinalPlay" name="speedRacerFinalPlay"
                                                         type="checkbox" class="btn-check" autocomplete="off"
-                                                        aria-label="Replay Base Speed"
+                                                        aria-label="Replay at First Multiplier"
                                                         aria-describedby="speedRacerFinalPlayHelp"
                                                         data-bind="checked: settings.speed.speedRacerFinalPlay"
-                                                        title="When on, after the variation plays the card is replayed once at the base speed (first multiplier). Turn off to end after the last variation.">
+                                                        title="When on, after the variation plays the card is replayed once at the first multiplier speed. Turn off to end after the last variation.">
                                                     <label class="btn btn-outline-primary" for="speedRacerFinalPlay">
                                                         <img alt="" data-bind="attr:{ src: morseLoadImages().getSrc('repeatImage')}"
-                                                            height="16" width="16" />&nbsp;Replay Base Speed&nbsp;
+                                                            height="16" width="16" />&nbsp;Replay at First Multiplier&nbsp;
                                                         <img alt="" data-bind="attr:{ src: settings.speed.speedRacerFinalPlay() ? morseLoadImages().getSrc('checkImage') : morseLoadImages().getSrc('circleImage')}"
                                                             />
                                                     </label>
                                                     <p id="speedRacerFinalPlayHelp" class="sr-only">
-                                                        When on, Speed Racer plays the card one more time at your base speed.
+                                                        When on, Speed Racer plays the card one more time at the first multiplier speed (not the last step, and not necessarily your main character speed).
                                                     </p>
                                                 </div>
                                                 <div class="settings-lesson-control">
@@ -545,7 +545,7 @@
                                                         type="checkbox" class="btn-check" autocomplete="off"
                                                         aria-describedby="speedRacerSpeakHelp"
                                                         data-bind="checked: settings.speed.speedRacerSpeakBeforeReplay, click: onSpeedRacerSpeakBeforeReplayClick, attr: { 'aria-label': settings.speed.speedRacerSpeakLabel }"
-                                                        title="Speak the card using Voice Options when Voice is on (Spell, delays, speaker, etc.). With Replay Base Speed on, speak runs before the base-speed replay; with replay off, speak runs after the last variation.">
+                                                        title="Speak the card using Voice Options when Voice is on (Spell, delays, speaker, etc.). With Replay at First Multiplier on, speak runs before that replay; with replay off, speak runs after the last variation.">
                                                     <label class="btn btn-outline-primary" for="speedRacerSpeakBeforeReplay">
                                                         <img alt="" data-bind="attr:{ src: morseLoadImages().getSrc('chatquoteImage')}"
                                                             height="16" width="16" />&nbsp;<span data-bind="text: settings.speed.speedRacerSpeakLabel"></span>&nbsp;
@@ -553,7 +553,7 @@
                                                             />
                                                     </label>
                                                     <p id="speedRacerSpeakHelp" class="sr-only">
-                                                        Uses Voice Options to speak the card when Voice is on. With Replay Base Speed on, speech comes before the replay. With replay off, speech comes after the last speed step.
+                                                        Uses Voice Options to speak the card when Voice is on. With Replay at First Multiplier on, speech comes before the replay. With replay off, speech comes after the last speed step.
                                                     </p>
                                                 </div>
                                             </div>
@@ -563,7 +563,7 @@
                                                 <div class="settings-lesson-control">
                                                     <button type="button" class="btn btn-outline-primary"
                                                         data-bind="click: onResetSpeedRacerDefaultsClick"
-                                                        title="Restore Multipliers, Replay Base Speed, and Speak Before Replay to their defaults (1.5, 1.35, 1.175, 1.0; all on).">
+                                                        title="Restore Multipliers, Replay at First Multiplier, and Speak Before Replay to their defaults (1.5, 1.35, 1.175, 1.0; all on).">
                                                         <img alt="" data-bind="attr:{ src: morseLoadImages().getSrc('bootstrapRebootImage')}"
                                                             height="16" width="16" />&nbsp;Reset to defaults
                                                     </button>
@@ -571,7 +571,7 @@
                                                 <div class="settings-lesson-control">
                                                     <button type="button" class="btn btn-outline-primary"
                                                         data-bind="click: onOverlearnSpeedRacerClick"
-                                                        title="Set Multipliers to 1.0, 1.174, 1.348 (slow→fast, ratios of 23/27/31 wpm with 23 as base) and turn off Replay Base Speed and Speak Before Replay.">
+                                                        title="Set Multipliers to 1.0, 1.174, 1.348 (slow→fast, ratios of 23/27/31 wpm with 23 as base) and turn off Replay at First Multiplier and Speak Before Replay.">
                                                         Overlearn
                                                     </button>
                                                 </div>
