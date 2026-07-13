@@ -36,12 +36,18 @@ test('no horizontal overflow when Speed Racer is enabled', async ({ page }) => {
 
   await page.locator('button[data-bs-target="#speedRacerAdvanced"]').click()
   await expect(page.locator('#speedRacerMultipliers')).toBeVisible()
+  await expect(page.getByLabel('Replay at First Multiplier')).toBeVisible()
 
   const multipliersBox = await page.locator('#speedRacerMultipliers').boundingBox()
   expect(multipliersBox).not.toBeNull()
   if (multipliersBox) {
     expect(multipliersBox.width).toBeLessThan(400)
   }
+
+  const advancedOverflow = await page.evaluate(() => {
+    return document.documentElement.scrollWidth > document.documentElement.clientWidth + 1
+  })
+  expect(advancedOverflow).toBe(false)
 })
 
 test('override minutes input uses compact numeric width', async ({ page }) => {
