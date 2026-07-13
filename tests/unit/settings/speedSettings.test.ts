@@ -104,7 +104,7 @@ describe('SpeedSettings speak slots', () => {
   })
 
   it('speak-after targets the last variation when replay is off', () => {
-    s.speedRacerMultipliers('1.0, 1.174, 1.348')
+    s.speedRacerMultipliers('1.348, 1.174, 1.0')
     s.speedRacerFinalPlay(false)
     expect(s.isRacerSpeakAfterLastVariation(2)).toBe(true)
     expect(s.isRacerSpeakAfterLastVariation(1)).toBe(false)
@@ -123,12 +123,12 @@ describe('SpeedSettings.applySpeedRacer WPM slots', () => {
   })
 
   it('maps Overlearn multipliers to rounded WPM at each variation index', () => {
-    s.speedRacerMultipliers('1.0, 1.174, 1.348')
+    s.speedRacerMultipliers('1.348, 1.174, 1.0')
     s.speedRacerFinalPlay(false)
     const base = new ApplicableSpeed(23, 15)
-    expect(s.applySpeedRacer(base, 0, 3).wpm).toBe(23)
+    expect(s.applySpeedRacer(base, 0, 3).wpm).toBe(31) // round(23 * 1.348)
     expect(s.applySpeedRacer(base, 1, 3).wpm).toBe(27) // round(23 * 1.174)
-    expect(s.applySpeedRacer(base, 2, 3).wpm).toBe(31) // round(23 * 1.348)
+    expect(s.applySpeedRacer(base, 2, 3).wpm).toBe(23)
     expect(s.applySpeedRacer(base, 0, 3).fwpm).toBe(15)
     expect(s.applySpeedRacer(base, 2, 3).fwpm).toBe(15)
   })
@@ -148,7 +148,7 @@ describe('SpeedSettings.applySpeedRacer WPM slots', () => {
   })
 
   it('replays at first multiplier for ascending ladders (not highest / last step)', () => {
-    // Tom: label/behavior is first multiplier, not "highest" — ascending Overlearn-style.
+    // Tom: label/behavior is first multiplier, not "highest" — ascending-style still supported.
     s.speedRacerMultipliers('1.0, 1.174, 1.348')
     s.speedRacerFinalPlay(true)
     s.trueWpm(23)
@@ -158,6 +158,18 @@ describe('SpeedSettings.applySpeedRacer WPM slots', () => {
     expect(s.applySpeedRacer(base, 2, 4).wpm).toBe(31)
     expect(s.applySpeedRacer(base, 3, 4).wpm).toBe(23) // first mult, not 31
     expect(s.speedRacerPreview()).toBe('23 → 27 → 31 → speak → 23 wpm')
+  })
+
+  it('replays at first multiplier for Overlearn descending ladder', () => {
+    s.speedRacerMultipliers('1.348, 1.174, 1.0')
+    s.speedRacerFinalPlay(true)
+    s.trueWpm(23)
+    const base = new ApplicableSpeed(23, 15)
+    expect(s.applySpeedRacer(base, 0, 4).wpm).toBe(31)
+    expect(s.applySpeedRacer(base, 1, 4).wpm).toBe(27)
+    expect(s.applySpeedRacer(base, 2, 4).wpm).toBe(23)
+    expect(s.applySpeedRacer(base, 3, 4).wpm).toBe(31) // first mult (fastest)
+    expect(s.speedRacerPreview()).toBe('31 → 27 → 23 → speak → 31 wpm')
   })
 
   it('maps descending multipliers including fractions below 1.0', () => {
@@ -223,13 +235,13 @@ describe('SpeedSettings.applySpeedRacer', () => {
 
   it('preview shows speak after variations when replay is off', () => {
     s.speedRacerEnabled(true)
-    s.speedRacerMultipliers('1.0, 1.174, 1.348')
+    s.speedRacerMultipliers('1.348, 1.174, 1.0')
     s.trueWpm(23)
     s.speedRacerFinalPlay(false)
     s.speedRacerSpeakBeforeReplay(false)
-    expect(s.speedRacerPreview()).toBe('23 → 27 → 31 wpm')
+    expect(s.speedRacerPreview()).toBe('31 → 27 → 23 wpm')
     s.speedRacerSpeakBeforeReplay(true)
-    expect(s.speedRacerPreview()).toBe('23 → 27 → 31 → speak')
+    expect(s.speedRacerPreview()).toBe('31 → 27 → 23 → speak')
   })
 
   it('speak label follows Replay at First Multiplier', () => {

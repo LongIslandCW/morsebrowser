@@ -60,9 +60,9 @@ Implementation: `SpeedSettings.applySpeedRacer()` in `speedSettings.ts`; speak/r
 | **Multipliers** | Comma-separated speed-step list (e.g. `1.5, 1.35, 1.175, 1.0`). Each non-zero value plays the card once at `round(mainWpm * multiplier)`. `0` skips a slot. |
 | **Replay at First Multiplier** | After the ladder, replay once at the first multiplier speed. |
 | **Speak** / **Speak Before Replay** | Label follows Replay: speak before the first-multiplier replay, or speak after the last variation when replay is off. Always enabled with Speed Racer. |
-| **Sequence preview** | Live text, e.g. `23 -> 27 -> 31 -> speak -> 23 wpm`. |
+| **Sequence preview** | Live text, e.g. `31 -> 27 -> 23 -> speak -> 31 wpm`. |
 | **Reset to defaults** | Multipliers `1.5, 1.35, 1.175, 1.0`; **Replay** and **Speak** both **on**. |
-| **Overlearn** | Multipliers `1.0, 1.174, 1.348`; **Replay** and **Speak** both **off**. |
+| **Overlearn** | Multipliers `1.348, 1.174, 1.0`; **Replay** and **Speak** both **off**. |
 
 Markup: `src/template.html` (Speed Racer fieldset under Timing).
 
@@ -109,11 +109,11 @@ Code: `morseLessonPlugin.ts` — `setSelectedClassInitialized`, `setLetterGroupI
 
 Four **Speed Racer Overlearn** presets sit beside the original **OverLearn … Flow Rate** presets in BC1/BC2 preset lists (`src/presets/sets/bc1.json`, `bc2.json`).
 
-| PRESETS display name (`selectedPreset`) | Config file | Base WPM | Multipliers (slow→fast) |
+| PRESETS display name (`selectedPreset`) | Config file | Base WPM | Multipliers (fast→slow) |
 |----------------------------------------|-------------|----------|-------------------------|
-| Speed Racer Letters Flow Rate 1 | `POL_17_L_SR.json` | 23 | `1.0, 1.174, 1.348` -> 23 -> 27 -> 31 |
+| Speed Racer Letters Flow Rate 1 | `POL_17_L_SR.json` | 23 | `1.348, 1.174, 1.0` -> 31 -> 27 -> 23 |
 | Speed Racer Words Flow Rate 1 | `POL_17_W_SR.json` | 23 | same |
-| Speed Racer Letters Flow Rate 2 | `POL_21_L_SR.json` | 27 | `1.0, 1.148, 1.296` -> 27 -> 31 -> 35 |
+| Speed Racer Letters Flow Rate 2 | `POL_21_L_SR.json` | 27 | `1.296, 1.148, 1.0` -> 35 -> 31 -> 27 |
 | Speed Racer Words Flow Rate 2 | `POL_21_W_SR.json` | 27 | same |
 
 Pair with lessons such as **`OVERLEARN LETTERS`** / **`OVERLEARN WORDS`** under the correct class and letter group (e.g. BC1 + REA). Lesson names come from `src/wordfilesconfigs/wordlists.json` (`display` field).
@@ -165,7 +165,7 @@ These files explicitly set:
 |-----|-------|-------|
 | `speedRacerEnabled` | `true` | |
 | `speedRacerMultipliers` | FR1 or FR2 ladder | See table in §4 |
-| `speedRacerFinalPlay` | `false` | Pure Overlearn — end on fastest variation |
+| `speedRacerFinalPlay` | `false` | Pure Overlearn — end on slowest (base) variation |
 | `speedRacerSpeakBeforeReplay` | `false` | Explicitly off; avoids legacy mixin defaulting it on |
 | `voiceEnabled` | `false` | Voice stays off for these Overlearn presets |
 | `numberOfRepeats` | `0` | Speed Racer replaces repeats |
@@ -225,9 +225,9 @@ Sequence idea: faster variations, then speak, then one play at the **first** mul
 
 ### Overlearn (Speed Racer engine)
 
-Multipliers slow→fast, e.g. FR1: **`1.0, 1.174, 1.348`** at base 23 WPM.
+Multipliers fast→slow, e.g. FR1: **`1.348, 1.174, 1.0`** at base 23 WPM.
 
-**Replay at First Multiplier** and **Speak Before Replay** both **off** — drill ends at the fastest variation.
+**Replay at First Multiplier** and **Speak Before Replay** both **off** — drill ends at the slowest (base) variation.
 
 Use preset **`Speed Racer … Flow Rate N`** or the **Overlearn** button in Advanced.
 

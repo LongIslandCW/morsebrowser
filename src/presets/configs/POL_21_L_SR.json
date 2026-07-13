@@ -177,8 +177,8 @@
 		},
 		{
 			"key": "speedRacerMultipliers",
-			"value": "1.0, 1.148, 1.296",
-			"comment": "Slow→fast: 27 → 31 → 35 WPM"
+			"value": "1.296, 1.148, 1.0",
+			"comment": "Fast→slow: 35 → 31 → 27 WPM"
 		},
 		{
 			"key": "speedRacerFinalPlay",
