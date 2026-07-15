@@ -1,12 +1,21 @@
 # Long Island CW Morse Practice Page Source Code Repository
 
-![logo](src/assets/CW-Club-logo-clear400-300x300.png)
+<!-- Logo swaps for GitHub light/dark theme (standard prefers-color-scheme) -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="src/assets/CW-Club-logo-dark-300x300.png">
+  <source media="(prefers-color-scheme: light)" srcset="src/assets/CW-Club-logo-clear400-300x300.png">
+  <img alt="Long Island CW Club logo" src="src/assets/CW-Club-logo-clear400-300x300.png" width="300" height="300">
+</picture>
 
 What is this?
 
 The **source code repository** for [Long Island CW Club's](https://longislandcwclub.org/) customized version of [SG Phillip's](https://morsecode.world/international/trainer/generator.html) (and by the way, please note that we've made a few tweaks to his [morse-pro js libraries](https://github.com/scp93ch/morse-pro)) It is available for use by anyone who wants to practice morse code and has many useful features, and also includes LICW's lessons that go along with some classes.
 
-**If you are were just looking for the application itself and just want to start using it, go here:** https://longislandcw.github.io/morsebrowser/index.html
+The app includes LICW lesson catalogs, settings presets, card-based practice, voice recap, optional noise/RSS experiments, audio download, dark mode, keyboard shortcuts, and accessibility support for screen-reader users.
+
+### Use the live app
+
+**If you just want to practice Morse, use the club site:** https://longislandcw.github.io/morsebrowser/index.html
 
 Or download https://longislandcw.github.io/morsebrowser/download/morse.zip and unzip somewhere on your device, then open index.html in your browser.
 
@@ -20,10 +29,49 @@ KN4YRM originally built it to be "ham tinkerer-friendly." This means it isn't bu
 Update 5/29/22: As the complexity of the feature set increased, it seemed prudent to begin a switch to typescript in order to take advantage of compile-time features that will hopefully prevent bugs and increase long term maintainability.
 
 It's suggested that if you want to help:
-- tinkering with look and feel: https://getbootstrap.com/  and look at src/index.html 
-- functionality: you'll need to know some javascript (update 5/29/22: and typescript) and especially https://knockoutjs.com/ and look at src/morse.js
+- tinkering with look and feel: https://getbootstrap.com/ and look at `src/template.html` and `src/css/`
+- functionality: you'll need to know some javascript (update 5/29/22: and typescript) and especially https://knockoutjs.com/ and look at `src/morse/morse.ts`
 - other genric tools of which you'll need some basic understing: node, npm, webpack, eslint, git (and github if you want to constribute)
 - KN4YRM used VSCode as his IDE for this project
 - Please create a feature branch off of develop, and submit a pull request to merge into develop if you have code to contribute.
 
-1.0.0
+## Local development
+
+```bash
+npm install
+npm run prebuild     # generate lesson/preset finders (gitignored; required before dev)
+npm run dev          # webpack dev server, http://localhost:3000
+npm run build        # prebuild + webpack + zip/checklessons
+npm test             # Vitest unit/integration tests (runs prebuild automatically)
+npm run test:e2e     # Playwright E2E tests, serves dist/
+npm run test:all     # unit + build + E2E
+```
+
+First-time Playwright setup:
+
+```bash
+npx playwright install chromium
+```
+
+After adding or removing files under `src/wordfiles/`, `src/presets/configs/`, or `src/presets/sets/`, run `npm run prebuild` or `npm run build` so the generated dynamic import maps match files on disk.
+
+## Documentation
+
+- [docs/README.md](docs/README.md) - documentation index
+- [docs/DEVELOPER_GUIDE.md](docs/DEVELOPER_GUIDE.md) - architecture, UI, build, tests, deployment
+- [docs/SPEED_RACER.md](docs/SPEED_RACER.md) - Speed Racer behavior, presets, and deep links
+- [tests/README.md](tests/README.md) - Vitest and Playwright guidance
+- [MAINTAINERS.md](MAINTAINERS.md) - maintainer checklist and source map
+
+## Code orientation
+
+- Main UI: `src/template.html`
+- App entry: `src/index.js`
+- Root view model: `src/morse/morse.ts`
+- Lesson picker: `src/morse/lessons/morseLessonPlugin.ts`
+- Settings models: `src/morse/settings/`
+- Playback/audio: `src/morse/player/`
+- Voice/TTS: `src/morse/voice/MorseVoice.ts`
+- Tests: `tests/` and `e2e/`
+
+2.0.0

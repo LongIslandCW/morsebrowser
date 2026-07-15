@@ -5,6 +5,8 @@ const CopyPlugin = require('copy-webpack-plugin')
 const ESLintPlugin = require('eslint-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
+const ghPagesPublicPath = process.env.GITHUB_PAGES === 'true' ? '/morsebrowser_dev/' : 'auto'
+
 module.exports = {
   mode: 'development',
   entry: {
@@ -14,16 +16,18 @@ module.exports = {
     filename: '[name][contenthash].js',
     path: path.resolve(__dirname, 'dist'),
     clean: true,
-    assetModuleFilename: '[name][ext]'
+    assetModuleFilename: '[name][ext]',
+    publicPath: ghPagesPublicPath
   },
   devServer: {
     static: {
       directory: path.resolve(__dirname, 'dist')
     },
     watchFiles: {
-      paths: ['dist/index.html', 'src/template.html'],
+      paths: ['src/template.html', 'src/css/**/*.css'],
       options: {
-        usePolling: false
+        usePolling: true,
+        interval: 1000
       }
     },
     port: 3000,
@@ -86,7 +90,7 @@ module.exports = {
       {
         test: /\.tsx?$/,
         use: 'ts-loader',
-        exclude: /node_modules/
+        exclude: [/node_modules/, /tests/, /e2e/, /vitest\.config\.ts/]
       },
       {
         test: /\.html$/, // All Knockout.js component HTML templates

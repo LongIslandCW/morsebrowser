@@ -1,0 +1,61 @@
+# Build, test, and deploy develop_kq4nkf to GitHub Pages (gh-pages branch).
+# GitHub's built-in pages-build-deployment publishes gh-pages automatically.
+# Cloudflare Workers Builds continues independently via wrangler.jsonc.
+#
+# Repo Settings → Pages → Source: Deploy from branch → gh-pages / (root)
+
+name: CI develop_kq4nkf
+
+on:
+  push:
+    branches: [develop_kq4nkf]
+  pull_request:
+    branches: [develop_kq4nkf]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v6.4.0
+        with:
+          node-version: 24.x
+
+      - run: npm ci
+
+      - name: Generate lesson and preset manifests
+        run: npm run prebuild
+
+      - run: npm run test
+
+      - run: npm run build --if-present
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - run: npm run test:e2e
+
+      - name: Build for GitHub Pages
+        run: |
+          npm run build --if-present
+          cp .nojekyll dist/.nojekyll
+        env:
+          GITHUB_PAGES: 'true'
+
+      - name: Deploy to GitHub Pages
+        if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true)
+        uses: JamesIves/github-pages-deploy-action@v4.8.0
+        with:
+          branch: gh-pages
+          folder: dist

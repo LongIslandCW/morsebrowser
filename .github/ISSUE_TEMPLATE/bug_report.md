@@ -1,38 +1,40 @@
 ---
 name: Bug report
-about: Create a report to help us improve
+about: Report something broken in Morse Practice Page
 title: ''
-labels: ''
+labels: bug
 assignees: ''
-
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+## What Happened
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+Describe the bug clearly.
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+## Steps To Reproduce
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+1. Open:
+2. Select lesson/preset or enter text:
+3. Change settings:
+4. Press/click:
+5. Result:
 
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
+## Expected Behavior
 
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
+What should have happened instead?
 
-**Additional context**
-Add any other context about the problem here.
+## Environment
+
+- URL or build: club site / `/dev/` / Workers preview / local `dist/` / other
+- Device:
+- OS:
+- Browser and version:
+- Audio output device, if relevant:
+- Screen reader or assistive tech, if relevant:
+
+## Screenshots Or Recording
+
+Attach screenshots, screen recordings, console errors, or audio examples when useful.
+
+## Additional Context
+
+Paste relevant Tom-style query strings, preset names, lesson names, or settings JSON if the issue depends on a specific setup.

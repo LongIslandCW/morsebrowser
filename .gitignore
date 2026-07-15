@@ -4,3 +4,17 @@ morse.zip
 dist
 morseLessonFinder.js
 morsePresetFinder.js
+.cursor
+test-results/
+playwright-report/
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
+.worktrees/
+.vercel
+.gstack/
+.understand-anything/

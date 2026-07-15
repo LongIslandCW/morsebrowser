@@ -138,6 +138,10 @@
             "filename": "POL_Random_Sen_1x_CVC_31.json"
         },
          {
+            "display": "SPEED RACING Flow Rate 1",
+            "filename": "POL_SR.json"
+        },  
+         {
             "display": "SUFFIXES Flow Rate 1",
             "filename": "POL_Random_3x_23.json"
         },  

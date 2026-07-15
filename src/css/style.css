@@ -25,31 +25,581 @@ section:last-of-type {
     padding-bottom: 2rem;
 }
 
+/* Page shell */
+.page-container {
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-width: 100%;
+}
+
+.page-header {
+    padding-bottom: 0.25rem;
+}
+
+.theme-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.site-logo {
+    width: min(200px, 42vw);
+    height: auto;
+    max-height: 200px;
+    cursor: pointer;
+}
+
+.page-title {
+    font-size: clamp(1.35rem, 4vw, 2rem);
+}
+
 #contributor-info {
-    display: block;
-    margin-bottom: .5rem;
-    font-size: calc(1.3rem + .6vw);
-    font-size: 1.75rem;
-    font-weight: 500;
-    line-height: 1.2;
+    margin-bottom: 0.75rem;
 }
 
-#credits-and-info>span {
-    display: block;
-    margin-top: 0;
-    margin-bottom: .5rem;
-    font-weight: 500;
-    font-size: 1rem;
-    line-height: 1.2;
-    box-sizing: border-box;
+/* Speed bar: WPM, FWPM, and volume in one connected group */
+.speed-settings-section .speed-input-group {
+    width: fit-content;
+    max-width: 100%;
+    flex-wrap: wrap;
+    align-items: stretch;
 }
 
-#credits-and-info>span#contributor-info, #credits-and-info>span.warning {
-    font-size: calc(1.3rem + .6vw);
+.speed-input-group > .speed-volume-segment {
+    flex: 0 0 auto;
+    width: auto;
+    flex-wrap: nowrap;
+}
+
+.speed-racer-sequence-preview {
+    max-width: 600px;
+    flex: 1 1 auto;
+    min-width: 0;
+    white-space: normal;
+}
+
+.speed-racer-multipliers-input {
+    max-width: 280px;
+    flex: 1 1 8rem;
+    min-width: 6rem;
+}
+
+.speed-racer-advanced-panel .settings-lesson-control-strip {
+    gap: 0.5rem;
+}
+
+.speed-racer-advanced-panel .settings-lesson-control > label.btn,
+.speed-racer-advanced-panel .settings-lesson-control > .btn {
+    width: 100%;
+}
+
+/* Action buttons (not btn-check toggles) should not keep pressed/focus fill */
+.speed-racer-advanced-panel .settings-lesson-control > button.btn:focus:not(:focus-visible) {
+    color: var(--bs-btn-color);
+    background-color: var(--bs-btn-bg);
+    border-color: var(--bs-btn-border-color);
+    box-shadow: none;
+}
+
+.morse-settings-num {
+    width: 4.5rem;
+    max-width: 100%;
+    min-width: 3.5rem;
+    flex: 0 0 auto;
+}
+
+.input-group .morse-settings-num {
+    flex: 0 0 auto;
+    width: 4.5rem;
+}
+
+.morse-settings-num--wide {
+    width: 5.5rem;
+    min-width: 4.5rem;
+    max-width: 100%;
+    flex: 0 0 auto;
+}
+
+.input-group .morse-settings-num--wide {
+    flex: 0 0 auto;
+    width: 5.5rem;
+}
+
+.morse-settings-text-interval {
+    width: 12rem;
+    max-width: 14rem;
+    min-width: 8rem;
+    flex: 1 1 8rem;
+}
+
+.morse-settings-text-short {
+    width: auto;
+    max-width: min(100%, 10rem);
+    min-width: 6rem;
+    flex: 0 1 auto;
+}
+
+/* Nested Morse settings inside LICW Lessons */
+.morse-settings-nested {
+    --bs-accordion-border-width: 0;
+    --bs-accordion-btn-padding-x: 0.75rem;
+    --bs-accordion-btn-padding-y: 0.5rem;
+}
+
+.morse-settings-nested > .accordion-item {
+    border: 1px solid var(--bs-border-color, #dee2e6);
+    border-radius: 0.375rem;
+    overflow: hidden;
+}
+
+.morse-settings-nested .accordion-button {
+    font-size: 0.95rem;
+    background-color: var(--bs-tertiary-bg, #f8f9fa);
+}
+
+.morse-settings-nested .accordion-button:not(.collapsed) {
+    background-color: var(--bs-primary-bg-subtle, #cfe2ff);
+}
+
+/* Collapsible settings groups (Lesson, Voice, Tone, Output) */
+.settings-group-accordion .accordion-button {
+    font-size: 0.95rem;
+}
+
+/* Collapsed: same header fill as LICW Lessons so accordion dividers match */
+.settings-group-accordion .accordion-button.collapsed {
+    background-color: var(--bs-accordion-btn-bg, var(--bs-body-bg, #fff));
+    color: var(--bs-accordion-btn-color, var(--bs-body-color, #212529));
+}
+
+.settings-group-accordion .accordion-button:not(.collapsed) {
+    background-color: var(--bs-accordion-active-bg, var(--bs-primary-bg-subtle, #cfe2ff));
+    color: var(--bs-accordion-active-color, var(--bs-primary-text-emphasis, #052c65));
+}
+
+.settings-group-panel {
+    min-width: 0;
+}
+
+.settings-inline-row {
+    width: 100%;
+}
+
+.settings-inline-row > .input-group {
+    flex-wrap: wrap;
+}
+
+.settings-btn-stack {
+    width: auto;
+    max-width: 100%;
+}
+
+/* Lesson options accordion layout */
+.settings-lesson-options-panel {
+    min-width: 0;
+}
+
+.settings-lesson-options-panel > .morse-settings-fieldset {
+    min-width: 0;
+}
+
+.settings-lesson-control-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: flex-start;
+}
+
+.settings-lesson-control {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-width: 0;
+    flex: 0 1 auto;
+}
+
+.settings-lesson-control > .btn {
+    width: 100%;
+    white-space: nowrap;
+}
+
+.settings-lesson-control > .input-group {
+    width: auto;
+    max-width: 100%;
+    min-width: 0;
+}
+
+.settings-lesson-options-panel .trail-settings-row {
+    width: 100%;
+}
+
+@media (max-width: 575.98px) {
+    .settings-lesson-control {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+
+    .settings-lesson-control > .input-group {
+        max-width: 100%;
+    }
+
+    .settings-lesson-control > .form-control.morse-settings-text-short {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .settings-inline-row .input-group {
+        flex-wrap: wrap;
+        min-width: 0;
+    }
+
+    .morse-settings-text-interval {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        flex: 1 1 100%;
+    }
+
+    .speed-interval-input-group > .input-group-text,
+    .speed-interval-input-group > .morse-settings-text-interval {
+        flex: 1 1 100%;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .speed-racer-input-group > .col-auto,
+    .speed-racer-input-group > .input-group-text,
+    .speed-racer-input-group > .btn {
+        flex: 1 1 100%;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .speed-racer-sequence-preview {
+        max-width: 100%;
+    }
+
+    #speedRacerAdvanced .input-group {
+        flex-wrap: wrap;
+    }
+
+    #speedRacerAdvanced .input-group > .input-group-text,
+    #speedRacerAdvanced .input-group > .form-control,
+    #speedRacerAdvanced .input-group > .input-group-text.small {
+        flex: 1 1 100%;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .speed-racer-advanced-panel .settings-lesson-control {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+
+    .speed-racer-multipliers-input {
+        max-width: 100%;
+        width: 100%;
+    }
+}
+
+.output-settings-actions .btn {
+    width: auto;
+    white-space: nowrap;
+}
+
+/* Help footer */
+.page-help-footer {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--bs-border-color, #dee2e6);
+    scroll-margin-top: 1rem;
+}
+
+.page-help-shortcuts-table {
+    width: 100%;
+    max-width: 36rem;
+}
+
+.page-help-shortcuts-intro {
+    margin-bottom: 0.75rem;
+    font-size: 0.9rem;
+    color: var(--bs-secondary-color, #6c757d);
+}
+
+.page-help-links {
+    font-size: clamp(0.8rem, 2.2vw, 1rem);
+}
+
+.page-help-contributors {
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+.page-help-link-list {
+    margin-bottom: 1rem;
+    padding-left: 1.25rem;
+}
+
+.page-help-link-list li {
+    margin-bottom: 0.35rem;
+    line-height: 1.4;
+}
+
+.page-help-version {
+    font-size: 0.875rem;
+    color: var(--bs-secondary-color, #6c757d);
+}
+
+.page-legal-notice {
+    margin-top: 1.25rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--bs-border-color, #dee2e6);
+    font-size: 0.8rem;
+    line-height: 1.45;
+    color: var(--bs-secondary-color, #6c757d);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Morse settings grid: row 1 = lesson / display / tone; row 2 = trail */
+.morse-settings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+    gap: 1rem;
+    align-items: stretch;
+}
+
+@media (min-width: 768px) {
+    .morse-settings-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+.morse-settings-cell-wide {
+    grid-column: 1 / -1;
+}
+
+.morse-settings-fieldset {
+    border: 1px solid var(--bs-border-color, #dee2e6);
+    border-radius: 0.375rem;
+    padding: 0.75rem 1rem 1rem;
+    margin: 0;
+    height: 100%;
+}
+
+.morse-settings-legend {
+    float: none;
+    width: auto;
+    padding: 0 0.25rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--bs-secondary-color, #6c757d);
+}
+
+.morse-settings-subfieldset {
+    border: 1px solid var(--bs-border-color-translucent, rgba(0, 0, 0, 0.1));
+    border-radius: 0.25rem;
+    padding: 0.5rem 0.75rem 0.75rem;
+    margin: 0;
+}
+
+.morse-settings-sublegend {
+    float: none;
+    width: auto;
+    padding: 0 0.25rem;
+    margin-bottom: 0.35rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--bs-secondary-color, #6c757d);
+}
+
+.trail-settings-row {
+    row-gap: 0.35rem;
+}
+
+/* LICW lessons picker */
+.lessons-picker-row {
+    --lesson-panel-height: min(290px, 40vh);
+}
+
+.lessons-picker-col {
+    min-width: 0;
+}
+
+.lessons-picker-label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.35rem;
+    font-size: 0.875rem;
+    color: var(--bs-secondary-color, #6c757d);
+}
+
+.lessons-picker-dropdown .dropdown-toggle {
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.35rem;
+    min-height: 2.375rem;
+}
+
+.lessons-picker-dropdown .dropdown-menu {
+    width: 100%;
+    max-height: var(--lesson-panel-height);
+    overflow-y: auto;
+}
+
+.lessons-picker-dropdown .dropdown-item.active,
+.lessons-picker-dropdown .dropdown-item:active {
+    background-color: var(--bs-primary);
+    color: #fff;
+}
+
+.lessons-preset-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    width: 100%;
+}
+
+.lessons-preset-actions > .btn {
+    flex: 1 1 0;
+    min-width: 0;
+    font-weight: 600;
+}
+
+.lessons-picker-row .lessons-picker-col {
+    flex: 1 1 9.5rem;
+}
+
+.lesson-selection-badge {
+    white-space: normal;
+    text-align: left;
+    line-height: 1.3;
+}
+
+/* Working text */
+.working-text-section {
+    min-width: 0;
+}
+
+.working-text-layout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.working-text-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding: 0.5rem 0.65rem;
+    border: 1px solid var(--bs-border-color, #dee2e6);
+    border-radius: var(--bs-border-radius, 0.375rem);
+    background-color: var(--bs-tertiary-bg, #f8f9fa);
+    font-size: 0.9rem;
+    flex: 0 0 auto;
+}
+
+.working-text-stat-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.working-text-stat-label {
+    font-weight: 600;
+    min-width: 2.75rem;
+}
+
+.working-text-stat-value {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    white-space: nowrap;
+}
+
+.custom-input-actions .settings-lesson-control > .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.custom-input-editor {
+    width: 100%;
+    margin-top: 0.65rem;
+}
+
+.custom-input-editor .working-text-area {
+    max-width: 100%;
+}
+
+.working-text-area {
+    width: 100%;
+    min-height: 4.5rem;
+    max-height: min(40vh, 18rem);
+    resize: vertical;
+    field-sizing: content;
+}
+
+/* Flagged cards: buttons + textarea; stack textarea on narrow viewports */
+.flagged-cards-input-group {
+    flex-wrap: wrap;
+    align-items: stretch;
+}
+
+.flagged-cards-input-group > .input-group-text {
+    flex: 0 0 auto;
+}
+
+.flagged-cards-input-group > textarea.form-control {
+    flex: 1 1 12rem;
+    min-width: 8rem;
+    min-height: 4.5rem;
+    resize: vertical;
+}
+
+@media (max-width: 575.98px) {
+    .flagged-cards-input-group > textarea.form-control {
+        flex: 1 1 100%;
+        width: 100%;
+        max-width: 100%;
+        min-height: 6rem;
+        margin-top: 0.35rem;
+        border-radius: var(--bs-border-radius, 0.375rem);
+    }
+}
+
+@media (max-width: 575.98px) {
+    .working-text-stats {
+        width: 100%;
+    }
+}
+
+/* Playback */
+.playback-controls {
+    scroll-margin-top: 1rem;
+}
+
+.playback-controls .btn,
+.playback-controls .btn-group {
+    flex: 0 1 auto;
+}
+
+/* Cards */
+section[aria-label="Cards"] .row {
+    --bs-gutter-x: 0.5rem;
+    --bs-gutter-y: 0.5rem;
 }
 
 #keyboard-shortcuts table thead tr {
-    background-color: #e7f1ff;
+    background-color: var(--bs-primary-bg-subtle, #e7f1ff);
 }
 
 #keyboard-shortcuts table th, #keyboard-shortcuts table td {
@@ -61,12 +611,32 @@ section:last-of-type {
     text-align: right;
 }
 
-@media (min-width: 1200px) {
-    #contributor-info {
-        font-size: 1.75rem;
+@media (max-width: 575.98px) {
+    .accordion-button {
+        font-size: 0.95rem;
+        padding: 0.65rem 0.85rem;
     }
 
-    #credits-and-info>span#contributor-info, #credits-and-info>span.warning {
-        font-size: 1.75rem;
+    .lesson-selection-badge {
+        display: block;
+        width: 100%;
+        margin-top: 0.35rem;
+    }
+
+    .morse-settings-num:not(.morse-settings-num--wide),
+    .input-group .morse-settings-num:not(.morse-settings-num--wide) {
+        width: 3.75rem;
+        min-width: 3rem;
+    }
+
+    .morse-settings-num.morse-settings-num--wide,
+    .input-group .morse-settings-num.morse-settings-num--wide {
+        width: min(5.5rem, 22vw);
+        min-width: min(4.5rem, 20vw);
+    }
+
+    .lessons-picker-dropdown .dropdown-toggle {
+        font-size: 0.9rem;
     }
 }
+

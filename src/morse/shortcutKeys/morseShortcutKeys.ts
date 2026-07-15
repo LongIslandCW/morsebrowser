@@ -63,12 +63,12 @@ export class MorseShortcutKeys {
   registerKeyboardShortcutHandlers = (mv:MorseViewModel) => {
     // Toggle play/pause
     this.registerShortcutKeyHandler('p', 'Play / Toggle pause', () => {
-      mv.togglePlayback()
+      mv.togglePlaybackFromShortcut()
     })
 
     // stop
     this.registerShortcutKeyHandler('s', 'Stop playback and rewind', () => {
-      mv.doPause(true, false, true)
+      mv.stopPlaybackFromShortcut()
     })
 
     // Back 1
@@ -90,26 +90,22 @@ export class MorseShortcutKeys {
     this.registerShortcutKeyHandler('f', 'Flag current card', () => {
       const index = mv.currentIndex()
       const word = mv.words()[index]
-      mv.flaggedWords.addFlaggedWord(word)
-      mv.accessibilityAnnouncement('Flagged')
+      mv.addFlaggedWord(word)
     })
 
     // Toggle reveal cards
     this.registerShortcutKeyHandler('c', 'Toggle card visibility', () => {
       mv.hideList(!mv.hideList())
-      mv.accessibilityAnnouncement(mv.hideList() ? 'Cards hidden' : 'Cards revealed')
     })
 
     // Toggle shuffle
     this.registerShortcutKeyHandler('/', 'Toggle shuffle', () => {
       mv.shuffleWords(false)
-      mv.accessibilityAnnouncement(mv.isShuffled() ? 'Shuffled' : 'Unshuffled')
     })
 
     // Toggle loop
     this.registerShortcutKeyHandler('l', 'Toggle looping', () => {
-      mv.loop(!mv.loop())
-      mv.accessibilityAnnouncement(mv.loop() ? 'Looping' : 'Not looping')
+      mv.toggleLoop()
     })
 
     const changeFarnsworth = (x) => {
@@ -121,7 +117,7 @@ export class MorseShortcutKeys {
 
       if (mv.settings.speed.syncWpm()) {
         mv.settings.speed.wpm(newWpm)
-        mv.accessibilityAnnouncement('' + mv.settings.speed.fwpm() + ' FWPM')
+        mv.announce(`Effective speed ${mv.settings.speed.fwpm()} words per minute`)
         return
       }
 
@@ -129,7 +125,7 @@ export class MorseShortcutKeys {
         mv.settings.speed.wpm(newWpm)
       }
       mv.settings.speed.fwpm(newFwpm)
-      mv.accessibilityAnnouncement('' + mv.settings.speed.fwpm() + ' FWPM')
+      mv.announce(`Effective speed ${mv.settings.speed.fwpm()} words per minute`)
     }
 
     // Reduce FWPM

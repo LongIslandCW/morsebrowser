@@ -18,9 +18,11 @@ export default class MorseSettingsHandler {
     savedInfos.push(new SavedSettingsInfo('syncWpm', morseViewModel.settings.speed.syncWpm()))
     savedInfos.push(new SavedSettingsInfo('hideList', morseViewModel.hideList()))
     savedInfos.push(new SavedSettingsInfo('showRaw', morseViewModel.showRaw()))
+    savedInfos.push(new SavedSettingsInfo('darkMode', morseViewModel.darkMode()))
     savedInfos.push(
       new SavedSettingsInfo('autoCloseLessonAccordian', morseViewModel.lessons.autoCloseLessonAccordion())
     )
+    savedInfos.push(new SavedSettingsInfo('ifCustomGroup', morseViewModel.lessons.ifCustomGroup()))
     savedInfos.push(new SavedSettingsInfo('customGroup', morseViewModel.lessons.customGroup()))
     savedInfos.push(new SavedSettingsInfo('showExpertSettings', morseViewModel.showExpertSettings()))
     savedInfos.push(new SavedSettingsInfo('voiceEnabled', morseViewModel.morseVoice.voiceEnabled()))
@@ -62,6 +64,21 @@ export default class MorseSettingsHandler {
     )
     savedInfos.push(
       new SavedSettingsInfo('intervalFwpmText', morseViewModel.settings.speed.intervalFwpmText())
+    )
+    savedInfos.push(
+      new SavedSettingsInfo('speedRacerEnabled', morseViewModel.settings.speed.speedRacerEnabled())
+    )
+    savedInfos.push(
+      new SavedSettingsInfo('speedRacerMultipliers', morseViewModel.settings.speed.speedRacerMultipliers())
+    )
+    savedInfos.push(
+      new SavedSettingsInfo('speedRacerFinalPlay', morseViewModel.settings.speed.speedRacerFinalPlay())
+    )
+    savedInfos.push(
+      new SavedSettingsInfo('speedRacerSpeakBeforeReplay', morseViewModel.settings.speed.speedRacerSpeakBeforeReplay())
+    )
+    savedInfos.push(
+      new SavedSettingsInfo('speedRacerKeepFwpm', morseViewModel.settings.speed.speedRacerKeepFwpm())
     )
     savedInfos.push(
       new SavedSettingsInfo('voiceBufferMaxLength', morseViewModel.morseVoice.voiceBufferMaxLength())
