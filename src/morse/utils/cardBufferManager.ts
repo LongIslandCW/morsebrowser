@@ -31,6 +31,15 @@ export class CardBufferManager {
   // 0-based index of the most recently shifted audible play. -1 before any
   // audible play has been emitted for the current card.
   _lastAudiblePlayIndex:number = -1
+  // Number of audible morse "words" that make up ONE repeat of the card. This
+  // is 1 for an ordinary single-word card, but > 1 when the card is a whole
+  // kept-together line/sentence (Keep Lines) containing several space-
+  // separated words. Every subpart within the same repeat must share the
+  // same Speed Racer step, so the raw count of audible plays consumed so far
+  // is divided down into a repeat-pass number.
+  _subpartsPerRepeat:number = 1
+  // Raw count of audible plays consumed so far for the current populate cycle.
+  _audiblePlayCount:number = 0
   constructor (getCurrentIndex:()=>number, getWords:()=>WordInfo[]) {
     this._getCurrentIndex = getCurrentIndex
     this._getWords = getWords
@@ -42,6 +51,14 @@ export class CardBufferManager {
     this._buffer = []
     const cardWord = new CardWord(this._getWords()[this._getCurrentIndex()].displayWord)
     this._buffer.push(cardWord)
+    // A kept-together line/sentence is a single card even though it contains
+    // several space-separated morse "words" — Speed Racer must step once per
+    // full pass through all of them, not once per word. Only count *audible*
+    // subparts: word files commonly have a trailing space before the line
+    // break, which parses into a genuinely empty trailing piece that never
+    // plays and so must not be counted, or the step index would never
+    // advance at the right rate.
+    this._subpartsPerRepeat = Math.max(1, cardWord.subparts.filter((sp) => sp.word && sp.word.length > 0).length)
     if (repeats > 0) {
       const audibleSubparts = cardWord.subparts.map((sp) => sp.word)
       cardWord.subparts = []
@@ -63,17 +80,29 @@ export class CardBufferManager {
       this._totalWordPlays = 1
     }
     this._lastAudiblePlayIndex = -1
+    this._audiblePlayCount = 0
   }
 
   hasMoreMorse = ():boolean => {
     return this._buffer.length !== 0 && this._buffer[0].subparts.length !== 0
   }
 
-  // Index of the most recently shifted audible play, plus the total audible-play
-  // count for the card. Used by Speed Racer to pick a per-repeat speed.
+  // Index of the most recently shifted audible play's repeat *pass* (all
+  // words of a multi-word card share the same pass number), the total
+  // audible-play (repeat) count for the card, and whether the just-shifted
+  // subpart was the first/last word of its pass. Used by Speed Racer to pick
+  // a per-repeat speed and to gate recap speech to pass boundaries.
   // Call this AFTER getNextMorse(), and only after an audible (non-empty) play.
-  getRepeatState = ():{ index:number, total:number } => {
-    return { index: this._lastAudiblePlayIndex, total: this._totalWordPlays }
+  getRepeatState = ():{ index:number, total:number, isFirstOfRepeat:boolean, isLastOfRepeat:boolean } => {
+    const posInRepeat = this._subpartsPerRepeat > 0
+      ? (this._audiblePlayCount - 1) % this._subpartsPerRepeat
+      : 0
+    return {
+      index: this._lastAudiblePlayIndex,
+      total: this._totalWordPlays,
+      isFirstOfRepeat: posInRepeat === 0,
+      isLastOfRepeat: posInRepeat === this._subpartsPerRepeat - 1
+    }
   }
 
   getNextMorse = (repeats:number = 0, additionalWordSpaces:number = 0):string => {
@@ -85,9 +114,13 @@ export class CardBufferManager {
     }
     const next = this._buffer[0].subparts.shift().word
     // Only the audible (non-empty) plays count toward the Speed Racer step
-    // index. Empty subparts are inter-repeat wordspace padding.
+    // index. Empty subparts are inter-repeat wordspace padding. Several
+    // consecutive audible plays make up one repeat pass when the card is a
+    // multi-word kept-together line, so the step index only advances once
+    // every _subpartsPerRepeat audible plays.
     if (next && next.length > 0) {
-      this._lastAudiblePlayIndex++
+      this._audiblePlayCount++
+      this._lastAudiblePlayIndex = Math.floor((this._audiblePlayCount - 1) / this._subpartsPerRepeat)
     }
     return next
   }
