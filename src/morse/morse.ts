@@ -894,8 +894,12 @@ export class MorseViewModel {
           if (!this.morseVoice.speakFirst() || this.playerPlaying()) {
             this.morseWordPlayer.play(config, (fromVoiceOrTrail) => {
               this.charsPlayed(this.charsPlayed() + config.word.replace(' ', '').length)
+              // A kept-together (Keep Lines) card can be several morse "words"
+              // long; only speak the recap once the whole pass has finished,
+              // not after every word inside it.
               const speakAfter = speakOn &&
                 audiblePlay &&
+                racerState.isLastOfRepeat &&
                 this.settings.speed.isRacerSpeakAfterLastVariation(playIndex)
               if (speakAfter) {
                 const padMs = this.settings.speed.getSpeedRacerPreSpeakPadMs()
@@ -917,8 +921,11 @@ export class MorseViewModel {
         }
 
         // Speed Racer: optional speak before first-multiplier replay, or speak after last variation.
+        // On a kept-together (Keep Lines) multi-word card, only speak once at
+        // the start of the replay pass, not before every word inside it.
         const shouldSpeakBeforeReplay = speakOn &&
           audiblePlay &&
+          racerState.isFirstOfRepeat &&
           this.settings.speed.isRacerSpeakBeforeFinalReplay(playIndex)
 
         if (shouldSpeakBeforeReplay) {

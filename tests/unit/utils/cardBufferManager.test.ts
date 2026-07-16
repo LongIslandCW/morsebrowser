@@ -51,3 +51,50 @@ describe('CardBufferManager Speed Racer repeat spacing', () => {
     expect(words).toEqual(['A', '', 'A', '', 'A'])
   })
 })
+
+describe('CardBufferManager Speed Racer with a kept-together (Keep Lines) multi-word card', () => {
+  it('gives every word of one pass the same Speed Racer step index', () => {
+    const mgr = createBufferManager('THE QUICK FOX')
+    const indices = shiftAudiblePlays(mgr, 5, 0)
+    // 3 words per pass, 5 passes: each pass's words share one index.
+    expect(indices).toEqual([0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4])
+  })
+
+  it('marks only the first and last word of each pass', () => {
+    const mgr = createBufferManager('THE QUICK FOX')
+    const flags:{first:boolean, last:boolean}[] = []
+    let next = mgr.getNextMorse(2, 0)
+    while (next !== undefined) {
+      if (next.length > 0) {
+        const state = mgr.getRepeatState()
+        flags.push({ first: state.isFirstOfRepeat, last: state.isLastOfRepeat })
+      }
+      if (!mgr.hasMoreMorse()) {
+        break
+      }
+      next = mgr.getNextMorse(2, 0)
+    }
+    expect(flags).toEqual([
+      { first: true, last: false },
+      { first: false, last: false },
+      { first: false, last: true },
+      { first: true, last: false },
+      { first: false, last: false },
+      { first: false, last: true }
+    ])
+  })
+
+  it('still advances once per pass when the card has a trailing empty piece', () => {
+    // Real word files commonly have a trailing space before an LF-only line
+    // break, which WordInfo parses into a genuinely empty trailing piece
+    // (e.g. "ITS BEEN A HEAT WAVE THIS LAST YEAR ") that never plays audibly
+    // and must not be counted toward the per-pass word count.
+    const mgr = createBufferManager('ITS BEEN A HEAT WAVE THIS LAST YEAR ')
+    const indices = shiftAudiblePlays(mgr, 3, 0)
+    expect(indices).toEqual([
+      0, 0, 0, 0, 0, 0, 0, 0,
+      1, 1, 1, 1, 1, 1, 1, 1,
+      2, 2, 2, 2, 2, 2, 2, 2
+    ])
+  })
+})
