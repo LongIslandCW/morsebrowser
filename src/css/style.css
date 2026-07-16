@@ -444,12 +444,22 @@ html {
     justify-content: space-between;
     gap: 0.35rem;
     min-height: 2.375rem;
+    height: auto;
+    white-space: normal;
 }
 
 .lessons-picker-dropdown .dropdown-menu {
     width: 100%;
     max-height: var(--lesson-panel-height);
     overflow-y: auto;
+}
+
+/* Bootstrap's .dropdown-item defaults to white-space: nowrap, which lets
+   longer preset names (e.g. "OverLearn Words Flow Rate 2 SR") overflow the
+   fixed-width picker instead of wrapping like the shorter names do. */
+.lessons-picker-dropdown .dropdown-item {
+    white-space: normal;
+    overflow-wrap: break-word;
 }
 
 .lessons-picker-dropdown .dropdown-item.active,
@@ -473,6 +483,17 @@ html {
 
 .lessons-picker-row .lessons-picker-col {
     flex: 1 1 9.5rem;
+}
+
+/* TYPE and CLASS only ever hold short words (e.g. "INSTRUCTOR",
+   "OVERLEARN") — give them a smaller share so LESSON and PRESETS, which
+   commonly hold much longer names, get the extra room instead. */
+.lessons-picker-row .lessons-picker-col--narrow {
+    flex: 0.5 1 6.5rem;
+}
+
+.lessons-picker-row .lessons-picker-col--wide {
+    flex: 2 1 13rem;
 }
 
 .lesson-selection-badge {
