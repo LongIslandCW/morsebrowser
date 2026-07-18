@@ -60,6 +60,7 @@ export function createLessonPluginForTest () {
     hideList: ko.observable(false),
     showRaw: ko.observable(false),
     darkMode: ko.observable(false),
+    autoCloseSettingsAccordions: ko.observable(true),
     showExpertSettings: ko.observable(false),
     numberOfRepeats: ko.observable(0),
     cardSpace: ko.observable(1),
