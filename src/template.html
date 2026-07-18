@@ -62,6 +62,10 @@
                                     data-bind="attr:{ src: darkMode() ? morseLoadImages().getSrc('sunImage') : morseLoadImages().getSrc('moonImage')}" />
                                 <span data-bind="text: darkMode() ? 'Light mode' : 'Dark mode'"></span>
                             </button>
+                            <button type="button" class="btn btn-outline-secondary btn-sm auto-close-toggle-btn"
+                                data-bind="click: () => autoCloseSettingsAccordions(!autoCloseSettingsAccordions()), attr: { 'aria-pressed': autoCloseSettingsAccordions(), title: autoCloseSettingsAccordions() ? 'Settings panels stay open when you press Play' : 'Settings panels close when you press Play' }">
+                                <span data-bind="text: autoCloseSettingsAccordions() ? 'Keep panels open' : 'Close on Play'"></span>
+                            </button>
                         </div>
                     </div>
                 </div>

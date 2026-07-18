@@ -11,6 +11,23 @@ test('play collapses open settings accordions on fresh start', async ({ page }) 
   await expect(page.locator('#lessonAccordianButton')).toHaveAttribute('aria-expanded', 'false')
 })
 
+test('play leaves settings accordions open when auto-close is off', async ({ page }) => {
+  await page.goto('/')
+  const lessonsPanel = page.locator('#accordianItemLessonControls')
+  await expect(lessonsPanel).toHaveClass(/show/)
+
+  const toggle = page.locator('.auto-close-toggle-btn')
+  await expect(toggle).toHaveAttribute('aria-pressed', 'true')
+  await toggle.click()
+  await expect(toggle).toHaveAttribute('aria-pressed', 'false')
+  await expect(toggle).toContainText('Close on Play')
+
+  await page.locator('#btnPlayButton').click()
+
+  await expect(lessonsPanel).toHaveClass(/show/)
+  await expect(page.locator('#lessonAccordianButton')).toHaveAttribute('aria-expanded', 'true')
+})
+
 test('play keeps playback controls in viewport on fresh start', async ({ page }) => {
   await page.goto('/')
   await page.locator('#accordianItemLessonControls').evaluate((el) => {

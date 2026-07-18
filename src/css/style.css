@@ -36,7 +36,8 @@ section:last-of-type {
     padding-bottom: 0.25rem;
 }
 
-.theme-toggle-btn {
+.theme-toggle-btn,
+.auto-close-toggle-btn {
     display: inline-flex;
     align-items: center;
     gap: 0.35rem;
