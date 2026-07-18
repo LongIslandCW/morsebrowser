@@ -30,6 +30,7 @@ Fork **GH Pages** uses legacy branch deploy (JamesIves → `gh-pages` / root), n
 - Upstream (LICW) PRs Roger opens manually target **`develop`**, not `main`.
 - When the user clicks **Speed Racer** on or toggles **Speak**, Voice Options accordion expands if it was closed (preset/lesson loads do not).
 - Do not bulk-delete files matching `* 2.*` without excluding legitimate names like `Fam_Words - 2.txt` (macOS duplicate cleanup).
+- **Anything we touch must be blind- and limited-sight friendly.** Prefer stable accessible names (`aria-label` / associated labels), correct `aria-pressed` / `aria-expanded` / `aria-selected` state, keyboard operability, and visible text that does not fight AT semantics (`aria-hidden` on decorative/action-only labels when a stable name carries meaning). For UI/copy/label changes, run `npx playwright test e2e/accessibility.spec.ts` (and axe checks already in that suite). Do not ship controls that only make sense visually.
 
 ## Learned Workspace Facts
 
