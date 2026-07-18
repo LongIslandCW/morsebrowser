@@ -42,6 +42,7 @@ function createMockMorseViewModel () {
     hideList: ko.observable(false),
     showRaw: ko.observable(false),
     darkMode: ko.observable(true),
+    autoCloseSettingsAccordions: ko.observable(true),
     showExpertSettings: ko.observable(false),
     numberOfRepeats: ko.observable(0),
     cardSpace: ko.observable(1),
@@ -67,9 +68,11 @@ describe('MorseSettingsHandler', () => {
   it('serializes darkMode, custom group, and shuffle intra-group', () => {
     const vm = createMockMorseViewModel()
     vm.shuffleIntraGroup(true)
+    vm.autoCloseSettingsAccordions(false)
     const settings = MorseSettingsHandler.getCurrentSerializedSettings(vm as never)
     const keys = settings.morseSettings.map((s) => s.key)
     expect(keys).toContain('darkMode')
+    expect(keys).toContain('autoCloseSettingsAccordions')
     expect(keys).toContain('ifCustomGroup')
     expect(keys).toContain('customGroup')
     expect(keys).toContain('shuffleIntraGroup')
@@ -80,6 +83,8 @@ describe('MorseSettingsHandler', () => {
     expect(keys).toContain('speedRacerKeepFwpm')
     const dark = settings.morseSettings.find((s) => s.key === 'darkMode')
     expect(dark?.value).toBe(true)
+    const autoClose = settings.morseSettings.find((s) => s.key === 'autoCloseSettingsAccordions')
+    expect(autoClose?.value).toBe(false)
     const shuffle = settings.morseSettings.find((s) => s.key === 'shuffleIntraGroup')
     expect(shuffle?.value).toBe(true)
     const speedRacer = settings.morseSettings.find((s) => s.key === 'speedRacerEnabled')

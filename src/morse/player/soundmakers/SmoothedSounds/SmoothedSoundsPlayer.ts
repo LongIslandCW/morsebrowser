@@ -209,26 +209,18 @@ export default class SmoothedSoundsPlayer implements ISoundMaker {
   forceStop = (pauseCallBack, killNoise) => {
     if (!this.ssContext) {
       pauseCallBack()
+      return
+    }
+    if (killNoise) {
+      this.stopNoise()
+    }
+    if (!this.sourceEnded) {
+      this.sourceEnded = true
+      // Neutralize the pending doPlay end timer so it does not fire pauseCallBack again.
+      this.sourceEndedCallBack = () => {}
+      this.ssContext.stopAndCloseContext(pauseCallBack)
     } else {
-      if (killNoise) {
-        this.stopNoise()
-      }
-      if (this.ssContext) {
-        if (!this.sourceEnded) {
-          this.sourceEndedCallBack = pauseCallBack
-          /* not sure why pauseCallBack is not passed for everything, but is
-          needed for tone tests */
-          if (!this.config.isToneTest) {
-            this.ssContext.stopAndCloseContext()
-          } else {
-            this.ssContext.stopAndCloseContext(pauseCallBack)
-          }
-        } else {
-          pauseCallBack()
-        }
-      } else {
-        pauseCallBack()
-      }
+      pauseCallBack()
     }
   }
 

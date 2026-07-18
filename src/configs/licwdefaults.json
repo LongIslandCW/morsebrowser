@@ -82,6 +82,11 @@
             "comment": "dark theme toggle"
         },
         {
+            "key": "autoCloseSettingsAccordions",
+            "value": true,
+            "comment": "collapse settings panels on fresh Play"
+        },
+        {
             "key": "autoCloseLessonAccordian",
             "value": false,
             "comment": ""

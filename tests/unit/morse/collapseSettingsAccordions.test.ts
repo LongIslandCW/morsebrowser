@@ -19,6 +19,12 @@ function scrollPlaybackIntoView () {
   document.querySelector('.playback-controls')?.scrollIntoView({ block: 'start', behavior: 'auto' })
 }
 
+function maybeCollapseSettingsAccordions (autoCloseSettingsAccordions: boolean) {
+  if (autoCloseSettingsAccordions) {
+    collapseSettingsAccordions()
+  }
+}
+
 describe('collapseSettingsAccordions', () => {
   beforeEach(() => {
     document.body.innerHTML = `
@@ -39,6 +45,19 @@ describe('collapseSettingsAccordions', () => {
       expect(btn.classList.contains('collapsed')).toBe(true)
       expect(btn.getAttribute('aria-expanded')).toBe('false')
     })
+  })
+
+  it('skips collapse when autoCloseSettingsAccordions is false', () => {
+    maybeCollapseSettingsAccordions(false)
+    expect(document.querySelector('#panel1')?.classList.contains('show')).toBe(true)
+    const button = document.querySelector('#accordionArea .accordion-button')
+    expect(button?.classList.contains('collapsed')).toBe(false)
+    expect(button?.getAttribute('aria-expanded')).toBe('true')
+  })
+
+  it('collapses when autoCloseSettingsAccordions is true', () => {
+    maybeCollapseSettingsAccordions(true)
+    expect(document.querySelector('#panel1')?.classList.contains('show')).toBe(false)
   })
 })
 

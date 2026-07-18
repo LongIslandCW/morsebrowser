@@ -57,17 +57,31 @@ export class SmoothedSoundsContext {
   }
 
   stopAndCloseContext = (afterCloseCallback = null) => {
-    if (this.oscillatorNode) {
-      this.oscillatorNode.stop()
-    }
     const doAfterClose = () => {
       if (afterCloseCallback) {
         afterCloseCallback()
       }
     }
-    if ((this.audioContext as AudioContext).close) {
-      (this.audioContext as AudioContext).close().then(() => {
-        this.contextClosed = true
+    const audioContext = this.audioContext as AudioContext
+    // Stop then Play (or double Stop) can call this again while close is in flight
+    // or already finished; AudioContext.close() throws if called twice.
+    if (this.contextClosed || !audioContext || audioContext.state === 'closed') {
+      this.contextClosed = true
+      doAfterClose()
+      return
+    }
+    if (this.oscillatorNode) {
+      try {
+        this.oscillatorNode.stop()
+      } catch {
+        // Oscillator may already be stopped after a prior forceStop.
+      }
+    }
+    if (typeof audioContext.close === 'function') {
+      this.contextClosed = true
+      audioContext.close().then(() => {
+        doAfterClose()
+      }).catch(() => {
         doAfterClose()
       })
     } else {
