@@ -16,7 +16,7 @@ test('play leaves settings accordions open when auto-close is off', async ({ pag
   const lessonsPanel = page.locator('#accordianItemLessonControls')
   await expect(lessonsPanel).toHaveClass(/show/)
 
-  const toggle = page.locator('.auto-close-toggle-btn')
+  const toggle = page.getByRole('button', { name: 'Auto-close settings panels' })
   await expect(toggle).toHaveAttribute('aria-pressed', 'true')
   await toggle.click()
   await expect(toggle).toHaveAttribute('aria-pressed', 'false')
