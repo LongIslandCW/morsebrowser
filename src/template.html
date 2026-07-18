@@ -62,6 +62,11 @@
                                     data-bind="attr:{ src: darkMode() ? morseLoadImages().getSrc('sunImage') : morseLoadImages().getSrc('moonImage')}" />
                                 <span data-bind="text: darkMode() ? 'Light mode' : 'Dark mode'"></span>
                             </button>
+                            <button type="button" class="btn btn-outline-secondary btn-sm auto-close-toggle-btn"
+                                aria-label="Auto-close settings panels"
+                                data-bind="click: () => autoCloseSettingsAccordions(!autoCloseSettingsAccordions()), attr: { 'aria-pressed': autoCloseSettingsAccordions() ? 'true' : 'false', title: autoCloseSettingsAccordions() ? 'Settings panels close when you press Play' : 'Settings panels stay open when you press Play' }">
+                                <span aria-hidden="true" data-bind="text: autoCloseSettingsAccordions() ? 'Keep panels open' : 'Close on Play'"></span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -150,14 +155,17 @@
                                         <span class="lessons-picker-label" id="lessonsPickerTypeLabel">TYPE</span>
                                         <div class="dropdown lessons-picker-dropdown">
                                             <button type="button" class="btn btn-outline-primary dropdown-toggle w-100"
+                                                id="lessonsPickerTypeToggle"
                                                 data-bs-toggle="dropdown" aria-expanded="false"
-                                                aria-labelledby="lessonsPickerTypeLabel"
-                                                data-bind="text: lessons.userTarget() || 'Select type'"></button>
+                                                aria-haspopup="listbox"
+                                                aria-labelledby="lessonsPickerTypeLabel lessonsPickerTypeValue">
+                                                <span id="lessonsPickerTypeValue" data-bind="text: lessons.userTarget() || 'Select type'"></span>
+                                            </button>
                                             <ul class="dropdown-menu w-100" role="listbox" aria-label="Curriculum kind"
                                                 data-bind="foreach: lessons.userTargets">
                                                 <li role="presentation">
                                                     <button type="button" role="option" class="dropdown-item"
-                                                        data-bind="text: $data, click: () => $root.lessons.changeUserTarget($data, 'click'), css: { active: $data === $root.lessons.userTarget() }"></button>
+                                                        data-bind="text: $data, click: () => $root.lessons.changeUserTarget($data, 'click'), css: { active: $data === $root.lessons.userTarget() }, attr: { 'aria-selected': $data === $root.lessons.userTarget() ? 'true' : 'false' }"></button>
                                                 </li>
                                             </ul>
                                         </div>
@@ -166,14 +174,18 @@
                                         <span class="lessons-picker-label" id="lessonsPickerClassLabel">CLASS</span>
                                         <div class="dropdown lessons-picker-dropdown">
                                             <button type="button" class="btn btn-outline-primary dropdown-toggle w-100"
+                                                id="lessonsPickerClassToggle"
                                                 data-bs-toggle="dropdown" aria-expanded="false"
-                                                aria-labelledby="lessonsPickerClassLabel"
-                                                data-bind="text: lessons.selectedClass() || 'Select class', enable: lessons.classes().length > 0"></button>
+                                                aria-haspopup="listbox"
+                                                aria-labelledby="lessonsPickerClassLabel lessonsPickerClassValue"
+                                                data-bind="enable: lessons.classes().length > 0">
+                                                <span id="lessonsPickerClassValue" data-bind="text: lessons.selectedClass() || 'Select class'"></span>
+                                            </button>
                                             <ul class="dropdown-menu w-100" role="listbox" aria-label="Class"
                                                 data-bind="foreach: lessons.classes">
                                                 <li role="presentation">
                                                     <button type="button" role="option" class="dropdown-item"
-                                                        data-bind="text: $data, click: () => $root.lessons.changeSelectedClass($data, 'click'), css: { active: $data === $root.lessons.selectedClass() }"></button>
+                                                        data-bind="text: $data, click: () => $root.lessons.changeSelectedClass($data, 'click'), css: { active: $data === $root.lessons.selectedClass() }, attr: { 'aria-selected': $data === $root.lessons.selectedClass() ? 'true' : 'false' }"></button>
                                                 </li>
                                             </ul>
                                         </div>
@@ -182,14 +194,18 @@
                                         <span class="lessons-picker-label" id="lessonsPickerContentLabel">CONTENT</span>
                                         <div class="dropdown lessons-picker-dropdown">
                                             <button type="button" class="btn btn-outline-primary dropdown-toggle w-100"
+                                                id="lessonsPickerContentToggle"
                                                 data-bs-toggle="dropdown" aria-expanded="false"
-                                                aria-labelledby="lessonsPickerContentLabel"
-                                                data-bind="text: lessons.letterGroup() || 'Select content', enable: lessons.letterGroups().length > 0"></button>
+                                                aria-haspopup="listbox"
+                                                aria-labelledby="lessonsPickerContentLabel lessonsPickerContentValue"
+                                                data-bind="enable: lessons.letterGroups().length > 0">
+                                                <span id="lessonsPickerContentValue" data-bind="text: lessons.letterGroup() || 'Select content'"></span>
+                                            </button>
                                             <ul class="dropdown-menu w-100" role="listbox" aria-label="Content"
                                                 data-bind="foreach: lessons.letterGroups">
                                                 <li role="presentation">
                                                     <button type="button" role="option" class="dropdown-item"
-                                                        data-bind="text: $data, click: () => $root.lessons.setLetterGroup($data, 'click'), css: { active: $data === $root.lessons.letterGroup() }"></button>
+                                                        data-bind="text: $data, click: () => $root.lessons.setLetterGroup($data, 'click'), css: { active: $data === $root.lessons.letterGroup() }, attr: { 'aria-selected': $data === $root.lessons.letterGroup() ? 'true' : 'false' }"></button>
                                                 </li>
                                             </ul>
                                         </div>
@@ -198,14 +214,18 @@
                                         <span class="lessons-picker-label" id="lessonsPickerLessonLabel">LESSON</span>
                                         <div class="dropdown lessons-picker-dropdown">
                                             <button type="button" class="btn btn-outline-primary dropdown-toggle w-100"
+                                                id="lessonsPickerLessonToggle"
                                                 data-bs-toggle="dropdown" aria-expanded="false"
-                                                aria-labelledby="lessonsPickerLessonLabel"
-                                                data-bind="text: lessons.selectedDisplay().display || 'Select lesson', enable: lessons.displays().length > 0 ? !lessons.displays()[0].isDummy : false"></button>
+                                                aria-haspopup="listbox"
+                                                aria-labelledby="lessonsPickerLessonLabel lessonsPickerLessonValue"
+                                                data-bind="enable: lessons.displays().length > 0 ? !lessons.displays()[0].isDummy : false">
+                                                <span id="lessonsPickerLessonValue" data-bind="text: lessons.selectedDisplay().display || 'Select lesson'"></span>
+                                            </button>
                                             <ul class="dropdown-menu w-100" role="listbox" aria-label="Lesson"
                                                 data-bind="foreach: lessons.displays">
                                                 <li role="presentation" data-bind="if: !$data.isDummy">
                                                     <button type="button" role="option" class="dropdown-item"
-                                                        data-bind="text: $data.display, click: () => $root.lessons.setDisplaySelected($data, false, 'click'), css: { active: $data.display === $root.lessons.selectedDisplay().display }"></button>
+                                                        data-bind="text: $data.display, click: () => $root.lessons.setDisplaySelected($data, false, 'click'), css: { active: $data.display === $root.lessons.selectedDisplay().display }, attr: { 'aria-selected': $data.display === $root.lessons.selectedDisplay().display ? 'true' : 'false' }"></button>
                                                 </li>
                                             </ul>
                                         </div>
@@ -214,14 +234,18 @@
                                         <span class="lessons-picker-label" id="lessonsPickerPresetsLabel">PRESETS</span>
                                         <div class="dropdown lessons-picker-dropdown">
                                             <button type="button" class="btn btn-outline-primary dropdown-toggle w-100"
+                                                id="lessonsPickerPresetsToggle"
                                                 data-bs-toggle="dropdown" aria-expanded="false"
-                                                aria-labelledby="lessonsPickerPresetsLabel"
-                                                data-bind="text: lessons.selectedSettingsPreset().display || 'Select preset', enable: allowSaveCookies && lessons.settingsPresets().length > 0"></button>
+                                                aria-haspopup="listbox"
+                                                aria-labelledby="lessonsPickerPresetsLabel lessonsPickerPresetsValue"
+                                                data-bind="enable: allowSaveCookies && lessons.settingsPresets().length > 0">
+                                                <span id="lessonsPickerPresetsValue" data-bind="text: lessons.selectedSettingsPreset().display || 'Select preset'"></span>
+                                            </button>
                                             <ul class="dropdown-menu w-100" role="listbox" aria-label="Settings preset"
                                                 data-bind="foreach: lessons.settingsPresets">
                                                 <li role="presentation">
                                                     <button type="button" role="option" id="btnLessonSettingsPresets" class="dropdown-item"
-                                                        data-bind="text: $data.display, enable: $root.allowSaveCookies, click: () => $root.lessons.setPresetSelected($data, false, 'click'), css: { active: $data.display === $root.lessons.selectedSettingsPreset().display }"></button>
+                                                        data-bind="text: $data.display, enable: $root.allowSaveCookies, click: () => $root.lessons.setPresetSelected($data, false, 'click'), css: { active: $data.display === $root.lessons.selectedSettingsPreset().display }, attr: { 'aria-selected': $data.display === $root.lessons.selectedSettingsPreset().display ? 'true' : 'false' }"></button>
                                                 </li>
                                             </ul>
                                         </div>

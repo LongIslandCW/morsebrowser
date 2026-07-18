@@ -20,9 +20,43 @@ test('initial page has accessible names for primary controls', async ({ page }) 
   await expect(page.getByLabel('Effective Speed (FWPM)', { exact: true })).toBeVisible()
   await expect(page.getByLabel('Volume', { exact: true })).toBeVisible()
   await expect(page.getByRole('button', { name: 'Sync WPM speed' })).toBeVisible()
+  const autoCloseToggle = page.getByRole('button', { name: 'Auto-close settings panels' })
+  await expect(autoCloseToggle).toBeVisible()
+  await expect(autoCloseToggle).toHaveAttribute('aria-pressed', 'true')
   await expect(page.getByLabel('Reveal card text')).toBeVisible()
   await expect(page.locator('[role="status"][aria-live="polite"]')).toBeAttached()
   await expect(page.locator('[aria-live]')).toHaveCount(1)
+
+  const typeToggle = page.locator('#lessonsPickerTypeToggle')
+  await expect(typeToggle).toHaveAccessibleName(/TYPE.*STUDENT/i)
+  await expect(typeToggle).toHaveAttribute('aria-haspopup', 'listbox')
+
+  await expectNoAxeViolations(page)
+})
+
+test('lesson type picker exposes selected option to screen readers', async ({ page }) => {
+  await page.goto('/')
+
+  const typeToggle = page.locator('#lessonsPickerTypeToggle')
+  await expect(typeToggle).toHaveAccessibleName(/TYPE.*STUDENT/i)
+
+  await typeToggle.click()
+  await expect(typeToggle).toHaveAttribute('aria-expanded', 'true')
+
+  const curriculumList = page.getByRole('listbox', { name: 'Curriculum kind' })
+  const selected = curriculumList.getByRole('option', { selected: true })
+  await expect(selected).toHaveText('STUDENT')
+  await expect(selected).toHaveAttribute('aria-selected', 'true')
+
+  const instructor = curriculumList.getByRole('option', { name: 'INSTRUCTOR' })
+  await expect(instructor).toHaveAttribute('aria-selected', 'false')
+  await instructor.click()
+
+  await expect(typeToggle).toHaveAccessibleName(/TYPE.*INSTRUCTOR/i)
+  await expect(typeToggle).toBeFocused()
+
+  await typeToggle.click()
+  await expect(curriculumList.getByRole('option', { selected: true })).toHaveText('INSTRUCTOR')
 
   await expectNoAxeViolations(page)
 })

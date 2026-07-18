@@ -20,6 +20,9 @@ export default class MorseSettingsHandler {
     savedInfos.push(new SavedSettingsInfo('showRaw', morseViewModel.showRaw()))
     savedInfos.push(new SavedSettingsInfo('darkMode', morseViewModel.darkMode()))
     savedInfos.push(
+      new SavedSettingsInfo('autoCloseSettingsAccordions', morseViewModel.autoCloseSettingsAccordions())
+    )
+    savedInfos.push(
       new SavedSettingsInfo('autoCloseLessonAccordian', morseViewModel.lessons.autoCloseLessonAccordion())
     )
     savedInfos.push(new SavedSettingsInfo('ifCustomGroup', morseViewModel.lessons.ifCustomGroup()))

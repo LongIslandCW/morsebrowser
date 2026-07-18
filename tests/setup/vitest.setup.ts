@@ -12,6 +12,7 @@ beforeEach(() => {
     document.body.innerHTML = ''
   }
   Cookies.remove('darkMode')
+  Cookies.remove('autoCloseSettingsAccordions')
   vi.stubGlobal('location', {
     href: 'http://localhost/',
     search: '',

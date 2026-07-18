@@ -27,6 +27,42 @@ export class MorsePresetSetFileFinder {
       case 'POL.json':
         import('../presets/sets/POL.json').then(({ default: x }) => afterFound({ found: true, data: x }))
         break
+      case 'SR_12_SPELL.json':
+        import('../presets/sets/SR_12_SPELL.json').then(({ default: x }) => afterFound({ found: true, data: x }))
+        break
+      case 'SR_12_WORDS.json':
+        import('../presets/sets/SR_12_WORDS.json').then(({ default: x }) => afterFound({ found: true, data: x }))
+        break
+      case 'SR_16_SPELL.json':
+        import('../presets/sets/SR_16_SPELL.json').then(({ default: x }) => afterFound({ found: true, data: x }))
+        break
+      case 'SR_16_WORDS.json':
+        import('../presets/sets/SR_16_WORDS.json').then(({ default: x }) => afterFound({ found: true, data: x }))
+        break
+      case 'SR_20_SPELL.json':
+        import('../presets/sets/SR_20_SPELL.json').then(({ default: x }) => afterFound({ found: true, data: x }))
+        break
+      case 'SR_20_WORDS.json':
+        import('../presets/sets/SR_20_WORDS.json').then(({ default: x }) => afterFound({ found: true, data: x }))
+        break
+      case 'SR_25_SPELL.json':
+        import('../presets/sets/SR_25_SPELL.json').then(({ default: x }) => afterFound({ found: true, data: x }))
+        break
+      case 'SR_25_WORDS.json':
+        import('../presets/sets/SR_25_WORDS.json').then(({ default: x }) => afterFound({ found: true, data: x }))
+        break
+      case 'SR_30_SPELL.json':
+        import('../presets/sets/SR_30_SPELL.json').then(({ default: x }) => afterFound({ found: true, data: x }))
+        break
+      case 'SR_30_WORDS.json':
+        import('../presets/sets/SR_30_WORDS.json').then(({ default: x }) => afterFound({ found: true, data: x }))
+        break
+      case 'SR_35_SPELL.json':
+        import('../presets/sets/SR_35_SPELL.json').then(({ default: x }) => afterFound({ found: true, data: x }))
+        break
+      case 'SR_35_WORDS.json':
+        import('../presets/sets/SR_35_WORDS.json').then(({ default: x }) => afterFound({ found: true, data: x }))
+        break
       case 'TTR+.json':
         import('../presets/sets/TTR+.json').then(({ default: x }) => afterFound({ found: true, data: x }))
         break

@@ -537,6 +537,12 @@ export default class MorseLessonPlugin implements ICookieHandler {
     }
   }
 
+  focusLessonPickerToggle = (toggleId: string) => {
+    window.setTimeout(() => {
+      document.getElementById(toggleId)?.focus({ preventScroll: true })
+    }, 0)
+  }
+
   changeUserTarget = (userTarget, fromClick = "") => {
     if (this.userTargetInitialized) {
       this.userTarget(userTarget)
@@ -545,6 +551,7 @@ export default class MorseLessonPlugin implements ICookieHandler {
       this.setPresetSelected(this.selectedSettingsPreset(), true)
       if (fromClick === 'click') {
         this.morseViewModel.announce?.(`Type selected: ${userTarget}`)
+        this.focusLessonPickerToggle('lessonsPickerTypeToggle')
       }
     }
   }
@@ -566,6 +573,7 @@ export default class MorseLessonPlugin implements ICookieHandler {
       this.upsertQueryStringVariable('selectedClass', selectedClass)
       if (fromClick === 'click') {
         this.morseViewModel.announce?.(`Class selected: ${selectedClass}`)
+        this.focusLessonPickerToggle('lessonsPickerClassToggle')
       }
     }
   }
@@ -587,15 +595,24 @@ export default class MorseLessonPlugin implements ICookieHandler {
       this.upsertQueryStringVariable('selectedGroup', letterGroup)
       if (fromClick === 'click') {
         this.morseViewModel.announce?.(`Content selected: ${letterGroup}`)
+        this.focusLessonPickerToggle('lessonsPickerContentToggle')
       }
     }
   }
 
+  /** Collapse LICW Lessons without focusing the accordion header (avoids SR focus jumps). */
   closeLessonAccordianIfAutoClosing = () => {
-    if (this.autoCloseLessonAccordion()) {
-      const elem = document.getElementById('lessonAccordianButton')
-      elem.click()
+    if (!this.autoCloseLessonAccordion()) {
+      return
     }
+    const panel = document.getElementById('accordianItemLessonControls')
+    const button = document.getElementById('lessonAccordianButton')
+    if (!panel?.classList.contains('show')) {
+      return
+    }
+    panel.classList.remove('show')
+    button?.classList.add('collapsed')
+    button?.setAttribute('aria-expanded', 'false')
   }
 
   setDisplaySelected = (display, skipPresets = false, fromClick="") => {
@@ -619,6 +636,7 @@ export default class MorseLessonPlugin implements ICookieHandler {
         }
         if (fromClick === 'click') {
           this.morseViewModel.announce?.(`Lesson selected: ${display.display}`)
+          this.focusLessonPickerToggle('lessonsPickerLessonToggle')
         }
       }
     }
@@ -646,6 +664,7 @@ export default class MorseLessonPlugin implements ICookieHandler {
       this.selectedSettingsPreset(preset)
       if (fromClick === 'click') {
         this.morseViewModel.announce?.(`Preset selected: ${preset.display}`)
+        this.focusLessonPickerToggle('lessonsPickerPresetsToggle')
       }
       const settingsInfo = new SettingsChangeInfo(this.morseViewModel)
       settingsInfo.ifLoadSettings = true

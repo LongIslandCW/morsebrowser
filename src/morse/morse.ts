@@ -70,6 +70,7 @@ export class MorseViewModel {
   showingText:ko.Observable<string> = ko.observable('')
   showRaw:ko.Observable<boolean> = ko.observable(true)
   darkMode:ko.Observable<boolean> = ko.observable(false)
+  autoCloseSettingsAccordions:ko.Observable<boolean> = ko.observable(true)
   volume:ko.Observable<number> = ko.observable(0)
   noiseHidden:ko.Observable<boolean> = ko.observable(true)
   noiseEnabled:ko.Observable<boolean> = ko.observable(false)
@@ -796,7 +797,9 @@ export class MorseViewModel {
     const wasPaused = this.isPaused()
     const freshStart = fromPlayButton && !wasPlayerPlaying
     if (freshStart) {
-      this.collapseSettingsAccordions()
+      if (this.autoCloseSettingsAccordions()) {
+        this.collapseSettingsAccordions()
+      }
       this.scrollPlaybackIntoView()
     }
     if (!this.lastPlayFullStart || (this.lastFullPlayTime() > this.lastPlayFullStart)) {

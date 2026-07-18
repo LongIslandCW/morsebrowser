@@ -144,6 +144,7 @@ Guidelines:
 - Do not put timers or rapidly changing counts in live regions.
 - Use `aria-describedby` for helpful hidden context.
 - Give component controls meaningful names, especially experimental RSS and Noise controls.
+- Custom listbox/dropdown pickers (LICW Lessons TYPE/CLASS/CONTENT/LESSON/PRESETS) must expose **label + current value** on the toggle (`aria-labelledby` spanning both IDs) and **`aria-selected`** on each `role="option"`. Do not name the toggle from the field label alone.
 - Update `e2e/accessibility.spec.ts` when changing labels, descriptions, or live-region behavior.
 
 ## Lessons And Presets
