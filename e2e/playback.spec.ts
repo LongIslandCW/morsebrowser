@@ -77,3 +77,28 @@ test('play pause stop shortcuts move focus to the matching playback control', as
   await page.keyboard.press('s')
   await expect(page.locator('#btnStop')).toBeFocused()
 })
+
+test('stop then play does not throw closed AudioContext with keep panels open', async ({ page }) => {
+  const pageErrors: string[] = []
+  page.on('pageerror', (err) => {
+    pageErrors.push(err.message)
+  })
+  page.on('console', (msg) => {
+    if (msg.type() === 'error') {
+      pageErrors.push(msg.text())
+    }
+  })
+
+  await page.goto('/')
+  await page.getByRole('button', { name: 'Auto-close settings panels' }).click()
+  const status = page.getByRole('status', { name: 'Latest status announcement' })
+
+  await page.locator('#btnPlayButton').click()
+  await expect(status).toContainText(/Playing/i)
+  await page.locator('#btnStop').click()
+  await expect(status).toContainText(/Stopped/i)
+  await page.locator('#btnPlayButton').click()
+  await expect(status).toContainText(/Playing/i)
+
+  expect(pageErrors.filter((m) => /AudioContext/i.test(m))).toEqual([])
+})
