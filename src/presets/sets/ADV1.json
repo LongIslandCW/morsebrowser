@@ -41,6 +41,14 @@
             "filename": "ADV1_Rec_Words.json"
         },
         {
+            "display": "Speed Racing - Spell",
+            "filename": "SR_25_SPELL.json"
+        },
+        {
+            "display": "Speed Racing - Words",
+            "filename": "SR_25_WORDS.json"
+        },
+        {
             "display": "TTR",
             "filename": "ADVICR.json"
         }

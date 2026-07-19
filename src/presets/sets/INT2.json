@@ -53,6 +53,14 @@
             "filename": "INT2_SENDING.json"
         },
         {
+            "display": "Speed Racing - Spell",
+            "filename": "SR_16_SPELL.json"
+        },
+        {
+            "display": "Speed Racing - Words",
+            "filename": "SR_16_WORDS.json"
+        },        
+        {
             "display": "TTR",
             "filename": "INT2_ICR.json"
         }
