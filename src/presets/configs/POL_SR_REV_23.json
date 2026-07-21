@@ -37,7 +37,7 @@
 		},
 		{
 			"key": "hideList",
-			"value": true,
+			"value": false,
 			"comment": null
 		},
 		{
@@ -127,7 +127,7 @@
 		},
 		{
 			"key": "keepLines",
-			"value": false,
+			"value": true,
 			"comment": null
 		},
 		{
@@ -212,7 +212,7 @@
 		},
 		{
 			"key": "isShuffledSet",
-			"value": true,
+			"value": false,
 			"comment": null
 		},
 		{
