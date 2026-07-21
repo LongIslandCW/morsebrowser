@@ -927,6 +927,7 @@
 
         
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "CHARACTERS","newlineChunking": true,"display": "ALPHABET","fileName": "POL_Letters.txt"},
+        {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "CHARACTERS","newlineChunking": true,"display": "ALPHABET MIX","fileName": "POL_Letters_Mix.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "CHARACTERS","newlineChunking": true,"display": "NUMBERS","fileName": "POL_Numbers.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "BINOMIALS","newlineChunking": false,"display": "BINOMIALS PART 1","fileName": "POL_Bi_Pt1.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "BINOMIALS","newlineChunking": false,"display": "BINOMIALS PART 2","fileName": "POL_Bi_Pt2.txt"},  
