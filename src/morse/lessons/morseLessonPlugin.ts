@@ -346,6 +346,89 @@ export default class MorseLessonPlugin implements ICookieHandler {
     }
   }
 
+  // Computes per-card timing overhead that getTimeEstimate (morse audio only)
+  // doesn't capture: repeats, voice readback, card-wait, trail-reveal, and the
+  // silent inter-repeat wordspaces. Used by both random-word generation and the
+  // .txt lesson path so Override Time matches real playback time.
+  getOverrideTimingModel = (avgWordCharLen:number = 1) => {
+    const vm:any = this.morseViewModel
+    const num = (v:any, d:number = 0) => {
+      const n = parseFloat(v)
+      return isFinite(n) ? n : d
+    }
+    const repeatsSetting = num(vm.numberOfRepeats && vm.numberOfRepeats(), 0)
+    const playMultiplier = repeatsSetting === 0 ? 1 : repeatsSetting + 1
+    const cardSpaceSec = num(vm.cardSpace && vm.cardSpace(), 0)
+    // Voice auto-plays per card only if voiceEnabled AND (speakFirst OR !manualVoice).
+    // When manualVoice (a.k.a. voiceRecap) is on and speakFirst is off, voice waits
+    // for user trigger and adds no overhead to playback.
+    const mv = vm.morseVoice
+    const voiceEnabled = !!(mv && mv.voiceEnabled && mv.voiceEnabled())
+    const speakFirst = voiceEnabled && !!(mv.speakFirst && mv.speakFirst())
+    const manualVoice = voiceEnabled && !!(mv.manualVoice && mv.manualVoice())
+    const voiceAutoPlays = voiceEnabled && (speakFirst || !manualVoice)
+    const thinkingTime = voiceAutoPlays ? num(mv.voiceThinkingTime(), 0) : 0
+    const afterThinkingTime = voiceAutoPlays ? num(mv.voiceAfterThinkingTime(), 0) : 0
+    const voiceRate = voiceAutoPlays ? Math.max(num(mv.voiceRate(), 1), 0.1) : 1
+    const voiceSpelling = voiceAutoPlays && !!mv.voiceSpelling()
+    // Rough TTS estimate: ~0.5s per spelled character, ~0.5s per spoken word.
+    const ttsSecPerCard = voiceAutoPlays
+      ? (voiceSpelling ? 0.5 * Math.max(avgWordCharLen, 1) : 0.5) / voiceRate
+      : 0
+    const voiceOverheadPerCard = voiceAutoPlays ? (thinkingTime + ttsSecPerCard + afterThinkingTime) : 0
+    const trailReveal = !!(vm.trailReveal && vm.trailReveal())
+    const trailOverheadPerCard = trailReveal
+      ? num(vm.trailPreDelay && vm.trailPreDelay(), 0) + num(vm.trailPostDelay && vm.trailPostDelay(), 0)
+      : 0
+    // Inter-repeat silent wordspaces (speakFirstAdditionalWordspaces) — only when
+    // repeats > 0; populateBuffer multiplies them by playMultiplier.
+    const wpm = num(vm.settings && vm.settings.speed && vm.settings.speed.wpm && vm.settings.speed.wpm(), 14)
+    const fwpm = num(vm.settings && vm.settings.speed && vm.settings.speed.fwpm && vm.settings.speed.fwpm(), wpm)
+    const ditSec = 60 / (50 * Math.max(wpm, 1))
+    const fwUnitSec = Math.max(ditSec, ((60 / Math.max(fwpm, 1)) - 31 * ditSec) / 19)
+    const xtraDits = num(vm.xtraWordSpaceDits && vm.xtraWordSpaceDits(), 0)
+    const wordspaceSec = (7 + xtraDits) * fwUnitSec
+    const additionalWordSpaces = voiceEnabled && mv.speakFirstAdditionalWordspaces
+      ? num(mv.speakFirstAdditionalWordspaces(), 0)
+      : 0
+    const interRepeatSilenceSec = playMultiplier > 1
+      ? additionalWordSpaces * playMultiplier * wordspaceSec
+      : 0
+    const perCardOverhead = cardSpaceSec + voiceOverheadPerCard + trailOverheadPerCard + interRepeatSilenceSec
+    return { playMultiplier, perCardOverhead }
+  }
+
+  // Honor Override Time for fixed-text (.txt) lessons by truncating the text
+  // (or looping + truncating) so estimated real playback ≈ overrideMins.
+  applyOverrideTimeToText = (text:string):string => {
+    if (!this.ifOverrideTime()) {
+      return text
+    }
+    const controlTime = this.overrideMins() * 60
+    if (controlTime <= 0) {
+      return text
+    }
+    const lines = text.split('\n').map(l => l.trim()).filter(l => l.length > 0)
+    if (lines.length === 0) {
+      return text
+    }
+    const avgLen = lines.reduce((a, l) => a + l.replace(/\s+/g, '').length, 0) / lines.length
+    const { playMultiplier, perCardOverhead } = this.getOverrideTimingModel(avgLen)
+    let out = ''
+    let seconds = 0
+    let i = 0
+    do {
+      const next = lines[i % lines.length]
+      out = out ? out + '\n' + next : next
+      const est = this.getTimeEstimate(out.replace(/\n/g, ' '))
+      const morseSeconds = est.timeCalcs.totalTime / 1000
+      const wordCount = i + 1
+      seconds = morseSeconds * playMultiplier + wordCount * perCardOverhead
+      i++
+    } while (seconds < controlTime && i < 10000)
+    return out
+  }
+
   randomWordList = (data, ifCustom) => {
     let str = ''
     const splitWithProsignsAndStcikys = (s) => {
@@ -366,6 +449,9 @@ export default class MorseLessonPlugin implements ICookieHandler {
     const controlTime = (this.ifOverrideTime() || ifCustom) ? (this.overrideMins() * 60) : data.practiceSeconds
     const minWordSize = (this.ifOverrideMinMax() || ifCustom) ? this.overrideMin() : data.minWordSize
     const maxWordSize = (this.ifOverrideMinMax() || ifCustom) ? this.overrideMax() : data.maxWordSize
+
+    const avgWordLen = (parseFloat(minWordSize as any) + parseFloat(maxWordSize as any)) / 2 || 1
+    const { playMultiplier, perCardOverhead } = this.getOverrideTimingModel(avgWordLen)
     // Fn to generate random number min/max inclusive
     // https://www.geeksforgeeks.org/how-to-generate-random-number-in-given-range-using-javascript/
     const randomNumber = (min, max) => {
@@ -422,7 +508,9 @@ export default class MorseLessonPlugin implements ICookieHandler {
       str += seconds > 0 ? (' ' + word.toUpperCase()) : word.toUpperCase()
 
       const est = this.getTimeEstimate(str)
-      seconds = est.timeCalcs.totalTime / 1000
+      const morseSeconds = est.timeCalcs.totalTime / 1000
+      const wordCount = str.split(/\s+/).filter(w => w.length > 0).length
+      seconds = morseSeconds * playMultiplier + wordCount * perCardOverhead
     } while (seconds < controlTime)
 
     this.setText(str)
@@ -435,7 +523,7 @@ export default class MorseLessonPlugin implements ICookieHandler {
       const afterFound = (result) => {
         if (result.found) {
           if (isText) {
-            this.setText(result.data)
+            this.setText(this.applyOverrideTimeToText(result.data))
           } else {
             this.randomWordList(result.data, false)
           }
