@@ -6,6 +6,7 @@ Developer and maintainer documentation for the LICW Morse Practice Page source t
 |----------|-----|
 | [DEVELOPER_GUIDE.md](./DEVELOPER_GUIDE.md) | Architecture, UI layout, build flow, lessons/presets, playback, deployment, tests |
 | [SPEED_RACER.md](./SPEED_RACER.md) | Speed Racer UI, playback behavior, preset keys, Tom-style deep links |
+| [OVERLEARN_RICH_LINKS.md](./OVERLEARN_RICH_LINKS.md) | Tom’s OverLearn exercise deep links (also [HTML](./overlearn-rich-links.html)) |
 | [../tests/README.md](../tests/README.md) | Vitest, Playwright, accessibility E2E, CI notes |
 | [../MAINTAINERS.md](../MAINTAINERS.md) | Maintainer checklist and source map |
 | [../AGENTS.md](../AGENTS.md) | Fork-specific agent notes and Roger's workflow preferences |

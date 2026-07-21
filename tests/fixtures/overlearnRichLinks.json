@@ -1,0 +1,502 @@
+[
+  {
+    "label": "Alphabet (23 WPM)",
+    "section": "Level INT1 & 2 Exercises",
+    "group": "CHARACTERS",
+    "lesson": "ALPHABET",
+    "preset": "CHARACTERS 23wpm",
+    "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=CHARACTERS&selectedLesson=ALPHABET&selectedPreset=CHARACTERS%2023wpm",
+    "ok": true,
+    "notes": ""
+  },
+  {
+    "label": "Alphabet (27 WPM)",
+    "section": "Level INT1 & 2 Exercises",
+    "group": "CHARACTERS",
+    "lesson": "ALPHABET",
+    "preset": "CHARACTERS 27wpm",
+    "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=CHARACTERS&selectedLesson=ALPHABET&selectedPreset=CHARACTERS%2027wpm",
+    "ok": true,
+    "notes": ""
+  },
+  {
+    "label": "Alphabet (31 WPM)",
+    "section": "Level INT1 & 2 Exercises",
+    "group": "CHARACTERS",
+    "lesson": "ALPHABET",
+    "preset": "CHARACTERS 31wpm",
+    "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=CHARACTERS&selectedLesson=ALPHABET&selectedPreset=CHARACTERS%2031wpm",
+    "ok": true,
+    "notes": ""
+  },
+  {
+    "label": "Alphabet Mix #1 (23-27-31 WPM)",
+    "section": "Level INT1 & 2 Exercises",
+    "group": "CHARACTERS",
+    "lesson": "ALPHABET MIX",
+    "preset": "SPEED RACING - REVERSED 23wpm",
+    "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=CHARACTERS&selectedLesson=ALPHABET%20MIX&selectedPreset=SPEED%20RACING%20-%20REVERSED%2023wpm",
+    "ok": true,
+    "notes": "Speed Racer ascending"
+  },
+  {
+    "label": "Alphabet Mix #2 (23-27-23 WPM)",
+    "section": "Level INT1 & 2 Exercises",
+    "group": "CHARACTERS",
+    "lesson": "ALPHABET MIX",
+    "preset": "SPEED RACING PEAK 23wpm",
+    "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=CHARACTERS&selectedLesson=ALPHABET%20MIX&selectedPreset=SPEED%20RACING%20PEAK%2023wpm",
+    "ok": true,
+    "notes": "Speed Racer peak (new preset)"
+  },
+  {
+    "label": "Numbers (23 WPM)",
+    "section": "Level INT1 & 2 Exercises",
+    "group": "CHARACTERS",
+    "lesson": "NUMBERS",
+    "preset": "CHARACTERS 23wpm",
+    "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=CHARACTERS&selectedLesson=NUMBERS&selectedPreset=CHARACTERS%2023wpm",
+    "ok": true,
+    "notes": ""
+  },
+  {
+    "label": "Numbers (27 WPM)",
+    "section": "Level INT1 & 2 Exercises",
+    "group": "CHARACTERS",
+    "lesson": "NUMBERS",
+    "preset": "CHARACTERS 27wpm",
+    "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=CHARACTERS&selectedLesson=NUMBERS&selectedPreset=CHARACTERS%2027wpm",
+    "ok": true,
+    "notes": ""
+  },
+  {
+    "label": "2 letter words \u2013 (31-27-23 WPM)",
+    "section": "Level INT1 & 2 Exercises",
+    "group": "WORDS",
+    "lesson": "2 LETTER WORDS",
+    "preset": "SPEED RACING 23wpm",
+    "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=WORDS&selectedLesson=2%20LETTER%20WORDS&selectedPreset=SPEED%20RACING%2023wpm",
+    "ok": true,
+    "notes": ""
+  },
+  {
+    "label": "2-3 letter words #1 (31-27-23 WPM)",
+    "section": "Level INT1 & 2 Exercises",
+    "group": "WORDS",
+    "lesson": "2-3 LETTER WORDS PART 1",
+    "preset": "SPEED RACING 23wpm",
+    "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=WORDS&selectedLesson=2-3%20LETTER%20WORDS%20PART%201&selectedPreset=SPEED%20RACING%2023wpm",
+    "ok": true,
+    "notes": ""
+  },
+  {
+    "label": "2-3 letter words #2 (31-27-23 WPM)",
+    "section": "Level INT1 & 2 Exercises",
+    "group": "WORDS",
+    "lesson": "2-3 LETTER WORDS PART 2",
+    "preset": "SPEED RACING 23wpm",
+    "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=WORDS&selectedLesson=2-3%20LETTER%20WORDS%20PART%202&selectedPreset=SPEED%20RACING%2023wpm",
+    "ok": true,
+    "notes": ""
+  },
+  {
+    "label": "2-3 letter words #3 (31-27-23 WPM)",
+    "section": "Level INT1 & 2 Exercises",
+    "group": "WORDS",
+    "lesson": "2-3 LETTER WORDS PART 3",
+    "preset": "SPEED RACING 23wpm",
+    "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=WORDS&selectedLesson=2-3%20LETTER%20WORDS%20PART%203&selectedPreset=SPEED%20RACING%2023wpm",
+    "ok": true,
+    "notes": ""
+  },
+  {
+    "label": "2-3 letter words #4 (31-27-23 WPM)",
+    "section": "Level INT1 & 2 Exercises",
+    "group": "WORDS",
+    "lesson": "2-3 LETTER WORDS PART 4",
+    "preset": "SPEED RACING 23wpm",
+    "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=WORDS&selectedLesson=2-3%20LETTER%20WORDS%20PART%204&selectedPreset=SPEED%20RACING%2023wpm",
+    "ok": true,
+    "notes": ""
+  },
+  {
+    "label": "Many 3-Ltr words (31-27-23 WPM)",
+    "section": "Level INT1 & 2 Exercises",
+    "group": "WORDS",
+    "lesson": "MANY 3 LETTER WORDS",
+    "preset": "SPEED RACING 23wpm",
+    "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=WORDS&selectedLesson=MANY%203%20LETTER%20WORDS&selectedPreset=SPEED%20RACING%2023wpm",
+    "ok": true,
+    "notes": ""
+  },
+  {
+    "label": "2-word phrases #1 (31-27-23 WPM)",
+    "section": "Level INT1 & 2 Exercises",
+    "group": "PHRASES",
+    "lesson": "2 WORD PART 1",
+    "preset": "SPEED RACING 23wpm",
+    "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=PHRASES&selectedLesson=2%20WORD%20PART%201&selectedPreset=SPEED%20RACING%2023wpm",
+    "ok": true,
+    "notes": ""
+  },
+  {
+    "label": "2-word phrases #2 (31-27-23 WPM)",
+    "section": "Level INT1 & 2 Exercises",
+    "group": "PHRASES",
+    "lesson": "2 WORD PART 2",
+    "preset": "SPEED RACING 23wpm",
+    "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=PHRASES&selectedLesson=2%20WORD%20PART%202&selectedPreset=SPEED%20RACING%2023wpm",
+    "ok": true,
+    "notes": ""
+  },
+  {
+    "label": "2-word phrases #3 (31-27-23 WPM)",
+    "section": "Level INT1 & 2 Exercises",
+    "group": "PHRASES",
+    "lesson": "2 WORD PART 3",
+    "preset": "SPEED RACING 23wpm",
+    "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=PHRASES&selectedLesson=2%20WORD%20PART%203&selectedPreset=SPEED%20RACING%2023wpm",
+    "ok": true,
+    "notes": ""
+  },
+  {
+    "label": "Many 2-word phrases (31-27-23 WPM)",
+    "section": "Level INT1 & 2 Exercises",
+    "group": "PHRASES",
+    "lesson": "MANY 2 WORD",
+    "preset": "SPEED RACING 23wpm",
+    "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=PHRASES&selectedLesson=MANY%202%20WORD&selectedPreset=SPEED%20RACING%2023wpm",
+    "ok": true,
+    "notes": ""
+  },
+  {
+    "label": "States and Provinces \u2013 No Voice",
+    "section": "Level INT1 & 2 Exercises",
+    "group": "WORDS",
+    "lesson": "STATE AND PROVINCES",
+    "preset": "PHRASES/WORDS 3X 23wpm",
+    "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=WORDS&selectedLesson=STATE%20AND%20PROVINCES&selectedPreset=PHRASES%2FWORDS%203X%2023wpm",
+    "ok": true,
+    "notes": "Speed not specified in list; used 23wpm 3X"
+  },
+  {
+    "label": "States and Provinces \u2013 Voice",
+    "section": "Level INT1 & 2 Exercises",
+    "group": "WORDS",
+    "lesson": "STATE AND PROVINCES",
+    "preset": "VOICE AFTER WORDS 23wpm",
+    "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=WORDS&selectedLesson=STATE%20AND%20PROVINCES&selectedPreset=VOICE%20AFTER%20WORDS%2023wpm",
+    "ok": true,
+    "notes": "Speed not specified in list; used 23wpm voice-after"
+  },
+  {
+    "label": "Sending: Letters (27)",
+    "section": "Level INT1 & 2 Exercises",
+    "group": "SENDING",
+    "lesson": "SENDING ALPHABET 1",
+    "preset": "SENDING ALPHABET 27wpm",
+    "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=SENDING&selectedLesson=SENDING%20ALPHABET%201&selectedPreset=SENDING%20ALPHABET%2027wpm",
+    "ok": true,
+    "notes": "Uses SENDING ALPHABET 1 (SENDING ALPHABET 2 also exists)"
+  },
+  {
+    "label": "Sending: Numbers (27)",
+    "section": "Level INT1 & 2 Exercises",
+    "group": "SENDING",
+    "lesson": "SENDING NUMBERS 1",
+    "preset": "SENDING NUMBERS 27wpm",
+    "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=SENDING&selectedLesson=SENDING%20NUMBERS%201&selectedPreset=SENDING%20NUMBERS%2027wpm",
+    "ok": true,
+    "notes": "Uses SENDING NUMBERS 1"
+  },
+  {
+    "label": "Sending Tri-Letters (27)",
+    "section": "Level INT1 & 2 Exercises",
+    "group": "SENDING",
+    "lesson": "SENDING TRI-LETTERS",
+    "preset": "SENDING Tri-Letters 27wpm",
+    "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=SENDING&selectedLesson=SENDING%20TRI-LETTERS&selectedPreset=SENDING%20Tri-Letters%2027wpm",
+    "ok": true,
+    "notes": ""
+  },
+  {
+    "label": "3-4 letter words #1 (31-27-23 WPM)",
+    "section": "Level INT2 & 3 Exercises",
+    "group": "WORDS",
+    "lesson": "3-4 LETTER WORDS PART 1",
+    "preset": "SPEED RACING 23wpm",
+    "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=WORDS&selectedLesson=3-4%20LETTER%20WORDS%20PART%201&selectedPreset=SPEED%20RACING%2023wpm",
+    "ok": true,
+    "notes": ""
+  },
+  {
+    "label": "3-4 letter words #2 (31-27-23 WPM)",
+    "section": "Level INT2 & 3 Exercises",
+    "group": "WORDS",
+    "lesson": "3-4 LETTER WORDS PART 2",
+    "preset": "SPEED RACING 23wpm",
+    "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=WORDS&selectedLesson=3-4%20LETTER%20WORDS%20PART%202&selectedPreset=SPEED%20RACING%2023wpm",
+    "ok": true,
+    "notes": ""
+  },
+  {
+    "label": "4 letter words #1 (31-27-23 WPM)",
+    "section": "Level INT2 & 3 Exercises",
+    "group": "WORDS",
+    "lesson": "4 LETTER WORDS PART 1",
+    "preset": "SPEED RACING 23wpm",
+    "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=WORDS&selectedLesson=4%20LETTER%20WORDS%20PART%201&selectedPreset=SPEED%20RACING%2023wpm",
+    "ok": true,
+    "notes": ""
+  },
+  {
+    "label": "4 letter words #2 (31-27-23 WPM)",
+    "section": "Level INT2 & 3 Exercises",
+    "group": "WORDS",
+    "lesson": "4 LETTER WORDS PART 2",
+    "preset": "SPEED RACING 23wpm",
+    "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=WORDS&selectedLesson=4%20LETTER%20WORDS%20PART%202&selectedPreset=SPEED%20RACING%2023wpm",
+    "ok": true,
+    "notes": ""
+  },
+  {
+    "label": "Many 4-Ltr words (31-27-23 WPM)",
+    "section": "Level INT2 & 3 Exercises",
+    "group": "WORDS",
+    "lesson": "MANY 4 LETTER WORDS",
+    "preset": "SPEED RACING 23wpm",
+    "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=WORDS&selectedLesson=MANY%204%20LETTER%20WORDS&selectedPreset=SPEED%20RACING%2023wpm",
+    "ok": true,
+    "notes": ""
+  },
+  {
+    "label": "4-5 letter words (31-27-23 WPM)",
+    "section": "Level INT2 & 3 Exercises",
+    "group": "WORDS",
+    "lesson": "4-5 LETTER WORDS PART 1",
+    "preset": "SPEED RACING 23wpm",
+    "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=WORDS&selectedLesson=4-5%20LETTER%20WORDS%20PART%201&selectedPreset=SPEED%20RACING%2023wpm",
+    "ok": true,
+    "notes": "PART 2 also exists if needed"
+  },
+  {
+    "label": "Binomial Expressions #1 (31-27-23 WPM)",
+    "section": "Level INT2 & 3 Exercises",
+    "group": "BINOMIALS",
+    "lesson": "BINOMIALS PART 1",
+    "preset": "SPEED RACING 23wpm",
+    "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=BINOMIALS&selectedLesson=BINOMIALS%20PART%201&selectedPreset=SPEED%20RACING%2023wpm",
+    "ok": true,
+    "notes": ""
+  },
+  {
+    "label": "Binomial Expressions #2 (31-27-23 WPM)",
+    "section": "Level INT2 & 3 Exercises",
+    "group": "BINOMIALS",
+    "lesson": "BINOMIALS PART 2",
+    "preset": "SPEED RACING 23wpm",
+    "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=BINOMIALS&selectedLesson=BINOMIALS%20PART%202&selectedPreset=SPEED%20RACING%2023wpm",
+    "ok": true,
+    "notes": ""
+  },
+  {
+    "label": "Short phrases #1 (31-27-23 WPM)",
+    "section": "Level INT2 & 3 Exercises",
+    "group": "PHRASES",
+    "lesson": "SHORT PART 1",
+    "preset": "SPEED RACING 23wpm",
+    "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=PHRASES&selectedLesson=SHORT%20PART%201&selectedPreset=SPEED%20RACING%2023wpm",
+    "ok": true,
+    "notes": ""
+  },
+  {
+    "label": "Short phrases #2 (31-27-23 WPM)",
+    "section": "Level INT2 & 3 Exercises",
+    "group": "PHRASES",
+    "lesson": "SHORT PART 2",
+    "preset": "SPEED RACING 23wpm",
+    "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=PHRASES&selectedLesson=SHORT%20PART%202&selectedPreset=SPEED%20RACING%2023wpm",
+    "ok": true,
+    "notes": ""
+  },
+  {
+    "label": "Sending 3 to 5-letter words (27 WPM)",
+    "section": "Level INT2 & 3 Exercises",
+    "group": "SENDING",
+    "lesson": "3-5 WORDS",
+    "preset": "SENDING WORDS/PHRASES 27wpm",
+    "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=SENDING&selectedLesson=3-5%20WORDS&selectedPreset=SENDING%20WORDS%2FPHRASES%2027wpm",
+    "ok": true,
+    "notes": ""
+  },
+  {
+    "label": "Sending 5 to 7-letter words (27 WPM)",
+    "section": "Level INT2 & 3 Exercises",
+    "group": "SENDING",
+    "lesson": "5-7 WORDS",
+    "preset": "SENDING WORDS/PHRASES 27wpm",
+    "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=SENDING&selectedLesson=5-7%20WORDS&selectedPreset=SENDING%20WORDS%2FPHRASES%2027wpm",
+    "ok": true,
+    "notes": ""
+  },
+  {
+    "label": "3-word phrases #1 (31-27-23 WPM)",
+    "section": "Level INT3 & ADV1 Exercises",
+    "group": "PHRASES",
+    "lesson": "3 WORD PART 1",
+    "preset": "SPEED RACING 23wpm",
+    "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=PHRASES&selectedLesson=3%20WORD%20PART%201&selectedPreset=SPEED%20RACING%2023wpm",
+    "ok": true,
+    "notes": ""
+  },
+  {
+    "label": "3-word phrases #2 (31-27-23 WPM)",
+    "section": "Level INT3 & ADV1 Exercises",
+    "group": "PHRASES",
+    "lesson": "3 WORD PART 2",
+    "preset": "SPEED RACING 23wpm",
+    "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=PHRASES&selectedLesson=3%20WORD%20PART%202&selectedPreset=SPEED%20RACING%2023wpm",
+    "ok": true,
+    "notes": ""
+  },
+  {
+    "label": "3-word phrases CW/Voice/CW (27/25 WPM)",
+    "section": "Level INT3 & ADV1 Exercises",
+    "group": "PHRASES",
+    "lesson": "3 WORD CW-VOICE-CW",
+    "preset": "PHRASES CW-VOICE-CW 27/25wpm",
+    "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=PHRASES&selectedLesson=3%20WORD%20CW-VOICE-CW&selectedPreset=PHRASES%20CW-VOICE-CW%2027%2F25wpm",
+    "ok": true,
+    "notes": "New Farnsworth preset"
+  },
+  {
+    "label": "Sentences CW/Voice/CW (27/25 WPM)",
+    "section": "Level INT3 & ADV1 Exercises",
+    "group": "SENTENCES",
+    "lesson": "SENTENCES CW-VOICE-CW",
+    "preset": "SENTENCES CW-VOICE-CW 27/25wpm",
+    "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=SENTENCES&selectedLesson=SENTENCES%20CW-VOICE-CW&selectedPreset=SENTENCES%20CW-VOICE-CW%2027%2F25wpm",
+    "ok": true,
+    "notes": "New Farnsworth preset"
+  },
+  {
+    "label": "Word length builder #1 (31-27-23 WPM)",
+    "section": "Level INT3 & ADV1 Exercises",
+    "group": "WORD BUILDING",
+    "lesson": "WORD BUILDING BASIC",
+    "preset": "SPEED RACING 23wpm",
+    "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=WORD%20BUILDING&selectedLesson=WORD%20BUILDING%20BASIC&selectedPreset=SPEED%20RACING%2023wpm",
+    "ok": true,
+    "notes": ""
+  },
+  {
+    "label": "Word length builder #2 (31-27-23 WPM)",
+    "section": "Level INT3 & ADV1 Exercises",
+    "group": "WORD BUILDING",
+    "lesson": "WORD BUILDING INTERMEDIATE",
+    "preset": "SPEED RACING 23wpm",
+    "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=WORD%20BUILDING&selectedLesson=WORD%20BUILDING%20INTERMEDIATE&selectedPreset=SPEED%20RACING%2023wpm",
+    "ok": true,
+    "notes": "Renamed from INTERMEDIAT (trailing space removed)"
+  },
+  {
+    "label": "5 letter words #1 (31-27-23 WPM)",
+    "section": "Level INT3 & ADV1 Exercises",
+    "group": "WORDS",
+    "lesson": "5 LETTER WORDS PART 1",
+    "preset": "SPEED RACING 23wpm",
+    "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=WORDS&selectedLesson=5%20LETTER%20WORDS%20PART%201&selectedPreset=SPEED%20RACING%2023wpm",
+    "ok": true,
+    "notes": ""
+  },
+  {
+    "label": "5 letter words #2 (31-27-23)",
+    "section": "Level INT3 & ADV1 Exercises",
+    "group": "WORDS",
+    "lesson": "5 LETTER WORDS PART 2",
+    "preset": "SPEED RACING 23wpm",
+    "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=WORDS&selectedLesson=5%20LETTER%20WORDS%20PART%202&selectedPreset=SPEED%20RACING%2023wpm",
+    "ok": true,
+    "notes": ""
+  },
+  {
+    "label": "ING suffix exercise #1 (31-27-23)",
+    "section": "Level INT3 & ADV1 Exercises",
+    "group": "SUFFIXES",
+    "lesson": "ING",
+    "preset": "SPEED RACING 23wpm",
+    "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=SUFFIXES&selectedLesson=ING&selectedPreset=SPEED%20RACING%2023wpm",
+    "ok": true,
+    "notes": "Only one ING wordfile exists; #1 and #2 share content"
+  },
+  {
+    "label": "ING suffix exercise #2 (31-27-23)",
+    "section": "Level INT3 & ADV1 Exercises",
+    "group": "SUFFIXES",
+    "lesson": "ING",
+    "preset": "SPEED RACING 23wpm",
+    "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=SUFFIXES&selectedLesson=ING&selectedPreset=SPEED%20RACING%2023wpm",
+    "ok": true,
+    "notes": "Same content as #1 until a second ING part is added"
+  },
+  {
+    "label": "Common suffixes (27)",
+    "section": "Level INT3 & ADV1 Exercises",
+    "group": "SUFFIXES",
+    "lesson": "SUFFIXES ALL",
+    "preset": "SUFFIXES 27wpm",
+    "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=SUFFIXES&selectedLesson=SUFFIXES%20ALL&selectedPreset=SUFFIXES%2027wpm",
+    "ok": true,
+    "notes": ""
+  },
+  {
+    "label": "Top 100 words (31-27-23 WPM)",
+    "section": "Level INT3 & ADV1 Exercises",
+    "group": "WORDS",
+    "lesson": "TOP 100 WORDS",
+    "preset": "SPEED RACING 23wpm",
+    "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=WORDS&selectedLesson=TOP%20100%20WORDS&selectedPreset=SPEED%20RACING%2023wpm",
+    "ok": true,
+    "notes": ""
+  },
+  {
+    "label": "Top 100 word sentences \u2013 CW/Voice/CW \u2013 (23/21)",
+    "section": "Level INT3 & ADV1 Exercises",
+    "group": "SENTENCES",
+    "lesson": "SHORT SENTENCES CW-VOICE-CW",
+    "preset": "SENTENCES CW-VOICE-CW 23/21wpm",
+    "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=SENTENCES&selectedLesson=SHORT%20SENTENCES%20CW-VOICE-CW&selectedPreset=SENTENCES%20CW-VOICE-CW%2023%2F21wpm",
+    "ok": true,
+    "notes": "New Farnsworth preset"
+  },
+  {
+    "label": "Top 100 word sentences \u2013 CW/Voice/CW \u2013 (27/25)",
+    "section": "Level INT3 & ADV1 Exercises",
+    "group": "SENTENCES",
+    "lesson": "SHORT SENTENCES CW-VOICE-CW",
+    "preset": "SENTENCES CW-VOICE-CW 27/25wpm",
+    "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=SENTENCES&selectedLesson=SHORT%20SENTENCES%20CW-VOICE-CW&selectedPreset=SENTENCES%20CW-VOICE-CW%2027%2F25wpm",
+    "ok": true,
+    "notes": "New Farnsworth preset"
+  },
+  {
+    "label": "Top 100 word sentences \u2013 CW/Voice/CW \u2013 (31/28)",
+    "section": "Level INT3 & ADV1 Exercises",
+    "group": "SENTENCES",
+    "lesson": "SHORT SENTENCES CW-VOICE-CW",
+    "preset": "SENTENCES CW-VOICE-CW 31/28wpm",
+    "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=SENTENCES&selectedLesson=SHORT%20SENTENCES%20CW-VOICE-CW&selectedPreset=SENTENCES%20CW-VOICE-CW%2031%2F28wpm",
+    "ok": true,
+    "notes": "New Farnsworth preset"
+  },
+  {
+    "label": "One-Liner Jokes \u2013 CW/Voice/CW (23/21)",
+    "section": "Level INT3 & ADV1 Exercises",
+    "group": "SENTENCES",
+    "lesson": "JOKES CW-VOICE-CW",
+    "preset": "SENTENCES CW-VOICE-CW 23/21wpm",
+    "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=SENTENCES&selectedLesson=JOKES%20CW-VOICE-CW&selectedPreset=SENTENCES%20CW-VOICE-CW%2023%2F21wpm",
+    "ok": true,
+    "notes": "New Farnsworth preset"
+  }
+]
