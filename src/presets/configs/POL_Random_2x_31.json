@@ -47,7 +47,7 @@
 		},
 		{
 			"key": "autoCloseLessonAccordian",
-			"value": true,
+			"value": "true",
 			"comment": null
 		},
 		{
