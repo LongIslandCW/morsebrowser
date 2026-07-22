@@ -272,12 +272,43 @@ export default class MorseLessonPlugin implements ICookieHandler {
 
   }
 
+  /**
+   * Apply selectedPreset from the query string once that display name exists in
+   * settingsPresets. Returns true when a matching preset was selected.
+   *
+   * Deep-link init can call setSettingsPresetsInitialized before the async
+   * preset-set file finishes loading; callers must retry after the list updates.
+   */
+  applyPresetFromQueryString = (): boolean => {
+    const paramPreset = GeneralUtils.getParameterByName('selectedPreset')
+    if (!paramPreset || !this.settingsPresetsInitialized) {
+      return false
+    }
+    const target = this.settingsPresets().find(c => c.display.toUpperCase() === paramPreset.toUpperCase())
+    if (!target) {
+      return false
+    }
+    this.setPresetSelected(target)
+    if (!this.queryStringSettingsOn) {
+      // Match prior behavior: strip after apply so a late competing select cannot
+      // see a stale selectedPreset and skip (see setPresetSelected guard).
+      setTimeout(() => {
+        this.removeQueryStringVariable('selectedPreset')
+      }, 1000)
+    }
+    return true
+  }
+
   getSettingsPresets = (forceRefresh:boolean = false, selectFirstNonYour:boolean = false) => {
     let sps:SettingsOption[] = []
     sps.push(this.yourSettingsDummy)
     sps = sps.concat(this.customSettingsOptions)
 
     const handleAutoSelect = () => {
+      // Prefer Tom-style ?selectedPreset= once the set list is available.
+      if (this.applyPresetFromQueryString()) {
+        return
+      }
       if (selectFirstNonYour) {
         // console.log(`length:${this.settingsPresets().length}`)
         if (this.settingsPresets().length > 1) {
@@ -517,22 +548,12 @@ export default class MorseLessonPlugin implements ICookieHandler {
   setSettingsPresetsInitialized = () => {
     this.settingsPresetsInitialized = true
     if (GeneralUtils.getParameterByName('selectedPreset')) {
-      const paramClass = GeneralUtils.getParameterByName('selectedPreset').toUpperCase()
-      const targetClass = this.settingsPresets().find(c => c.display.toUpperCase() === paramClass)
-      if (targetClass) {
-        //console.log(`setting preset to ${targetClass.display}`)
-        // console.log(targetClass)
-        this.setPresetSelected(targetClass)
-        if (!this.queryStringSettingsOn) {
-          // not sure why delay here is needed but something is causing it to go to default if we don't.
-          // after a delay of 1 second remove selectedPreset from the Querystring now that we're done
-          setTimeout(() => {
-            this.removeQueryStringVariable('selectedPreset')
-          }, 1000)
+      if (!this.applyPresetFromQueryString()) {
+        // Preset-set file may still be loading; getSettingsPresets handleData retries.
+        // Log only when the list already has real options and still no match.
+        if (this.settingsPresets().length > 1) {
+          console.log('no preset found')
         }
-      } else {
-        console.log('no preset found')
-        
       }
     }
   }
@@ -777,6 +798,16 @@ export default class MorseLessonPlugin implements ICookieHandler {
   ensureSettingsPresetsInitialized = () => {
     if (!this.settingsPresetsInitialized) {
       this.setSettingsPresetsInitialized()
+      return
+    }
+    // Retry deep-link preset after async preset-set load (init often runs too early).
+    const paramPreset = GeneralUtils.getParameterByName('selectedPreset')
+    if (!paramPreset) {
+      return
+    }
+    const selected = this.selectedSettingsPreset()
+    if (selected?.isDummy || selected?.display?.toUpperCase() !== paramPreset.toUpperCase()) {
+      this.applyPresetFromQueryString()
     }
   }
 
