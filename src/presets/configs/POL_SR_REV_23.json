@@ -52,7 +52,7 @@
 		},
 		{
 			"key": "autoCloseSettingsAccordions",
-			"value": false,
+			"value": true,
 			"comment": null
 		},
 		{
@@ -127,7 +127,7 @@
 		},
 		{
 			"key": "keepLines",
-			"value": true,
+			"value": false,
 			"comment": null
 		},
 		{
@@ -157,7 +157,7 @@
 		},
 		{
 			"key": "miscSettingsAccordionOpen",
-			"value": "true",
+			"value": false,
 			"comment": null
 		},
 		{
@@ -212,7 +212,7 @@
 		},
 		{
 			"key": "isShuffledSet",
-			"value": false,
+			"value": true,
 			"comment": null
 		},
 		{

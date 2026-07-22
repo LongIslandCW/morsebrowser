@@ -52,7 +52,7 @@
 		},
 		{
 			"key": "autoCloseLessonAccordian",
-			"value": false,
+			"value": true,
 			"comment": null
 		},
 		{
