@@ -6,6 +6,7 @@
     "lesson": "ALPHABET",
     "preset": "CHARACTERS 23wpm",
     "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=CHARACTERS&selectedLesson=ALPHABET&selectedPreset=CHARACTERS%2023wpm",
+    "urlDev": "https://longislandcw.github.io/morsebrowser/dev/index.html?selectedClass=OVERLEARN&selectedGroup=CHARACTERS&selectedLesson=ALPHABET&selectedPreset=CHARACTERS%2023wpm",
     "ok": true,
     "notes": ""
   },
@@ -16,6 +17,7 @@
     "lesson": "ALPHABET",
     "preset": "CHARACTERS 27wpm",
     "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=CHARACTERS&selectedLesson=ALPHABET&selectedPreset=CHARACTERS%2027wpm",
+    "urlDev": "https://longislandcw.github.io/morsebrowser/dev/index.html?selectedClass=OVERLEARN&selectedGroup=CHARACTERS&selectedLesson=ALPHABET&selectedPreset=CHARACTERS%2027wpm",
     "ok": true,
     "notes": ""
   },
@@ -26,6 +28,7 @@
     "lesson": "ALPHABET",
     "preset": "CHARACTERS 31wpm",
     "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=CHARACTERS&selectedLesson=ALPHABET&selectedPreset=CHARACTERS%2031wpm",
+    "urlDev": "https://longislandcw.github.io/morsebrowser/dev/index.html?selectedClass=OVERLEARN&selectedGroup=CHARACTERS&selectedLesson=ALPHABET&selectedPreset=CHARACTERS%2031wpm",
     "ok": true,
     "notes": ""
   },
@@ -36,6 +39,7 @@
     "lesson": "ALPHABET MIX",
     "preset": "SPEED RACING - REVERSED 23wpm",
     "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=CHARACTERS&selectedLesson=ALPHABET%20MIX&selectedPreset=SPEED%20RACING%20-%20REVERSED%2023wpm",
+    "urlDev": "https://longislandcw.github.io/morsebrowser/dev/index.html?selectedClass=OVERLEARN&selectedGroup=CHARACTERS&selectedLesson=ALPHABET%20MIX&selectedPreset=SPEED%20RACING%20-%20REVERSED%2023wpm",
     "ok": true,
     "notes": "Speed Racer ascending"
   },
@@ -46,8 +50,9 @@
     "lesson": "ALPHABET MIX",
     "preset": "SPEED RACING PEAK 23wpm",
     "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=CHARACTERS&selectedLesson=ALPHABET%20MIX&selectedPreset=SPEED%20RACING%20PEAK%2023wpm",
+    "urlDev": "https://longislandcw.github.io/morsebrowser/dev/index.html?selectedClass=OVERLEARN&selectedGroup=CHARACTERS&selectedLesson=ALPHABET%20MIX&selectedPreset=SPEED%20RACING%20PEAK%2023wpm",
     "ok": true,
-    "notes": "Speed Racer peak (new preset)"
+    "notes": "Speed Racer peak"
   },
   {
     "label": "Numbers (23 WPM)",
@@ -56,6 +61,7 @@
     "lesson": "NUMBERS",
     "preset": "CHARACTERS 23wpm",
     "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=CHARACTERS&selectedLesson=NUMBERS&selectedPreset=CHARACTERS%2023wpm",
+    "urlDev": "https://longislandcw.github.io/morsebrowser/dev/index.html?selectedClass=OVERLEARN&selectedGroup=CHARACTERS&selectedLesson=NUMBERS&selectedPreset=CHARACTERS%2023wpm",
     "ok": true,
     "notes": ""
   },
@@ -66,6 +72,7 @@
     "lesson": "NUMBERS",
     "preset": "CHARACTERS 27wpm",
     "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=CHARACTERS&selectedLesson=NUMBERS&selectedPreset=CHARACTERS%2027wpm",
+    "urlDev": "https://longislandcw.github.io/morsebrowser/dev/index.html?selectedClass=OVERLEARN&selectedGroup=CHARACTERS&selectedLesson=NUMBERS&selectedPreset=CHARACTERS%2027wpm",
     "ok": true,
     "notes": ""
   },
@@ -76,6 +83,7 @@
     "lesson": "2 LETTER WORDS",
     "preset": "SPEED RACING 23wpm",
     "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=WORDS&selectedLesson=2%20LETTER%20WORDS&selectedPreset=SPEED%20RACING%2023wpm",
+    "urlDev": "https://longislandcw.github.io/morsebrowser/dev/index.html?selectedClass=OVERLEARN&selectedGroup=WORDS&selectedLesson=2%20LETTER%20WORDS&selectedPreset=SPEED%20RACING%2023wpm",
     "ok": true,
     "notes": ""
   },
@@ -86,6 +94,7 @@
     "lesson": "2-3 LETTER WORDS PART 1",
     "preset": "SPEED RACING 23wpm",
     "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=WORDS&selectedLesson=2-3%20LETTER%20WORDS%20PART%201&selectedPreset=SPEED%20RACING%2023wpm",
+    "urlDev": "https://longislandcw.github.io/morsebrowser/dev/index.html?selectedClass=OVERLEARN&selectedGroup=WORDS&selectedLesson=2-3%20LETTER%20WORDS%20PART%201&selectedPreset=SPEED%20RACING%2023wpm",
     "ok": true,
     "notes": ""
   },
@@ -96,6 +105,7 @@
     "lesson": "2-3 LETTER WORDS PART 2",
     "preset": "SPEED RACING 23wpm",
     "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=WORDS&selectedLesson=2-3%20LETTER%20WORDS%20PART%202&selectedPreset=SPEED%20RACING%2023wpm",
+    "urlDev": "https://longislandcw.github.io/morsebrowser/dev/index.html?selectedClass=OVERLEARN&selectedGroup=WORDS&selectedLesson=2-3%20LETTER%20WORDS%20PART%202&selectedPreset=SPEED%20RACING%2023wpm",
     "ok": true,
     "notes": ""
   },
@@ -106,6 +116,7 @@
     "lesson": "2-3 LETTER WORDS PART 3",
     "preset": "SPEED RACING 23wpm",
     "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=WORDS&selectedLesson=2-3%20LETTER%20WORDS%20PART%203&selectedPreset=SPEED%20RACING%2023wpm",
+    "urlDev": "https://longislandcw.github.io/morsebrowser/dev/index.html?selectedClass=OVERLEARN&selectedGroup=WORDS&selectedLesson=2-3%20LETTER%20WORDS%20PART%203&selectedPreset=SPEED%20RACING%2023wpm",
     "ok": true,
     "notes": ""
   },
@@ -116,6 +127,7 @@
     "lesson": "2-3 LETTER WORDS PART 4",
     "preset": "SPEED RACING 23wpm",
     "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=WORDS&selectedLesson=2-3%20LETTER%20WORDS%20PART%204&selectedPreset=SPEED%20RACING%2023wpm",
+    "urlDev": "https://longislandcw.github.io/morsebrowser/dev/index.html?selectedClass=OVERLEARN&selectedGroup=WORDS&selectedLesson=2-3%20LETTER%20WORDS%20PART%204&selectedPreset=SPEED%20RACING%2023wpm",
     "ok": true,
     "notes": ""
   },
@@ -126,6 +138,7 @@
     "lesson": "MANY 3 LETTER WORDS",
     "preset": "SPEED RACING 23wpm",
     "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=WORDS&selectedLesson=MANY%203%20LETTER%20WORDS&selectedPreset=SPEED%20RACING%2023wpm",
+    "urlDev": "https://longislandcw.github.io/morsebrowser/dev/index.html?selectedClass=OVERLEARN&selectedGroup=WORDS&selectedLesson=MANY%203%20LETTER%20WORDS&selectedPreset=SPEED%20RACING%2023wpm",
     "ok": true,
     "notes": ""
   },
@@ -136,6 +149,7 @@
     "lesson": "2 WORD PART 1",
     "preset": "SPEED RACING 23wpm",
     "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=PHRASES&selectedLesson=2%20WORD%20PART%201&selectedPreset=SPEED%20RACING%2023wpm",
+    "urlDev": "https://longislandcw.github.io/morsebrowser/dev/index.html?selectedClass=OVERLEARN&selectedGroup=PHRASES&selectedLesson=2%20WORD%20PART%201&selectedPreset=SPEED%20RACING%2023wpm",
     "ok": true,
     "notes": ""
   },
@@ -146,6 +160,7 @@
     "lesson": "2 WORD PART 2",
     "preset": "SPEED RACING 23wpm",
     "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=PHRASES&selectedLesson=2%20WORD%20PART%202&selectedPreset=SPEED%20RACING%2023wpm",
+    "urlDev": "https://longislandcw.github.io/morsebrowser/dev/index.html?selectedClass=OVERLEARN&selectedGroup=PHRASES&selectedLesson=2%20WORD%20PART%202&selectedPreset=SPEED%20RACING%2023wpm",
     "ok": true,
     "notes": ""
   },
@@ -156,6 +171,7 @@
     "lesson": "2 WORD PART 3",
     "preset": "SPEED RACING 23wpm",
     "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=PHRASES&selectedLesson=2%20WORD%20PART%203&selectedPreset=SPEED%20RACING%2023wpm",
+    "urlDev": "https://longislandcw.github.io/morsebrowser/dev/index.html?selectedClass=OVERLEARN&selectedGroup=PHRASES&selectedLesson=2%20WORD%20PART%203&selectedPreset=SPEED%20RACING%2023wpm",
     "ok": true,
     "notes": ""
   },
@@ -166,6 +182,7 @@
     "lesson": "MANY 2 WORD",
     "preset": "SPEED RACING 23wpm",
     "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=PHRASES&selectedLesson=MANY%202%20WORD&selectedPreset=SPEED%20RACING%2023wpm",
+    "urlDev": "https://longislandcw.github.io/morsebrowser/dev/index.html?selectedClass=OVERLEARN&selectedGroup=PHRASES&selectedLesson=MANY%202%20WORD&selectedPreset=SPEED%20RACING%2023wpm",
     "ok": true,
     "notes": ""
   },
@@ -176,6 +193,7 @@
     "lesson": "STATE AND PROVINCES",
     "preset": "PHRASES/WORDS 3X 23wpm",
     "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=WORDS&selectedLesson=STATE%20AND%20PROVINCES&selectedPreset=PHRASES%2FWORDS%203X%2023wpm",
+    "urlDev": "https://longislandcw.github.io/morsebrowser/dev/index.html?selectedClass=OVERLEARN&selectedGroup=WORDS&selectedLesson=STATE%20AND%20PROVINCES&selectedPreset=PHRASES%2FWORDS%203X%2023wpm",
     "ok": true,
     "notes": "Speed not specified in list; used 23wpm 3X"
   },
@@ -186,6 +204,7 @@
     "lesson": "STATE AND PROVINCES",
     "preset": "VOICE AFTER WORDS 23wpm",
     "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=WORDS&selectedLesson=STATE%20AND%20PROVINCES&selectedPreset=VOICE%20AFTER%20WORDS%2023wpm",
+    "urlDev": "https://longislandcw.github.io/morsebrowser/dev/index.html?selectedClass=OVERLEARN&selectedGroup=WORDS&selectedLesson=STATE%20AND%20PROVINCES&selectedPreset=VOICE%20AFTER%20WORDS%2023wpm",
     "ok": true,
     "notes": "Speed not specified in list; used 23wpm voice-after"
   },
@@ -196,6 +215,7 @@
     "lesson": "SENDING ALPHABET 1",
     "preset": "SENDING ALPHABET 27wpm",
     "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=SENDING&selectedLesson=SENDING%20ALPHABET%201&selectedPreset=SENDING%20ALPHABET%2027wpm",
+    "urlDev": "https://longislandcw.github.io/morsebrowser/dev/index.html?selectedClass=OVERLEARN&selectedGroup=SENDING&selectedLesson=SENDING%20ALPHABET%201&selectedPreset=SENDING%20ALPHABET%2027wpm",
     "ok": true,
     "notes": "Uses SENDING ALPHABET 1 (SENDING ALPHABET 2 also exists)"
   },
@@ -206,6 +226,7 @@
     "lesson": "SENDING NUMBERS 1",
     "preset": "SENDING NUMBERS 27wpm",
     "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=SENDING&selectedLesson=SENDING%20NUMBERS%201&selectedPreset=SENDING%20NUMBERS%2027wpm",
+    "urlDev": "https://longislandcw.github.io/morsebrowser/dev/index.html?selectedClass=OVERLEARN&selectedGroup=SENDING&selectedLesson=SENDING%20NUMBERS%201&selectedPreset=SENDING%20NUMBERS%2027wpm",
     "ok": true,
     "notes": "Uses SENDING NUMBERS 1"
   },
@@ -216,6 +237,7 @@
     "lesson": "SENDING TRI-LETTERS",
     "preset": "SENDING Tri-Letters 27wpm",
     "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=SENDING&selectedLesson=SENDING%20TRI-LETTERS&selectedPreset=SENDING%20Tri-Letters%2027wpm",
+    "urlDev": "https://longislandcw.github.io/morsebrowser/dev/index.html?selectedClass=OVERLEARN&selectedGroup=SENDING&selectedLesson=SENDING%20TRI-LETTERS&selectedPreset=SENDING%20Tri-Letters%2027wpm",
     "ok": true,
     "notes": ""
   },
@@ -226,6 +248,7 @@
     "lesson": "3-4 LETTER WORDS PART 1",
     "preset": "SPEED RACING 23wpm",
     "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=WORDS&selectedLesson=3-4%20LETTER%20WORDS%20PART%201&selectedPreset=SPEED%20RACING%2023wpm",
+    "urlDev": "https://longislandcw.github.io/morsebrowser/dev/index.html?selectedClass=OVERLEARN&selectedGroup=WORDS&selectedLesson=3-4%20LETTER%20WORDS%20PART%201&selectedPreset=SPEED%20RACING%2023wpm",
     "ok": true,
     "notes": ""
   },
@@ -236,6 +259,7 @@
     "lesson": "3-4 LETTER WORDS PART 2",
     "preset": "SPEED RACING 23wpm",
     "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=WORDS&selectedLesson=3-4%20LETTER%20WORDS%20PART%202&selectedPreset=SPEED%20RACING%2023wpm",
+    "urlDev": "https://longislandcw.github.io/morsebrowser/dev/index.html?selectedClass=OVERLEARN&selectedGroup=WORDS&selectedLesson=3-4%20LETTER%20WORDS%20PART%202&selectedPreset=SPEED%20RACING%2023wpm",
     "ok": true,
     "notes": ""
   },
@@ -246,6 +270,7 @@
     "lesson": "4 LETTER WORDS PART 1",
     "preset": "SPEED RACING 23wpm",
     "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=WORDS&selectedLesson=4%20LETTER%20WORDS%20PART%201&selectedPreset=SPEED%20RACING%2023wpm",
+    "urlDev": "https://longislandcw.github.io/morsebrowser/dev/index.html?selectedClass=OVERLEARN&selectedGroup=WORDS&selectedLesson=4%20LETTER%20WORDS%20PART%201&selectedPreset=SPEED%20RACING%2023wpm",
     "ok": true,
     "notes": ""
   },
@@ -256,6 +281,7 @@
     "lesson": "4 LETTER WORDS PART 2",
     "preset": "SPEED RACING 23wpm",
     "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=WORDS&selectedLesson=4%20LETTER%20WORDS%20PART%202&selectedPreset=SPEED%20RACING%2023wpm",
+    "urlDev": "https://longislandcw.github.io/morsebrowser/dev/index.html?selectedClass=OVERLEARN&selectedGroup=WORDS&selectedLesson=4%20LETTER%20WORDS%20PART%202&selectedPreset=SPEED%20RACING%2023wpm",
     "ok": true,
     "notes": ""
   },
@@ -266,6 +292,7 @@
     "lesson": "MANY 4 LETTER WORDS",
     "preset": "SPEED RACING 23wpm",
     "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=WORDS&selectedLesson=MANY%204%20LETTER%20WORDS&selectedPreset=SPEED%20RACING%2023wpm",
+    "urlDev": "https://longislandcw.github.io/morsebrowser/dev/index.html?selectedClass=OVERLEARN&selectedGroup=WORDS&selectedLesson=MANY%204%20LETTER%20WORDS&selectedPreset=SPEED%20RACING%2023wpm",
     "ok": true,
     "notes": ""
   },
@@ -276,6 +303,7 @@
     "lesson": "4-5 LETTER WORDS PART 1",
     "preset": "SPEED RACING 23wpm",
     "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=WORDS&selectedLesson=4-5%20LETTER%20WORDS%20PART%201&selectedPreset=SPEED%20RACING%2023wpm",
+    "urlDev": "https://longislandcw.github.io/morsebrowser/dev/index.html?selectedClass=OVERLEARN&selectedGroup=WORDS&selectedLesson=4-5%20LETTER%20WORDS%20PART%201&selectedPreset=SPEED%20RACING%2023wpm",
     "ok": true,
     "notes": "PART 2 also exists if needed"
   },
@@ -286,6 +314,7 @@
     "lesson": "BINOMIALS PART 1",
     "preset": "SPEED RACING 23wpm",
     "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=BINOMIALS&selectedLesson=BINOMIALS%20PART%201&selectedPreset=SPEED%20RACING%2023wpm",
+    "urlDev": "https://longislandcw.github.io/morsebrowser/dev/index.html?selectedClass=OVERLEARN&selectedGroup=BINOMIALS&selectedLesson=BINOMIALS%20PART%201&selectedPreset=SPEED%20RACING%2023wpm",
     "ok": true,
     "notes": ""
   },
@@ -296,6 +325,7 @@
     "lesson": "BINOMIALS PART 2",
     "preset": "SPEED RACING 23wpm",
     "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=BINOMIALS&selectedLesson=BINOMIALS%20PART%202&selectedPreset=SPEED%20RACING%2023wpm",
+    "urlDev": "https://longislandcw.github.io/morsebrowser/dev/index.html?selectedClass=OVERLEARN&selectedGroup=BINOMIALS&selectedLesson=BINOMIALS%20PART%202&selectedPreset=SPEED%20RACING%2023wpm",
     "ok": true,
     "notes": ""
   },
@@ -306,6 +336,7 @@
     "lesson": "SHORT PART 1",
     "preset": "SPEED RACING 23wpm",
     "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=PHRASES&selectedLesson=SHORT%20PART%201&selectedPreset=SPEED%20RACING%2023wpm",
+    "urlDev": "https://longislandcw.github.io/morsebrowser/dev/index.html?selectedClass=OVERLEARN&selectedGroup=PHRASES&selectedLesson=SHORT%20PART%201&selectedPreset=SPEED%20RACING%2023wpm",
     "ok": true,
     "notes": ""
   },
@@ -316,6 +347,7 @@
     "lesson": "SHORT PART 2",
     "preset": "SPEED RACING 23wpm",
     "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=PHRASES&selectedLesson=SHORT%20PART%202&selectedPreset=SPEED%20RACING%2023wpm",
+    "urlDev": "https://longislandcw.github.io/morsebrowser/dev/index.html?selectedClass=OVERLEARN&selectedGroup=PHRASES&selectedLesson=SHORT%20PART%202&selectedPreset=SPEED%20RACING%2023wpm",
     "ok": true,
     "notes": ""
   },
@@ -326,6 +358,7 @@
     "lesson": "3-5 WORDS",
     "preset": "SENDING WORDS/PHRASES 27wpm",
     "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=SENDING&selectedLesson=3-5%20WORDS&selectedPreset=SENDING%20WORDS%2FPHRASES%2027wpm",
+    "urlDev": "https://longislandcw.github.io/morsebrowser/dev/index.html?selectedClass=OVERLEARN&selectedGroup=SENDING&selectedLesson=3-5%20WORDS&selectedPreset=SENDING%20WORDS%2FPHRASES%2027wpm",
     "ok": true,
     "notes": ""
   },
@@ -336,6 +369,7 @@
     "lesson": "5-7 WORDS",
     "preset": "SENDING WORDS/PHRASES 27wpm",
     "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=SENDING&selectedLesson=5-7%20WORDS&selectedPreset=SENDING%20WORDS%2FPHRASES%2027wpm",
+    "urlDev": "https://longislandcw.github.io/morsebrowser/dev/index.html?selectedClass=OVERLEARN&selectedGroup=SENDING&selectedLesson=5-7%20WORDS&selectedPreset=SENDING%20WORDS%2FPHRASES%2027wpm",
     "ok": true,
     "notes": ""
   },
@@ -346,6 +380,7 @@
     "lesson": "3 WORD PART 1",
     "preset": "SPEED RACING 23wpm",
     "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=PHRASES&selectedLesson=3%20WORD%20PART%201&selectedPreset=SPEED%20RACING%2023wpm",
+    "urlDev": "https://longislandcw.github.io/morsebrowser/dev/index.html?selectedClass=OVERLEARN&selectedGroup=PHRASES&selectedLesson=3%20WORD%20PART%201&selectedPreset=SPEED%20RACING%2023wpm",
     "ok": true,
     "notes": ""
   },
@@ -356,6 +391,7 @@
     "lesson": "3 WORD PART 2",
     "preset": "SPEED RACING 23wpm",
     "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=PHRASES&selectedLesson=3%20WORD%20PART%202&selectedPreset=SPEED%20RACING%2023wpm",
+    "urlDev": "https://longislandcw.github.io/morsebrowser/dev/index.html?selectedClass=OVERLEARN&selectedGroup=PHRASES&selectedLesson=3%20WORD%20PART%202&selectedPreset=SPEED%20RACING%2023wpm",
     "ok": true,
     "notes": ""
   },
@@ -366,8 +402,9 @@
     "lesson": "3 WORD CW-VOICE-CW",
     "preset": "PHRASES CW-VOICE-CW 27/25wpm",
     "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=PHRASES&selectedLesson=3%20WORD%20CW-VOICE-CW&selectedPreset=PHRASES%20CW-VOICE-CW%2027%2F25wpm",
+    "urlDev": "https://longislandcw.github.io/morsebrowser/dev/index.html?selectedClass=OVERLEARN&selectedGroup=PHRASES&selectedLesson=3%20WORD%20CW-VOICE-CW&selectedPreset=PHRASES%20CW-VOICE-CW%2027%2F25wpm",
     "ok": true,
-    "notes": "New Farnsworth preset"
+    "notes": "Farnsworth preset"
   },
   {
     "label": "Sentences CW/Voice/CW (27/25 WPM)",
@@ -376,8 +413,9 @@
     "lesson": "SENTENCES CW-VOICE-CW",
     "preset": "SENTENCES CW-VOICE-CW 27/25wpm",
     "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=SENTENCES&selectedLesson=SENTENCES%20CW-VOICE-CW&selectedPreset=SENTENCES%20CW-VOICE-CW%2027%2F25wpm",
+    "urlDev": "https://longislandcw.github.io/morsebrowser/dev/index.html?selectedClass=OVERLEARN&selectedGroup=SENTENCES&selectedLesson=SENTENCES%20CW-VOICE-CW&selectedPreset=SENTENCES%20CW-VOICE-CW%2027%2F25wpm",
     "ok": true,
-    "notes": "New Farnsworth preset"
+    "notes": "Farnsworth preset"
   },
   {
     "label": "Word length builder #1 (31-27-23 WPM)",
@@ -386,6 +424,7 @@
     "lesson": "WORD BUILDING BASIC",
     "preset": "SPEED RACING 23wpm",
     "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=WORD%20BUILDING&selectedLesson=WORD%20BUILDING%20BASIC&selectedPreset=SPEED%20RACING%2023wpm",
+    "urlDev": "https://longislandcw.github.io/morsebrowser/dev/index.html?selectedClass=OVERLEARN&selectedGroup=WORD%20BUILDING&selectedLesson=WORD%20BUILDING%20BASIC&selectedPreset=SPEED%20RACING%2023wpm",
     "ok": true,
     "notes": ""
   },
@@ -396,8 +435,9 @@
     "lesson": "WORD BUILDING INTERMEDIATE",
     "preset": "SPEED RACING 23wpm",
     "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=WORD%20BUILDING&selectedLesson=WORD%20BUILDING%20INTERMEDIATE&selectedPreset=SPEED%20RACING%2023wpm",
+    "urlDev": "https://longislandcw.github.io/morsebrowser/dev/index.html?selectedClass=OVERLEARN&selectedGroup=WORD%20BUILDING&selectedLesson=WORD%20BUILDING%20INTERMEDIATE&selectedPreset=SPEED%20RACING%2023wpm",
     "ok": true,
-    "notes": "Renamed from INTERMEDIAT (trailing space removed)"
+    "notes": ""
   },
   {
     "label": "5 letter words #1 (31-27-23 WPM)",
@@ -406,6 +446,7 @@
     "lesson": "5 LETTER WORDS PART 1",
     "preset": "SPEED RACING 23wpm",
     "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=WORDS&selectedLesson=5%20LETTER%20WORDS%20PART%201&selectedPreset=SPEED%20RACING%2023wpm",
+    "urlDev": "https://longislandcw.github.io/morsebrowser/dev/index.html?selectedClass=OVERLEARN&selectedGroup=WORDS&selectedLesson=5%20LETTER%20WORDS%20PART%201&selectedPreset=SPEED%20RACING%2023wpm",
     "ok": true,
     "notes": ""
   },
@@ -416,6 +457,7 @@
     "lesson": "5 LETTER WORDS PART 2",
     "preset": "SPEED RACING 23wpm",
     "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=WORDS&selectedLesson=5%20LETTER%20WORDS%20PART%202&selectedPreset=SPEED%20RACING%2023wpm",
+    "urlDev": "https://longislandcw.github.io/morsebrowser/dev/index.html?selectedClass=OVERLEARN&selectedGroup=WORDS&selectedLesson=5%20LETTER%20WORDS%20PART%202&selectedPreset=SPEED%20RACING%2023wpm",
     "ok": true,
     "notes": ""
   },
@@ -426,6 +468,7 @@
     "lesson": "ING",
     "preset": "SPEED RACING 23wpm",
     "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=SUFFIXES&selectedLesson=ING&selectedPreset=SPEED%20RACING%2023wpm",
+    "urlDev": "https://longislandcw.github.io/morsebrowser/dev/index.html?selectedClass=OVERLEARN&selectedGroup=SUFFIXES&selectedLesson=ING&selectedPreset=SPEED%20RACING%2023wpm",
     "ok": true,
     "notes": "Only one ING wordfile exists; #1 and #2 share content"
   },
@@ -436,6 +479,7 @@
     "lesson": "ING",
     "preset": "SPEED RACING 23wpm",
     "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=SUFFIXES&selectedLesson=ING&selectedPreset=SPEED%20RACING%2023wpm",
+    "urlDev": "https://longislandcw.github.io/morsebrowser/dev/index.html?selectedClass=OVERLEARN&selectedGroup=SUFFIXES&selectedLesson=ING&selectedPreset=SPEED%20RACING%2023wpm",
     "ok": true,
     "notes": "Same content as #1 until a second ING part is added"
   },
@@ -446,6 +490,7 @@
     "lesson": "SUFFIXES ALL",
     "preset": "SUFFIXES 27wpm",
     "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=SUFFIXES&selectedLesson=SUFFIXES%20ALL&selectedPreset=SUFFIXES%2027wpm",
+    "urlDev": "https://longislandcw.github.io/morsebrowser/dev/index.html?selectedClass=OVERLEARN&selectedGroup=SUFFIXES&selectedLesson=SUFFIXES%20ALL&selectedPreset=SUFFIXES%2027wpm",
     "ok": true,
     "notes": ""
   },
@@ -456,6 +501,7 @@
     "lesson": "TOP 100 WORDS",
     "preset": "SPEED RACING 23wpm",
     "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=WORDS&selectedLesson=TOP%20100%20WORDS&selectedPreset=SPEED%20RACING%2023wpm",
+    "urlDev": "https://longislandcw.github.io/morsebrowser/dev/index.html?selectedClass=OVERLEARN&selectedGroup=WORDS&selectedLesson=TOP%20100%20WORDS&selectedPreset=SPEED%20RACING%2023wpm",
     "ok": true,
     "notes": ""
   },
@@ -466,8 +512,9 @@
     "lesson": "SHORT SENTENCES CW-VOICE-CW",
     "preset": "SENTENCES CW-VOICE-CW 23/21wpm",
     "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=SENTENCES&selectedLesson=SHORT%20SENTENCES%20CW-VOICE-CW&selectedPreset=SENTENCES%20CW-VOICE-CW%2023%2F21wpm",
+    "urlDev": "https://longislandcw.github.io/morsebrowser/dev/index.html?selectedClass=OVERLEARN&selectedGroup=SENTENCES&selectedLesson=SHORT%20SENTENCES%20CW-VOICE-CW&selectedPreset=SENTENCES%20CW-VOICE-CW%2023%2F21wpm",
     "ok": true,
-    "notes": "New Farnsworth preset"
+    "notes": "Farnsworth preset"
   },
   {
     "label": "Top 100 word sentences \u2013 CW/Voice/CW \u2013 (27/25)",
@@ -476,8 +523,9 @@
     "lesson": "SHORT SENTENCES CW-VOICE-CW",
     "preset": "SENTENCES CW-VOICE-CW 27/25wpm",
     "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=SENTENCES&selectedLesson=SHORT%20SENTENCES%20CW-VOICE-CW&selectedPreset=SENTENCES%20CW-VOICE-CW%2027%2F25wpm",
+    "urlDev": "https://longislandcw.github.io/morsebrowser/dev/index.html?selectedClass=OVERLEARN&selectedGroup=SENTENCES&selectedLesson=SHORT%20SENTENCES%20CW-VOICE-CW&selectedPreset=SENTENCES%20CW-VOICE-CW%2027%2F25wpm",
     "ok": true,
-    "notes": "New Farnsworth preset"
+    "notes": "Farnsworth preset"
   },
   {
     "label": "Top 100 word sentences \u2013 CW/Voice/CW \u2013 (31/28)",
@@ -486,8 +534,9 @@
     "lesson": "SHORT SENTENCES CW-VOICE-CW",
     "preset": "SENTENCES CW-VOICE-CW 31/28wpm",
     "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=SENTENCES&selectedLesson=SHORT%20SENTENCES%20CW-VOICE-CW&selectedPreset=SENTENCES%20CW-VOICE-CW%2031%2F28wpm",
+    "urlDev": "https://longislandcw.github.io/morsebrowser/dev/index.html?selectedClass=OVERLEARN&selectedGroup=SENTENCES&selectedLesson=SHORT%20SENTENCES%20CW-VOICE-CW&selectedPreset=SENTENCES%20CW-VOICE-CW%2031%2F28wpm",
     "ok": true,
-    "notes": "New Farnsworth preset"
+    "notes": "Farnsworth preset"
   },
   {
     "label": "One-Liner Jokes \u2013 CW/Voice/CW (23/21)",
@@ -496,7 +545,8 @@
     "lesson": "JOKES CW-VOICE-CW",
     "preset": "SENTENCES CW-VOICE-CW 23/21wpm",
     "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=SENTENCES&selectedLesson=JOKES%20CW-VOICE-CW&selectedPreset=SENTENCES%20CW-VOICE-CW%2023%2F21wpm",
+    "urlDev": "https://longislandcw.github.io/morsebrowser/dev/index.html?selectedClass=OVERLEARN&selectedGroup=SENTENCES&selectedLesson=JOKES%20CW-VOICE-CW&selectedPreset=SENTENCES%20CW-VOICE-CW%2023%2F21wpm",
     "ok": true,
-    "notes": "New Farnsworth preset"
+    "notes": "Farnsworth preset"
   }
 ]

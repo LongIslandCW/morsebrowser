@@ -28,6 +28,7 @@ describe('OverLearn rich links catalog', () => {
     lesson: string
     preset: string
     url: string
+    urlDev: string
     ok: boolean
   }>
   const presets = loadJson('src/presets/sets/POL.json').options as Array<{ display: string, filename: string }>
@@ -35,14 +36,21 @@ describe('OverLearn rich links catalog', () => {
   const lessonByDisplay = Object.fromEntries(lessons.map((l) => [l.display, l]))
   const presetByDisplay = Object.fromEntries(presets.map((p) => [p.display, p]))
 
-  it('has only valid entries', () => {
+  it('has only valid entries for prod and /dev/', () => {
     expect(links.length).toBeGreaterThan(40)
     for (const link of links) {
       expect(link.ok, link.label).toBe(true)
-      expect(link.url).toContain('selectedClass=OVERLEARN')
-      expect(link.url).toContain('selectedGroup=')
-      expect(link.url).toContain('selectedLesson=')
-      expect(link.url).toContain('selectedPreset=')
+      expect(link.url).toContain('https://longislandcw.github.io/morsebrowser/index.html?')
+      expect(link.urlDev).toContain('https://longislandcw.github.io/morsebrowser/dev/index.html?')
+      for (const url of [link.url, link.urlDev]) {
+        expect(url).toContain('selectedClass=OVERLEARN')
+        expect(url).toContain('selectedGroup=')
+        expect(url).toContain('selectedLesson=')
+        expect(url).toContain('selectedPreset=')
+      }
+      const prodQs = link.url.split('?')[1]
+      const devQs = link.urlDev.split('?')[1]
+      expect(devQs, link.label).toBe(prodQs)
     }
   })
 
