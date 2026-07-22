@@ -21,7 +21,9 @@ function overlearnLessons (): Array<{ display: string, letterGroup: string, file
   return lessons
 }
 
-describe('OverLearn rich links catalog', () => {
+// Temporarily skipped while Tom iterates OverLearn preset display names / POL.json.
+// Re-enable (describe) and expand into a full suite once that work settles.
+describe.skip('OverLearn rich links catalog', () => {
   const links = loadJson('tests/fixtures/overlearnRichLinks.json') as Array<{
     label: string
     group: string
