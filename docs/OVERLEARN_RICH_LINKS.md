@@ -15,7 +15,7 @@ Speed notes:
 
 - **(31-27-23 WPM)** → preset `SPEED RACING 23wpm` (Speed Racer multipliers `1.348, 1.174, 1.0`)
 - **(23-27-31 WPM)** → preset `SPEED RACING - REVERSED 23wpm`
-- **(23-27-23 WPM)** → preset `SPEED RACING PEAK 23wpm`
+- **(23-27-23 WPM)** → preset `SPEED RACING 23/27/23wpm`
 - **(WPM/FWPM)** e.g. `27/25` → Farnsworth spacing presets (`syncWpm` off)
 
 ## Level INT1 & 2 Exercises
@@ -33,8 +33,8 @@ Speed notes:
   - [Prod](https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=CHARACTERS&selectedLesson=ALPHABET%20MIX&selectedPreset=SPEED%20RACING%20-%20REVERSED%2023wpm)
   - [Dev / BETA](https://longislandcw.github.io/morsebrowser/dev/index.html?selectedClass=OVERLEARN&selectedGroup=CHARACTERS&selectedLesson=ALPHABET%20MIX&selectedPreset=SPEED%20RACING%20-%20REVERSED%2023wpm)
 - **Alphabet Mix #2 (23-27-23 WPM)** — _Speed Racer peak_
-  - [Prod](https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=CHARACTERS&selectedLesson=ALPHABET%20MIX&selectedPreset=SPEED%20RACING%20PEAK%2023wpm)
-  - [Dev / BETA](https://longislandcw.github.io/morsebrowser/dev/index.html?selectedClass=OVERLEARN&selectedGroup=CHARACTERS&selectedLesson=ALPHABET%20MIX&selectedPreset=SPEED%20RACING%20PEAK%2023wpm)
+  - [Prod](https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=CHARACTERS&selectedLesson=ALPHABET%20MIX&selectedPreset=SPEED%20RACING%2023%2F27%2F23wpm)
+  - [Dev / BETA](https://longislandcw.github.io/morsebrowser/dev/index.html?selectedClass=OVERLEARN&selectedGroup=CHARACTERS&selectedLesson=ALPHABET%20MIX&selectedPreset=SPEED%20RACING%2023%2F27%2F23wpm)
 - **Numbers (23 WPM)**
   - [Prod](https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=CHARACTERS&selectedLesson=NUMBERS&selectedPreset=CHARACTERS%2023wpm)
   - [Dev / BETA](https://longislandcw.github.io/morsebrowser/dev/index.html?selectedClass=OVERLEARN&selectedGroup=CHARACTERS&selectedLesson=NUMBERS&selectedPreset=CHARACTERS%2023wpm)
