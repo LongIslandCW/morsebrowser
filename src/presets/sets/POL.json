@@ -61,6 +61,10 @@
             "filename": "POL_Random_1x_CVC_31.json"
         },
         {
+            "display": "PHRASES CW-VOICE-CW 27/25wpm",
+            "filename": "POL_Random_1x_CVC_27_25.json"
+        },
+        {
             "display": "SENDING ALPHABET 23wpm",
             "filename": "POL_23_SA.json"
         },
@@ -137,12 +141,28 @@
             "filename": "POL_Random_Sen_1x_CVC_31.json"
         },
         {
+            "display": "SENTENCES CW-VOICE-CW 23/21wpm",
+            "filename": "POL_Random_Sen_1x_CVC_23_21.json"
+        },
+        {
+            "display": "SENTENCES CW-VOICE-CW 27/25wpm",
+            "filename": "POL_Random_Sen_1x_CVC_27_25.json"
+        },
+        {
+            "display": "SENTENCES CW-VOICE-CW 31/28wpm",
+            "filename": "POL_Random_Sen_1x_CVC_31_28.json"
+        },
+        {
             "display": "SPEED RACING 23wpm",
             "filename": "POL_SR_23.json"
         },
         {
             "display": "SPEED RACING - REVERSED 23wpm",
             "filename": "POL_SR_REV_23.json"
+        },
+        {
+            "display": "SPEED RACING 23/27/23wpm",
+            "filename": "POL_SR_PEAK_23.json"
         },
         {
             "display": "SUFFIXES 23wpm",
@@ -167,26 +187,6 @@
         {
             "display": "VOICE AFTER WORDS 31wpm",
             "filename": "POL_VA_Random_3x_31.json"
-        },
-        {
-            "display": "SPEED RACING PEAK 23wpm",
-            "filename": "POL_SR_PEAK_23.json"
-        },
-        {
-            "display": "PHRASES CW-VOICE-CW 27/25wpm",
-            "filename": "POL_Random_1x_CVC_27_25.json"
-        },
-        {
-            "display": "SENTENCES CW-VOICE-CW 23/21wpm",
-            "filename": "POL_Random_Sen_1x_CVC_23_21.json"
-        },
-        {
-            "display": "SENTENCES CW-VOICE-CW 27/25wpm",
-            "filename": "POL_Random_Sen_1x_CVC_27_25.json"
-        },
-        {
-            "display": "SENTENCES CW-VOICE-CW 31/28wpm",
-            "filename": "POL_Random_Sen_1x_CVC_31_28.json"
         }
     ]
 }
