@@ -15,7 +15,11 @@ class CardWord {
   spoken:boolean = false
   constructor (contents:string) {
     this.original = contents
-    const pieces = this.original.split(' ')
+    // Split on spaces, but skip empties from runs of spaces. Sending word files
+    // use trailing `[   ]` column-padding; doReplacements turns those brackets
+    // into spaces, which used to create many silent empty plays and made the
+    // first Speak-First card feel like it never started.
+    const pieces = this.original.split(' ').filter((piece) => piece.length > 0)
     pieces.forEach((piece) => {
       this.subparts.push(new CardWordSubPart(piece))
     })

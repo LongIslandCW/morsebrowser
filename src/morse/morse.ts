@@ -818,8 +818,11 @@ export class MorseViewModel {
       this.runningPlayMs(0)
       // clear the voice cache
       this.morseVoice.voiceBuffer = []
-      // prime the pump for safari
-      this.morseVoice.primeThePump()
+      // prime the pump for safari (skip when Speak First will speak immediately —
+      // otherwise cancel of the silent prime rejects EasySpeech and shows an overlay)
+      if (!this.morseVoice.speakFirst()) {
+        this.morseVoice.primeThePump()
+      }
       // clear the card buffer
       this.cardBufferManager.clear()
       this.charsPlayed(0)

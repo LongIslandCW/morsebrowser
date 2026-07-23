@@ -208,7 +208,10 @@ export class MorseVoice implements ICookieHandler {
         lang: morseVoiceInfo.voice ? morseVoiceInfo.voice.lang : null,
         voiceURI: morseVoiceInfo.voice ? morseVoiceInfo.voice.voiceURI : null,
         error: e => {
-          this.logToFlaggedWords(`error event during speak:${e}`)
+          // interrupted/canceled are normal when a new speak() cancels the prior
+          // utterance (e.g. Safari primeThePump then Speak First).
+          const reason = (e && (e as SpeechSynthesisErrorEvent).error) || String(e)
+          this.logToFlaggedWords(`error event during speak:${reason}`)
           morseVoiceInfo.onEnd()
         },
         boundary: e => this.logToFlaggedWords('boundary event'),
@@ -217,10 +220,15 @@ export class MorseVoice implements ICookieHandler {
         force: true
       }
       // fix to force to number
-      esConfig.rate = parseFloat(esConfig.rate)
-      esConfig.pitch = parseFloat(esConfig.pitch)
+      esConfig.rate = parseFloat(esConfig.rate as any)
+      esConfig.pitch = parseFloat(esConfig.pitch as any)
       // console.log(`rate:${esConfig.rate} ${typeof esConfig.rate === 'number'}`)
-      EasySpeech.speak(esConfig)
+      // EasySpeech.speak rejects on cancel/interrupt; must catch or webpack shows
+      // an unhandledrejection overlay ([object SpeechSynthesisErrorEvent]).
+      EasySpeech.speak(esConfig).catch((e) => {
+        const reason = (e && e.error) || String(e)
+        this.logToFlaggedWords(`EasySpeech.speak rejected:${reason}`)
+      })
     } catch (e) {
       this.logToFlaggedWords(`caught in speakInfo2:${e}`)
       morseVoiceInfo.onEnd()

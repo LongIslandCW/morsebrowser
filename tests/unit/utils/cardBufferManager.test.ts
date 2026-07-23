@@ -98,3 +98,21 @@ describe('CardBufferManager Speed Racer with a kept-together (Keep Lines) multi-
     ])
   })
 })
+
+describe('CardBufferManager sending-file bracket padding', () => {
+  it('does not emit silent empty plays from trailing spaces (from [   ] pads)', () => {
+    // POL_Send_* files use {WORD[   ]|WORD[   ]|n}; doReplacements turns
+    // brackets into spaces, leaving displayWord like "USE      ".
+    const mgr = createBufferManager('U U U      ')
+    const words:string[] = []
+    let next = mgr.getNextMorse(0, 0)
+    while (next !== undefined) {
+      words.push(next)
+      if (!mgr.hasMoreMorse()) {
+        break
+      }
+      next = mgr.getNextMorse(0, 0)
+    }
+    expect(words).toEqual(['U', 'U', 'U'])
+  })
+})
