@@ -58,6 +58,8 @@ export default class MorseLessonPlugin implements ICookieHandler {
   customSettingsOptions:SettingsOption[] = []
   queryStringSettingsOn:boolean = false
   lessonPickerDomInitialized:boolean = false
+  /** Coalesce lesson reloads after preset apply (class+group each load the preset set). */
+  presetLessonReinitTimerHandle:ReturnType<typeof setTimeout> | null = null
 
   constructor (morseSettings:MorseSettings, setTextCallBack:any, timeEstimateCallback:any, morseViewModel:MorseViewModel) {
     MorseCookies.registerHandler(this)
@@ -270,6 +272,25 @@ export default class MorseLessonPlugin implements ICookieHandler {
     return urlParams.toString()
     
 
+  }
+
+  /**
+   * Reload the current lesson after preset settings settle. Clears any prior
+   * pending reinit so overlapping class/group preset-set loads only reload once —
+   * otherwise a second reload can wipe shuffle (cachedShuffle already consumed).
+   */
+  scheduleLessonReinitAfterPreset = () => {
+    if (!this.morseViewModel.lessons.selectedDisplay().display ||
+        this.morseViewModel.lessons.selectedDisplay().isDummy) {
+      return
+    }
+    if (this.presetLessonReinitTimerHandle) {
+      clearTimeout(this.presetLessonReinitTimerHandle)
+    }
+    this.presetLessonReinitTimerHandle = setTimeout(() => {
+      this.presetLessonReinitTimerHandle = null
+      this.morseViewModel.lessons.setDisplaySelected(this.morseViewModel.lessons.selectedDisplay(), true)
+    }, 1000)
   }
 
   /**
@@ -751,6 +772,9 @@ export default class MorseLessonPlugin implements ICookieHandler {
           applyLegacyMixin()
           applyOverrides()
           MorseCookies.loadCookiesOrDefaults(settingsInfo)
+          if (!skipReinit) {
+            this.scheduleLessonReinitAfterPreset()
+          }
         } else {
           // console.log('no serialized originals')
           this.morseViewModel.currentSerializedSettings = MorseSettingsHandler.getCurrentSerializedSettings(this.morseViewModel)
@@ -768,6 +792,10 @@ export default class MorseLessonPlugin implements ICookieHandler {
               applyOverrides()
               // console.log(settingsInfo.custom)
               MorseCookies.loadCookiesOrDefaults(settingsInfo)
+              // Schedule after settings apply so cachedShuffle (isShuffledSet) is set first.
+              if (!skipReinit) {
+                this.scheduleLessonReinitAfterPreset()
+              }
             }
           })
         } else {
@@ -778,14 +806,9 @@ export default class MorseLessonPlugin implements ICookieHandler {
           applyOverrides()
           // console.log(settingsInfo.custom)
           MorseCookies.loadCookiesOrDefaults(settingsInfo)
-        }
-      }
-
-      // give time for settings to change, then re-init the lesson
-      if (!skipReinit) {
-        if (this.morseViewModel.lessons.selectedDisplay().display && !this.morseViewModel.lessons.selectedDisplay().isDummy) {
-          setTimeout(() => { this.morseViewModel.lessons.setDisplaySelected(this.morseViewModel.lessons.selectedDisplay(), true) }
-            , 1000)
+          if (!skipReinit) {
+            this.scheduleLessonReinitAfterPreset()
+          }
         }
       }
 
