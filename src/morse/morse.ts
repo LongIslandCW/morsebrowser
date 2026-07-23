@@ -957,6 +957,12 @@ export class MorseViewModel {
           playerCmd()
         } else {
           const phraseToSpeak = this.getPhraseToSpeakFromBuffer()
+          // Speak First already leads the card. PRE (bluetooth lead-in) would sit
+          // *after* TTS and only on the first card — a long dead gap vs later cards.
+          // Skip Morse pre-padding here; mark PRE used so it is not applied later.
+          if (config.prePaddingMs > 0) {
+            config.prePaddingMs = 0
+          }
           setTimeout(() => {
             const finalPhraseToSpeak = this.prepPhraseToSpeakForFinal(phraseToSpeak)
             this.morseVoice.speakPhrase(finalPhraseToSpeak, () => {
