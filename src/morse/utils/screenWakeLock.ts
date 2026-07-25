@@ -39,6 +39,11 @@ export default class ScreenWakeLock {
       try {
         (navigator as any).wakeLock.request('screen').then(lock => {
           this.wakeLock = lock
+        }).catch((error) => {
+          // Request can reject (e.g. denied by Permissions Policy, no user
+          // activation, or a background/hidden tab) — not just throw sync.
+          // Uncaught, this shows as an unhandled-rejection overlay on every Play.
+          console.log(`Failed to get wakeLock: ${error.name}, ${error.message}`)
         })
       } catch (error) {
         // The Wake Lock request has failed - usually system related, such as battery being low.

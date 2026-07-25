@@ -152,13 +152,13 @@ export class MorseVoice implements ICookieHandler {
           return false
         })
     }
-    return this.easySpeechReadyPromise
+    return this.easySpeechReadyPromise ?? Promise.resolve(false)
   }
 
   initEasySpeech = async () => {
     // Fire-and-forget for accordion click / page-load kickoff; speak path awaits
     // ensureEasySpeechReady instead.
-    void this.ensureEasySpeechReady()
+    this.ensureEasySpeechReady()
   }
 
   logToFlaggedWords = (s) => {
@@ -365,7 +365,7 @@ export class MorseVoice implements ICookieHandler {
     // Wait for EasySpeech voices before speaking. Without this, Play within the
     // first few seconds of a deep link (Speak First on) force-speaks with no
     // voices loaded and the first card(s) are silent while Morse still advances.
-    void this.ensureEasySpeechReady().then((ready) => {
+    this.ensureEasySpeechReady().then((ready) => {
       if (speakGen !== this.speechGeneration) {
         // Pause/Stop while waiting for init — do not start TTS or Morse via onEnd.
         return
@@ -387,9 +387,16 @@ export class MorseVoice implements ICookieHandler {
   }
 
   primeThePump = () => {
-    // Silent Safari warm-up; only useful once EasySpeech is ready.
-    void this.ensureEasySpeechReady().then((ready) => {
+    // Silent Safari warm-up; only useful once EasySpeech is ready. The wait can
+    // take up to 5s on the very first call — if real speech (Speak First /
+    // Recap) already started in the meantime, skip so the silent utterance
+    // doesn't cancel it out from under it.
+    this.ensureEasySpeechReady().then((ready) => {
       if (!ready) {
+        return
+      }
+      const synth = (EasySpeech.status() as Status & { speechSynthesis?: typeof window.speechSynthesis }).speechSynthesis
+      if (synth && synth.speaking) {
         return
       }
       const morseVoiceInfo = this.initMorseVoiceInfo('i')
