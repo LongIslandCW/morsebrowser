@@ -123,6 +123,11 @@ export class CardBufferManager {
       // return null
       this.populateBuffer(repeats, additionalWordSpaces)
     }
+    // populateBuffer bails (empty buffer) when currentIndex has no card during a
+    // word-list swap race; return a silent play instead of indexing undefined.
+    if (!this.hasMoreMorse()) {
+      return ''
+    }
     const next = this._buffer[0].subparts.shift().word
     // Only the audible (non-empty) plays count toward the Speed Racer step
     // index. Empty subparts are inter-repeat wordspace padding. Several
@@ -139,6 +144,9 @@ export class CardBufferManager {
   getAllMorse = ():string => {
     if (!this.hasMoreMorse()) {
       this.populateBuffer()
+    }
+    if (!this.hasMoreMorse()) {
+      return ''
     }
 
     const out = this._buffer[0].subparts.map(x => x.word).join(' ')

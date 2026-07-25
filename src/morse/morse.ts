@@ -539,6 +539,9 @@ export class MorseViewModel {
   setFlagged = () => {
     if (this.flaggedWords.flaggedWords().trim()) {
       this.doPause(true, false, false)
+      // User is taking over the text; drop any pending post-preset reload so a
+      // later Stop can't overwrite the flagged list.
+      this.lessons.abortPendingLessonReinit()
       this.setText(this.flaggedWords.flaggedWords())
       this.fullRewind()
       this.announce('Flagged cards loaded as text')
@@ -676,11 +679,18 @@ export class MorseViewModel {
     if (!area) {
       return
     }
+    // If focus is inside a panel we are about to collapse (e.g. keyboard user
+    // triggered Play from a settings field), move it to the Play button first so
+    // it doesn't drop to <body> and lose the AT user's place.
+    const focusWasInside = area.contains(document.activeElement)
     // Drive Bootstrap Collapse so its cached _isShown stays in sync with the
     // DOM — stripping `.show` by hand leaves the next header click as a no-op.
     area.querySelectorAll('.accordion-collapse.show').forEach((panel) => {
       Collapse.getOrCreateInstance(panel as HTMLElement, { toggle: false }).hide()
     })
+    if (focusWasInside) {
+      (document.getElementById('btnPlayButton') as HTMLElement | null)?.focus({ preventScroll: true })
+    }
   }
 
   isVoiceOptionsAccordionOpen = ():boolean => {
@@ -992,9 +1002,20 @@ export class MorseViewModel {
           if (config.prePaddingMs > 0) {
             config.prePaddingMs = 0
           }
+          // Pause/Stop bump speechGeneration (via cancelSpeech) and clear
+          // playerPlaying. Capture the generation so a cancelled Speak First's
+          // delayed thinking-time timer and speak onEnd cannot start Morse with
+          // this stale card config, nor mark the card as already-spoken.
+          const speakFirstGen = this.morseVoice.speechGeneration
           setTimeout(() => {
+            if (speakFirstGen !== this.morseVoice.speechGeneration || !this.playerPlaying()) {
+              return
+            }
             const finalPhraseToSpeak = this.prepPhraseToSpeakForFinal(phraseToSpeak)
             this.morseVoice.speakPhrase(finalPhraseToSpeak, () => {
+              if (speakFirstGen !== this.morseVoice.speechGeneration || !this.playerPlaying()) {
+                return
+              }
               // what gets called after speaking
               this.morseVoice.speakFirstLastCardIndex = this.currentIndex()
               playerCmd()
@@ -1422,7 +1443,14 @@ export class MorseViewModel {
     // (setWordIndex), Load Flagged (setFlagged), or Clear (doClear): those set
     // their own text right after doPause, and the deferred reload's async word
     // file import would land afterwards and silently clobber it.
-    if ((fromStopButton || runDeferredReinit) && !this.playerPlaying() && !this.isPaused()) {
+    //
+    // Also skip when a loop restart is about to replay the current set: the
+    // pause callback below re-enters doPlay, and an async reload landing mid-loop
+    // would swap the word list under playback. Keep the reload deferred until a
+    // real Stop.
+    const willLoopRestart = this.loop() && !fromStopButton && !fromPauseButton
+    if ((fromStopButton || runDeferredReinit) && !willLoopRestart &&
+        !this.playerPlaying() && !this.isPaused()) {
       this.lessons.runDeferredLessonReinitIfPending()
     }
   }
@@ -1436,6 +1464,9 @@ export class MorseViewModel {
       if (typeof result !== 'string') {
         return
       }
+      // User is loading their own file; drop any pending post-preset reload so a
+      // later Stop can't overwrite the loaded text.
+      this.lessons.abortPendingLessonReinit()
       this.setText(result)
       // need to clear or else won't fire if use clears the text area
       // and then tries to reload the same again
@@ -1501,6 +1532,9 @@ export class MorseViewModel {
   doClear = () => {
     // stop playing
     this.doPause(true, false, false)
+    // User is clearing the text; drop any pending post-preset reload so a later
+    // Stop can't repopulate the lesson words.
+    this.lessons.abortPendingLessonReinit()
     this.setText('')
     this.announce('Text cleared')
   }

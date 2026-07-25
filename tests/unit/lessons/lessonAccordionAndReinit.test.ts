@@ -236,6 +236,26 @@ describe('OverLearn lesson accordion + post-preset reinit', () => {
     expect(getWordListSpy).not.toHaveBeenCalled()
   })
 
+  it('abortPendingLessonReinit fully drops a deferred reload (Flagged/Clear takeover)', () => {
+    const { plugin } = createPlugin()
+    const lesson = findLesson(plugin, '3-5 WORDS')
+    plugin.setDisplaySelected(lesson!, true)
+    const getWordListSpy = vi.spyOn(plugin, 'getWordList')
+
+    // Simulate a preset picked mid-play that deferred its reload.
+    plugin.deferredLessonReinit = true
+    plugin.scheduleLessonReinitAfterPreset()
+
+    plugin.abortPendingLessonReinit()
+    vi.advanceTimersByTime(1000)
+
+    expect(plugin.deferredLessonReinit).toBe(false)
+    expect(plugin.presetLessonReinitTimerHandle).toBeNull()
+    // Even a later terminal-stop path finds nothing pending to run.
+    plugin.runDeferredLessonReinitIfPending()
+    expect(getWordListSpy).not.toHaveBeenCalled()
+  })
+
   it('cancelPendingLessonReinit drops the timer before it reloads', () => {
     const { plugin } = createPlugin()
     const lesson = findLesson(plugin, '3-5 WORDS')

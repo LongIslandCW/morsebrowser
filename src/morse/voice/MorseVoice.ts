@@ -192,6 +192,13 @@ export class MorseVoice implements ICookieHandler {
   }
 
   speakInfo = (morseVoiceInfo:MorseVoiceInfo) => {
+    // A pending post-cancel follow-up (see cancelSpeech) would abort THIS new
+    // utterance ~25ms in (Stop/Pause then a fast Play). Clear it now that we are
+    // deliberately starting speech again.
+    if (this.cancelSpeechFollowUpHandle) {
+      clearTimeout(this.cancelSpeechFollowUpHandle)
+      this.cancelSpeechFollowUpHandle = null
+    }
     // end / error / promise reject can all fire for one utterance; Morse must
     // advance exactly once (Speak First waits on this before starting CW).
     // Hoisted above the try so the catch below can also call finish() exactly once.

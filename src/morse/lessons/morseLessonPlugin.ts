@@ -65,6 +65,8 @@ export default class MorseLessonPlugin implements ICookieHandler {
   deferredLessonReinit:boolean = false
   /** True while the async preset-set file for the current class/group is loading. */
   presetSetLoadPending:boolean = false
+  /** Monotonic id per getWordList call so a stale async load cannot clobber newer text. */
+  wordListLoadId:number = 0
   /** A LESSON click happened during a preset-set load; decide close on resolve. */
   pendingLessonClickClose:boolean = false
 
@@ -337,6 +339,20 @@ export default class MorseLessonPlugin implements ICookieHandler {
     this.deferredLessonReinit = true
   }
 
+  /**
+   * Fully drop any pending or deferred post-preset reload. Call when the user
+   * intentionally takes over the practice text (Load Flagged, Clear, file
+   * insert) — otherwise the next terminal Stop would run the deferred reload and
+   * its async word-file import would clobber the text the user just set.
+   */
+  abortPendingLessonReinit = () => {
+    if (this.presetLessonReinitTimerHandle) {
+      clearTimeout(this.presetLessonReinitTimerHandle)
+      this.presetLessonReinitTimerHandle = null
+    }
+    this.deferredLessonReinit = false
+  }
+
   /** Run a reload that was deferred while playback was active. */
   runDeferredLessonReinitIfPending = () => {
     if (!this.deferredLessonReinit) {
@@ -364,6 +380,15 @@ export default class MorseLessonPlugin implements ICookieHandler {
     const target = this.settingsPresets().find(c => c.display.toUpperCase() === paramPreset.toUpperCase())
     if (!target) {
       return false
+    }
+    // getSettingsPresets re-runs applyPresetFromQueryString on every CLASS/CONTENT
+    // change while ?selectedPreset= is still in the URL (up to 1s, or indefinitely
+    // with the logo easter egg). Once this preset is already selected, do not
+    // re-load its settings or re-close the accordion — that would slam the menu
+    // shut and re-run reinit while the user is interacting.
+    const current = this.selectedSettingsPreset()
+    if (current && !current.isDummy && current.display.toUpperCase() === paramPreset.toUpperCase()) {
+      return true
     }
     this.setPresetSelected(target)
     // Deep link fully resolved TYPE/CLASS/CONTENT/LESSON/PRESET — nothing left
@@ -559,7 +584,14 @@ export default class MorseLessonPlugin implements ICookieHandler {
     if (filename) {
       const isText = filename.endsWith('txt')
 
+      const loadId = ++this.wordListLoadId
       const afterFound = (result) => {
+        // Ignore a load that resolved after a newer getWordList started, so an
+        // out-of-order dynamic import can't overwrite the current text or clear
+        // wordListLoadPending while the newer load is still in flight.
+        if (loadId !== this.wordListLoadId) {
+          return
+        }
         this.morseViewModel.wordListLoadPending = false
         if (result.found) {
           if (isText) {

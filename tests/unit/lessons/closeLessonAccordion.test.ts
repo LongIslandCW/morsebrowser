@@ -52,4 +52,19 @@ describe('closeLessonAccordianIfAutoClosing', () => {
     expect(document.getElementById('accordianItemLessonControls')?.classList.contains('show')).toBe(true)
     expect(document.getElementById('lessonAccordianButton')?.getAttribute('aria-expanded')).toBe('true')
   })
+
+  it('moves focus to the accordion header when a picker inside the panel had focus', () => {
+    // Production pickers live INSIDE #accordianItemLessonControls; collapsing
+    // hides them, so focus must move to the still-visible header.
+    const panel = document.getElementById('accordianItemLessonControls') as HTMLDivElement
+    panel.innerHTML = '<button id="lessonsPickerPresetsToggle" type="button">Presets</button>'
+    const insideToggle = document.getElementById('lessonsPickerPresetsToggle') as HTMLButtonElement
+    insideToggle.focus()
+    expect(document.activeElement).toBe(insideToggle)
+
+    closeLessonAccordianIfAutoClosing(true)
+
+    expect(panel.classList.contains('show')).toBe(false)
+    expect(document.activeElement).toBe(document.getElementById('lessonAccordianButton'))
+  })
 })
