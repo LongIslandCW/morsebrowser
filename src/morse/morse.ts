@@ -1,4 +1,5 @@
 import ko from 'knockout'
+import { Collapse } from 'bootstrap'
 import MorseStringUtils from './utils/morseStringUtils'
 import { SoundMakerConfig } from './player/soundmakers/SoundMakerConfig'
 import { MorseWordPlayer } from './player/morseWordPlayer'
@@ -132,6 +133,10 @@ export class MorseViewModel {
   screenWakeLock:ScreenWakeLock
   logoClickCount:number = 0
   cachedShuffle:boolean = false
+  // True while an async lesson word-file load is in flight. getWordList owns
+  // consuming cachedShuffle when it resolves; Play must not consume it early
+  // (it would shuffle the old text that the load is about to replace).
+  wordListLoadPending:boolean = false
   shuffleIntraGroup:ko.Observable<boolean> = ko.observable(false)
   // Bumped on pause/stop so in-flight Speed Racer voice recap chains abort cleanly.
   speedRacerToken:number = 0
@@ -346,6 +351,9 @@ export class MorseViewModel {
     this.morseVoice.voiceEnabled.subscribe((enabled) => {
       if (!enabled) {
         this.morseVoice.cancelSpeech()
+        // Drop queued recap entries so cancel's onEnd cannot advance the chain
+        // and speak the rest with Voice off.
+        this.morseVoice.voiceBuffer = []
       }
       if (!enabled &&
           this.settings.speed.speedRacerEnabled() &&
@@ -355,6 +363,15 @@ export class MorseViewModel {
     })
     this.lessons.syncSize.subscribe((synced) => this.announce(synced ? 'Minimum and maximum size are linked' : 'Minimum and maximum size are separate'))
     this.settings.frequency.syncFreq.subscribe((synced) => this.announce(synced ? 'Dit and dah pitch are linked' : 'Dit and dah pitch are separate'))
+    // If the word list is swapped/regenerated (e.g. a preset reload lands while
+    // currentIndex points deep into the old set), clamp so buffer population and
+    // playEnded never index past the end and throw.
+    this.words.subscribe((w) => {
+      const maxIndex = w.length - 1
+      if (this.currentIndex() > maxIndex) {
+        this.currentIndex(maxIndex < 0 ? 0 : maxIndex)
+      }
+    })
   }
 
   loadDefaultsAndCookieSettings = () => {
@@ -659,12 +676,10 @@ export class MorseViewModel {
     if (!area) {
       return
     }
+    // Drive Bootstrap Collapse so its cached _isShown stays in sync with the
+    // DOM — stripping `.show` by hand leaves the next header click as a no-op.
     area.querySelectorAll('.accordion-collapse.show').forEach((panel) => {
-      panel.classList.remove('show')
-    })
-    area.querySelectorAll('.accordion-button').forEach((button) => {
-      button.classList.add('collapsed')
-      button.setAttribute('aria-expanded', 'false')
+      Collapse.getOrCreateInstance(panel as HTMLElement, { toggle: false }).hide()
     })
   }
 
@@ -677,13 +692,10 @@ export class MorseViewModel {
       return
     }
     const panel = document.getElementById('collapsevoiceoptions')
-    const button = document.getElementById('voiceOptionsAccordionButton')
-    if (!panel || !button) {
+    if (!panel) {
       return
     }
-    panel.classList.add('show')
-    button.classList.remove('collapsed')
-    button.setAttribute('aria-expanded', 'true')
+    Collapse.getOrCreateInstance(panel, { toggle: false }).show()
   }
 
   onSpeedRacerEnabledClick = (_data, event:Event) => {
@@ -815,6 +827,20 @@ export class MorseViewModel {
     }
 
     if (freshStart) {
+      // Pending post-preset lesson reload would clear the voice buffer mid-Speak-First.
+      this.lessons.cancelPendingLessonReinit()
+      // Only consume cachedShuffle here when no word-list load is in flight —
+      // otherwise getWordList's afterFound will apply it to the freshly loaded
+      // text. Consuming it now would shuffle the about-to-be-replaced text and
+      // leave the new set unshuffled.
+      if (this.cachedShuffle && !this.wordListLoadPending) {
+        // shuffleWords() toggles; only call it when not already shuffled or it
+        // would un-shuffle a set that was already shuffled by a prior apply.
+        if (!this.isShuffled()) {
+          this.shuffleWords()
+        }
+        this.cachedShuffle = false
+      }
       this.runningPlayMs(0)
       // clear the voice cache
       this.morseVoice.voiceBuffer = []
@@ -897,7 +923,10 @@ export class MorseViewModel {
         })
 
         const playerCmd = () => {
-          if (!this.morseVoice.speakFirst() || this.playerPlaying()) {
+          // Always require an active play state — Pause/Stop clear playerPlaying
+          // and doPlayTimeout, so a late Speak First / Back-1 callback must not
+          // start Morse while the user has already paused or stopped.
+          if (this.playerPlaying()) {
             this.morseWordPlayer.play(config, (fromVoiceOrTrail) => {
               this.charsPlayed(this.charsPlayed() + config.word.replace(' ', '').length)
               // A kept-together (Keep Lines) card can be several morse "words"
@@ -1155,7 +1184,9 @@ export class MorseViewModel {
       // nothing more to play
         const finalToDo = () => {
           this.announce('Playback complete')
-          this.doPause(true, false, false)
+          // Natural full-play finish is a terminal stop, so run any deferred
+          // post-preset lesson reload here.
+          this.doPause(true, false, false, true)
         }
         // trailing may want a linger
         if (this.trailReveal()) {
@@ -1277,36 +1308,38 @@ export class MorseViewModel {
 
   // used by recap
   speakVoiceBuffer = () => {
-    if (this.morseVoice.voiceBuffer.length > 0) {
-      const entry = this.morseVoice.voiceBuffer.shift()
-      if (!entry) {
+    // Stop / Voice-off bump speechGeneration and clear the buffer; bail before
+    // starting the next phrase so cancel's error→onEnd path cannot advance the chain.
+    if (!this.morseVoice.voiceEnabled()) {
+      return
+    }
+    if (this.morseVoice.voiceBuffer.length === 0) {
+      return
+    }
+    const gen = this.morseVoice.speechGeneration
+    const entry = this.morseVoice.voiceBuffer.shift()
+    if (!entry) {
+      return
+    }
+    const phrase = entry.txt
+    // for reasons I can't recall, wordifyPunctuation adds pipe character
+    // remove it
+    const finalPhraseToSpeak = phrase.replace(/\|/g, ' ')
+      .replace(/\|/g, ' ')
+      .replace(/\WV\W/g, ' VEE ')
+      .replace(/^V\W/g, ' VEE ')
+      .replace(/\WV$/g, ' VEE ')
+    this.morseVoice.speakPhrase(finalPhraseToSpeak, () => {
+      if (gen !== this.morseVoice.speechGeneration || !this.morseVoice.voiceEnabled()) {
         return
       }
-      const phrase = entry.txt
-      // for reasons I can't recall, wordifyPunctuation adds pipe character
-      // remove it
-      const finalPhraseToSpeak = phrase.replace(/\|/g, ' ')
-        .replace(/\|/g, ' ')
-        .replace(/\WV\W/g, ' VEE ')
-        .replace(/^V\W/g, ' VEE ')
-        .replace(/\WV$/g, ' VEE ')
-      /* const voicAction = (p:number, pieces:string[]) => {
-        this.morseVoice.speakPhrase(pieces[p], () => {
-          // what gets called after speaking
-          if ((p + 1) === pieces.length) {
-            setTimeout(() => { this.speakVoiceBuffer() }, 250)
-          } else {
-            voicAction(p + 1, pieces)
-          }
+      setTimeout(() => {
+        if (gen !== this.morseVoice.speechGeneration || !this.morseVoice.voiceEnabled()) {
+          return
         }
-        )
-      }
-      voicAction(0, finalPhraseToSpeak.split(' ')) */
-      this.morseVoice.speakPhrase(finalPhraseToSpeak, () => {
-      // what gets called after speaking
-        setTimeout(() => { this.speakVoiceBuffer() }, 250)
-      })
-    }
+        this.speakVoiceBuffer()
+      }, 250)
+    })
   }
 
   getPhraseToSpeakFromBuffer = () => {
@@ -1325,11 +1358,14 @@ export class MorseViewModel {
     return phraseToSpeak
   }
 
-  doPause = (fullRewind, fromPauseButton, fromStopButton) => {
+  doPause = (fullRewind, fromPauseButton, fromStopButton, runDeferredReinit = false) => {
     console.log(`doPause called fullRewid:${fullRewind} fromPauseButton:${fromPauseButton} fromStopButton:${fromStopButton}`)
-    if (fromStopButton) {
+    // Clear a pending doPlay kick so Morse cannot start after Pause (e.g. Back-1
+    // schedules doPlay with a 1s delay) or after Stop.
+    if (fromStopButton || fromPauseButton) {
       if (this.doPlayTimeout) {
         clearTimeout(this.doPlayTimeout)
+        this.doPlayTimeout = 0
       }
     }
 
@@ -1344,6 +1380,11 @@ export class MorseViewModel {
     this.speedRacerToken++
     // Stop in-flight SR recap / voice trail TTS; token alone only gates callbacks.
     this.morseVoice.cancelSpeech()
+    // Manual Voice Recap chains on speakPhrase onEnd; clearing the buffer here
+    // so a cancelled utterance's finish() cannot advance to the next entry.
+    if (fromStopButton) {
+      this.morseVoice.voiceBuffer = []
+    }
     this.morseWordPlayer.pause(() => {
       // we're here if a complete rawtext finished
       this.lastFullPlayTime(Date.now())
@@ -1373,6 +1414,16 @@ export class MorseViewModel {
     if (this.cardSpaceTimerHandle) {
       clearTimeout(this.cardSpaceTimerHandle)
       this.cardSpaceTimerHandle = 0
+    }
+
+    // A preset picked mid-play/pause deferred its lesson reload; run it now that
+    // playback is genuinely, terminally stopped — the Stop button or a full-play
+    // natural finish. Do NOT run it for the transport stops used by jump-to-card
+    // (setWordIndex), Load Flagged (setFlagged), or Clear (doClear): those set
+    // their own text right after doPause, and the deferred reload's async word
+    // file import would land afterwards and silently clobber it.
+    if ((fromStopButton || runDeferredReinit) && !this.playerPlaying() && !this.isPaused()) {
+      this.lessons.runDeferredLessonReinitIfPending()
     }
   }
 

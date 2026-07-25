@@ -119,6 +119,8 @@ function createOverlearnPlugin () {
     isShuffled: ko.observable(false),
     shuffleIntraGroup: ko.observable(false),
     cachedShuffle: false,
+    playerPlaying: ko.observable(false),
+    isPaused: ko.observable(false),
     lessonVoiceBaseline: null,
     captureLessonVoiceBaseline: vi.fn(),
     restoreLessonVoiceFromLesson: vi.fn(),

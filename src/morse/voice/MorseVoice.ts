@@ -192,6 +192,17 @@ export class MorseVoice implements ICookieHandler {
   }
 
   speakInfo = (morseVoiceInfo:MorseVoiceInfo) => {
+    // end / error / promise reject can all fire for one utterance; Morse must
+    // advance exactly once (Speak First waits on this before starting CW).
+    // Hoisted above the try so the catch below can also call finish() exactly once.
+    let finished = false
+    const finish = () => {
+      if (finished) {
+        return
+      }
+      finished = true
+      morseVoiceInfo.onEnd()
+    }
     try {
       const esConfig = {
         logger: this.logToFlaggedWords,
@@ -200,7 +211,7 @@ export class MorseVoice implements ICookieHandler {
         rate: morseVoiceInfo.rate,
         end: e => {
           this.logToFlaggedWords('end event')
-          morseVoiceInfo.onEnd()
+          finish()
           this.logToFlaggedWords('onEnd called')
         },
         volume: morseVoiceInfo.volume,
@@ -212,7 +223,7 @@ export class MorseVoice implements ICookieHandler {
           // utterance (e.g. Safari primeThePump then Speak First).
           const reason = (e && (e as SpeechSynthesisErrorEvent).error) || String(e)
           this.logToFlaggedWords(`error event during speak:${reason}`)
-          morseVoiceInfo.onEnd()
+          finish()
         },
         boundary: e => this.logToFlaggedWords('boundary event'),
         mark: e => this.logToFlaggedWords('mark event'),
@@ -225,13 +236,15 @@ export class MorseVoice implements ICookieHandler {
       // console.log(`rate:${esConfig.rate} ${typeof esConfig.rate === 'number'}`)
       // EasySpeech.speak rejects on cancel/interrupt; must catch or webpack shows
       // an unhandledrejection overlay ([object SpeechSynthesisErrorEvent]).
+      // Some engines reject without an error event — still finish so Morse starts.
       EasySpeech.speak(esConfig).catch((e) => {
         const reason = (e && e.error) || String(e)
         this.logToFlaggedWords(`EasySpeech.speak rejected:${reason}`)
+        finish()
       })
     } catch (e) {
       this.logToFlaggedWords(`caught in speakInfo2:${e}`)
-      morseVoiceInfo.onEnd()
+      finish()
     }
   }
 
@@ -281,12 +294,34 @@ export class MorseVoice implements ICookieHandler {
   }
 
   /** Stop any in-flight TTS (pause/stop, Voice off, or recap abort). */
+  // Bumped on every cancel so chained Voice Recap / Speak First callbacks can
+  // see that speech was aborted and must not start the next phrase.
+  speechGeneration:number = 0
+  // Follow-up cancel timer for easy-speech's 10 ms post-cancel speak window.
+  cancelSpeechFollowUpHandle:ReturnType<typeof setTimeout> | null = null
+
   cancelSpeech = () => {
+    this.speechGeneration++
+    if (this.cancelSpeechFollowUpHandle) {
+      clearTimeout(this.cancelSpeechFollowUpHandle)
+      this.cancelSpeechFollowUpHandle = null
+    }
     try {
       EasySpeech.cancel()
     } catch (e) {
       this.logToFlaggedWords(`cancelSpeech: ${e}`)
     }
+    // easy-speech queues speak() 10 ms after its own cancel (see easyspeech.js).
+    // A second cancel after that window closes the gap so Stop doesn't leave
+    // audible TTS starting after the user already stopped.
+    this.cancelSpeechFollowUpHandle = setTimeout(() => {
+      this.cancelSpeechFollowUpHandle = null
+      try {
+        EasySpeech.cancel()
+      } catch (e) {
+        this.logToFlaggedWords(`cancelSpeech follow-up: ${e}`)
+      }
+    }, 25)
   }
 
   speakPhraseWithAfterDelay = (phraseToSpeak:string, onEndCallBack, applyAfterDelay:boolean) => {

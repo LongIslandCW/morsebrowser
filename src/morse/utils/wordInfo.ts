@@ -4,8 +4,9 @@ FILE OVERVIEW
 
 - `WordInfo` parses an input string (`rawWord`) into `pieces`, splitting on spaces while preserving spaces inside `{...}` override blocks.
 - Supports an override format like `{morseOrDisplay|speech}` (and optionally `{morseOrDisplay|speech|groupId}`) per piece:
-  - `displayWord` returns what to show in the UI (normal text with replacements, or the left side of an override).
-  - `speakText(forceSpelling)` returns what to feed into text-to-speech:
+- `displayWord` returns what to show in the UI (normal text with replacements, or the left side of an override).
+- `maskedDisplay` is the hidden-card placeholder: one `X` per non-space character within each piece, with spaces kept between pieces so `CQ DE` shows `XX XX` while Sending drills like `{A A A|...}` (one piece) still show `XXX`.
+- `speakText(forceSpelling)` returns what to feed into text-to-speech:
     - when `forceSpelling` is `false`, it "wordifies" punctuation for natural speech
     - when `forceSpelling` is `true`, it spells character-by-character (with a small workaround so `1 e 2` isn't treated like scientific notation)
     - for overrides, it speaks the right side when not spelling, or spells the left side when spelling
@@ -53,6 +54,20 @@ export default class WordInfo {
       const override = this.parseOverride(p)
       return override ? override.morse : MorseStringUtils.doReplacements(p)
     }).join(' ')
+  }
+
+  /**
+   * Hidden-card mask: one X per Morse character within each piece, spaces kept
+   * between pieces (e.g. "CQ DE" → "XX XX"). Spaces *inside* a piece are ignored
+   * so Sending letter drills like "{A A A|...}" still show "XXX".
+   */
+  get maskedDisplay ():string {
+    return this.pieces.map(p => {
+      const override = this.parseOverride(p)
+      const text = override ? override.morse : MorseStringUtils.doReplacements(p)
+      const letterCount = text.replace(/\s/g, '').length
+      return letterCount > 0 ? 'X'.repeat(letterCount) : ''
+    }).filter(s => s.length > 0).join(' ')
   }
 
   speakText (forceSpelling:boolean):string {

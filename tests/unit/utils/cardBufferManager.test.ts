@@ -115,4 +115,10 @@ describe('CardBufferManager sending-file bracket padding', () => {
     }
     expect(words).toEqual(['U', 'U', 'U'])
   })
+
+  it('keeps a single padded word (SENDING ALPHABET style ABC[    ]) as one play', () => {
+    const mgr = createBufferManager('ABC     ')
+    expect(mgr.getNextMorse(0, 0)).toBe('ABC')
+    expect(mgr.hasMoreMorse()).toBe(false)
+  })
 })

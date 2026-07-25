@@ -53,7 +53,14 @@ export class CardBufferManager {
   populateBuffer = (repeats:number = 0, additionalWordSpaces:number = 0) => {
     console.log(`populateBuffer repeats${repeats}`)
     this._buffer = []
-    const cardWord = new CardWord(this._getWords()[this._getCurrentIndex()].displayWord)
+    // Defensive: a word-list swap (e.g. a preset reload landing mid-play) can
+    // leave currentIndex pointing past a now-shorter set for a tick before the
+    // clamp subscription fires. Bail instead of throwing on undefined.
+    const currentWord = this._getWords()[this._getCurrentIndex()]
+    if (!currentWord) {
+      return
+    }
+    const cardWord = new CardWord(currentWord.displayWord)
     this._buffer.push(cardWord)
     // A kept-together line/sentence is a single card even though it contains
     // several space-separated morse "words" — Speed Racer must step once per

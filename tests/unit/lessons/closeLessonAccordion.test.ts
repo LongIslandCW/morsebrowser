@@ -1,6 +1,10 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { Collapse } from 'bootstrap'
 
-/** Mirrors MorseLessonPlugin.closeLessonAccordianIfAutoClosing when auto-close is on */
+/**
+ * Mirrors MorseLessonPlugin.closeLessonAccordianIfAutoClosing when auto-close
+ * is on — drives Bootstrap Collapse so its cached _isShown stays in sync.
+ */
 function closeLessonAccordianIfAutoClosing (autoCloseEnabled: boolean) {
   if (!autoCloseEnabled) {
     return
@@ -10,15 +14,19 @@ function closeLessonAccordianIfAutoClosing (autoCloseEnabled: boolean) {
   if (!panel?.classList.contains('show')) {
     return
   }
-  panel.classList.remove('show')
-  button?.classList.add('collapsed')
-  button?.setAttribute('aria-expanded', 'false')
+  const hadFocusInside = panel.contains(document.activeElement)
+  Collapse.getOrCreateInstance(panel, { toggle: false }).hide()
+  if (hadFocusInside) {
+    button?.focus({ preventScroll: true })
+  }
 }
 
 describe('closeLessonAccordianIfAutoClosing', () => {
   beforeEach(() => {
     document.body.innerHTML = `
-      <button id="lessonAccordianButton" class="accordion-button" aria-expanded="true">LICW Lessons</button>
+      <button id="lessonAccordianButton" class="accordion-button" type="button"
+        data-bs-toggle="collapse" data-bs-target="#accordianItemLessonControls"
+        aria-expanded="true" aria-controls="accordianItemLessonControls">LICW Lessons</button>
       <div id="accordianItemLessonControls" class="accordion-collapse collapse show"></div>
       <button id="lessonsPickerLessonToggle" type="button">Lesson</button>
     `
