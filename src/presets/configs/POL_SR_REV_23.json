@@ -212,7 +212,7 @@
 		},
 		{
 			"key": "isShuffledSet",
-			"value": true,
+			"value": false,
 			"comment": null
 		},
 		{
