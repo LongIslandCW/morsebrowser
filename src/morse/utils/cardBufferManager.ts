@@ -53,7 +53,14 @@ export class CardBufferManager {
   populateBuffer = (repeats:number = 0, additionalWordSpaces:number = 0) => {
     console.log(`populateBuffer repeats${repeats}`)
     this._buffer = []
-    const cardWord = new CardWord(this._getWords()[this._getCurrentIndex()].displayWord)
+    // Defensive: a word-list swap (e.g. a preset reload landing mid-play) can
+    // leave currentIndex pointing past a now-shorter set for a tick before the
+    // clamp subscription fires. Bail instead of throwing on undefined.
+    const currentWord = this._getWords()[this._getCurrentIndex()]
+    if (!currentWord) {
+      return
+    }
+    const cardWord = new CardWord(currentWord.displayWord)
     this._buffer.push(cardWord)
     // A kept-together line/sentence is a single card even though it contains
     // several space-separated morse "words" — Speed Racer must step once per
@@ -116,6 +123,11 @@ export class CardBufferManager {
       // return null
       this.populateBuffer(repeats, additionalWordSpaces)
     }
+    // populateBuffer bails (empty buffer) when currentIndex has no card during a
+    // word-list swap race; return a silent play instead of indexing undefined.
+    if (!this.hasMoreMorse()) {
+      return ''
+    }
     const next = this._buffer[0].subparts.shift().word
     // Only the audible (non-empty) plays count toward the Speed Racer step
     // index. Empty subparts are inter-repeat wordspace padding. Several
@@ -132,6 +144,9 @@ export class CardBufferManager {
   getAllMorse = ():string => {
     if (!this.hasMoreMorse()) {
       this.populateBuffer()
+    }
+    if (!this.hasMoreMorse()) {
+      return ''
     }
 
     const out = this._buffer[0].subparts.map(x => x.word).join(' ')

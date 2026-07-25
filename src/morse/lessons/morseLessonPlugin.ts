@@ -1,4 +1,5 @@
 import * as ko from 'knockout'
+import { Collapse } from 'bootstrap'
 import WordListsJson from '../../wordfilesconfigs/wordlists.json'
 import { CookieInfo } from '../cookies/CookieInfo'
 import { ICookieHandler } from '../cookies/ICookieHandler'
@@ -60,6 +61,14 @@ export default class MorseLessonPlugin implements ICookieHandler {
   lessonPickerDomInitialized:boolean = false
   /** Coalesce lesson reloads after preset apply (class+group each load the preset set). */
   presetLessonReinitTimerHandle:ReturnType<typeof setTimeout> | null = null
+  /** A post-preset reload that playback postponed; runs on stop. */
+  deferredLessonReinit:boolean = false
+  /** True while the async preset-set file for the current class/group is loading. */
+  presetSetLoadPending:boolean = false
+  /** Monotonic id per getWordList call so a stale async load cannot clobber newer text. */
+  wordListLoadId:number = 0
+  /** A LESSON click happened during a preset-set load; decide close on resolve. */
+  pendingLessonClickClose:boolean = false
 
   constructor (morseSettings:MorseSettings, setTextCallBack:any, timeEstimateCallback:any, morseViewModel:MorseViewModel) {
     MorseCookies.registerHandler(this)
@@ -278,10 +287,12 @@ export default class MorseLessonPlugin implements ICookieHandler {
    * Reload the current lesson after preset settings settle. Clears any prior
    * pending reinit so overlapping class/group preset-set loads only reload once —
    * otherwise a second reload can wipe shuffle (cachedShuffle already consumed).
+   * While playing or paused the reload is deferred rather than run: a mid-play
+   * reload clears the voice buffer and can stall Speak First (Sending Voice-First
+   * lessons) until Stop then Play. Deferred reloads run when playback stops.
    */
   scheduleLessonReinitAfterPreset = () => {
-    if (!this.morseViewModel.lessons.selectedDisplay().display ||
-        this.morseViewModel.lessons.selectedDisplay().isDummy) {
+    if (!this.hasReloadableLesson()) {
       return
     }
     if (this.presetLessonReinitTimerHandle) {
@@ -289,8 +300,69 @@ export default class MorseLessonPlugin implements ICookieHandler {
     }
     this.presetLessonReinitTimerHandle = setTimeout(() => {
       this.presetLessonReinitTimerHandle = null
-      this.morseViewModel.lessons.setDisplaySelected(this.morseViewModel.lessons.selectedDisplay(), true)
+      if (this.morseViewModel.playerPlaying() || this.morseViewModel.isPaused()) {
+        this.deferredLessonReinit = true
+        return
+      }
+      this.runLessonReinit()
     }, 1000)
+  }
+
+  hasReloadableLesson = ():boolean => {
+    const display = this.selectedDisplay()
+    return !!display.display && !display.isDummy
+  }
+
+  /**
+   * Reload the lesson word file for the current preset. Reloading resets
+   * `isShuffled` (the `undoIsShuffled` extender fires on new text), so re-arm
+   * cachedShuffle to keep a shuffled set shuffled across the reload.
+   */
+  runLessonReinit = () => {
+    this.deferredLessonReinit = false
+    if (this.morseViewModel.isShuffled()) {
+      this.morseViewModel.cachedShuffle = true
+    }
+    this.setDisplaySelected(this.selectedDisplay(), true)
+  }
+
+  /**
+   * Defer a pending post-preset reload (user hit Play before it ran) so the
+   * preset's word-list settings still apply once playback stops.
+   */
+  cancelPendingLessonReinit = () => {
+    if (!this.presetLessonReinitTimerHandle) {
+      return
+    }
+    clearTimeout(this.presetLessonReinitTimerHandle)
+    this.presetLessonReinitTimerHandle = null
+    this.deferredLessonReinit = true
+  }
+
+  /**
+   * Fully drop any pending or deferred post-preset reload. Call when the user
+   * intentionally takes over the practice text (Load Flagged, Clear, file
+   * insert) — otherwise the next terminal Stop would run the deferred reload and
+   * its async word-file import would clobber the text the user just set.
+   */
+  abortPendingLessonReinit = () => {
+    if (this.presetLessonReinitTimerHandle) {
+      clearTimeout(this.presetLessonReinitTimerHandle)
+      this.presetLessonReinitTimerHandle = null
+    }
+    this.deferredLessonReinit = false
+  }
+
+  /** Run a reload that was deferred while playback was active. */
+  runDeferredLessonReinitIfPending = () => {
+    if (!this.deferredLessonReinit) {
+      return
+    }
+    if (!this.hasReloadableLesson()) {
+      this.deferredLessonReinit = false
+      return
+    }
+    this.runLessonReinit()
   }
 
   /**
@@ -309,7 +381,19 @@ export default class MorseLessonPlugin implements ICookieHandler {
     if (!target) {
       return false
     }
+    // getSettingsPresets re-runs applyPresetFromQueryString on every CLASS/CONTENT
+    // change while ?selectedPreset= is still in the URL (up to 1s, or indefinitely
+    // with the logo easter egg). Once this preset is already selected, do not
+    // re-load its settings or re-close the accordion — that would slam the menu
+    // shut and re-run reinit while the user is interacting.
+    const current = this.selectedSettingsPreset()
+    if (current && !current.isDummy && current.display.toUpperCase() === paramPreset.toUpperCase()) {
+      return true
+    }
     this.setPresetSelected(target)
+    // Deep link fully resolved TYPE/CLASS/CONTENT/LESSON/PRESET — nothing left
+    // for the user to pick, so close as if they had clicked the preset.
+    this.closeLessonAccordianIfAutoClosing()
     if (!this.queryStringSettingsOn) {
       // Match prior behavior: strip after apply so a late competing select cannot
       // see a stale selectedPreset and skip (see setPresetSelected guard).
@@ -343,6 +427,17 @@ export default class MorseLessonPlugin implements ICookieHandler {
         }
       }
     }
+    const resolvePendingLessonClickClose = () => {
+      this.presetSetLoadPending = false
+      // A LESSON click arrived while the set was loading; now that the real
+      // preset list is known, close only if there is nothing to pick.
+      if (this.pendingLessonClickClose) {
+        this.pendingLessonClickClose = false
+        if (this.settingsPresets().length <= 1) {
+          this.closeLessonAccordianIfAutoClosing()
+        }
+      }
+    }
     const handleData = (d) => {
       // console.log(d)
       // console.log(typeof d.data.options)
@@ -354,6 +449,7 @@ export default class MorseLessonPlugin implements ICookieHandler {
       }
       handleAutoSelect()
       this.ensureSettingsPresetsInitialized()
+      resolvePendingLessonClickClose()
     }
 
     if (this.selectedClass() === '') {
@@ -363,6 +459,7 @@ export default class MorseLessonPlugin implements ICookieHandler {
         this.setPresetSelected(this.settingsPresets()[0])
         handleAutoSelect()
         this.ensureSettingsPresetsInitialized()
+        resolvePendingLessonClickClose()
       }
     } else {
       const targetClass = ClassPresets.classes.find(c => c.className === this.selectedClass())
@@ -375,16 +472,19 @@ export default class MorseLessonPlugin implements ICookieHandler {
       const targetLesson = letterGroupsGood ? targetClass.letterGroups.find(l => l.letterGroup === this.letterGroup()) : null
       if (targetLesson) {
         // sps.push({ display: targetLesson.setFile })
+        this.presetSetLoadPending = true
         MorsePresetSetFileFinder.getMorsePresetSetFile(targetLesson.setFile, (data) => handleData(data))
       } else {
         if (targetClass && targetClass.defaultSetFile) {
           // sps.push({ display: targetClass.defaultSetFile })
+          this.presetSetLoadPending = true
           MorsePresetSetFileFinder.getMorsePresetSetFile(targetClass.defaultSetFile, (data) => handleData(data))
         } else {
           // no matches so use default
           this.settingsPresets(sps)
           handleAutoSelect()
           this.ensureSettingsPresetsInitialized()
+          resolvePendingLessonClickClose()
         }
       }
     }
@@ -484,7 +584,15 @@ export default class MorseLessonPlugin implements ICookieHandler {
     if (filename) {
       const isText = filename.endsWith('txt')
 
+      const loadId = ++this.wordListLoadId
       const afterFound = (result) => {
+        // Ignore a load that resolved after a newer getWordList started, so an
+        // out-of-order dynamic import can't overwrite the current text or clear
+        // wordListLoadPending while the newer load is still in flight.
+        if (loadId !== this.wordListLoadId) {
+          return
+        }
+        this.morseViewModel.wordListLoadPending = false
         if (result.found) {
           if (isText) {
             this.setText(result.data)
@@ -500,6 +608,9 @@ export default class MorseLessonPlugin implements ICookieHandler {
         }
       }
 
+      // Mark a load in flight so Play can't consume cachedShuffle against the
+      // stale text before this resolves (see doPlay freshStart handling).
+      this.morseViewModel.wordListLoadPending = true
       MorseLessonFileFinder.getMorseLessonFile(filename, afterFound)
     }
   }
@@ -581,7 +692,15 @@ export default class MorseLessonPlugin implements ICookieHandler {
 
   focusLessonPickerToggle = (toggleId: string) => {
     window.setTimeout(() => {
-      document.getElementById(toggleId)?.focus({ preventScroll: true })
+      const target = document.getElementById(toggleId)
+      const panel = document.getElementById('accordianItemLessonControls')
+      // Auto-close can collapse the panel before this runs; a hidden toggle is
+      // not focusable, so fall back to the accordion header.
+      if (target && panel?.contains(target) && !panel.classList.contains('show')) {
+        document.getElementById('lessonAccordianButton')?.focus({ preventScroll: true })
+        return
+      }
+      target?.focus({ preventScroll: true })
     }, 0)
   }
 
@@ -642,7 +761,13 @@ export default class MorseLessonPlugin implements ICookieHandler {
     }
   }
 
-  /** Collapse LICW Lessons without focusing the accordion header (avoids SR focus jumps). */
+  /**
+   * Collapse LICW Lessons. A collapsed panel is `display:none`, so anything
+   * focused inside it would silently lose focus to `<body>`; move focus to the
+   * still-visible accordion header in that case. Drive Bootstrap Collapse so
+   * its cached `_isShown` stays in sync (class-only toggles leave the next
+   * header click as a no-op).
+   */
   closeLessonAccordianIfAutoClosing = () => {
     if (!this.autoCloseLessonAccordion()) {
       return
@@ -652,9 +777,11 @@ export default class MorseLessonPlugin implements ICookieHandler {
     if (!panel?.classList.contains('show')) {
       return
     }
-    panel.classList.remove('show')
-    button?.classList.add('collapsed')
-    button?.setAttribute('aria-expanded', 'false')
+    const hadFocusInside = panel.contains(document.activeElement)
+    Collapse.getOrCreateInstance(panel, { toggle: false }).hide()
+    if (hadFocusInside) {
+      button?.focus({ preventScroll: true })
+    }
   }
 
   setDisplaySelected = (display, skipPresets = false, fromClick="") => {
@@ -671,7 +798,24 @@ export default class MorseLessonPlugin implements ICookieHandler {
         this.morseSettings.misc.newlineChunking(display.newlineChunking)
         // setText(`when we have lesson files, load ${selectedDisplay().fileName}`)
         this.getWordList(this.selectedDisplay().fileName)
-        this.closeLessonAccordianIfAutoClosing()
+        // OverLearn (and other multi-preset classes) auto-select the first preset
+        // when CONTENT changes, so closing on every LESSON click would collapse the
+        // menu before the user can pick PRESET. Only close here when PRESETS holds
+        // nothing to pick; otherwise the preset selection closes it.
+        //
+        // The preset-set file loads asynchronously, so settingsPresets() may still
+        // hold the previous group's (or empty) list right after a CONTENT click.
+        // If a load is in flight, defer the close decision to getSettingsPresets's
+        // handleData once the real list is known — otherwise we could collapse the
+        // menu on a transiently-short list (the OverLearn bug this whole change
+        // exists to fix).
+        if (fromClick === 'click') {
+          if (this.presetSetLoadPending) {
+            this.pendingLessonClickClose = true
+          } else if (this.settingsPresets().length <= 1) {
+            this.closeLessonAccordianIfAutoClosing()
+          }
+        }
         if (!skipPresets) {
           //console.log('calling setPresetSelected from setDisplaySelected')
           this.setPresetSelected(this.selectedSettingsPreset(), true)
@@ -815,6 +959,11 @@ export default class MorseLessonPlugin implements ICookieHandler {
       this.lastSelectedSettingsPreset(preset)
       // console.log(`leaving the selected preset is ${this.selectedSettingsPreset().display}`)
       this.upsertQueryStringVariable('selectedPreset', preset.display)
+      // Only user preset picks close the accordion — not auto-select of the first
+      // preset when CLASS/CONTENT changes (that would close before LESSON/PRESET).
+      if (fromClick === 'click') {
+        this.closeLessonAccordianIfAutoClosing()
+      }
     }
   }
 

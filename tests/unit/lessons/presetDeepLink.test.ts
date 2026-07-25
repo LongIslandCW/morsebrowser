@@ -119,6 +119,8 @@ function createOverlearnPlugin () {
     isShuffled: ko.observable(false),
     shuffleIntraGroup: ko.observable(false),
     cachedShuffle: false,
+    playerPlaying: ko.observable(false),
+    isPaused: ko.observable(false),
     lessonVoiceBaseline: null,
     captureLessonVoiceBaseline: vi.fn(),
     restoreLessonVoiceFromLesson: vi.fn(),
@@ -197,6 +199,28 @@ describe('OverLearn preset deep links', () => {
     expect(plugin.selectedSettingsPreset().display).toBe('CHARACTERS 23wpm')
     expect(morseViewModel.settings.speed.wpm()).toBe(23)
     expect(morseViewModel.settings.speed.fwpm()).toBe(23)
+  })
+
+  it('does not re-apply or re-close once the deep-link preset is already selected', () => {
+    const { plugin } = createOverlearnPlugin()
+    plugin.setUserTargetInitialized()
+    plugin.setSelectedClassInitialized()
+    plugin.setLetterGroupInitialized()
+    plugin.setDisplaysInitialized()
+    plugin.ensureSettingsPresetsInitialized()
+    flushPendingPresetSets()
+    expect(plugin.selectedSettingsPreset().display).toBe('CHARACTERS 23wpm')
+
+    const setPresetSpy = vi.spyOn(plugin, 'setPresetSelected')
+    const closeSpy = vi.spyOn(plugin, 'closeLessonAccordianIfAutoClosing')
+
+    // A later set re-resolution (CLASS/CONTENT change while ?selectedPreset=
+    // still present) must be a no-op, not a re-apply + accordion slam.
+    const applied = plugin.applyPresetFromQueryString()
+
+    expect(applied).toBe(true)
+    expect(setPresetSpy).not.toHaveBeenCalled()
+    expect(closeSpy).not.toHaveBeenCalled()
   })
 
   it('does not auto-select the first preset when selectedPreset is in the URL', () => {

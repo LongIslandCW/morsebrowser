@@ -18,3 +18,4 @@ playwright-report/
 .vercel
 .gstack/
 .understand-anything/
+.aider*
