@@ -188,8 +188,9 @@ export class MorseViewModel {
 
     // voice
     this.morseVoice = new MorseVoice(this)
-    // after 5 seconds, run this.morseVoice.initEasySpeech()
-    setTimeout(() => { this.morseVoice.initEasySpeech() }, 5000)
+    // Start EasySpeech init immediately so Speak First / Recap are ready before
+    // a deep-link user hits Play (the old 5s delay left early cards silent).
+    this.morseVoice.initEasySpeech()
 
     this.loadDefaultsAndCookieSettings()
 
@@ -354,6 +355,10 @@ export class MorseViewModel {
         // Drop queued recap entries so cancel's onEnd cannot advance the chain
         // and speak the rest with Voice off.
         this.morseVoice.voiceBuffer = []
+      } else {
+        // Preset / deep-link may enable Voice before the user opens Voice Options;
+        // kick init so Speak First is ready on first Play.
+        this.morseVoice.initEasySpeech()
       }
       if (!enabled &&
           this.settings.speed.speedRacerEnabled() &&
@@ -854,9 +859,13 @@ export class MorseViewModel {
       this.runningPlayMs(0)
       // clear the voice cache
       this.morseVoice.voiceBuffer = []
-      // prime the pump for safari (skip when Speak First will speak immediately —
-      // otherwise cancel of the silent prime rejects EasySpeech and shows an overlay)
-      if (!this.morseVoice.speakFirst()) {
+      // Kick EasySpeech init early on Speak First Play so voices are ready by
+      // the time speakPhrase runs (deep-link users often Play within 1–2s).
+      if (this.morseVoice.speakFirst()) {
+        this.morseVoice.initEasySpeech()
+      } else {
+        // prime the pump for safari (skip when Speak First will speak immediately —
+        // otherwise cancel of the silent prime rejects EasySpeech and shows an overlay)
         this.morseVoice.primeThePump()
       }
       // clear the card buffer

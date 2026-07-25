@@ -42,6 +42,8 @@ export class MorseVoice implements ICookieHandler {
   speakFirstAdditionalWordspaces:ko.Observable<number>
   easyspeechInitCount:number = 0
   msFound:boolean = false
+  /** Shared in-flight EasySpeech.init so Speak First / Recap can await readiness. */
+  easySpeechReadyPromise:Promise<boolean> | null = null
 
   constructor (context:MorseViewModel) {
     MorseCookies.registerHandler(this)
@@ -122,18 +124,41 @@ export class MorseVoice implements ICookieHandler {
     }, this)
   }
 
-  initEasySpeech = async () => {
-    if (this.easyspeechInitCount < 1) {
-    // let easySpeechInitStatus
-      this.easyspeechInitCount++
-      console.log('initEasySpeech!')
-      EasySpeech.init({ maxTimeout: 5000, interval: 250 }).then((e) => {
-        this.logToFlaggedWords(`easyspeechinit: ${e}`)
+  /**
+   * Ensure EasySpeech has finished init (voices loaded) before speaking.
+   * Deep-link → Play before the old 5s lazy init would Speak First with
+   * force:true and no voices — silent/skipped first cards until init caught up.
+   */
+  ensureEasySpeechReady = async (): Promise<boolean> => {
+    const status = EasySpeech.status() as Status & { initialized?: boolean }
+    if (status.initialized) {
+      if (!this.voices.length) {
         this.populateVoiceList()
-      }).catch((e) => {
-        this.logToFlaggedWords(`error in easyspeechinit: ${e}`)
-      })
+      }
+      return true
     }
+    if (!this.easySpeechReadyPromise) {
+      this.easyspeechInitCount = Math.max(this.easyspeechInitCount, 1)
+      console.log('initEasySpeech!')
+      this.easySpeechReadyPromise = EasySpeech.init({ maxTimeout: 5000, interval: 250 })
+        .then((e) => {
+          this.logToFlaggedWords(`easyspeechinit: ${e}`)
+          this.populateVoiceList()
+          return true
+        })
+        .catch((e) => {
+          this.logToFlaggedWords(`error in easyspeechinit: ${e}`)
+          this.easySpeechReadyPromise = null
+          return false
+        })
+    }
+    return this.easySpeechReadyPromise
+  }
+
+  initEasySpeech = async () => {
+    // Fire-and-forget for accordion click / page-load kickoff; speak path awaits
+    // ensureEasySpeechReady instead.
+    void this.ensureEasySpeechReady()
   }
 
   logToFlaggedWords = (s) => {
@@ -332,27 +357,48 @@ export class MorseVoice implements ICookieHandler {
   }
 
   speakPhraseWithAfterDelay = (phraseToSpeak:string, onEndCallBack, applyAfterDelay:boolean) => {
+    const speakGen = this.speechGeneration
     const doOnEndCallBack = () => {
       const delay = applyAfterDelay ? this.voiceAfterThinkingTime() * 1000 : 0
       setTimeout(onEndCallBack, delay)
     }
-    try {
-      const morseVoiceInfo = this.initMorseVoiceInfo(phraseToSpeak)
-      morseVoiceInfo.onEnd = doOnEndCallBack
-      this.speakInfo(morseVoiceInfo)
-    } catch (e) {
-      this.logToFlaggedWords(`caught in speakPhrase:${e}`)
-      doOnEndCallBack()
-    }
+    // Wait for EasySpeech voices before speaking. Without this, Play within the
+    // first few seconds of a deep link (Speak First on) force-speaks with no
+    // voices loaded and the first card(s) are silent while Morse still advances.
+    void this.ensureEasySpeechReady().then((ready) => {
+      if (speakGen !== this.speechGeneration) {
+        // Pause/Stop while waiting for init — do not start TTS or Morse via onEnd.
+        return
+      }
+      if (!ready) {
+        this.logToFlaggedWords('speakPhrase: EasySpeech not ready, skipping TTS')
+        doOnEndCallBack()
+        return
+      }
+      try {
+        const morseVoiceInfo = this.initMorseVoiceInfo(phraseToSpeak)
+        morseVoiceInfo.onEnd = doOnEndCallBack
+        this.speakInfo(morseVoiceInfo)
+      } catch (e) {
+        this.logToFlaggedWords(`caught in speakPhrase:${e}`)
+        doOnEndCallBack()
+      }
+    })
   }
 
   primeThePump = () => {
-    const morseVoiceInfo = this.initMorseVoiceInfo('i')
-    morseVoiceInfo.volume = 0
-    morseVoiceInfo.rate = 5
-    morseVoiceInfo.pitch = 1
-    morseVoiceInfo.onEnd = () => { this.logToFlaggedWords('pump primed') }
-    this.speakInfo(morseVoiceInfo)
+    // Silent Safari warm-up; only useful once EasySpeech is ready.
+    void this.ensureEasySpeechReady().then((ready) => {
+      if (!ready) {
+        return
+      }
+      const morseVoiceInfo = this.initMorseVoiceInfo('i')
+      morseVoiceInfo.volume = 0
+      morseVoiceInfo.rate = 5
+      morseVoiceInfo.pitch = 1
+      morseVoiceInfo.onEnd = () => { this.logToFlaggedWords('pump primed') }
+      this.speakInfo(morseVoiceInfo)
+    })
   }
 
   speakerSelect = (e, f) => {
