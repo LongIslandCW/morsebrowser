@@ -1,0 +1,14 @@
+"use strict";
+(self["webpackChunk"] = self["webpackChunk"] || []).push([["src_wordfiles_POL_ING_2_txt"],{
+
+/***/ "./src/wordfiles/POL_ING_2.txt":
+/*!*************************************!*\
+  !*** ./src/wordfiles/POL_ING_2.txt ***!
+  \*************************************/
+/***/ ((module) => {
+
+module.exports = "{ACTING | ACTING | 1} {AGING | AGING | 1} {BEING | BEING | 2} {BOATING | BOATING | 2} {CARING | CARING | 3} {COMING | COMING | 3} {DOING | DOING | 4} {DARING | DARING | 4} {ENDING | ENDING | 5} {EATING | EATING | 5} {FITTING | FITTING | 6} {FUNDING | FUNDING | 6} {GOING | GOING | 7} {GETTING | GETTING | 7} {HIDING | HIDING | 8} {HEALING | HEALING | 8} {ITCHING | ITCHING | 9} {IDLING | IDLING | 9} {JUMPING | JUMPING | 10} {JOINING | JOINING | 10} {KNOWING | KNOWING | 11} {KEEPING | KEEPING | 11} {LOOKING | LOOKING | 12} {LEANING | LEANING | 12} {MINDING | MINDING | 13} {MEETING | MEETING | 13} {NETTING | NETTING | 14} {NAPPING | NAPPING | 14} {OWNING | OWNING | 15} {OILING | OILING | 15} {PICKING | PICKING | 16} {PUTTING | PUTTING | 16} {QUOTING | QUOTING | 17} {QUAKING | QUAKING | 17} {RACING | RACING | 18} {RESIZING | RESIZING | 18} {SITTING | SITTING | 19} {SEWING | SEWING | 19} {TRYING | TRYING | 20} {TESTING | TESTING | 20} {USING | USING | 21} {UNTYING | UNTYING | 21} {VOICING | VOICING | 22} {VAULTING | VAULTING | 22} {WING | WING | 23} {WAITING | WAITING | 23} {XEROXING | XEROXING | 24} {YAWNING | YAWNING | 25} {YEARLING | YEARLING | 25} {ZONING | ZONING | 26} {ZOOMING | ZOOMING | 26}";
+
+/***/ })
+
+}]);
