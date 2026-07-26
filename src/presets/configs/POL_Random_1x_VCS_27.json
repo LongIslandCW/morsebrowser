@@ -17,7 +17,7 @@
 		},
 		{
 			"key": "volume",
-			"value": "10",
+			"value": "4",
 			"comment": null
 		},
 		{
@@ -42,11 +42,26 @@
 		},
 		{
 			"key": "showRaw",
-			"value": true,
+			"value": false,
+			"comment": null
+		},
+		{
+			"key": "darkMode",
+			"value": false,
+			"comment": null
+		},
+		{
+			"key": "autoCloseSettingsAccordions",
+			"value": false,
 			"comment": null
 		},
 		{
 			"key": "autoCloseLessonAccordian",
+			"value": true,
+			"comment": null
+		},
+		{
+			"key": "ifCustomGroup",
 			"value": false,
 			"comment": null
 		},
@@ -137,12 +152,12 @@
 		},
 		{
 			"key": "cardSpace",
-			"value": 0,
+			"value": "5",
 			"comment": "AKA cardWait"
 		},
 		{
 			"key": "miscSettingsAccordionOpen",
-			"value": "true",
+			"value": false,
 			"comment": null
 		},
 		{
@@ -163,6 +178,31 @@
 		{
 			"key": "intervalFwpmText",
 			"value": "",
+			"comment": null
+		},
+		{
+			"key": "speedRacerEnabled",
+			"value": false,
+			"comment": null
+		},
+		{
+			"key": "speedRacerMultipliers",
+			"value": "1.5, 1.35, 1.175, 1.0",
+			"comment": null
+		},
+		{
+			"key": "speedRacerFinalPlay",
+			"value": true,
+			"comment": null
+		},
+		{
+			"key": "speedRacerSpeakBeforeReplay",
+			"value": true,
+			"comment": null
+		},
+		{
+			"key": "speedRacerKeepFwpm",
+			"value": true,
 			"comment": null
 		},
 		{

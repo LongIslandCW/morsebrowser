@@ -48,9 +48,9 @@
     "section": "Level INT1 & 2 Exercises",
     "group": "CHARACTERS",
     "lesson": "ALPHABET MIX",
-    "preset": "SPEED RACING PEAK 23wpm",
-    "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=CHARACTERS&selectedLesson=ALPHABET%20MIX&selectedPreset=SPEED%20RACING%20PEAK%2023wpm",
-    "urlDev": "https://longislandcw.github.io/morsebrowser/dev/index.html?selectedClass=OVERLEARN&selectedGroup=CHARACTERS&selectedLesson=ALPHABET%20MIX&selectedPreset=SPEED%20RACING%20PEAK%2023wpm",
+    "preset": "SPEED RACING 23/27/23wpm",
+    "url": "https://longislandcw.github.io/morsebrowser/index.html?selectedClass=OVERLEARN&selectedGroup=CHARACTERS&selectedLesson=ALPHABET%20MIX&selectedPreset=SPEED%20RACING%2023%2F27%2F23wpm",
+    "urlDev": "https://longislandcw.github.io/morsebrowser/dev/index.html?selectedClass=OVERLEARN&selectedGroup=CHARACTERS&selectedLesson=ALPHABET%20MIX&selectedPreset=SPEED%20RACING%2023%2F27%2F23wpm",
     "ok": true,
     "notes": "Speed Racer peak"
   },

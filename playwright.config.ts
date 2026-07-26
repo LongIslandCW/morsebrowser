@@ -30,7 +30,10 @@ export default defineConfig({
   webServer: {
     command: `npx serve dist -l ${port}`,
     url: baseURL,
-    reuseExistingServer: !process.env.CI,
+    // Never reuse webpack-dev-server: its runtime error overlay intercepts clicks
+    // (e.g. SpeechSynthesisErrorEvent) and flakes e2e like stop-then-play.
+    // Stop `npm run dev` before e2e if port 3000 is busy.
+    reuseExistingServer: false,
     timeout: 120_000
   }
 })

@@ -52,7 +52,7 @@
 		},
 		{
 			"key": "autoCloseSettingsAccordions",
-			"value": false,
+			"value": true,
 			"comment": null
 		},
 		{
@@ -157,7 +157,7 @@
 		},
 		{
 			"key": "miscSettingsAccordionOpen",
-			"value": "true",
+			"value": "false",
 			"comment": null
 		},
 		{

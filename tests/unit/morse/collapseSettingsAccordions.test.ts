@@ -1,17 +1,14 @@
 import { describe, expect, it, beforeEach, vi } from 'vitest'
+import { Collapse } from 'bootstrap'
 
-/** Mirrors MorseViewModel.collapseSettingsAccordions DOM behavior */
+/** Mirrors MorseViewModel.collapseSettingsAccordions — Bootstrap Collapse API */
 function collapseSettingsAccordions () {
   const area = document.getElementById('accordionArea')
   if (!area) {
     return
   }
   area.querySelectorAll('.accordion-collapse.show').forEach((panel) => {
-    panel.classList.remove('show')
-  })
-  area.querySelectorAll('.accordion-button').forEach((button) => {
-    button.classList.add('collapsed')
-    button.setAttribute('aria-expanded', 'false')
+    Collapse.getOrCreateInstance(panel as HTMLElement, { toggle: false }).hide()
   })
 }
 
@@ -29,10 +26,12 @@ describe('collapseSettingsAccordions', () => {
   beforeEach(() => {
     document.body.innerHTML = `
       <div id="accordionArea">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+          data-bs-target="#panel1" aria-expanded="true" aria-controls="panel1">One</button>
         <div class="accordion-collapse collapse show" id="panel1"></div>
-        <button class="accordion-button" aria-expanded="true">One</button>
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+          data-bs-target="#panel2" aria-expanded="false" aria-controls="panel2">Two</button>
         <div class="accordion-collapse collapse" id="panel2"></div>
-        <button class="accordion-button collapsed" aria-expanded="false">Two</button>
       </div>
     `
   })
@@ -40,17 +39,15 @@ describe('collapseSettingsAccordions', () => {
   it('removes show from open panels and collapses buttons', () => {
     collapseSettingsAccordions()
     expect(document.querySelector('#panel1')?.classList.contains('show')).toBe(false)
-    const buttons = document.querySelectorAll('#accordionArea .accordion-button')
-    buttons.forEach((btn) => {
-      expect(btn.classList.contains('collapsed')).toBe(true)
-      expect(btn.getAttribute('aria-expanded')).toBe('false')
-    })
+    const button = document.querySelector('#accordionArea .accordion-button[data-bs-target="#panel1"]')
+    expect(button?.classList.contains('collapsed')).toBe(true)
+    expect(button?.getAttribute('aria-expanded')).toBe('false')
   })
 
   it('skips collapse when autoCloseSettingsAccordions is false', () => {
     maybeCollapseSettingsAccordions(false)
     expect(document.querySelector('#panel1')?.classList.contains('show')).toBe(true)
-    const button = document.querySelector('#accordionArea .accordion-button')
+    const button = document.querySelector('#accordionArea .accordion-button[data-bs-target="#panel1"]')
     expect(button?.classList.contains('collapsed')).toBe(false)
     expect(button?.getAttribute('aria-expanded')).toBe('true')
   })
@@ -66,28 +63,32 @@ function expandVoiceOptionsAccordionIfClosed () {
   if (panel?.classList.contains('show')) {
     return
   }
-  const button = document.getElementById('voiceOptionsAccordionButton')
-  if (!panel || !button) {
+  if (!panel) {
     return
   }
-  panel.classList.add('show')
-  button.classList.remove('collapsed')
-  button.setAttribute('aria-expanded', 'true')
+  Collapse.getOrCreateInstance(panel, { toggle: false }).show()
 }
 
 describe('expandVoiceOptionsAccordionIfClosed', () => {
   beforeEach(() => {
     document.body.innerHTML = `
       <div id="accordionArea">
+        <button id="voiceOptionsAccordionButton" class="accordion-button collapsed" type="button"
+          data-bs-toggle="collapse" data-bs-target="#collapsevoiceoptions"
+          aria-expanded="false" aria-controls="collapsevoiceoptions">Voice</button>
         <div class="accordion-collapse collapse" id="collapsevoiceoptions"></div>
-        <button id="voiceOptionsAccordionButton" class="accordion-button collapsed" aria-expanded="false">Voice</button>
       </div>
     `
   })
 
-  it('expands the Voice Options panel and button when collapsed', () => {
+  it('expands the Voice Options panel and button when collapsed', async () => {
+    const panel = document.getElementById('collapsevoiceoptions') as HTMLElement
+    const shown = new Promise<void>((resolve) => {
+      panel.addEventListener('shown.bs.collapse', () => resolve(), { once: true })
+    })
     expandVoiceOptionsAccordionIfClosed()
-    expect(document.querySelector('#collapsevoiceoptions')?.classList.contains('show')).toBe(true)
+    await shown
+    expect(panel.classList.contains('show')).toBe(true)
     const button = document.getElementById('voiceOptionsAccordionButton')
     expect(button?.classList.contains('collapsed')).toBe(false)
     expect(button?.getAttribute('aria-expanded')).toBe('true')

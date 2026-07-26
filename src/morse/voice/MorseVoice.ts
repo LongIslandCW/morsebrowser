@@ -42,6 +42,8 @@ export class MorseVoice implements ICookieHandler {
   speakFirstAdditionalWordspaces:ko.Observable<number>
   easyspeechInitCount:number = 0
   msFound:boolean = false
+  /** Shared in-flight EasySpeech.init so Speak First / Recap can await readiness. */
+  easySpeechReadyPromise:Promise<boolean> | null = null
 
   constructor (context:MorseViewModel) {
     MorseCookies.registerHandler(this)
@@ -122,18 +124,41 @@ export class MorseVoice implements ICookieHandler {
     }, this)
   }
 
-  initEasySpeech = async () => {
-    if (this.easyspeechInitCount < 1) {
-    // let easySpeechInitStatus
-      this.easyspeechInitCount++
-      console.log('initEasySpeech!')
-      EasySpeech.init({ maxTimeout: 5000, interval: 250 }).then((e) => {
-        this.logToFlaggedWords(`easyspeechinit: ${e}`)
+  /**
+   * Ensure EasySpeech has finished init (voices loaded) before speaking.
+   * Deep-link → Play before the old 5s lazy init would Speak First with
+   * force:true and no voices — silent/skipped first cards until init caught up.
+   */
+  ensureEasySpeechReady = async (): Promise<boolean> => {
+    const status = EasySpeech.status() as Status & { initialized?: boolean }
+    if (status.initialized) {
+      if (!this.voices.length) {
         this.populateVoiceList()
-      }).catch((e) => {
-        this.logToFlaggedWords(`error in easyspeechinit: ${e}`)
-      })
+      }
+      return true
     }
+    if (!this.easySpeechReadyPromise) {
+      this.easyspeechInitCount = Math.max(this.easyspeechInitCount, 1)
+      console.log('initEasySpeech!')
+      this.easySpeechReadyPromise = EasySpeech.init({ maxTimeout: 5000, interval: 250 })
+        .then((e) => {
+          this.logToFlaggedWords(`easyspeechinit: ${e}`)
+          this.populateVoiceList()
+          return true
+        })
+        .catch((e) => {
+          this.logToFlaggedWords(`error in easyspeechinit: ${e}`)
+          this.easySpeechReadyPromise = null
+          return false
+        })
+    }
+    return this.easySpeechReadyPromise ?? Promise.resolve(false)
+  }
+
+  initEasySpeech = async () => {
+    // Fire-and-forget for accordion click / page-load kickoff; speak path awaits
+    // ensureEasySpeechReady instead.
+    this.ensureEasySpeechReady()
   }
 
   logToFlaggedWords = (s) => {
@@ -192,6 +217,24 @@ export class MorseVoice implements ICookieHandler {
   }
 
   speakInfo = (morseVoiceInfo:MorseVoiceInfo) => {
+    // A pending post-cancel follow-up (see cancelSpeech) would abort THIS new
+    // utterance ~25ms in (Stop/Pause then a fast Play). Clear it now that we are
+    // deliberately starting speech again.
+    if (this.cancelSpeechFollowUpHandle) {
+      clearTimeout(this.cancelSpeechFollowUpHandle)
+      this.cancelSpeechFollowUpHandle = null
+    }
+    // end / error / promise reject can all fire for one utterance; Morse must
+    // advance exactly once (Speak First waits on this before starting CW).
+    // Hoisted above the try so the catch below can also call finish() exactly once.
+    let finished = false
+    const finish = () => {
+      if (finished) {
+        return
+      }
+      finished = true
+      morseVoiceInfo.onEnd()
+    }
     try {
       const esConfig = {
         logger: this.logToFlaggedWords,
@@ -200,7 +243,7 @@ export class MorseVoice implements ICookieHandler {
         rate: morseVoiceInfo.rate,
         end: e => {
           this.logToFlaggedWords('end event')
-          morseVoiceInfo.onEnd()
+          finish()
           this.logToFlaggedWords('onEnd called')
         },
         volume: morseVoiceInfo.volume,
@@ -208,8 +251,11 @@ export class MorseVoice implements ICookieHandler {
         lang: morseVoiceInfo.voice ? morseVoiceInfo.voice.lang : null,
         voiceURI: morseVoiceInfo.voice ? morseVoiceInfo.voice.voiceURI : null,
         error: e => {
-          this.logToFlaggedWords(`error event during speak:${e}`)
-          morseVoiceInfo.onEnd()
+          // interrupted/canceled are normal when a new speak() cancels the prior
+          // utterance (e.g. Safari primeThePump then Speak First).
+          const reason = (e && (e as SpeechSynthesisErrorEvent).error) || String(e)
+          this.logToFlaggedWords(`error event during speak:${reason}`)
+          finish()
         },
         boundary: e => this.logToFlaggedWords('boundary event'),
         mark: e => this.logToFlaggedWords('mark event'),
@@ -217,13 +263,20 @@ export class MorseVoice implements ICookieHandler {
         force: true
       }
       // fix to force to number
-      esConfig.rate = parseFloat(esConfig.rate)
-      esConfig.pitch = parseFloat(esConfig.pitch)
+      esConfig.rate = parseFloat(esConfig.rate as any)
+      esConfig.pitch = parseFloat(esConfig.pitch as any)
       // console.log(`rate:${esConfig.rate} ${typeof esConfig.rate === 'number'}`)
-      EasySpeech.speak(esConfig)
+      // EasySpeech.speak rejects on cancel/interrupt; must catch or webpack shows
+      // an unhandledrejection overlay ([object SpeechSynthesisErrorEvent]).
+      // Some engines reject without an error event — still finish so Morse starts.
+      EasySpeech.speak(esConfig).catch((e) => {
+        const reason = (e && e.error) || String(e)
+        this.logToFlaggedWords(`EasySpeech.speak rejected:${reason}`)
+        finish()
+      })
     } catch (e) {
       this.logToFlaggedWords(`caught in speakInfo2:${e}`)
-      morseVoiceInfo.onEnd()
+      finish()
     }
   }
 
@@ -273,36 +326,86 @@ export class MorseVoice implements ICookieHandler {
   }
 
   /** Stop any in-flight TTS (pause/stop, Voice off, or recap abort). */
+  // Bumped on every cancel so chained Voice Recap / Speak First callbacks can
+  // see that speech was aborted and must not start the next phrase.
+  speechGeneration:number = 0
+  // Follow-up cancel timer for easy-speech's 10 ms post-cancel speak window.
+  cancelSpeechFollowUpHandle:ReturnType<typeof setTimeout> | null = null
+
   cancelSpeech = () => {
+    this.speechGeneration++
+    if (this.cancelSpeechFollowUpHandle) {
+      clearTimeout(this.cancelSpeechFollowUpHandle)
+      this.cancelSpeechFollowUpHandle = null
+    }
     try {
       EasySpeech.cancel()
     } catch (e) {
       this.logToFlaggedWords(`cancelSpeech: ${e}`)
     }
+    // easy-speech queues speak() 10 ms after its own cancel (see easyspeech.js).
+    // A second cancel after that window closes the gap so Stop doesn't leave
+    // audible TTS starting after the user already stopped.
+    this.cancelSpeechFollowUpHandle = setTimeout(() => {
+      this.cancelSpeechFollowUpHandle = null
+      try {
+        EasySpeech.cancel()
+      } catch (e) {
+        this.logToFlaggedWords(`cancelSpeech follow-up: ${e}`)
+      }
+    }, 25)
   }
 
   speakPhraseWithAfterDelay = (phraseToSpeak:string, onEndCallBack, applyAfterDelay:boolean) => {
+    const speakGen = this.speechGeneration
     const doOnEndCallBack = () => {
       const delay = applyAfterDelay ? this.voiceAfterThinkingTime() * 1000 : 0
       setTimeout(onEndCallBack, delay)
     }
-    try {
-      const morseVoiceInfo = this.initMorseVoiceInfo(phraseToSpeak)
-      morseVoiceInfo.onEnd = doOnEndCallBack
-      this.speakInfo(morseVoiceInfo)
-    } catch (e) {
-      this.logToFlaggedWords(`caught in speakPhrase:${e}`)
-      doOnEndCallBack()
-    }
+    // Wait for EasySpeech voices before speaking. Without this, Play within the
+    // first few seconds of a deep link (Speak First on) force-speaks with no
+    // voices loaded and the first card(s) are silent while Morse still advances.
+    this.ensureEasySpeechReady().then((ready) => {
+      if (speakGen !== this.speechGeneration) {
+        // Pause/Stop while waiting for init — do not start TTS or Morse via onEnd.
+        return
+      }
+      if (!ready) {
+        this.logToFlaggedWords('speakPhrase: EasySpeech not ready, skipping TTS')
+        doOnEndCallBack()
+        return
+      }
+      try {
+        const morseVoiceInfo = this.initMorseVoiceInfo(phraseToSpeak)
+        morseVoiceInfo.onEnd = doOnEndCallBack
+        this.speakInfo(morseVoiceInfo)
+      } catch (e) {
+        this.logToFlaggedWords(`caught in speakPhrase:${e}`)
+        doOnEndCallBack()
+      }
+    })
   }
 
   primeThePump = () => {
-    const morseVoiceInfo = this.initMorseVoiceInfo('i')
-    morseVoiceInfo.volume = 0
-    morseVoiceInfo.rate = 5
-    morseVoiceInfo.pitch = 1
-    morseVoiceInfo.onEnd = () => { this.logToFlaggedWords('pump primed') }
-    this.speakInfo(morseVoiceInfo)
+    // Silent Safari warm-up; only useful once EasySpeech is ready. The wait can
+    // take up to 5s on the very first call — if real speech (Speak First /
+    // Recap) already started in the meantime, skip so the silent utterance
+    // doesn't cancel it out from under it.
+    this.ensureEasySpeechReady().then((ready) => {
+      if (!ready) {
+        return
+      }
+      const synth = (EasySpeech.status() as Status & { speechSynthesis?: typeof window.speechSynthesis }).speechSynthesis
+      if (synth && synth.speaking) {
+        return
+      }
+      const morseVoiceInfo = this.initMorseVoiceInfo('i')
+      morseVoiceInfo.volume = 0
+      morseVoiceInfo.rate = 5
+      morseVoiceInfo.pitch = 1
+      morseVoiceInfo.onEnd = () => { this.logToFlaggedWords('pump primed') }
+      this.speakInfo(morseVoiceInfo)
+    })
   }
 
   speakerSelect = (e, f) => {
