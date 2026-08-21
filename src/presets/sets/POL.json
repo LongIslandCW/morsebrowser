@@ -153,6 +153,14 @@
             "filename": "POL_Random_Sen_1x_CVC_31_28.json"
         },
         {
+            "display": "SPEED RACING 20_1wpm",
+            "filename": "POL_SR 20-1.json"
+        },
+        {
+            "display": "SPEED RACING 20_2wpm",
+            "filename": "POL_SR 20-2.json"
+        },
+        {
             "display": "SPEED RACING 23wpm",
             "filename": "POL_SR_23.json"
         },
@@ -163,6 +171,14 @@
         {
             "display": "SPEED RACING - REVERSED Alt 23wpm",
             "filename": "POL_SR_PEAK_23.json"
+        },
+        {
+            "display": "SPEED RACING 25wpm",
+            "filename": "POL_SR_25.json"
+        },
+        {
+            "display": "SPEED RACING 30wpm",
+            "filename": "POL_SR 30.json"
         },
         {
             "display": "SUFFIXES 23wpm",
