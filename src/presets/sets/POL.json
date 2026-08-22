@@ -152,6 +152,23 @@
             "display": "SENTENCES CW-VOICE-CW 31/28wpm",
             "filename": "POL_Random_Sen_1x_CVC_31_28.json"
         },
+
+        {
+            "display": "SENTENCES CW-VOICE-CW 25-23-20wpm",
+            "filename": "POL_Random_Sen_1x_CVC_25_23_20.json"
+        },
+        {
+            "display": "SENTENCES CW-VOICE-CW 28-24-20wpm",
+            "filename": "POL_Random_Sen_1x_CVC_28_24_20.json"
+        },
+        {
+            "display": "SENTENCES CW-VOICE-CW 31-27-23wpm",
+            "filename": "POL_Random_Sen_1x_CVC_31_27_23.json"
+        },
+        {
+            "display": "SENTENCES CW-VOICE-CW 35-30-25wpm",
+            "filename": "POL_Random_Sen_1x_CVC_35_30_25.json"
+        },
         {
             "display": "SPEED RACING 20_1wpm",
             "filename": "POL_SR 20-1.json"
