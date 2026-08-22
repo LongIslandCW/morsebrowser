@@ -939,7 +939,8 @@
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "PHRASES","newlineChunking": false,"display": "3 WORD PART 2","fileName": "POL_3W_Phrases_Pt2.txt"},   
 
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "PHRASES","newlineChunking": false,"display": "3 WORD CW-VOICE-CW","fileName": "POL_3W_Phrases_CVC.txt"},
-    
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "PHRASES","newlineChunking": false,"display": "3 WORD SR CW-VOICE-CW","fileName": "POL_3W_Phrases_CVC_31_27_23.txt"},
+        
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "PHRASES","newlineChunking": false,"display": "SHORT PART 1","fileName": "POL_S_Phrases_Pt1.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "PHRASES","newlineChunking": false,"display": "SHORT PART 2","fileName": "POL_S_Phrases_Pt2.txt"},
   
