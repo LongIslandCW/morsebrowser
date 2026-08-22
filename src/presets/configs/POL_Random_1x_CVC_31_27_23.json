@@ -2,12 +2,12 @@
 	"morseSettings": [
 		{
 			"key": "wpm",
-			"value": "23",
+			"value": 23,
 			"comment": null
 		},
 		{
 			"key": "fwpm",
-			"value": "23",
+			"value": 23,
 			"comment": null
 		},
 		{
@@ -87,12 +87,12 @@
 		},
 		{
 			"key": "voiceThinkingTime",
-			"value": "1.25",
+			"value": "0.75",
 			"comment": null
 		},
 		{
 			"key": "voiceAfterThinkingTime",
-			"value": "0",
+			"value": "0.75",
 			"comment": null
 		},
 		{
@@ -152,7 +152,7 @@
 		},
 		{
 			"key": "cardSpace",
-			"value": "1",
+			"value": "2",
 			"comment": "AKA cardWait"
 		},
 		{
