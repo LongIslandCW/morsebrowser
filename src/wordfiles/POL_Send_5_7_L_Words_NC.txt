@@ -1,0 +1,104 @@
+{ |A A A  |1}  
+{ |ABOUT   |1}  
+{ |ANALOG   |1}  
+{ |ADAPTOR   |1}  
+{ |B B B  |2}  
+{ |BEING  |2}  
+{ |BOOMER  |2}  
+{ |BANDAID  |2}  
+{ |C C C  |3}  
+{ |CLASS  |3}  
+{ |CHILLY  |3}  
+{ |CLICKED  |3}  
+{ |D D D  |4}  
+{ |DINER  |4}  
+{ |DOCTOR  |4}  
+{ |DONATED  |4}  
+{ |E E E  |5}  
+{ |EARLY  |5}  
+{ |ENDING  |5}  
+{ |ELEGANT  |5}  
+{ |F F F   |6}  
+{ |FOUND  |6}  
+{ |FUTURE  |6}  
+{ |FARSIDE  |6}  
+{ |G G G  |7}  
+{ |GUSTO  |7}  
+{ |GOLFER  |7}  
+{ |GRATIFY  |7}  
+{ |H H H  |8}  
+{ |HUMAN  |8}  
+{ |HAMMER  |8}  
+{ |HORNETS  |8}  
+{ |I I I  |9}  
+{ |IVORY  |9}  
+{ |INVEST  |9}  
+{ |ITEMIZE  |9}  
+{ |J J J  |10}  
+{ |JUICE  |10}  
+{ |JUNIOR  |10}  
+{ |JACKPOT  |10}  
+{ |K K K  |11}  
+{ |KNOCK  |11}  
+{ |KEYING  |11}  
+{ |KLEENEX  |11}  
+{ |L L L  |12}  
+{ |LEAVE  |12}  
+{ |LENGTH  |12}  
+{ |LOTTERY  |12}  
+{ |M M M  |13}  
+{ |MIGHT  |13}  
+{ |METHOD  |13}  
+{ |MINDFUL  |13}  
+{ |N N N  |14}  
+{ |NOISE  |14}  
+{ |NEBULA  |14}  
+{ |NURTURE  |14}  
+{ |O O O  |15}  
+{ |OWNER  |15}  
+{ |OFFICE  |15}  
+{ |ORBITAL  |15}  
+{ |P P P  |16}  
+{ |PARKS  |16}  
+{ |PLANET  |16}  
+{ |PERCENT  |16}  
+{ |Q Q Q  |17}  
+{ |QUART  |17}  
+{ |QWERTY  |17}  
+{ |QUICKLY  |17}  
+{ |R R R  |18}  
+{ |RAINY  |18}  
+{ |ROCKET  |18}  
+{ |REFEREE  |18}  
+{ |S S S  |19}  
+{ |SKILL  |19}  
+{ |SETTLE  |19}  
+{ |SHARPEN  |19}  
+{ |T T T  |20}  
+{ |TWINS  |20}  
+{ |TICKET  |20}  
+{ |TESTING  |20}  
+{ |U U U  |21}  
+{ |URBAN  |21}  
+{ |UMPIRE  |21}  
+{ |UNDERGO  |21}  
+{ |V V V  |22}  
+{ |VOICE  |22}  
+{ |VOLUME  |22}  
+{ |VICTORY  |22}  
+{ |W W W  |23}  
+{ |WHICH  |23}  
+{ |WIDGET  |23}  
+{ |WITHOUT  |23}  
+{ |X X X  |24}  
+{ |XENON  |24}  
+{ |XENIAS  |24}  
+{ |XEROXED  |24}  
+{ |Y Y Y  |25}  
+{ |YIELD  |25}  
+{ |YOGURT  |25}  
+{ |YOUNGER  |25}  
+{ |Z Z Z  |26}  
+{ |ZEBRA  |26}  
+{ |ZODIAC  |26}  
+{ |ZIPLOCK  |26}  

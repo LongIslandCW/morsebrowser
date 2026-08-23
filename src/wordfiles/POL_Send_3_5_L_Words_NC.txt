@@ -1,0 +1,104 @@
+{ |A A A  |1}  
+{ |ANY  |1}  
+{ |ALSO  |1}  
+{ |AFTER  |1}  
+{ |B B B  |2}  
+{ |BUT  |2}  
+{ |BACK  |2}  
+{ |BEGAN  |2}  
+{ |C C C  |3}  
+{ |CAN  |3}  
+{ |COME  |3}  
+{ |COULD  |3}  
+{ |D D D  |4}  
+{ |DAY  |4}  
+{ |DONE  |4}  
+{ |DONUT  |4}  
+{ |E E E  |5}  
+{ |EAT  |5}  
+{ |EVEN  |5}  
+{ |EXTRA  |5}  
+{ |F F F  |6}  
+{ |FOR  |6}  
+{ |FROM  |6}  
+{ |FIRST  |6}  
+{ |G G G  |7}  
+{ |GET  |7}  
+{ |GOOD  |7}  
+{ |GREAT  |7}  
+{ |H H H  |8}  
+{ |HIS  |8}  
+{ |HERS  |8}  
+{ |HAVEN  |8}  
+{ |I I I  |9}  
+{ |ITS  |9}  
+{ |INTO  |9}  
+{ |IDEAL  |9}  
+{ |J J J  |10}  
+{ |JET  |10}  
+{ |JUST  |10}  
+{ |JUMPY  |10}  
+{ |K K K  |11}  
+{ |KEY  |11}  
+{ |KEEP  |11}  
+{ |KNOWN  |11}  
+{ |L L L  |12}  
+{ |LET  |12}  
+{ |LOOK  |12}  
+{ |LATER  |12}  
+{ |M M M  |13}  
+{ |MAY   |13}  
+{ |MAKE  |13}  
+{ |MAJOR  |13}  
+{ |N N N  |14}  
+{ |NOT  |14}  
+{ |NEAR  |14}  
+{ |NEVER  |14}  
+{ |O O O  |15}  
+{ |ONE  |15}  
+{ |ONLY  |15}  
+{ |OTHER  |15}  
+{ |P P P  |16}  
+{ |PIN  |16}  
+{ |PATH  |16}  
+{ |PATCH  |16}  
+{ |Q Q Q  |17}  
+{ |QSO  |17}  
+{ |QUIT  |17}  
+{ |QUIET  |17}  
+{ |R R R  |18}  
+{ |RED  |18}  
+{ |READ  |18}  
+{ |RADIO  |18}  
+{ |S S S  |19}  
+{ |SAY  |19}  
+{ |SOME  |19}  
+{ |SHACK  |19}  
+{ |T T T  |20}  
+{ |THE  |20}  
+{ |THEY  |20}  
+{ |THINK  |20}  
+{ |U U U  |21}  
+{ |USE  |21}  
+{ |USER  |21}  
+{ |UNTIL  |21}  
+{ |V V V  |22}  
+{ |VET  |22}  
+{ |VERY  |22}  
+{ |VALUE  |22}  
+{ |W W W  |23}  
+{ |WAY  |23}  
+{ |WITH  |23}  
+{ |WOULD  |23}  
+{ |X X X  |24}  
+{ |XRAY  |24}  
+{ |XMAS  |24}  
+{ |XEROX  |24}  
+{ |Y Y Y  |25}  
+{ |YOU  |25}  
+{ |YEAR  |25}  
+{ |YOUNG  |25}  
+{ |Z Z Z  |26}  
+{ |ZEN  |26}  
+{ |ZEAL  |26}  
+{ |ZESTY  |26}  

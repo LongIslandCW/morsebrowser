@@ -939,7 +939,8 @@
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "PHRASES","newlineChunking": false,"display": "3 WORD PART 2","fileName": "POL_3W_Phrases_Pt2.txt"},   
 
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "PHRASES","newlineChunking": false,"display": "3 WORD CW-VOICE-CW","fileName": "POL_3W_Phrases_CVC.txt"},
-    
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "PHRASES","newlineChunking": false,"display": "3 WORD SR CW-VOICE-CW","fileName": "POL_3W_Phrases_CVC_31_27_23.txt"},
+        
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "PHRASES","newlineChunking": false,"display": "SHORT PART 1","fileName": "POL_S_Phrases_Pt1.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "PHRASES","newlineChunking": false,"display": "SHORT PART 2","fileName": "POL_S_Phrases_Pt2.txt"},
   
@@ -951,14 +952,23 @@
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SENDING","newlineChunking": true,"display": "SENDING TRI-LETTERS","fileName": "POL_SENDING_TRI.txt"}, 
         
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SENDING","newlineChunking": false,"display": "3-5 WORDS","fileName": "POL_Send_3-5_L_Words.txt"},
-{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SENDING","newlineChunking": false,"display": "5-7 WORDS","fileName": "POL_Send_5-7_L_Words.txt"},
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SENDING","newlineChunking": false,"display": "3-5 WORDS NO CODE","fileName": "POL_Send_3_5_L_Words_NC.txt"},
         
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SENDING","newlineChunking": false,"display": "5-7 WORDS","fileName": "POL_Send_5-7_L_Words.txt"},
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SENDING","newlineChunking": false,"display": "5-7 WORDS NO CODE","fileName": "POL_Send_5_7_L_Words_NC.txt"},
+                
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SENTENCES","newlineChunking": false,"display": "JOKES CW-VOICE-CW","fileName": "POL_Jokes.txt"},
+
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SENTENCES","newlineChunking": true,"display": "JOKES SR CW-VOICE-CW","fileName": "POL_Jokes_SR.txt"},
+        
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SENTENCES","newlineChunking": true,"display": "SHORT SENTENCES CW","fileName": "POL_100_W_Sentences.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SENTENCES","newlineChunking": true,"display": "SHORT SENTENCES CW-VOICE","fileName": "POL_100_W_Sentences.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SENTENCES","newlineChunking": false,"display": "SHORT SENTENCES CW-VOICE-CW","fileName": "POL_100_W_Sentences_CVC.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SENTENCES","newlineChunking": false,"display": "SENTENCES CW-VOICE-CW","fileName": "POL_Sentences_CVC.txt"},
-      
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SENTENCES","newlineChunking": true,"display": "SENTENCES SR CW-VOICE-CW","fileName": "POL_Sentences_CVC_SR.txt"},
+
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SENTENCES","newlineChunking": true,"display": "TOP 100 WORD SR CW-VOICE-CW","fileName": "POL_Top_100_Word_Sentences_CVC_SR.txt"},
+        
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SUFFIXES","newlineChunking": false,"display": "SUFFIXES ALL","fileName": "POL_SUFFIXES.txt"},                
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SUFFIXES","newlineChunking": false,"display": "ING 1","fileName": "POL_ING.txt"},  
         {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SUFFIXES","newlineChunking": false,"display": "ING 2","fileName": "POL_ING_2.txt"},  
@@ -983,7 +993,7 @@
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORDS","newlineChunking": false,"display": "5 LETTER WORDS PART 3","fileName": "POL_5W_Pt3.txt"},  
         
 {"sort": 425,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORDS","newlineChunking": false,"display": "TOP 100 WORDS","fileName": "INT7.txt"}, 
-
+{"sort": 425,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORDS","newlineChunking": false,"display": "TOP 100 WORDS SR","fileName": "POL_TOP_100_WORDS_SR.txt"}, 
 
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORD BUILDING","newlineChunking": false,"display": "WORD BUILDING 1","fileName": "POL_WB_Pt1.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORD BUILDING","newlineChunking": false,"display": "WORD BUILDING 2","fileName": "POL_WB_Pt2.txt"},
