@@ -961,7 +961,7 @@
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SENTENCES","newlineChunking": true,"display": "SHORT SENTENCES CW","fileName": "POL_100_W_Sentences.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SENTENCES","newlineChunking": true,"display": "SHORT SENTENCES CW-VOICE","fileName": "POL_100_W_Sentences.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SENTENCES","newlineChunking": false,"display": "SHORT SENTENCES CW-VOICE-CW","fileName": "POL_100_W_Sentences_CVC.txt"},
-{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SENTENCES","newlineChunking": false,"display": "SENTENCES CW-VOICE-CW","fileName": "POL_Sentences_CVC.txt"},
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SENTENCES","newlineChunking": false,"display": "CW-VOICE-CW","fileName": "POL_Sentences_CVC.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SENTENCES","newlineChunking": true,"display": "SPEED RACING CW-VOICE-CW","fileName": "POL_Sentences_CVC_SR.txt"},
 
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SENTENCES","newlineChunking": true,"display": "TOP 100 WORD SR CW-VOICE-CW","fileName": "POL_Top_100_Word_Sentences_CVC_SR.txt"},
