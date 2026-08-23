@@ -1,0 +1,14 @@
+"use strict";
+(self["webpackChunk"] = self["webpackChunk"] || []).push([["src_presets_configs_POL_Random_Sen_1x_CVC_35_30_25_json"],{
+
+/***/ "./src/presets/configs/POL_Random_Sen_1x_CVC_35_30_25.json":
+/*!*****************************************************************!*\
+  !*** ./src/presets/configs/POL_Random_Sen_1x_CVC_35_30_25.json ***!
+  \*****************************************************************/
+/***/ ((module) => {
+
+module.exports = JSON.parse('{"morseSettings":[{"key":"wpm","value":"25","comment":null},{"key":"fwpm","value":"25","comment":null},{"key":"xtraWordSpaceDits","value":"1","comment":null},{"key":"volume","value":"4","comment":null},{"key":"stickySets","value":"BK","comment":null},{"key":"ifStickySets","value":false,"comment":null},{"key":"syncWpm","value":true,"comment":null},{"key":"hideList","value":true,"comment":null},{"key":"showRaw","value":false,"comment":null},{"key":"darkMode","value":false,"comment":null},{"key":"autoCloseSettingsAccordions","value":false,"comment":null},{"key":"autoCloseLessonAccordian","value":true,"comment":null},{"key":"ifCustomGroup","value":false,"comment":null},{"key":"customGroup","value":"","comment":null},{"key":"showExpertSettings","value":"true","comment":null},{"key":"voiceEnabled","value":true,"comment":null},{"key":"voiceSpelling","value":false,"comment":null},{"key":"voiceThinkingTime","value":"1.25","comment":null},{"key":"voiceAfterThinkingTime","value":"0","comment":null},{"key":"voiceVolume","value":10,"comment":null},{"key":"voiceLastOnly","value":false,"comment":null},{"key":"voiceRecap","value":false,"comment":null},{"key":"speakFirst","value":false,"comment":null},{"key":"numberOfRepeats","value":0,"comment":null},{"key":"speakFirstAdditionalWordspaces","value":0,"comment":null},{"key":"keepLines","value":false,"comment":null},{"key":"syncSize","value":true,"comment":null},{"key":"overrideSize","value":true,"comment":null},{"key":"overrideSizeMin","value":"2","comment":null},{"key":"overrideSizeMax","value":"2","comment":null},{"key":"cardSpace","value":"1","comment":"AKA cardWait"},{"key":"miscSettingsAccordionOpen","value":false,"comment":null},{"key":"speedInterval","value":false,"comment":null},{"key":"intervalTimingsText","value":"","comment":null},{"key":"intervalWpmText","value":"","comment":null},{"key":"intervalFwpmText","value":"","comment":null},{"key":"speedRacerEnabled","value":true,"comment":null},{"key":"speedRacerMultipliers","value":"1.4, 1.2, 1.0","comment":null},{"key":"speedRacerFinalPlay","value":true,"comment":null},{"key":"speedRacerSpeakBeforeReplay","value":true,"comment":null},{"key":"speedRacerKeepFwpm","value":true,"comment":null},{"key":"voiceBufferMaxLength","value":1,"comment":null},{"key":"isShuffledSet","value":true,"comment":null},{"key":"shuffleIntraGroup","value":false,"comment":null}]}');
+
+/***/ })
+
+}]);
