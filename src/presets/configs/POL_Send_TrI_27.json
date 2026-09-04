@@ -37,12 +37,12 @@
 		},
 		{
 			"key": "hideList",
-			"value": false,
+			"value": true,
 			"comment": null
 		},
 		{
 			"key": "showRaw",
-			"value": true,
+			"value": false,
 			"comment": null
 		},
 		{
@@ -77,7 +77,7 @@
 		},
 		{
 			"key": "voiceEnabled",
-			"value": false,
+			"value": true,
 			"comment": null
 		},
 		{
@@ -87,7 +87,7 @@
 		},
 		{
 			"key": "voiceThinkingTime",
-			"value": "3",
+			"value": "0",
 			"comment": null
 		},
 		{
@@ -112,7 +112,7 @@
 		},
 		{
 			"key": "speakFirst",
-			"value": false,
+			"value": true,
 			"comment": null
 		},
 		{
@@ -152,7 +152,7 @@
 		},
 		{
 			"key": "cardSpace",
-			"value": "4",
+			"value": "5",
 			"comment": "AKA cardWait"
 		},
 		{
@@ -212,7 +212,7 @@
 		},
 		{
 			"key": "isShuffledSet",
-			"value": false,
+			"value": true,
 			"comment": null
 		},
 		{
