@@ -101,6 +101,10 @@
             "filename": "POL_Send_TrI_27.json"
         },
         {
+            "display": "SENDING Tri-Letters No Voice 27wpm",
+            "filename": "POL_Send_TrI_NV_27.json"
+        },
+        {
             "display": "SENDING WORDS/PHRASES 23wpm",
             "filename": "POL_Random_1x_VCS_23.json"
         },
