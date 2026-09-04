@@ -2,12 +2,12 @@
 	"morseSettings": [
 		{
 			"key": "wpm",
-			"value": 31,
+			"value": 27,
 			"comment": null
 		},
 		{
 			"key": "fwpm",
-			"value": 31,
+			"value": 27,
 			"comment": null
 		},
 		{
@@ -42,7 +42,7 @@
 		},
 		{
 			"key": "showRaw",
-			"value": false,
+			"value": true,
 			"comment": null
 		},
 		{
@@ -87,12 +87,12 @@
 		},
 		{
 			"key": "voiceThinkingTime",
-			"value": 0,
+			"value": "3",
 			"comment": null
 		},
 		{
 			"key": "voiceAfterThinkingTime",
-			"value": 0,
+			"value": "0",
 			"comment": null
 		},
 		{
@@ -117,7 +117,7 @@
 		},
 		{
 			"key": "numberOfRepeats",
-			"value": 2,
+			"value": 0,
 			"comment": null
 		},
 		{
@@ -152,7 +152,7 @@
 		},
 		{
 			"key": "cardSpace",
-			"value": "2",
+			"value": "4",
 			"comment": "AKA cardWait"
 		},
 		{
@@ -212,7 +212,7 @@
 		},
 		{
 			"key": "isShuffledSet",
-			"value": false,
+			"value": true,
 			"comment": null
 		},
 		{

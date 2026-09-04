@@ -2,12 +2,12 @@
 	"morseSettings": [
 		{
 			"key": "wpm",
-			"value": "31",
+			"value": 31,
 			"comment": null
 		},
 		{
 			"key": "fwpm",
-			"value": "31",
+			"value": 31,
 			"comment": null
 		},
 		{
@@ -17,7 +17,7 @@
 		},
 		{
 			"key": "volume",
-			"value": "5",
+			"value": "4",
 			"comment": null
 		},
 		{
@@ -46,8 +46,23 @@
 			"comment": null
 		},
 		{
+			"key": "darkMode",
+			"value": false,
+			"comment": null
+		},
+		{
+			"key": "autoCloseSettingsAccordions",
+			"value": false,
+			"comment": null
+		},
+		{
 			"key": "autoCloseLessonAccordian",
 			"value": true,
+			"comment": null
+		},
+		{
+			"key": "ifCustomGroup",
+			"value": false,
 			"comment": null
 		},
 		{
@@ -107,7 +122,7 @@
 		},
 		{
 			"key": "speakFirstAdditionalWordspaces",
-			"value": "8",
+			"value": 8,
 			"comment": null
 		},
 		{
@@ -137,12 +152,12 @@
 		},
 		{
 			"key": "cardSpace",
-			"value": 0,
+			"value": "2",
 			"comment": "AKA cardWait"
 		},
 		{
 			"key": "miscSettingsAccordionOpen",
-			"value": "false",
+			"value": false,
 			"comment": null
 		},
 		{
@@ -166,8 +181,43 @@
 			"comment": null
 		},
 		{
+			"key": "speedRacerEnabled",
+			"value": false,
+			"comment": null
+		},
+		{
+			"key": "speedRacerMultipliers",
+			"value": "1.5, 1.35, 1.175, 1.0",
+			"comment": null
+		},
+		{
+			"key": "speedRacerFinalPlay",
+			"value": true,
+			"comment": null
+		},
+		{
+			"key": "speedRacerSpeakBeforeReplay",
+			"value": true,
+			"comment": null
+		},
+		{
+			"key": "speedRacerKeepFwpm",
+			"value": true,
+			"comment": null
+		},
+		{
 			"key": "voiceBufferMaxLength",
 			"value": 1,
+			"comment": null
+		},
+		{
+			"key": "isShuffledSet",
+			"value": false,
+			"comment": null
+		},
+		{
+			"key": "shuffleIntraGroup",
+			"value": false,
 			"comment": null
 		}
 	]
