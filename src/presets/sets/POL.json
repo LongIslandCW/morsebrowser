@@ -105,6 +105,10 @@
             "filename": "POL_Send_TrI_NV_27.json"
         },
         {
+            "display": "SENDING TOP 100 WORDS RHYTHM 23wpm",
+            "filename": "POL_Send_Rhythms_23.json"
+        },
+        {
             "display": "SENDING WORDS/PHRASES 23wpm",
             "filename": "POL_Random_1x_VCS_23.json"
         },
