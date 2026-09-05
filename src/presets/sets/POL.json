@@ -49,6 +49,10 @@
             "filename": "POL_Random_3x_31.json"
         },
         {
+            "display": "PHRASES/WORDS RHYTHM 23wpm",
+            "filename": "POL_Rhythms_23.json"
+        },
+        {
             "display": "PHRASES CW-VOICE-CW 23wpm",
             "filename": "POL_Random_1x_CVC_23.json"
         },
