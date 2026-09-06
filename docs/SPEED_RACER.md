@@ -70,14 +70,15 @@ Markup: `src/template.html` (Speed Racer fieldset under Timing).
 
 ## 3. Deep links (query string)
 
-Tom-style links use four query parameters. They work on **club GitHub Pages** and **Workers previews** without any hidden UI setup.
+Tom-style links use query parameters. They work on **club GitHub Pages** and **Workers previews** without any hidden UI setup. TYPE defaults to **STUDENT** when `selectedType` is omitted.
 
 ```
-?selectedClass=&selectedGroup=&selectedLesson=&selectedPreset=
+?selectedType=&selectedClass=&selectedGroup=&selectedLesson=&selectedPreset=
 ```
 
 | Query param | UI column | Example values |
 |-------------|-----------|----------------|
+| `selectedType` | TYPE (optional; default STUDENT) | `STUDENT`, `INSTRUCTOR` |
 | `selectedClass` | CLASS | `BC1`, `BC2`, `INT1`, … |
 | `selectedGroup` | CONTENT (letter group) | `REA`, `TIN`, `UWB`, … |
 | `selectedLesson` | LESSON (display name) | `OVERLEARN LETTERS`, `OVERLEARN WORDS`, … |
@@ -87,21 +88,27 @@ Tom-style links use four query parameters. They work on **club GitHub Pages** an
 
 **URL encoding:** spaces → `%20` or `+`.
 
-**Load order:** class → group → lesson → preset.
+**Load order:** type → class → group → lesson → preset.
 
 **After load:** parameters are removed from the URL (unless the hidden logo easter egg has enabled `queryStringSettingsOn` — student links do not need this).
 
 **Failure:** if `selectedPreset` does not match a preset display name, the console logs `no preset found` and settings are not applied.
 
-### Example link
+### Example links
 
-BC1 REA Overlearn letters with Speed Racer Flow Rate 1:
+BC1 REA Overlearn letters with Speed Racer Flow Rate 1 (student; `selectedType` omitted):
 
 ```
 https://longislandcw.github.io/morsebrowser/index.html?selectedClass=BC1&selectedGroup=REA&selectedLesson=OVERLEARN%20LETTERS&selectedPreset=Speed%20Racer%20Letters%20Flow%20Rate%201
 ```
 
-Code: `morseLessonPlugin.ts` — `setSelectedClassInitialized`, `setLetterGroupInitialized`, `setDisplaysInitialized`, `setSettingsPresetsInitialized`.
+BC1 instructor lesson (TYPE required):
+
+```
+https://longislandcw.github.io/morsebrowser/index.html?selectedType=INSTRUCTOR&selectedClass=BC1&selectedGroup=REA&selectedLesson=R&selectedPreset=...
+```
+
+Code: `morseLessonPlugin.ts` — `setUserTargetInitialized`, `setSelectedClassInitialized`, `setLetterGroupInitialized`, `setDisplaysInitialized`, `setSettingsPresetsInitialized`.
 
 ---
 

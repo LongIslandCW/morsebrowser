@@ -234,7 +234,7 @@ export default class MorseLessonPlugin implements ICookieHandler {
   upsertQueryStringVariable = (variable:string, value:string):string => {  
     const queryString = window.location.search
     const urlParams = new URLSearchParams(queryString)
-    const priority = ['selectedClass', 'selectedGroup', 'selectedLesson', 'selectedPreset']
+    const priority = ['selectedType', 'selectedClass', 'selectedGroup', 'selectedLesson', 'selectedPreset']
     // if not toggleQueryStringSettingsOn, then do nothing
     if (!this.queryStringSettingsOn) {
       return urlParams.toString()
@@ -315,14 +315,13 @@ export default class MorseLessonPlugin implements ICookieHandler {
 
   /**
    * Reload the lesson word file for the current preset. Reloading resets
-   * `isShuffled` (the `undoIsShuffled` extender fires on new text), so re-arm
-   * cachedShuffle to keep a shuffled set shuffled across the reload.
+   * `isShuffled` (the `undoIsShuffled` extender fires on new text). Do not
+   * re-arm `cachedShuffle` from the current UI shuffle state — a preset with
+   * `isShuffledSet: false` must clear it (see handleCookies). Keep shuffle
+   * across reload only when `cachedShuffle` is already true from the preset.
    */
   runLessonReinit = () => {
     this.deferredLessonReinit = false
-    if (this.morseViewModel.isShuffled()) {
-      this.morseViewModel.cachedShuffle = true
-    }
     this.setDisplaySelected(this.selectedDisplay(), true)
   }
 
@@ -617,6 +616,18 @@ export default class MorseLessonPlugin implements ICookieHandler {
 
   setUserTargetInitialized = () => {
     this.userTargetInitialized = true
+    // Apply TYPE before CLASS/CONTENT/LESSON — class lists are filtered by userTarget.
+    // Missing or invalid selectedType leaves the default STUDENT.
+    if (GeneralUtils.getParameterByName('selectedType')) {
+      const paramType = GeneralUtils.getParameterByName('selectedType').toUpperCase()
+      const targetType = this.userTargets().find(t => t.toUpperCase() === paramType)
+      if (targetType) {
+        this.changeUserTarget(targetType)
+        if (!this.queryStringSettingsOn) {
+          this.removeQueryStringVariable('selectedType')
+        }
+      }
+    }
   }
 
   setSelectedClassInitialized = () => {
@@ -710,6 +721,7 @@ export default class MorseLessonPlugin implements ICookieHandler {
       // console.log('usertarget')
       // console.log(`calling setPresetSelection from changeUserTarget:${userTarget}`)
       this.setPresetSelected(this.selectedSettingsPreset(), true)
+      this.upsertQueryStringVariable('selectedType', userTarget)
       if (fromClick === 'click') {
         this.morseViewModel.announce?.(`Type selected: ${userTarget}`)
         this.focusLessonPickerToggle('lessonsPickerTypeToggle')
@@ -1053,10 +1065,10 @@ export default class MorseLessonPlugin implements ICookieHandler {
 
     target = cookies.find(x => x.key === 'isShuffledSet')
     if (target) {
-      console.log(`found isShuffled cookie:${target.val}`)
-      if (GeneralUtils.booleanize(target.val)) {
-        this.morseViewModel.cachedShuffle = true
-      }
+      // Always assign true or false. Leaving a prior true when the new preset
+      // says false re-shuffles sending alphabet/numbers after OverLearn
+      // BINOMIALS (or any shuffled preset) was auto-selected first.
+      this.morseViewModel.cachedShuffle = GeneralUtils.booleanize(target.val)
     }
   }
 

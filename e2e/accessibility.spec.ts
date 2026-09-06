@@ -12,7 +12,7 @@ async function expectNoAxeViolations (page: import('@playwright/test').Page) {
 test('initial page has accessible names for primary controls', async ({ page }) => {
   await page.goto('/')
 
-  await expect(page.getByRole('heading', { name: 'Morse Practice Page' })).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Morse Practice Page', exact: true })).toBeVisible()
   await expect(page.getByRole('button', { name: 'Play' })).toBeVisible()
   await expect(page.getByRole('button', { name: 'Pause' })).toBeVisible()
   await expect(page.getByRole('button', { name: 'Stop' })).toBeVisible()

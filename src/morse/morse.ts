@@ -96,6 +96,7 @@ export class MorseViewModel {
   trailFinal:ko.Observable<number> = ko.observable(1)
   maxRevealedTrail:ko.Observable<number> = ko.observable(-1)
   isDev:ko.Observable<boolean> = ko.observable(false)
+  pageTitle:ko.Computed<string>
   riseTimeConstant:ko.Observable<number> = ko.observable(0.001)
   decayTimeConstant:ko.Observable<number> = ko.observable(0.001)
   riseMsOffset:ko.Observable<number> = ko.observable(1.5)
@@ -214,6 +215,18 @@ export class MorseViewModel {
     }
     // are we on the dev site?
     this.isDev(window.location.href.toLowerCase().indexOf('/dev/') > -1)
+    this.pageTitle = ko.pureComputed(() =>
+      this.isDev() ? 'Morse Practice Page - Development Site' : 'Morse Practice Page'
+    )
+    // Only rewrite the browser tab on /dev/ so MAIN keeps the static LICW title.
+    this.pageTitle.subscribe((title) => {
+      if (this.isDev()) {
+        document.title = title
+      }
+    })
+    if (this.isDev()) {
+      document.title = this.pageTitle()
+    }
 
     // images
     ko.components.register('simpleimage', SimpleImageTemplate)

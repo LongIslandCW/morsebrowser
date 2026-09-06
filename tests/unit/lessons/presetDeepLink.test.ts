@@ -236,4 +236,111 @@ describe('OverLearn preset deep links', () => {
     expect(plugin.selectedSettingsPreset().display).not.toBe('BINOMIALS 23wpm')
     expect(plugin.selectedSettingsPreset().display).toBe('CHARACTERS 23wpm')
   })
+
+  it('applies selectedType=INSTRUCTOR before CLASS when deep-linking', () => {
+    getParamSpy.mockImplementation((name: string) => {
+      const params: Record<string, string> = {
+        selectedType: 'INSTRUCTOR',
+        selectedClass: 'ADV1',
+        selectedGroup: 'FOO',
+        selectedLesson: 'Instructor Lesson'
+      }
+      return params[name] ?? null
+    })
+
+    const { plugin } = createOverlearnPlugin()
+    plugin.wordLists([
+      {
+        sort: 1,
+        userTarget: 'STUDENT',
+        class: 'OVERLEARN',
+        letterGroup: 'CHARACTERS',
+        newlineChunking: true,
+        display: 'ALPHABET',
+        fileName: 'POL_Letters.txt'
+      },
+      {
+        sort: 2,
+        userTarget: 'INSTRUCTOR',
+        class: 'ADV1',
+        letterGroup: 'FOO',
+        newlineChunking: false,
+        display: 'Instructor Lesson',
+        fileName: 'c.txt'
+      }
+    ] as never)
+
+    plugin.setUserTargetInitialized()
+    expect(plugin.userTarget()).toBe('INSTRUCTOR')
+
+    plugin.setSelectedClassInitialized()
+    expect(plugin.selectedClass()).toBe('ADV1')
+
+    plugin.setLetterGroupInitialized()
+    expect(plugin.letterGroup()).toBe('FOO')
+
+    plugin.setDisplaysInitialized()
+    expect(plugin.selectedDisplay().display).toBe('Instructor Lesson')
+  })
+
+  it('defaults to STUDENT when selectedType is missing', () => {
+    getParamSpy.mockImplementation((name: string) => {
+      const params: Record<string, string> = {
+        selectedClass: 'OVERLEARN',
+        selectedGroup: 'CHARACTERS',
+        selectedLesson: 'ALPHABET',
+        selectedPreset: 'CHARACTERS 23wpm'
+      }
+      return params[name] ?? null
+    })
+
+    const { plugin } = createOverlearnPlugin()
+    plugin.setUserTargetInitialized()
+    expect(plugin.userTarget()).toBe('STUDENT')
+  })
+
+  it('ignores invalid selectedType and keeps STUDENT', () => {
+    getParamSpy.mockImplementation((name: string) => {
+      if (name === 'selectedType') return 'GUEST'
+      return null
+    })
+
+    const { plugin } = createOverlearnPlugin()
+    plugin.setUserTargetInitialized()
+    expect(plugin.userTarget()).toBe('STUDENT')
+  })
+
+  it('writes selectedType into the URL when queryStringSettingsOn is enabled', () => {
+    const { plugin } = createOverlearnPlugin()
+    plugin.wordLists([
+      {
+        sort: 1,
+        userTarget: 'STUDENT',
+        class: 'OVERLEARN',
+        letterGroup: 'CHARACTERS',
+        newlineChunking: true,
+        display: 'ALPHABET',
+        fileName: 'POL_Letters.txt'
+      },
+      {
+        sort: 2,
+        userTarget: 'INSTRUCTOR',
+        class: 'ADV1',
+        letterGroup: 'FOO',
+        newlineChunking: false,
+        display: 'Instructor Lesson',
+        fileName: 'c.txt'
+      }
+    ] as never)
+    plugin.setUserTargetInitialized()
+    plugin.queryStringSettingsOn = true
+
+    const replaceSpy = vi.spyOn(window.history, 'replaceState').mockImplementation(() => {})
+    plugin.changeUserTarget('INSTRUCTOR', 'click')
+
+    expect(replaceSpy).toHaveBeenCalled()
+    const urlArg = replaceSpy.mock.calls[replaceSpy.mock.calls.length - 1][2] as string
+    expect(urlArg).toContain('selectedType=INSTRUCTOR')
+    replaceSpy.mockRestore()
+  })
 })

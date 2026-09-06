@@ -120,6 +120,9 @@ function createPlugin () {
     isShuffled: ko.observable(false),
     shuffleIntraGroup: ko.observable(false),
     cachedShuffle: false,
+    shuffleWords: vi.fn(function (this: { isShuffled: (v: boolean) => void, cachedShuffle: boolean }) {
+      this.isShuffled(true)
+    }),
     lessonVoiceBaseline: null,
     captureLessonVoiceBaseline: vi.fn(),
     restoreLessonVoiceFromLesson: vi.fn(),
@@ -283,5 +286,61 @@ describe('OverLearn lesson accordion + post-preset reinit', () => {
     vi.advanceTimersByTime(1000)
 
     expect(getWordListSpy).toHaveBeenCalledWith('POL_Send_3-5_L_Words.txt')
+  })
+
+  it('handleCookies clears cachedShuffle when isShuffledSet is false', () => {
+    const { plugin, morseViewModel } = createPlugin()
+    morseViewModel.cachedShuffle = true
+    morseViewModel.isShuffled(true)
+
+    plugin.handleCookies([
+      { key: 'isShuffledSet', val: false },
+      { key: 'shuffleIntraGroup', val: false }
+    ])
+
+    expect(morseViewModel.cachedShuffle).toBe(false)
+  })
+
+  it('handleCookies sets cachedShuffle when isShuffledSet is true', () => {
+    const { plugin, morseViewModel } = createPlugin()
+    morseViewModel.cachedShuffle = false
+
+    plugin.handleCookies([{ key: 'isShuffledSet', val: true }])
+
+    expect(morseViewModel.cachedShuffle).toBe(true)
+  })
+
+  it('runLessonReinit does not re-arm cachedShuffle from a prior shuffled UI state', () => {
+    const { plugin, morseViewModel } = createPlugin()
+    const lesson = findLesson(plugin, '3-5 WORDS')
+    plugin.setDisplaySelected(lesson!, true)
+    morseViewModel.shuffleWords.mockClear()
+
+    // Simulate: OverLearn BINOMIALS left cards shuffled, then sending preset
+    // applied isShuffledSet:false (handleCookies already cleared the flag).
+    morseViewModel.isShuffled(true)
+    morseViewModel.cachedShuffle = false
+
+    const getWordListSpy = vi.spyOn(plugin, 'getWordList')
+    getWordListSpy.mockClear()
+    plugin.runLessonReinit()
+
+    expect(morseViewModel.cachedShuffle).toBe(false)
+    expect(morseViewModel.shuffleWords).not.toHaveBeenCalled()
+    expect(getWordListSpy).toHaveBeenCalledWith('POL_Send_3-5_L_Words.txt')
+  })
+
+  it('runLessonReinit keeps shuffle when the preset asked for it (cachedShuffle true)', () => {
+    const { plugin, morseViewModel } = createPlugin()
+    const lesson = findLesson(plugin, '3-5 WORDS')
+    plugin.setDisplaySelected(lesson!, true)
+    morseViewModel.shuffleWords.mockClear()
+
+    // Tri-letters (or any isShuffledSet:true) left the flag armed.
+    morseViewModel.cachedShuffle = true
+    plugin.runLessonReinit()
+
+    expect(morseViewModel.shuffleWords).toHaveBeenCalled()
+    expect(morseViewModel.cachedShuffle).toBe(false)
   })
 })
