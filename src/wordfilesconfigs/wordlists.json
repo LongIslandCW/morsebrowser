@@ -520,7 +520,7 @@
 
 {"sort": 545,"userTarget": "STUDENT","class": "BC3","letterGroup": "CONTESTS","newlineChunking": true,"display": "ARRL SECTIONS","fileName": "BC3_ARRL_Sections.txt"}, 
 {"sort": 545,"userTarget": "STUDENT","class": "BC3","letterGroup": "CONTESTS","newlineChunking": true,"display": "FD EXCHANGES","fileName": "BC3_FD_Exch.txt"}, 
-
+{"sort": 545,"userTarget": "STUDENT","class": "BC3","letterGroup": "CONTESTS","newlineChunking": true,"display": "WFD EXCHANGES","fileName": "BC3_WFD_Exch.txt"},
         
 {"sort": 563,"userTarget": "STUDENT","class": "BC3","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Abbreviations","fileName": "Fam_Abbrev.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "BC3","letterGroup": "FAMILIARITY","newlineChunking": false,"display": "Alphabet","fileName": "Fam_L.json"},
