@@ -2,7 +2,6 @@
 	"wordifications":[
 	{ "characters": ",", "replacement": "comma", "onlyAlone" : false, "overrideSpell" : true},
 	{ "characters": ".", "replacement": "period", "onlyAlone" : false, "overrideSpell" : true},
-			{ "characters": ".", "replacement": "period", "onlyAlone" : true},
 	{ "characters": "?", "replacement": "question mark", "onlyAlone" : false, "overrideSpell" : true},
 	{ "characters": "/", "replacement": "stroke", "onlyAlone" : false, "overrideSpell" : true},
 	{ "characters": ":", "replacement": "colon", "onlyAlone" : false, "overrideSpell" : true},
