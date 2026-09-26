@@ -217,26 +217,18 @@
             "display": "SPEED RACING 40-35-30wpm",
             "filename": "POL_SR 30.json"
         },
-
         {
  	    "display": "STORIES C-V 28/20wpm",
             "filename": "POL_Story_CV_28_20.json"
         },
-
         {
             "display": "STORIES RANDOM C-V 28/20wpm",
             "filename": "POL_Random_Story_CV_28_20.json"
-
         },
-
-
         {
-            "display": "STORIES C-V 35/27wpm",
+            "display": "STORIES RANDOM C-V 35/27wpm",
             "filename": "POL_Story_CV_35_27.json"
-
         },
-        
-
         {
             "display": "SUFFIXES 23wpm",
             "filename": "POL_Random_3x_23.json"
