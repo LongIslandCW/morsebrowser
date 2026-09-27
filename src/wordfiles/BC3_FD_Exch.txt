@@ -173,11 +173,11 @@
 {N4LR 3F GA |N 4 L R  3 F  Georgia } 
 {K5MC 2D OK |K 5 M C  2 D  Oklahoma } 
 {W5THT 3F LA |W 5 T H T  3 F  Louisiana } 
-{N5LY 4E TX |N 5 L Y  4 E  Utah } 
+{N5LY 4E UT |N 5 L Y  4 E  Utah } 
 {K6AR 2E SDG |K 6 A R  2 E  San Diego } 
 {W6NQ 3A LAX |W 6 N Q  3 "A"  Los Angeles } 
 {N6DE 4A SCV |N 6 D E  4 "A"  Santa Clara Valley } 
-{K7FR 2F WA |K 7 F R  2 F  West Central Florida } 
+{K7FR 2F WCF |K 7 F R  2 F  West Central Florida } 
 {W7OM 3F WWA |W 7 O M  3 F  Western Washington } 
 {N7ET 4A MT |N 7 E T  4 "A"  Montana } 
 {K8KFJ 2B MI |K 8 K F J  2 B  Michigan } 
@@ -253,11 +253,11 @@
 {N4QS 4A GA |N 4 Q S  4 "A"  Georgia } 
 {K5WA 3D OK |K 5 W A  3 D  Oklahoma } 
 {W5WZ 2C LA |W 5 W Z  2 C  Louisiana } 
-{N5SJ 4D TX |N 5 S J  4 D  Utah } 
+{N5SJ 4D UT |N 5 S J  4 D  Utah } 
 {K6BL 3E SCV |K 6 B L  3 E  Santa Clara Valley } 
 {W6VZ 2A SF |W 6 V Z  2 "A"  San Francisco } 
 {N6AJ 4A EB |N 6 A J  4 "A"  East Bay } 
-{K7VL 3A WA |K 7 V L  3 "A"  West Central Florida } 
+{K7VL 3A WCF |K 7 V L  3 "A"  West Central Florida } 
 {W7DRA 2B OR |W 7 D R A  2 B  Oregon } 
 {N7BV 4B AZ |N 7 B V  4 B  Arizona } 
 {K8NZ 3C OH |K 8 N Z  3 C  Ohio } 
