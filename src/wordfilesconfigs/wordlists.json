@@ -775,6 +775,9 @@
 {"sort": 511,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "SENTENCES","newlineChunking": true,"display": "5 WORD SENTENCES","fileName": "ADV1_SEN_5W.txt"}, 
 {"sort": 511,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "SENTENCES","newlineChunking": true,"display": "5 WORD SENTENCES","fileName": "ADV1_SEN_5W.txt"},
 
+{"sort": 529,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "STORIES","newlineChunking": true,"display": "STORIES CW-VOICE","fileName": "POL_Stories_CV.txt"},
+{"sort": 529,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "STORIES","newlineChunking": true,"display": "STORIES NO PAUSE CW-VOICE","fileName": "ADV_Short_Stories_No_Break.txt"},
+        
 {"sort": 413,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "TTR","newlineChunking": false,"display": "LETTERS","fileName": "INT1.json"}, 
 {"sort": 413,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "TTR","newlineChunking": false,"display": "LETTERS NUMBERS","fileName": "Fam_LN.txt"}, 
 {"sort": 415,"userTarget": "STUDENT","class": "ADV 1","letterGroup": "TTR","newlineChunking": false,"display": "LETTERS PUNCTUATION NUMBERS","fileName": "INT3.json"},        
@@ -827,16 +830,17 @@
 {"sort": 563,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Words-2","fileName": "Fam_Words - 2.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Words-3","fileName": "Fam_Words - 3.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Words-4","fileName": "Fam_Words - 4.txt"},
-
 {"sort": 512,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "SENTENCES","newlineChunking": true,"display": "5 WORD SENTENCES","fileName": "ADV2_SEN_5W.txt"}, 
 {"sort": 513,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "SENTENCES","newlineChunking": true,"display": "6 WORD SENTENCES","fileName": "ADV2_SEN_6W.txt"}, 
 
+{"sort": 529,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "STORIES","newlineChunking": true,"display": "STORIES CW-VOICE","fileName": "POL_Stories_CV.txt"},
+{"sort": 529,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "STORIES","newlineChunking": true,"display": "STORIES NO PAUSE CW-VOICE","fileName": "ADV_Short_Stories_No_Break.txt"},
+        
 {"sort": 413,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "TTR","newlineChunking": false,"display": "LETTERS","fileName": "INT1.json"},
 {"sort": 413,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "TTR","newlineChunking": false,"display": "LETTERS NUMBERS","fileName": "Fam_LN.txt"}, 
 {"sort": 415,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "TTR","newlineChunking": false,"display": "LETTERS PUNCTUATION NUMBERS","fileName": "INT3.json"}, 
 {"sort": 414,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "TTR","newlineChunking": false,"display": "NUMBERS","fileName": "INT2.json"}, 
 {"sort": 417,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "TTR","newlineChunking": false,"display": "PUNCTUATION","fileName": "INT4.json"},  
-        
 {"sort": 425,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "WORDS","newlineChunking": true,"display": "1-8 LETTERS","fileName": "ICR24.txt"}, 
 {"sort": 425,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "WORDS","newlineChunking": true,"display": "1-9 LETTERS","fileName": "ICR25.txt"},
 {"sort": 425,"userTarget": "STUDENT","class": "ADV 2","letterGroup": "WORDS","newlineChunking": true,"display": "10-14 LETTERS","fileName": "ICR26.txt"},
@@ -884,10 +888,12 @@
 {"sort": 563,"userTarget": "STUDENT","class": "ADV 3","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Words-2","fileName": "Fam_Words - 2.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "ADV 3","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Words-3","fileName": "Fam_Words - 3.txt"},
 {"sort": 563,"userTarget": "STUDENT","class": "ADV 3","letterGroup": "FAMILIARITY","newlineChunking": true,"display": "Words-4","fileName": "Fam_Words - 4.txt"},  
-
 {"sort": 514,"userTarget": "STUDENT","class": "ADV 3","letterGroup": "SENTENCES","newlineChunking": true,"display": "6 WORD SENTENCES","fileName": "ADV3_SEN_6W.txt"}, 
 {"sort": 515,"userTarget": "STUDENT","class": "ADV 3","letterGroup": "SENTENCES","newlineChunking": true,"display": "7 WORD SENTENCES","fileName": "ADV3_SEN_7W.txt"},
 
+{"sort": 529,"userTarget": "STUDENT","class": "ADV 3","letterGroup": "STORIES","newlineChunking": true,"display": "STORIES CW-VOICE","fileName": "POL_Stories_CV.txt"},
+{"sort": 529,"userTarget": "STUDENT","class": "ADV 3","letterGroup": "STORIES","newlineChunking": true,"display": "STORIES NO PAUSE CW-VOICE","fileName": "ADV_Short_Stories_No_Break.txt"},    
+        
 {"sort": 413,"userTarget": "STUDENT","class": "ADV 3","letterGroup": "TTR","newlineChunking": false,"display": "LETTERS","fileName": "INT1.json"},
 {"sort": 413,"userTarget": "STUDENT","class": "ADV 3","letterGroup": "TTR","newlineChunking": false,"display": "LETTERS NUMBERS","fileName": "Fam_LN.txt"}, 
 {"sort": 415,"userTarget": "STUDENT","class": "ADV 3","letterGroup": "TTR","newlineChunking": false,"display": "LETTERS PUNCTUATION NUMBERS","fileName": "INT3.json"},

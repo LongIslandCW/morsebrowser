@@ -44,6 +44,14 @@
             "display": "Speed Racing - Words",
             "filename": "SR_35_WORDS.json"
         },
+         {
+            "display": "Stories - 35",
+            "filename": "ADV_Stories_35.json"
+        },
+        {
+            "display": "Stories - 40",
+            "filename": "ADV_Stories_40.json"
+        },
         {
             "display": "TTR",
             "filename": "ADVICR.json"
