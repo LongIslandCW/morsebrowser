@@ -49,6 +49,14 @@
             "filename": "SR_25_WORDS.json"
         },
         {
+            "display": "Stories - 25",
+            "filename": "ADV_Stories_25.json"
+        },
+        {
+            "display": "Stories - 30",
+            "filename": "ADV_Stories_30.json"
+        },
+        {
             "display": "TTR",
             "filename": "ADVICR.json"
         }
