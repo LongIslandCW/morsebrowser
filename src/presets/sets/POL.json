@@ -214,6 +214,10 @@
             "filename": "POL_SR_25.json"
         },
         {
+            "display": "SPEED RACING - REVERSED 25-30-35wpm",
+            "filename": "POL_SR_REV_25.json"
+        },
+        {
             "display": "SPEED RACING 40-35-30wpm",
             "filename": "POL_SR 30.json"
         },
