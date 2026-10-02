@@ -1,4 +1,6 @@
-{The Attic Box.|The Attic Box. period|1} 
+{The Attic Box.|The Attic Box. period|63} 
+{<BT>|break|63} 
+
 {Penny opened a dusty box near the small attic window.|Penny opened a dusty box near the small attic window. period|1} 
 {Inside lay 2 gold coins, an old silver watch, and a picture of a white house with roses by the front door.|Inside lay 2 gold coins, an old silver watch, and a picture of a white house with roses by the front door. period|1} 
 {<BT>|break|1} 
