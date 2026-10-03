@@ -1,4 +1,6 @@
-{The Attic Box.  Penny opened a dusty box near the small attic window. Inside lay 2 gold coins, an old silver watch, and a picture of a white house with roses by the front door. | The Attic Box.  Penny opened a dusty box near the small attic window.  Inside lay 2 gold coins, an old silver watch, and a picture of a white house with roses by the front door. |1}
+{The Attic Box.|The Attic Box.|63} 
+{<BT>|break|63}
+{Penny opened a dusty box near the small attic window. Inside lay 2 gold coins, an old silver watch, and a picture of a white house with roses by the front door. | The Attic Box.  Penny opened a dusty box near the small attic window.  Inside lay 2 gold coins, an old silver watch, and a picture of a white house with roses by the front door. |1}
 {<BT>|break|1}
 {The River Crossing.  Muddy water rose to the horses knees as they stepped off the bank. Big stones made the footing slick and slow. They reached the dry grass on the other side just as dusk fell. | The River Crossing.  Muddy water rose to the horses knees as they stepped off the bank.  Big stones made the footing slick and slow. They reached the dry grass on the other side just as dusk fell. |2}
 {<BT>|break|2}
