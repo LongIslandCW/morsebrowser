@@ -201,6 +201,14 @@
             "display": "SPEED RACING 31-27-23wpm",
             "filename": "POL_SR_23.json"
         },
+	    {
+            "display": "SPEED RACING 35-30-25wpm",
+            "filename": "POL_SR_25.json"
+        },
+		{
+            "display": "SPEED RACING 40-35-30wpm",
+            "filename": "POL_SR 30.json"
+        },
         {
             "display": "SPEED RACING - REVERSED 23-27-31wpm",
             "filename": "POL_SR_REV_23.json"
@@ -210,16 +218,8 @@
             "filename": "POL_SR_PEAK_23.json"
         },
         {
-            "display": "SPEED RACING 35-30-25wpm",
-            "filename": "POL_SR_25.json"
-        },
-        {
             "display": "SPEED RACING - REVERSED 25-30-35wpm",
             "filename": "POL_SR_REV_25.json"
-        },
-        {
-            "display": "SPEED RACING 40-35-30wpm",
-            "filename": "POL_SR 30.json"
         },
 		{    
             "display": "STORIES C-V 20/25wpm",
