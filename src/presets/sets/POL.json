@@ -221,29 +221,33 @@
             "display": "SPEED RACING 40-35-30wpm",
             "filename": "POL_SR 30.json"
         },
+		{    
+            "display": "STORIES C-V 20/25wpm",
+            "filename": "POL_Story_CV_20_25.json"
+        },
         {   
             "display": "STORIES C-V 25/20wpm",
             "filename": "POL_Story_CV_25_20.json"
         },
-	    {    
-            "display": "STORIES C-V 20/25wpm",
-            "filename": "POL_Story_CV_20_25.json"
+        {   
+            "display": "STORIES C-V 25/30wpm",
+            "filename": "POL_Story_CV_25_30.json"
+        },
+	    {
+            "display": "STORIES RANDOM C-V 20/25wpm",
+            "filename": "POL_Story_Random_CV_20_25.json"
         },
         {
             "display": "STORIES RANDOM C-V 25/20wpm",
             "filename": "POL_Story_Random_CV_25_20.json"
         },
-        {
-            "display": "STORIES RANDOM C-V 20/25wpm",
-            "filename": "POL_Story_Random_CV_20_25.json"
+	    {
+            "display": "STORIES RANDOM C-V 25/30wpm",
+            "filename": "POL_Story_Random_CV_25_30.json"
         },
         {
             "display": "STORIES RANDOM C-V 30/25wpm",
             "filename": "POL_Story_Random_CV_30_25.json"
-        },
-        {
-            "display": "STORIES RANDOM C-V 25/30wpm",
-            "filename": "POL_Story_Random_CV_25_30.json"
         },
         {
             "display": "SUFFIXES 23wpm",
