@@ -969,6 +969,11 @@
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SENTENCES","newlineChunking": true,"display": "TOP 100 WORD SR CW-VOICE-CW","fileName": "POL_Top_100_Word_Sentences_CVC_SR.txt"},
 
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "STORIES","newlineChunking": true,"display": "STORIES CW-VOICE","fileName": "POL_Stories_CV.txt"},
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "STORIES","newlineChunking": true,"display": "STORIES NO PAUSE CW-VOICE","fileName": "ADV_Short_Stories_No_Break.txt"},
+
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "STORIES","newlineChunking": true,"display": "STORIES CW-VOICE-CW","fileName": "POL_Stories_CVC.txt"},
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "STORIES","newlineChunking": true,"display": "STORIES NO PAUSE CW-VOICE-CW","fileName": "POL_Short_Stories_CVC_No_Break.txt"},
+
         
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SUFFIXES","newlineChunking": false,"display": "SUFFIXES ALL","fileName": "POL_SUFFIXES.txt"},                
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SUFFIXES","newlineChunking": false,"display": "ING 1","fileName": "POL_ING.txt"},  
