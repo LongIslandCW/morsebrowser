@@ -970,6 +970,10 @@
 
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "STORIES","newlineChunking": true,"display": "STORIES CW-VOICE","fileName": "POL_Stories_CV.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "STORIES","newlineChunking": true,"display": "STORIES NO PAUSE CW-VOICE","fileName": "ADV_Short_Stories_No_Break.txt"},
+
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "STORIES","newlineChunking": true,"display": "STORIES CWV-VOICE","fileName": "POL_Stories_CVC.txt"},
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "STORIES","newlineChunking": true,"display": "STORIES NOV PAUSE CW-VOICE","fileName": "POL_Short_Stories_CVC_No_Break.txt"},
+
         
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SUFFIXES","newlineChunking": false,"display": "SUFFIXES ALL","fileName": "POL_SUFFIXES.txt"},                
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "SUFFIXES","newlineChunking": false,"display": "ING 1","fileName": "POL_ING.txt"},  
