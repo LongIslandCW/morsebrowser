@@ -222,6 +222,38 @@
             "filename": "POL_SR_REV_25.json"
         },
 		{    
+            "display": "STORIES C-V 20wpm",
+            "filename": "POL_Story_CV_20.json"
+        },
+		{    
+            "display": "STORIES C-V 25wpm",
+            "filename": "POL_Story_CV_25.json"
+        },
+		{    
+            "display": "STORIES C-V 30wpm",
+            "filename": "POL_Story_CV_30.json"
+        },
+		{    
+            "display": "STORIES C-V 35wpm",
+            "filename": "POL_Story_CV_35.json"
+        },	
+		{    
+            "display": "STORIES RANDOM C-V 20wpm",
+            "filename": "POL_Story_Random_CV_20.json"
+        },
+		{    
+            "display": "STORIES RANDOM C-V 25wpm",
+            "filename": "POL_Story_Random_CV_25.json"
+        },
+		{    
+            "display": "STORIES RANDOM C-V 30wpm",
+            "filename": "POL_Story_Random_CV_30.json"
+        },
+		{    
+            "display": "STORIES RANDOM C-V 35wpm",
+            "filename": "POL_Story_Random_CV_35.json"
+        },	
+		{    
             "display": "STORIES C-V 20/25wpm",
             "filename": "POL_Story_CV_20_25.json"
         },
@@ -232,6 +264,14 @@
         {   
             "display": "STORIES C-V 25/30wpm",
             "filename": "POL_Story_CV_25_30.json"
+        },
+        {   
+            "display": "STORIES C-V 30/25wpm",
+            "filename": "POL_Story_CV_30_25.json"
+        },
+        {   
+            "display": "STORIES C-V 35/30wpm",
+            "filename": "POL_Story_CV_35_30.json"
         },
 	    {
             "display": "STORIES RANDOM C-V 20/25wpm",
@@ -248,6 +288,10 @@
         {
             "display": "STORIES RANDOM C-V 30/25wpm",
             "filename": "POL_Story_Random_CV_30_25.json"
+        },
+        {
+            "display": "STORIES RANDOM C-V 35/30wpm",
+            "filename": "POL_Story_Random_CV_35_30.json"
         },
         {
             "display": "SUFFIXES 23wpm",
