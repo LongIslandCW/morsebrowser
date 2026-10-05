@@ -24,6 +24,10 @@
             "display": "CHARACTERS 31wpm",
             "filename": "POL_Random_31.json"
         },
+	    {
+            "display": "CHARACTERS SR 31wpm",
+            "filename": "POL_SR_STRAIGHT_23.json"
+        },
         {
             "display": "PHRASES/WORDS 2X 23wpm",
             "filename": "POL_Random_2x_23.json"
