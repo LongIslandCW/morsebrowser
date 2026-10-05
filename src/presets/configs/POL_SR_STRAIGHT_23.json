@@ -51,13 +51,8 @@
 			"comment": null
 		},
 		{
-			"key": "autoCloseSettingsAccordions",
-			"value": true,
-			"comment": null
-		},
-		{
 			"key": "autoCloseLessonAccordian",
-			"value": false,
+			"value": true,
 			"comment": null
 		},
 		{
@@ -117,12 +112,12 @@
 		},
 		{
 			"key": "numberOfRepeats",
-			"value": 0,
+			"value": "0",
 			"comment": null
 		},
 		{
 			"key": "speakFirstAdditionalWordspaces",
-			"value": 0,
+			"value": "0",
 			"comment": null
 		},
 		{
@@ -157,7 +152,7 @@
 		},
 		{
 			"key": "miscSettingsAccordionOpen",
-			"value": false,
+			"value": "false",
 			"comment": null
 		},
 		{
@@ -187,7 +182,7 @@
 		},
 		{
 			"key": "speedRacerMultipliers",
-			"value": "1.0, 1.174, 1.348",
+			"value": "1.348, 1.174, 1.0",
 			"comment": null
 		},
 		{
