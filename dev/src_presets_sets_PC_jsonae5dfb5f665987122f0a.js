@@ -1,0 +1,14 @@
+"use strict";
+(self["webpackChunk"] = self["webpackChunk"] || []).push([["src_presets_sets_PC_json"],{
+
+/***/ "./src/presets/sets/PC.json":
+/*!**********************************!*\
+  !*** ./src/presets/sets/PC.json ***!
+  \**********************************/
+/***/ ((module) => {
+
+module.exports = JSON.parse('{"options":[{"display":"Default 18/18","filename":"PC_Default"},{"display":"Groups of 2","filename":"PC_LNP_GR2.json"},{"display":"Groups of 3 ","filename":"PC_LNP_GR3.json"},{"display":"Groups of 4","filename":"PC_LNP_GR4.json"},{"display":"Groups of 5","filename":"PC_LNP_GR5.json"},{"display":"Groups of 6","filename":"PC_LNP_GR6.json"},{"display":"SR-Groups of 2","filename":"PC_LNP_GR2_SR.json"},{"display":"SR-Groups of 3","filename":"PC_LNP_GR3_SR.json"},{"display":"SR-Groups of 4","filename":"PC_LNP_GR4_SR.json"},{"display":"SR-Groups of 5","filename":"PC_LNP_GR5_SR.json"},{"display":"SR-Groups of 6","filename":"PC_LNP_GR6_SR.json"},{"display":"TTR-Groups of 1","filename":"PC_TTR_1.json"},{"display":"TTR-Groups of 2","filename":"PC_TTR_2.json"},{"display":"TTR-Groups of 3","filename":"PC_TTR_3.json"}]}');
+
+/***/ })
+
+}]);
