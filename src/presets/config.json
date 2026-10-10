@@ -84,8 +84,8 @@
             "letterGroups": []
         }, 
                 {
-            "className": "A",
-            "defaultSetFile": "A.json",
+            "className": "PRECISION",
+            "defaultSetFile": "PC.json",
             "letterGroups": []
         } 
     ]
