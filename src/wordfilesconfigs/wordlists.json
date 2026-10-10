@@ -1004,9 +1004,9 @@
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORD BUILDING","newlineChunking": false,"display": "WORD BUILDING 2","fileName": "POL_WB_Pt2.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORD BUILDING","newlineChunking": false,"display": "WORD BUILDING 3","fileName": "POL_WB_Pt3.txt"},
 
-
-{"sort": 529,"userTarget": "STUDENT","class": "PRECISION","letterGroup": "CHARACTERS","newlineChunking": false,"display": "LETTERS-NUMBERS","fileName": "SB2C1.json.txt"},
-{"sort": 529,"userTarget": "STUDENT","class": "PRECISION","letterGroup": "CHARACTERS","newlineChunking": false,"display": "LETTERS-PUNCTUATION-PROSIGNS","fileName": "SB2C1.json.txt"},
+{"sort": 529,"userTarget": "STUDENT","class": "PRECISION","letterGroup": "CHARACTERS","newlineChunking": false,"display": "LETTERS","fileName": "INT1.json"},
+{"sort": 529,"userTarget": "STUDENT","class": "PRECISION","letterGroup": "CHARACTERS","newlineChunking": false,"display": "LETTERS-NUMBERS","fileName": "SB2C1.json"},
+{"sort": 529,"userTarget": "STUDENT","class": "PRECISION","letterGroup": "CHARACTERS","newlineChunking": false,"display": "LETTERS-PUNCTUATION-PROSIGNS","fileName": "SB2C1.json"},
 
 
         
