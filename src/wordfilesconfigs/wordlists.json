@@ -1002,6 +1002,37 @@
 
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORD BUILDING","newlineChunking": false,"display": "WORD BUILDING 1","fileName": "POL_WB_Pt1.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORD BUILDING","newlineChunking": false,"display": "WORD BUILDING 2","fileName": "POL_WB_Pt2.txt"},
-{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORD BUILDING","newlineChunking": false,"display": "WORD BUILDING 3","fileName": "POL_WB_Pt3.txt"}
+{"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORD BUILDING","newlineChunking": false,"display": "WORD BUILDING 3","fileName": "POL_WB_Pt3.txt"},
+
+
+{"sort": 529,"userTarget": "STUDENT","class": "PRECISION","letterGroup": "CHARACTERS","newlineChunking": false,"display": "LETTERS-NUMBERS","fileName": "SB2C1.json.txt"},
+{"sort": 529,"userTarget": "STUDENT","class": "PRECISION","letterGroup": "CHARACTERS","newlineChunking": false,"display": "LETTERS-PUNCTUATION-PROSIGNS","fileName": "SB2C1.json.txt"},
+
+
+        
+{"sort": 529,"userTarget": "STUDENT","class": "PRECISION","letterGroup": "NAMES","newlineChunking": false,"display": "MAX 4 LETTERS","fileName": "PC_Names_Max_4.txt"},
+{"sort": 529,"userTarget": "STUDENT","class": "PRECISION","letterGroup": "NAMES","newlineChunking": false,"display": "MAX 5 LETTERS","fileName": "PC_Names_Max_5.txt"},
+{"sort": 529,"userTarget": "STUDENT","class": "PRECISION","letterGroup": "NAMES","newlineChunking": false,"display": "ALL","fileName": "PC_Names_Extended.txt"},
+
       
+{"sort": 529,"userTarget": "STUDENT","class": "PRECISION","letterGroup": "NUMBERS","newlineChunking": false,"display": "SUDUKO","fileName": "PC_SUDUKO.txt"}, 
+{"sort": 529,"userTarget": "STUDENT","class": "PRECISION","letterGroup": "NUMBERS","newlineChunking": false,"display": "VIN NUMBERS","fileName": "PC_VIN.txt"},  
+        
+        
+{"sort": 529,"userTarget": "STUDENT","class": "PRECISION","letterGroup": "WEATHER","newlineChunking": false,"display": "SHORT ","fileName": "PC_WX_Short.txt"},
+{"sort": 529,"userTarget": "STUDENT","class": "PRECISION","letterGroup": "WEATHER","newlineChunking": false,"display": "LONG ","fileName": "PC_WX_Long.txt"},
+{"sort": 529,"userTarget": "STUDENT","class": "PRECISION","letterGroup": "WEATHER","newlineChunking": false,"display": "EXTENDED ","fileName": "PC_WX_All.txt"},
+        
+{"sort": 529,"userTarget": "STUDENT","class": "PRECISION","letterGroup": "WORDS","newlineChunking": false,"display": "ABBREVIATIONS","fileName": "PC_Abbev.txt"},
+{"sort": 529,"userTarget": "STUDENT","class": "PRECISION","letterGroup": "WORDS","newlineChunking": false,"display": "CITIES","fileName": "PC_CITIES.txt"},
+{"sort": 529,"userTarget": "STUDENT","class": "PRECISION","letterGroup": "WORDS","newlineChunking": false,"display": "Q CODES","fileName": "PC_Q_Codes.txt"},        
+{"sort": 529,"userTarget": "STUDENT","class": "PRECISION","letterGroup": "WORDS","newlineChunking": false,"display": "QSO WORDS","fileName": "PC_QSO_Words.txt"},  
+
+{"sort": 529,"userTarget": "STUDENT","class": "PRECISION","letterGroup": "WORDS","newlineChunking": false,"display": "TOP 100","fileName": "PC_TOP_100_WORDS.txt"}, 
+{"sort": 529,"userTarget": "STUDENT","class": "PRECISION","letterGroup": "WORDS","newlineChunking": false,"display": "TOP 500","fileName": "PC_TOP_500_WORDS.txt"}, 
+{"sort": 529,"userTarget": "STUDENT","class": "PRECISION","letterGroup": "WORDS","newlineChunking": false,"display": "TOP 500-750","fileName": "PC_500_750_Words.txt"}, 
+{"sort": 529,"userTarget": "STUDENT","class": "PRECISION","letterGroup": "WORDS","newlineChunking": false,"display": "TOP 750-1000","fileName": "PC_750_1000_Words.txt"}, 
+{"sort": 529,"userTarget": "STUDENT","class": "PRECISION","letterGroup": "WORDS","newlineChunking": false,"display": "TOP 750-1000","fileName": "PC_750_1000_Words.txt"} 
+
+        
 ]}
