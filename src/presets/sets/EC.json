@@ -55,6 +55,14 @@
         {
             "display": "TTR-Groups of 3",
             "filename": "PC_TTR_3.json"
+        },
+        {
+            "display": "Words Spelled",
+            "filename": "PC_WORDS_SPELL.json"
+        },
+        {
+            "display": "Words Spoken",
+            "filename": "PC_WORDS_SAY.json"
         }
 
     ]
