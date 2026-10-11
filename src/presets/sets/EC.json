@@ -83,6 +83,10 @@
         {
             "display": "Words Spoken",
             "filename": "PC_WORDS_SAY.json"
+        },
+                {
+            "display": "Words Speed Racing",
+            "filename": "PC_WORDS_SR.json"
         }
 
     ]
