@@ -57,6 +57,14 @@
             "filename": "PC_TTR_3.json"
         },
         {
+            "display": "SUDUKO",
+            "filename": "PC_SUDOKO.json"
+        },
+        {
+            "display": "VIN NUMBERS",
+            "filename": "PC_VIN.json"
+        },
+        {
             "display": "Words No Voice",
             "filename": "PC_WORDS_NO_VOICE.json"
         },
