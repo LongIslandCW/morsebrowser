@@ -1,0 +1,200 @@
+{New York |New York|1} 
+{Los Angeles |Los Angeles|2} 
+{Chicago |Chicago|3} 
+{Houston |Houston|4} 
+{Phoenix |Phoenix|5} 
+{Philadelphia |Philadelphia|6} 
+{San Antonio |San Antonio|7} 
+{San Diego |San Diego|8} 
+{Dallas |Dallas|9} 
+{Fort Worth |Fort Worth|10} 
+{Jacksonville |Jacksonville|11} 
+{Austin |Austin|12} 
+{San Jose |San Jose|13} 
+{Charlotte |Charlotte|14} 
+{Columbus |Columbus|15} 
+{Indianapolis |Indianapolis|16} 
+{San Francisco |San Francisco|17} 
+{Seattle |Seattle|18} 
+{Denver |Denver|19} 
+{Nashville |Nashville|20} 
+{Oklahoma City |Oklahoma City|21} 
+{El Paso |El Paso|22} 
+{Las Vegas |Las Vegas|23} 
+{Boston |Boston|24} 
+{Detroit |Detroit|25} 
+{Louisville |Louisville|26} 
+{Portland |Portland|27} 
+{Memphis |Memphis|28} 
+{Baltimore |Baltimore|29} 
+{Milwaukee |Milwaukee|30} 
+{Albuquerque |Albuquerque|31} 
+{Fresno |Fresno|32} 
+{Tucson |Tucson|33} 
+{Sacramento |Sacramento|34} 
+{Atlanta |Atlanta|35} 
+{Kansas City |Kansas City|36} 
+{Mesa |Mesa|37} 
+{Raleigh |Raleigh|38} 
+{Colorado Springs |Colorado Springs|39} 
+{Miami |Miami|40} 
+{Omaha |Omaha|41} 
+{Virginia Beach |Virginia Beach|42} 
+{Long Beach |Long Beach|43} 
+{Oakland |Oakland|44} 
+{Minneapolis |Minneapolis|45} 
+{Bakersfield |Bakersfield|46} 
+{Tulsa |Tulsa|47} 
+{Tampa |Tampa|48} 
+{Aurora |Aurora|49} 
+{Arlington |Arlington|50} 
+{Wichita |Wichita|51} 
+{Cleveland |Cleveland|52} 
+{New Orleans |New Orleans|53} 
+{Henderson |Henderson|54} 
+{Honolulu |Honolulu|55} 
+{Anaheim |Anaheim|56} 
+{Orlando |Orlando|57} 
+{Lexington |Lexington|58} 
+{Stockton |Stockton|59} 
+{Newark |Newark|60} 
+{Riverside |Riverside|61} 
+{Irvine |Irvine|62} 
+{Corpus Christi |Corpus Christi|63} 
+{Santa Ana |Santa Ana|64} 
+{Cincinnati |Cincinnati|65} 
+{Greensboro |Greensboro|66} 
+{Pittsburgh |Pittsburgh|67} 
+{Saint Paul |Saint Paul|68} 
+{Durham |Durham|69} 
+{Jersey City |Jersey City|70} 
+{Lincoln |Lincoln|71} 
+{North Las Vegas |North Las Vegas|72} 
+{Plano |Plano|73} 
+{Gilbert |Gilbert|74} 
+{Anchorage |Anchorage|75} 
+{Madison |Madison|76} 
+{Reno |Reno|77} 
+{Chandler |Chandler|78} 
+{St. Louis |St. Louis|79} 
+{Chula Vista |Chula Vista|80} 
+{Fort Wayne |Fort Wayne|81} 
+{Buffalo |Buffalo|82} 
+{Lubbock |Lubbock|83} 
+{Laredo |Laredo|84} 
+{Port St. Lucie |Port St. Lucie|85} 
+{St. Petersburg |St. Petersburg|86} 
+{Toledo |Toledo|87} 
+{Glendale |Glendale|88} 
+{Winston-Salem |Winston-Salem|89} 
+{Irving |Irving|90} 
+{Chesapeake |Chesapeake|91} 
+{Garland |Garland|92} 
+{Scottsdale |Scottsdale|93} 
+{Boise |Boise|94} 
+{Richmond |Richmond|95} 
+{Frisco |Frisco|96} 
+{Cape Coral |Cape Coral|97} 
+{McKinney |McKinney|98} 
+{Huntsville |Huntsville|99} 
+{Norfolk |Norfolk|100} 
+{Hialeah |Hialeah|101} 
+{Spokane |Spokane|102} 
+{Tacoma |Tacoma|103} 
+{Santa Clarita |Santa Clarita|104} 
+{Fremont |Fremont|105} 
+{Baton Rouge |Baton Rouge|106} 
+{San Bernardino |San Bernardino|107} 
+{Fontana |Fontana|108} 
+{Modesto |Modesto|109} 
+{Salt Lake City |Salt Lake City|110} 
+{Moreno Valley |Moreno Valley|111} 
+{Worcester |Worcester|112} 
+{Sioux Falls |Sioux Falls|113} 
+{Yonkers |Yonkers|114} 
+{Des Moines |Des Moines|115} 
+{Grand Prairie |Grand Prairie|116} 
+{Fayetteville |Fayetteville|117} 
+{Little Rock |Little Rock|118} 
+{Rochester |Rochester|119} 
+{Amarillo |Amarillo|120} 
+{Tallahassee |Tallahassee|121} 
+{Overland Park |Overland Park|122} 
+{Columbus |Columbus|123} 
+{Knoxville |Knoxville|124} 
+{Augusta |Augusta|125} 
+{Grand Rapids |Grand Rapids|126} 
+{Peoria |Peoria|127} 
+{Mobile |Mobile|128} 
+{Vancouver |Vancouver|129} 
+{Oxnard |Oxnard|130} 
+{Birmingham |Birmingham|131} 
+{Providence |Providence|132} 
+{Montgomery |Montgomery|133} 
+{Chattanooga |Chattanooga|134} 
+{Brownsville |Brownsville|135} 
+{Huntington Beach |Huntington Beach|136} 
+{Tempe |Tempe|137} 
+{Akron |Akron|138} 
+{Clarksville |Clarksville|139} 
+{Fort Lauderdale |Fort Lauderdale|140} 
+{Glendale |Glendale|141} 
+{Ontario |Ontario|142} 
+{Elk Grove |Elk Grove|143} 
+{Cary |Cary|144} 
+{Newport News |Newport News|145} 
+{Salem |Salem|146} 
+{Aurora |Aurora|147} 
+{Santa Rosa |Santa Rosa|148} 
+{Eugene |Eugene|149} 
+{Rancho Cucamonga |Rancho Cucamonga|150} 
+{Pembroke Pines |Pembroke Pines|151} 
+{Shreveport |Shreveport|152} 
+{Surprise |Surprise|153} 
+{Fort Collins |Fort Collins|154} 
+{Murfreesboro |Murfreesboro|155} 
+{Oceanside |Oceanside|156} 
+{Garden Grove |Garden Grove|157} 
+{Lancaster |Lancaster|158} 
+{Springfield |Springfield|159} 
+{Denton |Denton|160} 
+{Roseville |Roseville|161} 
+{Killeen |Killeen|162} 
+{Palmdale |Palmdale|163} 
+{Paterson |Paterson|164} 
+{Corona |Corona|165} 
+{Alexandria |Alexandria|166} 
+{Charleston |Charleston|167} 
+{Salinas |Salinas|168} 
+{Kansas City |Kansas City|169} 
+{Macon |Macon|170} 
+{Hayward |Hayward|171} 
+{Hollywood |Hollywood|172} 
+{Lakewood |Lakewood|173} 
+{Sunnyvale |Sunnyvale|174} 
+{Springfield |Springfield|175} 
+{Bellevue |Bellevue|176} 
+{Naperville |Naperville|177} 
+{Bridgeport |Bridgeport|178} 
+{Joliet |Joliet|179} 
+{Mesquite |Mesquite|180} 
+{McAllen |McAllen|181} 
+{Olathe |Olathe|182} 
+{Savannah |Savannah|183} 
+{Gainesville |Gainesville|184} 
+{Pasadena |Pasadena|185} 
+{Palm Bay |Palm Bay|186} 
+{Pomona |Pomona|187} 
+{Waco |Waco|188} 
+{Thornton |Thornton|189} 
+{Midland |Midland|190} 
+{Rockford |Rockford|191} 
+{Columbia |Columbia|192} 
+{Visalia |Visalia|193} 
+{Escondido |Escondido|194} 
+{Syracuse |Syracuse|195} 
+{Lakewood |Lakewood|196} 
+{Meridian |Meridian|197} 
+{Miramar |Miramar|198} 
+{Elizabeth |Elizabeth|199} 
+{Victorville |Victorville|200}
