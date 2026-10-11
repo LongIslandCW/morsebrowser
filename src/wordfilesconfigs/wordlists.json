@@ -1015,13 +1015,13 @@
 {"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "NAMES","newlineChunking": false,"display": "ALL","fileName": "PC_Names_Extended.txt"},
 
       
-{"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "NUMBERS","newlineChunking": false,"display": "SUDUKO","fileName": "PC_SUDUKO.txt"}, 
-{"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "NUMBERS","newlineChunking": false,"display": "VIN NUMBERS","fileName": "PC_VIN.txt"},  
+{"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "NUMBERS","newlineChunking": true,"display": "SUDUKO","fileName": "PC_SUDUKO.txt"}, 
+{"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "NUMBERS","newlineChunking": true,"display": "VIN NUMBERS","fileName": "PC_VIN.txt"},  
        
         
-{"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "WEATHER","newlineChunking": false,"display": "SHORT ","fileName": "PC_WX_Short.txt"},
-{"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "WEATHER","newlineChunking": false,"display": "LONG ","fileName": "PC_WX_Long.txt"},
-{"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "WEATHER","newlineChunking": false,"display": "EXTENDED ","fileName": "PC_WX_All.txt"},
+{"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "WEATHER","newlineChunking": true,"display": "SHORT ","fileName": "PC_WX_Short.txt"},
+{"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "WEATHER","newlineChunking": true,"display": "LONG ","fileName": "PC_WX_Long.txt"},
+{"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "WEATHER","newlineChunking": true,"display": "EXTENDED ","fileName": "PC_WX_All.txt"},
         
 {"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "WORDS","newlineChunking": false,"display": "ABBREVIATIONS","fileName": "PC_Abbev.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "WORDS","newlineChunking": true,"display": "CITIES - EU","fileName": "PC_Cities_EU.txt"},
