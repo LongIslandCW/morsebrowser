@@ -65,6 +65,10 @@
             "filename": "PC_VIN.json"
         },
         {
+            "display": "WEATHER",
+            "filename": "PC_WX.json"
+        },
+        {
             "display": "Words No Voice",
             "filename": "PC_WORDS_NO_VOICE.json"
         },
