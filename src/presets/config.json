@@ -83,10 +83,10 @@
             "defaultSetFile": "POL.json",
             "letterGroups": []
         }, 
-                {
-            "className": "PRECISION",
+        {
+            "className": "EXACT",
             "defaultSetFile": "PC.json",
             "letterGroups": []
-        } 
+        }
     ]
 }
