@@ -61,15 +61,15 @@
             "filename": "PC_SUDOKO.json"
         },
         {
-            "display": "VIN NUMBERS",
+            "display": "VIN Numbers",
             "filename": "PC_VIN.json"
         },
         {
-            "display": "WEATHER NO VOICE",
+            "display": "Weather No Voice",
             "filename": "PC_WX_N0_VOICE.json"
         },
         {
-            "display": "WEATHER SPOKEN",
+            "display": "Weather Spoken",
             "filename": "PC_WX.json"
         },
         {
