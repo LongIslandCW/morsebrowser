@@ -1017,7 +1017,7 @@
       
 {"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "NUMBERS","newlineChunking": false,"display": "SUDUKO","fileName": "PC_SUDUKO.txt"}, 
 {"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "NUMBERS","newlineChunking": false,"display": "VIN NUMBERS","fileName": "PC_VIN.txt"},  
-{"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "NUMBERS","newlineChunking": false,"display": "TEST","fileName": "SODOKO.json"},         
+       
         
 {"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "WEATHER","newlineChunking": false,"display": "SHORT ","fileName": "PC_WX_Short.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "WEATHER","newlineChunking": false,"display": "LONG ","fileName": "PC_WX_Long.txt"},
