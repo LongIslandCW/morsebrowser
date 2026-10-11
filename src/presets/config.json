@@ -85,7 +85,7 @@
         }, 
         {
             "className": "EXACT",
-            "defaultSetFile": "PC.json",
+            "defaultSetFile": "EC.json",
             "letterGroups": []
         }
     ]
