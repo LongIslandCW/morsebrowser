@@ -1014,7 +1014,7 @@
         
 {"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "NAMES","newlineChunking": false,"display": "MAX 4 LETTERS","fileName": "PC_Names_Max_4.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "NAMES","newlineChunking": false,"display": "MAX 5 LETTERS","fileName": "PC_Names_Max_5.txt"},
-{"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "NAMES","newlineChunking": false,"display": "ALL","fileName": "PC_Names_Extended.txt"},
+{"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "NAMES","newlineChunking": false,"display": "MORE NAMES","fileName": "PC_Names_Extended.txt"},
 
         
 {"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "WEATHER","newlineChunking": false,"display": "SHORT ","fileName": "PC_WX_Short.txt"},
