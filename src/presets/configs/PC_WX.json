@@ -42,7 +42,7 @@
 		},
 		{
 			"key": "showRaw",
-			"value": true,
+			"value": false,
 			"comment": null
 		},
 		{
