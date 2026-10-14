@@ -83,10 +83,10 @@
             "defaultSetFile": "POL.json",
             "letterGroups": []
         }, 
-                {
-            "className": "A",
-            "defaultSetFile": "A.json",
+        {
+            "className": "EXACT COPY",
+            "defaultSetFile": "EC.json",
             "letterGroups": []
-        } 
+        }
     ]
 }

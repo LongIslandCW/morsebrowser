@@ -1,0 +1,200 @@
+{4O0CBK |4 O 0 C B K } 
+{4O1XI |4 O 1 X I } 
+{4O2TCM |4 O 2 T C M } 
+{4O3WY |4 O 3 W Y } 
+{4O9NDR |4 O 9 N D R } 
+{4O9SGW |4 O 9 S G W } 
+{4O9WWM |4 O 9 W W M } 
+{9A1GGR |9 A 1 G G R } 
+{9A2FXO |9 A 2 F X O } 
+{9A3QPI |9 A 3 Q P I } 
+{9A4RAQ |9 A 4 R A Q } 
+{9A5IJI |9 A 5 I J I } 
+{9A6IFZ |9 A 6 I F Z } 
+{9A6JVM |9 A 6 J V M } 
+{9A8NBG |9 A 8 N B G } 
+{9H4HCI |9 H 4 H C I } 
+{9H5OD |9 H 5 O D } 
+{9H6HEQ |9 H 6 H E Q } 
+{CT0LNC |C T 0 L N C } 
+{CT5NTQ |C T 5 N T Q } 
+{CT7MK |C T 7 M K } 
+{CT7PL |C T 7 P L } 
+{DJ5VLC |D J 5 V L C } 
+{DK1EOF |D K 1 E O F } 
+{DK9HEP |D K 9 H E P } 
+{DL1HFZ |D L 1 H F Z } 
+{DL1YUK |D L 1 Y U K } 
+{DL6WTP |D L 6 W T P } 
+{DL7CR |D L 7 C R } 
+{E71OWI |E 7 1 O W I } 
+{E71YRN |E 7 1 Y R N } 
+{E75VDX |E 7 5 V D X } 
+{E76OET |E 7 6 O E T } 
+{EA2RFI |E A 2 R F I } 
+{EI0BM |E I 0 B M } 
+{EI1IZZ |E I 1 I Z Z } 
+{EI1PWJ |E I 1 P W J } 
+{EI8MGT |E I 8 M G T } 
+{ER0SSV |E R 0 S S V } 
+{ER1BAC |E R 1 B A C } 
+{ER1CRJ |E R 1 C R J } 
+{ER2BBR |E R 2 B B R } 
+{ER2GXP |E R 2 G X P } 
+{ER5DI |E R 5 D I } 
+{ER6UWY |E R 6 U W Y } 
+{ER7BGQ |E R 7 B G Q } 
+{ES0GVH |E S 0 G V H } 
+{ES2LGV |E S 2 L G V } 
+{ES2YF |E S 2 Y F } 
+{ES9UOY |E S 9 U O Y } 
+{F0QQF |F 0 Q Q F } 
+{F1IBA |F 1 I B A } 
+{F3REJ |F 3 R E J } 
+{F4DCM |F 4 D C M } 
+{F4KGO |F 4 K G O } 
+{F5UCY |F 5 U C Y } 
+{F8CY |F 8 C Y } 
+{F8FC |F 8 F C } 
+{F9XK |F 9 X K } 
+{G0YJC |G 0 Y J C } 
+{G4UQM |G 4 U Q M } 
+{G5SR |G 5 S R } 
+{G8IVP |G 8 I V P } 
+{HA0JWJ |H A 0 J W J } 
+{HA2DAS |H A 2 D A S } 
+{HA3KKR |H A 3 K K R } 
+{HA7OKF |H A 7 O K F } 
+{HB92PZ |H B 9 2 P Z } 
+{HB95AJX |H B 9 5 A J X } 
+{HB95VDF |H B 9 5 V D F } 
+{HB96YS |H B 9 6 Y S } 
+{HB99IGV |H B 9 9 I G V } 
+{I1LNN |I 1 L N N } 
+{I3IVC |I 3 I V C } 
+{I6PH |I 6 P H } 
+{I6UOW |I 6 U O W } 
+{IZ4FOA |I Z 4 F O A } 
+{IZ6IBW |I Z 6 I B W } 
+{IZ7ZOV |I Z 7 Z O V } 
+{LA0MIC |L A 0 M I C } 
+{LA0MKI |L A 0 M K I } 
+{LA1IOU |L A 1 I O U } 
+{LA1KDX |L A 1 K D X } 
+{LA2ECB |L A 2 E C B } 
+{LA5JAW |L A 5 J A W } 
+{LA9ACW |L A 9 A C W } 
+{LX1MDS |L X 1 M D S } 
+{LX3JRA |L X 3 J R A } 
+{LX4XO |L X 4 X O } 
+{LX5OOV |L X 5 O O V } 
+{LY2MRA |L Y 2 M R A } 
+{LY5PK |L Y 5 P K } 
+{LY6CSW |L Y 6 C S W } 
+{LY6PHI |L Y 6 P H I } 
+{LY7GWH |L Y 7 G W H } 
+{LY7LJ |L Y 7 L J } 
+{LY9QIR |L Y 9 Q I R } 
+{LZ3ZNG |L Z 3 Z N G } 
+{LZ5RYR |L Z 5 R Y R } 
+{LZ8NXR |L Z 8 N X R } 
+{M1CYR |M 1 C Y R } 
+{M2HMW |M 2 H M W } 
+{M6LL |M 6 L L } 
+{OE0MAM |O E 0 M A M } 
+{OE3VSL |O E 3 V S L } 
+{OE4GNV |O E 4 G N V } 
+{OE7IEH |O E 7 I E H } 
+{OH1XNP |O H 1 X N P } 
+{OH4VUL |O H 4 V U L } 
+{OH7JZH |O H 7 J Z H } 
+{OK1AXR |O K 1 A X R } 
+{OK2IY |O K 2 I Y } 
+{OK4PPH |O K 4 P P H } 
+{OK5NP |O K 5 N P } 
+{OK5UCK |O K 5 U C K } 
+{OK6FXP |O K 6 F X P } 
+{OK7NWX |O K 7 N W X } 
+{OK8QDU |O K 8 Q D U } 
+{OM0WNK |O M 0 W N K } 
+{OM1RXH |O M 1 R X H } 
+{OM2YKD |O M 2 Y K D } 
+{OM9DGJ |O M 9 D G J } 
+{OM9ONX |O M 9 O N X } 
+{OM9YY |O M 9 Y Y } 
+{ON1QVU |O N 1 Q V U } 
+{ON3RCF |O N 3 R C F } 
+{ON4ODO |O N 4 O D O } 
+{ON7IUW |O N 7 I U W } 
+{ON8TK |O N 8 T K } 
+{OY2FZZ |O Y 2 F Z Z } 
+{OY5YH |O Y 5 Y H } 
+{OZ3RG |O Z 3 R G } 
+{OZ8ELC |O Z 8 E L C } 
+{OZ8XSS |O Z 8 X S S } 
+{OZ8ZZX |O Z 8 Z Z X } 
+{OZ9GUP |O Z 9 G U P } 
+{PA3NN |P A 3 N N } 
+{PA6XQU |P A 6 X Q U } 
+{PA8LS |P A 8 L S } 
+{S51QAV |S 5 1 Q A V } 
+{S53MEV |S 5 3 M E V } 
+{S55IYN |S 5 5 I Y N } 
+{S57MVZ |S 5 7 M V Z } 
+{S59ACH |S 5 9 A C H } 
+{SM6FX |S M 6 F X } 
+{SM7IFS |S M 7 I F S } 
+{SM7LZI |S M 7 L Z I } 
+{SM9BDT |S M 9 B D T } 
+{SP1ZRD |S P 1 Z R D } 
+{SP2PPG |S P 2 P P G } 
+{SP3XDV |S P 3 X D V } 
+{SP5FOR |S P 5 F O R } 
+{SP7ON |S P 7 O N } 
+{SP9TC |S P 9 T C } 
+{SV0JH |S V 0 J H } 
+{SV1NX |S V 1 N X } 
+{SV2FIO |S V 2 F I O } 
+{SV3STV |S V 3 S T V } 
+{SV4UIY |S V 4 U I Y } 
+{SV7AU |S V 7 A U } 
+{SV7SNJ |S V 7 S N J } 
+{SV8DHH |S V 8 D H H } 
+{T74HD |T 7 4 H D } 
+{T76YNB |T 7 6 Y N B } 
+{T79TX |T 7 9 T X } 
+{T79YV |T 7 9 Y V } 
+{TF7IOC |T F 7 I O C } 
+{TF7RH |T F 7 R H } 
+{TF7XE |T F 7 X E } 
+{TF8YOT |T F 8 Y O T } 
+{TF9GRY |T F 9 G R Y } 
+{YO0LZ |Y O 0 L Z } 
+{YO1DE |Y O 1 D E } 
+{YO1EE |Y O 1 E E } 
+{YO6EUW |Y O 6 E U W } 
+{YU1IDD |Y U 1 I D D } 
+{YU1JS |Y U 1 J S } 
+{YU3EAB |Y U 3 E A B } 
+{YU3HS |Y U 3 H S } 
+{YU4NZS |Y U 4 N Z S } 
+{YU6QRP |Y U 6 Q R P } 
+{YU8ELY |Y U 8 E L Y } 
+{YU8VNK |Y U 8 V N K } 
+{YU9EOR |Y U 9 E O R } 
+{YU9VR |Y U 9 V R } 
+{YU9ZS |Y U 9 Z S } 
+{Z30CKI |Z 3 0 C K I } 
+{Z32EBJ |Z 3 2 E B J } 
+{Z32JTG |Z 3 2 J T G } 
+{Z33UWP |Z 3 3 U W P } 
+{Z33YYB |Z 3 3 Y Y B } 
+{Z36DC |Z 3 6 D C } 
+{Z36HD |Z 3 6 H D } 
+{Z36YQM |Z 3 6 Y Q M } 
+{Z37GJG |Z 3 7 G J G } 
+{Z38XSN |Z 3 8 X S N } 
+{ZA0HG |Z A 0 H G } 
+{ZA2BEQ |Z A 2 B E Q } 
+{ZA4KYC |Z A 4 K Y C } 
+{ZA8HOS |Z A 8 H O S } 

@@ -1,0 +1,101 @@
+{
+    "options": [
+        {
+            "display": "Default 18/18",
+            "filename": "PC_Default.json"
+        },
+        {
+            "display": "Groups of 2",
+            "filename": "PC_LNP_GR2.json"
+        },
+        {
+            "display": "Groups of 3 ",
+            "filename": "PC_LNP_GR3.json"
+        },
+        {
+            "display": "Groups of 4",
+            "filename": "PC_LNP_GR4.json"
+        },
+        {
+            "display": "Groups of 5",
+            "filename": "PC_LNP_GR5.json"
+        },
+        {
+            "display": "Groups of 6",
+            "filename": "PC_LNP_GR6.json"
+        },
+        {
+            "display": "Groups of 2-6",
+            "filename": "PC_LNP_GR26.json"
+        },
+        {
+            "display": "SR-Groups of 2",
+            "filename": "PC_LNP_GR2_SR.json"
+        },
+        {
+            "display": "SR-Groups of 3",
+            "filename": "PC_LNP_GR3_SR.json"
+        },
+        {
+            "display": "SR-Groups of 4",
+            "filename": "PC_LNP_GR4_SR.json"
+        },
+        {
+            "display": "SR-Groups of 5",
+            "filename": "PC_LNP_GR5_SR.json"
+        },
+        {
+            "display": "SR-Groups of 6",
+            "filename": "PC_LNP_GR6_SR.json"
+        },
+        {
+            "display": "SR-Groups of 2-6",
+            "filename": "PC_LNP_GR26_SR.json"
+        },     
+        {
+            "display": "TTR-Groups of 1",
+            "filename": "PC_TTR_1.json"
+        },
+        {
+            "display": "TTR-Groups of 2",
+            "filename": "PC_TTR_2.json"
+        },
+        {
+            "display": "TTR-Groups of 3",
+            "filename": "PC_TTR_3.json"
+        },
+        {
+            "display": "SUDUKO",
+            "filename": "PC_SUDOKO.json"
+        },
+        {
+            "display": "VIN Numbers",
+            "filename": "PC_VIN.json"
+        },
+        {
+            "display": "Weather No Voice",
+            "filename": "PC_WX_N0_VOICE.json"
+        },
+        {
+            "display": "Weather Spoken",
+            "filename": "PC_WX.json"
+        },
+        {
+            "display": "Words No Voice",
+            "filename": "PC_WORDS_NO_VOICE.json"
+        },
+        {
+            "display": "Words Spelled",
+            "filename": "PC_WORDS_SPELL.json"
+        },
+        {
+            "display": "Words Spoken",
+            "filename": "PC_WORDS_SAY.json"
+        },
+                {
+            "display": "Words Speed Racing",
+            "filename": "PC_WORDS_SR.json"
+        }
+
+    ]
+}

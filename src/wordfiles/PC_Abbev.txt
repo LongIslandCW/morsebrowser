@@ -1,0 +1,118 @@
+WX 
+GE 
+AGN 
+{HW?|how copy?} 
+{MSG|Message} 
+{QRQ|send faster} 
+VERT 
+PWR 
+GN 
+73 
+TX 
+HR 
+RX 
+{TMW|Tomorrow} 
+{XCVR|Transceiver} 
+CW 
+{RCVR|Receiver} 
+YRS 
+{SEZ|Says} 
+{REF|reference} 
+{C|celsius} 
+FER 
+DE 
+{C|correct} 
+GA 
+{GG|Going} 
+{OM|Old man} 
+CFM 
+{F|fahrenheit} 
+ABT 
+CPY 
+{CONDX|Conditions} 
+{DN|Down} 
+GUD 
+{QRZ|who is calling} 
+{VE|Understood} 
+TEMP 
+SIG 
+{QSL|acknowledge receipt} 
+{QRS|send slower} 
+UR 
+PSE 
+{BT|Pause} 
+{SED|Said} 
+{AA|All after} 
+{RIG|Radio} 
+RST 
+{NIL|Nothing} 
+{OT|Old timer} 
+RPRT 
+{XMTR|Transmitter} 
+{QSB|signals fading} 
+{BUG|Semi automatic key} 
+CUL 
+{BCNU|be seeing you} 
+VY 
+{SSB|Single side band} 
+DX 
+559 
+{AS|Stand by} 
+599 
+{HPE|Hope} 
+{HV|Have} 
+B4 
+{STN|Station} 
+{CNT|Cant} 
+5NN 
+ES 
+{YR|Year} 
+{CUM|Come} 
+{OP|Operator} 
+{AB|All before} 
+TU 
+FT 
+TNX 
+{EL|Element} 
+{XYL|Wife} 
+{SUM|Some} 
+{CLG|Calling} 
+{QSY|change frequency} 
+{INFO|Info} 
+{QTH|location}
+{R|Received} 
+{LID|poor operator} 
+{YL|Young lady} 
+{BK|Break} 
+SKED 
+CUAGN 
+RPT 
+{WKG|Working} 
+{CL|clear} 
+{WRD|Word} 
+GM 
+FB 
+{ADR|Address} 
+{URS|Yours} 
+{W|Watts} 
+{GND|Ground} 
+{SK|End of contact} 
+{RCD|Received} 
+HW 
+{QRM|interference} 
+{QRT|stop sending} 
+WID 
+{DIFF|Difference} 
+CPI 
+{NR|Number} 
+{AR|End of message} 
+SRI 
+ANT 
+{WKD|Worked} 
+CU 
+{QRP|decrease power} 
+{QRN|static} 
+TKS 
+{QSO|contact} 
+{U|You} 
+{TT|That}
