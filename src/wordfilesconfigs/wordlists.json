@@ -1006,8 +1006,8 @@
 
 
 {"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "ABBREVIATIONS","newlineChunking": false,"display": "ABBREVIATIONS","fileName": "PC_Abbev.txt"},        
-{"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "CALLSIGNS","newlineChunking": false,"display": "EU CALLSIGNS","fileName": "PC_EU_Callsigns.json"},
-{"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "CALLSIGNS","newlineChunking": false,"display": "US CALLSIGNS","fileName": "PC_US_Callsigns.json"},
+{"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "CALLSIGNS","newlineChunking": false,"display": "EU CALLSIGNS","fileName": "PC_EU_Callsigns.txt"},
+{"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "CALLSIGNS","newlineChunking": false,"display": "US CALLSIGNS","fileName": "PC_US_Callsigns.txt"},
         
 {"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "CHARACTERS","newlineChunking": false,"display": "LETTERS","fileName": "INT1.json"},
 {"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "CHARACTERS","newlineChunking": false,"display": "LETTERS-NUMBERS","fileName": "INT5.json"},
