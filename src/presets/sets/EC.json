@@ -25,6 +25,10 @@
             "filename": "PC_LNP_GR6.json"
         },
         {
+            "display": "Groups of 2-6",
+            "filename": "PC_LNP_GR26.json"
+        },
+        {
             "display": "SR-Groups of 2",
             "filename": "PC_LNP_GR2_SR.json"
         },
@@ -44,6 +48,10 @@
             "display": "SR-Groups of 6",
             "filename": "PC_LNP_GR6_SR.json"
         },
+        {
+            "display": "SR-Groups of 2-6",
+            "filename": "PC_LNP_GR26_SR.json"
+        },     
         {
             "display": "TTR-Groups of 1",
             "filename": "PC_TTR_1.json"
