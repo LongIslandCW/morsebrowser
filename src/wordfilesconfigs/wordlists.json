@@ -1035,7 +1035,6 @@
 {"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "WORDS","newlineChunking": false,"display": "TOP 100","fileName": "PC_TOP_100_WORDS.txt"}, 
 {"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "WORDS","newlineChunking": false,"display": "TOP 500","fileName": "PC_TOP_500_WORDS.txt"}, 
 {"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "WORDS","newlineChunking": false,"display": "TOP 500-750","fileName": "PC_500_750_Words.txt"}, 
-{"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "WORDS","newlineChunking": false,"display": "TOP 750-1000","fileName": "PC_750_1000_Words.txt"}, 
 {"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "WORDS","newlineChunking": false,"display": "TOP 750-1000","fileName": "PC_750_1000_Words.txt"} 
 
         
