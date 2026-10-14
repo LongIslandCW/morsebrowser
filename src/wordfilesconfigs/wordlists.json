@@ -1013,8 +1013,8 @@
 {"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "CHARACTERS","newlineChunking": false,"display": "LETTERS-NUMBERS","fileName": "INT5.json"},
 {"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "CHARACTERS","newlineChunking": false,"display": "LETTERS-PUNCTUATION-PROSIGNS","fileName": "PC_LPP.json"},
         
-{"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "CITIES","newlineChunking": true,"display": "CITIES - EU","fileName": "PC_Cities_EU.txt"},
-{"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "CITIES","newlineChunking": true,"display": "CITIES - US","fileName": "PC_Cities_US.txt"}, 
+{"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "CITIES","newlineChunking": true,"display": "EU CITIES","fileName": "PC_Cities_EU.txt"},
+{"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "CITIES","newlineChunking": true,"display": "US CITIES","fileName": "PC_Cities_US.txt"}, 
         
 {"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "NAMES","newlineChunking": false,"display": "MAX 4 LETTERS","fileName": "PC_Names_Max_4.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "NAMES","newlineChunking": false,"display": "MAX 5 LETTERS","fileName": "PC_Names_Max_5.txt"},
@@ -1024,7 +1024,7 @@
 {"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "NUMBERS","newlineChunking": false,"display": "SUDUKO","fileName": "PC_SUDUKO.txt"}, 
 {"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "NUMBERS","newlineChunking": false,"display": "VIN NUMBERS","fileName": "PC_VIN.txt"},  
 
-{"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "SENTENCES","newlineChunking": false,"display": "MIXED","fileName": "PC_Sent_Mixed.txt"},
+{"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "SENTENCES","newlineChunking": false,"display": "MIXED LETTERS & NUMBERS","fileName": "PC_Sent_Mixed.txt"},
         
 {"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "WEATHER","newlineChunking": false,"display": "SHORT ","fileName": "PC_WX_Short.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "WEATHER","newlineChunking": false,"display": "LONG ","fileName": "PC_WX_Long.txt"},
