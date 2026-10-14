@@ -84,7 +84,7 @@
             "letterGroups": []
         }, 
         {
-            "className": "EXACT",
+            "className": "EXACT COPY",
             "defaultSetFile": "EC.json",
             "letterGroups": []
         }
