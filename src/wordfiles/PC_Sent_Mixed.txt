@@ -1,0 +1,392 @@
+{AB5TN reports clear skies at 72 degrees. |A B 5 T N reports clear skies at 72 degrees.|1} 
+ {vv||1} 
+{The wind is 15 mph near Dallas. |The wind is 15 mph near Dallas.|2} 
+ {vv||2} 
+{K3ABC sent a signal at 14.250 MHz. |K 3 A B C sent a signal at 14.250 MHz.|3} 
+ {vv||3} 
+{Rain may start at 4 PM today. |Rain may start at 4 PM today.|4} 
+ {vv||4} 
+{W5RAY reports a temperature of 68 degrees. |W 5 R A Y reports a temperature of 68 degrees.|5} 
+ {vv||5} 
+{The snow depth reached 6 inches overnight. |The snow depth reached 6 inches overnight.|6} 
+ {vv||6} 
+{N4FOX heard thunder at 9 PM. |N 4 F O X heard thunder at 9 PM.|7} 
+ {vv||7} 
+{The high will reach 85 degrees tomorrow. |The high will reach 85 degrees tomorrow.|8} 
+ {vv||8} 
+{KD5SAM called CQ at 7.125 MHz. |K D 5 S A M called CQ at 7.125 MHz.|9} 
+ {vv||9} 
+{Gusts may reach 35 mph this afternoon. |Gusts may reach 35 mph this afternoon.|10} 
+ {vv||10} 
+{K5TEX reports fog at 6 AM. |K 5 T E X reports fog at 6 AM.|11} 
+ {vv||11} 
+{The rain gauge shows 2 inches of rain. |The rain gauge shows 2 inches of rain.|12} 
+ {vv||12} 
+{W1AW sent code at 20 WPM. |W 1 A W sent code at 20 WPM.|13} 
+ {vv||13} 
+{The low fell to 29 degrees last night. |The low fell to 29 degrees last night.|14} 
+ {vv||14} 
+{N5BOB reports a wind speed of 12 mph. |N 5 B O B reports a wind speed of 12 mph.|15} 
+ {vv||15} 
+{Hail fell for 5 minutes near town. |Hail fell for 5 minutes near town.|16} 
+ {vv||16} 
+{K7DOG heard a storm warning at noon. |K 7 D O G heard a storm warning at noon.|17} 
+ {vv||17} 
+{The air pressure is 30.05 inches. |The air pressure is 30.05 inches.|18} 
+ {vv||18} 
+{W5FOX reports sunny skies at 75 degrees. |W 5 F O X reports sunny skies at 75 degrees.|19} 
+ {vv||19} 
+{The storm may arrive in 3 hours. |The storm may arrive in 3 hours.|20} 
+ {vv||20} 
+{N2HAM made contact at 14.050 MHz. |N 2 H A M made contact at 14.050 MHz.|21} 
+ {vv||21} 
+{The wind shifted north at 10 mph. |The wind shifted north at 10 mph.|22} 
+ {vv||22} 
+{K4RADIO reports 4 inches of new snow. |K 4 R A D I O reports 4 inches of new snow.|23} 
+ {vv||23} 
+{The forecast calls for rain at 8 AM. |The forecast calls for rain at 8 AM.|24} 
+ {vv||24} 
+{AB5TN heard strong winds at 25 mph. |A B 5 T N heard strong winds at 25 mph.|25} 
+ {vv||25} 
+{The temperature dropped 10 degrees in an hour. |The temperature dropped 10 degrees in an hour.|26} 
+ {vv||26} 
+{W3SKY reports clouds at 60 degrees. |W 3 S K Y reports clouds at 60 degrees.|27} 
+ {vv||27} 
+{The storm moved east at 30 mph. |The storm moved east at 30 mph.|28} 
+ {vv||28} 
+{N6SUN made a contact at 7.200 MHz. |N 6 S U N made a contact at 7.200 MHz.|29} 
+ {vv||29} 
+{The rain chance is 40 percent today. |The rain chance is 40 percent today.|30} 
+ {vv||30} 
+{K8WIND reports gusts of 28 mph. |K 8 W I N D reports gusts of 28 mph.|31} 
+ {vv||31} 
+{The morning low was 41 degrees. |The morning low was 41 degrees.|32} 
+ {vv||32} 
+{W5RAY heard rain on the roof at 2 AM. |W 5 R A Y heard rain on the roof at 2 AM.|33} 
+ {vv||33} 
+{The wind chill fell to 18 degrees. |The wind chill fell to 18 degrees.|34} 
+ {vv||34} 
+{N4FOX reports clear skies over grid EM12. |N 4 F O X reports clear skies over grid EM12.|35} 
+ {vv||35} 
+{The humidity reached 85 percent at noon. |The humidity reached 85 percent at noon.|36} 
+ {vv||36} 
+{K3ABC heard a weather alert at 5 PM. |K 3 A B C heard a weather alert at 5 PM.|37} 
+ {vv||37} 
+{The forecast predicts 3 inches of rain. |The forecast predicts 3 inches of rain.|38} 
+ {vv||38} 
+{W1AW reports a signal on 7.040 MHz. |W 1 A W reports a signal on 7.040 MHz.|39} 
+ {vv||39} 
+{The afternoon high may reach 92 degrees. |The afternoon high may reach 92 degrees.|40} 
+ {vv||40} 
+{N5BOB reports calm winds at 4 mph. |N 5 B O B reports calm winds at 4 mph.|41} 
+ {vv||41} 
+{The snow began at 10 PM last night. |The snow began at 10 PM last night.|42} 
+ {vv||42} 
+{K5TEX heard thunder 8 miles away. |K 5 T E X heard thunder 8 miles away.|43} 
+ {vv||43} 
+{The dew point is 64 degrees today. |The dew point is 64 degrees today.|44} 
+ {vv||44} 
+{W5FOX reports a barometer reading of 29.85. |W 5 F O X reports a barometer reading of 29.85.|45} 
+ {vv||45} 
+{The wind blew west at 20 mph. |The wind blew west at 20 mph.|46} 
+ {vv||46} 
+{KD5SAM made contact at 14.300 MHz. |K D 5 S A M made contact at 14.300 MHz.|47} 
+ {vv||47} 
+{The forecast shows a 60 percent rain chance. |The forecast shows a 60 percent rain chance.|48} 
+ {vv||48} 
+{N2HAM reports frost at 32 degrees. |N 2 H A M reports frost at 32 degrees.|49} 
+ {vv||49} 
+{The storm warning lasts until 6 PM. |The storm warning lasts until 6 PM.|50} 
+ {vv||50} 
+{K7DOG reports a temperature of 81 degrees. |K 7 D O G reports a temperature of 81 degrees.|51} 
+ {vv||51} 
+{The wind speed rose to 22 mph. |The wind speed rose to 22 mph.|52} 
+ {vv||52} 
+{W3SKY heard hail at 11 AM. |W 3 S K Y heard hail at 11 AM.|53} 
+ {vv||53} 
+{The rain began at 3:15 PM. |The rain began at 3:15 PM.|54} 
+ {vv||54} 
+{AB5TN reports a low of 36 degrees. |A B 5 T N reports a low of 36 degrees.|55} 
+ {vv||55} 
+{The storm crossed town at 45 mph. |The storm crossed town at 45 mph.|56} 
+ {vv||56} 
+{N6SUN heard a CQ on 14.025 MHz. |N 6 S U N heard a CQ on 14.025 MHz.|57} 
+ {vv||57} 
+{The forecast calls for 5 inches of snow. |The forecast calls for 5 inches of snow.|58} 
+ {vv||58} 
+{K4RADIO reports fog near mile marker 12. |K 4 R A D I O reports fog near mile marker 12.|59} 
+ {vv||59} 
+{The high today should reach 77 degrees. |The high today should reach 77 degrees.|60} 
+ {vv||60} 
+{W5RAY reports gusts near 40 mph. |W 5 R A Y reports gusts near 40 mph.|61} 
+ {vv||61} 
+{The rain lasted for 2 hours. |The rain lasted for 2 hours.|62} 
+ {vv||62} 
+{N4FOX made contact on 7.030 MHz. |N 4 F O X made contact on 7.030 MHz.|63} 
+ {vv||63} 
+{The wind chill is 25 degrees below freezing. |The wind chill is 25 degrees below freezing.|64} 
+ {vv||64} 
+{K3ABC reports a pressure of 30.15 inches. |K 3 A B C reports a pressure of 30.15 inches.|65} 
+ {vv||65} 
+{The clouds cleared at 1 PM. |The clouds cleared at 1 PM.|66} 
+ {vv||66} 
+{W1AW sent a test at 10 WPM. |W 1 A W sent a test at 10 WPM.|67} 
+ {vv||67} 
+{The rainfall total reached 1.75 inches. |The rainfall total reached 1.75 inches.|68} 
+ {vv||68} 
+{KD5SAM reports a wind direction of 270 degrees. |K D 5 S A M reports a wind direction of 270 degrees.|69} 
+ {vv||69} 
+{The temperature rose 8 degrees by noon. |The temperature rose 8 degrees by noon.|70} 
+ {vv||70} 
+{N5BOB heard thunder at 4:30 AM. |N 5 B O B heard thunder at 4:30 AM.|71} 
+ {vv||71} 
+{The storm brought 3 inches of hail. |The storm brought 3 inches of hail.|72} 
+ {vv||72} 
+{K5TEX reports a high of 88 degrees. |K 5 T E X reports a high of 88 degrees.|73} 
+ {vv||73} 
+{The forecast predicts winds near 18 mph. |The forecast predicts winds near 18 mph.|74} 
+ {vv||74} 
+{W5FOX made contact on 14.060 MHz. |W 5 F O X made contact on 14.060 MHz.|75} 
+ {vv||75} 
+{The rain chance dropped to 20 percent. |The rain chance dropped to 20 percent.|76} 
+ {vv||76} 
+{N2HAM reports a frost warning at 5 AM. |N 2 H A M reports a frost warning at 5 AM.|77} 
+ {vv||77} 
+{The barometer fell to 29.60 inches. |The barometer fell to 29.60 inches.|78} 
+ {vv||78} 
+{K8WIND heard the alert at 6:45 PM. |K 8 W I N D heard the alert at 6:45 PM.|79} 
+ {vv||79} 
+{The snow fell at 2 inches per hour. |The snow fell at 2 inches per hour.|80} 
+ {vv||80} 
+{AB5TN reports a temperature of 55 degrees. |A B 5 T N reports a temperature of 55 degrees.|81} 
+ {vv||81} 
+{The wind gust reached 31 mph. |The wind gust reached 31 mph.|82} 
+ {vv||82} 
+{W3SKY reports rain near 7 AM. |W 3 S K Y reports rain near 7 AM.|83} 
+ {vv||83} 
+{The high was 94 degrees on Monday. |The high was 94 degrees on Monday.|84} 
+ {vv||84} 
+{N6SUN made contact at 3.850 MHz. |N 6 S U N made contact at 3.850 MHz.|85} 
+ {vv||85} 
+{The storm is 12 miles north of town. |The storm is 12 miles north of town.|86} 
+ {vv||86} 
+{K4RADIO reports humidity at 70 percent. |K 4 R A D I O reports humidity at 70 percent.|87} 
+ {vv||87} 
+{The low may fall to 24 degrees tonight. |The low may fall to 24 degrees tonight.|88} 
+ {vv||88} 
+{W5RAY heard a warning at 8:20 AM. |W 5 R A Y heard a warning at 8:20 AM.|89} 
+ {vv||89} 
+{The rain gauge reads 0.75 inches. |The rain gauge reads 0.75 inches.|90} 
+ {vv||90} 
+{K7DOG reports a wind speed of 9 mph. |K 7 D O G reports a wind speed of 9 mph.|91} 
+ {vv||91} 
+{The heat index reached 101 degrees. |The heat index reached 101 degrees.|92} 
+ {vv||92} 
+{N4FOX called CQ at 28.400 MHz. |N 4 F O X called CQ at 28.400 MHz.|93} 
+ {vv||93} 
+{The storm may last for 6 hours. |The storm may last for 6 hours.|94} 
+ {vv||94} 
+{K3ABC reports clouds at 67 degrees. |K 3 A B C reports clouds at 67 degrees.|95} 
+ {vv||95} 
+{The wind turned east at 14 mph. |The wind turned east at 14 mph.|96} 
+ {vv||96} 
+{W1AW sent code at 25 WPM. |W 1 A W sent code at 25 WPM.|97} 
+ {vv||97} 
+{The forecast predicts 2 inches of snow. |The forecast predicts 2 inches of snow.|98} 
+ {vv||98} 
+{KD5SAM reports pressure at 30.00 inches. |K D 5 S A M reports pressure at 30.00 inches.|99} 
+ {vv||99} 
+{The rain stopped at 11:30 PM. |The rain stopped at 11:30 PM.|100} 
+ {vv||100} 
+{AB5TN reports winds from the north at 16 mph. |A B 5 T N reports winds from the north at 16 mph.|101} 
+ {vv||101} 
+{The temperature reached 79 degrees at 2 PM. |The temperature reached 79 degrees at 2 PM.|102} 
+ {vv||102} 
+{K5TEX heard thunder across 5 miles. |K 5 T E X heard thunder across 5 miles.|103} 
+ {vv||103} 
+{The snow depth is now 9 inches. |The snow depth is now 9 inches.|104} 
+ {vv||104} 
+{N5BOB reports rain at 6:15 AM. |N 5 B O B reports rain at 6:15 AM.|105} 
+ {vv||105} 
+{The wind gusted to 42 mph. |The wind gusted to 42 mph.|106} 
+ {vv||106} 
+{W5FOX made contact on 14.060 MHz. |W 5 F O X made contact on 14.060 MHz.|107} 
+ {vv||107} 
+{The low will reach 31 degrees tonight. |The low will reach 31 degrees tonight.|108} 
+ {vv||108} 
+{N2HAM reports a rain chance of 75 percent. |N 2 H A M reports a rain chance of 75 percent.|109} 
+ {vv||109} 
+{The pressure rose to 30.25 inches. |The pressure rose to 30.25 inches.|110} 
+ {vv||110} 
+{K8WIND reports clouds at 48 degrees. |K 8 W I N D reports clouds at 48 degrees.|111} 
+ {vv||111} 
+{The storm moved north at 25 mph. |The storm moved north at 25 mph.|112} 
+ {vv||112} 
+{W3SKY heard a warning at 7 PM. |W 3 S K Y heard a warning at 7 PM.|113} 
+ {vv||113} 
+{The rainfall total is 2.25 inches. |The rainfall total is 2.25 inches.|114} 
+ {vv||114} 
+{N6SUN reports sunny skies at 83 degrees. |N 6 S U N reports sunny skies at 83 degrees.|115} 
+ {vv||115} 
+{The wind blew at 11 mph for 4 hours. |The wind blew at 11 mph for 4 hours.|116} 
+ {vv||116} 
+{K4RADIO called CQ on 7.055 MHz. |K 4 R A D I O called CQ on 7.055 MHz.|117} 
+ {vv||117} 
+{The heat index reached 105 degrees at noon. |The heat index reached 105 degrees at noon.|118} 
+ {vv||118} 
+{W5RAY reports snow at 10 AM. |W 5 R A Y reports snow at 10 AM.|119} 
+ {vv||119} 
+{The temperature fell to 27 degrees overnight. |The temperature fell to 27 degrees overnight.|120} 
+ {vv||120} 
+{KD5SAM reports gusts of 33 mph. |K D 5 S A M reports gusts of 33 mph.|121} 
+ {vv||121} 
+{The rain started 15 minutes ago. |The rain started 15 minutes ago.|122} 
+ {vv||122} 
+{K3ABC heard a storm alert at 2 PM. |K 3 A B C heard a storm alert at 2 PM.|123} 
+ {vv||123} 
+{The forecast shows 1 inch of snow. |The forecast shows 1 inch of snow.|124} 
+ {vv||124} 
+{AB5TN reports a pressure of 29.95 inches. |A B 5 T N reports a pressure of 29.95 inches.|125} 
+ {vv||125} 
+{The wind shifted west at 19 mph. |The wind shifted west at 19 mph.|126} 
+ {vv||126} 
+{W1AW sent a signal at 18.100 MHz. |W 1 A W sent a signal at 18.100 MHz.|127} 
+ {vv||127} 
+{The morning high reached 65 degrees. |The morning high reached 65 degrees.|128} 
+ {vv||128} 
+{N4FOX reports 90 percent humidity at dawn. |N 4 F O X reports 90 percent humidity at dawn.|129} 
+ {vv||129} 
+{The storm is moving at 35 mph. |The storm is moving at 35 mph.|130} 
+ {vv||130} 
+{K7DOG heard rain at 12:45 PM. |K 7 D O G heard rain at 12:45 PM.|131} 
+ {vv||131} 
+{The low fell by 7 degrees overnight. |The low fell by 7 degrees overnight.|132} 
+ {vv||132} 
+{W5FOX reports a wind chill of 12 degrees. |W 5 F O X reports a wind chill of 12 degrees.|133} 
+ {vv||133} 
+{The rain chance rose to 55 percent. |The rain chance rose to 55 percent.|134} 
+ {vv||134} 
+{N5BOB made contact at 14.200 MHz. |N 5 B O B made contact at 14.200 MHz.|135} 
+ {vv||135} 
+{The snowfall reached 6.5 inches by dawn. |The snowfall reached 6.5 inches by dawn.|136} 
+ {vv||136} 
+{K5TEX reports clear skies at 74 degrees. |K 5 T E X reports clear skies at 74 degrees.|137} 
+ {vv||137} 
+{The wind gusts may top 50 mph. |The wind gusts may top 50 mph.|138} 
+ {vv||138} 
+{N2HAM heard thunder at 10:10 PM. |N 2 H A M heard thunder at 10:10 PM.|139} 
+ {vv||139} 
+{The barometer reads 29.75 inches today. |The barometer reads 29.75 inches today.|140} 
+ {vv||140} 
+{W3SKY reports a high of 86 degrees. |W 3 S K Y reports a high of 86 degrees.|141} 
+ {vv||141} 
+{The rain lasted 45 minutes this morning. |The rain lasted 45 minutes this morning.|142} 
+ {vv||142} 
+{K8WIND called CQ at 3.600 MHz. |K 8 W I N D called CQ at 3.600 MHz.|143} 
+ {vv||143} 
+{The frost warning ends at 9 AM. |The frost warning ends at 9 AM.|144} 
+ {vv||144} 
+{AB5TN reports a wind speed of 7 mph. |A B 5 T N reports a wind speed of 7 mph.|145} 
+ {vv||145} 
+{The temperature rose to 90 degrees by 3 PM. |The temperature rose to 90 degrees by 3 PM.|146} 
+ {vv||146} 
+{N6SUN heard a warning on the radio. |N 6 S U N heard a warning on the radio.|147} 
+ {vv||147} 
+{The storm dropped 4 inches of rain. |The storm dropped 4 inches of rain.|148} 
+ {vv||148} 
+{K4RADIO reports fog at 5:30 AM. |K 4 R A D I O reports fog at 5:30 AM.|149} 
+ {vv||149} 
+{The wind chill fell to 5 degrees. |The wind chill fell to 5 degrees.|150} 
+ {vv||150} 
+{W5RAY reports a high of 82 degrees. |W 5 R A Y reports a high of 82 degrees.|151} 
+ {vv||151} 
+{The wind is blowing at 17 mph. |The wind is blowing at 17 mph.|152} 
+ {vv||152} 
+{K3ABC heard rain at 9:15 AM. |K 3 A B C heard rain at 9:15 AM.|153} 
+ {vv||153} 
+{The forecast predicts a low of 38 degrees. |The forecast predicts a low of 38 degrees.|154} 
+ {vv||154} 
+{N4FOX made contact at 14.150 MHz. |N 4 F O X made contact at 14.150 MHz.|155} 
+ {vv||155} 
+{The storm warning began at 1 PM. |The storm warning began at 1 PM.|156} 
+ {vv||156} 
+{KD5SAM reports 65 percent humidity. |K D 5 S A M reports 65 percent humidity.|157} 
+ {vv||157} 
+{The rain total reached 3.5 inches. |The rain total reached 3.5 inches.|158} 
+ {vv||158} 
+{W1AW sent a test at 15 WPM. |W 1 A W sent a test at 15 WPM.|159} 
+ {vv||159} 
+{The snow may reach 12 inches by dawn. |The snow may reach 12 inches by dawn.|160} 
+ {vv||160} 
+{K7DOG reports a temperature of 69 degrees. |K 7 D O G reports a temperature of 69 degrees.|161} 
+ {vv||161} 
+{The wind gust reached 37 mph at noon. |The wind gust reached 37 mph at noon.|162} 
+ {vv||162} 
+{AB5TN heard thunder at 6:30 PM. |A B 5 T N heard thunder at 6:30 PM.|163} 
+ {vv||163} 
+{The forecast calls for 80 percent cloud cover. |The forecast calls for 80 percent cloud cover.|164} 
+ {vv||164} 
+{N5BOB reports a low of 22 degrees. |N 5 B O B reports a low of 22 degrees.|165} 
+ {vv||165} 
+{The rain started at 4:45 AM. |The rain started at 4:45 AM.|166} 
+ {vv||166} 
+{W5FOX made contact on 7.025 MHz. |W 5 F O X made contact on 7.025 MHz.|167} 
+ {vv||167} 
+{The storm passed 8 miles east of town. |The storm passed 8 miles east of town.|168} 
+ {vv||168} 
+{K5TEX reports gusts near 26 mph. |K 5 T E X reports gusts near 26 mph.|169} 
+ {vv||169} 
+{The air pressure fell 0.20 inches. |The air pressure fell 0.20 inches.|170} 
+ {vv||170} 
+{N2HAM reports a high of 76 degrees. |N 2 H A M reports a high of 76 degrees.|171} 
+ {vv||171} 
+{The snow began 30 minutes after sunset. |The snow began 30 minutes after sunset.|172} 
+ {vv||172} 
+{W3SKY heard a warning at 3:10 PM. |W 3 S K Y heard a warning at 3:10 PM.|173} 
+ {vv||173} 
+{The temperature dropped to 34 degrees. |The temperature dropped to 34 degrees.|174} 
+ {vv||174} 
+{K8WIND reports winds at 24 mph. |K 8 W I N D reports winds at 24 mph.|175} 
+ {vv||175} 
+{The rain chance is only 10 percent. |The rain chance is only 10 percent.|176} 
+ {vv||176} 
+{N6SUN made contact on 21.300 MHz. |N 6 S U N made contact on 21.300 MHz.|177} 
+ {vv||177} 
+{The heat index reached 98 degrees at 1 PM. |The heat index reached 98 degrees at 1 PM.|178} 
+ {vv||178} 
+{K4RADIO reports 2 inches of fresh snow. |K 4 R A D I O reports 2 inches of fresh snow.|179} 
+ {vv||179} 
+{The storm will arrive in 90 minutes. |The storm will arrive in 90 minutes.|180} 
+ {vv||180} 
+{AB5TN reports fog and 44 degrees. |A B 5 T N reports fog and 44 degrees.|181} 
+ {vv||181} 
+{The wind blew south at 13 mph. |The wind blew south at 13 mph.|182} 
+ {vv||182} 
+{W5RAY heard thunder at 7:05 PM. |W 5 R A Y heard thunder at 7:05 PM.|183} 
+ {vv||183} 
+{The rainfall rate reached 0.5 inches per hour. |The rainfall rate reached 0.5 inches per hour.|184} 
+ {vv||184} 
+{N4FOX reports a high of 91 degrees. |N 4 F O X reports a high of 91 degrees.|185} 
+ {vv||185} 
+{The frost began at 2 AM. |The frost began at 2 AM.|186} 
+ {vv||186} 
+{K3ABC made contact at 28.350 MHz. |K 3 A B C made contact at 28.350 MHz.|187} 
+ {vv||187} 
+{The wind gusts reached 46 mph overnight. |The wind gusts reached 46 mph overnight.|188} 
+ {vv||188} 
+{KD5SAM reports rain at 8:35 PM. |K D 5 S A M reports rain at 8:35 PM.|189} 
+ {vv||189} 
+{The temperature is 63 degrees under cloudy skies. |The temperature is 63 degrees under cloudy skies.|190} 
+ {vv||190} 
+{W1AW reports a signal on 14.070 MHz. |W 1 A W reports a signal on 14.070 MHz.|191} 
+ {vv||191} 
+{The forecast predicts 4 inches of snow tonight. |The forecast predicts 4 inches of snow tonight.|192} 
+ {vv||192} 
+{N5BOB reports a wind chill of 19 degrees. |N 5 B O B reports a wind chill of 19 degrees.|193} 
+ {vv||193} 
+{The storm moved east at 28 mph. |The storm moved east at 28 mph.|194} 
+ {vv||194} 
+{K7DOG heard a weather alert at 12 PM. |K 7 D O G heard a weather alert at 12 PM.|195} 
+ {vv||195} 
+{The pressure rose. |The pressure rose.|196} 
+ {vv||196} 

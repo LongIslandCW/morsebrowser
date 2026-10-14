@@ -1,0 +1,200 @@
+{AA1CS |A A 1 C S } 
+{AA2ZT |A A 2 Z T } 
+{AA9BFO |A A 9 B F O } 
+{AB0FJD |A B 0 F J D } 
+{AB1EIY |A B 1 E I Y } 
+{AB1HXE |A B 1 H X E } 
+{AB1MRB |A B 1 M R B } 
+{AB3BQ |A B 3 B Q } 
+{AB4NKH |A B 4 N K H } 
+{AB5POQ |A B 5 P O Q } 
+{AB6TEJ |A B 6 T E J } 
+{AB7AD |A B 7 A D } 
+{AB7GH |A B 7 G H } 
+{AB8TX |A B 8 T X } 
+{AC7UIU |A C 7 U I U } 
+{AD3JAA |A D 3 J A A } 
+{AE0IZW |A E 0 I Z W } 
+{AE2ZF |A E 2 Z F } 
+{AE5ATX |A E 5 A T X } 
+{AE5YQG |A E 5 Y Q G } 
+{AF1LG |A F 1 L G } 
+{AF6VLB |A F 6 V L B } 
+{AG2ZG |A G 2 Z G } 
+{AH0EL |A H 0 E L } 
+{AH0MZ |A H 0 M Z } 
+{AH4NF |A H 4 N F } 
+{AH4XO |A H 4 X O } 
+{AH8TX |A H 8 T X } 
+{AI3CV |A I 3 C V } 
+{AI7SW |A I 7 S W } 
+{AJ1JO |A J 1 J O } 
+{AJ4BS |A J 4 B S } 
+{AJ7AKY |A J 7 A K Y } 
+{AJ8LW |A J 8 L W } 
+{AK0CT |A K 0 C T } 
+{AK0ZQN |A K 0 Z Q N } 
+{AK1XU |A K 1 X U } 
+{AK2QK |A K 2 Q K } 
+{AK2YPM |A K 2 Y P M } 
+{AK6HO |A K 6 H O } 
+{AK6KNN |A K 6 K N N } 
+{AK9HKR |A K 9 H K R } 
+{AL1GXM |A L 1 G X M } 
+{AL2KX |A L 2 K X } 
+{AL2YDV |A L 2 Y D V } 
+{AL8GXB |A L 8 G X B } 
+{K2CMU |K 2 C M U } 
+{K2ICH |K 2 I C H } 
+{K2KQM |K 2 K Q M } 
+{K2ZAP |K 2 Z A P } 
+{K3MPG |K 3 M P G } 
+{K3WVR |K 3 W V R } 
+{K4PQF |K 4 P Q F } 
+{K4XES |K 4 X E S } 
+{K6EZL |K 6 E Z L } 
+{K6OOO |K 6 O O O } 
+{K7PBB |K 7 P B B } 
+{K7PUD |K 7 P U D } 
+{K8IJV |K 8 I J V } 
+{K8QCM |K 8 Q C M } 
+{K8RSW |K 8 R S W } 
+{K9AHL |K 9 A H L } 
+{K9CON |K 9 C O N } 
+{K9KHQ |K 9 K H Q } 
+{KA3FNT |K A 3 F N T } 
+{KA6TNF |K A 6 T N F } 
+{KA7QM |K A 7 Q M } 
+{KB4V |K B 4 V } 
+{KB6C |K B 6 C } 
+{KC1NPK |K C 1 N P K } 
+{KC2Q |K C 2 Q } 
+{KC9W |K C 9 W } 
+{KC9WLI |K C 9 W L I } 
+{KD4EZ |K D 4 E Z } 
+{KF0EYR |K F 0 E Y R } 
+{KH4M |K H 4 M } 
+{KH5C |K H 5 C } 
+{KI2NEJ |K I 2 N E J } 
+{KI5UE |K I 5 U E } 
+{KI6F |K I 6 F } 
+{KI7FGN |K I 7 F G N } 
+{KL5NU |K L 5 N U } 
+{KL6CJI |K L 6 C J I } 
+{KN6C |K N 6 C } 
+{KP3H |K P 3 H } 
+{KP5MQ |K P 5 M Q } 
+{KP5SS |K P 5 S S } 
+{KP6TQQ |K P 6 T Q Q } 
+{KT4PXM |K T 4 P X M } 
+{KU4C |K U 4 C } 
+{KW4LYZ |K W 4 L Y Z } 
+{KW5O |K W 5 O } 
+{KX4B |K X 4 B } 
+{KX8C |K X 8 C } 
+{KY6QKK |K Y 6 Q K K } 
+{KZ6BAB |K Z 6 B A B } 
+{N0RKS |N 0 R K S } 
+{N0WGL |N 0 W G L } 
+{N1KXO |N 1 K X O } 
+{N1LBG |N 1 L B G } 
+{N1MSL |N 1 M S L } 
+{N2GTH |N 2 G T H } 
+{N4TMO |N 4 T M O } 
+{N4VZB |N 4 V Z B } 
+{N5JUC |N 5 J U C } 
+{N5JUN |N 5 J U N } 
+{N5OPW |N 5 O P W } 
+{N5REI |N 5 R E I } 
+{N6HGT |N 6 H G T } 
+{N6QRT |N 6 Q R T } 
+{N7BYK |N 7 B Y K } 
+{N7EDB |N 7 E D B } 
+{N7MID |N 7 M I D } 
+{N8BOY |N 8 B O Y } 
+{N8ZWS |N 8 Z W S } 
+{N9LEA |N 9 L E A } 
+{N9VVK |N 9 V V K } 
+{NB2E |N B 2 E } 
+{ND2B |N D 2 B } 
+{ND2T |N D 2 T } 
+{ND6ATV |N D 6 A T V } 
+{NE3V |N E 3 V } 
+{NE8XJ |N E 8 X J } 
+{NF5C |N F 5 C } 
+{NF6Z |N F 6 Z } 
+{NH1FQ |N H 1 F Q } 
+{NH7U |N H 7 U } 
+{NI8FYF |N I 8 F Y F } 
+{NJ1H |N J 1 H } 
+{NJ7DL |N J 7 D L } 
+{NK0NBZ |N K 0 N B Z } 
+{NK3LOG |N K 3 L O G } 
+{NL2D |N L 2 D } 
+{NL2ZA |N L 2 Z A } 
+{NL9GEU |N L 9 G E U } 
+{NM2WVW |N M 2 W V W } 
+{NM6T |N M 6 T } 
+{NM8K |N M 8 K } 
+{NN6DMA |N N 6 D M A } 
+{NQ3G |N Q 3 G } 
+{NR6B |N R 6 B } 
+{NS6LR |N S 6 L R } 
+{NT6T |N T 6 T } 
+{NT9W |N T 9 W } 
+{NU2BN |N U 2 B N } 
+{NV6YDE |N V 6 Y D E } 
+{W0DBB |W 0 D B B } 
+{W0FRL |W 0 F R L } 
+{W0QNY |W 0 Q N Y } 
+{W0WJT |W 0 W J T } 
+{W2ZCV |W 2 Z C V } 
+{W3ATG |W 3 A T G } 
+{W3MSH |W 3 M S H } 
+{W3SDZ |W 3 S D Z } 
+{W4EBG |W 4 E B G } 
+{W4MIL |W 4 M I L } 
+{W4QKJ |W 4 Q K J } 
+{W5TEX |W 5 T E X } 
+{W5VEA |W 5 V E A } 
+{W6BYT |W 6 B Y T } 
+{W6JOY |W 6 J O Y } 
+{W6QBF |W 6 Q B F } 
+{W7MKU |W 7 M K U } 
+{W8CNT |W 8 C N T } 
+{W8GGL |W 8 G G L } 
+{W8LSN |W 8 L S N } 
+{W8MIS |W 8 M I S } 
+{W8WTJ |W 8 W T J } 
+{W8ZNG |W 8 Z N G } 
+{W9DBR |W 9 D B R } 
+{WA5T |W A 5 T } 
+{WD5YI |W D 5 Y I } 
+{WE0X |W E 0 X } 
+{WE5ICF |W E 5 I C F } 
+{WF2FX |W F 2 F X } 
+{WF9Q |W F 9 Q } 
+{WG0CK |W G 0 C K } 
+{WG1ZYA |W G 1 Z Y A } 
+{WG2B |W G 2 B } 
+{WG4V |W G 4 V } 
+{WI4LE |W I 4 L E } 
+{WJ4YIO |W J 4 Y I O } 
+{WJ8P |W J 8 P } 
+{WK5AW |W K 5 A W } 
+{WM0X |W M 0 X } 
+{WN2Z |W N 2 Z } 
+{WN9NN |W N 9 N N } 
+{WO5IT |W O 5 I T } 
+{WP5HQ |W P 5 H Q } 
+{WP6ZIF |W P 6 Z I F } 
+{WS1IJM |W S 1 I J M } 
+{WT2RJO |W T 2 R J O } 
+{WT9SL |W T 9 S L } 
+{WU5P |W U 5 P } 
+{WU8CX |W U 8 C X } 
+{WY4D |W Y 4 D } 
+{WY4F |W Y 4 F } 
+{WZ2S |W Z 2 S } 
+{WZ3UV |W Z 3 U V } 
+{WZ8A |W Z 8 A } 
