@@ -1004,6 +1004,9 @@
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORD BUILDING","newlineChunking": false,"display": "WORD BUILDING 2","fileName": "POL_WB_Pt2.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "OVERLEARN","letterGroup": "WORD BUILDING","newlineChunking": false,"display": "WORD BUILDING 3","fileName": "POL_WB_Pt3.txt"},
 
+{"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "CALLSIGNS","newlineChunking": false,"display": "EU CALLSIGNS","fileName": "PC_EU_Callsigns.json"},
+{"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "CALLSIGNS","newlineChunking": false,"display": "US CALLSIGNS","fileName": "PC_US_Callsigns.json"},
+        
 {"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "CHARACTERS","newlineChunking": false,"display": "LETTERS","fileName": "INT1.json"},
 {"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "CHARACTERS","newlineChunking": false,"display": "LETTERS-NUMBERS","fileName": "INT5.json"},
 {"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "CHARACTERS","newlineChunking": false,"display": "LETTERS-PUNCTUATION-PROSIGNS","fileName": "PC_LPP.json"},
@@ -1016,6 +1019,8 @@
 {"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "NAMES","newlineChunking": false,"display": "MAX 5 LETTERS","fileName": "PC_Names_Max_5.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "NAMES","newlineChunking": false,"display": "MORE NAMES","fileName": "PC_Names_Extended.txt"},
 
+
+{"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "SENTENCES","newlineChunking": false,"display": "MIXED","fileName": "PC_Sent_Mixed.txt"},
         
 {"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "WEATHER","newlineChunking": false,"display": "SHORT ","fileName": "PC_WX_Short.txt"},
 {"sort": 529,"userTarget": "STUDENT","class": "EXACT","letterGroup": "WEATHER","newlineChunking": false,"display": "LONG ","fileName": "PC_WX_Long.txt"},
