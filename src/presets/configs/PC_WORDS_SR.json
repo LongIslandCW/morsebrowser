@@ -152,7 +152,7 @@
 		},
 		{
 			"key": "cardSpace",
-			"value": "1.5",
+			"value": "2",
 			"comment": "AKA cardWait"
 		},
 		{
