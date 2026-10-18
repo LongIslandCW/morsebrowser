@@ -179,3 +179,30 @@ test('clicking keyboard shortcuts summary focuses readable shortcuts content', a
   await expect(page.locator('#keyboard-shortcuts-content')).toHaveAccessibleDescription(/Press the letter S to stop playback and rewind to the first card/)
   await expect(page.locator('#keyboard-shortcuts-content')).toHaveAccessibleDescription(/Press the comma key to go back one card/)
 })
+
+test('character picker mode exposes toggle state and named keys', async ({ page }) => {
+  await page.goto('/')
+
+  const modeToggle = page.getByRole('button', { name: 'Character picker mode' })
+  await expect(modeToggle).toHaveAttribute('aria-pressed', 'false')
+  await modeToggle.click()
+  await expect(modeToggle).toHaveAttribute('aria-pressed', 'true')
+  await expect(page.getByRole('status', { name: 'Latest status announcement' })).toHaveText('Character picker mode is on')
+
+  const picker = page.getByRole('region', { name: 'CHARACTERS' })
+  await expect(picker).toHaveAccessibleDescription(/Practice groups use only these characters/)
+  const letterA = page.getByRole('group', { name: 'Letters' }).getByRole('button', { name: 'A', exact: true })
+  await expect(letterA).toHaveAttribute('aria-pressed', 'false')
+  await letterA.focus()
+  await page.keyboard.press('Enter')
+  await expect(letterA).toHaveAttribute('aria-pressed', 'true')
+  await expect(page.getByRole('button', { name: 'period' })).toBeVisible()
+  await expect(page.getByRole('button', { name: 'B T prosign' })).toBeVisible()
+  await expect(page.getByRole('button', { name: 'Select all letters' })).toBeVisible()
+  await expect(page.getByLabel('Minimum group size')).toBeVisible()
+  await expect(page.getByLabel('Length (min)')).toBeVisible()
+  // No extra live regions: the picker summary is plain text, not announced on every tap.
+  await expect(picker.locator('[aria-live]')).toHaveCount(0)
+
+  await expectNoAxeViolations(page)
+})

@@ -19,6 +19,7 @@ import NoiseAccordion from './components/noiseAccordion/noiseAccordion'
 import RssAccordion from './components/rssAccordion/rssAccordion'
 import FlaggedWordsAccordion from './components/flaggedWordsAccordion/flaggedWordsAccordion'
 import { CardBufferManager } from './utils/cardBufferManager'
+import { CharacterPicker } from './charPicker/characterPicker'
 import WordInfo from './utils/wordInfo'
 import { PlayingTimeInfo } from './utils/playingTimeInfo'
 import { SettingsChangeInfo } from './settings/settingsChangeInfo'
@@ -105,6 +106,7 @@ export class MorseViewModel {
   morseDisabled:ko.Observable<boolean> = ko.observable(false)
   settings:MorseSettings
   lessons:MorseLessonPlugin
+  charPicker:CharacterPicker
   flaggedWords:FlaggedWords
   // voiceBuffer:string[]
   doPlayTimeout:any
@@ -163,6 +165,12 @@ export class MorseViewModel {
       const est = this.morseWordPlayer.getTimeEstimate(config)
       return est
     }, this)
+
+    // Character picker mode (header toggle). Created before cookies load so its
+    // handler restores the saved mode and selection.
+    this.charPicker = new CharacterPicker()
+    this.charPicker.mode.extend({ saveCookie: CharacterPicker.MODE_COOKIE } as ko.ObservableExtenderOptions<boolean>)
+    this.charPicker.letters.extend({ saveCookie: CharacterPicker.CHARS_COOKIE } as ko.ObservableExtenderOptions<string>)
 
     this.rss = new MorseRssPlugin(new RssConfig(this.setText, this.fullRewind, this.doPlay, this.lastFullPlayTime, this.playerPlaying))
 
@@ -289,6 +297,9 @@ export class MorseViewModel {
     applyTheme(this.darkMode())
 
     this.applyEnabled = ko.computed(() => {
+      if (this.charPicker.mode()) {
+        return this.charPicker.hasSelection()
+      }
       if (this.lessons && this.lessons.ifCustomGroup()) {
         return !!this.lessons.customGroup()?.trim()
       }
@@ -320,6 +331,7 @@ export class MorseViewModel {
 
     this.screenWakeLock = new ScreenWakeLock()
     this.registerAccessibilityAnnouncements()
+    this.wireCharacterPicker()
   }
   // END CONSTRUCTOR
 
@@ -724,6 +736,42 @@ export class MorseViewModel {
       return
     }
     Collapse.getOrCreateInstance(panel, { toggle: false }).show()
+  }
+
+  /**
+   * Regenerate practice text when the picked characters or the group size/time
+   * change. Like a preset reload, this waits until playback stops.
+   */
+  wireCharacterPicker = () => {
+    const regenerateSoon = () => {
+      if (this.charPicker.mode()) {
+        this.lessons.scheduleLessonReinitAfterPreset(400)
+      }
+    }
+    this.charPicker.letters.subscribe(regenerateSoon)
+    this.lessons.overrideMins.subscribe(regenerateSoon)
+    this.lessons.trueOverrideMin.subscribe(regenerateSoon)
+    this.lessons.trueOverrideMax.subscribe(regenerateSoon)
+    // A deep link to a lesson means the user wants that lesson, not their picks.
+    if (GeneralUtils.getParameterByName('selectedLesson') || GeneralUtils.getParameterByName('selectedGroup')) {
+      this.charPicker.mode(false)
+    }
+    // Restored from cookies: build the first set of groups from the saved picks.
+    regenerateSoon()
+  }
+
+  toggleCharPickerMode = () => {
+    const on = !this.charPicker.mode()
+    this.charPicker.mode(on)
+    this.announce(on ? 'Character picker mode is on' : 'LICW lessons mode is on')
+    if (on) {
+      const panel = document.getElementById('accordianItemLessonControls')
+      if (panel && !panel.classList.contains('show')) {
+        Collapse.getOrCreateInstance(panel, { toggle: false }).show()
+      }
+    }
+    // Picker on: groups from the picks. Picker off: back to the selected lesson.
+    this.lessons.scheduleLessonReinitAfterPreset(0)
   }
 
   onSpeedRacerEnabledClick = (_data, event:Event) => {
@@ -1572,7 +1620,11 @@ export class MorseViewModel {
   }
 
   doApply = (fromUserClick:boolean = false) => {
-    if (this.lessons.ifCustomGroup()) {
+    if (this.charPicker.mode()) {
+      this.lessons.abortPendingLessonReinit()
+      this.lessons.generateFromPicker()
+      this.lessons.closeLessonAccordianIfAutoClosing()
+    } else if (this.lessons.ifCustomGroup()) {
       this.lessons.doCustomGroup()
     } else {
       // skip presets if user clicked, assume they wanted to change something

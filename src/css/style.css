@@ -37,7 +37,8 @@ section:last-of-type {
 }
 
 .theme-toggle-btn,
-.auto-close-toggle-btn {
+.auto-close-toggle-btn,
+.char-picker-toggle-btn {
     display: inline-flex;
     align-items: center;
     gap: 0.35rem;
@@ -419,6 +420,72 @@ html {
 
 .trail-settings-row {
     row-gap: 0.35rem;
+}
+
+/* Character picker mode (header toggle) */
+.char-picker-help {
+    margin-bottom: 0.25rem;
+    font-size: 0.875rem;
+}
+
+.char-picker-summary {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    overflow-wrap: anywhere;
+}
+
+.char-picker-category {
+    margin-bottom: 0.75rem;
+}
+
+.char-picker-category-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem;
+    margin-bottom: 0.35rem;
+}
+
+.char-picker-category-title {
+    font-weight: 600;
+}
+
+.char-picker-category-count {
+    font-size: 0.8rem;
+    color: var(--bs-secondary-color, #6c757d);
+    margin-right: auto;
+}
+
+/* Fill the row with touch-sized keys (44px+) so it works on a phone. */
+.char-picker-keys {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(2.75rem, 1fr));
+    gap: 0.35rem;
+}
+
+.char-picker-key {
+    min-height: 2.75rem;
+    padding: 0.25rem;
+    font-weight: 600;
+    font-family: var(--bs-font-monospace, monospace);
+}
+
+.char-picker-options {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.char-picker-size,
+.char-picker-minutes {
+    width: auto;
+    flex-wrap: nowrap;
+}
+
+.char-picker-actions {
+    display: flex;
+    gap: 0.5rem;
 }
 
 /* LICW lessons picker */
