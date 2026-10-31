@@ -132,6 +132,27 @@ test('mobile viewport keeps high-risk controls accessible', async ({ page }) => 
   await expectNoAxeViolations(page)
 })
 
+test('credits and help links match the published order and destinations', async ({ page }) => {
+  await page.goto('/')
+
+  const items = page.locator('#credits-and-info .page-help-link-list > li')
+  await expect(items).toHaveCount(5)
+  await expect(items.nth(0)).toContainText('User guide & FAQ:')
+  await expect(items.nth(1)).toContainText('Questions, bugs, or feature requests:')
+  await expect(items.nth(2)).toContainText('Audio engine adapted from')
+  await expect(items.nth(3)).toContainText('Source code:')
+  await expect(items.nth(4)).toContainText('Video walkthroughs:')
+
+  await expect(items.nth(0).getByRole('link')).toHaveAttribute('href', 'https://longislandcwclub.org/academic-downloads/')
+  await expect(items.nth(0).getByRole('link')).toHaveCount(1)
+  await expect(items.nth(1).getByRole('link', { name: 'email the team' })).toHaveAttribute('href', 'mailto:AB5TN48@gmail.com')
+  await expect(items.nth(2).getByRole('link', { name: 'SC Phillips' })).toHaveAttribute('href', 'https://morsecode.world/')
+  await expect(items.nth(2).getByRole('link', { name: 'morse-pro' })).toHaveAttribute('href', 'https://github.com/scp93ch/morse-pro')
+  await expect(items.nth(3).getByRole('link', { name: 'Long Island CW Club GitHub' })).toHaveAttribute('href', 'https://github.com/LongIslandCW/morsebrowser/')
+  await expect(items.nth(4).getByRole('link', { name: 'YouTube playlist' })).toHaveAttribute('href', 'https://www.youtube.com/playlist?list=PLt-EzlLx2AKFY8NVxxPVBbPzR6s-Kz7tJ')
+  await expect(page.locator('#credits-and-info')).not.toContainText('longislandcwclub.org')
+})
+
 test('help link moves keyboard focus to keyboard shortcuts summary', async ({ page }) => {
   await page.goto('/')
 
