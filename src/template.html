@@ -158,7 +158,7 @@
                             aria-labelledby="headingLessonControls">
                             <div class="accordion-body" aria-describedby="lessonsHelp">
                                 <p id="lessonsHelp" class="sr-only"
-                                    data-bind="text: charPicker.mode() ? 'Choose a settings preset as a starting point, then pick the characters to practice. Practice groups use only the picked characters.' : 'Choose a course, class, content set, lesson, and settings preset. Save and Load work with your settings preset file.'">
+                                    data-bind="text: charPicker.mode() ? 'Choose a settings preset as a starting point, then pick the characters to practice.' : 'Choose a course, class, content set, lesson, and settings preset. Save and Load work with your settings preset file.'">
                                     Choose a course, class, content set, lesson, and settings preset. Save and Load work with your settings preset file.
                                 </p>
 
@@ -281,15 +281,18 @@
                                 <section class="char-picker mt-3" aria-labelledby="charPickerHeading"
                                     aria-describedby="charPickerHelp" data-bind="visible: charPicker.mode()">
                                     <h3 class="lessons-picker-label" id="charPickerHeading">CHARACTERS</h3>
-                                    <p id="charPickerHelp" class="char-picker-help">
-                                        Tap characters to add or remove them. Practice groups use only these characters.
-                                        Changes apply now, or when you stop playback.
-                                    </p>
+                                    <div class="form-check mb-2">
+                                        <input type="checkbox" class="form-check-input" id="charPickerRealWords"
+                                            aria-describedby="charPickerHelp" data-bind="checked: charPicker.realWords">
+                                        <label class="form-check-label" for="charPickerRealWords">Real words</label>
+                                    </div>
+                                    <p id="charPickerHelp" class="char-picker-help"
+                                        data-bind="text: charPicker.realWords() ? 'Pick target letters for each word. Other letters can appear too. Changes apply after playback stops if it is active.' : 'Practice groups use only these characters. Changes apply after playback stops if it is active.'"></p>
                                     <p class="char-picker-summary" data-bind="text: charPicker.summary"></p>
 
                                     <!-- ko foreach: charPicker.categories -->
                                     <div class="char-picker-category" role="group"
-                                        data-bind="attr: { 'aria-labelledby': 'charPickerCat-' + id }">
+                                        data-bind="visible: !$root.charPicker.realWords() || id === 'letters', attr: { 'aria-labelledby': 'charPickerCat-' + id }">
                                         <div class="char-picker-category-head">
                                             <span class="char-picker-category-title"
                                                 data-bind="text: title, attr: { id: 'charPickerCat-' + id }"></span>
@@ -308,7 +311,7 @@
                                     <!-- /ko -->
 
                                     <div class="char-picker-options">
-                                        <div class="input-group char-picker-size">
+                                        <div class="input-group char-picker-size" data-bind="visible: !charPicker.realWords()">
                                             <span class="input-group-text" aria-hidden="true">Group size</span>
                                             <input id="charPickerSizeMin" type="number" class="form-control morse-settings-num"
                                                 min="1" aria-label="Minimum group size"
@@ -323,6 +326,18 @@
                                                 min="1" aria-label="Maximum group size"
                                                 data-bind="textInput: lessons.overrideMax, enable: !lessons.syncSize(), attr: { min: lessons.trueOverrideMin }">
                                         </div>
+                                        <div class="input-group char-picker-word-option" data-bind="visible: charPicker.realWords">
+                                            <label class="input-group-text" for="charPickerWordMatch">Match</label>
+                                            <select id="charPickerWordMatch" class="form-select" data-bind="value: charPicker.wordMatch">
+                                                <option value="any">Any selected letter</option>
+                                                <option value="all">All selected letters</option>
+                                            </select>
+                                        </div>
+                                        <div class="input-group char-picker-word-option" data-bind="visible: charPicker.realWords">
+                                            <label class="input-group-text" for="charPickerMaxWordLength">Maximum word length</label>
+                                            <input id="charPickerMaxWordLength" type="number" class="form-control morse-settings-num"
+                                                min="1" step="1" data-bind="textInput: charPicker.maxWordLength">
+                                        </div>
                                         <div class="input-group char-picker-minutes">
                                             <label class="input-group-text" for="charPickerMinutes">Length (min)</label>
                                             <input id="charPickerMinutes" type="number" class="form-control morse-settings-num"
@@ -330,11 +345,14 @@
                                         </div>
                                         <div class="char-picker-actions">
                                             <button type="button" class="btn btn-primary" id="charPickerNewGroups"
-                                                data-bind="click: () => doApply(true), enable: charPicker.hasSelection()">New groups</button>
+                                                data-bind="click: () => doApply(true), enable: charPicker.canGenerate(), text: charPicker.realWords() ? 'New words' : 'New groups'">New groups</button>
                                             <button type="button" class="btn btn-outline-secondary" id="charPickerClearAll"
-                                                aria-label="Clear all characters"
-                                                data-bind="click: () => charPicker.clearAll(), enable: charPicker.hasSelection()">Clear all</button>
+                                                data-bind="click: () => charPicker.realWords() ? charPicker.clearCategory('letters') : charPicker.clearAll(), enable: charPicker.realWords() ? charPicker.targetLetters().length > 0 : charPicker.hasSelection(), attr: { 'aria-label': charPicker.realWords() ? 'Clear all target letters' : 'Clear all characters' }">Clear all</button>
                                         </div>
+                                    </div>
+                                    <div class="mt-2" data-bind="visible: charPicker.realWords">
+                                        <p class="mb-1" role="status" data-bind="text: charPicker.wordStatus"></p>
+                                        <a href="./real-words-notices.txt">Word list sources and licenses</a>
                                     </div>
                                 </section>
 

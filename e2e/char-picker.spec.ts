@@ -62,6 +62,46 @@ test('picked characters drive the practice groups', async ({ page }) => {
   }
 })
 
+test('real words match target letters and maximum length on a narrow screen', async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 812 })
+  await turnOnPicker(page)
+  await page.getByRole('checkbox', { name: 'Real words' }).check()
+  await expect(page.getByRole('group', { name: 'Numbers' })).toBeHidden()
+  await expect(page.getByLabel('Minimum group size')).toBeHidden()
+  const letters = page.getByRole('group', { name: 'Letters' })
+  for (const letter of ['X', 'Z']) {
+    await letters.getByRole('button', { name: letter, exact: true }).click()
+  }
+
+  const match = page.getByLabel('Match', { exact: true })
+  const length = page.getByLabel('Maximum word length')
+  const status = page.locator('.char-picker').getByRole('status')
+  const newWords = page.getByRole('button', { name: 'New words' })
+  await length.fill('3')
+  await expect(status).toHaveText('19 matching words')
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(375)
+  await newWords.click()
+  const words = (await readWorkingText(page)).trim().split(/\s+/)
+  expect(words.length).toBeGreaterThan(1)
+  for (const word of words) {
+    expect(word).toMatch(/^[A-Z]{1,3}$/)
+    expect(word).toMatch(/[XZ]/)
+    expect(word).toMatch(/[^XZ]/)
+  }
+
+  const picker = page.locator('#lessonAccordianButton')
+  if ((await picker.getAttribute('aria-expanded')) !== 'true') {
+    await picker.click()
+  }
+  await match.selectOption('all')
+  await expect(status).toHaveText('0 matching words')
+  await expect(newWords).toBeDisabled()
+  await expect.poll(() => readWorkingText(page)).toBe('')
+  await length.fill('10')
+  await expect(status).toHaveText('1 matching word')
+  await expect.poll(async () => (await readWorkingText(page)).trim().split(/\s+/)[0]).toBe('MAXIMIZE')
+})
+
 test('all and none buttons select whole categories', async ({ page }) => {
   await turnOnPicker(page)
 

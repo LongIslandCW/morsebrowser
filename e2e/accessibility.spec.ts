@@ -205,4 +205,13 @@ test('character picker mode exposes toggle state and named keys', async ({ page 
   await expect(picker.locator('[aria-live]')).toHaveCount(0)
 
   await expectNoAxeViolations(page)
+
+  const realWords = picker.getByRole('checkbox', { name: 'Real words' })
+  await realWords.focus()
+  await page.keyboard.press('Space')
+  await expect(realWords).toBeChecked()
+  await expect(picker.getByRole('combobox', { name: 'Match' })).toHaveValue('any')
+  await expect(picker.getByRole('spinbutton', { name: 'Maximum word length' })).toHaveValue('5')
+  await expect(picker.getByRole('status')).toContainText('matching words')
+  await expectNoAxeViolations(page)
 })

@@ -171,6 +171,9 @@ export class MorseViewModel {
     this.charPicker = new CharacterPicker()
     this.charPicker.mode.extend({ saveCookie: CharacterPicker.MODE_COOKIE } as ko.ObservableExtenderOptions<boolean>)
     this.charPicker.letters.extend({ saveCookie: CharacterPicker.CHARS_COOKIE } as ko.ObservableExtenderOptions<string>)
+    this.charPicker.realWords.extend({ saveCookie: CharacterPicker.REAL_WORDS_COOKIE } as ko.ObservableExtenderOptions<boolean>)
+    this.charPicker.wordMatch.extend({ saveCookie: CharacterPicker.WORD_MATCH_COOKIE } as ko.ObservableExtenderOptions<string>)
+    this.charPicker.maxWordLength.extend({ saveCookie: CharacterPicker.MAX_WORD_LENGTH_COOKIE } as ko.ObservableExtenderOptions<string>)
 
     this.rss = new MorseRssPlugin(new RssConfig(this.setText, this.fullRewind, this.doPlay, this.lastFullPlayTime, this.playerPlaying))
 
@@ -298,7 +301,7 @@ export class MorseViewModel {
 
     this.applyEnabled = ko.computed(() => {
       if (this.charPicker.mode()) {
-        return this.charPicker.hasSelection()
+        return this.charPicker.canGenerate()
       }
       if (this.lessons && this.lessons.ifCustomGroup()) {
         return !!this.lessons.customGroup()?.trim()
@@ -749,6 +752,9 @@ export class MorseViewModel {
       }
     }
     this.charPicker.letters.subscribe(regenerateSoon)
+    this.charPicker.realWords.subscribe(regenerateSoon)
+    this.charPicker.wordMatch.subscribe(regenerateSoon)
+    this.charPicker.maxWordLength.subscribe(regenerateSoon)
     this.lessons.overrideMins.subscribe(regenerateSoon)
     this.lessons.trueOverrideMin.subscribe(regenerateSoon)
     this.lessons.trueOverrideMax.subscribe(regenerateSoon)
@@ -870,6 +876,9 @@ export class MorseViewModel {
   }
 
   doPlay = (playJustEnded:boolean, fromPlayButton:boolean) => {
+    if (!playJustEnded && !this.playerPlaying() && !this.isPaused()) {
+      this.lessons.flushPendingPickerReinit()
+    }
     if (!this.rawText().trim()) {
       return
     }
@@ -1621,8 +1630,12 @@ export class MorseViewModel {
 
   doApply = (fromUserClick:boolean = false) => {
     if (this.charPicker.mode()) {
-      this.lessons.abortPendingLessonReinit()
-      this.lessons.generateFromPicker()
+      if (this.playerPlaying() || this.isPaused()) {
+        this.lessons.scheduleLessonReinitAfterPreset(0)
+      } else {
+        this.lessons.abortPendingLessonReinit()
+        this.lessons.generateFromPicker()
+      }
       this.lessons.closeLessonAccordianIfAutoClosing()
     } else if (this.lessons.ifCustomGroup()) {
       this.lessons.doCustomGroup()

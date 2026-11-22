@@ -2,11 +2,11 @@ import * as ko from 'knockout'
 import { CookieInfo } from '../cookies/CookieInfo'
 import { ICookieHandler } from '../cookies/ICookieHandler'
 import { MorseCookies } from '../cookies/morseCookies'
+import englishPracticeWords from './englishPracticeWords.json'
 
 /**
- * Character picker mode: instead of choosing a LICW lesson, the user toggles
- * the exact characters to practice. The selection feeds the same random-group
- * generator as Custom Group (Override Size / Override Time).
+ * Character picks supply either the random-group alphabet or the target
+ * letters for real-word practice.
  */
 
 export type PickerCategoryId = 'letters' | 'numbers' | 'punctuation' | 'prosigns'
@@ -97,10 +97,44 @@ export const parsePicked = (stored: string | null | undefined): string[] => {
 export class CharacterPicker implements ICookieHandler {
   static readonly MODE_COOKIE = 'charPickerMode'
   static readonly CHARS_COOKIE = 'pickedCharacters'
+  static readonly REAL_WORDS_COOKIE = 'charPickerRealWords'
+  static readonly WORD_MATCH_COOKIE = 'charPickerWordMatch'
+  static readonly MAX_WORD_LENGTH_COOKIE = 'charPickerMaxWordLength'
 
   categories = PICKER_CATEGORIES
   mode: ko.Observable<boolean> = ko.observable(false)
   selected: ko.ObservableArray<string> = ko.observableArray<string>([])
+  realWords = ko.observable(false)
+  wordMatch = ko.observable('any')
+  maxWordLength = ko.observable('5')
+  targetLetters = ko.pureComputed(() => this.selected().filter(value => /^[A-Z]$/.test(value)))
+  matchingWords = ko.pureComputed(() => {
+    if (!this.realWords()) {
+      return []
+    }
+    const letters = this.targetLetters().map(letter => letter.toLowerCase())
+    const limit = Number(this.maxWordLength())
+    if (!letters.length || !Number.isInteger(limit) || limit < 1) {
+      return []
+    }
+
+    const matchAll = this.wordMatch() === 'all'
+    return englishPracticeWords.filter(word => word.length <= limit && (matchAll
+      ? letters.every(letter => word.includes(letter))
+      : letters.some(letter => word.includes(letter))))
+  })
+
+  wordStatus = ko.pureComputed(() => {
+    if (!this.targetLetters().length) {
+      return 'Select at least one letter to find words.'
+    }
+    const limit = Number(this.maxWordLength())
+    if (!Number.isInteger(limit) || limit < 1) {
+      return 'Enter a whole number of letters of at least 1.'
+    }
+    const count = this.matchingWords().length
+    return count === 1 ? '1 matching word' : `${count} matching words`
+  })
   /** Selection in generator form, e.g. `LCDPSG<AR>`. */
   letters: ko.PureComputed<string>
   count: ko.PureComputed<number>
@@ -114,7 +148,7 @@ export class CharacterPicker implements ICookieHandler {
     this.letters = ko.pureComputed(() => serializePicked(this.selected()))
     this.count = ko.pureComputed(() => this.selected().length)
     this.summary = ko.pureComputed(() => {
-      const picked = this.selected()
+      const picked = this.realWords() ? this.targetLetters() : this.selected()
       if (picked.length === 0) {
         return 'No characters selected'
       }
@@ -124,6 +158,8 @@ export class CharacterPicker implements ICookieHandler {
   }
 
   hasSelection = (): boolean => this.selected().length > 0
+
+  canGenerate = (): boolean => this.realWords() ? this.matchingWords().length > 0 : this.hasSelection()
 
   isSelected = (value: string): boolean => this.selected().includes(value)
 
@@ -168,6 +204,18 @@ export class CharacterPicker implements ICookieHandler {
     const mode = cookies.find((x) => x.key === CharacterPicker.MODE_COOKIE)
     if (mode) {
       this.mode(String(mode.val) === 'true')
+    }
+    const realWords = cookies.find(x => x.key === CharacterPicker.REAL_WORDS_COOKIE)
+    if (realWords) {
+      this.realWords(String(realWords.val) === 'true')
+    }
+    const wordMatch = cookies.find(x => x.key === CharacterPicker.WORD_MATCH_COOKIE)
+    if (wordMatch) {
+      this.wordMatch(wordMatch.val === 'all' ? 'all' : 'any')
+    }
+    const maxWordLength = cookies.find(x => x.key === CharacterPicker.MAX_WORD_LENGTH_COOKIE)
+    if (maxWordLength) {
+      this.maxWordLength(String(maxWordLength.val))
     }
   }
 

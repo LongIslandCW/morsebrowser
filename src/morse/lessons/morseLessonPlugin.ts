@@ -315,19 +315,83 @@ export default class MorseLessonPlugin implements ICookieHandler {
 
   hasReloadableLesson = ():boolean => {
     if (this.isCharPickerActive()) {
-      return this.morseViewModel.charPicker.hasSelection()
+      const picker = this.morseViewModel.charPicker
+      return picker.realWords() || picker.hasSelection()
     }
     const display = this.selectedDisplay()
     return !!display.display && !display.isDummy
   }
 
-  /** Random groups from the picked characters, sized/timed like Custom Group. */
   generateFromPicker = () => {
-    const letters = this.morseViewModel.charPicker?.letters()
-    if (!letters) {
+    const picker = this.morseViewModel.charPicker
+    // An in-flight lesson import must not replace picker text.
+    this.wordListLoadId++
+    this.morseViewModel.wordListLoadPending = false
+    if (picker.realWords()) {
+      this.generateRealWords(picker.matchingWords())
+    } else if (picker.letters()) {
+      this.randomWordList({ letters: picker.letters() }, true)
+    } else {
+      this.setText('')
+    }
+  }
+
+  flushPendingPickerReinit = () => {
+    if (this.isCharPickerActive() && this.presetLessonReinitTimerHandle) {
+      this.abortPendingLessonReinit()
+      this.generateFromPicker()
+    }
+  }
+
+  private generateRealWords = (matches: string[]) => {
+    if (!matches.length) {
+      this.setText('')
       return
     }
-    this.randomWordList({ letters }, true)
+
+    // Shuffle without replacement within each pass, giving higher-ranked words
+    // better odds of appearing near the start of a short exercise.
+    const nextPass = () => this.randomizeLessons()
+      ? matches.map((word, index) => ({ word, score: -Math.log1p(-Math.random()) * Math.sqrt(index + 1) }))
+        .sort((a, b) => a.score - b.score).map(entry => entry.word)
+      : matches
+    const words: string[] = []
+    let pass: string[] = []
+    let index = 0
+    const textFor = (count: number) => {
+      while (words.length < count) {
+        if (index === pass.length) {
+          pass = nextPass()
+          index = 0
+        }
+        words.push(pass[index++].toUpperCase())
+      }
+      return words.slice(0, count).join(' ')
+    }
+
+    // Find the shortest full-word prefix that reaches the requested time.
+    const duration = Number(this.overrideMins()) * 60000
+    let min = 1
+    let max = 1
+    if (Number.isFinite(duration) && duration > 0) {
+      const tooShort = (count: number) => {
+        const estimate = this.getTimeEstimate(textFor(count)).timeCalcs.totalTime
+        return estimate > 0 && estimate < duration
+      }
+      while (tooShort(max)) {
+        min = max + 1
+        max *= 2
+      }
+      while (min < max) {
+        const middle = Math.floor((min + max) / 2)
+        if (tooShort(middle)) {
+          min = middle + 1
+        } else {
+          max = middle
+        }
+      }
+    }
+    this.setText(textFor(min))
   }
 
   /**
