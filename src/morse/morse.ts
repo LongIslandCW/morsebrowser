@@ -953,7 +953,6 @@ export class MorseViewModel {
           speedRacerSpeakBeforeReplay: this.settings.speed.speedRacerSpeakBeforeReplay(),
           voiceEnabled: this.morseVoice.voiceEnabled()
         })
-
         const playerCmd = () => {
           // Always require an active play state — Pause/Stop clear playerPlaying
           // and doPlayTimeout, so a late Speak First / Back-1 callback must not
@@ -1337,7 +1336,12 @@ export class MorseViewModel {
     }
     // make sure we don't add the same card twice...someday figure what causes
     const lastBufIndex = this.morseVoice.voiceBuffer.length > 0 ? this.morseVoice.voiceBuffer[this.morseVoice.voiceBuffer.length - 1].idx : -1
-    if (this.currentIndex() > lastBufIndex &&
+    // Speak First already spoke this card (repeat Morse plays): do not re-buffer,
+    // or a leftover last-card entry can be spoken against the next/loop card.
+    const alreadySpokeThisCard = this.morseVoice.speakFirst() &&
+      this.morseVoice.speakFirstLastCardIndex === this.currentIndex()
+    if (!alreadySpokeThisCard &&
+        this.currentIndex() > lastBufIndex &&
         this.currentIndex() >= this.morseVoice.voiceBuffer.length) {
     // populate the voiceBuffer even if not speaking, as we might be caching
       const currentWord = this.words()[this.currentIndex()]
@@ -1443,6 +1447,12 @@ export class MorseViewModel {
         if (!this.loopnoshuffle()) {
           this.shuffleWords(true)
         }
+        // Loop restart is not a Play-button freshStart, so reset Speak First /
+        // voice state here (same essentials as freshStart) so the first card of
+        // the new pass is spoken instead of a stale last-card buffer entry.
+        this.morseVoice.voiceBuffer = []
+        this.morseVoice.speakFirstLastCardIndex = -1
+        this.cardBufferManager.clear()
         this.doPlay(false, false)
       }
     }, true)
