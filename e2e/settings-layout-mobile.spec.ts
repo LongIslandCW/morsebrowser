@@ -61,3 +61,24 @@ test('override minutes input uses compact numeric width', async ({ page }) => {
     expect(box.width).toBeLessThan(100)
   }
 })
+
+test('character picker fits a phone screen with touch-sized keys', async ({ page }) => {
+  await page.goto('/')
+  await page.getByRole('button', { name: 'Character picker mode' }).click()
+  await page.getByRole('button', { name: 'Select all letters' }).click()
+  await expect(page.getByRole('group', { name: 'Letters' })).toBeVisible()
+
+  const hasOverflow = await page.evaluate(() => {
+    return document.documentElement.scrollWidth > document.documentElement.clientWidth + 1
+  })
+  expect(hasOverflow).toBe(false)
+
+  const key = await page.getByRole('group', { name: 'Letters' }).getByRole('button', { name: 'Q', exact: true }).boundingBox()
+  expect(key).not.toBeNull()
+  if (key) {
+    expect(key.height).toBeGreaterThanOrEqual(44)
+    expect(key.width).toBeGreaterThanOrEqual(40)
+  }
+  await expect(page.getByLabel('Maximum group size')).toBeVisible()
+  await expect(page.getByRole('button', { name: 'New groups' })).toBeVisible()
+})
