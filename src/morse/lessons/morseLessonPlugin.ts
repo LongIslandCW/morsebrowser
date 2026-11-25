@@ -291,7 +291,7 @@ export default class MorseLessonPlugin implements ICookieHandler {
    * reload clears the voice buffer and can stall Speak First (Sending Voice-First
    * lessons) until Stop then Play. Deferred reloads run when playback stops.
    */
-  scheduleLessonReinitAfterPreset = () => {
+  scheduleLessonReinitAfterPreset = (delayMs:number = 1000) => {
     if (!this.hasReloadableLesson()) {
       return
     }
@@ -305,12 +305,29 @@ export default class MorseLessonPlugin implements ICookieHandler {
         return
       }
       this.runLessonReinit()
-    }, 1000)
+    }, delayMs)
+  }
+
+  /** Character picker mode replaces the selected lesson with the picked characters. */
+  isCharPickerActive = ():boolean => {
+    return !!this.morseViewModel.charPicker?.mode()
   }
 
   hasReloadableLesson = ():boolean => {
+    if (this.isCharPickerActive()) {
+      return this.morseViewModel.charPicker.hasSelection()
+    }
     const display = this.selectedDisplay()
     return !!display.display && !display.isDummy
+  }
+
+  /** Random groups from the picked characters, sized/timed like Custom Group. */
+  generateFromPicker = () => {
+    const letters = this.morseViewModel.charPicker?.letters()
+    if (!letters) {
+      return
+    }
+    this.randomWordList({ letters }, true)
   }
 
   /**
@@ -322,6 +339,10 @@ export default class MorseLessonPlugin implements ICookieHandler {
    */
   runLessonReinit = () => {
     this.deferredLessonReinit = false
+    if (this.isCharPickerActive()) {
+      this.generateFromPicker()
+      return
+    }
     this.setDisplaySelected(this.selectedDisplay(), true)
   }
 

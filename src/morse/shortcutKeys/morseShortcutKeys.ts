@@ -28,7 +28,7 @@ export class MorseShortcutKeys {
     // add the shortcut key listener
     document.addEventListener('keypress', (e) => {
       const tagName = (<any>e.target).tagName
-      if (tagName !== 'INPUT' && tagName !== 'TEXTAREA') {
+      if (tagName !== 'INPUT' && tagName !== 'TEXTAREA' && this.registeredHandlers[e.key]) {
         this.routeShortcutKey(e.key)
         e.preventDefault()
       }
