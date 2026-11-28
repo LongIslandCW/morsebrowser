@@ -143,14 +143,16 @@ test('credits and help links match the published order and destinations', async 
   await expect(items.nth(3)).toContainText('Audio engine adapted from')
   await expect(items.nth(4)).toContainText('Source code:')
 
-  await expect(items.nth(0).getByRole('link', { name: 'MPP Guide (PDF)' })).toHaveAttribute(
-    'href',
-    'https://b3f0678a-b887-4549-b533-44610d2e95c8.filesusr.com/ugd/61d10b_9eb6a72ece8a41e7bf7bb75bed9c06aa.pdf'
-  )
-  await expect(items.nth(1).getByRole('link', { name: 'MPP FAQ (PDF)' })).toHaveAttribute(
-    'href',
-    'https://b3f0678a-b887-4549-b533-44610d2e95c8.filesusr.com/ugd/61d10b_b803c00f9b4a444baf24cb45285db330.pdf'
-  )
+  const guideLink = items.nth(0).getByRole('link', { name: 'MPP Guide (PDF)' })
+  const faqLink = items.nth(1).getByRole('link', { name: 'MPP FAQ (PDF)' })
+  await expect(guideLink).toHaveAttribute('href', 'docs/MPP_Guide.pdf')
+  await expect(faqLink).toHaveAttribute('href', 'docs/MPP_FAQ.pdf')
+
+  for (const href of ['docs/MPP_Guide.pdf', 'docs/MPP_FAQ.pdf']) {
+    const response = await page.request.get(new URL(href, page.url()).toString())
+    expect(response.ok()).toBeTruthy()
+    expect(response.headers()['content-type'] || '').toMatch(/pdf/i)
+  }
   await expect(items.nth(2).getByRole('link', { name: 'email the team' })).toHaveAttribute('href', 'mailto:AB5TN48@gmail.com')
   await expect(items.nth(3).getByRole('link', { name: 'SC Phillips' })).toHaveAttribute('href', 'https://morsecode.world/')
   await expect(items.nth(3).getByRole('link', { name: 'morse-pro' })).toHaveAttribute('href', 'https://github.com/scp93ch/morse-pro')

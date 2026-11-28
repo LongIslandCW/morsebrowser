@@ -52,6 +52,11 @@ module.exports = {
         Buffer: ['buffer', 'Buffer']
       }
     ),
+    new CopyPlugin({
+      patterns: [
+        { from: path.resolve(__dirname, 'src/assets/docs/'), to: 'docs' }
+      ]
+    }),
     /* leaving this for reference but switched to import rather than fetching these
     new CopyPlugin({
       patterns: [
